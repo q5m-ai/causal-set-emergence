@@ -92,6 +92,29 @@ class CalculationsTest(unittest.TestCase):
         self.assertNear(mass, derivative / (2 * mp.pi * mp.sqrt(6)))
         self.assertNear(first_moment, (upper * derivative - F) / (2 * mp.pi * mp.sqrt(6)))
 
+    def test_plane_gaussian_cancellations_and_bounds(self):
+        # Independent square-root coordinates used in the half-line Lean proof.
+        # These numerical diagnostics do not establish the uniform bounds.
+        for value in ("0.1", "0.9", "2", "4", "8"):
+            u = mp.mpf(value)
+            a = mp.pi * u**4 / 24
+
+            def cancellation(b, d):
+                return mp.quad(
+                    lambda t: mp.sqrt(1 - t)
+                    * (b - (2 * b + 3 * d) * a * t**2 + 2 * d * a**2 * t**4)
+                    * mp.exp(-a * t**2),
+                    [0, 1],
+                )
+
+            second = 2 * mp.pi * u * cancellation(6, 8)
+            moment_boundary = 2 * mp.pi * u**3 * cancellation(2, 0)
+            self.assertNear(second, plane_auxiliary(u, 2))
+            self.assertNear(moment_boundary, u * plane_auxiliary(u, 1) - plane_auxiliary(u))
+            self.assertLessEqual(abs(second), 2832 / u**3)
+            self.assertLessEqual(abs(moment_boundary), 240 / u)
+            self.assertLessEqual(abs(plane_kernel(u)), 1416 / (mp.pi * mp.sqrt(6) * u**3))
+
     def test_plane_kernel_sign_and_tail(self):
         self.assertGreater(plane_kernel(1), 0)
         self.assertLess(plane_kernel(4), 0)

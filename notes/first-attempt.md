@@ -8,10 +8,12 @@ future boundary**; it is not a localization theorem for two arbitrary boundaries
 **Formalization:** [the Lean layer](../formal/README.md) checks supporting
 algebra, a generic signed-kernel limit lemma, concrete kernel scaling,
 differentiation of the auxiliary integral through order three, and its
-finite-interval mass and signed first-moment identities. It does not yet verify
-either main theorem, the half-line kernel normalization and tail estimates,
-or the Poisson-expectation bridge. Explicit full-theorem targets are defined
-without asserting unproved results.
+finite-interval mass and signed first-moment identities. It now also proves
+half-line normalization, absolute integrability and the absolute first moment,
+an explicit absolute tail bound, and the concrete signed-rescaling limit.
+It does not yet verify either main theorem, the four-dimensional action
+reductions, or the Poisson-expectation bridge. Explicit full-theorem targets
+are defined without asserting unproved results.
 
 ## 1. Precise target and conventions
 
@@ -347,13 +349,70 @@ The finite-interval identities
  \int_0^U G(u)\,du=\frac{F'(U)}{2\pi\sqrt6},\qquad
  \int_0^U uG(u)\,du=\frac{UF'(U)-F(U)}{2\pi\sqrt6}
 \]
-are now machine-checked by the fundamental theorem of calculus. The following
-passage to infinity, including **absolute** integrability in (15), is still
-an analytic-draft argument, not a completed Lean proof.
+are machine-checked by the fundamental theorem of calculus. The passage to
+infinity, including **absolute** integrability in (15), is now also checked in
+`KernelEstimates.lean` and `KernelHalfLine.lean`, using the following argument.
+It closes the earlier formalization gap without adding hypotheses or assuming
+that an asymptotic remainder can be differentiated.
 
-**Proof of (15).** Near zero, (11) gives
-\(F(u)=4\pi u^3/3+O(u^7)\), so \(G(u)=4u/\sqrt6+O(u^5)\).
-For large \(u\), change variable to \(s=u^2-r^2\):
+**Proof of (15) by exact Gaussian cancellation (machine-checked).** Put
+\(a=cu^4\) and substitute \(t=1-v^2\) in the already-justified fixed-interval
+derivative formulas. For
+\[
+ P_{b,d}(a,t)=b-(2b+3d)at^2+2da^2t^4
+\]
+one obtains
+\[
+ F''(u)=2\pi u\int_0^1\sqrt{1-t}\,P_{6,8}(a,t)e^{-at^2}\,dt,
+\]
+\[
+ uF'(u)-F(u)=2\pi u^3\int_0^1\sqrt{1-t}\,P_{2,0}(a,t)e^{-at^2}\,dt.
+\]
+For \(a>0\) and \(b,d\ge0\), the constant-weight integral has primitive
+\((bt-dat^3)e^{-at^2}\), hence integral \((b-da)e^{-a}\).
+Moreover, \(|\sqrt{1-t}-1|\le t\) on \([0,1]\) and
+\[
+ |P_{b,d}(a,t)|\le Q_{b,d}(a,t):=b+(2b+3d)at^2+2da^2t^4.
+\]
+An exact primitive for \(tQ_{b,d}(a,t)e^{-at^2}\) is
+\[
+ -\frac1a\left[\frac{3b+7d}{2}
+   +\frac{2b+7d}{2}at^2+da^2t^4\right]e^{-at^2}.
+\]
+Consequently, \(\int_0^1 tQ_{b,d}(a,t)e^{-at^2}\,dt\le(3b+7d)/(2a)\).
+Using \(e^{-a}\le1/a\) and \(ae^{-a}\le2/a\) bounds the endpoint term,
+so the triangle inequality gives
+\[
+ \left|\int_0^1\sqrt{1-t}\,P_{b,d}(a,t)e^{-at^2}\,dt\right|
+ \le\frac{5b+11d}{2a}.
+\]
+The two choices above yield, for every \(u>0\),
+\[
+ |F''(u)|\le2832u^{-3},\qquad
+ |uF'(u)-F(u)|\le240u^{-1},\qquad
+ |G(u)|\le\frac{1416}{\pi\sqrt6}u^{-3}.
+\]
+These constants are deliberately loose. Continuity on \([0,1]\) and the
+last estimate on \([1,\infty)\) prove both \(G\in L^1\) and
+\(u|G|\in L^1\); signed cancellation is not being substituted for either.
+
+For the normalization, change variables again to get
+\[
+ \frac{F(u)}u=2\pi\int_0^\infty
+   \sqrt{(1-s/u^2)_+}\,e^{-cs^2}\,ds\longrightarrow2\pi\sqrt6.
+\]
+The square-root factor is at most one and converges pointwise to one, so the
+integrable Gaussian supplies domination. The bound on \(uF'(u)-F(u)\) now
+implies \(F'(u)\to2\pi\sqrt6\). Passing the finite mass identity to infinity
+proves \(\int G=1\). Separately, the same boundary bound proves the signed
+moment \(\int_0^\infty uG(u)\,du=0\); its absolute integrability was proved
+first. The checked generic signed-rescaling theorem therefore applies to this
+concrete kernel on the positive half-line. \(\square\)
+
+**Sharper draft asymptotics (not needed or claimed as Lean results).** Near
+zero, (11) gives \(F(u)=4\pi u^3/3+O(u^7)\), so
+\(G(u)=4u/\sqrt6+O(u^5)\). For large \(u\), change variable to
+\(s=u^2-r^2\):
 
 \[
  F(u)=2\pi\int_0^{u^2}\sqrt{u^2-s}\,e^{-cs^2}\,ds
@@ -380,11 +439,10 @@ It follows that
  \qquad F'(\infty)=2\pi\sqrt6,\qquad F'(0)=0.
 \]
 
-These facts give absolute integrability, the finite absolute first moment,
-and
-\(\int G=[F'(\infty)-F'(0)]/(2\pi\sqrt6)=1\).
-One also has the signed moment \(\int_0^\infty uG(u)\,du=0\), since
-\(uF'(u)-F(u)\to0\). \(\square\)
+These sharper draft facts are consistent with the checked half-line results
+above. The leading negative-tail coefficient and the derivative remainder
+bounds through order three have not themselves been formalized; none is a
+hypothesis of the Lean normalization, tail, or rescaling theorems.
 
 ## 6. Variable-angle theorem
 

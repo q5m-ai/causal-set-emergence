@@ -5,10 +5,11 @@ import Mathlib.MeasureTheory.Integral.DominatedConvergence
 import Mathlib.Analysis.SpecialFunctions.Exp
 
 /-!
-# Definitions and UNPROVED targets
+# Definitions and targets
 
 Every name ending in `Goal` below is a DEFINITION OF A PROPOSITION, not a
-proved theorem, not an axiom, and not an instance of that proposition.
+proof or an axiom. `KernelEstimates` and `KernelHalfLine` now construct proofs
+of the two concrete kernel targets; the four-dimensional targets remain open.
 
 The main targets refer to the actual four-dimensional deterministic continuum
 integral, not an action defined to equal its expected limiting answer.
@@ -95,14 +96,15 @@ def GraphReductionGoal (h : Spatial → ℝ) : Prop :=
     continuumMean ρ (graphCapRegion h) =
       ∫ x in {x | 0 < h x}, planeKernel ρ (h x)
 
-/-- Analytic obligations for the specific signed BDG kernel. NOT PROVED. -/
+/-- Analytic obligations for the specific signed BDG kernel.
+Proved by `kernelMassGoal` in `KernelHalfLine`. -/
 def KernelMassGoal : Prop :=
   IntegrableOn (planeKernel 1) (Ioi (0 : ℝ)) ∧
     (∫ u in Ioi (0 : ℝ), planeKernel 1 u) = 1 ∧
     IntegrableOn (fun u => u * |planeKernel 1 u|) (Ioi (0 : ℝ))
 
 /-- A bound adequate for the non-collar part of a general graph cap.
-This is a target, not an assumed estimate. NOT PROVED. -/
+Proved by `kernelTailGoal` in `KernelEstimates`, not assumed as an estimate. -/
 def KernelTailGoal : Prop :=
   ∃ C R : ℝ, 0 < C ∧ 0 < R ∧
     ∀ u : ℝ, R ≤ u → |planeKernel 1 u| ≤ C / u ^ 3

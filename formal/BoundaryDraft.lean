@@ -3,3 +3,6 @@ import BoundaryDraft.AnalyticCore
 import BoundaryDraft.Specification
 import BoundaryDraft.KernelScaling
 import BoundaryDraft.KernelDerivatives
+import BoundaryDraft.GaussianCancellation
+import BoundaryDraft.KernelEstimates
+import BoundaryDraft.KernelHalfLine

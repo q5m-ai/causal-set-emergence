@@ -45,6 +45,23 @@ def main():
         power -= 1
     print("PASS: first three auxiliary derivative polynomials")
 
+    # Exact primitives used in the Lean absolute tail/moment estimates.
+    alpha = s.symbols("alpha", positive=True)
+    t, b, d = s.symbols("t b d", real=True)
+    gaussian = s.exp(-alpha * t**2)
+    cancellation = b - (2 * b + 3 * d) * alpha * t**2 + 2 * d * alpha**2 * t**4
+    envelope = b + (2 * b + 3 * d) * alpha * t**2 + 2 * d * alpha**2 * t**4
+    primitive = (b * t - d * alpha * t**3) * gaussian
+    weighted_primitive = -(
+        (3 * b + 7 * d) / 2 + (2 * b + 7 * d) * alpha * t**2 / 2
+        + d * alpha**2 * t**4
+    ) * gaussian / alpha
+    assert s.simplify(s.diff(primitive, t) - cancellation * gaussian) == 0
+    assert s.simplify(s.diff(weighted_primitive, t) - t * envelope * gaussian) == 0
+    assert s.expand(cancellation.subs({b: 6, d: 8}) - (6 - 36 * alpha * t**2 + 16 * alpha**2 * t**4)) == 0
+    assert s.expand(cancellation.subs({b: 2, d: 0}) - (2 - 4 * alpha * t**2)) == 0
+    print("PASS: exact Gaussian cancellation and absolute-envelope primitives")
+
     weight = s.pi / 4 * (
         a * (2 * T - a) - 2 * (1 - a / T) * sigma
         - sigma**2 / T**2 - 2 * sigma * s.log(a * T / sigma)
