@@ -16,8 +16,8 @@ the checked layer and open formal targets for the current proof program.
 source is also rechecked in an isolated current module so all of its public
 declarations receive a transitive axiom audit even when that source is not
 imported by the library root. Finally, the aggregate audit inventories the
-library's **46 public theorems** and public definitions. The library root imports
-all kernel modules, including the half-line proofs.
+library's **79 public theorems** and public definitions. The library root imports
+all kernel, ellipsoid geometry, and four-dimensional reduction modules.
 
 | File | Checked result | What it does **not** establish |
 |---|---|---|
@@ -37,6 +37,11 @@ all kernel modules, including the half-line proofs.
 | `BoundaryDraft/KernelEstimates.lean` | Explicit absolute `O(u⁻³)` kernel bound; `KernelTailGoal`; vanishing-moment boundary estimate | Graph-cap geometry or its non-collar reduction |
 | `BoundaryDraft/KernelHalfLine.lean` | Large-argument limits; absolute integrability and first moment; mass one; `KernelMassGoal`; signed first moment zero | The four-dimensional action reduction |
 | same | Concrete positive-half-line signed-rescaling limit | Coarea or either main boundary-limit theorem |
+| `BoundaryDraft/EllipsoidGeometry.lean` | Positive ellipsoid, measurability, boundedness, compact positive-part support, strict Euclidean Lipschitz estimate | Sublevel volumes or coarea |
+| same | Complete future-cone slices and causal convexity under the original axis hypotheses | Arbitrary graph profiles |
+| `BoundaryDraft/ConeIntegral.lean` | Exact radial action-density identity by a zero-endpoint primitive; finite-fibre FTC | A boundary limit |
+| `BoundaryDraft/SpacetimeIntegration.lean` | Product-measure coordinate decomposition, Fubini, spatial polar integration, and translation of actual BDG integrals | The Poisson-expectation bridge |
+| same | `ellipsoid_graphReduction` proves the unchanged `GraphReductionGoal (ellipsoidProfile a b)` | Explicit ellipsoid sublevel/coarea limit or `EllipsoidLimitGoal` |
 
 The analytic theorem genuinely permits a **signed** kernel. In ordinary
 notation it proves
@@ -108,10 +113,13 @@ calculus then proves
 \]
 
 These identities hold for finite \(H\); they alone do not justify passing to
-infinity. That passage is now proved separately as follows. The exact reduction
-from `continuumMean` remains unproved. This completes the one-dimensional
-analytic milestone in [issue #4](https://github.com/q5m-ai/causal-set-gravity/issues/4),
-not the full program in [issue #1](https://github.com/q5m-ai/causal-set-gravity/issues/1).
+infinity. That passage is now proved separately as follows, completing the
+one-dimensional analytic milestone in
+[issue #4](https://github.com/q5m-ai/causal-set-gravity/issues/4).
+The exact reduction from `continuumMean` is also now proved for ellipsoids in
+[issue #6](https://github.com/q5m-ai/causal-set-gravity/issues/6), as described below.
+Neither result completes the boundary-limit program in
+[issue #1](https://github.com/q5m-ai/causal-set-gravity/issues/1).
 
 ## Half-line estimates and normalization
 
@@ -168,6 +176,66 @@ No additional hypotheses on the concrete kernel are introduced. The sharper
 coefficient \(G(u)\sim-2\sqrt6/(\pi u^3)\), and the derivative remainders
 through order three in the draft, are **not** claimed as Lean results.
 
+## Exact ellipsoid action reduction
+
+The checked theorem is:
+
+```lean
+theorem ellipsoid_graphReduction (a : ℝ) (b : Fin 3 → ℝ)
+    (ha : 0 < a) (hb : ∀ i, 2 * a < b i) :
+    GraphReductionGoal (ellipsoidProfile a b)
+```
+
+It proves equality at **every positive density**, not just asymptotically.
+`continuumMean`, `graphCapRegion`, `ellipsoidProfile`, `bdgKernel`, `planeKernel`,
+and the target proposition are unchanged. No future-slice, density-identity,
+or reduction premise is introduced.
+
+1. **Geometry.** Positivity is equivalent to `∑ (x i / b i)^2 < 1`.
+   Continuity gives measurability; the positive set is contained in `Icc (-b) b`,
+   and the positive part has compact support. For a smallest axis `m`, its
+   global Euclidean Lipschitz constant is `κ = 2*a/m < 1`, including pairs
+   outside the ellipsoid. The raw quadratic is not asserted to be Lipschitz.
+   `spatialDistance_sq` identifies this Euclidean metric with the spatial
+   quadratic form in `causalFuture`, rather than the coordinate supremum norm.
+   The positive-part epigraph is a future set; `ellipsoid_complete_future`
+   proves the exact cap/causal intersection, with null points and vertex
+   retained, and `ellipsoid_causallyConvex` proves causal convexity.
+2. **Analytic cancellation.** `coneRadialSlice_eq_radial` justifies `r = H*v`.
+   With `k = (π/24)*ρ*H⁴`, `w = 1-v²`, `z = k*w²`, and
+   `R₃ = 6-204z+288z²-64z³`, the primitive
+
+   ```text
+   M(v) = 2*v³*w*(-8*z²*(w+1) + 2*z*(15*w+14) - 15*w - 12)*exp(-z)
+   ```
+
+   vanishes at both endpoints and has derivative
+   `v²*(w²*(R₃'-R₃)(z) + 48*P(z))*exp(-z)`.
+   Compact-rectangle dominated differentiation and the FTC therefore give
+   `Fρ''''(H) = -8πρ * coneRadialSlice ρ H`. Integrating from zero, retaining
+   the checked `Fρ'''(0) = 8π`, proves the exact radial density identity.
+   This replaces the previously unformalized exponential-series/beta exchange
+   with a finite exact argument; algebraic recurrences alone are not used as
+   an analytic justification.
+3. **Measures and Fubini.** A measure-preserving equivalence splits `Fin 4 → ℝ`
+   into time and three spatial coordinates. Another identifies spatial product
+   Lebesgue measure with Euclidean volume. Polar integration uses the checked
+   three-ball volume `4π/3`, giving the angular factor `4π`. Continuous
+   integrands on explicit compact boxes supply absolute integrability before
+   either Fubini interchange. Endpoint replacements use the atomlessness of
+   Lebesgue measure. Thus `coneIntegral_eq_radial` identifies the actual
+   four-dimensional cone integral, and `planeAuxiliaryThird_eq_coneIntegral`
+   proves `Fρ'''(H)/(8π) = 1 - ρ*Qρ(H)` for every finite `H ≥ 0`.
+4. **Original action.** Translation invariance and the complete-future theorem
+   identify the inner integral in `continuumMean`. The exact spatial/vertical
+   decomposition is `integral_ellipsoid_depth`. Finally the FTC and
+   `Fρ''(0) = 0` give the existing `planeKernel ρ (h x)` along each fibre.
+
+No strengthened geometric hypotheses were needed. This closes the exact
+reduction milestone only: the **explicit ellipsoid sublevel-volume/coarea
+calculation, its limit, and `EllipsoidLimitGoal` remain for the next milestone**.
+The general admissible graph-cap theorem and null-cap reduction are not claimed.
+
 ## The actual main targets, not weakened substitutes
 
 `BoundaryDraft/Specification.lean` defines:
@@ -199,10 +267,11 @@ def EllipsoidLimitGoal : Prop :=
 ```
 
 These are **definitions of propositions, not proofs**. A build accepting their
-statements does not establish either main limit. `GraphReductionGoal` also
-remains unproved. By contrast, the original `KernelMassGoal` and `KernelTailGoal`
-definitions now have proof terms, `kernelMassGoal` and `kernelTailGoal`, audited
-transitively along with the rest of the library.
+statements does not establish either main limit. `GraphReductionGoal` now has
+a proof for the concrete ellipsoid family, `ellipsoid_graphReduction`, but not
+for arbitrary profiles. The original `KernelMassGoal` and `KernelTailGoal`
+definitions also have proof terms, `kernelMassGoal` and `kernelTailGoal`.
+All are audited transitively along with the rest of the library.
 
 The continuum action is not defined to be its conjectured answer. Completing
 these targets would therefore require the actual integral calculations.
@@ -213,20 +282,20 @@ these targets would therefore require the actual integral calculations.
    interval counts, and the discrete BDG action; derive the deterministic
    continuum formula. Until then, even a completed continuum target would
    rely on the paper's Poisson-counting identification.
-2. **Causal geometry and measures.** Prove causal convexity, exact complete
-   future slices, coordinate changes/Jacobians, and joint area formulae.
-3. **Exact integral reductions.** Formalize the interval moments, exponential
-   series exchange, and graph-cap action-density and vertical-fibre reductions.
-   Differentiation of the auxiliary integral itself is now checked; its
-   identification with the four-dimensional action density is not.
+2. **Causal geometry and measures.** Completed for the ellipsoid reduction:
+   causal convexity, complete future slices, coordinate measures, and spatial
+   polar integration. Joint area formulae and other region families remain open.
+3. **Exact integral reductions.** Completed for ellipsoids: the concrete BDG
+   cone/action-density identity and vertical-fibre reduction. The null-tip
+   interval moments and their analytic kernel interchange remain open.
 4. **Concrete kernel estimates: completed for the half-line milestone.**
    `KernelMassGoal`, `KernelTailGoal`, the required limits, and the concrete
    signed-rescaling theorem are proved. The sharper differentiable asymptotic
    expansion remains draft-level and is not needed for these proofs.
-5. **Geometric limit argument.** Apply the concrete signed-kernel theorem to
-   the actual collar profile and use the tail bound to prove that the interior
-   contribution tends to zero. For null-tip regions, prove the corresponding
-   one-sided Gaussian concentration result.
+5. **Next milestone: explicit ellipsoid limit.** Prove its exact sublevel-volume
+   profile/coarea reduction and apply the concrete signed-kernel theorem to
+   establish `EllipsoidLimitGoal`. General collar geometry and its interior
+   remainder, and null-tip Gaussian concentration, remain separate tasks.
 6. **Geometry of the variable-angle answer.** Establish coarea on the regular
    boundary collar and identify its density with `coth θ`; alternatively
    close the explicit ellipsoid case first using its direct volume profile.
@@ -234,11 +303,10 @@ these targets would therefore require the actual integral calculations.
    propositions, audit their dependencies, and compare their assumptions
    line by line with the paper statements.
 
-With the concrete one-dimensional normalization and tail milestone complete,
-the next target is the **exact action reduction and explicit ellipsoid limit**.
-The general graph-cap coarea and Lorentzian geometry are likely larger
-formalization tasks. We do not assume all needed geometric infrastructure
-already exists in mathlib.
+With the one-dimensional kernel and exact ellipsoid reduction milestones
+complete, the next target is the **explicit ellipsoid sublevel/coarea limit**.
+The general graph-cap coarea and Lorentzian geometry remain larger tasks;
+we do not assume all their infrastructure already exists in mathlib.
 
 ## Reproduce
 
@@ -265,6 +333,11 @@ lake exe cache get \
   Mathlib.Analysis.SpecialFunctions.Exp \
   Mathlib.Analysis.SpecialFunctions.ExpDeriv \
   Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic \
+  Mathlib.Analysis.InnerProductSpace.PiL2 \
+  Mathlib.Data.Fintype.Lattice \
+  Mathlib.MeasureTheory.Integral.Prod \
+  Mathlib.MeasureTheory.Constructions.HaarToSphere \
+  Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls \
   Mathlib.Tactic.Ring Mathlib.Tactic.FieldSimp \
   Mathlib.Tactic.Linarith Mathlib.Tactic.NormNum Mathlib.Tactic.Positivity
 ./check.sh

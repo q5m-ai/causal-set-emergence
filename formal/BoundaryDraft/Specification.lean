@@ -9,7 +9,8 @@ import Mathlib.Analysis.SpecialFunctions.Exp
 
 Every name ending in `Goal` below is a DEFINITION OF A PROPOSITION, not a
 proof or an axiom. `KernelEstimates` and `KernelHalfLine` now construct proofs
-of the two concrete kernel targets; the four-dimensional targets remain open.
+of the two concrete kernel targets. `SpacetimeIntegration` proves the exact
+ellipsoid `GraphReductionGoal`; the four-dimensional limit targets remain open.
 
 The main targets refer to the actual four-dimensional deterministic continuum
 integral, not an action defined to equal its expected limiting answer.
@@ -89,8 +90,8 @@ def planeKernel (ρ H : ℝ) : ℝ :=
   Real.sqrt ρ / (2 * Real.pi * Real.sqrt 6) *
     deriv (deriv (planeAuxiliary ρ)) H
 
-/-- A per-profile obligation, to be established only for admissible graph
-caps. This does not assert that the reduction holds for arbitrary h. -/
+/-- A per-profile obligation, proved for ellipsoids in `SpacetimeIntegration`.
+This does not assert that the reduction holds for arbitrary h. -/
 def GraphReductionGoal (h : Spatial → ℝ) : Prop :=
   ∀ ρ : ℝ, 0 < ρ →
     continuumMean ρ (graphCapRegion h) =

@@ -45,6 +45,22 @@ def main():
         power -= 1
     print("PASS: first three auxiliary derivative polynomials")
 
+    # Zero-endpoint primitive replacing the plane-cone series/beta exchange.
+    # Lean separately proves compact domination and both coordinate changes.
+    v, cone_scale = s.symbols("v cone_scale", real=True)
+    w = 1 - v**2
+    cone_z = cone_scale * w**2
+    R3 = expected[-1]
+    primitive = 2 * v**3 * w * (
+        -8 * cone_z**2 * (w + 1) + 2 * cone_z * (15 * w + 14) - 15 * w - 12
+    ) * s.exp(-cone_z)
+    cancellation = v**2 * (
+        w**2 * (s.diff(R3, z) - R3).subs(z, cone_z) + 48 * P.subs(z, cone_z)
+    ) * s.exp(-cone_z)
+    assert s.simplify(s.diff(primitive, v) - cancellation) == 0
+    assert primitive.subs(v, 0) == primitive.subs(v, 1) == 0
+    print("PASS: exact plane-cone cancellation primitive and both endpoints")
+
     # Exact primitives used in the Lean absolute tail/moment estimates.
     alpha = s.symbols("alpha", positive=True)
     t, b, d = s.symbols("t b d", real=True)

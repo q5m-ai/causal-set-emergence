@@ -11,9 +11,13 @@ differentiation of the auxiliary integral through order three, and its
 finite-interval mass and signed first-moment identities. It now also proves
 half-line normalization, absolute integrability and the absolute first moment,
 an explicit absolute tail bound, and the concrete signed-rescaling limit.
-It does not yet verify either main theorem, the four-dimensional action
-reductions, or the Poisson-expectation bridge. Explicit full-theorem targets
-are defined without asserting unproved results.
+It now also verifies the **exact four-dimensional ellipsoid graph-cap action
+reduction at every positive density**, including strict spacelikeness, complete
+future slices, coordinate/Fubini steps, and the concrete BDG cone identity.
+It does not yet verify either main boundary-limit theorem, the explicit
+ellipsoid sublevel/coarea limit, the general graph-cap reduction, or the
+Poisson-expectation bridge. Full-theorem targets are defined without asserting
+unproved results.
 
 ## 1. Precise target and conventions
 
@@ -306,9 +310,42 @@ integrands \(H^{3-j}v^2R_j(z)e^{-z}\), where
 and its derivative are jointly continuous and uniformly bounded on every
 compact parameter rectangle. This justifies differentiation under the integral.
 The argument, including \(F_\rho'(0)=F_\rho''(0)=0\) and
-\(F_\rho'''(0)=8\pi\), is now machine-checked in `KernelDerivatives.lean`. The series comparison with
-\(Q_\rho\), and thus (12) as an identity for the original action density,
-remain formalization obligations.
+\(F_\rho'''(0)=8\pi\), is machine-checked in `KernelDerivatives.lean`.
+
+**Closing the analytic formalization gap without a series exchange.**
+`ConeIntegral.lean` now proves (12) by an exact finite-interval cancellation.
+Let \(k=c\rho H^4\), \(w=1-v^2\), \(z=kw^2\), and define
+\[
+ M_k(v)=2v^3w\bigl[-8z^2(w+1)+2z(15w+14)-15w-12\bigr]e^{-z}.
+\]
+Direct differentiation gives
+\[
+ M_k'(v)=v^2\bigl[w^2(R_3'-R_3)(z)+48P(z)\bigr]e^{-z},
+ \qquad M_k(0)=M_k(1)=0.
+\]
+The same compact-rectangle domination justifies a fourth parameter derivative.
+Writing
+\[
+ S_\rho(H)=4\pi\int_0^H r^2K(c\rho(H^2-r^2)^2)\,dr,
+\]
+the cancellation yields \(F_\rho''''(H)=-8\pi\rho S_\rho(H)\).
+The FTC with the checked boundary constant therefore proves
+\(F_\rho'''(H)/(8\pi)=1-\rho\int_0^H S_\rho(t)\,dt\), including \(H=0\).
+This supplies an analytic proof rather than substituting the coefficient
+recurrence for a justified interchange. The original series argument above
+is retained as draft provenance; it is not an assumption of the Lean proof.
+
+**Geometry and measure justification for the concrete ellipsoids (18).**
+`EllipsoidGeometry.lean` proves the positive-part extension is globally
+\(2a/\min b_i<1\)-Lipschitz in the **Euclidean** spatial metric, even across
+the joint. The untruncated quadratic is not claimed to be globally Lipschitz.
+This proves the complete future-cone statement and causal convexity, without
+strengthening the axis hypotheses or discarding lateral points.
+`SpacetimeIntegration.lean` uses measure-preserving coordinate equivalences,
+the Euclidean three-ball volume, translation invariance, and Fubini to identify
+\(Q_\rho(H)=\int_0^H S_\rho(t)\,dt\) with the actual four-dimensional BDG
+integral. Continuous integrands on explicit compact boxes supply absolute
+integrability; changes of interval endpoints use Lebesgue atomlessness.
 
 Integrating (12) over each vertical fibre of (10), using
 \(F_\rho''(0)=0\), gives the second exact reduction:
@@ -318,6 +355,12 @@ Integrating (12) over each vertical fibre of (10), using
  G_\rho(H)=\frac{\sqrt\rho}{2\pi\sqrt6}F_\rho''(H).}
  \tag{13}
 \]
+
+For the concrete ellipsoids, this equality is now the checked theorem
+`ellipsoid_graphReduction`, starting from the unchanged `continuumMean` and
+`GraphReductionGoal`. It holds for every positive density. The general-profile
+version remains draft-level. The explicit ellipsoid sublevel/coarea limit and
+`EllipsoidLimitGoal`, including (19), are **not** established by this milestone.
 
 ## 5. The signed approximate identity
 

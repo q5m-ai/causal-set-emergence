@@ -71,11 +71,25 @@ class CalculationsTest(unittest.TestCase):
         self.assertLess(abs(values[-1] / limit - 1), mp.mpf("0.0001"))
 
     def test_plane_density_against_direct_future_integral(self):
-        rho, H = mp.mpf(7), mp.mpf("0.8")
-        direct = 1 - rho * plane_future_kernel_integral(rho, H)
-        # F_rho'''(H) = F_1'''(rho^(1/4)*H).
-        auxiliary = plane_auxiliary(mp.root(rho, 4) * H, 3) / (8 * mp.pi)
-        self.assertNear(direct, auxiliary)
+        for rho, H in [("0.1", "0.2"), (7, "0.8"), (50, "1.1")]:
+            with self.subTest(rho=rho, H=H):
+                rho, H = mp.mpf(rho), mp.mpf(H)
+                direct = 1 - rho * plane_future_kernel_integral(rho, H)
+                # F_rho'''(H) = F_1'''(rho^(1/4)*H).
+                auxiliary = plane_auxiliary(mp.root(rho, 4) * H, 3) / (8 * mp.pi)
+                self.assertNear(direct, auxiliary)
+        self.assertNear(plane_auxiliary(0, 3), 8 * mp.pi)
+
+    def test_plane_vertical_fibre_reduction(self):
+        # Independent finite-density FTC diagnostic, including the zero fibre.
+        for rho, H in [(2, "0"), ("0.1", "0.3"), (7, "0.8")]:
+            with self.subTest(rho=rho, H=H):
+                rho, H = mp.mpf(rho), mp.mpf(H)
+                scale = mp.root(rho, 4)
+                fibre = mp.sqrt(rho) / (2 * mp.pi * mp.sqrt(6)) * mp.quad(
+                    lambda t: plane_auxiliary(scale * t, 3), [0, H]
+                )
+                self.assertNear(fibre, scale * plane_kernel(scale * H))
 
     def test_plane_kernel_two_representations(self):
         for value in ("0.1", "0.9", "2", "4", "8"):
