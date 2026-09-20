@@ -37,6 +37,17 @@ dimensions, degenerate joints, variance control, or novelty relative to all
 existing literature. The symbolic/numerical tests are consistency checks,
 not a formal verification of the proofs.
 
+## Lean status
+
+[The initial Lean layer](formal/README.md) compiles with Lean 4.19.0 and pinned
+mathlib. It proves eight supporting theorems: six algebraic identities and two
+signed-kernel convergence statements. An axiom audit permits only Lean's
+standard foundations. The full four-dimensional limit theorems, the concrete
+kernel estimates, the geometric reductions, and the Poisson-expectation bridge
+are **not yet formalized as proofs**; their targets and remaining obligations
+are explicit. This is partial verification, not a machine-checked proof of the
+conjecture or of the two paper theorems.
+
 ## Reproduce
 
 Requires Python 3.11+ and the two pinned packages in `requirements.txt`.
@@ -55,6 +66,7 @@ Without `uv`, use `python3 -m venv .venv` and
 - [Proof and explicit remaining scope](notes/first-attempt.md)
 - [Sources and attribution](notes/references.md)
 - [Reproducible numerical tables](RESULTS.md)
+- [Lean proofs, unproved targets, and verification plan](formal/README.md)
 - `check_symbolic.py`: seven groups of exact algebra checks, including
   all-orders kernel coefficient identities.
 - `test_calculations.py`: 13 tests, including independent integral

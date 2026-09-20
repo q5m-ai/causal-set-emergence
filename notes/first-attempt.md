@@ -5,6 +5,11 @@ and numerical checks. Not independently reviewed. No claim of priority or of a
 proof of the full conjecture. The variable-angle result here has a **planar
 future boundary**; it is not a localization theorem for two arbitrary boundaries.
 
+**Formalization:** [the initial Lean layer](../formal/README.md) checks supporting
+algebra and a generic signed-kernel limit lemma, but does not yet verify either
+main theorem below or the specific kernel's estimates. Explicit full-theorem
+targets are defined without asserting unproved results.
+
 ## 1. Precise target and conventions
 
 We use Conjecture 1′, equation (11), of Dowker–Liu–Lloyd-Jones,
