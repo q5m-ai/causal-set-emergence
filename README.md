@@ -61,11 +61,16 @@ auxiliary integral through order three, boundary constants, and exact
 finite-interval mass and signed first-moment identities. The concrete kernel's
 **half-line mass one, absolute integrability, absolute first moment, and
 `O(u⁻³)` tail bound are now proved**, together with the large-argument limits
-and concrete signed-rescaling specialization. All **46 supporting theorems**
-pass an axiom audit permitting only Lean's standard foundations.
+and concrete signed-rescaling specialization. The **exact ellipsoid graph-cap
+reduction is now proved at every positive density**, starting from the original
+four-dimensional `continuumMean`: strict spacelikeness gives complete future
+cones, and justified coordinate/Fubini steps connect the concrete BDG integral
+to `planeKernel`. All **79 public theorems** pass an axiom audit permitting only
+Lean's standard foundations.
 
-The full four-dimensional limit theorems, the geometric/action reductions,
-and the Poisson-expectation bridge are **not yet formalized as proofs**.
+The explicit ellipsoid sublevel/coarea limit, both full four-dimensional limit
+theorems, the general graph-cap reduction, and the Poisson-expectation bridge
+are **not yet formalized as proofs**.
 The sharper asymptotic coefficient and differentiated remainder in the draft
 are not asserted as checked results; the half-line proofs use exact Gaussian
 cancellations instead. This is partial verification, not a machine-checked
@@ -91,10 +96,11 @@ Without `uv`, use `python3 -m venv .venv` and
 - [Sources and attribution](notes/references.md)
 - [Reproducible numerical tables](RESULTS.md)
 - [Lean proofs, unproved targets, and verification plan](formal/README.md)
-- `check_symbolic.py`: eight groups of exact algebra checks, including
-  all-orders kernel coefficient identities and Gaussian cancellation primitives.
-- `test_calculations.py`: 14 tests, including independent integral
-  representations, signs, normalization, tail bounds, scaling, and convergence examples.
+- `check_symbolic.py`: nine groups of exact algebra checks, including
+  all-orders kernel identities, Gaussian primitives, and the exact cone cancellation.
+- `test_calculations.py`: 15 tests, including independent integral
+  representations, finite-density action and fibre identities, signs,
+  normalization, tail bounds, scaling, and convergence examples.
 - `calculations.py`: high-precision deterministic integral evaluators.
 - `test_formal_check.py`: six checker-orchestration regression tests; these
   use a fake Lake and do **not** replace running `formal/check.sh`.

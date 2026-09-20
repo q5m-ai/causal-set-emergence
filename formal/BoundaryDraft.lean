@@ -6,3 +6,6 @@ import BoundaryDraft.KernelDerivatives
 import BoundaryDraft.GaussianCancellation
 import BoundaryDraft.KernelEstimates
 import BoundaryDraft.KernelHalfLine
+import BoundaryDraft.EllipsoidGeometry
+import BoundaryDraft.ConeIntegral
+import BoundaryDraft.SpacetimeIntegration

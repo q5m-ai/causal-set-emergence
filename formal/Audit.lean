@@ -32,7 +32,11 @@ run_cmd do
 #check BoundaryDraft.KernelMassGoal
 #check BoundaryDraft.KernelTailGoal
 
--- Unlike the remaining four-dimensional targets, these now have proofs.
+-- The exact ellipsoid reduction and kernel targets now have proofs.
+-- The two four-dimensional boundary-limit goals still do not.
 #check BoundaryDraft.kernelMassGoal
 #check BoundaryDraft.kernelTailGoal
 #check BoundaryDraft.planeKernel_rescaling_limit
+#check BoundaryDraft.ellipsoid_complete_future
+#check BoundaryDraft.planeAuxiliaryThird_eq_coneIntegral
+#check BoundaryDraft.ellipsoid_graphReduction

@@ -22,7 +22,7 @@ noncomputable section
 namespace BoundaryDraft
 
 /-- A compact-rectangle specialization of dominated differentiation. -/
-private theorem hasDerivAt_integral_unitInterval
+theorem hasDerivAt_integral_unitInterval
     (F F' : ℝ → ℝ → ℝ)
     (hF : Continuous (Function.uncurry F))
     (hF' : Continuous (Function.uncurry F'))
