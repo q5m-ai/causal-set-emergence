@@ -54,14 +54,19 @@ reviewed, or machine-checked.
 
 ## Lean status
 
-[The initial Lean layer](formal/README.md) compiles with Lean 4.19.0 and pinned
-mathlib. It proves eight supporting theorems: six algebraic identities and two
-signed-kernel convergence statements. An axiom audit permits only Lean's
-standard foundations. The full four-dimensional limit theorems, the concrete
-kernel estimates, the geometric reductions, and the Poisson-expectation bridge
-are **not yet formalized as proofs**; their targets and remaining obligations
-are explicit. This is partial verification, not a machine-checked proof of the
-conjecture or of the two paper theorems.
+[The Lean layer](formal/README.md) compiles with Lean 4.19.0 and pinned
+mathlib. In addition to the original algebra and generic signed-kernel limits,
+it proves the concrete plane kernel's density scaling, differentiation of its
+auxiliary integral through order three, boundary constants, and exact
+finite-interval mass and signed first-moment identities. All **26 supporting
+theorems** pass an axiom audit permitting only Lean's standard foundations.
+
+The full four-dimensional limit theorems, the kernel's half-line normalization
+and tail estimates, the geometric reductions, and the Poisson-expectation bridge
+are **not yet formalized as proofs**. In particular, finite-interval identities
+do not prove absolute integrability or mass one on the half-line. This is
+partial verification, not a machine-checked proof of either paper theorem;
+[tracking issue #1](https://github.com/q5m-ai/causal-set-gravity/issues/1) remains open.
 
 ## Reproduce
 
@@ -87,6 +92,8 @@ Without `uv`, use `python3 -m venv .venv` and
 - `test_calculations.py`: 13 tests, including independent integral
   representations, signs, normalization, scaling, and convergence examples.
 - `calculations.py`: high-precision deterministic integral evaluators.
+- `test_formal_check.py`: six checker-orchestration regression tests; these
+  use a fake Lake and do **not** replace running `formal/check.sh`.
 
 Downloaded source articles and local environments are ignored by Git. No
 third-party article text is included in the committed draft.

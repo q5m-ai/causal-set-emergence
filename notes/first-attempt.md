@@ -5,10 +5,13 @@ and numerical checks. Not independently reviewed. No claim of priority or of a
 proof of the full conjecture. The variable-angle result here has a **planar
 future boundary**; it is not a localization theorem for two arbitrary boundaries.
 
-**Formalization:** [the initial Lean layer](../formal/README.md) checks supporting
-algebra and a generic signed-kernel limit lemma, but does not yet verify either
-main theorem below or the specific kernel's estimates. Explicit full-theorem
-targets are defined without asserting unproved results.
+**Formalization:** [the Lean layer](../formal/README.md) checks supporting
+algebra, a generic signed-kernel limit lemma, concrete kernel scaling,
+differentiation of the auxiliary integral through order three, and its
+finite-interval mass and signed first-moment identities. It does not yet verify
+either main theorem, the half-line kernel normalization and tail estimates,
+or the Poisson-expectation bridge. Explicit full-theorem targets are defined
+without asserting unproved results.
 
 ## 1. Precise target and conventions
 
@@ -292,6 +295,19 @@ In particular \(F_\rho'''(0)=8\pi\); losing this constant would lose the
 bulk cancellation. Uniform convergence on finite \(H\)-intervals justifies
 all differentiations here.
 
+**Checked differentiation, separate from the action-density identity.**
+Writing \(r=Hv\) in (11) gives a fixed interval \(0\le v\le1\).
+With \(z=c\rho H^4(1-v^2)^2\), its first three parameter derivatives have
+integrands \(H^{3-j}v^2R_j(z)e^{-z}\), where
+\(R_1=3-4z\), \(R_2=6-36z+16z^2\), and
+\(R_3=6-204z+288z^2-64z^3\). For each differentiation, the integrand
+and its derivative are jointly continuous and uniformly bounded on every
+compact parameter rectangle. This justifies differentiation under the integral.
+The argument, including \(F_\rho'(0)=F_\rho''(0)=0\) and
+\(F_\rho'''(0)=8\pi\), is now machine-checked in `KernelDerivatives.lean`. The series comparison with
+\(Q_\rho\), and thus (12) as an identity for the original action density,
+remain formalization obligations.
+
 Integrating (12) over each vertical fibre of (10), using
 \(F_\rho''(0)=0\), gives the second exact reduction:
 
@@ -311,6 +327,10 @@ Put \(\varepsilon=\rho^{-1/4}\), \(F=F_1\), and
  \tag{14}
 \]
 
+Equation (14) is machine-checked in `KernelScaling.lean`, directly from (11)
+with the positive inverse width \(\sqrt{\sqrt\rho}\). This does not presume
+any mass or tail estimate.
+
 The kernel satisfies
 
 \[
@@ -321,6 +341,15 @@ The kernel satisfies
 \]
 
 It is **not positive**. Its negative tail must not be discarded.
+
+The finite-interval identities
+\[
+ \int_0^U G(u)\,du=\frac{F'(U)}{2\pi\sqrt6},\qquad
+ \int_0^U uG(u)\,du=\frac{UF'(U)-F(U)}{2\pi\sqrt6}
+\]
+are now machine-checked by the fundamental theorem of calculus. The following
+passage to infinity, including **absolute** integrability in (15), is still
+an analytic-draft argument, not a completed Lean proof.
 
 **Proof of (15).** Near zero, (11) gives
 \(F(u)=4\pi u^3/3+O(u^7)\), so \(G(u)=4u/\sqrt6+O(u^5)\).

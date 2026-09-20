@@ -1,3 +1,5 @@
 import BoundaryDraft.Algebra
 import BoundaryDraft.AnalyticCore
 import BoundaryDraft.Specification
+import BoundaryDraft.KernelScaling
+import BoundaryDraft.KernelDerivatives
