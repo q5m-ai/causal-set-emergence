@@ -1,4 +1,4 @@
-# Lean verification: first checked layer and explicit targets
+# Lean verification: checked components and explicit targets
 
 **Status: partial formal verification, not a Lean proof of either main theorem.**
 
@@ -11,8 +11,10 @@ the checked layer and open formal targets for the current proof program.
 
 ## What actually compiles and is proved
 
-`./check.sh` builds the library, checks local files with warnings treated as
-errors, and audits the transitive axioms of **eight theorems**:
+`./check.sh` builds the library, discovers **every local Lean source** (excluding
+`.lake/` and `.tools/`), and checks each with warnings treated as errors. It
+then audits the transitive axioms of the library's **26 public theorems** and
+public definitions. The library root imports both new kernel modules.
 
 | File | Checked result | What it does **not** establish |
 |---|---|---|
@@ -24,6 +26,10 @@ errors, and audits the transitive axioms of **eight theorems**:
 | same | Squared angle-weight algebra | The geometric angle relation or positive square-root step |
 | `BoundaryDraft/AnalyticCore.lean` | Signed rescaling limit | Integrability of the particular BDG kernel |
 | same | Unit-mass specialization | Normalization of the particular BDG kernel |
+| `BoundaryDraft/KernelScaling.lean` | Auxiliary-integral scaling; fourth-power and positive-density kernel scaling | Mass one or tail estimates |
+| `BoundaryDraft/KernelDerivatives.lean` | Differentiation under the auxiliary integral through order three | The BDG future-cone/action-density identity |
+| same | Kernel differentiability and continuity; boundary values | Estimates at infinity |
+| same | Exact finite-interval mass and signed first moment | Half-line mass or absolute first-moment integrability |
 
 The analytic theorem genuinely permits a **signed** kernel. In ordinary
 notation it proves
@@ -41,10 +47,59 @@ profile fits this theorem; the interior remainder of a general graph cap
 still needs its separate tail estimate. We have **not** instantiated this
 lemma with the concrete BDG kernel yet.
 
-`Audit.lean` rejects any axiom dependency beyond Lean's standard
-`propext`, `Classical.choice`, and `Quot.sound`. The checked results contain no
-`sorry`, `admit`, or custom axioms. This does not mean that the full research
-argument has been checked: the missing theorems are not silently assumed.
+`Audit.lean` discovers the public declarations in the imported `BoundaryDraft`
+namespace rather than maintaining a theorem allowlist. It rejects any transitive
+axiom dependency beyond Lean's standard `propext`, `Classical.choice`, and
+`Quot.sound`. Compiler-generated implementation artifacts are not audit roots;
+private helper dependencies are still audited transitively. The checked results
+contain no `sorry`, `admit`, or custom axioms. This does not mean that the full
+research argument has been checked: the missing theorems are not silently assumed.
+
+## Concrete kernel: what the new proofs establish
+
+`planeKernel_density_scaling` proves equation (14) directly from the defining
+integral, for **every** positive density and every real height:
+
+\[
+ G_\rho(H)=sG_1(sH),\qquad s=\sqrt{\sqrt\rho}=\varepsilon^{-1}.
+\]
+
+The radial change of variables is proved first, including oriented integrals
+for negative heights. The nonzero linear-chain-rule step is valid even for
+Lean's total derivative; it does not hide a differentiability assumption.
+The separate `KernelDerivatives` module then proves actual `HasDerivAt`
+statements, not just equalities involving a possibly undefined derivative.
+
+For \(z=(\pi/24)\rho H^4(1-v^2)^2\), the fixed-interval representation is
+
+\[
+ F_\rho^{(j)}(H)=4\pi H^{3-j}\int_0^1 v^2 R_j(z)e^{-z}\,dv,
+ \quad j=0,1,2,3,
+\]
+
+where
+
+\[
+ R_0=1,\quad R_1=3-4z,\quad R_2=6-36z+16z^2,\quad
+ R_3=6-204z+288z^2-64z^3.
+\]
+
+Joint continuity on a compact parameter rectangle supplies an integrable
+uniform bound for each differentiation. This proves
+\(F_\rho'(0)=F_\rho''(0)=G_\rho(0)=0\) and
+\(F_\rho'''(0)=8\pi\), with no positivity assumption on the kernel.
+Writing \(c_\rho=\sqrt\rho/(2\pi\sqrt6)\), the fundamental theorem of
+calculus then proves
+
+\[
+ \int_0^H G_\rho(u)\,du=c_\rho F_\rho'(H),\qquad
+ \int_0^H uG_\rho(u)\,du=c_\rho\bigl(HF_\rho'(H)-F_\rho(H)\bigr).
+\]
+
+These identities hold for finite \(H\). They do **not** justify passing to
+infinity or prove `KernelMassGoal` or `KernelTailGoal`. The exact reduction
+from `continuumMean` remains unproved too. This is partial progress on
+[issue #1](https://github.com/q5m-ai/causal-set-gravity/issues/1), not its completion.
 
 ## The actual main targets, not weakened substitutes
 
@@ -92,12 +147,13 @@ these targets would therefore require the actual integral calculations.
    rely on the paper's Poisson-counting identification.
 2. **Causal geometry and measures.** Prove causal convexity, exact complete
    future slices, coordinate changes/Jacobians, and joint area formulae.
-3. **Exact integral reductions.** Formalize the interval moments and the
-   exponential series exchange; for graph caps, justify differentiation of
-   the auxiliary integral and the vertical-fibre integral.
+3. **Exact integral reductions.** Formalize the interval moments, exponential
+   series exchange, and graph-cap action-density and vertical-fibre reductions.
+   Differentiation of the auxiliary integral itself is now checked; its
+   identification with the four-dimensional action density is not.
 4. **Concrete kernel estimates.** Prove `KernelMassGoal`, `KernelTailGoal`,
-   the density-scaling identity, and the differentiable asymptotic estimates.
-   Algebra already checked is only one component of this work.
+   and the differentiable asymptotic estimates. Scaling and finite-interval
+   calculus are now checked, but no half-line estimate is silently assumed.
 5. **Limit argument.** Instantiate the checked signed-kernel lemma on a collar
    and prove that the interior contribution tends to zero. For null-tip
    regions, prove the corresponding one-sided Gaussian concentration result.
@@ -121,13 +177,20 @@ With Lean/elan installed and the pinned toolchain selected by `lean-toolchain`:
 ```sh
 cd formal
 # The committed manifest pins dependencies. Avoid fetching all of mathlib's
-# cache; the modules below are sufficient for this first layer.
+# cache; the modules below are sufficient for the checked layer.
 MATHLIB_NO_CACHE_ON_UPDATE=1 lake update
 lake exe cache get \
   Mathlib.MeasureTheory.Integral.DominatedConvergence \
   Mathlib.MeasureTheory.Measure.Lebesgue.Basic \
   Mathlib.Analysis.Calculus.Deriv.Basic \
+  Mathlib.Analysis.Calculus.Deriv.Comp \
+  Mathlib.Analysis.Calculus.Deriv.Mul \
+  Mathlib.Analysis.Calculus.Deriv.Pow \
+  Mathlib.Analysis.Calculus.ParametricIntervalIntegral \
+  Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic \
+  Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus \
   Mathlib.Analysis.SpecialFunctions.Exp \
+  Mathlib.Analysis.SpecialFunctions.ExpDeriv \
   Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic \
   Mathlib.Tactic.Ring Mathlib.Tactic.FieldSimp \
   Mathlib.Tactic.Linarith Mathlib.Tactic.NormNum Mathlib.Tactic.Positivity
