@@ -1,4 +1,4 @@
-name = "formal_checks"
+name = "causal_set_gravity"
 version = "0.1.0"
 defaultTargets = ["BoundaryDraft"]
 

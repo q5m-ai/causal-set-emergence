@@ -6,8 +6,8 @@ Lean **4.19.0** and mathlib **v4.19.0** are pinned. `lake-manifest.json` pins th
 resolved dependency commits; mathlib is
 `c44e0c8ee63ca166450922a373c7409c5d26b00b`.
 
-The internal Lake package identifier `formal_checks` is only a build identifier;
-the research project and GitHub repository remain unnamed.
+The Lake package identifier is `causal_set_gravity`; this directory contains
+the checked layer and open formal targets for the current proof program.
 
 ## What actually compiles and is proved
 
@@ -138,4 +138,5 @@ The current workspace also has an ignored, task-local Lean distribution under
 `.tools/`; `check.sh` detects it. No global toolchain configuration was changed.
 Dependencies and build products under `.lake/`, and the local distribution,
 are excluded from Git. Only the formal sources, configuration, and lockfile
-are committed. No GitHub repository has been created or published.
+are committed. The enclosing repository is private; no paper or result has
+been publicly released.

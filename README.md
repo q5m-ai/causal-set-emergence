@@ -1,12 +1,14 @@
-# Untitled research draft
+# Causal Set Gravity
 
-A first attempt at the modified Benincasa–Dowker boundary conjecture.
+Research on continuum limits, boundary terms, and formal verification in
+causal-set gravity. The repository is intentionally broader than one theorem:
+each proof program gets its own stated hypotheses, evidence, and verification
+status.
 
-**Naming deferred.** This is a local Git repository only. No GitHub repository
-has been created, and nothing has been pushed or published. After a name is
-chosen, the intended destination is a **private** repository in `q5m-ai`.
+This is a **private research repository**. Nothing here is a peer-reviewed or
+publicly released result.
 
-## First result
+## Proof program 1: modified BDG boundary conjecture
 
 [Read the proof draft](notes/first-attempt.md).
 
@@ -36,6 +38,19 @@ approximate identity of mass one and the coarea formula.
 dimensions, degenerate joints, variance control, or novelty relative to all
 existing literature. The symbolic/numerical tests are consistency checks,
 not a formal verification of the proofs.
+
+## Proof-program organization
+
+As the project grows, distinct arguments should remain independently auditable:
+
+- `notes/`: proof drafts, assumptions, failed approaches, and references;
+- `formal/`: Lean-checked components and explicitly unproved targets;
+- numerical code and result tables: reproducible diagnostics, never substitutes
+  for analytic proofs.
+
+A deeper proof may supersede an earlier argument without erasing its provenance.
+Claims must identify whether they are conjectural, drafted, independently
+reviewed, or machine-checked.
 
 ## Lean status
 
