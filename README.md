@@ -92,7 +92,7 @@ Without `uv`, use `python3 -m venv .venv` and
 - `test_calculations.py`: 13 tests, including independent integral
   representations, signs, normalization, scaling, and convergence examples.
 - `calculations.py`: high-precision deterministic integral evaluators.
-- `test_formal_check.py`: five checker-orchestration regression tests; these
+- `test_formal_check.py`: six checker-orchestration regression tests; these
   use a fake Lake and do **not** replace running `formal/check.sh`.
 
 Downloaded source articles and local environments are ignored by Git. No

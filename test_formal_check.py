@@ -25,9 +25,12 @@ class FormalCheckTest(unittest.TestCase):
         binary.write_text(
             "#!/usr/bin/env python3\n"
             "import json, os, sys\n"
+            "from pathlib import Path\n"
             "with open(os.environ['LAKE_LOG'], 'a') as log:\n"
             "    log.write(json.dumps(sys.argv[1:]) + '\\n')\n"
-            "sys.exit(1 if os.environ.get('LAKE_FAIL_ON') in sys.argv[1:] else 0)\n"
+            "target = os.environ.get('LAKE_FAIL_ON')\n"
+            "failed = target and any(arg == target or Path(arg).name == target for arg in sys.argv[1:])\n"
+            "sys.exit(1 if failed else 0)\n"
         )
         binary.chmod(0o755)
         self.env = {
@@ -69,11 +72,13 @@ class FormalCheckTest(unittest.TestCase):
         self.assertEqual(calls[-1], ["env", "lean", "-DwarningAsError=true", "Audit.lean"])
         for call in calls[1:]:
             self.assertEqual(call[:3], ["env", "lean", "-DwarningAsError=true"])
-        self.assertEqual({call[-1] for call in calls[1:]}, {
+        direct_sources = {call[-1] for call in calls[1:] if call[-1].startswith("./")}
+        self.assertEqual(direct_sources, {
             "./BoundaryDraft.lean", "./BoundaryDraft/Existing.lean", "./NewModule.lean",
             "./nested/Unimported.lean", "./nested/With Space.lean", "./nested/Audit.lean",
-            "Audit.lean",
         })
+        source_audits = [call for call in calls if Path(call[-1]).name == "SourceAudit.lean"]
+        self.assertEqual(len(source_audits), len(direct_sources))
 
     def test_build_failure_stops_validation(self):
         self.assertNotEqual(self.run_check("build").returncode, 0)
@@ -90,6 +95,10 @@ class FormalCheckTest(unittest.TestCase):
         self.source("Unimported.lean")
         self.assertNotEqual(self.run_check("./Unimported.lean").returncode, 0)
         self.assertEqual(self.calls()[-1][-1], "./Unimported.lean")
+
+    def test_source_axiom_audit_failure_is_not_ignored(self):
+        self.assertNotEqual(self.run_check("SourceAudit.lean").returncode, 0)
+        self.assertEqual(Path(self.calls()[-1][-1]).name, "SourceAudit.lean")
 
     def test_axiom_audit_failure_is_not_ignored(self):
         self.assertNotEqual(self.run_check("Audit.lean").returncode, 0)

@@ -12,9 +12,12 @@ the checked layer and open formal targets for the current proof program.
 ## What actually compiles and is proved
 
 `./check.sh` builds the library, discovers **every local Lean source** (excluding
-`.lake/` and `.tools/`), and checks each with warnings treated as errors. It
-then audits the transitive axioms of the library's **26 public theorems** and
-public definitions. The library root imports both new kernel modules.
+`.lake/` and `.tools/`), and checks each with warnings treated as errors. Each
+source is also rechecked in an isolated current module so all of its public
+declarations receive a transitive axiom audit even when that source is not
+imported by the library root. Finally, the aggregate audit inventories the
+library's **26 public theorems** and public definitions. The library root imports
+both new kernel modules.
 
 | File | Checked result | What it does **not** establish |
 |---|---|---|
@@ -48,12 +51,14 @@ still needs its separate tail estimate. We have **not** instantiated this
 lemma with the concrete BDG kernel yet.
 
 `Audit.lean` discovers the public declarations in the imported `BoundaryDraft`
-namespace rather than maintaining a theorem allowlist. It rejects any transitive
-axiom dependency beyond Lean's standard `propext`, `Classical.choice`, and
-`Quot.sound`. Compiler-generated implementation artifacts are not audit roots;
-private helper dependencies are still audited transitively. The checked results
-contain no `sorry`, `admit`, or custom axioms. This does not mean that the full
-research argument has been checked: the missing theorems are not silently assumed.
+namespace rather than maintaining a theorem allowlist. In addition, the
+per-source audit in `check.sh` covers public declarations in unimported files
+and other namespaces. Both reject any transitive axiom dependency beyond Lean's
+standard `propext`, `Classical.choice`, and `Quot.sound`. Compiler-generated
+implementation artifacts are not audit roots; private helper dependencies are
+still audited transitively. The checked results contain no `sorry`, `admit`, or
+custom axioms. This does not mean that the full research argument has been
+checked: the missing theorems are not silently assumed.
 
 ## Concrete kernel: what the new proofs establish
 
