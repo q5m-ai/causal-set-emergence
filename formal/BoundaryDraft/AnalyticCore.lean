@@ -6,6 +6,8 @@ import Mathlib.MeasureTheory.Integral.DominatedConvergence
 The signed-kernel limit below is the dominated-convergence step after an exact
 geometric reduction. Integrability, normalization of the specific BDG kernel,
 and the reduction from the four-dimensional action are NOT proved here.
+`KernelHalfLine` proves the concrete kernel obligations and instantiates this
+lemma; the four-dimensional reduction remains open.
 
 No positivity assumption on the kernel is made.
 -/

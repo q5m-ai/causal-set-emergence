@@ -31,3 +31,8 @@ run_cmd do
 #check BoundaryDraft.GraphReductionGoal
 #check BoundaryDraft.KernelMassGoal
 #check BoundaryDraft.KernelTailGoal
+
+-- Unlike the remaining four-dimensional targets, these now have proofs.
+#check BoundaryDraft.kernelMassGoal
+#check BoundaryDraft.kernelTailGoal
+#check BoundaryDraft.planeKernel_rescaling_limit

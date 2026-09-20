@@ -16,8 +16,8 @@ the checked layer and open formal targets for the current proof program.
 source is also rechecked in an isolated current module so all of its public
 declarations receive a transitive axiom audit even when that source is not
 imported by the library root. Finally, the aggregate audit inventories the
-library's **26 public theorems** and public definitions. The library root imports
-both new kernel modules.
+library's **46 public theorems** and public definitions. The library root imports
+all kernel modules, including the half-line proofs.
 
 | File | Checked result | What it does **not** establish |
 |---|---|---|
@@ -32,7 +32,11 @@ both new kernel modules.
 | `BoundaryDraft/KernelScaling.lean` | Auxiliary-integral scaling; fourth-power and positive-density kernel scaling | Mass one or tail estimates |
 | `BoundaryDraft/KernelDerivatives.lean` | Differentiation under the auxiliary integral through order three | The BDG future-cone/action-density identity |
 | same | Kernel differentiability and continuity; boundary values | Estimates at infinity |
-| same | Exact finite-interval mass and signed first moment | Half-line mass or absolute first-moment integrability |
+| same | Exact finite-interval mass and signed first moment | Half-line mass or absolute first-moment integrability by itself |
+| `BoundaryDraft/GaussianCancellation.lean` | Exact substitution and absolute Gaussian cancellation estimate | The sharper asymptotic expansion |
+| `BoundaryDraft/KernelEstimates.lean` | Explicit absolute `O(u⁻³)` kernel bound; `KernelTailGoal`; vanishing-moment boundary estimate | Graph-cap geometry or its non-collar reduction |
+| `BoundaryDraft/KernelHalfLine.lean` | Large-argument limits; absolute integrability and first moment; mass one; `KernelMassGoal`; signed first moment zero | The four-dimensional action reduction |
+| same | Concrete positive-half-line signed-rescaling limit | Coarea or either main boundary-limit theorem |
 
 The analytic theorem genuinely permits a **signed** kernel. In ordinary
 notation it proves
@@ -47,8 +51,10 @@ assuming `G` is integrable and `B` is globally bounded and continuous. There is
 no assumption that `G ≥ 0`. The measure `μ` may be Lebesgue measure restricted
 to the positive half-line. A bounded continuous extension of the collar
 profile fits this theorem; the interior remainder of a general graph cap
-still needs its separate tail estimate. We have **not** instantiated this
-lemma with the concrete BDG kernel yet.
+still needs its geometric reduction and use of the tail estimate. The theorem
+`planeKernel_rescaling_limit` now instantiates this lemma with the concrete
+BDG kernel and Lebesgue measure restricted to `Ioi 0`, using the proved
+absolute integrability and mass one, not additional kernel hypotheses.
 
 `Audit.lean` discovers the public declarations in the imported `BoundaryDraft`
 namespace rather than maintaining a theorem allowlist. In addition, the
@@ -101,10 +107,66 @@ calculus then proves
  \int_0^H uG_\rho(u)\,du=c_\rho\bigl(HF_\rho'(H)-F_\rho(H)\bigr).
 \]
 
-These identities hold for finite \(H\). They do **not** justify passing to
-infinity or prove `KernelMassGoal` or `KernelTailGoal`. The exact reduction
-from `continuumMean` remains unproved too. This is partial progress on
-[issue #1](https://github.com/q5m-ai/causal-set-gravity/issues/1), not its completion.
+These identities hold for finite \(H\); they alone do not justify passing to
+infinity. That passage is now proved separately as follows. The exact reduction
+from `continuumMean` remains unproved. This completes the one-dimensional
+analytic milestone in [issue #4](https://github.com/q5m-ai/causal-set-gravity/issues/4),
+not the full program in [issue #1](https://github.com/q5m-ai/causal-set-gravity/issues/1).
+
+## Half-line estimates and normalization
+
+The proof avoids differentiating the remainder of an asymptotic expansion.
+Set \(a=(\pi/24)u^4\) and substitute \(t=1-v^2\) in the already-checked
+fixed-interval formulas. The substitution is differentiated in the smooth
+polynomial direction, so no derivative of a square root at zero is needed.
+The two relevant polynomials are instances of
+
+\[
+ P_{b,d}(a,t)=b-(2b+3d)at^2+2da^2t^4.
+\]
+
+For \(a>0\) and \(b,d\ge0\), `gaussianCancellation_bound` proves
+
+\[
+ \left|\int_0^1\sqrt{1-t}\,P_{b,d}(a,t)e^{-at^2}\,dt\right|
+ \le \frac{5b+11d}{2a}.
+\]
+
+Its proof uses an exact primitive for the constant-weight integral,
+\((bt-dat^3)e^{-at^2}\), the bound \(|\sqrt{1-t}-1|\le t\), and an
+explicit primitive for the resulting nonnegative absolute envelope. Thus the
+estimate controls absolute values rather than merely signed cancellation.
+Taking \((b,d)=(6,8)\) and \((2,0)\), respectively, gives for every \(u>0\)
+
+\[
+ |F''(u)|\le\frac{2832}{u^3},\qquad
+ |uF'(u)-F(u)|\le\frac{240}{u},\qquad
+ |G(u)|\le\frac{1416}{\pi\sqrt6\,u^3}.
+\]
+
+These loose constants suffice: continuity handles \([0,1]\), and comparison
+with \(u^{-3}\) and \(u^{-2}\) proves integrability of \(G\) and \(u|G|\).
+The theorem `kernelTailGoal` uses \(C=1416/(\pi\sqrt6)\) and \(R=1\).
+
+For normalization, `planeAuxiliary_div_eq_integral` proves
+
+\[
+ \frac{F(u)}u=2\pi\int_0^\infty
+   \sqrt{1-s/u^2}\,e^{-(\pi/24)s^2}\,ds.
+\]
+
+Here Lean's real square root is zero for negative inputs; the integrand
+vanishes above \(u^2\). It is dominated by an integrable Gaussian. Dominated
+convergence and the half-Gaussian integral yield \(F(u)/u\to2\pi\sqrt6\).
+The second bound above then proves \(F'(u)\to2\pi\sqrt6\) and
+\(uF'(u)-F(u)\to0\). Only after proving absolute integrability do we pass the
+finite-interval identities to infinity, obtaining mass one and signed first
+moment zero. `kernelMassGoal` proves the **unchanged** target, including its
+absolute first-moment clause.
+
+No additional hypotheses on the concrete kernel are introduced. The sharper
+coefficient \(G(u)\sim-2\sqrt6/(\pi u^3)\), and the derivative remainders
+through order three in the draft, are **not** claimed as Lean results.
 
 ## The actual main targets, not weakened substitutes
 
@@ -136,10 +198,11 @@ def EllipsoidLimitGoal : Prop :=
       atTop (𝓝 (2 * Real.pi * (∏ i : Fin 3, b i) / a))
 ```
 
-These are **definitions of propositions, not proofs**. In particular, a build
-succeeding only means Lean accepts their precise statements. It does not mean
-that either proposition is true. `GraphReductionGoal`, `KernelMassGoal`, and
-`KernelTailGoal` likewise record unsolved obligations without asserting them.
+These are **definitions of propositions, not proofs**. A build accepting their
+statements does not establish either main limit. `GraphReductionGoal` also
+remains unproved. By contrast, the original `KernelMassGoal` and `KernelTailGoal`
+definitions now have proof terms, `kernelMassGoal` and `kernelTailGoal`, audited
+transitively along with the rest of the library.
 
 The continuum action is not defined to be its conjectured answer. Completing
 these targets would therefore require the actual integral calculations.
@@ -156,12 +219,14 @@ these targets would therefore require the actual integral calculations.
    series exchange, and graph-cap action-density and vertical-fibre reductions.
    Differentiation of the auxiliary integral itself is now checked; its
    identification with the four-dimensional action density is not.
-4. **Concrete kernel estimates.** Prove `KernelMassGoal`, `KernelTailGoal`,
-   and the differentiable asymptotic estimates. Scaling and finite-interval
-   calculus are now checked, but no half-line estimate is silently assumed.
-5. **Limit argument.** Instantiate the checked signed-kernel lemma on a collar
-   and prove that the interior contribution tends to zero. For null-tip
-   regions, prove the corresponding one-sided Gaussian concentration result.
+4. **Concrete kernel estimates: completed for the half-line milestone.**
+   `KernelMassGoal`, `KernelTailGoal`, the required limits, and the concrete
+   signed-rescaling theorem are proved. The sharper differentiable asymptotic
+   expansion remains draft-level and is not needed for these proofs.
+5. **Geometric limit argument.** Apply the concrete signed-kernel theorem to
+   the actual collar profile and use the tail bound to prove that the interior
+   contribution tends to zero. For null-tip regions, prove the corresponding
+   one-sided Gaussian concentration result.
 6. **Geometry of the variable-angle answer.** Establish coarea on the regular
    boundary collar and identify its density with `coth θ`; alternatively
    close the explicit ellipsoid case first using its direct volume profile.
@@ -169,8 +234,8 @@ these targets would therefore require the actual integral calculations.
    propositions, audit their dependencies, and compare their assumptions
    line by line with the paper statements.
 
-The fastest substantive next milestone is the **concrete one-dimensional
-kernel normalization and tail bound**, then the explicit ellipsoid target.
+With the concrete one-dimensional normalization and tail milestone complete,
+the next target is the **exact action reduction and explicit ellipsoid limit**.
 The general graph-cap coarea and Lorentzian geometry are likely larger
 formalization tasks. We do not assume all needed geometric infrastructure
 already exists in mathlib.
@@ -194,6 +259,9 @@ lake exe cache get \
   Mathlib.Analysis.Calculus.ParametricIntervalIntegral \
   Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic \
   Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus \
+  Mathlib.MeasureTheory.Integral.IntervalIntegral.IntegrationByParts \
+  Mathlib.Analysis.SpecialFunctions.Gaussian.GaussianIntegral \
+  Mathlib.Analysis.SpecialFunctions.ImproperIntegrals \
   Mathlib.Analysis.SpecialFunctions.Exp \
   Mathlib.Analysis.SpecialFunctions.ExpDeriv \
   Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic \

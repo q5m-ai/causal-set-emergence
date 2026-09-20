@@ -58,14 +58,18 @@ reviewed, or machine-checked.
 mathlib. In addition to the original algebra and generic signed-kernel limits,
 it proves the concrete plane kernel's density scaling, differentiation of its
 auxiliary integral through order three, boundary constants, and exact
-finite-interval mass and signed first-moment identities. All **26 supporting
-theorems** pass an axiom audit permitting only Lean's standard foundations.
+finite-interval mass and signed first-moment identities. The concrete kernel's
+**half-line mass one, absolute integrability, absolute first moment, and
+`O(u⁻³)` tail bound are now proved**, together with the large-argument limits
+and concrete signed-rescaling specialization. All **46 supporting theorems**
+pass an axiom audit permitting only Lean's standard foundations.
 
-The full four-dimensional limit theorems, the kernel's half-line normalization
-and tail estimates, the geometric reductions, and the Poisson-expectation bridge
-are **not yet formalized as proofs**. In particular, finite-interval identities
-do not prove absolute integrability or mass one on the half-line. This is
-partial verification, not a machine-checked proof of either paper theorem;
+The full four-dimensional limit theorems, the geometric/action reductions,
+and the Poisson-expectation bridge are **not yet formalized as proofs**.
+The sharper asymptotic coefficient and differentiated remainder in the draft
+are not asserted as checked results; the half-line proofs use exact Gaussian
+cancellations instead. This is partial verification, not a machine-checked
+proof of either paper theorem;
 [tracking issue #1](https://github.com/q5m-ai/causal-set-gravity/issues/1) remains open.
 
 ## Reproduce
@@ -87,10 +91,10 @@ Without `uv`, use `python3 -m venv .venv` and
 - [Sources and attribution](notes/references.md)
 - [Reproducible numerical tables](RESULTS.md)
 - [Lean proofs, unproved targets, and verification plan](formal/README.md)
-- `check_symbolic.py`: seven groups of exact algebra checks, including
-  all-orders kernel coefficient identities.
-- `test_calculations.py`: 13 tests, including independent integral
-  representations, signs, normalization, scaling, and convergence examples.
+- `check_symbolic.py`: eight groups of exact algebra checks, including
+  all-orders kernel coefficient identities and Gaussian cancellation primitives.
+- `test_calculations.py`: 14 tests, including independent integral
+  representations, signs, normalization, tail bounds, scaling, and convergence examples.
 - `calculations.py`: high-precision deterministic integral evaluators.
 - `test_formal_check.py`: six checker-orchestration regression tests; these
   use a fake Lake and do **not** replace running `formal/check.sh`.

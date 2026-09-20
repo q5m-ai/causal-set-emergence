@@ -7,8 +7,9 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 # Exact scaling of the concrete plane kernel
 
 These identities use the auxiliary integral in `Specification`, not a kernel
-postulated to have the desired scaling. They do not establish the still-open
-mass, moment, tail, or four-dimensional reduction obligations.
+postulated to have the desired scaling. The mass, moment, and tail proofs
+are in `KernelEstimates` and `KernelHalfLine`; the four-dimensional reduction
+remains open.
 -/
 
 open MeasureTheory
