@@ -14,10 +14,13 @@ an explicit absolute tail bound, and the concrete signed-rescaling limit.
 It now also verifies the **exact four-dimensional ellipsoid graph-cap action
 reduction at every positive density**, including strict spacelikeness, complete
 future slices, coordinate/Fubini steps, and the concrete BDG cone identity.
-It does not yet verify either main boundary-limit theorem, the explicit
-ellipsoid sublevel/coarea limit, the general graph-cap reduction, or the
-Poisson-expectation bridge. Full-theorem targets are defined without asserting
-unproved results.
+The **deterministic ellipsoid limit (19) is now machine-checked**, via explicit
+superlevel volumes, an exact signed integration formula, and a global bounded
+continuous weight. `ellipsoidLimitGoal` proves the unchanged four-dimensional
+`EllipsoidLimitGoal`. The general graph-cap theorem, Lorentzian angle/joint-area
+interpretation, `NullCapLimitGoal`, and Poisson-expectation bridge remain open.
+The checked result concerns `continuumMean`, not yet a formalized random
+sprinkling expectation, and asserts no convergence rate.
 
 ## 1. Precise target and conventions
 
@@ -359,8 +362,9 @@ Integrating (12) over each vertical fibre of (10), using
 For the concrete ellipsoids, this equality is now the checked theorem
 `ellipsoid_graphReduction`, starting from the unchanged `continuumMean` and
 `GraphReductionGoal`. It holds for every positive density. The general-profile
-version remains draft-level. The explicit ellipsoid sublevel/coarea limit and
-`EllipsoidLimitGoal`, including (19), are **not** established by this milestone.
+version remains draft-level. The subsequent explicit ellipsoid integration
+and limit are now also checked, as described after (19); they reuse this exact
+reduction rather than assuming it.
 
 ## 5. The signed approximate identity
 
@@ -568,7 +572,7 @@ This varies on a single connected joint whenever the axes are not all equal.
 Since
 
 \[
- |\{h>s\}|=\frac{4\pi}{3}b_1b_2b_3(1-s/a)^{3/2},
+ |\{h>s\}|=\frac{4\pi}{3}b_1b_2b_3(1-s/a)^{3/2},\qquad 0\le s\le a,
 \]
 
 Theorem 2 gives the completely explicit value
@@ -582,6 +586,52 @@ Theorem 2 gives the completely explicit value
 For \((b_1,b_2,b_3)=(1,2,3)\), \(a=1/4\), the prediction is \(48\pi\),
 and \(\tanh\theta\) ranges from \(1/6\) to \(1/2\). This is not merely a
 family of constant-angle examples.
+
+**Checked deterministic proof of (19), without general coarea or angle geometry.**
+`EllipsoidIntegration.lean` derives the displayed superlevel volume from the
+axis-scaling determinant and the Euclidean three-ball in the original spatial
+product Lebesgue measure. The strict superlevel set is empty for `s ≥ a`,
+including the critical height. Radial spheres are null sets, so boundary
+endpoint replacements are justified. For every globally continuous real `f`,
+including the signed kernel at any fixed density, it proves
+
+\[
+ \int_{h>0} f(h(x))\,dx
+ =C\int_0^a\sqrt{1-s/a}\,f(s)\,ds,
+ \qquad C=\frac{2\pi b_1b_2b_3}{a}.
+\]
+
+Compact spatial boxes and continuity give absolute integrability. After
+axis/radial integration, the substitution is performed in the smooth direction
+`t = 1-r²`, then `s = a*t`. This is important: the square-root height density
+is **not globally C¹**, and the interior critical level `s = a` cannot be
+handled by silently applying the regular-collar argument there. No derivative
+of the square root at this endpoint is used in the checked proof.
+
+`EllipsoidLimit.lean` instead defines the continuous global extension
+`B(s) = C sqrt((1-max(0,s)/a)₊)`. It equals `C` below zero, the exact height
+density on `[0,a]`, and zero for `s ≥ a`, with `|B| ≤ |C|`. Combining (13),
+the exact signed integration formula, and (14) gives exactly
+
+\[
+ \operatorname{continuumMean}_\rho(M_h)
+ =\int_0^\infty G(u)B(\varepsilon u)\,du,
+ \qquad \varepsilon=(\sqrt{\sqrt\rho})^{-1}.
+\]
+
+Both the extended height integral and this rescaled integral are proved
+absolutely integrable; the latter is dominated by `|C| |G|`. The extension
+adds only zeros, so there is no unproved moving-domain or interior remainder
+step. The checked density-to-width limit and concrete signed-rescaling theorem
+now give `B(0) = C`. The whole ellipsoid, including its critical point and the
+kernel's negative tail, is retained. No extra assumptions on volume, reduction,
+normalization, or spacelikeness are added.
+
+This is the audited proof term `ellipsoidLimitGoal : EllipsoidLimitGoal`,
+not merely a definition of the desired conclusion. It establishes the
+**deterministic** value in (19). The identification with a Poisson expectation,
+the relation `coth θ = 1/‖∇h‖`, joint-area interpretation, and general Theorem 2
+remain draft-level. No quantitative rate follows from this checked limit.
 
 ## 7. What remains outside this attempt
 

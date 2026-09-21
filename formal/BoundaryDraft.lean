@@ -9,3 +9,5 @@ import BoundaryDraft.KernelHalfLine
 import BoundaryDraft.EllipsoidGeometry
 import BoundaryDraft.ConeIntegral
 import BoundaryDraft.SpacetimeIntegration
+import BoundaryDraft.EllipsoidIntegration
+import BoundaryDraft.EllipsoidLimit

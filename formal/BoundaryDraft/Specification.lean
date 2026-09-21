@@ -10,7 +10,8 @@ import Mathlib.Analysis.SpecialFunctions.Exp
 Every name ending in `Goal` below is a DEFINITION OF A PROPOSITION, not a
 proof or an axiom. `KernelEstimates` and `KernelHalfLine` now construct proofs
 of the two concrete kernel targets. `SpacetimeIntegration` proves the exact
-ellipsoid `GraphReductionGoal`; the four-dimensional limit targets remain open.
+ellipsoid `GraphReductionGoal`, and `EllipsoidLimit` proves the unchanged
+`EllipsoidLimitGoal`. The separate `NullCapLimitGoal` remains open.
 
 The main targets refer to the actual four-dimensional deterministic continuum
 integral, not an action defined to equal its expected limiting answer.
@@ -75,7 +76,8 @@ def ellipsoidProfile (a : ℝ) (b : Fin 3 → ℝ) (x : Spatial) : ℝ :=
   a * (1 - ∑ i : Fin 3, (x i / b i) ^ 2)
 
 /-- Full four-dimensional target for the explicit family with variable angle.
-Its hypotheses force positive axes and strict spacelikeness. NOT PROVED. -/
+Its hypotheses force positive axes and strict spacelikeness.
+Proved by `ellipsoidLimitGoal` in `EllipsoidLimit`. -/
 def EllipsoidLimitGoal : Prop :=
   ∀ (a : ℝ) (b : Fin 3 → ℝ), 0 < a → (∀ i, 2 * a < b i) →
     Tendsto (fun ρ => continuumMean ρ (graphCapRegion (ellipsoidProfile a b)))

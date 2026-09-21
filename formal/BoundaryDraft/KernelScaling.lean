@@ -8,8 +8,8 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 
 These identities use the auxiliary integral in `Specification`, not a kernel
 postulated to have the desired scaling. The mass, moment, and tail proofs
-are in `KernelEstimates` and `KernelHalfLine`; the four-dimensional reduction
-remains open.
+are in `KernelEstimates` and `KernelHalfLine`. `SpacetimeIntegration` and
+`EllipsoidLimit` use them for the ellipsoid reduction and continuum limit.
 -/
 
 open MeasureTheory

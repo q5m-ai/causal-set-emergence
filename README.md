@@ -65,16 +65,23 @@ and concrete signed-rescaling specialization. The **exact ellipsoid graph-cap
 reduction is now proved at every positive density**, starting from the original
 four-dimensional `continuumMean`: strict spacelikeness gives complete future
 cones, and justified coordinate/Fubini steps connect the concrete BDG integral
-to `planeKernel`. All **79 public theorems** pass an axiom audit permitting only
+to `planeKernel`.
+
+**The deterministic ellipsoid continuum limit is now proved:**
+`ellipsoidLimitGoal : EllipsoidLimitGoal` establishes the original
+four-dimensional target, with limit `2π b₁b₂b₃/a`, under exactly `0 < a` and
+`∀ i, 2*a < b i`. The proof derives the explicit superlevel volumes and signed
+integration formula in spatial Lebesgue measure, then applies the checked
+kernel limit to a bounded continuous square-root weight over the **whole**
+ellipsoid. It allows the interior critical point and retains the negative
+tail. All **97 public theorems** pass a transitive axiom audit permitting only
 Lean's standard foundations.
 
-The explicit ellipsoid sublevel/coarea limit, both full four-dimensional limit
-theorems, the general graph-cap reduction, and the Poisson-expectation bridge
-are **not yet formalized as proofs**.
-The sharper asymptotic coefficient and differentiated remainder in the draft
-are not asserted as checked results; the half-line proofs use exact Gaussian
-cancellations instead. This is partial verification, not a machine-checked
-proof of either paper theorem;
+The Lorentzian angle/joint-area interpretation, general graph-cap theorem,
+`NullCapLimitGoal`, and Poisson-expectation bridge are **not yet formalized as
+proofs**. Thus this is a checked deterministic family, not a checked random
+sprinkling result or a proof of the full boundary conjecture. No convergence
+rate or sharper differentiated asymptotic remainder is claimed as checked;
 [tracking issue #1](https://github.com/q5m-ai/causal-set-gravity/issues/1) remains open.
 
 ## Reproduce
