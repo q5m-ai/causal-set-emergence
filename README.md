@@ -127,7 +127,7 @@ fundamental rule. See:
 
 ## Interactive explainer
 
-[`site/index.html`](site/index.html) is a dependency-free visual introduction
+[`site/index.html`](site/index.html) is a build-free visual introduction
 to:
 
 - discrete events and causal partial order;
