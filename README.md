@@ -1,92 +1,179 @@
-# Causal Set Gravity
+# Causal Set Emergence
 
-Research on continuum limits, boundary terms, and formal verification in
-causal-set gravity. The repository is intentionally broader than one theorem:
-each proof program gets its own stated hypotheses, evidence, and verification
-status.
+Research into how continuum spacetime geometry, gravitational action, and
+possibly dynamical laws can emerge from discrete causal order.
 
-This is a **private research repository**. Nothing here is a peer-reviewed or
-publicly released result.
+This repository now has two deliberately separated layers:
 
-## Proof program 1: modified BDG boundary conjecture
+1. **A rigorous continuum-limit proof program** for boundary and joint terms in
+   the four-dimensional Benincasa–Dowker–Glaser (BDG) causal-set action.
+2. **An exploratory emergence program** collecting conceptual notes,
+   visualizations, and research questions about causal growth, quantum
+   histories, and automaton-like dynamics.
 
-[Read the proof draft](notes/first-attempt.md).
+The first layer contains mathematical claims with explicit verification status.
+The second is a research agenda, not an assertion that an automaton model or a
+complete causal-set dynamics has been found.
 
-In **3+1-dimensional Minkowski space**, the draft gives complete arguments for
-these restricted classes, pending independent mathematical review:
+> **Research status:** private, unpublished, and not peer reviewed. Formal
+> verification checks the encoded statements; it does not establish novelty,
+> physical applicability, or assumptions that have not yet been formalized.
+
+## Why “emergence”?
+
+A causal set begins with very little: discrete elements, causal order, and local
+finiteness. A successful theory must explain how familiar continuum structures
+appear at larger scales—including manifold structure, topology, Lorentzian
+metric, dimension, locality, and the geometric field described as gravity in
+general relativity.
+
+The current proofs study one controlled part of that bridge. Given causal sets
+obtained from increasingly dense Poisson sprinklings into specified continuum
+regions, does the discrete BDG action recover the expected continuum geometric
+term? This is a necessary consistency test, but it runs from a known continuum
+target toward its discrete approximation. It does **not** yet derive spacetime
+or gravity from unconstrained microscopic dynamics.
+
+The longer-term question is complementary: can covariant causal growth or
+rewriting rules make manifold-like causal sets and their effective physics
+emerge without assuming a background lattice, global clock, or preferred
+frame?
+
+## Program 1 — BDG continuum limits
+
+[The analytic proof draft](notes/first-attempt.md) studies the flat-space
+specialization of Conjecture 1′ in Dowker–Liu–Lloyd-Jones:
+
+\[
+ \lim_{\rho\to\infty}\mathcal A_\rho(M)
+ =\int_J\coth\theta\,dA,
+ \qquad
+ \mathcal A_\rho=\frac{l_p^2}{\hbar}\,\mathbb E S^{(4)}_\rho.
+\]
+
+In **3+1-dimensional Minkowski space**, the draft gives arguments for these
+restricted classes, pending independent mathematical review:
 
 1. **One-null-tip regions**, including a causal diamond of duration `T` cut by
-   the null plane `t-z=-a`, retaining `t-z>-a`, with `0<a<T`. The limiting
-   normalized mean action is `π a (2T-a)`, exactly the joint area.
-2. **Spacelike graph caps with a planar future boundary**,
-   `M_h = { (t,x): -h(x)<t<0 }`, with the regularity, strict spacelikeness, and
-   transversality conditions in the proof. The limit is
-   `∫∂Ω 1/|∇h| dA = ∫J coth(θ) dA`.
-3. **Genuinely variable angle:** unequal-axis ellipsoidal graph caps have a
-   single connected joint with nonconstant `θ`. The explicit limit is
-   `2π b₁b₂b₃/a`, where `h=a(1-Σxᵢ²/bᵢ²)`.
+   the null plane `t-z=-a`. The limiting normalized mean action is
+   `π a (2T-a)`, equal to the joint area.
+2. **Spacelike graph caps with a planar future boundary**, under the stated
+   regularity, strict-spacelikeness, and transversality assumptions. The limit
+   is `∫∂Ω 1/|∇h| dA = ∫J coth(θ) dA`.
+3. **A connected variable-angle family:** unequal-axis ellipsoidal graph caps,
+   with explicit limit `2π b₁b₂b₃/a`.
 
-Normalization: every action above is `l_p² E[S⁽⁴⁾_ρ]/ℏ`. These are results
-about the expectation, not convergence of individual random sprinklings.
+The argument performs the complete future-point integral before taking the
+limit. This avoids an unjustified coordinate-local approximation for nearly
+null pairs, which can have small interval volume despite large coordinate
+separation. The graph-cap argument then uses a signed approximate identity and
+the coarea formula.
 
-The key is to do the entire future-point integral **exactly** before taking a
-limit. This avoids an unjustified short-distance approximation for nearly
-null, widely separated pairs. The graph-cap proof then uses a signed
-approximate identity of mass one and the coarea formula.
+### Machine-checked boundary
 
-**Not established:** arbitrary pairs of curved boundary faces, other spacetime
-dimensions, degenerate joints, variance control, or novelty relative to all
-existing literature. The symbolic/numerical tests are consistency checks,
-not a formal verification of the proofs.
+[The Lean layer](formal/README.md) uses pinned Lean 4.19.0 and mathlib. It now
+proves the concrete kernel normalization and tails, exact four-dimensional
+ellipsoid action reduction, explicit ellipsoid integration, and the
+**deterministic ellipsoid continuum limit**:
 
-## Proof-program organization
+```text
+ellipsoidLimitGoal : EllipsoidLimitGoal
+```
 
-As the project grows, distinct arguments should remain independently auditable:
+All **97 public theorems** pass a transitive axiom audit permitting only Lean’s
+standard foundations. The whole signed kernel is retained, including its
+negative tail.
 
-- `notes/`: proof drafts, assumptions, failed approaches, and references;
-- `formal/`: Lean-checked components and explicitly unproved targets;
-- numerical code and result tables: reproducible diagnostics, never substitutes
-  for analytic proofs.
+Still open in the formal program:
 
-A deeper proof may supersede an earlier argument without erasing its provenance.
-Claims must identify whether they are conjectural, drafted, independently
-reviewed, or machine-checked.
+- `NullCapLimitGoal`;
+- the general admissible graph-cap theorem;
+- the Lorentzian angle and joint-area interpretation;
+- the Poisson-sprinkling expectation bridge.
 
-## Lean status
+Accordingly, this is not yet a checked proof of the unrestricted conjecture or
+of convergence for individual random sprinklings. See
+[tracking issue #1](https://github.com/q5m-ai/causal-set-emergence/issues/1).
 
-[The Lean layer](formal/README.md) compiles with Lean 4.19.0 and pinned
-mathlib. In addition to the original algebra and generic signed-kernel limits,
-it proves the concrete plane kernel's density scaling, differentiation of its
-auxiliary integral through order three, boundary constants, and exact
-finite-interval mass and signed first-moment identities. The concrete kernel's
-**half-line mass one, absolute integrability, absolute first moment, and
-`O(u⁻³)` tail bound are now proved**, together with the large-argument limits
-and concrete signed-rescaling specialization. The **exact ellipsoid graph-cap
-reduction is now proved at every positive density**, starting from the original
-four-dimensional `continuumMean`: strict spacelikeness gives complete future
-cones, and justified coordinate/Fubini steps connect the concrete BDG integral
-to `planeKernel`.
+## Program 2 — dynamics and automaton-like growth
 
-**The deterministic ellipsoid continuum limit is now proved:**
-`ellipsoidLimitGoal : EllipsoidLimitGoal` establishes the original
-four-dimensional target, with limit `2π b₁b₂b₃/a`, under exactly `0 < a` and
-`∀ i, 2*a < b i`. The proof derives the explicit superlevel volumes and signed
-integration formula in spatial Lebesgue measure, then applies the checked
-kernel limit to a bounded continuous square-root weight over the **whole**
-ellipsoid. It allows the interior critical point and retains the negative
-tail. All **97 public theorems** pass a transitive axiom audit permitting only
-Lean's standard foundations.
+The exploratory question is whether causal-set dynamics can be represented as
+an asynchronous, label-independent growth or graph-rewriting system:
 
-The Lorentzian angle/joint-area interpretation, general graph-cap theorem,
-`NullCapLimitGoal`, and Poisson-expectation bridge are **not yet formalized as
-proofs**. Thus this is a checked deterministic family, not a checked random
-sprinkling result or a proof of the full boundary conjecture. No convergence
-rate or sharper differentiated asymptotic remainder is claimed as checked;
-[tracking issue #1](https://github.com/q5m-ai/causal-set-gravity/issues/1) remains open.
+```text
+discrete event + causal dependencies + covariant update law
+                         ↓
+       histories with emergent geometry and physics
+```
 
-## Reproduce
+The Game of Life is a useful intuition for emergence from simple rules, but not
+a direct model. Ordinary cellular automata assume a spatial lattice, global
+clock, simultaneous updates, and fixed local neighborhood. Those assumptions
+would build in structures that causal set theory is meant to explain.
 
-Requires Python 3.11+ and the two pinned packages in `requirements.txt`.
+A viable causal analogue would need to preserve partial order and local
+finiteness, avoid physical dependence on birth labels, support Lorentzian
+rather than lattice locality, and ultimately admit quantum amplitudes or a
+quantum measure over histories. One possible bridge to Program 1 is to ask
+whether the BDG action can weight legal histories through an amplitude such as
+`exp(iS)`.
+
+This direction currently consists of questions and comparisons—not a proposed
+fundamental rule. See:
+
+- [Emergence and dynamics: current learnings and roadmap](notes/emergence-roadmap.md)
+- [Viewing notes from the Fay Dowker / Curt Jaimungal conversation](notes/fay-dowker-interview-notes.md)
+- [Discussion #12: order-invariant automata](https://github.com/q5m-ai/causal-set-emergence/discussions/12)
+
+## Interactive explainer
+
+[`site/index.html`](site/index.html) is a dependency-free visual introduction
+to:
+
+- discrete events and causal partial order;
+- manifold, topology, and metric as emergent continuum concepts;
+- causal diamonds, links, light cones, and Lorentzian nonlocality;
+- canonical, path-integral, and stochastic quantization;
+- the continuum-limit calculation studied in this repository.
+
+Open it directly, or serve only the site directory:
+
+```sh
+python3 -m http.server 8000 --directory site
+```
+
+Then visit <http://localhost:8000/>.
+
+## Evidence and claim discipline
+
+| Label | Meaning here |
+|---|---|
+| **Exploratory** | A question, analogy, or proposed direction; not a result |
+| **Drafted** | A written analytic argument awaiting independent review |
+| **Numerically checked** | Reproducible finite-density or symbolic evidence |
+| **Machine checked** | The stated Lean declaration compiles and passes the axiom audit |
+| **Established** | Reserved for independently reviewed or published work |
+
+Distinct proof programs should remain independently auditable. A deeper result
+may supersede an earlier argument without erasing its provenance. Numerical
+agreement and visualization never substitute for proof, and machine checking
+never substitutes for validating that the formal statement matches the intended
+physics.
+
+## Repository map
+
+- `notes/first-attempt.md` — analytic boundary-limit proof draft and scope.
+- `notes/references.md` — sources, attribution, and novelty boundaries.
+- `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
+- `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.
+- `formal/` — Lean proofs, explicit targets, audit, and reproduction guide.
+- `calculations.py`, `check_symbolic.py` — deterministic numerical and symbolic checks.
+- `RESULTS.md` — reproducible finite-density tables.
+- `site/` — standalone interactive explainer.
+
+## Reproduce the computational checks
+
+Requires Python 3.11+ and the pinned packages in `requirements.txt`:
 
 ```sh
 uv venv .venv
@@ -96,21 +183,9 @@ uv pip install --python .venv/bin/python -r requirements.txt
 .venv/bin/python reproduce.py
 ```
 
-Without `uv`, use `python3 -m venv .venv` and
-`.venv/bin/pip install -r requirements.txt` for the first two steps.
+Without `uv`, create a standard virtual environment and install from
+`requirements.txt`. Lean reproduction instructions and the exact checked
+boundary live in [`formal/README.md`](formal/README.md).
 
-- [Proof and explicit remaining scope](notes/first-attempt.md)
-- [Sources and attribution](notes/references.md)
-- [Reproducible numerical tables](RESULTS.md)
-- [Lean proofs, unproved targets, and verification plan](formal/README.md)
-- `check_symbolic.py`: nine groups of exact algebra checks, including
-  all-orders kernel identities, Gaussian primitives, and the exact cone cancellation.
-- `test_calculations.py`: 15 tests, including independent integral
-  representations, finite-density action and fibre identities, signs,
-  normalization, tail bounds, scaling, and convergence examples.
-- `calculations.py`: high-precision deterministic integral evaluators.
-- `test_formal_check.py`: six checker-orchestration regression tests; these
-  use a fake Lake and do **not** replace running `formal/check.sh`.
-
-Downloaded source articles and local environments are ignored by Git. No
-third-party article text is included in the committed draft.
+Downloaded source articles, local environments, and build products are ignored.
+No third-party article text is committed.
