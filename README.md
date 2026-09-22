@@ -133,6 +133,7 @@ to:
 - discrete events and causal partial order;
 - manifold, topology, and metric as emergent continuum concepts;
 - causal diamonds, links, light cones, and Lorentzian nonlocality;
+- a toy observer represented as a causal process across alternative histories;
 - canonical, path-integral, and stochastic quantization;
 - the continuum-limit calculation studied in this repository.
 

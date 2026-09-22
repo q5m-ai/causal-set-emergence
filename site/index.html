@@ -173,7 +173,7 @@
   <nav aria-label="Page navigation">
     <div class="wrap nav-inner">
       <div class="brand"><span class="brand-mark" aria-hidden="true"></span> Causal Set Emergence</div>
-      <div class="nav-links"><a href="#pillars">Pillars</a><a href="#emergence">Emergence</a><a href="#locality">Locality lab</a><a href="#quantum">Quantization</a><a href="#research">This repo</a></div>
+      <div class="nav-links"><a href="#pillars">Pillars</a><a href="#emergence">Emergence</a><a href="#locality">Locality</a><a href="#observer">Observer</a><a href="#quantum">Quantization</a><a href="#research">This repo</a></div>
     </div>
   </nav>
 
@@ -265,9 +265,33 @@
       </div>
     </section>
 
+    <section id="observer">
+      <div class="wrap">
+        <div class="section-head"><div><div class="eyebrow">04 · Toy model</div><h2>An observer across histories</h2></div><p>A being is not one event. At minimum, it is a causally connected process: perceptions arrive, records persist, deliberation occurs, and actions alter later events.</p></div>
+        <div class="observer-lab">
+          <div class="observer-bar">
+            <div><span class="eyebrow">Choose what to display</span><strong id="observerModeTitle">History space: both alternatives</strong></div>
+            <div class="observer-controls" aria-label="Observer history display">
+              <button class="observer-toggle" data-history="left" aria-pressed="false">Left history</button>
+              <button class="observer-toggle" data-history="both" aria-pressed="true">Both alternatives</button>
+              <button class="observer-toggle" data-history="right" aria-pressed="false">Right history</button>
+            </div>
+          </div>
+          <svg id="observerSvg" viewBox="0 0 920 520" role="img" aria-labelledby="observerTitle observerDesc"><title id="observerTitle">A toy observer with alternative causal histories</title><desc id="observerDesc">A common causal past contains perceptions, memory, and deliberation. Two alternative future causal sets contain observer continuations recording different choices.</desc></svg>
+          <div class="observer-readout" id="observerReadout" aria-live="polite"><strong>Before the split, both alternatives contain the same observer record.</strong> Afterward, each continuation remembers one outcome. Showing both is a picture of a space of histories—not a fifth direction inside either spacetime.</div>
+        </div>
+        <div class="observer-concepts">
+          <article><span>01</span><h3>Perception</h3><p>Environment events send causal information into the observer process.</p></article>
+          <article><span>02</span><h3>Memory</h3><p>Later observer events carry records of earlier states. That continuity creates a minimal persistent identity.</p></article>
+          <article><span>03</span><h3>Action</h3><p>Outgoing causal influence changes later environment events inside that history.</p></article>
+        </div>
+        <div class="observer-caveat"><strong>What this does—and does not—show.</strong> A causal-set history can represent an observer and its records. A quantum theory might assign amplitudes to several future extensions and allow them to decohere. This locates subjective uncertainty and branching, but it does not prove many-worlds or settle whether the decision counts as libertarian, compatibilist, or merely apparent free will.</div>
+      </div>
+    </section>
+
     <section id="quantum">
       <div class="wrap">
-        <div class="section-head"><div><div class="eyebrow">04 · Quantum descriptions</div><h2>Several roads in</h2></div><p>“Quantize the theory” is not a unique recipe. Familiar formulations can agree under the right assumptions—but there is no universal theorem making every route equivalent.</p></div>
+        <div class="section-head"><div><div class="eyebrow">05 · Quantum descriptions</div><h2>Several roads in</h2></div><p>“Quantize the theory” is not a unique recipe. Familiar formulations can agree under the right assumptions—but there is no universal theorem making every route equivalent.</p></div>
         <div class="quantum-grid">
           <article class="quantum-card"><h3>Canonical</h3><p>Classical quantities become operators acting on state vectors in a Hilbert space. Time evolution carries a state from one spatial slice to another.</p></article>
           <article class="quantum-card"><h3>Path integral</h3><p>Assign an amplitude to each possible history, then combine them. Interference—not ordinary probability addition—is essential.</p></article>
@@ -279,7 +303,7 @@
 
     <section id="research" class="dark">
       <div class="wrap repo-bridge">
-        <div><div class="eyebrow">05 · Connection to this repository</div><h2>From discrete action to a smooth boundary</h2><p>This repo studies a precise version of the emergence question. Start with the four-dimensional causal-set action, average over Poisson sprinklings, and increase the density ρ. For restricted flat-spacetime regions, the calculation approaches a continuum joint-area term.</p><p>That is the bridge in miniature: <strong>order and counting at finite density</strong> recovering a quantity expressed through <strong>continuum geometry</strong>.</p><div class="equation">lim ρ→∞  𝒜ρ(M) = ∫<sub>J</sub> coth(θ) dA</div></div>
+        <div><div class="eyebrow">06 · Connection to this repository</div><h2>From discrete action to a smooth boundary</h2><p>This repo studies a precise version of the emergence question. Start with the four-dimensional causal-set action, average over Poisson sprinklings, and increase the density ρ. For restricted flat-spacetime regions, the calculation approaches a continuum joint-area term.</p><p>That is the bridge in miniature: <strong>order and counting at finite density</strong> recovering a quantity expressed through <strong>continuum geometry</strong>.</p><div class="equation">lim ρ→∞  𝒜ρ(M) = ∫<sub>J</sub> coth(θ) dA</div></div>
         <figure class="chart-card"><h3>A continuum limit appearing</h3><p>Null-plane-truncated diamond · predicted limit 3π/4</p><svg id="limitChart" viewBox="0 0 560 340" role="img" aria-label="Action ratio converging toward one as sprinkling density increases"></svg></figure>
       </div>
     </section>
@@ -354,6 +378,82 @@
     drawConcept(tab.dataset.concept);
   }));
   drawConcept("manifold");
+
+  // Toy observer: a chain of records in one history, with alternative extensions.
+  const observerSvg = document.getElementById("observerSvg");
+  const observerReadout = document.getElementById("observerReadout");
+  const observerModeTitle = document.getElementById("observerModeTitle");
+  const observerPalette = {observer:"#56b4e9", input:"#e6a93a", action:"#38c99a", environment:"#7f90aa", line:"#30415c"};
+  function drawObserver(mode) {
+    observerSvg.innerHTML = "";
+    observerSvg.append(svgEl("rect",{width:"920",height:"520",fill:"#04060d"}));
+    const leftOn = mode !== "right", rightOn = mode !== "left";
+    const line = (x1,y1,x2,y2,color=observerPalette.line,width=1.5,opacity=.8,dash="") => observerSvg.append(svgEl("line",{x1,y1,x2,y2,stroke:color,"stroke-width":width,"stroke-opacity":opacity,"stroke-dasharray":dash}));
+    const event = (x,y,color,label,r=6,opacity=1) => {
+      observerSvg.append(svgEl("circle",{cx:x,cy:y,r,fill:color,"fill-opacity":opacity,stroke:"#04060d","stroke-width":"2"}));
+      if(label) observerSvg.append(svgEl("text",{x:x+11,y:y+4,fill:"#d9e4f5","fill-opacity":opacity,"font-size":"11","font-weight":"600"},label));
+    };
+    const text = (x,y,value,attrs={}) => observerSvg.append(svgEl("text",{x,y,fill:"#8191aa","font-size":"10","letter-spacing":"1.1",...attrs},value));
+
+    // Common 1+1-dimensional causal past. Lines are selected links, not every transitive relation.
+    observerSvg.append(svgEl("path",{d:"M460 486 L265 286 L655 286 Z",fill:"#56b4e9","fill-opacity":".035",stroke:"#263750"}));
+    const common = [[380,464],[535,458],[320,420],[605,405],[410,386],[520,365],[350,338],[575,325]];
+    common.forEach(([x,y],i)=>event(x,y,observerPalette.environment,"",4,.72));
+    [[380,464,410,386],[535,458,520,365],[320,420,350,338],[605,405,575,325],[410,386,460,430],[520,365,460,430],[350,338,460,330],[575,325,460,330]].forEach(v=>line(...v));
+    // Observer chain: perception -> memory -> deliberation.
+    line(390,448,460,430,observerPalette.input,2.3,1);
+    line(530,413,460,430,observerPalette.input,2.3,1);
+    line(460,430,460,375,observerPalette.observer,3,1);
+    line(460,375,460,330,observerPalette.observer,3,1);
+    event(390,448,observerPalette.input,"signal α",6);
+    event(530,413,observerPalette.input,"signal β",6);
+    event(460,430,observerPalette.observer,"O₀ perceives",8);
+    event(460,375,observerPalette.observer,"O₁ remembers",8);
+    event(460,330,observerPalette.observer,"D deliberates",9);
+    text(22,500,"COMMON CAUSAL PAST",{"font-weight":"700"});
+    text(22,46,"EMERGENT TIME ↑",{"font-weight":"700"});
+
+    function branch(side,on) {
+      const left = side === "left", cx = left ? 260 : 660, edge = left ? 70 : 505;
+      const opacity = on ? 1 : .13;
+      const choice = left ? "record: chose L" : "record: chose R";
+      const consequence = left ? "door L opens" : "door R opens";
+      observerSvg.append(svgEl("rect",{x:edge,y:"55",width:"345",height:"205",rx:"8",fill:"#08111f","fill-opacity":opacity,stroke:left?"#3279a4":"#2f8069","stroke-opacity":opacity}));
+      text(edge+14,77,left?"ALTERNATIVE HISTORY Hᴸ":"ALTERNATIVE HISTORY Hᴿ",{"fill":left?"#8bd7ff":"#77ddb9","fill-opacity":opacity,"font-weight":"700"});
+      // Background events and selected causal links in this future extension.
+      const bg = left ? [[115,220],[185,185],[330,225],[370,165],[110,125],[335,100]] : [[550,220],[600,170],[760,220],[830,180],[565,110],[805,105]];
+      bg.forEach(([x,y])=>event(x,y,observerPalette.environment,"",4,opacity*.75));
+      line(460,330,cx,235,observerPalette.line,1.5,opacity,"5 5");
+      line(cx,235,cx,175,observerPalette.observer,3,opacity);
+      line(cx,175,cx,112,observerPalette.observer,3,opacity);
+      const targetX = left ? 145 : 785;
+      line(cx,175,targetX,130,observerPalette.action,2.5,opacity);
+      event(cx,235,observerPalette.observer,left?"O₂ᴸ decides":"O₂ᴿ decides",8,opacity);
+      event(cx,175,observerPalette.observer,choice,8,opacity);
+      event(cx,112,observerPalette.observer,left?"O₄ᴸ continues":"O₄ᴿ continues",8,opacity);
+      event(targetX,130,observerPalette.action,consequence,7,opacity);
+    }
+    branch("left",leftOn); branch("right",rightOn);
+    text(460,282,"ALTERNATIVE FUTURE EXTENSIONS",{"text-anchor":"middle","font-weight":"700"});
+    // Legend.
+    [[observerPalette.observer,"observer record"],[observerPalette.input,"incoming perception"],[observerPalette.action,"outgoing action"],[observerPalette.environment,"environment event"]].forEach(([color,label],i)=>{
+      event(650+i%2*135,487-Math.floor(i/2)*22,color,"",4);
+      observerSvg.append(svgEl("text",{x:660+i%2*135,y:491-Math.floor(i/2)*22,fill:"#9baac1","font-size":"10"},label));
+    });
+    if(mode === "both") {
+      observerModeTitle.textContent = "History space: both alternatives";
+      observerReadout.innerHTML = "<strong>Before the split, both alternatives contain the same observer record.</strong> Afterward, each continuation remembers one outcome. Showing both is a picture of a space of histories—not a fifth direction inside either spacetime.";
+    } else {
+      const side = mode === "left" ? "left" : "right";
+      observerModeTitle.textContent = `One realized history: ${side}`;
+      observerReadout.innerHTML = `<strong>Inside this single history, the observer is one causal chain.</strong> It receives signals, preserves records, produces an action, and later remembers choosing ${side}. The dimmed extension is a counterfactual alternative, not an event elsewhere in this spacetime.`;
+    }
+  }
+  document.querySelectorAll(".observer-toggle").forEach(button=>button.addEventListener("click",()=>{
+    document.querySelectorAll(".observer-toggle").forEach(b=>b.setAttribute("aria-pressed",String(b===button)));
+    drawObserver(button.dataset.history);
+  }));
+  drawObserver("both");
 
   // Causal diamond: an empty interval is a link; an occupied one is not.
   const diamondSvg = document.getElementById("diamondSvg");
