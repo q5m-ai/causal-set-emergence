@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An interactive introduction to causal sets, emergent spacetime, causal nonlocality, and quantum histories.">
+  <title>Causal Set Emergence — from order to spacetime</title>
+  <style>
+    :root {
+      --ink: #17201e;
+      --muted: #66716d;
+      --paper: #f5f1e8;
+      --card: rgba(255,255,255,.68);
+      --line: rgba(23,32,30,.14);
+      --teal: #087f78;
+      --teal-soft: #a8ddd4;
+      --coral: #e35d43;
+      --gold: #d7a62b;
+      --night: #122a2c;
+      --night-2: #17383a;
+      --shadow: 0 24px 70px rgba(20,45,43,.12);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 85% 8%, rgba(168,221,212,.42), transparent 26rem),
+        radial-gradient(circle at 4% 36%, rgba(227,93,67,.08), transparent 24rem),
+        var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.62;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .25;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");
+    }
+    a { color: inherit; }
+    .wrap { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+    nav {
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px);
+      background: rgba(245,241,232,.78); border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-size: .79rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .brand-mark { width: 26px; aspect-ratio: 1; border: 1px solid var(--ink); border-radius: 50%; display: grid; place-items: center; }
+    .brand-mark::after { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--coral); box-shadow: 7px -5px 0 var(--teal), -6px 6px 0 var(--gold); }
+    .nav-links { display: flex; gap: 20px; font-size: .82rem; color: var(--muted); }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { color: var(--ink); }
+    header { min-height: 84vh; display: grid; align-items: center; padding: 90px 0 80px; overflow: hidden; }
+    .hero { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: clamp(40px,8vw,110px); }
+    .eyebrow { color: var(--teal); text-transform: uppercase; letter-spacing: .16em; font-size: .73rem; font-weight: 850; }
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 500; line-height: 1.03; letter-spacing: -.035em; }
+    h1 { font-size: clamp(3.4rem, 8vw, 7.5rem); margin: 18px 0 24px; max-width: 850px; }
+    h1 em { color: var(--teal); font-weight: inherit; }
+    .lede { font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.16rem,2vw,1.55rem); max-width: 650px; color: #44504d; }
+    .scroll-cue { display: inline-flex; margin-top: 30px; gap: 11px; align-items: center; font-size: .77rem; text-transform: uppercase; letter-spacing: .12em; text-decoration: none; font-weight: 800; }
+    .scroll-cue span { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; }
+    .causal-orbit { position: relative; aspect-ratio: 1; max-width: 440px; justify-self: center; width: 100%; }
+    .causal-orbit::before, .causal-orbit::after { content: ""; position: absolute; inset: 12%; border: 1px solid rgba(8,127,120,.3); transform: rotate(45deg); }
+    .causal-orbit::after { inset: 25%; border-color: rgba(227,93,67,.35); }
+    .orbit-line { position: absolute; height: 1px; background: var(--line); transform-origin: left; }
+    .event { position: absolute; width: 12px; height: 12px; margin: -6px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 6px rgba(23,32,30,.06); }
+    .event.hot { background: var(--coral); box-shadow: 0 0 0 10px rgba(227,93,67,.12); }
+    .hero-note { position: absolute; right: -8%; bottom: 10%; width: 170px; padding: 13px 15px; background: rgba(255,255,255,.8); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); font-size: .78rem; transform: rotate(3deg); }
+    section { padding: 105px 0; }
+    .section-head { display: grid; grid-template-columns: .7fr 1.3fr; gap: 50px; align-items: end; margin-bottom: 55px; }
+    .section-head h2 { margin: 0; font-size: clamp(2.55rem,5vw,4.8rem); }
+    .section-head p { max-width: 620px; color: var(--muted); font-size: 1.05rem; margin: 0; }
+    .dark { color: #f8f5ed; background: var(--night); position: relative; }
+    .dark .eyebrow { color: #76d8cc; }
+    .dark .section-head p, .dark .muted { color: #aac1bd; }
+    .pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .pillar { min-height: 360px; padding: 30px; border-radius: var(--radius); border: 1px solid rgba(255,255,255,.12); background: linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025)); display: flex; flex-direction: column; }
+    .number { font-family: Georgia, serif; color: #76d8cc; font-size: 3.2rem; line-height: 1; }
+    .pillar h3 { font-size: 2rem; margin: auto 0 16px; letter-spacing: -.02em; }
+    .pillar p { color: #bed0cc; margin: 0; font-size: .94rem; }
+    .formula { margin-top: 28px; color: #fff; font: 1.02rem ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .levels { display: grid; grid-template-columns: 1fr 70px 1fr; gap: 22px; align-items: stretch; }
+    .level { padding: 38px; border-radius: var(--radius); background: var(--card); border: 1px solid rgba(255,255,255,.85); box-shadow: var(--shadow); }
+    .level.deep { color: #f7f4ec; background: var(--night); border-color: transparent; }
+    .level-tag { display: inline-block; border-radius: 999px; padding: 6px 11px; border: 1px solid currentColor; font-size: .68rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; opacity: .8; }
+    .level h3 { font-size: 2.4rem; margin: 28px 0 14px; }
+    .level ul { padding: 0; list-style: none; margin: 25px 0 0; }
+    .level li { padding: 11px 0; border-top: 1px solid currentColor; border-color: rgba(128,128,128,.25); display: flex; gap: 10px; }
+    .emerge-arrow { display: grid; place-items: center; writing-mode: vertical-rl; text-transform: uppercase; letter-spacing: .16em; font-size: .66rem; font-weight: 850; color: var(--muted); }
+    .emerge-arrow::before { content: "→"; font-size: 2rem; writing-mode: horizontal-tb; margin-bottom: 12px; }
+    .concept-lab { margin-top: 70px; display: grid; grid-template-columns: .78fr 1.22fr; gap: 24px; }
+    .concept-copy, .concept-art { border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); overflow: hidden; }
+    .concept-copy { padding: 34px; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 35px; }
+    button { font: inherit; }
+    .tab { border: 1px solid var(--line); background: transparent; color: var(--muted); border-radius: 999px; padding: 9px 14px; cursor: pointer; }
+    .tab[aria-selected="true"] { color: white; background: var(--teal); border-color: var(--teal); }
+    .concept-copy h3 { font-size: 2.45rem; margin: 0 0 13px; }
+    .concept-copy p { color: var(--muted); }
+    .concept-art { min-height: 430px; position: relative; display: grid; place-items: center; background: #e5eee9; }
+    #conceptSvg { width: 100%; height: 100%; min-height: 430px; }
+    .diamond-demo { margin-bottom: 28px; display: grid; grid-template-columns: minmax(0,1.2fr) minmax(280px,.8fr); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: rgba(255,255,255,.55); }
+    .diamond-art { min-height: 390px; background: #e8f0eb; }
+    #diamondSvg { display: block; width: 100%; height: 390px; }
+    .diamond-copy { padding: 32px; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid var(--line); }
+    .diamond-copy h3 { font-size: 2.15rem; margin: 8px 0 12px; }
+    .diamond-copy p { color: var(--muted); font-size: .9rem; }
+    .diamond-controls { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 15px; }
+    .diamond-toggle { cursor: pointer; padding: 9px 13px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); background: transparent; }
+    .diamond-toggle[aria-pressed="true"] { color: #fff; background: var(--coral); border-color: var(--coral); }
+    .diamond-status { margin-top: 20px; padding: 14px; border-radius: 12px; background: #f5f1e8; font-size: .8rem; }
+    .lab-shell { background: #f9f7f1; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,.85); }
+    .lab-bar { padding: 18px 22px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 15px; border-bottom: 1px solid var(--line); }
+    .control { display: flex; align-items: center; gap: 12px; font-size: .8rem; font-weight: 750; }
+    input[type="range"] { accent-color: var(--teal); width: 150px; }
+    .legend { display: flex; gap: 14px; flex-wrap: wrap; color: var(--muted); font-size: .72rem; }
+    .legend span::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; background: var(--ink); }
+    .legend .l-related::before { background: var(--teal); }
+    .legend .l-link::before { background: var(--coral); }
+    .legend .l-space::before { background: #a8aeac; }
+    .causal-grid { display: grid; grid-template-columns: minmax(0,1fr) 300px; }
+    #causalSvg { display: block; width: 100%; height: 570px; background: #f1eee6; cursor: crosshair; }
+    .lab-readout { padding: 28px 25px; border-left: 1px solid var(--line); }
+    .readout-label { color: var(--teal); text-transform: uppercase; font-weight: 850; letter-spacing: .13em; font-size: .65rem; }
+    .lab-readout h3 { font-size: 2rem; margin: 12px 0; }
+    .lab-readout p { color: var(--muted); font-size: .88rem; }
+    .stat { margin-top: 24px; padding-top: 17px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-size: .82rem; }
+    .stat strong { color: var(--coral); }
+    .callout { margin-top: 24px; border-radius: 15px; background: #e6f2ee; padding: 15px; font-size: .78rem; }
+    .quantum-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .quantum-card { padding: 28px; border-top: 3px solid var(--teal); background: rgba(255,255,255,.52); }
+    .quantum-card:nth-child(2) { border-color: var(--coral); }
+    .quantum-card:nth-child(3) { border-color: var(--gold); }
+    .quantum-card h3 { margin: 0 0 12px; font-size: 1.65rem; }
+    .quantum-card p { color: var(--muted); font-size: .9rem; }
+    .not-equal { margin: 42px auto 0; max-width: 850px; border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 32px; display: grid; grid-template-columns: 70px 1fr; gap: 24px; align-items: center; }
+    .not-equal b { font: 3.5rem Georgia, serif; color: var(--coral); }
+    .not-equal h3 { margin: 0 0 5px; font-size: 1.55rem; }
+    .not-equal p { margin: 0; color: var(--muted); }
+    .repo-bridge { display: grid; grid-template-columns: 1fr 1fr; gap: 45px; align-items: center; }
+    .repo-bridge h2 { font-size: clamp(2.5rem,5vw,4.6rem); margin: 18px 0; }
+    .repo-bridge p { color: #bed0cc; }
+    .equation { margin-top: 30px; padding: 22px; border: 1px solid rgba(255,255,255,.14); border-radius: 14px; color: #fff; overflow-x: auto; font: .93rem ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .chart-card { background: #f5f1e8; color: var(--ink); border-radius: var(--radius); padding: 25px; }
+    .chart-card h3 { margin: 0 0 4px; font-size: 1.45rem; }
+    .chart-card p { color: var(--muted); font-size: .75rem; margin: 0 0 16px; }
+    #limitChart { width: 100%; height: auto; display: block; }
+    footer { padding: 55px 0; border-top: 1px solid var(--line); }
+    .footer-grid { display: flex; justify-content: space-between; gap: 30px; color: var(--muted); font-size: .78rem; }
+    .footer-grid strong { color: var(--ink); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    @media (max-width: 850px) {
+      .hero, .section-head, .concept-lab, .repo-bridge { grid-template-columns: 1fr; }
+      .hero { padding-top: 40px; }
+      .causal-orbit { width: min(76vw,390px); }
+      .pillars, .quantum-grid { grid-template-columns: 1fr; }
+      .pillar { min-height: 280px; }
+      .levels { grid-template-columns: 1fr; }
+      .emerge-arrow { writing-mode: horizontal-tb; min-height: 45px; }
+      .emerge-arrow::before { transform: rotate(90deg); margin: 0 12px 0 0; }
+      .diamond-demo, .causal-grid { grid-template-columns: 1fr; }
+      .diamond-copy { border-left: 0; border-top: 1px solid var(--line); }
+      .lab-readout { border-left: 0; border-top: 1px solid var(--line); }
+      .nav-links { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <nav aria-label="Page navigation">
+    <div class="wrap nav-inner">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"></span> Causal Set Emergence</div>
+      <div class="nav-links"><a href="#pillars">Pillars</a><a href="#emergence">Emergence</a><a href="#locality">Locality lab</a><a href="#quantum">Quantization</a><a href="#research">This repo</a></div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="wrap hero">
+      <div>
+        <div class="eyebrow">From deep theory to continuum</div>
+        <h1>Before space, there is <em>order.</em></h1>
+        <p class="lede">A visual guide to causal sets: discrete events, causal precedence, emergent geometry, and the strange locality of a Lorentzian universe.</p>
+        <a class="scroll-cue" href="#pillars"><span aria-hidden="true">↓</span> Begin with three ideas</a>
+      </div>
+      <div class="causal-orbit" aria-label="A stylized causal set">
+        <span class="event hot" style="left:50%;top:50%"></span>
+        <span class="event" style="left:27%;top:72%"></span><span class="event" style="left:70%;top:77%"></span>
+        <span class="event" style="left:21%;top:28%"></span><span class="event" style="left:75%;top:24%"></span>
+        <span class="event" style="left:50%;top:8%"></span><span class="event" style="left:50%;top:91%"></span>
+        <svg viewBox="0 0 100 100" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%"><g fill="none" stroke="currentColor" opacity=".26" stroke-width=".35"><path d="M50 50L27 72M50 50L70 77M50 50L21 28M50 50L75 24M21 28L50 8M75 24L50 8M27 72L50 91M70 77L50 91"/></g></svg>
+        <div class="hero-note"><strong>Read upward:</strong><br>later events sit toward the top; lines show possible causal precedence.</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="pillars" class="dark">
+      <div class="wrap">
+        <div class="section-head"><div><div class="eyebrow">01 · Foundations</div><h2>Three pillars</h2></div><p>Strip away coordinates, smooth geometry, and even the familiar quantum state. What remains is a spare proposal for the architecture beneath spacetime.</p></div>
+        <div class="pillars">
+          <article class="pillar"><div class="number">I</div><h3>Discrete events</h3><p>A causal set is locally finite. Between any related pair lie only finitely many elements. A finite-volume region contains finitely many events—even though the whole universe need not be finite.</p><div class="formula">number ≈ spacetime volume</div></article>
+          <article class="pillar"><div class="number">II</div><h3>Partial order</h3><p><i>A ≺ B</i> says A is in B’s causal past. The relation is transitive, but not every pair is comparable: spacelike events sit outside one another’s light cones.</p><div class="formula">A ≺ B ≺ C  ⇒  A ≺ C</div></article>
+          <article class="pillar"><div class="number">III</div><h3>Quantum histories</h3><p>A prospective dynamics combines amplitudes for possible causal sets or growth histories. “Sum over worlds” is an intuition; “sum over histories” is more precise.</p><div class="formula">amplitude = Σ histories eⁱˢ</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="emergence">
+      <div class="wrap">
+        <div class="section-head"><div><div class="eyebrow">02 · Levels</div><h2>What survives?</h2></div><p>The continuum is not squeezed into a smaller theory. The direction is the reverse: smooth spacetime is expected to emerge as a large-scale approximation to the deep, discrete description.</p></div>
+        <div class="levels">
+          <article class="level deep"><span class="level-tag">Deep theory</span><h3>Causal set</h3><p>Fundamental ingredients are minimal.</p><ul><li>● Discrete elements</li><li>↗ Causal order</li><li># Element counting</li></ul></article>
+          <div class="emerge-arrow">continuum approximation</div>
+          <article class="level"><span class="level-tag">Emergent theory</span><h3>General relativity</h3><p>A smooth geometric description at large scales.</p><ul><li>◯ Manifold</li><li>⌁ Topology</li><li>⌗ Lorentzian metric</li></ul></article>
+        </div>
+        <div class="concept-lab">
+          <div class="concept-copy">
+            <div class="tabs" role="tablist" aria-label="Emergent concepts">
+              <button class="tab" role="tab" aria-selected="true" data-concept="manifold">Manifold</button>
+              <button class="tab" role="tab" aria-selected="false" data-concept="topology">Topology</button>
+              <button class="tab" role="tab" aria-selected="false" data-concept="metric">Metric</button>
+            </div>
+            <div id="conceptText" aria-live="polite"><h3>Manifold</h3><p>The continuous stage of GR: a collection of points that locally resembles ordinary coordinate space. It lets us draw smooth paths and define fields.</p><p><strong>Think:</strong> the fabric—not yet its measurements.</p></div>
+          </div>
+          <div class="concept-art"><svg id="conceptSvg" viewBox="0 0 600 430" role="img" aria-label="Visualization of a manifold"></svg></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="locality">
+      <div class="wrap">
+        <div class="section-head"><div><div class="eyebrow">03 · Interactive</div><h2>The locality puzzle</h2></div><p>Click an event. Its light cone protects causal order, yet its order-theoretic nearest neighbors can reach surprisingly far. Long-range does not mean faster-than-light.</p></div>
+        <div class="diamond-demo">
+          <div class="diamond-art"><svg id="diamondSvg" viewBox="0 0 600 390" role="img" aria-labelledby="diamondTitle diamondDesc"><title id="diamondTitle">Interactive causal diamond</title><desc id="diamondDesc">The intersection of the future of event A and the past of event B. Toggle whether an intermediate event is present.</desc></svg></div>
+          <div class="diamond-copy">
+            <div class="eyebrow">A causal interval</div><h3>Inside the diamond</h3>
+            <p>The diamond is every possible location for an event <i>C</i> between <i>A</i> and <i>B</i>: the future of A intersected with the past of B.</p>
+            <div class="diamond-controls" aria-label="Diamond contents">
+              <button class="diamond-toggle" data-diamond="empty" aria-pressed="true">Empty interval</button>
+              <button class="diamond-toggle" data-diamond="occupied" aria-pressed="false">Add event C</button>
+            </div>
+            <div class="diamond-status" id="diamondStatus" aria-live="polite"><strong>A and B are linked.</strong><br>No sprinkled element lies causally between them.</div>
+          </div>
+        </div>
+        <div class="lab-shell">
+          <div class="lab-bar">
+            <label class="control" for="density">Sprinkling density <input id="density" type="range" min="24" max="90" step="6" value="48"><output id="densityOut">48 events</output></label>
+            <div class="legend" aria-label="Legend"><span class="l-related">causally related</span><span class="l-link">direct link</span><span class="l-space">spacelike</span></div>
+          </div>
+          <div class="causal-grid">
+            <svg id="causalSvg" viewBox="0 0 760 570" role="img" aria-labelledby="causalTitle causalDesc"><title id="causalTitle">Interactive causal-set sprinkling</title><desc id="causalDesc">Select a point to reveal its light cone, causal relations, and direct links.</desc></svg>
+            <aside class="lab-readout">
+              <div class="readout-label">Selected event</div><h3 id="selectionTitle">Event 24</h3>
+              <p>Colored events are inside the selected event’s past or future light cone. Gray events are spacelike and have no causal ordering with it.</p>
+              <div class="stat"><span>Causally related</span><strong id="relatedCount">0</strong></div>
+              <div class="stat"><span>Direct links shown</span><strong id="linkCount">0</strong></div>
+              <div class="callout"><strong>Why the long links?</strong><br>A link contains no intermediate sprinkled event. Near a light cone, two events can be far apart in these coordinates but separated by little proper time.</div>
+            </aside>
+          </div>
+        </div>
+        <p style="color:var(--muted);font-size:.78rem;margin-top:16px">This finite 1+1-dimensional illustration teaches the relation; it does not display the literal infinity of links possible in an unbounded Lorentzian sprinkling. A causal relation marks possible influence, not an actual interaction law.</p>
+      </div>
+    </section>
+
+    <section id="quantum">
+      <div class="wrap">
+        <div class="section-head"><div><div class="eyebrow">04 · Quantum descriptions</div><h2>Several roads in</h2></div><p>“Quantize the theory” is not a unique recipe. Familiar formulations can agree under the right assumptions—but there is no universal theorem making every route equivalent.</p></div>
+        <div class="quantum-grid">
+          <article class="quantum-card"><h3>Canonical</h3><p>Classical quantities become operators acting on state vectors in a Hilbert space. Time evolution carries a state from one spatial slice to another.</p></article>
+          <article class="quantum-card"><h3>Path integral</h3><p>Assign an amplitude to each possible history, then combine them. Interference—not ordinary probability addition—is essential.</p></article>
+          <article class="quantum-card"><h3>Stochastic</h3><p>Add an auxiliary stochastic time and seek an equilibrium distribution reproducing a Euclidean quantum field theory.</p></article>
+        </div>
+        <div class="not-equal"><b>≠</b><div><h3>Agreement is conditional, not automatic.</h3><p>Infinite degrees of freedom, gauge constraints, anomalies, topology, boundary conditions, and regularization can obstruct equivalence. A histories formulation may also be more natural when spacetime itself fluctuates.</p></div></div>
+      </div>
+    </section>
+
+    <section id="research" class="dark">
+      <div class="wrap repo-bridge">
+        <div><div class="eyebrow">05 · Connection to this repository</div><h2>From discrete action to a smooth boundary</h2><p>This repo studies a precise version of the emergence question. Start with the four-dimensional causal-set action, average over Poisson sprinklings, and increase the density ρ. For restricted flat-spacetime regions, the calculation approaches a continuum joint-area term.</p><p>That is the bridge in miniature: <strong>order and counting at finite density</strong> recovering a quantity expressed through <strong>continuum geometry</strong>.</p><div class="equation">lim ρ→∞  𝒜ρ(M) = ∫<sub>J</sub> coth(θ) dA</div></div>
+        <figure class="chart-card"><h3>A continuum limit appearing</h3><p>Null-plane-truncated diamond · predicted limit 3π/4</p><svg id="limitChart" viewBox="0 0 560 340" role="img" aria-label="Action ratio converging toward one as sprinkling density increases"></svg></figure>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-grid"><div><strong>Causal Set Emergence</strong><br>A working visual notebook built from the Fay Dowker / Curt Jaimungal viewing notes.</div><div>Conceptual guide—not a substitute for the cited papers or a claim that causal-set quantum dynamics is complete.<br><a href="https://github.com/q5m-ai/causal-set-emergence">Research repository →</a></div></div></footer>
+
+<script>
+(() => {
+  const NS = "http://www.w3.org/2000/svg";
+  const svgEl = (name, attrs = {}, text = "") => {
+    const el = document.createElementNS(NS, name);
+    for (const [k,v] of Object.entries(attrs)) el.setAttribute(k,v);
+    if (text) el.textContent = text;
+    return el;
+  };
+
+  // Emergent concept illustrations.
+  const conceptSvg = document.getElementById("conceptSvg");
+  const conceptText = document.getElementById("conceptText");
+  const concepts = {
+    manifold: {
+      title: "Manifold",
+      body: "The continuous stage of GR: a collection of points that locally resembles ordinary coordinate space. It lets us draw smooth paths and define fields.",
+      think: "the fabric—not yet its measurements.",
+      label: "Visualization of a smooth manifold"
+    },
+    topology: {
+      title: "Topology",
+      body: "The rules of neighborhood and connection: which regions join, what can be continuously deformed, and whether the space contains holes.",
+      think: "connectedness without a ruler.",
+      label: "Visualization of connectedness and a topological hole"
+    },
+    metric: {
+      title: "Metric",
+      body: "The field gμν that supplies spacetime geometry. It determines proper time, spatial distance, light cones, volume, angles, and curvature.",
+      think: "the ruler, clock, and light-cone structure.",
+      label: "Visualization of a metric grid and light cone"
+    }
+  };
+  function drawConcept(which) {
+    conceptSvg.innerHTML = "";
+    const c = concepts[which];
+    conceptSvg.setAttribute("aria-label", c.label);
+    conceptText.innerHTML = `<h3>${c.title}</h3><p>${c.body}</p><p><strong>Think:</strong> ${c.think}</p>`;
+    const defs = svgEl("defs");
+    const grad = svgEl("linearGradient", {id:"wash",x1:"0",y1:"0",x2:"1",y2:"1"});
+    grad.append(svgEl("stop",{offset:"0","stop-color":"#a8ddd4"}),svgEl("stop",{offset:"1","stop-color":"#f2c89e"}));
+    defs.append(grad); conceptSvg.append(defs);
+    if (which === "manifold") {
+      conceptSvg.append(svgEl("path",{d:"M68 282 C150 115 244 145 314 96 C390 42 512 109 540 235 C472 337 350 335 268 364 C178 394 93 355 68 282Z",fill:"url(#wash)",stroke:"#087f78","stroke-width":"2"}));
+      for(let i=0;i<7;i++) conceptSvg.append(svgEl("path",{d:`M${105+i*57} ${320-i%2*9} C${125+i*50} 245 ${108+i*58} 180 ${148+i*58} ${125+i*4}`,fill:"none",stroke:"#fff","stroke-width":"2",opacity:".75"}));
+      for(let i=0;i<5;i++) conceptSvg.append(svgEl("path",{d:`M95 ${175+i*38} C230 ${135+i*42} 385 ${150+i*38} 518 ${188+i*27}`,fill:"none",stroke:"#fff","stroke-width":"2",opacity:".72"}));
+      conceptSvg.append(svgEl("circle",{cx:"340",cy:"219",r:"7",fill:"#e35d43"}));
+    } else if (which === "topology") {
+      conceptSvg.append(svgEl("path",{d:"M77 225 C87 90 225 66 300 150 C382 57 523 103 524 226 C525 348 380 377 300 296 C222 378 68 347 77 225Z",fill:"url(#wash)",stroke:"#087f78","stroke-width":"2"}));
+      conceptSvg.append(svgEl("ellipse",{cx:"300",cy:"223",rx:"62",ry:"43",fill:"#e5eee9",stroke:"#087f78","stroke-width":"2"}));
+      [[130,210],[182,141],[193,291],[407,145],[464,223],[400,297]].forEach(([x,y])=>conceptSvg.append(svgEl("circle",{cx:x,cy:y,r:"7",fill:"#17201e"})));
+      conceptSvg.append(svgEl("text",{x:"300",y:"230","text-anchor":"middle",fill:"#66716d","font-size":"15"},"a hole changes topology"));
+    } else {
+      for(let i=0;i<9;i++) {
+        conceptSvg.append(svgEl("path",{d:`M${80+i*55} 65 Q${300+(i-4)*12} 215 ${80+i*55} 365`,fill:"none",stroke:"#087f78","stroke-width":"1.3",opacity:".58"}));
+        conceptSvg.append(svgEl("path",{d:`M70 ${65+i*38} Q300 ${200+(i-4)*9} 530 ${65+i*38}`,fill:"none",stroke:"#087f78","stroke-width":"1.3",opacity:".58"}));
+      }
+      conceptSvg.append(svgEl("path",{d:"M300 218L207 88M300 218L393 88M300 218L207 348M300 218L393 348",fill:"none",stroke:"#e35d43","stroke-width":"3"}));
+      conceptSvg.append(svgEl("circle",{cx:"300",cy:"218",r:"7",fill:"#17201e"}));
+      conceptSvg.append(svgEl("text",{x:"410",y:"100",fill:"#e35d43","font-size":"15"},"light cone"));
+    }
+  }
+  document.querySelectorAll(".tab").forEach(tab => tab.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", String(t === tab)));
+    drawConcept(tab.dataset.concept);
+  }));
+  drawConcept("manifold");
+
+  // Causal diamond: an empty interval is a link; an occupied one is not.
+  const diamondSvg = document.getElementById("diamondSvg");
+  const diamondStatus = document.getElementById("diamondStatus");
+  function drawDiamond(mode) {
+    diamondSvg.innerHTML = "";
+    const A = {x:300,y:330}, B = {x:300,y:60}, C = {x:300,y:195};
+    const defs = svgEl("defs");
+    const pattern = svgEl("pattern",{id:"diamondDots",width:"14",height:"14",patternUnits:"userSpaceOnUse"});
+    pattern.append(svgEl("circle",{cx:"2",cy:"2",r:"1.3",fill:"#087f78","fill-opacity":".3"}));
+    defs.append(pattern); diamondSvg.append(defs);
+    // Full light cones, then their overlap.
+    diamondSvg.append(svgEl("path",{d:`M${A.x} ${A.y} L30 60 L570 60 Z`,fill:"#087f78","fill-opacity":".055"}));
+    diamondSvg.append(svgEl("path",{d:`M${B.x} ${B.y} L30 330 L570 330 Z`,fill:"#d7a62b","fill-opacity":".07"}));
+    diamondSvg.append(svgEl("path",{d:"M300 60 L435 195 L300 330 L165 195 Z",fill:"url(#diamondDots)",stroke:"#087f78","stroke-width":"2"}));
+    diamondSvg.append(svgEl("text",{x:"128",y:"186",fill:"#66716d","font-size":"12","text-anchor":"end"},"J⁺(A) ∩ J⁻(B)"));
+    if (mode === "empty") {
+      diamondSvg.append(svgEl("line",{x1:A.x,y1:A.y,x2:B.x,y2:B.y,stroke:"#e35d43","stroke-width":"4"}));
+      diamondStatus.innerHTML = "<strong>A and B are linked.</strong><br>No sprinkled element lies causally between them.";
+    } else {
+      diamondSvg.append(svgEl("line",{x1:A.x,y1:A.y,x2:C.x,y2:C.y,stroke:"#087f78","stroke-width":"3"}));
+      diamondSvg.append(svgEl("line",{x1:C.x,y1:C.y,x2:B.x,y2:B.y,stroke:"#087f78","stroke-width":"3"}));
+      diamondSvg.append(svgEl("line",{x1:A.x,y1:A.y,x2:B.x,y2:B.y,stroke:"#e35d43","stroke-width":"2","stroke-dasharray":"5 7","stroke-opacity":".3"}));
+      diamondSvg.append(svgEl("circle",{cx:C.x,cy:C.y,r:"8",fill:"#e35d43",stroke:"#fff","stroke-width":"3"}));
+      diamondSvg.append(svgEl("text",{x:C.x+18,y:C.y+5,fill:"#17201e","font-size":"15","font-weight":"700"},"C"));
+      diamondStatus.innerHTML = "<strong>A and B are related, but not linked.</strong><br>Because A ≺ C ≺ B, their relation is mediated transitively.";
+    }
+    [[A,"A"],[B,"B"]].forEach(([p,label]) => {
+      diamondSvg.append(svgEl("circle",{cx:p.x,cy:p.y,r:"9",fill:"#17201e",stroke:"#fff","stroke-width":"3"}));
+      diamondSvg.append(svgEl("text",{x:p.x+18,y:p.y+5,fill:"#17201e","font-size":"15","font-weight":"700"},label));
+    });
+    diamondSvg.append(svgEl("text",{x:"520",y:"82",fill:"#087f78","font-size":"11","letter-spacing":"1"},"PAST OF B"));
+    diamondSvg.append(svgEl("text",{x:"495",y:"354",fill:"#087f78","font-size":"11","letter-spacing":"1"},"FUTURE OF A"));
+  }
+  document.querySelectorAll(".diamond-toggle").forEach(button => button.addEventListener("click", () => {
+    document.querySelectorAll(".diamond-toggle").forEach(b => b.setAttribute("aria-pressed",String(b===button)));
+    drawDiamond(button.dataset.diamond);
+  }));
+  drawDiamond("empty");
+
+  // Deterministic causal sprinkling.
+  const causalSvg = document.getElementById("causalSvg");
+  const density = document.getElementById("density");
+  let points = [], selected = 0;
+  function randomAt(i, salt) { const x = Math.sin((i+1)*12.9898 + salt*78.233)*43758.5453; return x - Math.floor(x); }
+  function regenerate() {
+    const n = +density.value;
+    points = Array.from({length:n}, (_,i) => ({
+      x: 58 + randomAt(i,1)*644,
+      y: 32 + randomAt(i,2)*506,
+      id: i
+    }));
+    selected = Math.floor(n/2);
+    document.getElementById("densityOut").textContent = `${n} events`;
+    drawCausal();
+  }
+  // SVG y increases downward; event a causally precedes b when b is visually above a.
+  function related(a,b) { return Math.abs(a.x-b.x) < Math.abs(a.y-b.y); }
+  function between(a,b,z) {
+    const lo = a.y < b.y ? a : b, hi = a.y < b.y ? b : a;
+    return z.id !== a.id && z.id !== b.id && z.y > lo.y && z.y < hi.y && related(lo,z) && related(z,hi);
+  }
+  function isLink(a,b) { return related(a,b) && !points.some(z => between(a,b,z)); }
+  function drawCausal() {
+    causalSvg.innerHTML = "";
+    const s = points[selected];
+    causalSvg.append(svgEl("rect",{width:"760",height:"570",fill:"#f1eee6"}));
+    // Subtle coordinate grid.
+    for(let x=80;x<760;x+=80) causalSvg.append(svgEl("line",{x1:x,y1:0,x2:x,y2:570,stroke:"#17201e","stroke-opacity":".05"}));
+    for(let y=60;y<570;y+=60) causalSvg.append(svgEl("line",{x1:0,y1:y,x2:760,y2:y,stroke:"#17201e","stroke-opacity":".05"}));
+    // Past and future cones.
+    // Keep the true 45° cone vertices even when they fall beyond the viewport.
+    // SVG clipping then preserves the cone correctly at the left/right edges;
+    // clamping each vertex would incorrectly narrow the visible cone.
+    const coneEnds = [
+      [s.x-s.y,0], [s.x+s.y,0],
+      [s.x-(570-s.y),570], [s.x+(570-s.y),570]
+    ];
+    causalSvg.append(svgEl("path",{d:`M${s.x} ${s.y} L${coneEnds[0][0]} 0 L${coneEnds[1][0]} 0 Z`,fill:"#087f78","fill-opacity":".075"}));
+    causalSvg.append(svgEl("path",{d:`M${s.x} ${s.y} L${coneEnds[2][0]} 570 L${coneEnds[3][0]} 570 Z`,fill:"#087f78","fill-opacity":".075"}));
+    coneEnds.forEach(p => causalSvg.append(svgEl("line",{x1:s.x,y1:s.y,x2:p[0],y2:p[1],stroke:"#087f78","stroke-opacity":".32","stroke-dasharray":"5 6"})));
+    const rel = points.filter(p => p.id !== s.id && related(s,p));
+    const links = rel.filter(p => isLink(s,p));
+    links.forEach(p => causalSvg.append(svgEl("line",{x1:s.x,y1:s.y,x2:p.x,y2:p.y,stroke:"#e35d43","stroke-width":"2","stroke-opacity":".62"})));
+    points.forEach((p,i) => {
+      const isSelected = i === selected, isRelated = related(s,p), link = !isSelected && isLink(s,p);
+      const circle = svgEl("circle",{cx:p.x,cy:p.y,r:isSelected?8:link?5.2:4,fill:isSelected?"#17201e":link?"#e35d43":isRelated?"#087f78":"#a8aeac",stroke:isSelected?"#fff":"none","stroke-width":"3",tabindex:"0",role:"button","aria-label":`Select event ${i}`});
+      circle.addEventListener("click",()=>{selected=i;drawCausal();});
+      circle.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();selected=i;drawCausal();}});
+      causalSvg.append(circle);
+    });
+    causalSvg.append(svgEl("text",{x:"18",y:"25",fill:"#66716d","font-size":"12","letter-spacing":"1.5"},"FUTURE"));
+    causalSvg.append(svgEl("text",{x:"18",y:"552",fill:"#66716d","font-size":"12","letter-spacing":"1.5"},"PAST"));
+    document.getElementById("selectionTitle").textContent = `Event ${selected}`;
+    document.getElementById("relatedCount").textContent = rel.length;
+    document.getElementById("linkCount").textContent = links.length;
+  }
+  density.addEventListener("input",regenerate);
+  regenerate();
+
+  // Repo convergence chart, values from RESULTS.md.
+  const chart = document.getElementById("limitChart");
+  const ratios = [.8462971714,.9751005232,.9965530076,.9995595550,.9999463805];
+  const labels = ["10⁴","10⁶","10⁸","10¹⁰","10¹²"];
+  const x0=66, x1=530, y0=275, y1=35, min=.82, max=1.02;
+  const y = v => y0-(v-min)/(max-min)*(y0-y1);
+  chart.append(svgEl("rect",{width:"560",height:"340",fill:"#f5f1e8"}));
+  [.85,.9,.95,1].forEach(v=>{
+    chart.append(svgEl("line",{x1:x0,y1:y(v),x2:x1,y2:y(v),stroke:v===1?"#e35d43":"#17201e","stroke-opacity":v===1?".75":".12","stroke-dasharray":v===1?"5 5":"0"}));
+    chart.append(svgEl("text",{x:x0-12,y:y(v)+4,"text-anchor":"end",fill:"#66716d","font-size":"12"},v.toFixed(2)));
+  });
+  const coords=ratios.map((v,i)=>[x0+i*(x1-x0)/(ratios.length-1),y(v)]);
+  chart.append(svgEl("path",{d:coords.map((p,i)=>`${i?"L":"M"}${p[0]} ${p[1]}`).join(" "),fill:"none",stroke:"#087f78","stroke-width":"3"}));
+  coords.forEach((p,i)=>{
+    chart.append(svgEl("circle",{cx:p[0],cy:p[1],r:"5.5",fill:"#087f78",stroke:"#f5f1e8","stroke-width":"3"}));
+    chart.append(svgEl("text",{x:p[0],y:310,"text-anchor":"middle",fill:"#66716d","font-size":"12"},labels[i]));
+  });
+  chart.append(svgEl("text",{x:x1,y:y(1)-9,"text-anchor":"end",fill:"#e35d43","font-size":"11","font-weight":"700"},"CONTINUUM PREDICTION"));
+  chart.append(svgEl("text",{x:(x0+x1)/2,y:334,"text-anchor":"middle",fill:"#66716d","font-size":"11","letter-spacing":"1"},"SPRINKLING DENSITY ρ"));
+})();
+</script>
+</body>
+</html>
