@@ -46,8 +46,9 @@ actual graph derivatives, zero-error comparisons without a finiteness premise,
 a nonlinear paraboloid's local bounds, the planar disk upper bound, and null
 remainders. `HausdorffPlaneRegression.lean` checks both planar inequalities,
 equality of measures on arbitrary sets, the closed unit disk, the genuinely
-Euclidean norm, and the infinite-measure case. Neither file asserts the graph
-area formula.
+Euclidean norm, and the infinite-measure case. `HausdorffDensityRegression.lean`
+checks the graph pullback, tangent-map injectivity, and the almost-everywhere
+closed-ball density uniqueness theorem. None asserts the graph area formula.
 `EllipsoidRegression.lean` checks the original ellipsoid contract and
 its endpoint examples. `EllipsoidJointRegression.lean` separately checks
 regularity, the strict positive angle branch, connectedness, nonconstant weights,
@@ -79,9 +80,10 @@ and limit at `T = 2`, `a = 1`.
 | `BoundaryDraft/GraphCollar.lean` | Compact/measurable Euclidean joint, uniform noncritical boundary band, ambient C³ regular neighborhoods | Integration charts, normalized surface measure, coarea or a boundary limit |
 | `BoundaryDraft/GraphAngle.lean` | Actual Euclidean gradient, uniform strict slope bound, inward/outward unit normals, positive rapidity, face geometry and `coth` identity | Coarea or a deterministic limit |
 | `BoundaryDraft/GraphJacobian.lean` | Volume-frame determinant equals the positive Gram area Jacobian divided by the actual gradient norm | A transformation law for Hausdorff measure |
-| `BoundaryDraft/HausdorffGraph.lean` | C¹ graph/tangent-image Hausdorff bounds for every subset of a small ball, with sharp relative factors; all metrics Euclidean | Planar normalization or the variable-Jacobian area formula |
+| `BoundaryDraft/HausdorffGraph.lean` | C¹ graph/tangent-image Hausdorff bounds for every subset of a small ball, with sharp relative factors; continuous graphs are measurable embeddings and tangent graph maps are injective | The variable-Jacobian area formula |
 | `BoundaryDraft/PlanarIsodiametric.lean` | Sharp Euclidean planar isodiametric inequality on every set, proved by two perpendicular Steiner symmetrizations | A graph-area or coarea formula |
 | `BoundaryDraft/HausdorffPlane.lean` | Both inequalities and equality of normalized planar Hausdorff and Lebesgue measures on every set; Lebesgue-null sets are Hausdorff-null | Hausdorff/parametric-area identification on graphs or coarea |
+| `BoundaryDraft/HausdorffDensity.lean` | Normalized ambient Hausdorff graph pullback; identification of an absolutely continuous locally finite measure from its almost-everywhere shrinking-ball density | Absolute continuity or computation of the graph density |
 | `BoundaryDraft/GraphSurface.lean` | Height-flattening local charts; canonical Hausdorff target with explicit coefficient; finite joint measure; absolute integrability and equality of reciprocal-gradient and angle integrals | Hausdorff/parametric-area identification, coarea, height-density continuity or the general limit |
 | `BoundaryDraft/GraphTail.lean` | Absolute scaled tail, exact action collar/remainder split, vanishing spatial remainder allowing critical points | The collar limit |
 | `BoundaryDraft/EllipsoidGeometry.lean` | Positive ellipsoid, measurability, boundedness, compact positive-part support, strict Euclidean Lipschitz estimate; instantiation of the general geometry | Sublevel volumes or coarea |

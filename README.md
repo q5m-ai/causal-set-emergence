@@ -117,7 +117,10 @@ Hausdorff comparison of a C¹ graph with its tangent image.
 inequality by two perpendicular Steiner symmetrizations. Together with the
 existing disk-covering direction, `HausdorffPlane.lean` proves normalized planar
 Hausdorff measure equals Lebesgue measure on every set, including sets of
-infinite measure. Identification with parametric graph area remains unproved.
+infinite measure. `HausdorffDensity.lean` defines the graph pullback measure and
+proves that its variable density is determined once the shrinking closed-ball
+ratios are known almost everywhere. The required absolute continuity and ratio
+calculation—and hence identification with parametric graph area—remain unproved.
 `GraphTail.lean` proves that every fixed positive-height remainder vanishes
 without coarea. The quartic regression retains its interior critical point.
 

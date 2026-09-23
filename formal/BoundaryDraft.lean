@@ -22,6 +22,7 @@ import BoundaryDraft.GraphJacobian
 import BoundaryDraft.HausdorffGraph
 import BoundaryDraft.PlanarIsodiametric
 import BoundaryDraft.HausdorffPlane
+import BoundaryDraft.HausdorffDensity
 import BoundaryDraft.GraphSurface
 import BoundaryDraft.GraphTail
 import BoundaryDraft.NullGeometry

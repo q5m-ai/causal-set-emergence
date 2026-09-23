@@ -2,6 +2,8 @@ import BoundaryDraft.GraphAngle
 import Mathlib.Analysis.Calculus.ContDiff.RCLike
 import Mathlib.Analysis.Calculus.InverseFunctionTheorem.FDeriv
 import Mathlib.MeasureTheory.Measure.Hausdorff
+import Mathlib.MeasureTheory.Measure.Comap
+import Mathlib.Topology.Constructions.SumProd
 
 /-!
 # Tangent-to-graph Hausdorff distortion
@@ -108,6 +110,53 @@ def surfaceGraphDerivative (L : SurfacePlane →L[ℝ] ℝ) : SurfacePlane →L[
   (PiLp.continuousLinearEquiv 2 ℝ (fun _ : Fin 3 => ℝ)).symm.toContinuousLinearMap.comp
     (L.finCons (PiLp.continuousLinearEquiv 2 ℝ (fun _ : Fin 2 => ℝ)).toContinuousLinearMap)
 
+/-- Projection from ambient Euclidean three-space to the two graph-base
+coordinates. -/
+def surfaceGraphBaseL : JointSpace →L[ℝ] SurfacePlane :=
+  (PiLp.continuousLinearEquiv 2 ℝ (fun _ : Fin 2 => ℝ)).symm.toContinuousLinearMap.comp
+    ((Pi.compRightL ℝ (fun _ : Fin 3 => ℝ) Fin.succ).comp
+      (PiLp.continuousLinearEquiv 2 ℝ (fun _ : Fin 3 => ℝ)).toContinuousLinearMap)
+
+def surfaceGraphBase (y : JointSpace) : SurfacePlane := surfaceGraphBaseL y
+
+@[simp]
+theorem surfaceGraphBase_surfaceGraph (g : SurfacePlane → ℝ) (x : SurfacePlane) :
+    surfaceGraphBase (surfaceGraph g x) = x := by
+  rfl
+
+theorem continuous_surfaceGraphBase : Continuous surfaceGraphBase :=
+  surfaceGraphBaseL.continuous
+
+theorem continuous_surfaceGraph {g : SurfacePlane → ℝ} (hg : Continuous g) :
+    Continuous (surfaceGraph g) :=
+  (PiLp.continuousLinearEquiv 2 ℝ (fun _ : Fin 3 => ℝ)).symm.continuous.comp
+    (hg.finCons (π := fun _ : Fin 3 => ℝ)
+      (PiLp.continuousLinearEquiv 2 ℝ (fun _ : Fin 2 => ℝ)).continuous)
+
+/-- A continuous scalar graph is a topological embedding because projection to
+its two base coordinates is a continuous left inverse. -/
+theorem continuous_isEmbedding_surfaceGraph {g : SurfacePlane → ℝ} (hg : Continuous g) :
+    Topology.IsEmbedding (surfaceGraph g) :=
+  Function.LeftInverse.isEmbedding (surfaceGraphBase_surfaceGraph g)
+    continuous_surfaceGraphBase (continuous_surfaceGraph hg)
+
+/-- A continuous scalar graph is also a measurable embedding.  The explicit
+closed-range proof makes `Measure.comap` evaluate on every parameter set. -/
+theorem continuous_measurableEmbedding_surfaceGraph {g : SurfacePlane → ℝ} (hg : Continuous g) :
+    MeasurableEmbedding (surfaceGraph g) := by
+  apply (continuous_isEmbedding_surfaceGraph hg).measurableEmbedding
+  have hrange : range (surfaceGraph g) =
+      {y | surfaceGraph g (surfaceGraphBase y) = y} := by
+    ext y
+    constructor
+    · rintro ⟨x, rfl⟩
+      simp
+    · intro hy
+      exact ⟨surfaceGraphBase y, hy⟩
+  rw [hrange]
+  exact isClosed_eq ((continuous_surfaceGraph hg).comp continuous_surfaceGraphBase) continuous_id
+    |>.measurableSet
+
 theorem surfaceGraphDerivative_norm_sq (L : SurfacePlane →L[ℝ] ℝ) (v : SurfacePlane) :
     ‖surfaceGraphDerivative L v‖ ^ 2 = (L v) ^ 2 + ‖v‖ ^ 2 := by
   simp only [surfaceGraphDerivative, PiLp.norm_sq_eq_of_L2, Real.norm_eq_abs, sq_abs]
@@ -120,6 +169,14 @@ theorem surfaceGraphDerivative_noncontracting (L : SurfacePlane →L[ℝ] ℝ) (
   apply (sq_le_sq₀ (norm_nonneg _) (norm_nonneg _)).mp
   rw [surfaceGraphDerivative_norm_sq]
   exact le_add_of_nonneg_left (sq_nonneg _)
+
+theorem surfaceGraphDerivative_injective (L : SurfacePlane →L[ℝ] ℝ) :
+    Function.Injective (surfaceGraphDerivative L) := by
+  intro x y hxy
+  apply sub_eq_zero.mp
+  apply norm_le_zero_iff.mp
+  simpa only [map_sub, hxy, sub_self, norm_zero] using
+    surfaceGraphDerivative_noncontracting L (x - y)
 
 theorem hasStrictFDerivAt_surfaceGraph (g : SurfacePlane → ℝ) (L : SurfacePlane →L[ℝ] ℝ)
     (x : SurfacePlane) (hg : HasStrictFDerivAt g L x) :
