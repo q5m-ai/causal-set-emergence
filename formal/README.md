@@ -5,7 +5,8 @@ the concrete ellipsoid's Lorentzian angle/surface-integral interpretation are
 proved in Lean. The exact finite-density reduction is also proved for the
 general admissible graph-cap class. General positive-angle geometry, finite
 Hausdorff joint integrals, and the vanishing non-collar remainder are checked.
-Surface-area normalization/coarea and the general deterministic limit, arbitrary
+Euclidean planar Hausdorff normalization is proved on every set. The graph-area
+formula/coarea and the general deterministic limit, arbitrary
 null boundaries, induced null-joint geometry, and the Poisson-expectation bridge
 remain open.**
 
@@ -43,7 +44,10 @@ It does not claim the missing Hausdorff/parametric-area identification.
 `HausdorffGraphRegression.lean` checks Euclidean rather than supremum norms,
 actual graph derivatives, zero-error comparisons without a finiteness premise,
 a nonlinear paraboloid's local bounds, the planar disk upper bound, and null
-remainders. It does not assert the reverse planar inequality or area formula.
+remainders. `HausdorffPlaneRegression.lean` checks both planar inequalities,
+equality of measures on arbitrary sets, the closed unit disk, the genuinely
+Euclidean norm, and the infinite-measure case. Neither file asserts the graph
+area formula.
 `EllipsoidRegression.lean` checks the original ellipsoid contract and
 its endpoint examples. `EllipsoidJointRegression.lean` separately checks
 regularity, the strict positive angle branch, connectedness, nonconstant weights,
@@ -76,7 +80,8 @@ and limit at `T = 2`, `a = 1`.
 | `BoundaryDraft/GraphAngle.lean` | Actual Euclidean gradient, uniform strict slope bound, inward/outward unit normals, positive rapidity, face geometry and `coth` identity | Coarea or a deterministic limit |
 | `BoundaryDraft/GraphJacobian.lean` | Volume-frame determinant equals the positive Gram area Jacobian divided by the actual gradient norm | A transformation law for Hausdorff measure |
 | `BoundaryDraft/HausdorffGraph.lean` | C¹ graph/tangent-image Hausdorff bounds for every subset of a small ball, with sharp relative factors; all metrics Euclidean | Planar normalization or the variable-Jacobian area formula |
-| `BoundaryDraft/HausdorffPlane.lean` | Besicovitch disk coverings prove normalized planar Hausdorff measure is at most Lebesgue measure; Lebesgue-null sets are Hausdorff-null | The reverse isodiametric inequality or equality of the two planar measures |
+| `BoundaryDraft/PlanarIsodiametric.lean` | Sharp Euclidean planar isodiametric inequality on every set, proved by two perpendicular Steiner symmetrizations | A graph-area or coarea formula |
+| `BoundaryDraft/HausdorffPlane.lean` | Both inequalities and equality of normalized planar Hausdorff and Lebesgue measures on every set; Lebesgue-null sets are Hausdorff-null | Hausdorff/parametric-area identification on graphs or coarea |
 | `BoundaryDraft/GraphSurface.lean` | Height-flattening local charts; canonical Hausdorff target with explicit coefficient; finite joint measure; absolute integrability and equality of reciprocal-gradient and angle integrals | Hausdorff/parametric-area identification, coarea, height-density continuity or the general limit |
 | `BoundaryDraft/GraphTail.lean` | Absolute scaled tail, exact action collar/remainder split, vanishing spatial remainder allowing critical points | The collar limit |
 | `BoundaryDraft/EllipsoidGeometry.lean` | Positive ellipsoid, measurability, boundedness, compact positive-part support, strict Euclidean Lipschitz estimate; instantiation of the general geometry | Sublevel volumes or coarea |
@@ -359,11 +364,19 @@ bounds to the variable-Jacobian area formula remains open.
 Besicovitch supplies full disk coverings with arbitrarily small radii and
 summed area at most `volume(s) + ε`; the Hausdorff covering limit and the
 checked disk-area formula yield the bound. This handles the null remainder
-explicitly: a Lebesgue-null planar set has zero Hausdorff measure. The reverse
-inequality still requires a proof, for example via the sharp planar
-isodiametric estimate `volume(s) ≤ (π/4) diameter(s)²` for bounded sets.
-Neither that missing inequality nor a planar normalization is added as an
-API premise.
+explicitly: a Lebesgue-null planar set has zero Hausdorff measure.
+
+`PlanarIsodiametric.lean` now proves the sharp reverse ingredient
+`volume(s) ≤ (π/4) ediameter(s)²` for every planar set. For a compact convex
+set, two perpendicular Steiner symmetrizations preserve area by Fubini and do
+not increase Euclidean diameter. The centrally symmetric result lies in a disk
+of half the diameter. Bounded arbitrary sets pass to their closed convex hull,
+which has the same diameter; unbounded sets have infinite extended diameter.
+`volume_le_normalized_hausdorff_plane` applies `Measure.le_hausdorffMeasure` to
+scaled volume, and `normalized_hausdorff_plane_eq_volume` identifies the
+measures. `normalized_hausdorff_plane_eq_volume_apply` holds on every set,
+without measurability or finiteness hypotheses. No normalization or
+isodiametric premise is assumed. This does not prove graph area or coarea.
 
 `GraphTail.lean` proves the scaled bound with the concrete constant
 `C = 1416/(π sqrt 6)` and width `ε = (sqrt (sqrt ρ))⁻¹`. On `h ≥ δ > 0`, the

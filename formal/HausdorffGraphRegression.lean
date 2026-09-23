@@ -2,8 +2,9 @@ import BoundaryDraft
 
 /-!
 Independent contracts for Euclidean tangent-to-graph distortion and the
-covering half of planar normalization. No example asserts the still-missing
-area formula, reverse planar inequality, or general graph-cap limit.
+covering half of planar normalization. Full planar normalization is tested in
+`HausdorffPlaneRegression.lean`; the area formula and general graph-cap limit
+remain open.
 -/
 
 open BoundaryDraft MeasureTheory Set

@@ -113,9 +113,11 @@ bound, and positive-branch angle identity for every admissible cap.
 finiteness and both boundary weights' absolute integrability, and equates their
 integrals. `HausdorffGraph.lean` proves the local two-sided Euclidean
 Hausdorff comparison of a C¹ graph with its tangent image.
-`HausdorffPlane.lean` proves the covering half of planar normalization and
-that Lebesgue-null planar sets are Hausdorff-null. The reverse planar inequality
-and the identification with parametric area are still unproved.
+`PlanarIsodiametric.lean` proves the sharp Euclidean planar isodiametric
+inequality by two perpendicular Steiner symmetrizations. Together with the
+existing disk-covering direction, `HausdorffPlane.lean` proves normalized planar
+Hausdorff measure equals Lebesgue measure on every set, including sets of
+infinite measure. Identification with parametric graph area remains unproved.
 `GraphTail.lean` proves that every fixed positive-height remainder vanishes
 without coarea. The quartic regression retains its interior critical point.
 

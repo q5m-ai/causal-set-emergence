@@ -1,16 +1,16 @@
-import BoundaryDraft.HausdorffGraph
+import BoundaryDraft.PlanarIsodiametric
 import Mathlib.MeasureTheory.Covering.Besicovitch
 import Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls
 import Mathlib.Analysis.SpecificLimits.Basic
 
 /-!
-# The covering half of Euclidean planar normalization
+# Euclidean planar Hausdorff normalization
 
 Arbitrarily small Besicovitch disk coverings with nearly minimal total area
 prove `(π/4) μH[2] ≤ volume` in the Euclidean plane, including on nonmeasurable
-sets. This also proves that Lebesgue-null remainders have zero Hausdorff
-measure. The reverse inequality, which needs the sharp planar isodiametric
-inequality in this approach, is deliberately not assumed or claimed here.
+sets. The sharp planar isodiametric inequality gives the reverse bound through
+`Measure.le_hausdorffMeasure`. Thus the normalized measure equals Lebesgue
+measure on every set, without a measurability or finiteness hypothesis.
 -/
 
 open MeasureTheory Set Filter Metric
@@ -95,8 +95,7 @@ theorem hausdorff_plane_le_scaled_volume (s : Set SurfacePlane) :
     (Eventually.of_forall hdiam) (Eventually.of_forall hcover')).trans
       ((liminf_le_liminf (Eventually.of_forall hsum')).trans_eq hbound.liminf_eq)
 
-/-- Normalized Euclidean planar Hausdorff measure is bounded by Lebesgue
-measure. Equality is still awaiting the reverse, isodiametric inequality. -/
+/-- The covering direction of Euclidean planar normalization. -/
 theorem normalized_hausdorff_plane_le_volume (s : Set SurfacePlane) :
     ENNReal.ofReal (Real.pi / 4) * (μH[2] : Measure SurfacePlane) s ≤ volume s := by
   have he : ENNReal.ofReal (Real.pi / 4) * ENNReal.ofReal (4 / Real.pi) = 1 := by
@@ -104,6 +103,36 @@ theorem normalized_hausdorff_plane_le_volume (s : Set SurfacePlane) :
     field_simp
   have hb := mul_le_mul_left' (hausdorff_plane_le_scaled_volume s) (ENNReal.ofReal (Real.pi / 4))
   simpa only [← mul_assoc, he, one_mul] using hb
+
+/-- The isodiametric direction of Euclidean planar normalization. -/
+theorem volume_le_normalized_hausdorff_plane (s : Set SurfacePlane) :
+    volume s ≤ ENNReal.ofReal (Real.pi / 4) * (μH[2] : Measure SurfacePlane) s := by
+  have he : ENNReal.ofReal (Real.pi / 4) * ENNReal.ofReal (4 / Real.pi) = 1 := by
+    rw [← ENNReal.ofReal_mul (by positivity)]
+    field_simp
+  have he' : ENNReal.ofReal (4 / Real.pi) * ENNReal.ofReal (Real.pi / 4) = 1 := by
+    rwa [mul_comm]
+  have hscaled : ENNReal.ofReal (4 / Real.pi) • (volume : Measure SurfacePlane) ≤ μH[2] := by
+    apply Measure.le_hausdorffMeasure 2 _ 1 zero_lt_one
+    intro t _
+    have h := mul_le_mul_left' (volume_le_pi_div_four_mul_ediam_sq t)
+      (ENNReal.ofReal (4 / Real.pi))
+    simpa only [Measure.smul_apply, smul_eq_mul, ← mul_assoc, he', one_mul] using h
+  have h := mul_le_mul_left' (Measure.le_iff'.mp hscaled s) (ENNReal.ofReal (Real.pi / 4))
+  simpa only [Measure.smul_apply, smul_eq_mul, ← mul_assoc, he, one_mul] using h
+
+/-- Normalization on every planar set, including nonmeasurable sets and sets
+of infinite measure. -/
+theorem normalized_hausdorff_plane_eq_volume_apply (s : Set SurfacePlane) :
+    ENNReal.ofReal (Real.pi / 4) * (μH[2] : Measure SurfacePlane) s = volume s :=
+  le_antisymm (normalized_hausdorff_plane_le_volume s) (volume_le_normalized_hausdorff_plane s)
+
+/-- Normalized two-dimensional Hausdorff measure on the Euclidean plane is
+Lebesgue measure. -/
+theorem normalized_hausdorff_plane_eq_volume :
+    ENNReal.ofReal (Real.pi / 4) • (μH[2] : Measure SurfacePlane) = volume := by
+  ext s
+  exact normalized_hausdorff_plane_eq_volume_apply s
 
 /-- This explicitly justifies discarding Lebesgue-null remainders in the
 covering construction, rather than assuming the two planar measures equal. -/

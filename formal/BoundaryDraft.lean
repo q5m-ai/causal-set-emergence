@@ -20,6 +20,7 @@ import BoundaryDraft.EllipsoidSurface
 import BoundaryDraft.GraphAngle
 import BoundaryDraft.GraphJacobian
 import BoundaryDraft.HausdorffGraph
+import BoundaryDraft.PlanarIsodiametric
 import BoundaryDraft.HausdorffPlane
 import BoundaryDraft.GraphSurface
 import BoundaryDraft.GraphTail
