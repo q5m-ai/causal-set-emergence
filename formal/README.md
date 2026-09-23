@@ -80,11 +80,11 @@ and limit at `T = 2`, `a = 1`.
 The analytic theorem genuinely permits a **signed** kernel. In ordinary
 notation it proves
 
-\[
+```math
  \int G(u)B(\varepsilon u)\,d\mu(u)
  \longrightarrow B(0)\int G\,d\mu
  \quad(\varepsilon\to0),
-\]
+```
 
 assuming `G` is integrable and `B` is globally bounded and continuous. There is
 no assumption that `G ≥ 0`. The measure `μ` may be Lebesgue measure restricted
@@ -113,9 +113,9 @@ checked: the missing theorems are not silently assumed.
 `planeKernel_density_scaling` proves equation (14) directly from the defining
 integral, for **every** positive density and every real height:
 
-\[
+```math
  G_\rho(H)=sG_1(sH),\qquad s=\sqrt{\sqrt\rho}=\varepsilon^{-1}.
-\]
+```
 
 The radial change of variables is proved first, including oriented integrals
 for negative heights. The nonzero linear-chain-rule step is valid even for
@@ -123,33 +123,33 @@ Lean's total derivative; it does not hide a differentiability assumption.
 The separate `KernelDerivatives` module then proves actual `HasDerivAt`
 statements, not just equalities involving a possibly undefined derivative.
 
-For \(z=(\pi/24)\rho H^4(1-v^2)^2\), the fixed-interval representation is
+For $`z=(\pi/24)\rho H^4(1-v^2)^2`$, the fixed-interval representation is
 
-\[
+```math
  F_\rho^{(j)}(H)=4\pi H^{3-j}\int_0^1 v^2 R_j(z)e^{-z}\,dv,
  \quad j=0,1,2,3,
-\]
+```
 
 where
 
-\[
+```math
  R_0=1,\quad R_1=3-4z,\quad R_2=6-36z+16z^2,\quad
  R_3=6-204z+288z^2-64z^3.
-\]
+```
 
 Joint continuity on a compact parameter rectangle supplies an integrable
 uniform bound for each differentiation. This proves
-\(F_\rho'(0)=F_\rho''(0)=G_\rho(0)=0\) and
-\(F_\rho'''(0)=8\pi\), with no positivity assumption on the kernel.
-Writing \(c_\rho=\sqrt\rho/(2\pi\sqrt6)\), the fundamental theorem of
+$`F_\rho'(0)=F_\rho''(0)=G_\rho(0)=0`$ and
+$`F_\rho'''(0)=8\pi`$, with no positivity assumption on the kernel.
+Writing $`c_\rho=\sqrt\rho/(2\pi\sqrt6)`$, the fundamental theorem of
 calculus then proves
 
-\[
+```math
  \int_0^H G_\rho(u)\,du=c_\rho F_\rho'(H),\qquad
  \int_0^H uG_\rho(u)\,du=c_\rho\bigl(HF_\rho'(H)-F_\rho(H)\bigr).
-\]
+```
 
-These identities hold for finite \(H\); they alone do not justify passing to
+These identities hold for finite $`H`$; they alone do not justify passing to
 infinity. That passage is now proved separately as follows, completing the
 one-dimensional analytic milestone in
 [issue #4](https://github.com/q5m-ai/causal-set-emergence/issues/4).
@@ -161,56 +161,56 @@ Neither result completes the boundary-limit program in
 ## Half-line estimates and normalization
 
 The proof avoids differentiating the remainder of an asymptotic expansion.
-Set \(a=(\pi/24)u^4\) and substitute \(t=1-v^2\) in the already-checked
+Set $`a=(\pi/24)u^4`$ and substitute $`t=1-v^2`$ in the already-checked
 fixed-interval formulas. The substitution is differentiated in the smooth
 polynomial direction, so no derivative of a square root at zero is needed.
 The two relevant polynomials are instances of
 
-\[
+```math
  P_{b,d}(a,t)=b-(2b+3d)at^2+2da^2t^4.
-\]
+```
 
-For \(a>0\) and \(b,d\ge0\), `gaussianCancellation_bound` proves
+For $`a>0`$ and $`b,d\ge0`$, `gaussianCancellation_bound` proves
 
-\[
+```math
  \left|\int_0^1\sqrt{1-t}\,P_{b,d}(a,t)e^{-at^2}\,dt\right|
  \le \frac{5b+11d}{2a}.
-\]
+```
 
 Its proof uses an exact primitive for the constant-weight integral,
-\((bt-dat^3)e^{-at^2}\), the bound \(|\sqrt{1-t}-1|\le t\), and an
+$`(bt-dat^3)e^{-at^2}`$, the bound $`|\sqrt{1-t}-1|\le t`$, and an
 explicit primitive for the resulting nonnegative absolute envelope. Thus the
 estimate controls absolute values rather than merely signed cancellation.
-Taking \((b,d)=(6,8)\) and \((2,0)\), respectively, gives for every \(u>0\)
+Taking $`(b,d)=(6,8)`$ and $`(2,0)`$, respectively, gives for every $`u>0`$
 
-\[
+```math
  |F''(u)|\le\frac{2832}{u^3},\qquad
  |uF'(u)-F(u)|\le\frac{240}{u},\qquad
  |G(u)|\le\frac{1416}{\pi\sqrt6\,u^3}.
-\]
+```
 
-These loose constants suffice: continuity handles \([0,1]\), and comparison
-with \(u^{-3}\) and \(u^{-2}\) proves integrability of \(G\) and \(u|G|\).
-The theorem `kernelTailGoal` uses \(C=1416/(\pi\sqrt6)\) and \(R=1\).
+These loose constants suffice: continuity handles $`[0,1]`$, and comparison
+with $`u^{-3}`$ and $`u^{-2}`$ proves integrability of $`G`$ and $`u|G|`$.
+The theorem `kernelTailGoal` uses $`C=1416/(\pi\sqrt6)`$ and $`R=1`$.
 
 For normalization, `planeAuxiliary_div_eq_integral` proves
 
-\[
+```math
  \frac{F(u)}u=2\pi\int_0^\infty
    \sqrt{1-s/u^2}\,e^{-(\pi/24)s^2}\,ds.
-\]
+```
 
 Here Lean's real square root is zero for negative inputs; the integrand
-vanishes above \(u^2\). It is dominated by an integrable Gaussian. Dominated
-convergence and the half-Gaussian integral yield \(F(u)/u\to2\pi\sqrt6\).
-The second bound above then proves \(F'(u)\to2\pi\sqrt6\) and
-\(uF'(u)-F(u)\to0\). Only after proving absolute integrability do we pass the
+vanishes above $`u^2`$. It is dominated by an integrable Gaussian. Dominated
+convergence and the half-Gaussian integral yield $`F(u)/u\to2\pi\sqrt6`$.
+The second bound above then proves $`F'(u)\to2\pi\sqrt6`$ and
+$`uF'(u)-F(u)\to0`$. Only after proving absolute integrability do we pass the
 finite-interval identities to infinity, obtaining mass one and signed first
 moment zero. `kernelMassGoal` proves the **unchanged** target, including its
 absolute first-moment clause.
 
 No additional hypotheses on the concrete kernel are introduced. The sharper
-coefficient \(G(u)\sim-2\sqrt6/(\pi u^3)\), and the derivative remainders
+coefficient $`G(u)\sim-2\sqrt6/(\pi u^3)`$, and the derivative remainders
 through order three in the draft, are **not** claimed as Lean results.
 
 ## Exact general graph-cap action reduction
@@ -345,10 +345,10 @@ and the general result is exercised on a non-ellipsoidal graph profile.
 
 `EllipsoidIntegration.lean` proves, for positive axes and `a > 0`,
 
-\[
+```math
  |\{x:s<h(x)\}|=\frac{4\pi}{3}\Bigl(\prod_i b_i\Bigr)
    \sqrt{1-s/a}^{\,3},\qquad 0\le s\le a.
-\]
+```
 
 At and above `s = a` the strict superlevel set is empty. The coordinate map
 `x_i ↦ x_i/b_i` has diagonal determinant `∏ b_i⁻¹`; mathlib's Lebesgue
@@ -360,11 +360,11 @@ and closed radial domains give the same integrals, including radius zero.
 For **every globally continuous real integrand** `f`, including `planeKernel ρ`,
 `integral_ellipsoid_profile` proves the exact signed formula
 
-\[
+```math
  \int_{h>0}f(h(x))\,dx
  =C\int_0^a\sqrt{1-s/a}\,f(s)\,ds,
  \qquad C=\frac{2\pi\prod_i b_i}{a}.
-\]
+```
 
 Continuous integrands on the explicit compact spatial box are absolutely
 integrable. The weighted finite-interval integrand is continuous, including
@@ -375,19 +375,19 @@ height `s = a`, nor an assumption that this weight is globally C¹.
 
 `EllipsoidLimit.lean` uses the global extension
 
-\[
+```math
  B(s)=C\sqrt{\bigl(1-\max(0,s)/a\bigr)_+}.
-\]
+```
 
 It is continuous, satisfies `|B(s)| ≤ |C|`, is constant for `s ≤ 0`, and
 vanishes for `s ≥ a`. The exact height formula and checked
 `ellipsoid_graphReduction` therefore give, at every positive density,
 
-\[
- \operatorname{continuumMean}_\rho(M_h)
+```math
+ \mathrm{continuumMean}_\rho(M_h)
  =\int_0^\infty G(u)B(\varepsilon u)\,du,
  \qquad \varepsilon=\bigl(\sqrt{\sqrt\rho}\bigr)^{-1}.
-\]
+```
 
 The half-line extension adds only zeros. The original weighted half-line
 integral is absolutely integrable by compactness and its zero tail; the
@@ -480,10 +480,10 @@ closed causal interval without silently changing the integral.
 radial null coordinates. The null matrix has checked determinant one, and two
 explicit finite primitives prove, for every `ρ,T > 0`,
 
-\[
+```math
  \rho\int_{I(x,q)}K\!\left(\frac\pi{24}\rho\tau_{xy}^4\right)dy
  =1-\exp\!\left(-\frac\pi{24}\rho\tau_{xq}^4\right).
-\]
+```
 
 No exponential-series/integral interchange is used. `IntervalMoments`
 independently proves the actual four-dimensional moment formula for every
@@ -498,18 +498,18 @@ remaining rectangle `0<u<T/√2`, `0<v<a/√2`; all integrands are dominated on
 explicit compact boxes before each Fubini swap. Evaluating the two fibres,
 including `σ=0` separately, yields in the actual spacetime measure
 
-\[
+```math
  \int_{M_{T,a}} f(\tau_{x0}^2)\,dx
  =\int_0^{aT} f(\sigma)W_{T,a}(\sigma)\,d\sigma,
-\]
+```
 
 with zero support above `aT` and
 
-\[
+```math
  W_{T,a}(\sigma)=\frac\pi4\left[
  a(2T-a)-2(1-a/T)\sigma-\frac{\sigma^2}{T^2}
  -2\sigma\log\frac{aT}{\sigma}\right]
-\]
+```
 
 for `0 < σ < aT`, while `W(0)=πa(2T-a)/4`. Measurability, endpoint continuity,
 finite support, and absolute integrability are checked. The global analytic
@@ -519,11 +519,11 @@ weight for every `σ≥0`, is constant to the left, and vanishes to the right.
 The interval identity cancels the signed bilocal term exactly, before any
 limit, to
 
-\[
- \operatorname{continuumMean}_\rho(M_{T,a})
+```math
+ \mathrm{continuumMean}_\rho(M_{T,a})
  =\frac4{\sqrt6}\sqrt\rho\int_0^\infty
  e^{-(\pi/24)\rho\sigma^2}W_{T,a}(\sigma)\,d\sigma.
-\]
+```
 
 `NullGaussian` proves absolute integrability, mass four after the displayed
 prefactor, the `ρ^{-1/2}` change of scale, finite-support domination, and

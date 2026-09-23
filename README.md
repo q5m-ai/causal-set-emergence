@@ -44,12 +44,12 @@ frame?
 [The analytic proof draft](notes/first-attempt.md) studies the flat-space
 specialization of Conjecture 1′ in Dowker–Liu–Lloyd-Jones:
 
-\[
+```math
  \lim_{\rho\to\infty}\mathcal A_\rho(M)
  =\int_J\coth\theta\,dA,
  \qquad
  \mathcal A_\rho=\frac{l_p^2}{\hbar}\,\mathbb E S^{(4)}_\rho.
-\]
+```
 
 In **3+1-dimensional Minkowski space**, the draft gives arguments for these
 restricted classes, pending independent mathematical review:
@@ -199,6 +199,15 @@ physics.
 - `RESULTS.md` — reproducible finite-density tables.
 - `site/` — standalone interactive explainer.
 
+## Writing mathematics on GitHub
+
+Follow [the math authoring guide](notes/github-math.md) for Markdown files,
+issues, PRs, and comments. Use fenced `math` displays and dollar/backtick inline
+math; GitHub does not render all LaTeX delimiters or macros. Run
+`python3 check_markdown.py` before publishing and check the browser preview,
+not just the Markdown API. Repository agent instructions are in
+[`AGENTS.md`](AGENTS.md).
+
 ## Reproduce the computational checks
 
 Requires Python 3.11+ and the pinned packages in `requirements.txt`:
@@ -207,6 +216,7 @@ Requires Python 3.11+ and the pinned packages in `requirements.txt`:
 uv venv .venv
 uv pip install --python .venv/bin/python -r requirements.txt
 .venv/bin/python check_symbolic.py
+.venv/bin/python check_markdown.py
 .venv/bin/python -m unittest -v
 .venv/bin/python reproduce.py
 ```
