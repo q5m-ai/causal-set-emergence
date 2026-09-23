@@ -54,9 +54,9 @@ specialization of Conjecture 1′ in Dowker–Liu–Lloyd-Jones:
 In **3+1-dimensional Minkowski space**, the draft gives arguments for these
 restricted classes, pending independent mathematical review:
 
-1. **One-null-tip regions**, including a causal diamond of duration `T` cut by
-   the null plane `t-z=-a`. The limiting normalized mean action is
-   `π a (2T-a)`, equal to the joint area.
+1. **One-null-tip regions**, including a causal diamond with `T>0` cut by
+   the null plane `t-z=-a`, retaining `t-z>-a`, with `0<a<T`. The limiting
+   normalized mean action is `π a (2T-a)`, equal to the joint area.
 2. **Spacelike graph caps with a planar future boundary**, under the stated
    regularity, strict-spacelikeness, and transversality assumptions. The limit
    is `∫∂Ω 1/|∇h| dA = ∫J coth(θ) dA`.
