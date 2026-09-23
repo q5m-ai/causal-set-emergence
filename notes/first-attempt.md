@@ -585,8 +585,11 @@ The coordinate sup-norm Hausdorff measure is not a substitute for Euclidean area
 bounds with factors `(1 − ε)²` and `(1 + ε)²` on every subset of a sufficiently
 small Euclidean ball. `HausdorffPlane.lean` proves the covering inequality
 `(π/4) μH[2](s) ≤ volume(s)` using Besicovitch disk coverings, including null
-remainders. The reverse planar inequality, the passage from local bounds to
-the variable-Jacobian area formula, and the collar argument remain unproved.
+remainders. `PlanarIsodiametric.lean` proves the sharp isodiametric bound by
+two perpendicular Steiner symmetrizations, yielding the reverse planar
+inequality and equality of the two planar measures on every set in
+`HausdorffPlane.lean`. The passage from local bounds to the variable-Jacobian
+area formula and the collar argument remain unproved.
 The general `GraphCapLimitGoal` remains an open target, not a proved theorem.
 
 **Proof.** By regularity and compactness of the joint there is a collar
