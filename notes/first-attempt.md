@@ -11,9 +11,10 @@ differentiation of the auxiliary integral through order three, and its
 finite-interval mass and signed first-moment identities. It now also proves
 half-line normalization, absolute integrability and the absolute first moment,
 an explicit absolute tail bound, and the concrete signed-rescaling limit.
-It now also verifies the **exact four-dimensional ellipsoid graph-cap action
-reduction at every positive density**, including strict spacelikeness, complete
-future slices, coordinate/Fubini steps, and the concrete BDG cone identity.
+It now also verifies the **exact four-dimensional action reduction for every
+admissible graph cap at every positive density**, including strict Euclidean
+positive-part Lipschitz control, complete future slices, coordinate/Fubini steps,
+compact domination, and the concrete BDG cone identity.
 The **deterministic ellipsoid limit (19) and concrete null-cap limit (8) are
 now machine-checked**. `ellipsoidLimitGoal` and `nullCapLimitGoal` prove the
 unchanged four-dimensional targets. For the null cap, Lean derives the actual
@@ -22,8 +23,9 @@ null-set replacement, full coordinate Jacobians, exact logarithmic weight (9),
 absolute integrability, and normalized Gaussian concentration. The **concrete
 ellipsoid geometric interpretation** is now also checked: regular joint,
 positive-branch Lorentzian angle, and exact variable-angle surface integral.
-The general graph-cap theorem and its geometry, arbitrary null boundaries,
-induced null-joint geometry, and Poisson-expectation bridge remain open.
+The general graph-cap regular-collar/coarea limit and variable-angle integral,
+arbitrary null boundaries, induced null-joint geometry, and Poisson-expectation
+bridge remain open.
 The checked results concern `continuumMean`, not yet a formalized random sprinkling expectation,
 and assert no convergence rate.
 
@@ -271,6 +273,20 @@ Let \(\Omega\subset\mathbb R^3\) be bounded with \(C^3\) boundary. Let
 - the extension \(h_+\), equal to \(h\) inside and zero outside, is globally
   \(\kappa\)-Lipschitz for some fixed \(\kappa<1\).
 
+**Checked admissibility API.** `GraphCapData h` uses an ambient profile with
+`Ω = {h > 0}`, bounded positivity, and the displayed global **Euclidean**
+positive-part Lipschitz bound with `0 ≤ κ < 1`. It derives openness and
+measurability rather than assuming them. `GraphCapRegularity h` separately
+specifies C³ locally at every point of the closed positive region, zero height
+on its boundary, and nonzero actual differential at the zero level in that
+closure. Their combination is `AdmissibleGraphCap h`; its boundary is proved
+equal to `{h = 0} ∩ closure Ω`. This uses an ambient local C³ extension near
+the closure and ignores unrelated exterior zeros. These regular-level
+assumptions are reserved for the future collar theorem: neither smoothness nor
+nonvanishing is needed for the exact reduction, and **positive-height critical
+points are allowed**. No field assumes an action identity, limit, or joint
+integral.
+
 Consider
 
 \[
@@ -364,17 +380,21 @@ This supplies an analytic proof rather than substituting the coefficient
 recurrence for a justified interchange. The original series argument above
 is retained as draft provenance; it is not an assumption of the Lean proof.
 
-**Geometry and measure justification for the concrete ellipsoids (18).**
-`EllipsoidGeometry.lean` proves the positive-part extension is globally
-\(2a/\min b_i<1\)-Lipschitz in the **Euclidean** spatial metric, even across
-the joint. The untruncated quadratic is not claimed to be globally Lipschitz.
-This proves the complete future-cone statement and causal convexity, without
-strengthening the axis hypotheses or discarding lateral points.
-`SpacetimeIntegration.lean` uses measure-preserving coordinate equivalences,
-the Euclidean three-ball volume, translation invariance, and Fubini to identify
-\(Q_\rho(H)=\int_0^H S_\rho(t)\,dt\) with the actual four-dimensional BDG
-integral. Continuous integrands on explicit compact boxes supply absolute
-integrability; changes of interval endpoints use Lebesgue atomlessness.
+**Checked general geometry and measure justification.** `GraphGeometry.lean`
+proves the positive-part epigraph is a future set from the Euclidean Lipschitz
+inequality, identifies the exact complete future slice **including null-related
+points and the vertex**, and proves causal convexity. Positive-part continuity
+and bounded positivity supply compact support and a compact spacetime box.
+`EllipsoidGeometry.lean` instantiates this with the existing global
+\(2a/\min b_i<1\) bound, even across the joint; the untruncated quadratic
+is not claimed to be globally Lipschitz. No axis hypotheses are strengthened.
+`SpacetimeIntegration.lean` reuses the measure-preserving coordinate
+equivalences, Euclidean three-ball volume, and concrete cone identity to
+identify \(Q_\rho(H)=\int_0^H S_\rho(t)\,dt\) with the actual
+four-dimensional BDG integral. Translations and vertical Fubini are
+profile-independent. Compact boxes establish absolute integrability of the
+causally restricted bilocal kernel, the individual future integrals, and the
+height integrands before integration; endpoint changes use Lebesgue atomlessness.
 
 Integrating (12) over each vertical fibre of (10), using
 \(F_\rho''(0)=0\), gives the second exact reduction:
@@ -385,12 +405,20 @@ Integrating (12) over each vertical fibre of (10), using
  \tag{13}
 \]
 
-For the concrete ellipsoids, this equality is now the checked theorem
-`ellipsoid_graphReduction`, starting from the unchanged `continuumMean` and
-`GraphReductionGoal`. It holds for every positive density. The general-profile
-version remains draft-level. The subsequent explicit ellipsoid integration
-and limit are now also checked, as described after (19); they reuse this exact
-reduction rather than assuming it.
+For **every admissible graph cap**, (13) is now checked by
+`AdmissibleGraphCap.graphReduction`, starting from the unchanged `continuumMean`,
+`graphCapRegion`, concrete `bdgKernel`, and `planeKernel` in product Lebesgue
+measure. The stronger theorem `graphCap_graphReduction` uses only the reduction
+data, not the reserved collar assumptions. `ellipsoid_graphReduction` remains
+available with its original statement and hypotheses as a specialization.
+`ellipsoid_admissible` reuses the concrete smoothness and joint-regularity
+proofs. A nonquadratic example `e - e²`, with `e` the spherical profile
+`(1 - |x|²)/4`, is also admitted: its positive interior maximum is `3/16`,
+its differential there is zero, and it is checked to differ from every
+quadratic ellipsoid profile. This milestone establishes an **exact deterministic
+reduction only**, not the general collar/coarea limit or variable-angle
+integral. The subsequent explicit ellipsoid integration and limit are checked
+separately, as described after (19); they reuse this exact reduction.
 
 ## 5. The signed approximate identity
 

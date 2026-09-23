@@ -6,12 +6,14 @@ import BoundaryDraft.KernelDerivatives
 import BoundaryDraft.GaussianCancellation
 import BoundaryDraft.KernelEstimates
 import BoundaryDraft.KernelHalfLine
+import BoundaryDraft.GraphGeometry
 import BoundaryDraft.EllipsoidGeometry
 import BoundaryDraft.ConeIntegral
 import BoundaryDraft.SpacetimeIntegration
 import BoundaryDraft.EllipsoidIntegration
 import BoundaryDraft.EllipsoidLimit
 import BoundaryDraft.EllipsoidJoint
+import BoundaryDraft.GraphExamples
 import BoundaryDraft.EllipsoidAngle
 import BoundaryDraft.EllipsoidSurface
 import BoundaryDraft.NullGeometry

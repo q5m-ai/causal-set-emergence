@@ -73,7 +73,8 @@ the coarea formula.
 
 [The Lean layer](formal/README.md) uses pinned Lean 4.19.0 and mathlib. It now
 proves the concrete kernel normalization and tails, exact four-dimensional
-ellipsoid and null-cap action reductions, explicit coarea formulae, and both
+admissible graph-cap and concrete null-cap action reductions, explicit ellipsoid
+height-integration formulae, and both
 **deterministic continuum limits**:
 
 ```text
@@ -94,9 +95,19 @@ sphere-to-ellipsoid parameterization with a checked tangential Jacobian. Unequal
 axes give distinct weights on one connected joint; `(a,b) = (1/4, ![1,2,3])`
 has weights `2` and `6` at two axis endpoints and integral `48π`.
 
+The **general graph-cap exact reduction** is now checked at every positive
+density: `AdmissibleGraphCap.graphReduction` proves the unchanged
+`GraphReductionGoal h` from `continuumMean`. Bounded positivity and strict
+Euclidean Lipschitz control of `max 0 ∘ h` suffice for complete future slices,
+causal convexity, compact domination, and vertical Fubini. The API separately
+records C³ regularity near the closed positive region and a nonzero differential
+only on its zero-level boundary; positive-height critical points remain allowed.
+The original ellipsoids instantiate it without stronger hypotheses. A quartic
+height profile also instantiates it and has a checked interior critical point.
+
 Still open in the formal program:
 
-- the general admissible graph-cap theorem and its geometric interpretation;
+- the general graph-cap regular-collar/coarea limit and variable-angle integral;
 - arbitrary null boundaries and the induced null-joint area interpretation;
 - the Poisson-sprinkling expectation bridge.
 
@@ -182,7 +193,8 @@ physics.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.
-- `formal/` — Lean proofs, explicit targets, audit, and reproduction guide.
+- `formal/` — Lean proofs, admissible graph-cap API, explicit targets, audit,
+  and reproduction guide.
 - `calculations.py`, `check_symbolic.py` — deterministic numerical and symbolic checks.
 - `RESULTS.md` — reproducible finite-density tables.
 - `site/` — standalone interactive explainer.

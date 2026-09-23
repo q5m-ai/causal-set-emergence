@@ -1,5 +1,4 @@
-import BoundaryDraft.Specification
-import Mathlib.Analysis.InnerProductSpace.PiL2
+import BoundaryDraft.GraphGeometry
 import Mathlib.Data.Fintype.Lattice
 
 /-!
@@ -17,28 +16,9 @@ noncomputable section
 
 namespace BoundaryDraft
 
-/-- Euclidean spatial distance, compatible with `spatialSeparationSq`. -/
-def spatialDistance (x y : Spatial) : ℝ :=
-  ‖((WithLp.equiv 2 _).symm (y - x) : EuclideanSpace ℝ (Fin 3))‖
-
 /-- Radius after dividing each coordinate by its ellipsoid axis. -/
 def ellipsoidRadius (b : Fin 3 → ℝ) (x : Spatial) : ℝ :=
   ‖((WithLp.equiv 2 _).symm (fun i => x i / b i) : EuclideanSpace ℝ (Fin 3))‖
-
-theorem spatialDistance_nonneg (x y : Spatial) : 0 ≤ spatialDistance x y :=
-  norm_nonneg _
-
-theorem spatialDistance_sq (x y : Spatial) :
-    spatialDistance x y ^ 2 = ∑ i : Fin 3, (y i - x i) ^ 2 := by
-  simp [spatialDistance, PiLp.norm_sq_eq_of_L2, Real.norm_eq_abs]
-
-theorem spatialDistance_symm (x y : Spatial) :
-    spatialDistance x y = spatialDistance y x := by
-  apply (sq_eq_sq₀ (spatialDistance_nonneg _ _) (spatialDistance_nonneg _ _)).mp
-  simp only [spatialDistance_sq]
-  apply Finset.sum_congr rfl
-  intro i _
-  ring
 
 theorem ellipsoidRadius_sq (b : Fin 3 → ℝ) (x : Spatial) :
     ellipsoidRadius b x ^ 2 = ∑ i : Fin 3, (x i / b i) ^ 2 := by
@@ -156,24 +136,12 @@ theorem ellipsoid_positivePart_lipschitz (a : ℝ) (b : Fin 3 → ℝ)
         (mul_le_mul_of_nonneg_left (ellipsoidRadius_sub_le b (b i) hm hi x y) (by norm_num)) ha.le
     _ = _ := by ring
 
-/-- The squared causal inequality controls the Euclidean spatial distance. -/
-theorem spatialDistance_le_of_causalFuture (x y : Spacetime) (hxy : y ∈ causalFuture x) :
-    spatialDistance (spatialPart x) (spatialPart y) ≤ y 0 - x 0 := by
-  apply (sq_le_sq₀ (spatialDistance_nonneg _ _) (sub_nonneg.mpr hxy.1)).mp
-  simpa only [spatialDistance_sq, spatialPart, spatialSeparationSq] using hxy.2
-
-/-- The positive-part epigraph is a future set. This is proved from the
-Lipschitz inequality, not included as an admissibility assumption. -/
-theorem positivePart_epigraph_future (h : Spatial → ℝ) (κ : ℝ)
-    (hκ : 0 ≤ κ) (hκ1 : κ ≤ 1)
-    (hLip : ∀ x y, |max 0 (h x) - max 0 (h y)| ≤ κ * spatialDistance x y)
-    (x y : Spacetime) (hx : -max 0 (h (spatialPart x)) < x 0)
-    (hxy : y ∈ causalFuture x) : -max 0 (h (spatialPart y)) < y 0 := by
-  have hd := spatialDistance_le_of_causalFuture x y hxy
-  have hl := (abs_le.mp (hLip (spatialPart x) (spatialPart y))).2
-  have hk := mul_le_mul_of_nonneg_left hd hκ
-  have hk' := mul_le_of_le_one_left (sub_nonneg.mpr hxy.1) hκ1
-  linarith
+/-- Ellipsoids satisfy exactly the general reduction assumptions. -/
+theorem ellipsoid_graphCapData (a : ℝ) (b : Fin 3 → ℝ)
+    (ha : 0 < a) (hb : ∀ i, 2 * a < b i) :
+    GraphCapData (ellipsoidProfile a b) where
+  bounded_positive := isBounded_ellipsoid_positive a b ha (fun i => by linarith [hb i])
+  lipschitz_positivePart := ellipsoid_positivePart_lipschitz a b ha hb
 
 /-- Every future point below the planar boundary belongs to the graph cap.
 The set equality retains null-related points and the cone vertex exactly. -/
@@ -181,28 +149,8 @@ theorem ellipsoid_complete_future (a : ℝ) (b : Fin 3 → ℝ)
     (ha : 0 < a) (hb : ∀ i, 2 * a < b i)
     (x : Spacetime) (hx : x ∈ graphCapRegion (ellipsoidProfile a b)) :
     graphCapRegion (ellipsoidProfile a b) ∩ causalFuture x =
-      {y | y ∈ causalFuture x ∧ y 0 < 0} := by
-  obtain ⟨κ, hκ, hκ1, hLip⟩ := ellipsoid_positivePart_lipschitz a b ha hb
-  ext y
-  constructor
-  · intro hy
-    exact ⟨hy.2, hy.1.2⟩
-  · rintro ⟨hxy, hy0⟩
-    have hxpos : 0 < ellipsoidProfile a b (spatialPart x) := by
-      have := hx.1
-      have := hx.2
-      linarith
-    have hx' : -max 0 (ellipsoidProfile a b (spatialPart x)) < x 0 := by
-      rw [max_eq_right hxpos.le]
-      exact hx.1
-    have hy := positivePart_epigraph_future (ellipsoidProfile a b) κ hκ hκ1.le hLip x y hx' hxy
-    have hypos : 0 < ellipsoidProfile a b (spatialPart y) := by
-      by_cases hp : 0 < ellipsoidProfile a b (spatialPart y)
-      · exact hp
-      · rw [max_eq_left (le_of_not_gt hp)] at hy
-        linarith
-    rw [max_eq_right hypos.le] at hy
-    exact ⟨⟨hy, hy0⟩, hxy⟩
+      {y | y ∈ causalFuture x ∧ y 0 < 0} :=
+  graphCap_complete_future _ (ellipsoid_graphCapData a b ha hb) x hx
 
 /-- Causal convexity: every event causally between two cap events is in the cap. -/
 theorem ellipsoid_causallyConvex (a : ℝ) (b : Fin 3 → ℝ)
@@ -210,10 +158,7 @@ theorem ellipsoid_causallyConvex (a : ℝ) (b : Fin 3 → ℝ)
     (x y z : Spacetime) (hx : x ∈ graphCapRegion (ellipsoidProfile a b))
     (hz : z ∈ graphCapRegion (ellipsoidProfile a b))
     (hxy : y ∈ causalFuture x) (hyz : z ∈ causalFuture y) :
-    y ∈ graphCapRegion (ellipsoidProfile a b) := by
-  have hy : y ∈ {y | y ∈ causalFuture x ∧ y 0 < 0} :=
-    ⟨hxy, lt_of_le_of_lt hyz.1 hz.2⟩
-  rw [← ellipsoid_complete_future a b ha hb x hx] at hy
-  exact hy.1
+    y ∈ graphCapRegion (ellipsoidProfile a b) :=
+  graphCap_causallyConvex _ (ellipsoid_graphCapData a b ha hb) x y z hx hz hxy hyz
 
 end BoundaryDraft
