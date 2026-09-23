@@ -1,8 +1,8 @@
 # Lean verification: checked components and explicit targets
 
-**Status: the deterministic ellipsoid continuum limit is proved in Lean.
-The general boundary conjecture, angle interpretation, null-cap limit, and
-Poisson-expectation bridge remain open.**
+**Status: the deterministic ellipsoid and null-plane-cap continuum limits are
+proved in Lean. The general boundary conjecture, Lorentzian angle/joint-area
+interpretation, and Poisson-expectation bridge remain open.**
 
 Lean **4.19.0** and mathlib **v4.19.0** are pinned. `lake-manifest.json` pins the
 resolved dependency commits; mathlib is
@@ -21,11 +21,13 @@ open targets.
 source is also rechecked in an isolated current module so all of its public
 declarations receive a transitive axiom audit even when that source is not
 imported by the library root. Finally, the aggregate audit inventories the
-library's **97 public theorems** and public definitions. The library root imports
-all kernel, ellipsoid geometry, four-dimensional reduction, and ellipsoid-limit
-modules. `EllipsoidRegression.lean` additionally checks the original target,
-volume endpoints, the critical height, a negative integrand, and the unequal-axis
-example with limit `48π`.
+library's **192 public theorems** and public definitions. The library root imports
+all kernel, ellipsoid, causal-interval, null-coordinate, Gaussian, and limit
+modules. `EllipsoidRegression.lean` checks the original ellipsoid contract and
+its endpoint examples. `NullCapRegression.lean` independently restates the
+unchanged null target, specializes the actual four-dimensional interval moment
+at `n = 0,1`, checks both weight endpoints, and instantiates the exact reduction
+and limit at `T = 2`, `a = 1`.
 
 | File | Checked result | What it does **not** establish |
 |---|---|---|
@@ -51,7 +53,15 @@ example with limit `48π`.
 | `BoundaryDraft/SpacetimeIntegration.lean` | Product-measure coordinate decomposition, Fubini, spatial polar integration, and translation of actual BDG integrals | The Poisson-expectation bridge |
 | same | `ellipsoid_graphReduction` proves the unchanged `GraphReductionGoal (ellipsoidProfile a b)` | A boundary limit by itself |
 | `BoundaryDraft/EllipsoidIntegration.lean` | Axis determinant, Euclidean superlevel volumes, and exact signed height-integration formula with absolute integrability | General coarea or Lorentzian joint geometry |
-| `BoundaryDraft/EllipsoidLimit.lean` | Bounded continuous global weight, exact fixed-half-line rescaling, and `ellipsoidLimitGoal : EllipsoidLimitGoal` | A convergence rate, arbitrary graph caps, `NullCapLimitGoal`, or the Poisson bridge |
+| `BoundaryDraft/EllipsoidLimit.lean` | Bounded continuous global weight, exact fixed-half-line rescaling, and `ellipsoidLimitGoal : EllipsoidLimitGoal` | A convergence rate, arbitrary graph caps, or the Poisson bridge |
+| `BoundaryDraft/NullGeometry.lean` | Open/measurable/bounded concrete cap, causal transitivity, causal convexity, and complete future slices | Arbitrary null boundaries |
+| `BoundaryDraft/CausalInterval.lean` | Four-dimensional polar/null Jacobians and exact standard causal-interval kernel identity by finite primitives | A probability bridge or power-series assumption |
+| `BoundaryDraft/IntervalMoments.lean` | Actual four-dimensional causal-interval moment formula for every natural `n` | A separate series interchange (not used by the kernel proof) |
+| `BoundaryDraft/LorentzReflection.lean`, `TimelikeInterval.lean` | Audited determinant-one-in-absolute-value rest-frame transport and exact identity for arbitrary timelike endpoints | General curved spacetime |
+| `BoundaryDraft/NullBoundary.lean` | The null cone has product Lebesgue measure zero; strict and closed future-tip slices have equal integrals | Boundary distributions or non-Lebesgue measures |
+| `BoundaryDraft/NullCoordinates.lean`, `NullCapReduction.lean` | Null-coordinate Jacobian, transverse polar coarea, two dominated Fubini swaps, exact support and logarithmic `nullCapWeight` | A formula assumed from numerical quadrature |
+| `BoundaryDraft/NullGaussian.lean` | Unit mass, absolute integrability, exact density rescaling, and half-line Gaussian concentration | A convergence rate |
+| `BoundaryDraft/NullCapLimit.lean` | Exact bilocal cancellation, bounded continuous weight extension, absolute integrability, and `nullCapLimitGoal : NullCapLimitGoal` | Poisson variance/convergence, arbitrary null boundaries, or angle interpretation |
 
 The analytic theorem genuinely permits a **signed** kernel. In ordinary
 notation it proves
@@ -245,7 +255,9 @@ or reduction premise is introduced.
 
 No strengthened geometric hypotheses were needed. This exact reduction is
 reused, rather than assumed or redefined, in the ellipsoid-limit proof below.
-The general admissible graph-cap theorem and null-cap reduction are not claimed.
+The general admissible graph-cap theorem is not claimed; the distinct concrete
+null-cap reduction is proved separately below rather than forced through this
+ellipsoid infrastructure.
 
 ## Explicit ellipsoid integration and continuum limit
 
@@ -306,6 +318,72 @@ limit prove `ε → 0` as `ρ → ∞`; positive density holds eventually. Final
 This retains the **entire signed kernel**, including its negative tail, and
 controls the whole ellipsoid, not just a collar. No rate is asserted.
 
+## Exact null-cap reduction and Gaussian limit
+
+The null proof starts from the unchanged `nullCapRegion`, `continuumMean`,
+`bdgKernel`, and `NullCapLimitGoal`. For `0 < a < T`, `NullGeometry` proves the
+strict cap open, bounded, causally convex, and gives its exact complete future
+slice. `NullBoundary` proves the omitted future null cone has four-dimensional
+product Lebesgue measure zero. Thus `nullCap_future_kernel_identity` can use the
+closed causal interval without silently changing the integral.
+
+`CausalInterval` derives the standard interval integral in spatial polar and
+radial null coordinates. The null matrix has checked determinant one, and two
+explicit finite primitives prove, for every `ρ,T > 0`,
+
+\[
+ \rho\int_{I(x,q)}K\!\left(\frac\pi{24}\rho\tau_{xy}^4\right)dy
+ =1-\exp\!\left(-\frac\pi{24}\rho\tau_{xq}^4\right).
+\]
+
+No exponential-series/integral interchange is used. `IntervalMoments`
+independently proves the actual four-dimensional moment formula for every
+natural `n`; the focused regression checks `n=0` and `n=1`.
+`LorentzReflection` and `TimelikeInterval` transport the standard identity to
+arbitrary future-timelike endpoints using an explicit involutive Lorentz
+reflection whose determinant and time orientation are proved.
+
+For the cap itself, `NullCoordinates` proves the four-coordinate Jacobian and
+two-dimensional transverse polar formula. `NullCapReduction` identifies the
+remaining rectangle `0<u<T/√2`, `0<v<a/√2`; all integrands are dominated on
+explicit compact boxes before each Fubini swap. Evaluating the two fibres,
+including `σ=0` separately, yields in the actual spacetime measure
+
+\[
+ \int_{M_{T,a}} f(\tau_{x0}^2)\,dx
+ =\int_0^{aT} f(\sigma)W_{T,a}(\sigma)\,d\sigma,
+\]
+
+with zero support above `aT` and
+
+\[
+ W_{T,a}(\sigma)=\frac\pi4\left[
+ a(2T-a)-2(1-a/T)\sigma-\frac{\sigma^2}{T^2}
+ -2\sigma\log\frac{aT}{\sigma}\right]
+\]
+
+for `0 < σ < aT`, while `W(0)=πa(2T-a)/4`. Measurability, endpoint continuity,
+finite support, and absolute integrability are checked. The global analytic
+extension clamps `σ` to `[0,aT]`; it is continuous, bounded, equals the geometric
+weight for every `σ≥0`, is constant to the left, and vanishes to the right.
+
+The interval identity cancels the signed bilocal term exactly, before any
+limit, to
+
+\[
+ \operatorname{continuumMean}_\rho(M_{T,a})
+ =\frac4{\sqrt6}\sqrt\rho\int_0^\infty
+ e^{-(\pi/24)\rho\sigma^2}W_{T,a}(\sigma)\,d\sigma.
+\]
+
+`NullGaussian` proves absolute integrability, mass four after the displayed
+prefactor, the `ρ^{-1/2}` change of scale, finite-support domination, and
+concentration at zero. Consequently `nullCapLimitGoal : NullCapLimitGoal`
+proves the unchanged target with limit `4W(0)=πa(2T-a)`. This is deterministic:
+it does not establish the Poisson-expectation bridge, variance, convergence in
+probability, a general graph cap, arbitrary null boundaries, or the Lorentzian
+angle/joint interpretation. No quantitative rate is claimed.
+
 ## The actual main targets, not weakened substitutes
 
 `BoundaryDraft/Specification.lean` defines:
@@ -337,49 +415,45 @@ def EllipsoidLimitGoal : Prop :=
 ```
 
 These `Goal` declarations are **definitions of propositions, not themselves
-proofs**. The unchanged `EllipsoidLimitGoal` now has the proof term
-`ellipsoidLimitGoal`; `NullCapLimitGoal` still does not. `GraphReductionGoal`
-has a proof for the concrete ellipsoid family, `ellipsoid_graphReduction`, but
-not for arbitrary profiles. The original `KernelMassGoal` and `KernelTailGoal`
-also have proof terms, `kernelMassGoal` and `kernelTailGoal`. All are audited
-transitively along with the rest of the library.
+proofs**. The unchanged goals now have proof terms `ellipsoidLimitGoal` and
+`nullCapLimitGoal`. `GraphReductionGoal` has a proof for the concrete ellipsoid
+family, `ellipsoid_graphReduction`, but not for arbitrary profiles. The original
+`KernelMassGoal` and `KernelTailGoal` also have proof terms, `kernelMassGoal` and
+`kernelTailGoal`. All are audited transitively with the rest of the library.
 
-The continuum action is not defined to be its conjectured answer. The
-ellipsoid proof starts from the actual four-dimensional integral, not a
-reformulated target or an assumed geometric reduction.
+The continuum action is not defined to be its conjectured answer. Both limit
+proofs start from the actual four-dimensional integral, not a reformulated
+target or an assumed geometric reduction.
 
 ## Remaining proof graph
 
 1. **Probability bridge, separate milestone.** Define Poisson sprinkling,
-   interval counts, and the discrete BDG action; derive the deterministic
-   continuum formula. The proved deterministic ellipsoid limit does not by
-   itself establish the paper's Poisson-counting identification.
-2. **Causal geometry and measures.** Completed for the ellipsoid reduction:
-   causal convexity, complete future slices, coordinate measures, and spatial
-   polar integration. Joint area formulae and other region families remain open.
-3. **Exact integral reductions.** Completed for ellipsoids: the concrete BDG
-   cone/action-density identity and vertical-fibre reduction. The null-tip
-   interval moments and their analytic kernel interchange remain open.
-4. **Concrete kernel estimates: completed for the half-line milestone.**
-   `KernelMassGoal`, `KernelTailGoal`, the required limits, and the concrete
-   signed-rescaling theorem are proved. The sharper differentiable asymptotic
-   expansion remains draft-level and is not needed for these proofs.
-5. **Explicit ellipsoid limit: completed.** The exact superlevel volume and
-   signed integration formula establish `EllipsoidLimitGoal` using the checked
-   graph reduction and kernel limit. No extra geometric or analytic hypotheses
-   are introduced. General collar geometry and its interior remainder, and
-   null-tip Gaussian concentration, remain separate tasks.
-6. **Geometry of the variable-angle answer: open.** Formalize the Lorentzian
-   relation `coth θ = 1 / ‖∇h‖` and the joint-area interpretation. The direct
-   ellipsoid volume proof does not establish these identities or general coarea.
-7. **Remaining theorem and audits.** Construct a proof of `NullCapLimitGoal`
-   and the general graph-cap theorem, with their hypotheses compared line by
-   line against the draft. The deterministic ellipsoid target is already proved
-   and audited; neither paper theorem in its full stated generality is checked.
+   interval counts, and the discrete BDG action; derive `continuumMean` as its
+   expectation. Neither deterministic limit by itself proves that bridge,
+   variance bounds, or convergence in probability.
+2. **Concrete deterministic limits: completed.** The full ellipsoid and
+   null-plane-cap reductions and limits are proved under their original
+   hypotheses. The null proof includes causal convexity, complete interval
+   slices, boundary null sets, coordinate Jacobians, exact weight, domination,
+   and Gaussian concentration.
+3. **Concrete kernel estimates: completed.** `KernelMassGoal`,
+   `KernelTailGoal`, the required limits, and the signed graph-cap rescaling
+   theorem are proved. The sharper differentiable asymptotic expansion remains
+   draft-level and is not needed by either checked limit.
+4. **General graph caps: open.** Extend the exact reduction/coarea argument from
+   ellipsoids to the admissible graph-cap class, including the non-collar
+   remainder. The existing concrete family does not prove the general theorem.
+5. **Geometric interpretation: open.** Formalize `coth θ = 1 / ‖∇h‖`, identify
+   the limiting integrals with Lorentzian joint area, and handle arbitrary null
+   boundaries. The checked equality to `nullJointArea` uses its existing
+   explicit algebraic definition, not a theorem about induced joint geometry.
+6. **Beyond the present scope.** Curved spacetime, other dimensions,
+   tangential/degenerate joints, and quantitative convergence rates remain
+   outside the checked claims.
 
-The explicit ellipsoid deterministic milestone is complete. General graph-cap
-coarea, Lorentzian joint geometry, null caps, and the probability bridge remain
-separate tasks; we do not assume their infrastructure already exists in mathlib.
+The two concrete deterministic milestones are complete and audited. General
+graph-cap coarea, Lorentzian joint geometry, arbitrary null boundaries, and the
+probability bridge remain separate tasks.
 
 ## Reproduce
 
@@ -403,10 +477,13 @@ lake exe cache get \
   Mathlib.MeasureTheory.Integral.IntervalIntegral.IntegrationByParts \
   Mathlib.Analysis.SpecialFunctions.Gaussian.GaussianIntegral \
   Mathlib.Analysis.SpecialFunctions.ImproperIntegrals \
+  Mathlib.Analysis.SpecialFunctions.Log.NegMulLog \
   Mathlib.Analysis.SpecialFunctions.Exp \
   Mathlib.Analysis.SpecialFunctions.ExpDeriv \
   Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic \
   Mathlib.Analysis.InnerProductSpace.PiL2 \
+  Mathlib.LinearAlgebra.Matrix.FiniteDimensional \
+  Mathlib.LinearAlgebra.Matrix.SchurComplement \
   Mathlib.Data.Fintype.Lattice \
   Mathlib.MeasureTheory.Integral.Prod \
   Mathlib.MeasureTheory.Constructions.HaarToSphere \
