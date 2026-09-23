@@ -23,10 +23,11 @@ null-set replacement, full coordinate Jacobians, exact logarithmic weight (9),
 absolute integrability, and normalized Gaussian concentration. The **concrete
 ellipsoid geometric interpretation** is now also checked: regular joint,
 positive-branch Lorentzian angle, and exact variable-angle surface integral.
-For general graph caps, compactness/measurability of the Euclidean joint,
-a uniform noncritical boundary band, and ambient C³ regular neighborhoods
-are checked. This does not yet supply integration charts or coarea.
-The general graph-cap regular-collar/coarea limit and variable-angle integral,
+For general graph caps, the compact regular joint, uniform noncritical band,
+local height charts, strict positive-angle identity, finite Hausdorff surface
+target with integrable boundary weights, and vanishing non-collar remainder
+are checked. The area/coarea transformation and normalization against parametric
+area are not proved. Thus the general graph-cap deterministic boundary limit,
 arbitrary null boundaries, induced null-joint geometry, and Poisson-expectation
 bridge remain open.
 The checked results concern `continuumMean`, not yet a formalized random sprinkling expectation,
@@ -285,8 +286,8 @@ on its boundary, and nonzero actual differential at the zero level in that
 closure. Their combination is `AdmissibleGraphCap h`; its boundary is proved
 equal to `{h = 0} ∩ closure Ω`. This uses an ambient local C³ extension near
 the closure and ignores unrelated exterior zeros. These regular-level
-assumptions are reserved for the future collar theorem: neither smoothness nor
-nonvanishing is needed for the exact reduction, and **positive-height critical
+assumptions are used only by the collar/geometry layer: neither smoothness nor
+nonvanishing is needed for the exact reduction or tail estimate, and **positive-height critical
 points are allowed**. No field assumes an action identity, limit, or joint
 integral.
 
@@ -565,16 +566,22 @@ For every graph cap (10) satisfying the stated hypotheses,
 Constants in the error estimate may depend on the fixed region. The estimate
 is not asserted uniformly as the joint becomes tangent, $`|\nabla h|\to0`$.
 The displayed rate and the general limit remain **draft-level**, not Lean
-results. `GraphCollar.lean` currently checks only the compact-joint and
-uniformly noncritical-band prerequisites, with ambient regular neighborhoods.
+results. `GraphCollar.lean` proves the compact-joint and noncritical-band
+prerequisites. `GraphSurface.lean` adds height-flattening local charts and
+uses their local Lipschitz parametrizations to prove finite Hausdorff joint
+measure. `GraphAngle.lean` proves the strict positive angle and actual normals;
+`GraphTail.lean` proves the exact action split and vanishing remainder directly,
+including critical levels and the height endpoint.
 
-For the future surface-measure formalization, level sets here are understood
-inside the closed positive region, excluding unrelated exterior zeros. In
-Euclidean coordinates the normalized area convention is
+Level sets here are understood inside the closed positive region, excluding
+unrelated exterior zeros. `graphSurfaceMeasure` uses the Euclidean convention
 `(π/4) · μH[2]`, since pinned mathlib uses unnormalized squared diameters.
-Identification with parametric area, including the existing ellipsoid measure,
-and the coarea/height-density formula below still require proofs. The
-coordinate sup-norm Hausdorff measure is not a substitute for Euclidean area.
+Absolute integrability and equality of the reciprocal-gradient and angle
+integrals are checked for that measure. Identification with parametric area,
+including verification of the normalization against the existing ellipsoid
+measure, and the coarea/height-density formula below still require proofs.
+The coordinate sup-norm Hausdorff measure is not a substitute for Euclidean area.
+The general `GraphCapLimitGoal` remains an open target, not a proved theorem.
 
 **Proof.** By regularity and compactness of the joint there is a collar
 $`0\le h\le\delta`$ with no critical points. Coarea gives a $`C^1`$

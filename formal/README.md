@@ -3,9 +3,11 @@
 **Status: the deterministic ellipsoid and null-plane-cap continuum limits and
 the concrete ellipsoid's Lorentzian angle/surface-integral interpretation are
 proved in Lean. The exact finite-density reduction is also proved for the
-general admissible graph-cap class. Its regular-collar/coarea limit and general
-variable-angle integral, arbitrary null boundaries, induced null-joint geometry,
-and the Poisson-expectation bridge remain open.**
+general admissible graph-cap class. General positive-angle geometry, finite
+Hausdorff joint integrals, and the vanishing non-collar remainder are checked.
+Surface-area normalization/coarea and the general deterministic limit, arbitrary
+null boundaries, induced null-joint geometry, and the Poisson-expectation bridge
+remain open.**
 
 Lean **4.19.0** and mathlib **v4.19.0** are pinned. `lake-manifest.json` pins the
 resolved dependency commits; mathlib is
@@ -33,7 +35,11 @@ admissible profile with a positive-height critical point. It also checks that th
 noncritical band stops below that critical height. `GraphCollarRegression.lean`
 independently checks the band contract, compact joint, local regular
 neighborhoods, exclusion of unrelated exterior zeros, and original unequal-axis
-ellipsoid hypotheses.
+ellipsoid hypotheses. `GraphBoundaryRegression.lean` independently checks
+strict slopes/normals/angles, implicit charts, finite surface measure and
+integrable weights, the exact action split and vanishing remainder, and
+compatibility with the original unequal-axis gradient and parametric integral.
+It does not claim the missing Hausdorff/parametric-area identification.
 `EllipsoidRegression.lean` checks the original ellipsoid contract and
 its endpoint examples. `EllipsoidJointRegression.lean` separately checks
 regularity, the strict positive angle branch, connectedness, nonconstant weights,
@@ -63,6 +69,10 @@ and limit at `T = 2`, `a = 1`.
 | same | Concrete positive-half-line signed-rescaling limit | Coarea or either main boundary-limit theorem |
 | `BoundaryDraft/GraphGeometry.lean` | Separate reduction/collar APIs, positive-part continuity, open/measurable/bounded cap, compact positive-part support, complete future slices and causal convexity | Regular-collar construction, coarea or a boundary limit |
 | `BoundaryDraft/GraphCollar.lean` | Compact/measurable Euclidean joint, uniform noncritical boundary band, ambient C³ regular neighborhoods | Integration charts, normalized surface measure, coarea or a boundary limit |
+| `BoundaryDraft/GraphAngle.lean` | Actual Euclidean gradient, uniform strict slope bound, inward/outward unit normals, positive rapidity, face geometry and `coth` identity | Coarea or a deterministic limit |
+| `BoundaryDraft/GraphJacobian.lean` | Volume-frame determinant equals the positive Gram area Jacobian divided by the actual gradient norm | A transformation law for Hausdorff measure |
+| `BoundaryDraft/GraphSurface.lean` | Height-flattening local charts; canonical Hausdorff target with explicit coefficient; finite joint measure; absolute integrability and equality of reciprocal-gradient and angle integrals | Hausdorff/parametric-area identification, coarea, height-density continuity or the general limit |
+| `BoundaryDraft/GraphTail.lean` | Absolute scaled tail, exact action collar/remainder split, vanishing spatial remainder allowing critical points | The collar limit |
 | `BoundaryDraft/EllipsoidGeometry.lean` | Positive ellipsoid, measurability, boundedness, compact positive-part support, strict Euclidean Lipschitz estimate; instantiation of the general geometry | Sublevel volumes or coarea |
 | `BoundaryDraft/GraphExamples.lean` | Full ellipsoid admissibility under the original hypotheses; quartic damped-ellipsoid admissibility and exact reduction | A new limit or joint integral |
 | `BoundaryDraft/ConeIntegral.lean` | Exact radial action-density identity by a zero-endpoint primitive; finite-fibre FTC | A boundary limit |
@@ -95,8 +105,8 @@ assuming `G` is integrable and `B` is globally bounded and continuous. There is
 no assumption that `G ≥ 0`. The measure `μ` may be Lebesgue measure restricted
 to the positive half-line. A bounded continuous extension of the collar
 profile fits this theorem; for general graph caps the exact geometric reduction
-is now checked, but the regular-collar construction, coarea identity, and
-non-collar remainder argument using the tail estimate remain to be formalized. The theorem
+and non-collar remainder are checked, but the area/coarea identity and
+height-density continuity still need proofs. The theorem
 `planeKernel_rescaling_limit` now instantiates this lemma with the concrete
 BDG kernel and Lebesgue measure restricted to `Ioi 0`, using the proved
 absolute integrability and mass one, not additional kernel hypotheses.
@@ -285,13 +295,55 @@ the extreme value theorem therefore gives `δ > 0` such that `dh ≠ 0` wherever
 `h ≤ δ` in the closed positive region. The empty critical set is allowed.
 Ambient open C³ neighborhoods with nonvanishing differential are also proved.
 
-This does **not** construct integration charts or prove a coarea formula.
-Issue #19 and milestone 5 remain incomplete. In particular, the pinned
-mathlib's `μH[2]` is defined using unnormalized squared diameters. A future
-Euclidean surface measure must account for the `π/4` normalization and prove
-its relation to the existing ellipsoid parametric measure; that identification
-is not checked here. No surface measure or coarea identity is introduced as
-an assumption, and none of the original action or limit definitions changes.
+### General angle, finite surface target, and remainder (still partial #19)
+
+`GraphAngle.lean` defines `graphGradient` by Riesz duality from the actual
+Fréchet differential. On the open positive region, the positive-part Lipschitz
+bound controls the raw profile's differential. Continuity of that differential
+extends the same strict bound to the closure; this does not differentiate the
+nonsmooth positive part at the joint. Boundary regularity then gives
+`0 < graphSlope h x < 1`. The inward/outward normals have norm one and
+height derivatives equal to the positive/negative slope. The existing generic
+hyperbolic identities give strict positive rapidity and `coth θ = 1/‖∇h‖`.
+The face directions are orthogonal to the tangent kernel and their normalized
+Minkowski inner product is `−cosh θ`. No angle relation is a premise.
+`GraphJacobian.lean` also derives the local coarea factor: for a height frame
+with `dh z = 1` and `dh v = dh w = 0`, the absolute three-dimensional determinant
+is the positive square root of the tangential Gram determinant divided by
+`‖∇h‖`. This is checked linear algebra, not yet a surface-measure transformation.
+
+`GraphSurface.lean` constructs height-flattening partial homeomorphisms with
+two-dimensional tangent coordinates using the implicit function theorem. The
+central level parametrization is strictly differentiable at its base point,
+with derivative tangent inclusion; therefore it is Lipschitz on a neighborhood.
+Hausdorff measure of its image is bounded by a finite Lipschitz factor times
+the finite measure of a ball in that two-dimensional kernel. Compactness of
+the joint then proves finite two-dimensional Hausdorff measure globally.
+
+`graphSurfaceMeasure h` is `(π/4) • μH[2]` restricted to `graphJoint h` in
+Euclidean space. This explicitly states the intended area convention: pinned
+mathlib uses unnormalized squared diameters. **Agreement with parametric area,
+including verification of that coefficient against the existing ellipsoid
+measure, remains unproved.** Finiteness of this declared measure, continuity
+and absolute integrability of the reciprocal-gradient weight, integrability of
+the angle weight, and equality of their integrals are proved independently.
+`graphBoundaryIntegral` is the reciprocal-gradient integral, and
+`GraphCapLimitGoal h` states convergence of the unchanged `continuumMean` to
+that integral. The latter is an **open proposition definition, not a theorem**.
+
+`GraphTail.lean` proves the scaled bound with the concrete constant
+`C = 1416/(π sqrt 6)` and width `ε = (sqrt (sqrt ρ))⁻¹`. On `h ≥ δ > 0`, the
+norm of the remainder integral is bounded by `C ε² δ⁻³ volume(Ω)` and hence tends
+to zero. Absolute integrability and measurability are proved without continuity
+of the raw profile outside its positive set. The exact four-dimensional action
+is split into `0 < h < δ` and `h ≥ δ`; the endpoint remains in the remainder,
+so no level-set-nullity premise is used. No differential or coarea assumption
+is used for this entire tail argument, even at the quartic critical height.
+
+Issue #19 and milestone 5 remain incomplete: the surface-area transformation,
+coarea formula, continuity of the height density at zero, and collar limit are
+still required. No structure field or hypothesis assumes those missing results.
+None of the original action or concrete limit definitions changes.
 
 ### Ellipsoid compatibility and a nonquadratic example
 
@@ -618,14 +670,14 @@ target or an assumed geometric reduction.
 4. **General graph caps: exact reduction completed; limit open.** The admissible
    API, complete slices, causal convexity, compact domination, and exact
    four-dimensional action reduction are checked, with ellipsoid and quartic
-   instances. Compact joints, a uniform noncritical boundary band, and local
-   ambient regular neighborhoods are now checked. Integration charts, normalized
-   surface measure/coarea, and the non-collar remainder argument are still
-   needed for the general limit.
-5. **Concrete ellipsoid interpretation: completed; general geometry open.**
-   The strict positive angle identity and variable-angle parametric surface
-   integral are proved for ellipsoids. The general graph-cap variable-angle
-   integral, arbitrary null boundaries, and induced null-joint area remain open. The checked
+   instances. Compact joints, the noncritical band, local height charts, and
+   the vanishing non-collar remainder are now checked. Surface-area normalization,
+   coarea, height-density continuity, and the collar limit are still needed.
+5. **Concrete ellipsoid interpretation completed; general pointwise geometry checked.**
+   The positive-angle identity now holds for every admissible graph cap.
+   Its two finite canonical boundary integrals are equal, but identification
+   with parametric area and the deterministic limit remains open. Arbitrary
+   null boundaries and induced null-joint area also remain open. The checked
    equality to `nullJointArea` still uses its existing explicit algebraic
    definition, not a theorem about induced null-joint geometry.
 6. **Beyond the present scope.** Curved spacetime, other dimensions,
@@ -634,9 +686,9 @@ target or an assumed geometric reduction.
 
 The two concrete deterministic milestones and the ellipsoid geometric
 interpretation, plus the general graph-cap exact reduction, are complete and
-audited. General graph-cap coarea/angle geometry, arbitrary null boundaries,
-induced null-joint geometry, and the probability
-bridge remain separate tasks.
+audited. General graph-cap surface-area/coarea and the collar limit, arbitrary
+null boundaries, induced null-joint geometry, and the probability bridge remain
+separate tasks.
 
 ## Reproduce
 
@@ -667,6 +719,10 @@ lake exe cache get \
   Mathlib.Analysis.InnerProductSpace.PiL2 \
   Mathlib.Analysis.Calculus.Gradient.Basic \
   Mathlib.Analysis.Calculus.ContDiff.Operations \
+  Mathlib.Analysis.Calculus.ContDiff.RCLike \
+  Mathlib.Analysis.Calculus.Implicit \
+  Mathlib.LinearAlgebra.Dual.Lemmas \
+  Mathlib.MeasureTheory.Measure.Hausdorff \
   Mathlib.Analysis.SpecialFunctions.Log.Basic \
   Mathlib.Analysis.NormedSpace.Connected \
   Mathlib.LinearAlgebra.CrossProduct \

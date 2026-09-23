@@ -106,14 +106,19 @@ The original ellipsoids instantiate it without stronger hypotheses. A quartic
 height profile also instantiates it and has a checked interior critical point.
 `GraphCollar.lean` additionally proves that the Euclidean joint is compact and
 measurable, and that some uniform positive-height band has no critical points.
-Each point of this band has an ambient C³ regular neighborhood. These are
-prerequisites only: integration charts, normalized surface measure, and coarea
-are not yet proved. The quartic regression verifies that the band stops below
-its interior critical point.
+Each point of this band has an ambient C³ regular neighborhood and a local
+height-flattening chart. `GraphAngle.lean` derives the normals, strict slope
+bound, and positive-branch angle identity for every admissible cap.
+`GraphSurface.lean` defines a Euclidean Hausdorff surface target, proves its
+finiteness and both boundary weights' absolute integrability, and equates their
+integrals. Its normalization against parametric area is still unproved.
+`GraphTail.lean` proves that every fixed positive-height remainder vanishes
+without coarea. The quartic regression retains its interior critical point.
 
 Still open in the formal program:
 
-- the general graph-cap regular-collar/coarea limit and variable-angle integral;
+- the surface-area normalization/coarea theorem and general graph-cap limit
+  identifying the boundary integral with `continuumMean`;
 - arbitrary null boundaries and the induced null-joint area interpretation;
 - the Poisson-sprinkling expectation bridge.
 

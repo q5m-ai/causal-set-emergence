@@ -111,4 +111,15 @@ theorem quartic_noncritical_band : ∃ δ : ℝ, 0 < δ ∧ δ < 3 / 16 ∧
   exact hband 0 hx (by simpa [quartic_positive_critical.1] using le_of_not_gt hn)
     quartic_positive_critical.2
 
+-- The remainder theorem applies even with its endpoint at the critical
+-- height; it never assumes regularity or applies coarea on that superlevel.
+theorem quartic_critical_remainder_vanishes :
+    Filter.Tendsto (fun ρ => ∫ x in {x | 3 / 16 ≤ quarticProfile x},
+      planeKernel ρ (quarticProfile x)) Filter.atTop (nhds 0) :=
+  quartic_admissible.toGraphCapData.tendsto_integral_kernel_superlevel _ (by norm_num)
+
+theorem quartic_surface_integrable :
+    Integrable (fun x => 1 / ‖graphGradient quarticProfile x‖)
+      (graphSurfaceMeasure quarticProfile) := quartic_admissible.integrable_reciprocal_slope
+
 end GraphCapRegression

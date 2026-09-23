@@ -17,6 +17,10 @@ import BoundaryDraft.EllipsoidJoint
 import BoundaryDraft.GraphExamples
 import BoundaryDraft.EllipsoidAngle
 import BoundaryDraft.EllipsoidSurface
+import BoundaryDraft.GraphAngle
+import BoundaryDraft.GraphJacobian
+import BoundaryDraft.GraphSurface
+import BoundaryDraft.GraphTail
 import BoundaryDraft.NullGeometry
 import BoundaryDraft.CausalInterval
 import BoundaryDraft.IntervalMoments
