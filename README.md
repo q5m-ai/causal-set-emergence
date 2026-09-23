@@ -73,23 +73,30 @@ the coarea formula.
 
 [The Lean layer](formal/README.md) uses pinned Lean 4.19.0 and mathlib. It now
 proves the concrete kernel normalization and tails, exact four-dimensional
-ellipsoid action reduction, explicit ellipsoid integration, and the
-**deterministic ellipsoid continuum limit**:
+ellipsoid and null-cap action reductions, explicit coarea formulae, and both
+**deterministic continuum limits**:
 
 ```text
 ellipsoidLimitGoal : EllipsoidLimitGoal
+nullCapLimitGoal   : NullCapLimitGoal
 ```
 
-All **97 public theorems** pass a transitive axiom audit permitting only Lean’s
-standard foundations. The whole signed kernel is retained, including its
-negative tail.
+All **192 public theorems** pass a transitive axiom audit permitting only Lean’s
+standard foundations. The ellipsoid proof retains the whole signed kernel,
+including its negative tail; the null proof derives the exact causal-interval
+cancellation and normalized Gaussian concentration.
 
 Still open in the formal program:
 
-- `NullCapLimitGoal`;
 - the general admissible graph-cap theorem;
 - the Lorentzian angle and joint-area interpretation;
 - the Poisson-sprinkling expectation bridge.
+
+The null result starts from the unchanged four-dimensional `continuumMean` and
+proves the exact logarithmic weight, support, endpoint, absolute integrability,
+and density limit under exactly `0 < a < T`. It does not formalize the
+Poisson-expectation bridge or identify the algebraic `nullJointArea` with a
+general induced-joint theorem.
 
 Accordingly, this is not yet a checked proof of the unrestricted conjecture or
 of convergence for individual random sprinklings. See

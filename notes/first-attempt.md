@@ -14,13 +14,16 @@ an explicit absolute tail bound, and the concrete signed-rescaling limit.
 It now also verifies the **exact four-dimensional ellipsoid graph-cap action
 reduction at every positive density**, including strict spacelikeness, complete
 future slices, coordinate/Fubini steps, and the concrete BDG cone identity.
-The **deterministic ellipsoid limit (19) is now machine-checked**, via explicit
-superlevel volumes, an exact signed integration formula, and a global bounded
-continuous weight. `ellipsoidLimitGoal` proves the unchanged four-dimensional
-`EllipsoidLimitGoal`. The general graph-cap theorem, Lorentzian angle/joint-area
-interpretation, `NullCapLimitGoal`, and Poisson-expectation bridge remain open.
-The checked result concerns `continuumMean`, not yet a formalized random
-sprinkling expectation, and asserts no convergence rate.
+The **deterministic ellipsoid limit (19) and concrete null-cap limit (8) are
+now machine-checked**. `ellipsoidLimitGoal` and `nullCapLimitGoal` prove the
+unchanged four-dimensional targets. For the null cap, Lean derives the actual
+causal-interval identity, arbitrary-timelike rest-frame transport, boundary
+null-set replacement, full coordinate Jacobians, exact logarithmic weight (9),
+absolute integrability, and normalized Gaussian concentration. The general
+graph-cap theorem, Lorentzian angle/joint-area interpretation, arbitrary null
+boundaries, and Poisson-expectation bridge remain open. The checked results
+concern `continuumMean`, not yet a formalized random sprinkling expectation,
+and assert no convergence rate.
 
 ## 1. Precise target and conventions
 
@@ -103,6 +106,14 @@ which is (3). This also independently reproduces the flat specialization of
 Dowker's equations (4.8)–(4.13), specifically the flat term in (4.9),
 [arXiv:2007.13206v2](https://arxiv.org/html/2007.13206v2).
 \(\square\)
+
+**Machine-checked route.** `CausalInterval.lean` proves (3) directly from the
+actual four-dimensional set integral, its polar/null-coordinate Jacobian, and
+two finite primitives; it does not assume the series/integral exchange above.
+`IntervalMoments.lean` independently proves (4) for every natural `n`, with
+`n=0,1` exercised by focused regressions. Explicit determinant and
+future-orientation proofs transport (3) from the standard rest frame to every
+future-timelike pair.
 
 ## 3. First class: one null-cone future boundary
 
@@ -230,6 +241,19 @@ Integrating (9) also gives
 
 For fixed \(T,a\), (9) yields an error
 \(O(\rho^{-1/2}\log\rho)\), with lengths held in fixed units.
+
+**Machine-checked scope.** For this concrete plane-truncated diamond,
+`NullGeometry`–`NullCapLimit` prove causal convexity and complete slices,
+remove the strict null boundary by a zero-measure theorem, derive every
+coordinate Jacobian and both Fubini swaps under compact domination, and obtain
+(9) in the original spacetime measure, including support, endpoint value,
+measurability, and absolute integrability. The bilocal action then cancels
+exactly to (6). A normalized half-line Gaussian with proved mass and domination
+concentrates at zero, giving the unchanged proof term
+`nullCapLimitGoal : NullCapLimitGoal` under exactly `0<a<T`. The displayed
+quantitative error rate, induced-joint area interpretation, arbitrary-null
+version of Theorem 1, and Poisson probability statements are not claimed as
+Lean results.
 
 ## 4. A different exact reduction: planar future boundary
 

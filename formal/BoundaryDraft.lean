@@ -11,3 +11,13 @@ import BoundaryDraft.ConeIntegral
 import BoundaryDraft.SpacetimeIntegration
 import BoundaryDraft.EllipsoidIntegration
 import BoundaryDraft.EllipsoidLimit
+import BoundaryDraft.NullGeometry
+import BoundaryDraft.CausalInterval
+import BoundaryDraft.IntervalMoments
+import BoundaryDraft.LorentzReflection
+import BoundaryDraft.TimelikeInterval
+import BoundaryDraft.NullBoundary
+import BoundaryDraft.NullCoordinates
+import BoundaryDraft.NullCapReduction
+import BoundaryDraft.NullGaussian
+import BoundaryDraft.NullCapLimit

@@ -10,8 +10,9 @@ import Mathlib.Analysis.SpecialFunctions.Exp
 Every name ending in `Goal` below is a DEFINITION OF A PROPOSITION, not a
 proof or an axiom. `KernelEstimates` and `KernelHalfLine` now construct proofs
 of the two concrete kernel targets. `SpacetimeIntegration` proves the exact
-ellipsoid `GraphReductionGoal`, and `EllipsoidLimit` proves the unchanged
-`EllipsoidLimitGoal`. The separate `NullCapLimitGoal` remains open.
+ellipsoid `GraphReductionGoal`, `EllipsoidLimit` proves the unchanged
+`EllipsoidLimitGoal`, and `NullCapLimit` proves the unchanged concrete
+`NullCapLimitGoal`.
 
 The main targets refer to the actual four-dimensional deterministic continuum
 integral, not an action defined to equal its expected limiting answer.
@@ -63,7 +64,8 @@ def nullCapRegion (T a : ℝ) : Set Spacetime :=
   {x | x ∈ chronologicalFuture (pastTip T) ∧
     (0 : Spacetime) ∈ chronologicalFuture x ∧ -a < x 0 - x 1}
 
-/-- Full four-dimensional null-truncation target. NOT PROVED. -/
+/-- Full four-dimensional null-truncation target, proved by
+`nullCapLimitGoal` in `NullCapLimit`. -/
 def NullCapLimitGoal : Prop :=
   ∀ T a : ℝ, 0 < a → a < T →
     Tendsto (fun ρ => continuumMean ρ (nullCapRegion T a))
