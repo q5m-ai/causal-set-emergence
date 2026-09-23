@@ -8,8 +8,11 @@ Lean **4.19.0** and mathlib **v4.19.0** are pinned. `lake-manifest.json` pins th
 resolved dependency commits; mathlib is
 `c44e0c8ee63ca166450922a373c7409c5d26b00b`.
 
-The Lake package identifier is `causal_set_gravity`; this directory contains
-the checked layer and open formal targets for the current proof program.
+This is the checked layer for Program 1 of **Causal Set Emergence**. The Lake
+package identifier remains `causal_set_gravity` because this program studies the
+BDG gravitational action; renaming the research umbrella does not change its
+mathematical scope. This directory contains the proved components and explicit
+open targets.
 
 ## What actually compiles and is proved
 
@@ -124,11 +127,11 @@ calculus then proves
 These identities hold for finite \(H\); they alone do not justify passing to
 infinity. That passage is now proved separately as follows, completing the
 one-dimensional analytic milestone in
-[issue #4](https://github.com/q5m-ai/causal-set-gravity/issues/4).
+[issue #4](https://github.com/q5m-ai/causal-set-emergence/issues/4).
 The exact reduction from `continuumMean` is also now proved for ellipsoids in
-[issue #6](https://github.com/q5m-ai/causal-set-gravity/issues/6), as described below.
+[issue #6](https://github.com/q5m-ai/causal-set-emergence/issues/6), as described below.
 Neither result completes the boundary-limit program in
-[issue #1](https://github.com/q5m-ai/causal-set-gravity/issues/1).
+[issue #1](https://github.com/q5m-ai/causal-set-emergence/issues/1).
 
 ## Half-line estimates and normalization
 
