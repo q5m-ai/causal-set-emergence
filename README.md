@@ -81,15 +81,23 @@ ellipsoidLimitGoal : EllipsoidLimitGoal
 nullCapLimitGoal   : NullCapLimitGoal
 ```
 
-All **192 public theorems** pass a transitive axiom audit permitting only Lean’s
-standard foundations. The ellipsoid proof retains the whole signed kernel,
+All public theorems and definitions pass a transitive axiom audit permitting
+only Lean’s standard foundations. The ellipsoid proof retains the whole signed kernel,
 including its negative tail; the null proof derives the exact causal-interval
 cancellation and normalized Gaussian concentration.
 
+The **concrete ellipsoid geometric interpretation** is also checked separately:
+its joint is a smooth regular level with nonzero Euclidean gradient, its angle
+lies on the strict positive branch with `coth θ = 1 / ‖∇h‖`, and its variable-angle
+surface integral equals `2π (∏ bᵢ) / a`. The surface measure uses a global
+sphere-to-ellipsoid parameterization with a checked tangential Jacobian. Unequal
+axes give distinct weights on one connected joint; `(a,b) = (1/4, ![1,2,3])`
+has weights `2` and `6` at two axis endpoints and integral `48π`.
+
 Still open in the formal program:
 
-- the general admissible graph-cap theorem;
-- the Lorentzian angle and joint-area interpretation;
+- the general admissible graph-cap theorem and its geometric interpretation;
+- arbitrary null boundaries and the induced null-joint area interpretation;
 - the Poisson-sprinkling expectation bridge.
 
 The null result starts from the unchanged four-dimensional `continuumMean` and

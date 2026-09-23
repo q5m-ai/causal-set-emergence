@@ -47,6 +47,19 @@ run_cmd do
 #check BoundaryDraft.integrableOn_ellipsoid_rescaled
 #check BoundaryDraft.ellipsoid_continuumMean_eq_rescaled
 #check BoundaryDraft.ellipsoidLimitGoal
+-- Separate geometric interpretation; the deterministic target above is unchanged.
+#check BoundaryDraft.hasGradientAt_ellipsoidProfile
+#check BoundaryDraft.ellipsoid_joint_regular
+#check BoundaryDraft.ellipsoidSlope_lt_one
+#check BoundaryDraft.jointRapidity_identities
+#check BoundaryDraft.ellipsoid_face_joint_orthogonal
+#check BoundaryDraft.ellipsoidJointParam
+#check BoundaryDraft.ellipsoidSurfaceJacobian_eq_sqrt_gram
+#check BoundaryDraft.integrable_ellipsoid_coth
+#check BoundaryDraft.integral_ellipsoid_coth
+#check BoundaryDraft.ellipsoid_limit_eq_joint_integral
+#check BoundaryDraft.isConnected_ellipsoidJoint
+#check BoundaryDraft.ellipsoid_angle_nonconstant
 #check BoundaryDraft.standard_causalInterval_moment
 #check BoundaryDraft.causalInterval_kernel_identity
 #check BoundaryDraft.volume_nullCone_zero

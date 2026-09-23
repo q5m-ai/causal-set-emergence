@@ -1,8 +1,9 @@
 # Lean verification: checked components and explicit targets
 
-**Status: the deterministic ellipsoid and null-plane-cap continuum limits are
-proved in Lean. The general boundary conjecture, Lorentzian angle/joint-area
-interpretation, and Poisson-expectation bridge remain open.**
+**Status: the deterministic ellipsoid and null-plane-cap continuum limits and
+the concrete ellipsoid's Lorentzian angle/surface-integral interpretation are
+proved in Lean. General graph caps, arbitrary null boundaries, induced null-joint
+geometry, and the Poisson-expectation bridge remain open.**
 
 Lean **4.19.0** and mathlib **v4.19.0** are pinned. `lake-manifest.json` pins the
 resolved dependency commits; mathlib is
@@ -21,10 +22,13 @@ open targets.
 source is also rechecked in an isolated current module so all of its public
 declarations receive a transitive axiom audit even when that source is not
 imported by the library root. Finally, the aggregate audit inventories the
-library's **192 public theorems** and public definitions. The library root imports
+library's public theorems and public definitions. The library root imports
 all kernel, ellipsoid, causal-interval, null-coordinate, Gaussian, and limit
 modules. `EllipsoidRegression.lean` checks the original ellipsoid contract and
-its endpoint examples. `NullCapRegression.lean` independently restates the
+its endpoint examples. `EllipsoidJointRegression.lean` separately checks
+regularity, the strict positive angle branch, connectedness, nonconstant weights,
+the north-pole area Jacobian, absolute integrability, and the `48π` joint integral.
+`NullCapRegression.lean` independently restates the
 unchanged null target, specializes the actual four-dimensional interval moment
 at `n = 0,1`, checks both weight endpoints, and instantiates the exact reduction
 and limit at `T = 2`, `a = 1`.
@@ -54,6 +58,9 @@ and limit at `T = 2`, `a = 1`.
 | same | `ellipsoid_graphReduction` proves the unchanged `GraphReductionGoal (ellipsoidProfile a b)` | A boundary limit by itself |
 | `BoundaryDraft/EllipsoidIntegration.lean` | Axis determinant, Euclidean superlevel volumes, and exact signed height-integration formula with absolute integrability | General coarea or Lorentzian joint geometry |
 | `BoundaryDraft/EllipsoidLimit.lean` | Bounded continuous global weight, exact fixed-half-line rescaling, and `ellipsoidLimitGoal : EllipsoidLimitGoal` | A convergence rate, arbitrary graph caps, or the Poisson bridge |
+| `BoundaryDraft/EllipsoidJoint.lean` | Smooth profile, actual Euclidean gradient, nonzero joint differential, inward/outward unit normals, strict `0 < k < 1` | Arbitrary graph profiles |
+| `BoundaryDraft/EllipsoidAngle.lean` | Explicit positive rapidity, cosh/sinh/tanh/coth identities, spacelike face tangents and joint orthogonality | Null-angle limits or general joints |
+| `BoundaryDraft/EllipsoidSurface.lean` | Global sphere parameterization, cross-product/Gram Jacobian, parametric induced surface measure, integrability and exact variable-angle integral, connected nonconstant-angle joint | General coarea or a Hausdorff-measure identification for arbitrary surfaces |
 | `BoundaryDraft/NullGeometry.lean` | Open/measurable/bounded concrete cap, causal transitivity, causal convexity, and complete future slices | Arbitrary null boundaries |
 | `BoundaryDraft/CausalInterval.lean` | Four-dimensional polar/null Jacobians and exact standard causal-interval kernel identity by finite primitives | A probability bridge or power-series assumption |
 | `BoundaryDraft/IntervalMoments.lean` | Actual four-dimensional causal-interval moment formula for every natural `n` | A separate series interchange (not used by the kernel proof) |
@@ -318,6 +325,73 @@ limit prove `ε → 0` as `ρ → ∞`; positive density holds eventually. Final
 This retains the **entire signed kernel**, including its negative tail, and
 controls the whole ellipsoid, not just a collar. No rate is asserted.
 
+## Concrete ellipsoid joint geometry and variable-angle integral
+
+This is a separate interpretation of the existing `ellipsoidLimitGoal`, not a
+new proof or modification of that deterministic target. `EllipsoidJoint` works
+in `EuclideanSpace ℝ (Fin 3)` and differentiates the **existing**
+`ellipsoidProfile` after the coordinate identification. It proves smoothness,
+
+```text
+∇h(x)ᵢ = −2 a xᵢ / bᵢ²,
+J = {x | ∑ (xᵢ/bᵢ)² = 1} = {x | h(x) = 0}.
+```
+
+The gradient and actual Fréchet differential are nonzero everywhere on `J`.
+The inward normal is `n = ∇h / ‖∇h‖`, and the outward normal is `−n`; both have
+norm one. Their directional derivatives are respectively `k` and `−k`, where
+`k = ‖∇h‖`. The original hypotheses `a > 0` and `bᵢ > 2a` prove `0 < k < 1`.
+
+`EllipsoidAngle` uses the explicit rapidity
+
+```text
+θ = log ((1+k) / sqrt(1-k²)) > 0.
+```
+
+It proves `cosh θ = 1/sqrt(1-k²)` and `sinh θ = k/sqrt(1-k²)` separately,
+then `tanh θ = k` and `coth θ = 1/k`. The face-tangent vectors `(0,n)` and
+`(−k,n)` are orthogonal to every joint tangent in `ker dh`; their Minkowski
+squares are `−1` and `−(1−k²)` in signature `(+---)`. The normalized vectors
+are unit spacelike with inner product `−cosh θ`. No geometric relation is a
+premise, and the old squared algebra lemma is not used to select a sign.
+
+`EllipsoidSurface` uses the **entire unit sphere** as parameter space. The
+map `Φ(u)ᵢ = bᵢ uᵢ` is a checked homeomorphism onto `J`, with inverse
+`uᵢ = xᵢ/bᵢ`; its ambient derivative is the diagonal linear map. For every
+oriented unit-area tangent frame `v × w = u`, the cofactor identity proves
+
+```text
+DΦ(v) × DΦ(w) = (∏ bᵢ) (uᵢ/bᵢ),
+Jac₂ Φ(u) = (∏ bᵢ) ‖(uᵢ/bᵢ)‖ > 0.
+```
+
+The Jacobian is also proved equal to the positive square root of the induced
+metric's Gram determinant. The explicit **parametric induced surface measure**
+`ellipsoidSurfaceMeasure` transports `Jac₂ Φ · volume.toSphere` through this
+global homeomorphism. Here `volume.toSphere` is mathlib's Euclidean polar surface
+measure, defined from radial sectors with checked polar disintegration; its
+mass `4π` follows from the three-ball volume, not an assumed ellipsoid-area
+formula. This representation does not assert a separate equivalence with
+Hausdorff measure on arbitrary surfaces.
+
+Continuity proves Jacobian measurability, and the homeomorphism supplies the
+exact measure transport. There are **no discarded poles, seams, or null-boundary
+replacements**: the parameterization is global and includes every joint point.
+Pointwise positive-branch cancellation gives
+
+```text
+Jac₂ Φ(u) coth θ(Φ(u)) = (∏ bᵢ) / (2a).
+```
+
+Finite spherical area proves absolute integrability before evaluation. Thus
+`integral_ellipsoid_coth` gives `∫_J coth θ dA = 2π (∏ bᵢ)/a`.
+`ellipsoid_limit_eq_joint_integral` rewrites the already-proved deterministic
+limit using this identity. Connectedness follows from the sphere homeomorphism.
+At axis endpoint `j`, the weight is `bⱼ/(2a)`, so distinct axes give distinct
+weights on that connected surface. The original `(1/4, ![1,2,3])` regression
+retains the deterministic `48π` limit and separately checks the same joint
+integral, slopes `1/2` and `1/6`, and weights `2` and `6`.
+
 ## Exact null-cap reduction and Gaussian limit
 
 The null proof starts from the unchanged `nullCapRegion`, `continuumMean`,
@@ -443,17 +517,20 @@ target or an assumed geometric reduction.
 4. **General graph caps: open.** Extend the exact reduction/coarea argument from
    ellipsoids to the admissible graph-cap class, including the non-collar
    remainder. The existing concrete family does not prove the general theorem.
-5. **Geometric interpretation: open.** Formalize `coth θ = 1 / ‖∇h‖`, identify
-   the limiting integrals with Lorentzian joint area, and handle arbitrary null
-   boundaries. The checked equality to `nullJointArea` uses its existing
-   explicit algebraic definition, not a theorem about induced joint geometry.
+5. **Concrete ellipsoid interpretation: completed; general geometry open.**
+   The strict positive angle identity and variable-angle parametric surface
+   integral are proved for ellipsoids. General graph-cap geometry, arbitrary
+   null boundaries, and induced null-joint area remain open. The checked
+   equality to `nullJointArea` still uses its existing explicit algebraic
+   definition, not a theorem about induced null-joint geometry.
 6. **Beyond the present scope.** Curved spacetime, other dimensions,
    tangential/degenerate joints, and quantitative convergence rates remain
    outside the checked claims.
 
-The two concrete deterministic milestones are complete and audited. General
-graph-cap coarea, Lorentzian joint geometry, arbitrary null boundaries, and the
-probability bridge remain separate tasks.
+The two concrete deterministic milestones and the ellipsoid geometric
+interpretation are complete and audited. General graph-cap coarea/geometry,
+arbitrary null boundaries, induced null-joint geometry, and the probability
+bridge remain separate tasks.
 
 ## Reproduce
 
@@ -482,6 +559,11 @@ lake exe cache get \
   Mathlib.Analysis.SpecialFunctions.ExpDeriv \
   Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic \
   Mathlib.Analysis.InnerProductSpace.PiL2 \
+  Mathlib.Analysis.Calculus.Gradient.Basic \
+  Mathlib.Analysis.Calculus.ContDiff.Operations \
+  Mathlib.Analysis.SpecialFunctions.Log.Basic \
+  Mathlib.Analysis.NormedSpace.Connected \
+  Mathlib.LinearAlgebra.CrossProduct \
   Mathlib.LinearAlgebra.Matrix.FiniteDimensional \
   Mathlib.LinearAlgebra.Matrix.SchurComplement \
   Mathlib.Data.Fintype.Lattice \
