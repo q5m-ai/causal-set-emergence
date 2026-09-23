@@ -30,10 +30,10 @@ For the synthesized project-level conclusions and research boundaries, see
 
 ### 2. Causal partial order
 
-- The elements are related by a partial order, conventionally written \(A\prec B\), representing that \(A\) is in the causal past of \(B\).
-- If \(A\prec B\) and \(B\prec C\), transitivity requires \(A\prec C\).
+- The elements are related by a partial order, conventionally written $`A\prec B`$, representing that $`A`$ is in the causal past of $`B`$.
+- If $`A\prec B`$ and $`B\prec C`$, transitivity requires $`A\prec C`$.
 - Not every pair must be comparable. Unrelated elements correspond, in a continuum approximation, to spacelike-separated events—outside one another's light cones.
-- “Precedes” means that causal influence is possible; it need not mean that \(A\) actually produced or directly caused \(B\).
+- “Precedes” means that causal influence is possible; it need not mean that $`A`$ actually produced or directly caused $`B`$.
 
 ### 3. Quantum dynamics / sum over histories
 
@@ -49,7 +49,7 @@ Dowker raises the possibility that the familiar description of a quantum state a
 ### Brief orientation
 
 - A **Hilbert space** is a vector space with an inner product and suitable completeness properties. The inner product allows quantum amplitudes, probabilities, and notions such as orthogonality to be defined.
-- A **state vector**, written \(|\psi\rangle\), represents the physical state of a quantum system. Strictly, vectors differing only by an overall nonzero phase represent the same pure physical state; the state is therefore a **ray** in Hilbert space.
+- A **state vector**, written $`|\psi\rangle`$, represents the physical state of a quantum system. Strictly, vectors differing only by an overall nonzero phase represent the same pure physical state; the state is therefore a **ray** in Hilbert space.
 - **Observables** are represented by operators acting on the Hilbert space. The state vector encodes the amplitudes for their possible measurement outcomes.
 - In quantum field theory, states can describe the vacuum, particle excitations, or superpositions of field configurations. A Fock space is a common Hilbert-space construction when a particle description is available.
 
@@ -121,9 +121,9 @@ Dowker's perspective appears to be that causal-set nonlocality remains compatibl
 
 ### Important refinement
 
-For a fixed pair \(x\prec y\), local finiteness says that the interval between them contains only finitely many elements. However, in an unbounded sprinkled Lorentzian spacetime of dimension greater than one, an element can have infinitely many immediate causal-set neighbors or **links**. These can lie arbitrarily far away in a chosen frame while remaining close to the light cone. This occurs because surfaces of fixed proper time are noncompact in Lorentzian geometry.
+For a fixed pair $`x\prec y`$, local finiteness says that the interval between them contains only finitely many elements. However, in an unbounded sprinkled Lorentzian spacetime of dimension greater than one, an element can have infinitely many immediate causal-set neighbors or **links**. These can lie arbitrarily far away in a chosen frame while remaining close to the light cone. This occurs because surfaces of fixed proper time are noncompact in Lorentzian geometry.
 
-A link \(x\prec y\) means there is no causal-set element \(z\) with \(x\prec z\prec y\). It is the order-theoretic analogue of a nearest-neighbor relation. Saying linked elements “can affect each other” may be intuitive, but the order relation alone specifies possible causal relation, not a complete law of physical influence; that depends on the dynamics.
+A link $`x\prec y`$ means there is no causal-set element $`z`$ with $`x\prec z\prec y`$. It is the order-theoretic analogue of a nearest-neighbor relation. Saying linked elements “can affect each other” may be intuitive, but the order relation alone specifies possible causal relation, not a complete law of physical influence; that depends on the dynamics.
 
 ### Questions to revisit
 
@@ -161,13 +161,13 @@ Questions to investigate:
 - What conditions on a growth rule preserve discrete general covariance and causal consistency?
 - Can dimension, locality, and approximately Lorentzian geometry emerge without building in a lattice or preferred frame?
 - Can the rule be quantum—assigning amplitudes or a quantum measure to histories—rather than merely deterministic or stochastic?
-- Could the BDG action studied in this repository supply weights for causal-set histories, analogous to \(e^{iS}\) in a path integral?
+- Could the BDG action studied in this repository supply weights for causal-set histories, analogous to $`e^{iS}`$ in a path integral?
 
 ## Terms to circle back to
 
 ### Manifold
 
-A manifold is a continuum of points that locally resembles ordinary coordinate space, such as \(\mathbb{R}^4\). In GR, spacetime is modeled as a four-dimensional manifold. The manifold provides the underlying set of spacetime points and the framework in which coordinates and smooth fields can be defined.
+A manifold is a continuum of points that locally resembles ordinary coordinate space, such as $`\mathbb{R}^4`$. In GR, spacetime is modeled as a four-dimensional manifold. The manifold provides the underlying set of spacetime points and the framework in which coordinates and smooth fields can be defined.
 
 ### Topology
 
@@ -181,7 +181,7 @@ Questions to revisit:
 
 ### Metric
 
-In GR, the **metric** \(g_{\mu\nu}\) is the field that supplies spacetime's geometry. It determines:
+In GR, the **metric** $`g_{\mu\nu}`$ is the field that supplies spacetime's geometry. It determines:
 
 - proper time along timelike paths;
 - spatial distance along spacelike directions;

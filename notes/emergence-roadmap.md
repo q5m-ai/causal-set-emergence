@@ -35,12 +35,12 @@ discrete observable approaches the corresponding continuum quantity.
 For the normalized expected four-dimensional BDG action, the target flat-space
 joint term is
 
-\[
+```math
 \lim_{\rho\to\infty}\mathcal A_\rho(M)
 =\int_J\coth\theta\,dA.
-\]
+```
 
-Increasing the density \(\rho\) sends the characteristic discreteness scale
+Increasing the density $`\rho`$ sends the characteristic discreteness scale
 toward zero relative to the fixed macroscopic region. The limit establishes an
 effective smooth description; it need not assert that physical spacetime is
 fundamentally infinitely divisible.
@@ -71,19 +71,19 @@ The exact checked boundary and remaining obligations are maintained in
 
 ## 3. Causal diamonds, links, and nonlocality
 
-For related events \(A\prec B\), their causal interval or diamond is
+For related events $`A\prec B`$, their causal interval or diamond is
 
-\[
+```math
 J^+(A)\cap J^-(B),
-\]
+```
 
-the possible locations of an intermediate event \(C\) with
-\(A\prec C\prec B\). The pair is a **link** exactly when this interval contains
+the possible locations of an intermediate event $`C`$ with
+$`A\prec C\prec B`$. The pair is a **link** exactly when this interval contains
 no causal-set element. If an intermediate element exists, the pair remains
 causally related but is not linked; its order relation follows transitively.
 
-Under Poisson sprinkling, an interval of spacetime volume \(V\) is empty with
-probability \(e^{-\rho V}\). A pair can consequently appear far apart in a
+Under Poisson sprinkling, an interval of spacetime volume $`V`$ is empty with
+probability $`e^{-\rho V}`$. A pair can consequently appear far apart in a
 coordinate diagram and still be linked when it lies close to the light cone and
 its Lorentzian interval volume is small.
 
@@ -118,7 +118,7 @@ another.
 Automaton discussions must distinguish:
 
 1. an **action as an update**—a legal local transition or rewrite; and
-2. a **physical action functional** \(S[C]\)—a number assigned to a complete
+2. a **physical action functional** $`S[C]`$—a number assigned to a complete
    causal set or history and used in dynamics.
 
 Three broad approaches could be investigated:
@@ -126,7 +126,7 @@ Three broad approaches could be investigated:
 ### Rule first
 
 Specify covariant legal transitions
-\(C_0\rightarrow C_1\rightarrow\cdots\), sample or enumerate their histories,
+$`C_0\rightarrow C_1\rightarrow\cdots`$, sample or enumerate their histories,
 and test whether manifold-like dimension, locality, geometry, and fields emerge.
 
 ### Action first
@@ -134,9 +134,9 @@ and test whether manifold-like dimension, locality, geometry, and fields emerge.
 Define a sum over causal sets or growth histories with amplitudes schematically
 of the form
 
-\[
+```math
 \mathcal A[C]\sim e^{iS[C]}.
-\]
+```
 
 The BDG action is a candidate object to investigate, but the mathematical
 existence, convergence, measure, and physical interpretation of such a sum are
@@ -144,7 +144,7 @@ not supplied by the current continuum-limit proof.
 
 ### Hybrid
 
-Associate each legal rewrite with an action difference \(\Delta S\), then ask
+Associate each legal rewrite with an action difference $`\Delta S`$, then ask
 whether local transition amplitudes compose into a covariant global history
 amplitude. Label independence and interference between histories are central
 obligations.

@@ -1,0 +1,22 @@
+name: GitHub Markdown
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  math-authoring:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Lint GitHub math conventions
+        run: python3 check_markdown.py
+      - name: Test the authoring guard
+        run: python3 -m unittest -v test_check_markdown
