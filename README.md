@@ -104,6 +104,12 @@ records C³ regularity near the closed positive region and a nonzero differentia
 only on its zero-level boundary; positive-height critical points remain allowed.
 The original ellipsoids instantiate it without stronger hypotheses. A quartic
 height profile also instantiates it and has a checked interior critical point.
+`GraphCollar.lean` additionally proves that the Euclidean joint is compact and
+measurable, and that some uniform positive-height band has no critical points.
+Each point of this band has an ambient C³ regular neighborhood. These are
+prerequisites only: integration charts, normalized surface measure, and coarea
+are not yet proved. The quartic regression verifies that the band stops below
+its interior critical point.
 
 Still open in the formal program:
 

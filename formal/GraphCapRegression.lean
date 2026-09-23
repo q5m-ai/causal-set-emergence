@@ -94,4 +94,21 @@ theorem quartic_not_ellipsoid (a : ℝ) (b : Fin 3 → ℝ) :
   rw [← h0, ← h1, ← h2] at hquad
   norm_num [quarticProfile, dampedEllipsoidProfile, ellipsoidProfile, Fin.sum_univ_succ] at hquad
 
+-- A noncritical boundary band exists for the quartic, but necessarily stops
+-- below its positive-height critical point. Thus this is not a hidden global
+-- nonvanishing assumption.
+theorem quartic_noncritical_band : ∃ δ : ℝ, 0 < δ ∧ δ < 3 / 16 ∧
+    ∀ x ∈ graphClosedPositive quarticProfile, quarticProfile x ≤ δ →
+      fderiv ℝ (fun y : JointSpace => quarticProfile y) x ≠ 0 := by
+  obtain ⟨δ, hδ, hband⟩ := quartic_admissible.exists_noncritical_band
+  refine ⟨δ, hδ, ?_, hband⟩
+  by_contra hn
+  have hx : (0 : JointSpace) ∈ graphClosedPositive quarticProfile := by
+    apply subset_closure
+    change 0 < quarticProfile 0
+    rw [quartic_positive_critical.1]
+    norm_num
+  exact hband 0 hx (by simpa [quartic_positive_critical.1] using le_of_not_gt hn)
+    quartic_positive_critical.2
+
 end GraphCapRegression

@@ -23,6 +23,9 @@ null-set replacement, full coordinate Jacobians, exact logarithmic weight (9),
 absolute integrability, and normalized Gaussian concentration. The **concrete
 ellipsoid geometric interpretation** is now also checked: regular joint,
 positive-branch Lorentzian angle, and exact variable-angle surface integral.
+For general graph caps, compactness/measurability of the Euclidean joint,
+a uniform noncritical boundary band, and ambient C³ regular neighborhoods
+are checked. This does not yet supply integration charts or coarea.
 The general graph-cap regular-collar/coarea limit and variable-angle integral,
 arbitrary null boundaries, induced null-joint geometry, and Poisson-expectation
 bridge remain open.
@@ -561,6 +564,17 @@ For every graph cap (10) satisfying the stated hypotheses,
 
 Constants in the error estimate may depend on the fixed region. The estimate
 is not asserted uniformly as the joint becomes tangent, $`|\nabla h|\to0`$.
+The displayed rate and the general limit remain **draft-level**, not Lean
+results. `GraphCollar.lean` currently checks only the compact-joint and
+uniformly noncritical-band prerequisites, with ambient regular neighborhoods.
+
+For the future surface-measure formalization, level sets here are understood
+inside the closed positive region, excluding unrelated exterior zeros. In
+Euclidean coordinates the normalized area convention is
+`(π/4) · μH[2]`, since pinned mathlib uses unnormalized squared diameters.
+Identification with parametric area, including the existing ellipsoid measure,
+and the coarea/height-density formula below still require proofs. The
+coordinate sup-norm Hausdorff measure is not a substitute for Euclidean area.
 
 **Proof.** By regularity and compactness of the joint there is a collar
 $`0\le h\le\delta`$ with no critical points. Coarea gives a $`C^1`$

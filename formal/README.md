@@ -29,7 +29,11 @@ all kernel, general graph-cap, ellipsoid, causal-interval, null-coordinate,
 Gaussian, and limit modules. `GraphCapRegression.lean` independently restates
 the general finite-density equality, checks complete slices with null points
 and the vertex, and verifies ellipsoid compatibility and a nonquadratic
-admissible profile with a positive-height critical point.
+admissible profile with a positive-height critical point. It also checks that the uniform
+noncritical band stops below that critical height. `GraphCollarRegression.lean`
+independently checks the band contract, compact joint, local regular
+neighborhoods, exclusion of unrelated exterior zeros, and original unequal-axis
+ellipsoid hypotheses.
 `EllipsoidRegression.lean` checks the original ellipsoid contract and
 its endpoint examples. `EllipsoidJointRegression.lean` separately checks
 regularity, the strict positive angle branch, connectedness, nonconstant weights,
@@ -58,6 +62,7 @@ and limit at `T = 2`, `a = 1`.
 | `BoundaryDraft/KernelHalfLine.lean` | Large-argument limits; absolute integrability and first moment; mass one; `KernelMassGoal`; signed first moment zero | The four-dimensional action reduction |
 | same | Concrete positive-half-line signed-rescaling limit | Coarea or either main boundary-limit theorem |
 | `BoundaryDraft/GraphGeometry.lean` | Separate reduction/collar APIs, positive-part continuity, open/measurable/bounded cap, compact positive-part support, complete future slices and causal convexity | Regular-collar construction, coarea or a boundary limit |
+| `BoundaryDraft/GraphCollar.lean` | Compact/measurable Euclidean joint, uniform noncritical boundary band, ambient C³ regular neighborhoods | Integration charts, normalized surface measure, coarea or a boundary limit |
 | `BoundaryDraft/EllipsoidGeometry.lean` | Positive ellipsoid, measurability, boundedness, compact positive-part support, strict Euclidean Lipschitz estimate; instantiation of the general geometry | Sublevel volumes or coarea |
 | `BoundaryDraft/GraphExamples.lean` | Full ellipsoid admissibility under the original hypotheses; quartic damped-ellipsoid admissibility and exact reduction | A new limit or joint integral |
 | `BoundaryDraft/ConeIntegral.lean` | Exact radial action-density identity by a zero-endpoint primitive; finite-fibre FTC | A boundary limit |
@@ -267,6 +272,26 @@ continuumMean ρ (graphCapRegion h) = ∫ x in {x | 0 < h x}, planeKernel ρ (h 
 This is deterministic and finite-density only: the general regular-collar/coarea
 limit, variable-angle surface integral, arbitrary null boundaries, and the
 Poisson-expectation bridge are not proved here.
+
+### Compact joint and noncritical band (partial work toward #19)
+
+`GraphCollar.lean` defines `graphJoint h` as the zero level in the Euclidean
+closed positive region. It proves equality with the Euclidean frontier and
+compactness/measurability, transferring compactness through the coordinate
+homeomorphism without identifying the Euclidean norm with the coordinate sup
+norm. Local C³ regularity makes the actual differential continuous on that
+compact region. Its critical set is compact and has strictly positive height;
+the extreme value theorem therefore gives `δ > 0` such that `dh ≠ 0` wherever
+`h ≤ δ` in the closed positive region. The empty critical set is allowed.
+Ambient open C³ neighborhoods with nonvanishing differential are also proved.
+
+This does **not** construct integration charts or prove a coarea formula.
+Issue #19 and milestone 5 remain incomplete. In particular, the pinned
+mathlib's `μH[2]` is defined using unnormalized squared diameters. A future
+Euclidean surface measure must account for the `π/4` normalization and prove
+its relation to the existing ellipsoid parametric measure; that identification
+is not checked here. No surface measure or coarea identity is introduced as
+an assumption, and none of the original action or limit definitions changes.
 
 ### Ellipsoid compatibility and a nonquadratic example
 
@@ -593,8 +618,10 @@ target or an assumed geometric reduction.
 4. **General graph caps: exact reduction completed; limit open.** The admissible
    API, complete slices, causal convexity, compact domination, and exact
    four-dimensional action reduction are checked, with ellipsoid and quartic
-   instances. The regular-collar construction/coarea identity and the non-collar
-   remainder argument are still needed for the general limit.
+   instances. Compact joints, a uniform noncritical boundary band, and local
+   ambient regular neighborhoods are now checked. Integration charts, normalized
+   surface measure/coarea, and the non-collar remainder argument are still
+   needed for the general limit.
 5. **Concrete ellipsoid interpretation: completed; general geometry open.**
    The strict positive angle identity and variable-angle parametric surface
    integral are proved for ellipsoids. The general graph-cap variable-angle

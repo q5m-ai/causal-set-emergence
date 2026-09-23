@@ -7,6 +7,7 @@ import BoundaryDraft.GaussianCancellation
 import BoundaryDraft.KernelEstimates
 import BoundaryDraft.KernelHalfLine
 import BoundaryDraft.GraphGeometry
+import BoundaryDraft.GraphCollar
 import BoundaryDraft.EllipsoidGeometry
 import BoundaryDraft.ConeIntegral
 import BoundaryDraft.SpacetimeIntegration
