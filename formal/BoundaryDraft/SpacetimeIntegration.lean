@@ -5,7 +5,7 @@ import Mathlib.MeasureTheory.Constructions.HaarToSphere
 import Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls
 
 /-!
-# Exact four-dimensional ellipsoid graph-cap reduction
+# Exact four-dimensional graph-cap reduction
 
 The original coordinate-product Lebesgue integral is decomposed using a
 measure-preserving equivalence. Compact boxes dominate both the cap and the
@@ -93,34 +93,85 @@ theorem integrableOn_ellipsoid_cap (a : ℝ) (b : Fin 3 → ℝ) (ha : 0 < a)
     IntegrableOn f (graphCapRegion (ellipsoidProfile a b)) :=
   hf.integrableOn_Icc.mono_set (graphCap_subset_box a b ha hb)
 
-/-- The exact vertical-fibre formula, before specializing the action density. -/
-theorem integral_ellipsoid_depth (a : ℝ) (b : Fin 3 → ℝ) (ha : 0 < a)
-    (hb : ∀ i, 0 < b i) (f : ℝ → ℝ) (hf : Continuous f) :
-    (∫ p in graphCapRegion (ellipsoidProfile a b), f (-p 0)) =
-      ∫ x in {x | 0 < ellipsoidProfile a b x},
-        ∫ t in (0 : ℝ)..ellipsoidProfile a b x, f t := by
-  let h := ellipsoidProfile a b
-  have hm := measurableSet_graphCap h (continuous_ellipsoidProfile a b)
-  have hi : IntegrableOn (fun p : Spacetime => f (-p 0)) (graphCapRegion h) :=
-    integrableOn_ellipsoid_cap a b ha hb _ (hf.comp ((continuous_apply 0).neg))
+/-- Compact domination for every reduction-admissible cap. -/
+theorem integrableOn_graphCap (h : Spatial → ℝ) (hh : GraphCapData h)
+    (f : Spacetime → ℝ) (hf : Continuous f) : IntegrableOn f (graphCapRegion h) := by
+  obtain ⟨R, hR⟩ := hh.cap_subset_box
+  exact hf.integrableOn_Icc.mono_set hR
+
+/-- Spatial absolute integrability uses the continuous positive part, so no
+regularity of the raw profile outside its positive region is needed. -/
+theorem integrableOn_graphCap_profile (h : Spatial → ℝ) (hh : GraphCapData h)
+    (f : ℝ → ℝ) (hf : Continuous f) : IntegrableOn (fun x => f (h x)) {x | 0 < h x} := by
+  have hi : IntegrableOn (fun x => f (max 0 (h x))) {x | 0 < h x} :=
+    ((hf.comp hh.continuous_positivePart).continuousOn.integrableOn_compact
+      hh.bounded_positive.isCompact_closure).mono_set subset_closure
+  apply hi.congr_fun _ hh.measurableSet_positive
+  intro x hx
+  dsimp only
+  rw [max_eq_right (le_of_lt hx)]
+
+/-- Absolute integrability of the actual bilocal kernel, including causal
+restriction, follows from a compact product box before any integration. -/
+theorem integrableOn_graphCap_bdg (h : Spatial → ℝ) (hh : GraphCapData h) (ρ : ℝ) :
+    IntegrableOn (fun p : Spacetime × Spacetime =>
+      bdgKernel ((Real.pi / 24) * ρ * intervalSq p.1 p.2 ^ 2))
+      ((graphCapRegion h ×ˢ graphCapRegion h) ∩ {p | p.2 ∈ causalFuture p.1}) := by
+  obtain ⟨R, hR⟩ := hh.cap_subset_box
+  have hc : Continuous (fun p : Spacetime × Spacetime =>
+      bdgKernel ((Real.pi / 24) * ρ * intervalSq p.1 p.2 ^ 2)) := by
+    unfold bdgKernel bdgPolynomial intervalSq spatialSeparationSq
+    fun_prop
+  apply (hc.continuousOn.integrableOn_compact
+    ((isCompact_Icc : IsCompact (Icc (fun _ : Fin 4 => -R) (fun _ => R))).prod
+      (isCompact_Icc : IsCompact (Icc (fun _ : Fin 4 => -R) (fun _ => R))))).mono_set
+  intro p hp
+  exact ⟨hR hp.1.1, hR hp.1.2⟩
+
+/-- Profile-independent vertical Fubini, including null endpoint replacements.
+Only measurability and absolute integrability are needed at this step. -/
+theorem integral_graphCap_depth_of_integrable (h : Spatial → ℝ)
+    (hm : MeasurableSet (graphCapRegion h)) (hpos : MeasurableSet {x | 0 < h x})
+    (f : ℝ → ℝ) (hi : IntegrableOn (fun p : Spacetime => f (-p 0)) (graphCapRegion h)) :
+    (∫ p in graphCapRegion h, f (-p 0)) =
+      ∫ x in {x | 0 < h x}, ∫ t in (0 : ℝ)..h x, f t := by
   rw [← integral_indicator hm, integral_spacetime_fibres _ ((integrable_indicator_iff hm).mpr hi),
-    ← integral_indicator (measurableSet_ellipsoid_positive a b)]
+    ← integral_indicator hpos]
   apply integral_congr_ae
   exact Filter.Eventually.of_forall fun x => by
     have he (t : ℝ) : (graphCapRegion h).indicator (fun p : Spacetime => f (-p 0)) (Fin.cons t x) =
         (Ioo (-h x) 0).indicator (fun t => f (-t)) t := by
-      simp [Set.indicator, graphCapRegion, h]
+      simp [Set.indicator, graphCapRegion]
     simp_rw [he]
     rw [integral_indicator measurableSet_Ioo]
     by_cases hx : 0 < h x
-    · rw [Set.indicator_of_mem (show x ∈ {x | 0 < ellipsoidProfile a b x} from hx),
+    · rw [Set.indicator_of_mem (show x ∈ {x | 0 < h x} from hx),
         ← integral_Ioc_eq_integral_Ioo,
         ← intervalIntegral.integral_of_le (by linarith : -h x ≤ 0)]
-      simpa only [neg_zero, neg_neg, h] using
+      simpa only [neg_zero, neg_neg] using
         (intervalIntegral.integral_comp_neg (a := -h x) (b := 0) f)
-    · rw [Set.indicator_of_not_mem (show x ∉ {x | 0 < ellipsoidProfile a b x} from hx)]
+    · rw [Set.indicator_of_not_mem (show x ∉ {x | 0 < h x} from hx)]
       have hempty : Ioo (-h x) 0 = ∅ := Ioo_eq_empty_of_le (by linarith)
       rw [hempty, setIntegral_empty]
+
+/-- Exact vertical integration on every cap in the general reduction class. -/
+theorem integral_graphCap_depth (h : Spatial → ℝ) (hh : GraphCapData h)
+    (f : ℝ → ℝ) (hf : Continuous f) :
+    (∫ p in graphCapRegion h, f (-p 0)) =
+      ∫ x in {x | 0 < h x}, ∫ t in (0 : ℝ)..h x, f t :=
+  integral_graphCap_depth_of_integrable h hh.measurableSet_cap hh.measurableSet_positive f
+    (integrableOn_graphCap h hh _ (hf.comp ((continuous_apply 0).neg)))
+
+/-- The original ellipsoid fibre formula keeps its weaker positive-axis hypotheses. -/
+theorem integral_ellipsoid_depth (a : ℝ) (b : Fin 3 → ℝ) (ha : 0 < a)
+    (hb : ∀ i, 0 < b i) (f : ℝ → ℝ) (hf : Continuous f) :
+    (∫ p in graphCapRegion (ellipsoidProfile a b), f (-p 0)) =
+      ∫ x in {x | 0 < ellipsoidProfile a b x},
+        ∫ t in (0 : ℝ)..ellipsoidProfile a b x, f t :=
+  integral_graphCap_depth_of_integrable _
+    (measurableSet_graphCap _ (continuous_ellipsoidProfile a b))
+    (measurableSet_ellipsoid_positive a b) f
+    (integrableOn_ellipsoid_cap a b ha hb _ (hf.comp ((continuous_apply 0).neg)))
 
 private def euclideanEquiv : EuclideanSpace ℝ (Fin 3) ≃ᵐ Spatial :=
   { WithLp.equiv 2 _ with
@@ -259,14 +310,23 @@ theorem planeAuxiliaryThird_eq_coneIntegral (ρ H : ℝ) (hH : 0 ≤ H) :
     planeAuxiliaryThird ρ H / (8 * Real.pi) = 1 - ρ * coneIntegral ρ H := by
   rw [coneIntegral_eq_radial ρ H hH, planeAuxiliaryThird_eq_coneRadialIntegral]
 
+/-- Every individual future-point kernel integral is absolutely integrable. -/
+theorem integrableOn_graphCap_future_bdg (h : Spatial → ℝ) (hh : GraphCapData h)
+    (ρ : ℝ) (x : Spacetime) :
+    IntegrableOn (fun y => bdgKernel ((Real.pi / 24) * ρ * intervalSq x y ^ 2))
+      (graphCapRegion h ∩ causalFuture x) := by
+  apply (integrableOn_graphCap h hh _ ?_).mono_set inter_subset_left
+  unfold bdgKernel bdgPolynomial
+  have := continuous_intervalSq x
+  fun_prop
+
 /-- Translation of the complete future slice to the cone at the origin.
 This starts from the concrete kernel and the actual cap/causal intersection. -/
-theorem ellipsoid_future_integral (a : ℝ) (b : Fin 3 → ℝ)
-    (ha : 0 < a) (hb : ∀ i, 2 * a < b i) (ρ : ℝ)
-    (x : Spacetime) (hx : x ∈ graphCapRegion (ellipsoidProfile a b)) :
-    (∫ y in graphCapRegion (ellipsoidProfile a b) ∩ causalFuture x,
+theorem graphCap_future_integral (h : Spatial → ℝ) (hh : GraphCapData h) (ρ : ℝ)
+    (x : Spacetime) (hx : x ∈ graphCapRegion h) :
+    (∫ y in graphCapRegion h ∩ causalFuture x,
       bdgKernel ((Real.pi / 24) * ρ * intervalSq x y ^ 2)) = coneIntegral ρ (-x 0) := by
-  rw [ellipsoid_complete_future a b ha hb x hx]
+  rw [graphCap_complete_future h hh x hx]
   have hm : MeasurableSet {y | y ∈ causalFuture x ∧ y 0 < 0} :=
     (measurableSet_causalFuture x).inter
       ((isOpen_lt (continuous_apply 0) continuous_const).measurableSet)
@@ -278,19 +338,25 @@ theorem ellipsoid_future_integral (a : ℝ) (b : Fin 3 → ℝ)
     simp [Set.indicator, truncatedFutureCone, causalFuture, intervalSq,
       spatialSeparationSq, ht]
 
-/-- The exact graph-cap reduction for every allowed ellipsoid and every
-positive density. Neither the reduction nor the action density is a premise. -/
-theorem ellipsoid_graphReduction (a : ℝ) (b : Fin 3 → ℝ)
-    (ha : 0 < a) (hb : ∀ i, 2 * a < b i) :
-    GraphReductionGoal (ellipsoidProfile a b) := by
+/-- The original ellipsoid translation theorem is a specialization. -/
+theorem ellipsoid_future_integral (a : ℝ) (b : Fin 3 → ℝ)
+    (ha : 0 < a) (hb : ∀ i, 2 * a < b i) (ρ : ℝ)
+    (x : Spacetime) (hx : x ∈ graphCapRegion (ellipsoidProfile a b)) :
+    (∫ y in graphCapRegion (ellipsoidProfile a b) ∩ causalFuture x,
+      bdgKernel ((Real.pi / 24) * ρ * intervalSq x y ^ 2)) = coneIntegral ρ (-x 0) :=
+  graphCap_future_integral _ (ellipsoid_graphCapData a b ha hb) ρ x hx
+
+/-- Exact deterministic reduction from the unchanged four-dimensional action.
+No regular-level, coarea, limit, or reduction premise is used. -/
+theorem graphCap_graphReduction (h : Spatial → ℝ) (hh : GraphCapData h) :
+    GraphReductionGoal h := by
   intro ρ _hρ
-  have hb0 : ∀ i, 0 < b i := fun i => lt_trans (by linarith) (hb i)
-  let M := graphCapRegion (ellipsoidProfile a b)
-  have hm : MeasurableSet M := measurableSet_graphCap _ (continuous_ellipsoidProfile a b)
+  let M := graphCapRegion h
+  have hm : MeasurableSet M := hh.measurableSet_cap
   have hi1 : IntegrableOn (fun _ : Spacetime => (1 : ℝ)) M :=
-    integrableOn_ellipsoid_cap a b ha hb0 _ continuous_const
+    integrableOn_graphCap h hh _ continuous_const
   have hiQ : IntegrableOn (fun x : Spacetime => coneRadialIntegral ρ (-x 0)) M :=
-    integrableOn_ellipsoid_cap a b ha hb0 _
+    integrableOn_graphCap h hh _
       ((continuous_coneRadialIntegral ρ).comp ((continuous_apply 0).neg))
   have hinner : (∫ x in M, ∫ y in M ∩ causalFuture x,
       bdgKernel ((Real.pi / 24) * ρ * intervalSq x y ^ 2)) =
@@ -298,7 +364,7 @@ theorem ellipsoid_graphReduction (a : ℝ) (b : Fin 3 → ℝ)
     apply setIntegral_congr_fun hm
     intro x hx
     dsimp only [M] at hx ⊢
-    rw [ellipsoid_future_integral a b ha hb ρ x hx,
+    rw [graphCap_future_integral h hh ρ x hx,
       coneIntegral_eq_radial ρ (-x 0) (neg_nonneg.mpr hx.2.le)]
   have hc : Continuous (fun t => (4 / Real.sqrt 6) * Real.sqrt ρ *
       (1 - ρ * coneRadialIntegral ρ t)) :=
@@ -309,9 +375,19 @@ theorem ellipsoid_graphReduction (a : ℝ) (b : Fin 3 → ℝ)
       bdgKernel ((Real.pi / 24) * ρ * intervalSq x y ^ 2)) = _
   rw [hinner, ← integral_const_mul, ← integral_sub hi1 (hiQ.const_mul ρ),
     ← integral_const_mul]
-  rw [integral_ellipsoid_depth a b ha hb0 _ hc]
-  apply setIntegral_congr_fun (measurableSet_ellipsoid_positive a b)
+  rw [integral_graphCap_depth h hh _ hc]
+  apply setIntegral_congr_fun hh.measurableSet_positive
   intro x _
-  exact integral_radial_actionDensity ρ (ellipsoidProfile a b x)
+  exact integral_radial_actionDensity ρ (h x)
+
+/-- Every admissible C³ graph cap has the exact finite-density reduction. -/
+theorem AdmissibleGraphCap.graphReduction {h : Spatial → ℝ} (hh : AdmissibleGraphCap h) :
+    GraphReductionGoal h := graphCap_graphReduction h hh.toGraphCapData
+
+/-- The original concrete theorem, with its original hypotheses and conclusion. -/
+theorem ellipsoid_graphReduction (a : ℝ) (b : Fin 3 → ℝ)
+    (ha : 0 < a) (hb : ∀ i, 2 * a < b i) :
+    GraphReductionGoal (ellipsoidProfile a b) :=
+  graphCap_graphReduction _ (ellipsoid_graphCapData a b ha hb)
 
 end BoundaryDraft

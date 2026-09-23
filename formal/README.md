@@ -2,8 +2,10 @@
 
 **Status: the deterministic ellipsoid and null-plane-cap continuum limits and
 the concrete ellipsoid's Lorentzian angle/surface-integral interpretation are
-proved in Lean. General graph caps, arbitrary null boundaries, induced null-joint
-geometry, and the Poisson-expectation bridge remain open.**
+proved in Lean. The exact finite-density reduction is also proved for the
+general admissible graph-cap class. Its regular-collar/coarea limit and general
+variable-angle integral, arbitrary null boundaries, induced null-joint geometry,
+and the Poisson-expectation bridge remain open.**
 
 Lean **4.19.0** and mathlib **v4.19.0** are pinned. `lake-manifest.json` pins the
 resolved dependency commits; mathlib is
@@ -23,8 +25,12 @@ source is also rechecked in an isolated current module so all of its public
 declarations receive a transitive axiom audit even when that source is not
 imported by the library root. Finally, the aggregate audit inventories the
 library's public theorems and public definitions. The library root imports
-all kernel, ellipsoid, causal-interval, null-coordinate, Gaussian, and limit
-modules. `EllipsoidRegression.lean` checks the original ellipsoid contract and
+all kernel, general graph-cap, ellipsoid, causal-interval, null-coordinate,
+Gaussian, and limit modules. `GraphCapRegression.lean` independently restates
+the general finite-density equality, checks complete slices with null points
+and the vertex, and verifies ellipsoid compatibility and a nonquadratic
+admissible profile with a positive-height critical point.
+`EllipsoidRegression.lean` checks the original ellipsoid contract and
 its endpoint examples. `EllipsoidJointRegression.lean` separately checks
 regularity, the strict positive angle branch, connectedness, nonconstant weights,
 the north-pole area Jacobian, absolute integrability, and the `48π` joint integral.
@@ -51,11 +57,12 @@ and limit at `T = 2`, `a = 1`.
 | `BoundaryDraft/KernelEstimates.lean` | Explicit absolute `O(u⁻³)` kernel bound; `KernelTailGoal`; vanishing-moment boundary estimate | Graph-cap geometry or its non-collar reduction |
 | `BoundaryDraft/KernelHalfLine.lean` | Large-argument limits; absolute integrability and first moment; mass one; `KernelMassGoal`; signed first moment zero | The four-dimensional action reduction |
 | same | Concrete positive-half-line signed-rescaling limit | Coarea or either main boundary-limit theorem |
-| `BoundaryDraft/EllipsoidGeometry.lean` | Positive ellipsoid, measurability, boundedness, compact positive-part support, strict Euclidean Lipschitz estimate | Sublevel volumes or coarea |
-| same | Complete future-cone slices and causal convexity under the original axis hypotheses | Arbitrary graph profiles |
+| `BoundaryDraft/GraphGeometry.lean` | Separate reduction/collar APIs, positive-part continuity, open/measurable/bounded cap, compact positive-part support, complete future slices and causal convexity | Regular-collar construction, coarea or a boundary limit |
+| `BoundaryDraft/EllipsoidGeometry.lean` | Positive ellipsoid, measurability, boundedness, compact positive-part support, strict Euclidean Lipschitz estimate; instantiation of the general geometry | Sublevel volumes or coarea |
+| `BoundaryDraft/GraphExamples.lean` | Full ellipsoid admissibility under the original hypotheses; quartic damped-ellipsoid admissibility and exact reduction | A new limit or joint integral |
 | `BoundaryDraft/ConeIntegral.lean` | Exact radial action-density identity by a zero-endpoint primitive; finite-fibre FTC | A boundary limit |
 | `BoundaryDraft/SpacetimeIntegration.lean` | Product-measure coordinate decomposition, Fubini, spatial polar integration, and translation of actual BDG integrals | The Poisson-expectation bridge |
-| same | `ellipsoid_graphReduction` proves the unchanged `GraphReductionGoal (ellipsoidProfile a b)` | A boundary limit by itself |
+| same | `graphCap_graphReduction` and `AdmissibleGraphCap.graphReduction` prove the unchanged `GraphReductionGoal h`; `ellipsoid_graphReduction` remains its original concrete specialization | A boundary limit by itself |
 | `BoundaryDraft/EllipsoidIntegration.lean` | Axis determinant, Euclidean superlevel volumes, and exact signed height-integration formula with absolute integrability | General coarea or Lorentzian joint geometry |
 | `BoundaryDraft/EllipsoidLimit.lean` | Bounded continuous global weight, exact fixed-half-line rescaling, and `ellipsoidLimitGoal : EllipsoidLimitGoal` | A convergence rate, arbitrary graph caps, or the Poisson bridge |
 | `BoundaryDraft/EllipsoidJoint.lean` | Smooth profile, actual Euclidean gradient, nonzero joint differential, inward/outward unit normals, strict `0 < k < 1` | Arbitrary graph profiles |
@@ -82,8 +89,9 @@ notation it proves
 assuming `G` is integrable and `B` is globally bounded and continuous. There is
 no assumption that `G ≥ 0`. The measure `μ` may be Lebesgue measure restricted
 to the positive half-line. A bounded continuous extension of the collar
-profile fits this theorem; the interior remainder of a general graph cap
-still needs its geometric reduction and use of the tail estimate. The theorem
+profile fits this theorem; for general graph caps the exact geometric reduction
+is now checked, but the regular-collar construction, coarea identity, and
+non-collar remainder argument using the tail estimate remain to be formalized. The theorem
 `planeKernel_rescaling_limit` now instantiates this lemma with the concrete
 BDG kernel and Lebesgue measure restricted to `Ioi 0`, using the proved
 absolute integrability and mass one, not additional kernel hypotheses.
@@ -205,9 +213,66 @@ No additional hypotheses on the concrete kernel are introduced. The sharper
 coefficient \(G(u)\sim-2\sqrt6/(\pi u^3)\), and the derivative remainders
 through order three in the draft, are **not** claimed as Lean results.
 
-## Exact ellipsoid action reduction
+## Exact general graph-cap action reduction
 
-The checked theorem is:
+The focused API in `GraphGeometry.lean` has three predicates:
+
+- `GraphCapData h`: bounded `Ω = {x | 0 < h x}` and global Euclidean
+  `κ`-Lipschitz control of `max 0 ∘ h` for some `0 ≤ κ < 1`.
+- `GraphCapRegularity h`: C³ locally at every point of the closed positive
+  region in Euclidean coordinates; `h = 0` on its boundary; and a nonzero
+  actual Fréchet differential at zero-height points in that closure.
+- `AdmissibleGraphCap h`: both. No differential condition is imposed at
+  positive height. Exterior zeros unrelated to the cap are immaterial.
+  `AdmissibleGraphCap.frontier_eq` identifies the boundary with the zero
+  level **in the closure of Ω**. Positivity on Ω holds by its definition.
+
+These are geometric/regularity assumptions, not premises encoding a reduction,
+limit, coarea identity, or joint integral. The C³-at-closure formulation specifies
+an ambient local extension, as needed for a future regular collar, not smoothness
+of the positive-part extension across the joint. The exact reduction needs only
+`GraphCapData`; it does not use any collar fields or require raw-profile
+continuity outside Ω.
+
+```lean
+theorem graphCap_graphReduction (h : Spatial → ℝ) (hh : GraphCapData h) :
+    GraphReductionGoal h
+
+theorem AdmissibleGraphCap.graphReduction {h : Spatial → ℝ}
+    (hh : AdmissibleGraphCap h) : GraphReductionGoal h
+```
+
+Euclidean positive-part control proves continuity in the original coordinate
+topology. Hence Ω, the positive-part epigraph, and the cap are open and
+measurable. Bounded Ω gives compact positive-part support; continuity on its
+closure bounds height and gives a compact spacetime box. The epigraph is a
+future set by the squared causal inequality, and `graphCap_complete_future`
+retains the entire truncated cone, **including the vertex and null points**.
+`graphCap_causallyConvex` follows from this exact set equality.
+
+`SpacetimeIntegration` reuses the existing coordinate/Euclidean measure
+transformations and concrete cone identity. It proves absolute integrability
+of the actual kernel on causal pairs in a compact product box, of each
+future-point kernel, and of every continuous function of height on Ω.
+`integral_graphCap_depth_of_integrable` supplies profile-independent vertical
+Fubini with the Lebesgue-null endpoint replacements and `t ↦ -t` substitution;
+`integral_graphCap_depth` supplies its compact domination. Translation then
+identifies the actual inner integral with `coneIntegral`, and the existing
+finite-fibre FTC yields the unchanged `planeKernel`. Thus, at every `ρ > 0`,
+
+```text
+continuumMean ρ (graphCapRegion h) = ∫ x in {x | 0 < h x}, planeKernel ρ (h x).
+```
+
+This is deterministic and finite-density only: the general regular-collar/coarea
+limit, variable-angle surface integral, arbitrary null boundaries, and the
+Poisson-expectation bridge are not proved here.
+
+### Ellipsoid compatibility and a nonquadratic example
+
+`ellipsoid_admissible` uses the already-proved smoothness and nonzero joint
+differential from `EllipsoidJoint`. It adds no axis hypotheses. The original
+concrete reduction remains available with its unchanged statement:
 
 ```lean
 theorem ellipsoid_graphReduction (a : ℝ) (b : Fin 3 → ℝ)
@@ -257,14 +322,24 @@ or reduction premise is introduced.
    proves `Fρ'''(H)/(8π) = 1 - ρ*Qρ(H)` for every finite `H ≥ 0`.
 4. **Original action.** Translation invariance and the complete-future theorem
    identify the inner integral in `continuumMean`. The exact spatial/vertical
-   decomposition is `integral_ellipsoid_depth`. Finally the FTC and
-   `Fρ''(0) = 0` give the existing `planeKernel ρ (h x)` along each fibre.
+   decomposition is now the general `integral_graphCap_depth`; the old
+   `integral_ellipsoid_depth` keeps its weaker positive-axis hypotheses via the
+   shared integrable-fibre lemma. Finally the FTC and `Fρ''(0) = 0` give the
+   existing `planeKernel ρ (h x)` along each fibre.
 
 No strengthened geometric hypotheses were needed. This exact reduction is
 reused, rather than assumed or redefined, in the ellipsoid-limit proof below.
-The general admissible graph-cap theorem is not claimed; the distinct concrete
-null-cap reduction is proved separately below rather than forced through this
-ellipsoid infrastructure.
+The distinct concrete null-cap reduction is proved separately rather than
+forced through the graph-cap infrastructure.
+
+`GraphExamples` also admits `dampedEllipsoidProfile a b = e - e²`, where
+`e = ellipsoidProfile a b`, under the original axes and `a ≤ 1/2`. It has the
+same positive region, remains strictly Lipschitz after positive-part extension,
+and has the original differential at height zero. The regression with
+`a = 1/4`, `bᵢ = 1` proves admissibility, exact reduction, value `3/16` and
+zero differential at the origin, and inequality with **every** quadratic
+`ellipsoidProfile a b`. Thus interior critical points are genuinely admitted,
+and the general result is exercised on a non-ellipsoidal graph profile.
 
 ## Explicit ellipsoid integration and continuum limit
 
@@ -455,8 +530,8 @@ prefactor, the `ρ^{-1/2}` change of scale, finite-support domination, and
 concentration at zero. Consequently `nullCapLimitGoal : NullCapLimitGoal`
 proves the unchanged target with limit `4W(0)=πa(2T-a)`. This is deterministic:
 it does not establish the Poisson-expectation bridge, variance, convergence in
-probability, a general graph cap, arbitrary null boundaries, or the Lorentzian
-angle/joint interpretation. No quantitative rate is claimed.
+probability, a general graph-cap limit, arbitrary null boundaries, or the
+Lorentzian angle/joint interpretation. No quantitative rate is claimed.
 
 ## The actual main targets, not weakened substitutes
 
@@ -490,8 +565,9 @@ def EllipsoidLimitGoal : Prop :=
 
 These `Goal` declarations are **definitions of propositions, not themselves
 proofs**. The unchanged goals now have proof terms `ellipsoidLimitGoal` and
-`nullCapLimitGoal`. `GraphReductionGoal` has a proof for the concrete ellipsoid
-family, `ellipsoid_graphReduction`, but not for arbitrary profiles. The original
+`nullCapLimitGoal`. `GraphReductionGoal h` now has a proof for every member
+of `GraphCapData h` (hence every `AdmissibleGraphCap h`), not for unrestricted
+profiles. `ellipsoid_graphReduction` remains the concrete specialization. The original
 `KernelMassGoal` and `KernelTailGoal` also have proof terms, `kernelMassGoal` and
 `kernelTailGoal`. All are audited transitively with the rest of the library.
 
@@ -514,13 +590,15 @@ target or an assumed geometric reduction.
    `KernelTailGoal`, the required limits, and the signed graph-cap rescaling
    theorem are proved. The sharper differentiable asymptotic expansion remains
    draft-level and is not needed by either checked limit.
-4. **General graph caps: open.** Extend the exact reduction/coarea argument from
-   ellipsoids to the admissible graph-cap class, including the non-collar
-   remainder. The existing concrete family does not prove the general theorem.
+4. **General graph caps: exact reduction completed; limit open.** The admissible
+   API, complete slices, causal convexity, compact domination, and exact
+   four-dimensional action reduction are checked, with ellipsoid and quartic
+   instances. The regular-collar construction/coarea identity and the non-collar
+   remainder argument are still needed for the general limit.
 5. **Concrete ellipsoid interpretation: completed; general geometry open.**
    The strict positive angle identity and variable-angle parametric surface
-   integral are proved for ellipsoids. General graph-cap geometry, arbitrary
-   null boundaries, and induced null-joint area remain open. The checked
+   integral are proved for ellipsoids. The general graph-cap variable-angle
+   integral, arbitrary null boundaries, and induced null-joint area remain open. The checked
    equality to `nullJointArea` still uses its existing explicit algebraic
    definition, not a theorem about induced null-joint geometry.
 6. **Beyond the present scope.** Curved spacetime, other dimensions,
@@ -528,8 +606,9 @@ target or an assumed geometric reduction.
    outside the checked claims.
 
 The two concrete deterministic milestones and the ellipsoid geometric
-interpretation are complete and audited. General graph-cap coarea/geometry,
-arbitrary null boundaries, induced null-joint geometry, and the probability
+interpretation, plus the general graph-cap exact reduction, are complete and
+audited. General graph-cap coarea/angle geometry, arbitrary null boundaries,
+induced null-joint geometry, and the probability
 bridge remain separate tasks.
 
 ## Reproduce
