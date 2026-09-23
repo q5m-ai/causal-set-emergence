@@ -19,10 +19,12 @@ now machine-checked**. `ellipsoidLimitGoal` and `nullCapLimitGoal` prove the
 unchanged four-dimensional targets. For the null cap, Lean derives the actual
 causal-interval identity, arbitrary-timelike rest-frame transport, boundary
 null-set replacement, full coordinate Jacobians, exact logarithmic weight (9),
-absolute integrability, and normalized Gaussian concentration. The general
-graph-cap theorem, Lorentzian angle/joint-area interpretation, arbitrary null
-boundaries, and Poisson-expectation bridge remain open. The checked results
-concern `continuumMean`, not yet a formalized random sprinkling expectation,
+absolute integrability, and normalized Gaussian concentration. The **concrete
+ellipsoid geometric interpretation** is now also checked: regular joint,
+positive-branch Lorentzian angle, and exact variable-angle surface integral.
+The general graph-cap theorem and its geometry, arbitrary null boundaries,
+induced null-joint geometry, and Poisson-expectation bridge remain open.
+The checked results concern `continuumMean`, not yet a formalized random sprinkling expectation,
 and assert no convergence rate.
 
 ## 1. Precise target and conventions
@@ -653,9 +655,43 @@ normalization, or spacelikeness are added.
 
 This is the audited proof term `ellipsoidLimitGoal : EllipsoidLimitGoal`,
 not merely a definition of the desired conclusion. It establishes the
-**deterministic** value in (19). The identification with a Poisson expectation,
-the relation `coth θ = 1/‖∇h‖`, joint-area interpretation, and general Theorem 2
-remain draft-level. No quantitative rate follows from this checked limit.
+**deterministic** value in (19). The identification with a Poisson expectation
+and general Theorem 2 remain draft-level. No quantitative rate follows from
+this checked limit.
+
+**Checked geometric interpretation of the concrete ellipsoid.** The separate
+modules `EllipsoidJoint`, `EllipsoidAngle`, and `EllipsoidSurface` now interpret
+(19) geometrically under the original hypotheses, without changing or reproving
+`ellipsoidLimitGoal`. The smooth profile has Euclidean gradient
+`(−2a xᵢ/bᵢ²)`, nonzero differential on the joint, and inward unit normal
+`n = ∇h/‖∇h‖`; its outward normal is `−n`. The original axes give strict
+`0 < k = ‖∇h‖ < 1`. The explicit positive rapidity
+`θ = log((1+k)/sqrt(1−k²))` has the stated cosh, sinh, tanh, and coth identities.
+The vectors `(0,n)` and `(−k,n)` are checked face tangents orthogonal to the
+joint; their normalized inner product is `−cosh θ` in Lean's opposite
+`(+---)` signature. The positive branch is proved, not inferred from the
+squared algebra lemma.
+
+For area, the entire Euclidean sphere parametrizes the joint by
+`Φ(ω)ᵢ = bᵢ ωᵢ`, with checked inverse. Its derivative's cross-product identity
+and Gram determinant prove the positive area Jacobian
+`Jac₂ Φ = (∏ bᵢ) ‖(ωᵢ/bᵢ)‖`. The explicit parametric induced measure transports
+this density times mathlib's Euclidean polar sphere measure. The latter's
+mass `4π` is derived from the three-ball volume and polar measure construction;
+no ellipsoid surface-area identity is assumed. This global parameterization
+has no seams, omitted poles, or null-boundary replacements, and is not a claim
+about general Hausdorff-area/coarea infrastructure.
+
+The measurable density cancels the proved weight pointwise:
+`Jac₂ Φ · coth θ = (∏ bᵢ)/(2a)`. Finite spherical area establishes absolute
+integrability and the exact integral `2π(∏ bᵢ)/a`. The theorem
+`ellipsoid_limit_eq_joint_integral` combines this with the existing deterministic
+limit. Connectedness follows from the sphere; axis endpoint weights
+`bⱼ/(2a)` prove nonconstancy for unequal axes. The `(1/4, ![1,2,3])` regressions
+check slopes `1/2, 1/6`, weights `2, 6`, and surface integral `48π` alongside
+the unchanged deterministic regression. This completes only the concrete
+ellipsoid interpretation: general Theorem 2, arbitrary null boundaries,
+induced null-joint geometry, and the probability bridge remain separate.
 
 ## 7. What remains outside this attempt
 

@@ -11,6 +11,9 @@ import BoundaryDraft.ConeIntegral
 import BoundaryDraft.SpacetimeIntegration
 import BoundaryDraft.EllipsoidIntegration
 import BoundaryDraft.EllipsoidLimit
+import BoundaryDraft.EllipsoidJoint
+import BoundaryDraft.EllipsoidAngle
+import BoundaryDraft.EllipsoidSurface
 import BoundaryDraft.NullGeometry
 import BoundaryDraft.CausalInterval
 import BoundaryDraft.IntervalMoments
