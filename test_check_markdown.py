@@ -75,8 +75,20 @@ class MarkdownMathTest(unittest.TestCase):
         self.assertEqual(lint_markdown("```math\nx\n````\n"), [])
 
     def test_do_not_nest_delimiters_in_fence(self):
-        for math in ("$$x$$", r"\[x\]", r"\(x\)"):
-            self.assertTrue(lint_markdown(f"```math\n{math}\n```"))
+        for math in ("$$x$$", "$x$", "x $ y", r"\[x\]", r"\(x\)"):
+            with self.subTest(math=math):
+                self.assertTrue(lint_markdown(f"```math\n{math}\n```"))
+
+    def test_do_not_nest_dollars_in_protected_inline_math(self):
+        for math in ("$x$", "x $ y", r"x \\$ y", r"x \$$ y"):
+            with self.subTest(math=math):
+                self.assertIn("do not nest", lint_markdown(f"$`{math}`$")[0][1])
+
+    def test_escaped_dollars_inside_math_are_literal(self):
+        for math in (r"x \$ y", r"x \$\$ y", r"x \\\$ y"):
+            for source in (f"```math\n{math}\n```", f"$`{math}`$", f"${math}$"):
+                with self.subTest(source=source):
+                    self.assertEqual(lint_markdown(source), [])
 
     def test_malformed_inline_and_literal_dollars(self):
         for source in ("$x", "$`x$", "$x\n\ny$", "$ $"):

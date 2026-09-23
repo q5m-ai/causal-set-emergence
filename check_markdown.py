@@ -55,7 +55,9 @@ def lint_markdown(text):
             macro = match[1]
             if macro in REJECTED_MACROS | CUSTOM_MACROS:
                 report(offset + match.start(), f"unsupported macro \\{macro}; use portable built-ins")
-        if "$$" in source or LEGACY_DELIMITER.search(source):
+        if (any(char == "$" and not escaped(source, position)
+                for position, char in enumerate(source))
+                or LEGACY_DELIMITER.search(source)):
             report(offset, "do not nest math delimiters inside math")
 
     # HTML comments may contain literal instructions, not rendered prose.
