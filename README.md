@@ -111,7 +111,11 @@ height-flattening chart. `GraphAngle.lean` derives the normals, strict slope
 bound, and positive-branch angle identity for every admissible cap.
 `GraphSurface.lean` defines a Euclidean Hausdorff surface target, proves its
 finiteness and both boundary weights' absolute integrability, and equates their
-integrals. Its normalization against parametric area is still unproved.
+integrals. `HausdorffGraph.lean` proves the local two-sided Euclidean
+Hausdorff comparison of a C¹ graph with its tangent image.
+`HausdorffPlane.lean` proves the covering half of planar normalization and
+that Lebesgue-null planar sets are Hausdorff-null. The reverse planar inequality
+and the identification with parametric area are still unproved.
 `GraphTail.lean` proves that every fixed positive-height remainder vanishes
 without coarea. The quartic regression retains its interior critical point.
 

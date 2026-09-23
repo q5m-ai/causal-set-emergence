@@ -19,6 +19,8 @@ import BoundaryDraft.EllipsoidAngle
 import BoundaryDraft.EllipsoidSurface
 import BoundaryDraft.GraphAngle
 import BoundaryDraft.GraphJacobian
+import BoundaryDraft.HausdorffGraph
+import BoundaryDraft.HausdorffPlane
 import BoundaryDraft.GraphSurface
 import BoundaryDraft.GraphTail
 import BoundaryDraft.NullGeometry
