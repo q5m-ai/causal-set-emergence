@@ -233,26 +233,30 @@
 from random import Random
 
 
-def experiment(D=3, N=200, seed=7):
+def sprinkle(D, N, seed):
     random = Random(seed)
-
-    def sprinkle():
+    events = []
+    while len(events) &lt; N:
+        t = random.uniform(-1, 1)
+        radius = 1 - abs(t)
+        if random.random() > radius ** (D - 1):
+            continue
         while True:
-            t = random.uniform(-1, 1)
-            radius = 1 - abs(t)
-            if random.random() > radius ** (D - 1):
-                continue
-            while True:
-                x = [random.uniform(-1, 1) for _ in range(D - 1)]
-                if sum(a * a for a in x) &lt;= 1:
-                    return (t, *(radius * a for a in x))
+            x = [random.uniform(-1, 1) for _ in range(D - 1)]
+            if sum(a * a for a in x) &lt;= 1:
+                events.append((t, *(radius * a for a in x)))
+                break
+    return sorted(events)
 
-    def precedes(p, q):
-        Δt = q[0] - p[0]
-        Δx2 = sum((b - a) ** 2 for a, b in zip(p[1:], q[1:]))
-        return Δt > 0 and Δx2 &lt;= Δt ** 2
 
-    events = sorted(sprinkle() for _ in range(N))
+def precedes(p, q):
+    Δt = q[0] - p[0]
+    Δx2 = sum((b - a) ** 2 for a, b in zip(p[1:], q[1:]))
+    return Δt > 0 and Δx2 &lt;= Δt ** 2
+
+
+def experiment(D=3, N=200, seed=7):
+    events = sprinkle(D, N, seed)
     R = sum(precedes(events[i], events[j])
             for i in range(N) for j in range(i + 1, N))
     pairs = N * (N - 1) // 2
