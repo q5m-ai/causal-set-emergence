@@ -7,6 +7,7 @@ import BoundaryDraft.GaussianCancellation
 import BoundaryDraft.KernelEstimates
 import BoundaryDraft.KernelHalfLine
 import BoundaryDraft.GraphGeometry
+import BoundaryDraft.GraphCollar
 import BoundaryDraft.EllipsoidGeometry
 import BoundaryDraft.ConeIntegral
 import BoundaryDraft.SpacetimeIntegration
@@ -16,6 +17,18 @@ import BoundaryDraft.EllipsoidJoint
 import BoundaryDraft.GraphExamples
 import BoundaryDraft.EllipsoidAngle
 import BoundaryDraft.EllipsoidSurface
+import BoundaryDraft.GraphAngle
+import BoundaryDraft.GraphJacobian
+import BoundaryDraft.HausdorffGraph
+import BoundaryDraft.PlanarIsodiametric
+import BoundaryDraft.HausdorffPlane
+import BoundaryDraft.HausdorffDensity
+import BoundaryDraft.HausdorffLinear
+import BoundaryDraft.HausdorffArea
+import BoundaryDraft.HausdorffAreaLocal
+import BoundaryDraft.GraphSurface
+import BoundaryDraft.GraphDensity
+import BoundaryDraft.GraphTail
 import BoundaryDraft.NullGeometry
 import BoundaryDraft.CausalInterval
 import BoundaryDraft.IntervalMoments

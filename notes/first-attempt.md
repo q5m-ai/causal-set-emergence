@@ -23,9 +23,17 @@ null-set replacement, full coordinate Jacobians, exact logarithmic weight (9),
 absolute integrability, and normalized Gaussian concentration. The **concrete
 ellipsoid geometric interpretation** is now also checked: regular joint,
 positive-branch Lorentzian angle, and exact variable-angle surface integral.
-The general graph-cap regular-collar/coarea limit and variable-angle integral,
-arbitrary null boundaries, induced null-joint geometry, and Poisson-expectation
-bridge remain open.
+For general graph caps, the compact regular joint, uniform noncritical band,
+local height charts, strict positive-angle identity, finite Hausdorff surface
+target with integrable boundary weights, and vanishing non-collar remainder
+are checked. The scalar-graph area transformation is now proved from local
+Hausdorff distortion and closed-ball density uniqueness, with exact Euclidean
+tangent normalization. Canonical level measures are finite with integrable
+weights on a noncritical band, and their height-zero density is the boundary
+integral. Collar coarea, continuity of this density at zero, and agreement with
+the existing ellipsoid parametric measure are not proved. Thus the general
+graph-cap deterministic boundary limit, arbitrary null boundaries, induced
+null-joint geometry, and Poisson-expectation bridge remain open.
 The checked results concern `continuumMean`, not yet a formalized random sprinkling expectation,
 and assert no convergence rate.
 
@@ -282,8 +290,8 @@ on its boundary, and nonzero actual differential at the zero level in that
 closure. Their combination is `AdmissibleGraphCap h`; its boundary is proved
 equal to `{h = 0} ∩ closure Ω`. This uses an ambient local C³ extension near
 the closure and ignores unrelated exterior zeros. These regular-level
-assumptions are reserved for the future collar theorem: neither smoothness nor
-nonvanishing is needed for the exact reduction, and **positive-height critical
+assumptions are used only by the collar/geometry layer: neither smoothness nor
+nonvanishing is needed for the exact reduction or tail estimate, and **positive-height critical
 points are allowed**. No field assumes an action identity, limit, or joint
 integral.
 
@@ -561,6 +569,43 @@ For every graph cap (10) satisfying the stated hypotheses,
 
 Constants in the error estimate may depend on the fixed region. The estimate
 is not asserted uniformly as the joint becomes tangent, $`|\nabla h|\to0`$.
+The displayed rate and the general limit remain **draft-level**, not Lean
+results. `GraphCollar.lean` proves the compact-joint and noncritical-band
+prerequisites. `GraphSurface.lean` adds height-flattening local charts and
+uses their local Lipschitz parametrizations to prove finite Hausdorff joint
+measure. `GraphAngle.lean` proves the strict positive angle and actual normals;
+`GraphTail.lean` proves the exact action split and vanishing remainder directly,
+including critical levels and the height endpoint.
+
+Level sets here are understood inside the closed positive region, excluding
+unrelated exterior zeros. `graphSurfaceMeasure` uses the Euclidean convention
+`(π/4) · μH[2]`, since pinned mathlib uses unnormalized squared diameters.
+Absolute integrability and equality of the reciprocal-gradient and angle
+integrals are checked for that measure. Identification with scalar-graph
+parametric area is now proved. Agreement with the existing polar-sphere-based
+ellipsoid measure and the coarea/height-density continuity below still require
+proofs.
+The coordinate sup-norm Hausdorff measure is not a substitute for Euclidean area.
+`HausdorffGraph.lean` now proves the local C¹ graph/tangent-image Hausdorff
+bounds with factors `(1 − ε)²` and `(1 + ε)²` on every subset of a sufficiently
+small Euclidean ball. `HausdorffPlane.lean` proves the covering inequality
+`(π/4) μH[2](s) ≤ volume(s)` using Besicovitch disk coverings, including null
+remainders. `PlanarIsodiametric.lean` proves the sharp isodiametric bound by
+two perpendicular Steiner symmetrizations, yielding the reverse planar
+inequality and equality of the two planar measures on every set in
+`HausdorffPlane.lean`. `HausdorffLinear.lean` reuses that normalization to prove
+exact tangent-image area through intrinsic orthonormal range coordinates and
+the Euclidean Haar determinant law. `HausdorffArea.lean` proves local finiteness,
+absolute continuity, and every-point shrinking-ball ratios before invoking
+density uniqueness, obtaining the variable-Jacobian scalar-graph area formula
+and signed integral identity. `HausdorffAreaLocal.lean` localizes it to open C¹
+domains of continuous graphs via smooth cutoff extensions and countable gluing.
+`GraphDensity.lean` defines the canonical level density independently of the
+action, proves finite level measure and absolute integrability on a noncritical
+band, and identifies its value at zero with the boundary integral. It also
+proves that joint neighborhoods contain a sufficiently thin collar. Coarea,
+height-density continuity, and ellipsoid measure compatibility remain unproved.
+The general `GraphCapLimitGoal` remains an open target, not a proved theorem.
 
 **Proof.** By regularity and compactness of the joint there is a collar
 $`0\le h\le\delta`$ with no critical points. Coarea gives a $`C^1`$

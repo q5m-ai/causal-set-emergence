@@ -94,4 +94,40 @@ theorem quartic_not_ellipsoid (a : ℝ) (b : Fin 3 → ℝ) :
   rw [← h0, ← h1, ← h2] at hquad
   norm_num [quarticProfile, dampedEllipsoidProfile, ellipsoidProfile, Fin.sum_univ_succ] at hquad
 
+-- A noncritical boundary band exists for the quartic, but necessarily stops
+-- below its positive-height critical point. Thus this is not a hidden global
+-- nonvanishing assumption.
+theorem quartic_noncritical_band : ∃ δ : ℝ, 0 < δ ∧ δ < 3 / 16 ∧
+    ∀ x ∈ graphClosedPositive quarticProfile, quarticProfile x ≤ δ →
+      fderiv ℝ (fun y : JointSpace => quarticProfile y) x ≠ 0 := by
+  obtain ⟨δ, hδ, hband⟩ := quartic_admissible.exists_noncritical_band
+  refine ⟨δ, hδ, ?_, hband⟩
+  by_contra hn
+  have hx : (0 : JointSpace) ∈ graphClosedPositive quarticProfile := by
+    apply subset_closure
+    change 0 < quarticProfile 0
+    rw [quartic_positive_critical.1]
+    norm_num
+  exact hband 0 hx (by simpa [quartic_positive_critical.1] using le_of_not_gt hn)
+    quartic_positive_critical.2
+
+-- The remainder theorem applies even with its endpoint at the critical
+-- height; it never assumes regularity or applies coarea on that superlevel.
+theorem quartic_critical_remainder_vanishes :
+    Filter.Tendsto (fun ρ => ∫ x in {x | 3 / 16 ≤ quarticProfile x},
+      planeKernel ρ (quarticProfile x)) Filter.atTop (nhds 0) :=
+  quartic_admissible.toGraphCapData.tendsto_integral_kernel_superlevel _ (by norm_num)
+
+theorem quartic_surface_integrable :
+    Integrable (fun x => 1 / ‖graphGradient quarticProfile x‖)
+      (graphSurfaceMeasure quarticProfile) := quartic_admissible.integrable_reciprocal_slope
+
+-- The canonical level density is finite/integrable in a boundary band,
+-- while the same quartic retains its strictly positive critical point.
+theorem quartic_integrable_level_band_and_critical :
+    (∃ δ : ℝ, 0 < δ ∧ ∀ s ≤ δ, IsFiniteMeasure (graphLevelMeasure quarticProfile s) ∧
+      Integrable (fun x => 1 / ‖graphGradient quarticProfile x‖) (graphLevelMeasure quarticProfile s)) ∧
+    quarticProfile 0 = 3 / 16 ∧ fderiv ℝ (fun x : JointSpace => quarticProfile x) 0 = 0 :=
+  ⟨quartic_admissible.exists_integrable_level_band, quartic_positive_critical⟩
+
 end GraphCapRegression
