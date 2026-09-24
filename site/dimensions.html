@@ -83,6 +83,24 @@
     .meter span { display: block; height: 100%; border-radius: inherit; background: hsl(var(--link)); transition: width .25s; }
     .expected { display: flex; justify-content: space-between; border-top: 1px solid hsl(var(--border)); padding-top: 12px; font-size: 13px; }
     .expected span { color: hsl(var(--muted-fg)); }
+    .python-demo { margin-top: 12px; padding: 0; border: 1px solid #263750; border-radius: var(--radius); overflow: hidden; background: #04060d; color: #d9e4f5; }
+    .python-demo-head { display: flex; align-items: baseline; justify-content: space-between; gap: 18px; padding: 15px 17px; border-bottom: 1px solid #263750; background: #08111f; }
+    .python-demo-head h3 { margin: 0; color: #eef5ff; font-size: 18px; }
+    .python-demo-head p { margin: 0; color: #91a3bb; font-size: 12px; }
+    .python-workbench { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr); }
+    .python-panel { min-width: 0; }
+    .python-panel + .python-panel { border-left: 1px solid #263750; }
+    .python-panel-head { min-height: 42px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 14px; border-bottom: 1px solid #263750; color: #aab9d0; background: #101d30; font: 11px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .python-panel-head button { cursor: pointer; border: 0; padding: 2px 0; color: #9fc9ff; background: transparent; font: 11px Outfit, sans-serif; }
+    #pythonCode, #pythonOutput { display: block; width: 100%; height: 390px; margin: 0; border: 0; border-radius: 0; padding: 15px 17px; color: #c7d5e8; background: #04060d; font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; tab-size: 4; }
+    #pythonCode { resize: vertical; outline-offset: -3px; }
+    #pythonOutput { overflow: auto; color: #b9cae1; white-space: pre-wrap; }
+    .python-controls { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; border-top: 1px solid #263750; padding: 10px 14px; background: #101d30; }
+    .python-controls button { cursor: pointer; border: 1px solid #40516b; border-radius: 7px; padding: 7px 11px; color: #d9e4f5; background: transparent; font: 600 12px Outfit, sans-serif; }
+    .python-controls button.primary { border-color: #1769c2; color: white; background: #1769c2; }
+    .python-controls button:disabled { cursor: default; opacity: .45; }
+    .python-status { margin-left: auto; color: #91a3bb; font-size: 11px; }
+    .python-safety { margin: 0; border-top: 1px solid #263750; padding: 9px 14px; color: #8191aa; background: #08111f; font-size: 10px; }
     .expectation-math { margin-top: 12px; border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 22px; background: hsl(var(--card)); }
     .expectation-math h3 { margin: 3px 0 8px; font-size: 22px; }
     .expectation-math > p { max-width: 78ch; color: hsl(var(--muted-fg)); font-size: 14px; }
@@ -99,7 +117,10 @@
     .fraction-value strong { display: block; color: hsl(var(--foreground)); font-size: 16px; }
     .fraction-value.active { border-color: hsl(var(--link)); background: hsl(var(--accent)); }
     @media (max-width: 780px) {
-      .dimension-layout, .statistics-lab { grid-template-columns: 1fr; }
+      .dimension-layout, .statistics-lab, .python-workbench { grid-template-columns: 1fr; }
+      .python-panel + .python-panel { border-left: 0; border-top: 1px solid #263750; }
+      #pythonCode, #pythonOutput { height: 330px; }
+      .python-demo-head { align-items: flex-start; flex-direction: column; gap: 4px; }
       .stage { min-height: 520px; }
       .explanation-grid { grid-template-columns: 1fr; }
       .symbol-key, .fraction-values { grid-template-columns: repeat(2, 1fr); }
@@ -190,6 +211,93 @@
             <p><strong>This is evidence, not a label.</strong> Dimension estimators invert statistics like this ordering fraction. A finite sample fluctuates, and generic causal sets may have no good continuum dimension.</p>
           </aside>
         </div>
+
+        <section class="python-demo" aria-labelledby="pythonDemoTitle">
+          <header class="python-demo-head">
+            <h3 id="pythonDemoTitle">Run the ordering-fraction experiment in Python</h3>
+            <p>Edit \(D\), \(N\), or the seed, then compare \(\hat r_D\) with \(r_D\).</p>
+          </header>
+          <div class="python-workbench">
+            <div class="python-panel">
+              <div class="python-panel-head"><strong>order_fraction_demo.py</strong><button id="pythonReset" type="button" disabled>Reset</button></div>
+              <label class="sr-only" for="pythonCode">Editable Python source</label>
+              <textarea id="pythonCode" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="pythonSafety">"""Estimate the causal ordering fraction in a flat spacetime diamond."""
+
+from math import gamma
+from random import Random
+
+D = 3       # spacetime dimensions: 1, 2, 3, or 4
+N = 200     # sprinkled events
+SEED = 7
+
+
+def sprinkle(count, dimension, seed):
+    """Uniform random sample, conditioned on exactly count events."""
+    random = Random(seed)
+    space_dimensions = dimension - 1
+    events = []
+
+    while len(events) &lt; count:
+        t = random.uniform(-1, 1)
+        radius = 1 - abs(t)
+
+        # A time slice has spatial volume proportional to radius^(D−1).
+        if random.random() > radius ** space_dimensions:
+            continue
+
+        spatial = []
+        if space_dimensions:
+            while True:
+                candidate = [random.uniform(-1, 1)
+                             for _ in range(space_dimensions)]
+                if sum(x * x for x in candidate) &lt;= 1:
+                    spatial = [radius * x for x in candidate]
+                    break
+
+        events.append((t, *spatial))
+
+    return sorted(events)
+
+
+def precedes(p, q):
+    """p ≺ q when q is inside p's future light cone (c = 1)."""
+    Δt = q[0] - p[0]
+    Δx_sq = sum((b - a) ** 2 for a, b in zip(p[1:], q[1:]))  # Δx²
+    return Δt > 0 and Δx_sq &lt;= Δt ** 2
+
+
+if D not in (1, 2, 3, 4):
+    raise ValueError("D must be 1, 2, 3, or 4")
+if not 2 &lt;= N &lt;= 1000:
+    raise ValueError("N must be between 2 and 1000")
+
+events = sprinkle(N, D, SEED)
+R = sum(precedes(events[i], events[j])
+        for i in range(N) for j in range(i + 1, N))
+pairs = N * (N - 1) // 2
+observed = R / pairs
+expected = gamma(D + 1) * gamma(D / 2) / (2 * gamma(3 * D / 2))
+
+print(f"D = {D}, N = {N}, seed = {SEED}")
+print(f"related pairs R = {R:,}")
+print(f"all pairs C(N,2) = {pairs:,}")
+print(f"r̂_D = 2R / [N(N−1)] = {observed:.4f}  ({observed:.1%})")
+print(f"r_D = Γ(D+1)Γ(D/2) / [2Γ(3D/2)] = {expected:.4f}  ({expected:.1%})")
+print(f"sampling difference = {observed - expected:+.4f}")</textarea>
+            </div>
+            <div class="python-panel">
+              <div class="python-panel-head"><strong>Output</strong><span id="pythonRunStatus" role="status">Ready</span></div>
+              <pre id="pythonOutput" aria-live="polite">Run to sprinkle events and count their causal pairs.</pre>
+            </div>
+            <div class="python-controls">
+              <button id="pythonRun" class="primary" type="button" disabled>▶ Run code</button>
+              <button id="pythonStop" type="button" disabled>Stop</button>
+              <span class="python-status">Ctrl/⌘ + Enter to run</span>
+            </div>
+          </div>
+          <p class="python-safety" id="pythonSafety"><strong>Contained run:</strong> disposable browser worker · 60-second cutoff. First run downloads Pyodide. Edited code can make network requests; do not paste secrets or untrusted code.</p>
+        </section>
+
         <div class="expectation-math">
           <div class="eyebrow">Why those percentages?</div>
           <h3>The flat-space ordering fraction</h3>
@@ -610,6 +718,96 @@
       loading.textContent = "The 3D viewer could not load. Check your network connection and WebGL support.";
       console.error(error);
     }
+  </script>
+  <script>
+    (() => {
+      const RUN_TIMEOUT_MS = 60_000;
+      const code = document.getElementById("pythonCode");
+      const output = document.getElementById("pythonOutput");
+      const status = document.getElementById("pythonRunStatus");
+      const runButton = document.getElementById("pythonRun");
+      const stopButton = document.getElementById("pythonStop");
+      const resetButton = document.getElementById("pythonReset");
+      const originalSource = code.value;
+      let worker;
+      let timer;
+      let running = false;
+      let hasOutput = false;
+
+      function updateControls() {
+        runButton.disabled = running || !originalSource;
+        stopButton.disabled = !running;
+        resetButton.disabled = running || !originalSource;
+        code.disabled = running || !originalSource;
+      }
+
+      function appendOutput(line) {
+        if (!hasOutput) {
+          output.textContent = "";
+          hasOutput = true;
+        }
+        output.textContent = `${output.textContent}${output.textContent ? "\n" : ""}${line}`.slice(-20_000);
+        output.scrollTop = output.scrollHeight;
+      }
+
+      function finish(label) {
+        clearTimeout(timer);
+        worker?.terminate();
+        worker = undefined;
+        running = false;
+        status.textContent = label;
+        updateControls();
+      }
+
+      function stop(message, label = "Stopped") {
+        if (!running) return;
+        appendOutput(message);
+        finish(label);
+      }
+
+      runButton.addEventListener("click", () => {
+        if (running || !originalSource) return;
+        running = true;
+        hasOutput = false;
+        output.textContent = "Loading Python (the first run may take a moment)…";
+        status.textContent = "Loading Python";
+        updateControls();
+        worker = new Worker("order-fraction-worker.js?v=1");
+        worker.addEventListener("message", event => {
+          const message = event.data;
+          if (message?.type === "ready") {
+            status.textContent = "Running";
+            worker.postMessage({ type: "run", source: code.value });
+          } else if (message?.type === "line") {
+            appendOutput(message.line);
+          } else if (message?.type === "done") {
+            finish("Finished");
+          } else if (message?.type === "run-error" || message?.type === "boot-error") {
+            appendOutput(message.error);
+            finish("Failed");
+          }
+        });
+        worker.addEventListener("error", event => {
+          appendOutput(event.message || "The Python worker failed.");
+          finish("Failed");
+        });
+        timer = setTimeout(() => stop("Execution stopped after the 60-second limit.", "Timed out"), RUN_TIMEOUT_MS);
+      });
+
+      stopButton.addEventListener("click", () => stop("Execution stopped by the user."));
+      resetButton.addEventListener("click", () => {
+        code.value = originalSource;
+        output.textContent = "Run to sprinkle events and count their causal pairs.";
+        status.textContent = "Reset";
+      });
+      code.addEventListener("keydown", event => {
+        if (event.key === "Enter" && (event.ctrlKey || event.metaKey)) {
+          event.preventDefault();
+          runButton.click();
+        }
+      });
+      updateControls();
+    })();
   </script>
 </body>
 </html>
