@@ -312,7 +312,7 @@ angle and canonical boundary-integral identities are checked, but collar
 coarea and its limit, arbitrary null boundaries, and the Poisson-expectation
 bridge are not proved here.
 
-### Compact joint and noncritical band (partial work toward #19)
+### Compact joint and noncritical band (#19 prerequisite layer)
 
 `GraphCollar.lean` defines `graphJoint h` as the zero level in the Euclidean
 closed positive region. It proves equality with the Euclidean frontier and
@@ -324,7 +324,7 @@ the extreme value theorem therefore gives `δ > 0` such that `dh ≠ 0` wherever
 `h ≤ δ` in the closed positive region. The empty critical set is allowed.
 Ambient open C³ neighborhoods with nonvanishing differential are also proved.
 
-### General angle, finite surface target, and remainder (still partial #19)
+### General angle, surface area, level density, and remainder (#19)
 
 `GraphAngle.lean` defines `graphGradient` by Riesz duality from the actual
 Fréchet differential. On the open positive region, the positive-part Lipschitz
@@ -439,9 +439,9 @@ is split into `0 < h < δ` and `h ≥ δ`; the endpoint remains in the remainder
 so no level-set-nullity premise is used. No differential or coarea assumption
 is used for this entire tail argument, even at the quartic critical height.
 
-Issue #19 and milestone 5 remain incomplete: ellipsoid measure compatibility,
-collar coarea, continuity of the height density at zero, and the collar limit
-are still required. No structure field or hypothesis assumes those missing
+Issue #19's prerequisite layer is complete in PR #21. Milestone 5 remains
+incomplete: follow-up #23 owns ellipsoid measure compatibility, collar coarea,
+continuity of the height density at zero, and the collar limit. No structure field or hypothesis assumes those missing
 results. None of the original action or concrete limit definitions changes.
 
 ### Ellipsoid compatibility and a nonquadratic example
