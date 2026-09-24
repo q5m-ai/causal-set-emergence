@@ -43,6 +43,7 @@ class MarkdownMathTest(unittest.TestCase):
         for macro in ("phantom", "boldsymbol", "DeclareMathOperator", "require", "newcommand"):
             with self.subTest(macro=macro):
                 self.assertTrue(lint_markdown(f"$`\\{macro}{{x}}`$"))
+        self.assertEqual(lint_markdown(r"$`\mathbf{S}`$"), [])
 
     def test_literal_code_and_comments_are_not_math(self):
         source = r"""Use `\(x\)`? No. Literal ``$`\operatorname{Area}`$``.

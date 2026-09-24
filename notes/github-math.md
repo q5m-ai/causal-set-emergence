@@ -61,7 +61,8 @@ Fenced math prevents that failure.
   check spacing/limits explicitly when replacing other kinds of operators.
 - Do not define custom macros or load TeX packages. Commands such as
   `\boldsymbol`, `\phantom`, `\colorbox`, `\definecolor`, and `\unicode` are
-  also rejected. Prefer an unadorned symbol when bold styling is not essential.
+  also rejected. Replace `\boldsymbol S` with the portable built-in
+  `\mathbf{S}` when bold styling is part of the notation.
   The focused known-bad list lives in `check_markdown.py`; it is not a complete
   specification of GitHub's changing renderer.
 - Keep Lean statements, identifiers, shell commands, and intentional plaintext
