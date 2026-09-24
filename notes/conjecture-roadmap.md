@@ -15,12 +15,12 @@ Conjecture 1′ of Dowker–Liu–Lloyd-Jones:
 
 ```math
 \lim_{\rho\to\infty}\frac{1}{\hbar}
-\left\langle \boldsymbol S^{(d)}_\rho(M)\right\rangle
+\langle S^{(d)}_\rho(M)\rangle
 =
 \frac{1}{l_p^{d-2}}\int_M d^d x\,\sqrt{-g}\,\frac{R}{2}
 +
 \frac{1}{l_p^{d-2}}\int_J
-\coth\!\bigl(\theta(\lambda)\bigr)\,d\mu(\lambda).
+\coth(\theta(\lambda))\,d\mu(\lambda).
 ```
 
 Special geometries remain useful as regression tests and sources of analytic

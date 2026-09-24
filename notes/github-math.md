@@ -60,7 +60,8 @@ Fenced math prevents that failure.
   `math-renderer` element. Use `\mathrm{...}` for the upright names above;
   check spacing/limits explicitly when replacing other kinds of operators.
 - Do not define custom macros or load TeX packages. Commands such as
-  `\phantom`, `\colorbox`, `\definecolor`, and `\unicode` are also rejected.
+  `\boldsymbol`, `\phantom`, `\colorbox`, `\definecolor`, and `\unicode` are
+  also rejected. Prefer an unadorned symbol when bold styling is not essential.
   The focused known-bad list lives in `check_markdown.py`; it is not a complete
   specification of GitHub's changing renderer.
 - Keep Lean statements, identifiers, shell commands, and intentional plaintext
