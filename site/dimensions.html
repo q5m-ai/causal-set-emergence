@@ -219,77 +219,48 @@
         </div>
 
         <section class="python-demo" aria-labelledby="pythonDemoTitle">
-          <header class="python-demo-head">
-            <h3 id="pythonDemoTitle">Run the ordering-fraction experiment in Python</h3>
-            <p>Edit \(D\), \(N\), or the seed, then compare \(\hat r_D\) with \(r_D\).</p>
-          </header>
+          <header class="python-demo-head"><h3 id="pythonDemoTitle">Try it in Python</h3></header>
           <div class="python-workbench">
             <div class="python-panel">
               <div class="python-panel-head"><strong>order_fraction_demo.py</strong><button id="pythonReset" type="button" disabled>Reset</button></div>
               <label class="sr-only" for="pythonCode">Editable Python source</label>
-              <textarea id="pythonCode" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="pythonSafety">"""Estimate the causal ordering fraction in a flat spacetime diamond."""
-
-from math import gamma
+              <textarea id="pythonCode" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="pythonSafety">from math import gamma
 from random import Random
 
-D = 3       # spacetime dimensions: 1, 2, 3, or 4
-N = 200     # sprinkled events
-SEED = 7
+D, N, SEED = 3, 200, 7
+random = Random(SEED)
 
 
-def sprinkle(count, dimension, seed):
-    """Uniform random sample, conditioned on exactly count events."""
-    random = Random(seed)
-    space_dimensions = dimension - 1
-    events = []
-
-    while len(events) &lt; count:
+def sprinkle():
+    while True:
         t = random.uniform(-1, 1)
         radius = 1 - abs(t)
-
-        # A time slice has spatial volume proportional to radius^(D−1).
-        if random.random() > radius ** space_dimensions:
+        if random.random() > radius ** (D - 1):
             continue
-
-        spatial = []
-        if space_dimensions:
-            while True:
-                candidate = [random.uniform(-1, 1)
-                             for _ in range(space_dimensions)]
-                if sum(x * x for x in candidate) &lt;= 1:
-                    spatial = [radius * x for x in candidate]
-                    break
-
-        events.append((t, *spatial))
-
-    return sorted(events)
+        while True:
+            x = [random.uniform(-1, 1) for _ in range(D - 1)]
+            if sum(a * a for a in x) &lt;= 1:
+                return (t, *(radius * a for a in x))
 
 
 def precedes(p, q):
-    """p ≺ q when q is inside p's future light cone (c = 1)."""
     Δt = q[0] - p[0]
-    Δx_sq = sum((b - a) ** 2 for a, b in zip(p[1:], q[1:]))  # Δx²
-    return Δt > 0 and Δx_sq &lt;= Δt ** 2
+    Δx2 = sum((b - a) ** 2 for a, b in zip(p[1:], q[1:]))
+    return Δt > 0 and Δx2 &lt;= Δt ** 2
 
 
-if D not in (1, 2, 3, 4):
-    raise ValueError("D must be 1, 2, 3, or 4")
-if not 2 &lt;= N &lt;= 1000:
-    raise ValueError("N must be between 2 and 1000")
-
-events = sprinkle(N, D, SEED)
+events = sorted(sprinkle() for _ in range(N))
 R = sum(precedes(events[i], events[j])
         for i in range(N) for j in range(i + 1, N))
 pairs = N * (N - 1) // 2
-observed = R / pairs
-expected = gamma(D + 1) * gamma(D / 2) / (2 * gamma(3 * D / 2))
+r̂ = R / pairs
+r = gamma(D + 1) * gamma(D / 2) / (2 * gamma(3 * D / 2))
 
-print(f"D = {D}, N = {N}, seed = {SEED}")
-print(f"related pairs R = {R:,}")
-print(f"all pairs C(N,2) = {pairs:,}")
-print(f"r̂_D = 2R / [N(N−1)] = {observed:.4f}  ({observed:.1%})")
-print(f"r_D = Γ(D+1)Γ(D/2) / [2Γ(3D/2)] = {expected:.4f}  ({expected:.1%})")
-print(f"sampling difference = {observed - expected:+.4f}")</textarea>
+print(f"D={D}, N={N}, seed={SEED}")
+print(f"R={R:,} related pairs out of {pairs:,}")
+print(f"r̂_D = 2R/[N(N−1)] = {r̂:.4f}  ({r̂:.1%})")
+print(f"r_D = Γ(D+1)Γ(D/2)/[2Γ(3D/2)] = {r:.4f}  ({r:.1%})")
+print(f"difference = {r̂ - r:+.4f}")</textarea>
             </div>
             <div class="python-panel">
               <div class="python-panel-head"><strong>Output</strong><span id="pythonRunStatus" role="status">Ready</span></div>
