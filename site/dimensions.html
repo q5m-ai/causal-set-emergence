@@ -8,6 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site.css?v=erdos193">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\\]"]] },
+      options: { skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"] }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
   <style>
     .page-head { padding: 18px 0 34px; }
     .page-head h1 { max-width: 800px; }
@@ -82,7 +89,8 @@
     .derivation { display: grid; grid-template-columns: 1fr auto 1fr; gap: 14px; align-items: center; margin: 20px 0; }
     .derivation-step { min-width: 0; border: 1px solid hsl(var(--border)); border-radius: 8px; padding: 14px; background: hsl(var(--accent)); }
     .derivation-step small { display: block; margin-bottom: 6px; color: hsl(var(--muted-fg)); text-transform: uppercase; letter-spacing: .08em; }
-    .math-line { overflow-x: auto; color: hsl(var(--foreground)); font: 14px/1.7 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: nowrap; }
+    .math-line { overflow-x: auto; color: hsl(var(--foreground)); font-size: 18px; text-align: center; white-space: nowrap; }
+    .math-line mjx-container[display="true"] { margin: .35em 0 !important; }
     .derivation-arrow { color: hsl(var(--link)); font-size: 22px; }
     .fraction-values { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
     .fraction-value { border: 1px solid hsl(var(--border)); border-radius: 8px; padding: 9px 11px; color: hsl(var(--muted-fg)); font-size: 12px; transition: border-color .2s, background .2s; }
@@ -185,18 +193,18 @@
         <div class="expectation-math">
           <div class="eyebrow">Why those percentages?</div>
           <h3>The flat-space ordering fraction</h3>
-          <p>Choose two events uniformly from a flat <em>D</em>-dimensional causal diamond <em>I</em>. They are related when either event lies in the other’s future light cone. If the diamond has volume <em>V</em>, fixing the first event <em>x</em> leaves a smaller future diamond whose volume scales as its proper-time height to the power <em>D</em>.</p>
+          <p>Choose two events uniformly from a flat \(D\)-dimensional causal diamond \(I\). They are related when either event lies in the other’s future light cone. If the diamond has volume \(V\), fixing the first event \(x\) leaves a smaller future diamond whose volume scales as its proper-time height to the power \(D\).</p>
           <div class="derivation">
-            <div class="derivation-step"><small>Integrate the available future volume</small><div class="math-line">r<sub>D</sub> = (2/V²) ∫<sub>I</sub> Vol(I(x,q)) d<sup>D</sup>x</div></div>
+            <div class="derivation-step"><small>Integrate the available future volume</small><div class="math-line">\[r_D = \frac{2}{V^2}\int_I \mathrm{Vol}\!\left(I(x,q)\right)\,\mathrm{d}^D x\]</div></div>
             <div class="derivation-arrow" aria-hidden="true">→</div>
-            <div class="derivation-step"><small>Evaluate the flat-diamond integral</small><div class="math-line">r<sub>D</sub> = Γ(D+1)Γ(D/2) / [2Γ(3D/2)]</div></div>
+            <div class="derivation-step"><small>Evaluate the flat-diamond integral</small><div class="math-line">\[r_D = \frac{\Gamma(D+1)\,\Gamma(D/2)}{2\,\Gamma(3D/2)}\]</div></div>
           </div>
-          <p>The factor 2 counts both possible directions, <em>x ≺ y</em> and <em>y ≺ x</em>. The ratio is independent of the diamond’s size because both the numerator and <em>V²</em> scale the same way.</p>
+          <p>The factor \(2\) counts both possible directions, \(x\prec y\) and \(y\prec x\). The ratio is independent of the diamond’s size because both the numerator and \(V^2\) scale the same way.</p>
           <div class="fraction-values" aria-label="Exact flat-space ordering fractions">
-            <div class="fraction-value" data-formula-d="1"><span>D = 1</span><strong>1</strong><span>100%</span></div>
-            <div class="fraction-value" data-formula-d="2"><span>D = 2</span><strong>1/2</strong><span>50%</span></div>
-            <div class="fraction-value active" data-formula-d="3"><span>D = 3</span><strong>8/35</strong><span>≈ 22.9%</span></div>
-            <div class="fraction-value" data-formula-d="4"><span>D = 4</span><strong>1/10</strong><span>10%</span></div>
+            <div class="fraction-value" data-formula-d="1"><span>\(D=1\)</span><strong>\(1\)</strong><span>100%</span></div>
+            <div class="fraction-value" data-formula-d="2"><span>\(D=2\)</span><strong>\(\frac{1}{2}\)</strong><span>50%</span></div>
+            <div class="fraction-value active" data-formula-d="3"><span>\(D=3\)</span><strong>\(\frac{8}{35}\)</strong><span>≈ 22.9%</span></div>
+            <div class="fraction-value" data-formula-d="4"><span>\(D=4\)</span><strong>\(\frac{1}{10}\)</strong><span>10%</span></div>
           </div>
         </div>
       </div>
