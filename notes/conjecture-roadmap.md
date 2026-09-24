@@ -41,7 +41,8 @@ the corrected formula, not as a competing unrestricted target. Conjecture 2 is
 complementary rather than superseded: it concerns timelike boundaries, for
 which the unscaled mean action is predicted to diverge like `ρ^(1/d)` and the
 coefficient depends on the embedded or isolated regime. Its proof requires a
-distinct asymptotic program and is not part of issue #24.
+distinct asymptotic program, is not part of issue #24, and is tracked as an
+optional extension in [issue #26](https://github.com/q5m-ai/causal-set-emergence/issues/26).
 
 Relevant source sections are:
 
