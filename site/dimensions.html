@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Rotate a small causal set and compare one-, two-, and three-dimensional spacetime constructions.">
+  <title>Dimensions of a causal set — Causal Set Emergence</title>
+  <link rel="canonical" href="https://causal-set-emergence.q5m.ai/dimensions.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css?v=nav1">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\\]"]] },
+      options: { skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"] }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    .page-head { padding: 18px 0 34px; }
+    .page-head h1 { max-width: 800px; }
+    .page-head .lede { max-width: 740px; }
+    .dimension-layout { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(260px, .55fr); gap: 12px; align-items: stretch; }
+    .stage {
+      position: relative; min-height: 620px; overflow: hidden;
+      border: 1px solid hsl(var(--border)); border-radius: var(--radius); background: #04060d;
+    }
+    .stage canvas { display: block; width: 100%; height: 100%; cursor: grab; }
+    .stage canvas:active { cursor: grabbing; }
+    .toolbar { position: absolute; z-index: 4; top: 12px; left: 12px; display: flex; flex-wrap: wrap; gap: 6px; max-width: calc(100% - 24px); }
+    .toolbar button {
+      cursor: pointer; border: 1px solid #263750; border-radius: 8px; padding: 7px 11px;
+      color: #c3cee0; background: rgb(4 6 13 / .82); font-size: 12px; font-weight: 600;
+    }
+    .toolbar button:hover { border-color: #56b4e9; }
+    .toolbar button[aria-pressed="true"] { border-color: #56b4e9; color: #fff; background: #1769c2; }
+    .toolbar button:focus-visible { outline: 3px solid #56b4e9; outline-offset: 2px; }
+    .stage-note, .coordinates {
+      position: absolute; z-index: 3; bottom: 12px; border-radius: 8px; padding: 6px 9px;
+      color: #aab9d0; background: rgb(4 6 13 / .76); font-size: 11px;
+    }
+    .stage-note { right: 12px; }
+    .coordinates { left: 12px; color: #d9e4f5; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .loading { position: absolute; inset: 0; z-index: 6; display: grid; place-items: center; color: #b9c6dc; background: #04060d; font-size: 13px; }
+    .side-panel { border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 20px; background: hsl(var(--card)); }
+    .side-panel h2 { margin: 4px 0 10px; font-size: 24px; }
+    .side-panel p { color: hsl(var(--muted-fg)); font-size: 14px; }
+    .formal-relation { margin-top: 20px; border: 1px solid #263750; border-radius: var(--radius); padding: 14px; color: #d9e4f5; background: #04060d; font: 13px/1.65 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .formal-relation .definition { margin-bottom: 8px; color: #8bd7ff; font-weight: 700; }
+    .formal-relation .set-row { display: grid; grid-template-columns: 20px 1fr; gap: 7px; }
+    .formal-relation .set-row span:first-child { color: #f2bf63; font-weight: 700; }
+    .formal-relation .set-value { min-width: 0; overflow-wrap: anywhere; }
+    .formal-relation small { display: block; margin-top: 9px; border-top: 1px solid #263750; padding-top: 8px; color: #91a3bb; font: 11px/1.45 Outfit, sans-serif; }
+    .relation { margin-top: 12px; border-left: 3px solid hsl(var(--link)); padding: 11px 13px; color: hsl(var(--muted-fg)); background: hsl(var(--accent)); font-size: 13px; }
+    .explanation-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+    .explanation-grid article { border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 17px; background: hsl(var(--card)); }
+    .explanation-grid b { color: hsl(var(--link)); font: 700 11px ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .explanation-grid h2 { margin: 20px 0 6px; font-size: 18px; }
+    .explanation-grid p { margin: 0; color: hsl(var(--muted-fg)); font-size: 14px; }
+    .caveat { margin-top: 18px; border-left: 3px solid var(--gold); padding: 12px 14px; color: hsl(var(--muted-fg)); background: hsl(var(--accent)); font-size: 13px; }
+    .statistics { margin-top: 48px; padding-top: 48px; border-top: 1px solid hsl(var(--border)); }
+    .statistics-head { max-width: 760px; }
+    .statistics-head h2 { margin: 6px 0 10px; font-size: clamp(28px, 4vw, 38px); }
+    .statistics-head p { color: hsl(var(--muted-fg)); }
+    .statistics-lab { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 12px; margin-top: 24px; }
+    .matrix-card, .statistics-panel { border: 1px solid hsl(var(--border)); border-radius: var(--radius); background: hsl(var(--card)); overflow: hidden; }
+    .matrix-toolbar { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px; border-bottom: 1px solid hsl(var(--border)); background: hsl(var(--accent)); }
+    .matrix-toolbar button { cursor: pointer; border: 1px solid hsl(var(--border)); border-radius: 8px; padding: 7px 10px; color: hsl(var(--muted-fg)); background: hsl(var(--card)); font: 600 12px Outfit, sans-serif; }
+    .matrix-toolbar button[aria-pressed="true"] { border-color: hsl(var(--link)); color: white; background: hsl(var(--link)); }
+    .matrix-wrap { position: relative; aspect-ratio: 1; min-height: 360px; padding: 28px; background: #04060d; }
+    #relationMatrix { display: block; width: 100%; height: 100%; cursor: crosshair; }
+    .matrix-axis { position: absolute; color: #8191aa; font-size: 9px; letter-spacing: .07em; text-transform: uppercase; }
+    .matrix-axis.x { right: 28px; bottom: 7px; }
+    .matrix-axis.y { left: 5px; top: 30px; writing-mode: vertical-rl; }
+    .matrix-readout { min-height: 64px; border-top: 1px solid #263750; padding: 11px 14px; color: #aab9d0; background: #08111f; font-size: 12px; }
+    .matrix-readout strong { color: #d9e4f5; }
+    .matrix-readout code { color: #8bd7ff; font: 600 12px ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .statistics-panel { padding: 20px; }
+    .statistics-panel h3 { margin: 5px 0 10px; font-size: 23px; }
+    .statistics-panel p { color: hsl(var(--muted-fg)); font-size: 14px; }
+    .big-stat { margin: 22px 0 4px; color: hsl(var(--link)); font: 700 38px/1 Outfit, sans-serif; }
+    .stat-label { color: hsl(var(--muted-fg)); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+    .meter { height: 8px; margin: 10px 0 20px; overflow: hidden; border-radius: 99px; background: hsl(var(--accent)); }
+    .meter span { display: block; height: 100%; border-radius: inherit; background: hsl(var(--link)); transition: width .25s; }
+    .expected { display: flex; justify-content: space-between; border-top: 1px solid hsl(var(--border)); padding-top: 12px; font-size: 13px; }
+    .expected span { color: hsl(var(--muted-fg)); }
+    .python-demo { margin-top: 12px; padding: 0; border: 1px solid #263750; border-radius: var(--radius); overflow: hidden; background: #04060d; color: #d9e4f5; }
+    .python-workbench { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(250px, .6fr); }
+    .python-panel { min-width: 0; }
+    .python-panel + .python-panel { border-left: 1px solid #263750; }
+    .python-panel-head { min-height: 42px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 14px; border-bottom: 1px solid #263750; color: #aab9d0; background: #101d30; font: 11px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .python-panel-head button { cursor: pointer; border: 0; padding: 2px 0; color: #9fc9ff; background: transparent; font: 11px Outfit, sans-serif; }
+    .python-panel-actions { display: flex; align-items: center; gap: 12px; }
+    .python-editor { position: relative; height: 390px; background: #04060d; }
+    #pythonCode, #pythonHighlight { position: absolute; inset: 0; display: block; width: 100%; height: 100%; margin: 0; border: 0; border-radius: 0; padding: 15px 17px; font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; tab-size: 4; white-space: pre; overflow-wrap: normal; }
+    #pythonHighlight { pointer-events: none; overflow: hidden; color: #c7d5e8; background: transparent; }
+    #pythonHighlight code { font: inherit; }
+    #pythonCode { resize: none; overflow: auto; outline-offset: -3px; color: transparent; caret-color: white; background: transparent; -webkit-text-fill-color: transparent; }
+    #pythonCode::selection { background: rgb(66 98 142 / .55); }
+    .tok-comment { color: #8496b0; }
+    .tok-string { color: #9addaf; }
+    .tok-keyword { color: #f078c6; }
+    .tok-number { color: #efbc70; }
+    #pythonOutput { display: block; width: 100%; height: 390px; margin: 0; border: 0; border-radius: 0; overflow: auto; padding: 15px 17px; color: #b9cae1; background: #04060d; font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre-wrap; }
+    .python-controls { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; border-top: 1px solid #263750; padding: 10px 14px; background: #101d30; }
+    .python-controls button { cursor: pointer; border: 1px solid #40516b; border-radius: 7px; padding: 7px 11px; color: #d9e4f5; background: transparent; font: 600 12px Outfit, sans-serif; }
+    .python-controls button.primary { border-color: #1769c2; color: white; background: #1769c2; }
+    .python-controls button:disabled { cursor: default; opacity: .45; }
+    .python-status { margin-left: auto; color: #91a3bb; font-size: 11px; }
+    .python-source-panel.is-fullscreen { position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column; background: #04060d; }
+    .python-source-panel.is-fullscreen .python-panel-head { flex: none; }
+    .python-source-panel.is-fullscreen .python-editor { flex: 1; height: auto; min-height: 0; }
+    body.python-code-fullscreen { overflow: hidden; }
+    .expectation-math { margin-top: 12px; border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 22px; background: hsl(var(--card)); }
+    .expectation-math h3 { margin: 3px 0 8px; font-size: 22px; }
+    .expectation-math > p, .diamond-intro p { max-width: 78ch; color: hsl(var(--muted-fg)); font-size: 14px; }
+    .diamond-intro { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 24px; align-items: center; }
+    .diamond-figure { margin: 0; border: 1px solid hsl(var(--border)); border-radius: 8px; padding: 10px; background: hsl(var(--accent)); }
+    .diamond-figure svg { display: block; width: 100%; height: auto; }
+    .diamond-figure figcaption { margin-top: 5px; color: hsl(var(--muted-fg)); font-size: 10px; line-height: 1.4; text-align: center; }
+    .derivation { margin: 20px 0 12px; }
+    .derivation-step { min-width: 0; border: 1px solid hsl(var(--border)); border-radius: 8px; padding: 16px; background: hsl(var(--accent)); }
+    .derivation-step small { display: block; margin-bottom: 6px; color: hsl(var(--muted-fg)); text-align: center; text-transform: uppercase; letter-spacing: .08em; }
+    .math-line { overflow-x: auto; color: hsl(var(--foreground)); font-size: 17px; text-align: center; white-space: nowrap; }
+    .math-line mjx-container[display="true"] { margin: .35em 0 !important; }
+    .symbol-key { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin: 14px 0 20px; }
+    .symbol-key div { border: 1px solid hsl(var(--border)); border-radius: 8px; padding: 10px; color: hsl(var(--muted-fg)); font-size: 12px; }
+    .symbol-key strong { display: block; margin-bottom: 3px; color: hsl(var(--foreground)); font-size: 15px; }
+    .fraction-values { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
+    .fraction-value { border: 1px solid hsl(var(--border)); border-radius: 8px; padding: 9px 11px; color: hsl(var(--muted-fg)); font-size: 12px; transition: border-color .2s, background .2s; }
+    .fraction-value strong { display: block; color: hsl(var(--foreground)); font-size: 16px; }
+    .fraction-value.active { border-color: hsl(var(--link)); background: hsl(var(--accent)); }
+    @media (max-width: 780px) {
+      .dimension-layout, .statistics-lab, .python-workbench { grid-template-columns: 1fr; }
+      .python-panel + .python-panel { border-left: 0; border-top: 1px solid #263750; }
+      .python-editor { height: 520px; }
+      #pythonOutput { height: 180px; }
+      .stage { min-height: 520px; }
+      .explanation-grid { grid-template-columns: 1fr; }
+      .diamond-intro { grid-template-columns: 1fr; }
+      .diamond-figure { width: min(230px, 100%); }
+      .symbol-key, .fraction-values { grid-template-columns: repeat(2, 1fr); }
+      .stage-note { display: none; }
+    }
+    @media (max-width: 480px) { .stage { min-height: 460px; } }
+    @media (forced-colors: active) {
+      #pythonHighlight { display: none; }
+      #pythonCode { color: CanvasText; -webkit-text-fill-color: CanvasText; caret-color: CanvasText; }
+    }
+  </style>
+</head>
+<body>
+  <nav aria-label="Page navigation">
+    <div class="wrap nav-inner">
+      <div class="brand"><a href="index.html">causal-set-emergence<span>.q5m.ai</span></a></div>
+      <div class="nav-links"><a href="index.html">Home</a><a href="dimensions.html" aria-current="page">Dimensions</a></div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <header class="page-head">
+      <div class="eyebrow">Interactive construction · 1 time + 2 space</div>
+      <h1>Build a causal set into 3D spacetime.</h1>
+      <p class="lede">Move from a temporal chain to one spatial direction and then two. Drag to orbit, scroll to zoom, and right-drag to pan.</p>
+    </header>
+
+    <section style="padding:0 0 56px">
+      <div class="dimension-layout">
+        <div class="stage" id="stage" aria-label="Rotatable three-dimensional causal-set diagram">
+          <div class="toolbar" aria-label="Dimension controls">
+            <button type="button" data-mode="1" aria-pressed="false">1D · time</button>
+            <button type="button" data-mode="2" aria-pressed="false">2D · time + x</button>
+            <button type="button" data-mode="3" aria-pressed="true">3D · time + x + y</button>
+            <button type="button" id="reset">Reset view</button>
+          </div>
+          <div class="loading" id="loading">Loading 3D view…</div>
+          <div class="coordinates" id="coordinates">(t, x, y)</div>
+          <div class="stage-note">drag to rotate · scroll to zoom</div>
+        </div>
+
+        <aside class="side-panel" aria-live="polite">
+          <div class="eyebrow" id="modeKicker">3D spacetime</div>
+          <h2 id="modeTitle">Two spatial directions required</h2>
+          <p id="modeCopy">Each early event reaches two later events but misses its own partner. One spatial line cannot realize all three exclusions; a spatial triangle can.</p>
+          <div class="formal-relation" id="formalRelation" aria-label="Mathematical definition of the displayed causal set">
+            <div class="definition">C = (E, ≺)</div>
+            <div class="set-row"><span>E</span><div class="set-value">= {a₁, a₂, a₃, b₁, b₂, b₃}</div></div>
+            <div class="set-row"><span>≺</span><div class="set-value">= {(a₁,b₂), (a₁,b₃), (a₂,b₁), (a₂,b₃), (a₃,b₁), (a₃,b₂)}</div></div>
+            <small>Every other pair of distinct elements is incomparable.</small>
+          </div>
+          <div class="relation" id="relationCopy"><strong>Required pattern:</strong> a₁ reaches b₂ and b₃ but not b₁, and cyclically. Missing relations are as important as the links shown.</div>
+        </aside>
+      </div>
+
+      <div class="explanation-grid">
+        <article><b>1D · 0+1</b><h2>One temporal pair</h2><p>With no space, the earlier event a₁ necessarily precedes the later event b₁.</p></article>
+        <article><b>2D · 1+1</b><h2>Two crossed pairs</h2><p>One spatial axis lets each a-event reach the other b-event while missing its named partner.</p></article>
+        <article><b>3D · 2+1</b><h2>Three cyclic exclusions</h2><p>A spatial triangle realizes the three-way pattern that cannot be arranged along one spatial line.</p></article>
+      </div>
+
+      <div class="caveat"><strong>Construction scaffolding, not fundamental data.</strong> The axes, coordinates, and spatial slices show how each order is embedded in a continuum spacetime. The 3D example is a genuine dimension witness: in 1+1 dimensions, null coordinates turn causality into the intersection of two linear orderings; this six-event order requires three, so no rearrangement along one spatial line can preserve all six cross-layer relations and all three diagonal non-relations.</div>
+
+      <div class="statistics" aria-labelledby="statisticsTitle">
+        <div class="statistics-head">
+          <div class="eyebrow">From exact obstruction to statistical evidence</div>
+          <h2 id="statisticsTitle">More dimensions leave fewer pairs causally related.</h2>
+          <p>A large causal set carries a dimensional signature. These deterministic sprinklings sample a flat causal diamond. Each blue matrix cell is an ordered pair: the row event can causally precede the column event. Additional spatial directions provide more ways for pairs to be spacelike.</p>
+        </div>
+        <div class="statistics-lab">
+          <div class="matrix-card">
+            <div class="matrix-toolbar" aria-label="Statistical spacetime dimension">
+              <button type="button" data-stat-d="1" aria-pressed="false">0+1</button>
+              <button type="button" data-stat-d="2" aria-pressed="false">1+1</button>
+              <button type="button" data-stat-d="3" aria-pressed="true">2+1</button>
+              <button type="button" data-stat-d="4" aria-pressed="false">3+1 · our scale</button>
+            </div>
+            <div class="matrix-wrap">
+              <canvas id="relationMatrix" role="img" aria-label="Matrix of causal relations in a deterministic causal-set sprinkling"></canvas>
+              <span class="matrix-axis y">row event · early → late ↓</span><span class="matrix-axis x">column event · early → late →</span>
+            </div>
+            <div class="matrix-readout" id="matrixReadout" aria-live="polite"><strong>How to read it:</strong> cell <code>(r,c)</code> represents the pair <code>(eᵣ,e꜀)</code>. Choose a row and a later column: blue means <code>eᵣ ≺ e꜀</code>, while a dark upper cell means the pair is spacelike. Hover to inspect one pair.</div>
+          </div>
+          <aside class="statistics-panel" aria-live="polite">
+            <div class="eyebrow" id="statKicker">2 space + 1 time</div>
+            <h3 id="statTitle">Three-dimensional spacetime</h3>
+            <p id="statCopy">A point has two independent spatial ways to fall outside another point’s light cone.</p>
+            <div class="big-stat" id="observedFraction">—</div>
+            <div class="stat-label">related pairs in this sprinkling</div>
+            <div class="meter"><span id="fractionMeter"></span></div>
+            <div class="expected"><span>Flat-space expectation</span><strong id="expectedFraction">22.9%</strong></div>
+            <p><strong>This is evidence, not a label.</strong> Dimension estimators invert statistics like this ordering fraction. A finite sample fluctuates, and generic causal sets may have no good continuum dimension.</p>
+          </aside>
+        </div>
+
+        <section class="python-demo" aria-label="Interactive Python ordering-fraction experiment">
+          <div class="python-workbench">
+            <div class="python-panel python-source-panel">
+              <div class="python-panel-head"><strong>order_fraction_demo.py</strong><div class="python-panel-actions"><button id="pythonFullscreen" type="button" aria-pressed="false">Full screen</button><button id="pythonReset" type="button" disabled>Reset</button></div></div>
+              <div class="python-editor"><pre id="pythonHighlight" aria-hidden="true"><code></code></pre><textarea id="pythonCode" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Editable Python source">from itertools import combinations
+from math import gamma
+from random import Random
+
+
+def sprinkle(D, N):
+    random = Random(7)  # Fixed seed: every run is reproducible.
+    events = []
+    while len(events) &lt; N:
+        t = random.uniform(-1, 1)
+        radius = 1 - abs(t)
+        if random.random() > radius ** (D - 1):
+            continue
+        while True:
+            x = [random.uniform(-1, 1) for _ in range(D - 1)]
+            if sum(a * a for a in x) &lt;= 1:
+                events.append((t, *(radius * a for a in x)))
+                break
+    return sorted(events)
+
+
+def precedes(p, q):
+    Δt = q[0] - p[0]
+    Δx2 = sum((b - a) ** 2 for a, b in zip(p[1:], q[1:]))
+    return Δt > 0 and Δx2 &lt;= Δt ** 2
+
+
+def count_related_pairs(events):
+    return sum(precedes(p, q) for p, q in combinations(events, 2))
+
+
+def simulate(D, N):
+    events = sprinkle(D, N)
+    related = count_related_pairs(events)
+    pairs = N * (N - 1) // 2
+    return related, pairs, related / pairs
+
+
+def flat_expectation(D):
+    return gamma(D + 1) * gamma(D / 2) / (2 * gamma(3 * D / 2))
+
+
+def main(D=3, N=200):
+    related, pairs, r̂ = simulate(D, N)
+    r = flat_expectation(D)
+    print(f"D={D}, N={N}")
+    print(f"R={related:,} related pairs out of {pairs:,}")
+    print(f"r̂_D = 2R/[N(N−1)] = {r̂:.4f}  ({r̂:.1%})")
+    print(f"r_D = Γ(D+1)Γ(D/2)/[2Γ(3D/2)] = {r:.4f}  ({r:.1%})")
+    print(f"difference = {r̂ - r:+.4f}")
+
+
+main()</textarea></div>
+            </div>
+            <div class="python-panel">
+              <div class="python-panel-head"><strong>Output</strong><span id="pythonRunStatus" role="status">Ready</span></div>
+              <pre id="pythonOutput" aria-live="polite">Run to sprinkle events and count their causal pairs.</pre>
+            </div>
+            <div class="python-controls">
+              <button id="pythonRun" class="primary" type="button" disabled>▶ Run code</button>
+              <button id="pythonStop" type="button" disabled>Stop</button>
+              <span class="python-status">Ctrl/⌘ + Enter to run</span>
+            </div>
+          </div>
+        </section>
+
+        <div class="expectation-math">
+          <div class="eyebrow">Why those percentages?</div>
+          <h3>The flat-space ordering fraction</h3>
+          <div class="diamond-intro">
+            <div>
+              <p>Choose two events uniformly from a flat \(D\)-dimensional causal diamond \(I\). They are related when either event lies in the other’s future light cone. If the diamond has volume \(V\), fixing the first event \(x\) leaves a smaller future diamond whose volume scales as its proper-time height to the power \(D\).</p>
+              <p><strong>This is one equation in two forms, not two different laws.</strong> The middle expression counts the available future volume geometrically. The expression on the right is what that integral equals after evaluation.</p>
+            </div>
+            <figure class="diamond-figure">
+              <svg viewBox="0 0 220 220" role="img" aria-labelledby="smallDiamondTitle smallDiamondDesc">
+                <title id="smallDiamondTitle">A causal diamond and the future subdiamond above event x</title>
+                <desc id="smallDiamondDesc">The full diamond I runs from past endpoint p to future endpoint q. Event x lies inside it. The blue upper diamond is the interval from x to q.</desc>
+                <defs>
+                  <marker id="timeArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#66716d"/></marker>
+                </defs>
+                <path d="M110 15 L197 105 L110 195 L23 105 Z" fill="none" stroke="#8191aa" stroke-width="1.5"/>
+                <path d="M110 15 L166 72 L110 130 L54 72 Z" fill="#56b4e9" fill-opacity=".25" stroke="#1769c2" stroke-width="2"/>
+                <path d="M110 195 L110 15" stroke="#8191aa" stroke-width="1" stroke-dasharray="3 5"/>
+                <circle cx="110" cy="195" r="4.5" fill="#f2bf63"/><circle cx="110" cy="130" r="5" fill="#56b4e9"/><circle cx="110" cy="15" r="4.5" fill="#f2bf63"/>
+                <text x="120" y="201" fill="#17201e" font-size="13" font-weight="700">p</text>
+                <text x="120" y="135" fill="#1769c2" font-size="13" font-weight="700">x</text>
+                <text x="120" y="20" fill="#17201e" font-size="13" font-weight="700">q</text>
+                <text x="39" y="112" fill="#66716d" font-size="12">I</text>
+                <text x="120" y="69" fill="#1769c2" font-size="11" font-weight="600">I(x,q)</text>
+                <path d="M207 180 L207 42" stroke="#66716d" stroke-width="1.2" marker-end="url(#timeArrow)"/>
+                <text x="202" y="111" fill="#66716d" font-size="10" text-anchor="middle" transform="rotate(-90 202 111)">time</text>
+              </svg>
+              <figcaption>Full interval \(I\); blue is the available future interval \(I(x,q)\).</figcaption>
+            </figure>
+          </div>
+          <div class="derivation">
+            <div class="derivation-step"><small>geometric count &nbsp; = &nbsp; evaluated closed form</small><div class="math-line">\[r_D
+              = \frac{2}{V^2}\int_I \mathrm{Vol}\!\left(I(x,q)\right)\,\mathrm{d}^D x
+              = \frac{\Gamma(D+1)\,\Gamma(D/2)}{2\,\Gamma(3D/2)}\]</div></div>
+          </div>
+          <div class="symbol-key" aria-label="Equation symbol definitions">
+            <div><strong>\(r_D\)</strong>Expected fraction of event pairs that are causally related.</div>
+            <div><strong>\(V\)</strong>Total spacetime volume of the causal diamond.</div>
+            <div><strong>\(I(x,q)\)</strong>The smaller causal diamond from \(x\) to the future endpoint \(q\).</div>
+            <div><strong>\(\Gamma\) · gamma</strong>The gamma function, extending factorials: \(\Gamma(n)=(n-1)!\) for positive integers.</div>
+          </div>
+          <p>The factor \(2\) counts both possible directions, \(x\prec y\) and \(y\prec x\). Evaluating the powers of interval volume produces gamma functions. The ratio is independent of the diamond’s size because both the numerator and \(V^2\) scale the same way.</p>
+          <div class="fraction-values" aria-label="Exact flat-space ordering fractions">
+            <div class="fraction-value" data-formula-d="1"><span>\(D=1\)</span><strong>\(1\)</strong><span>100%</span></div>
+            <div class="fraction-value" data-formula-d="2"><span>\(D=2\)</span><strong>\(\frac{1}{2}\)</strong><span>50%</span></div>
+            <div class="fraction-value active" data-formula-d="3"><span>\(D=3\)</span><strong>\(\frac{8}{35}\)</strong><span>≈ 22.9%</span></div>
+            <div class="fraction-value" data-formula-d="4"><span>\(D=4\)</span><strong>\(\frac{1}{10}\)</strong><span>10%</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sitefoot wrap"><span>Causal Set Emergence · An interactive research guide</span><span class="right"><a href="https://www.q5m.ai" aria-label="q5m"><svg class="footer-icon" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/></g></svg><span>q5m</span></a><a href="https://github.com/q5m-ai/causal-set-emergence"><svg class="footer-icon" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.7 7.7 0 0 1 8 3.84a7.7 7.7 0 0 1 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>GitHub</span></a></span></footer>
+
+  <script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1.10.0/dist/es-module-shims.js"></script>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+  <script type="module">
+    const stage = document.getElementById("stage");
+    const loading = document.getElementById("loading");
+    const modeKicker = document.getElementById("modeKicker");
+    const modeTitle = document.getElementById("modeTitle");
+    const modeCopy = document.getElementById("modeCopy");
+    const relationCopy = document.getElementById("relationCopy");
+    const formalSetValues = document.querySelectorAll("#formalRelation .set-value");
+
+    try {
+      const THREE = await import("three");
+      const { OrbitControls } = await import("three/addons/controls/OrbitControls.js");
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x04060d);
+      scene.fog = new THREE.Fog(0x04060d, 8, 15);
+
+      const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.domElement.setAttribute("role", "img");
+      renderer.domElement.setAttribute("aria-label", "A rotatable causal-set construction with time vertical and up to two spatial axes");
+      stage.insertBefore(renderer.domElement, stage.firstChild);
+
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.07;
+      controls.minDistance = 3.6;
+      controls.maxDistance = 12;
+      controls.target.set(0, 0.65, 0);
+
+      scene.add(new THREE.HemisphereLight(0xbcdcff, 0x182338, 2.4));
+      const key = new THREE.DirectionalLight(0xffffff, 2.2);
+      key.position.set(3, 5, 4);
+      scene.add(key);
+
+      const root = new THREE.Group();
+      scene.add(root);
+
+      const colors = {
+        endpoint: 0xf2bf63,
+        middle: 0x56b4e9,
+        relation: 0x8ba4c5,
+        x: 0xed8068,
+        y: 0x38c99a,
+        time: 0x56b4e9
+      };
+
+      const modes = {
+        1: {
+          kicker: "1D · 0 space + 1 time", title: "One temporal pair",
+          copy: "With no spatial direction, an event at the earlier time necessarily precedes an event at the later time.",
+          relation: "<strong>Causal relation:</strong> a₁ ≺ b₁.",
+          events: [
+            { id: "a₁", p: [0, 0, 0], endpoint: true },
+            { id: "b₁", p: [1, 0, 0] }
+          ],
+          links: [["a₁", "b₁"]]
+        },
+        2: {
+          kicker: "2D · 1 space + 1 time", title: "Two crossed pairs",
+          copy: "One spatial axis lets each early event reach the other later event while remaining spacelike to its named partner.",
+          relation: "<strong>Required pattern:</strong> a₁ ≺ b₂ and a₂ ≺ b₁, while a₁ is unrelated to b₁ and a₂ is unrelated to b₂.",
+          events: [
+            { id: "a₁", p: [0, -0.6, 0], endpoint: true },
+            { id: "a₂", p: [0, 0.6, 0], endpoint: true },
+            { id: "b₁", p: [0.5, 0.6, 0] },
+            { id: "b₂", p: [0.5, -0.6, 0] }
+          ],
+          links: [["a₁", "b₂"], ["a₂", "b₁"]]
+        },
+        3: {
+          kicker: "3D · 2 space + 1 time", title: "Three cyclic exclusions",
+          copy: "Each early event reaches two later events but misses its named partner. One spatial line cannot realize all three exclusions; a spatial triangle can.",
+          relation: "<strong>Required pattern:</strong> a₁ reaches b₂ and b₃ but not b₁, and cyclically. Missing relations are as important as the links shown.",
+          events: [
+            { id: "a₁", p: [0, 0, 1.1547], endpoint: true },
+            { id: "a₂", p: [0, -1, -0.5774], endpoint: true },
+            { id: "a₃", p: [0, 1, -0.5774], endpoint: true },
+            { id: "b₁", p: [1.2, 0, -0.5774] },
+            { id: "b₂", p: [1.2, 0.5, 0.2887] },
+            { id: "b₃", p: [1.2, -0.5, 0.2887] }
+          ],
+          links: [["a₁", "b₂"], ["a₁", "b₃"], ["a₂", "b₁"], ["a₂", "b₃"], ["a₃", "b₁"], ["a₃", "b₂"]]
+        }
+      };
+
+      function world([t, x, y]) { return new THREE.Vector3(x, t, y); }
+
+      function labelSprite(text, color = "#d9e4f5") {
+        const canvas = document.createElement("canvas");
+        canvas.width = 256; canvas.height = 96;
+        const context = canvas.getContext("2d");
+        context.font = "700 38px Outfit, sans-serif";
+        context.textAlign = "center";
+        context.textBaseline = "middle";
+        context.lineWidth = 8;
+        context.lineJoin = "round";
+        context.strokeStyle = "#04060d";
+        context.strokeText(text, 128, 48);
+        context.fillStyle = color;
+        context.fillText(text, 128, 48);
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.colorSpace = THREE.SRGBColorSpace;
+        const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, transparent: true, depthTest: false }));
+        sprite.scale.set(0.72, 0.27, 1);
+        sprite.renderOrder = 10;
+        return sprite;
+      }
+
+      function line(a, b, material) {
+        return new THREE.Line(new THREE.BufferGeometry().setFromPoints([a, b]), material);
+      }
+
+      function drawAxes(mode) {
+        const axisMaterial = color => new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.7 });
+        const spatialLevel = mode === 2 ? 0.25 : 0.6;
+        const origin = new THREE.Vector3(0, -0.12, 0);
+        root.add(line(origin, new THREE.Vector3(0, 1.62, 0), axisMaterial(colors.time)));
+        const tLabel = labelSprite("t", "#8bd7ff"); tLabel.position.set(0, 1.72, 0); root.add(tLabel);
+        if (mode >= 2) {
+          root.add(line(new THREE.Vector3(-1.3, spatialLevel, 0), new THREE.Vector3(1.3, spatialLevel, 0), axisMaterial(colors.x)));
+          const xLabel = labelSprite("x", "#ff9c86"); xLabel.position.set(1.4, spatialLevel, 0); root.add(xLabel);
+        }
+        if (mode >= 3) {
+          root.add(line(new THREE.Vector3(0, spatialLevel, -1.3), new THREE.Vector3(0, spatialLevel, 1.3), axisMaterial(colors.y)));
+          const yLabel = labelSprite("y", "#77ddb9"); yLabel.position.set(0, spatialLevel, 1.4); root.add(yLabel);
+        }
+      }
+
+      function drawScaffolding(mode) {
+        if (mode === 2) {
+          const plane = new THREE.Mesh(
+            new THREE.PlaneGeometry(2.8, 1.45),
+            new THREE.MeshBasicMaterial({ color: 0x315d88, transparent: true, opacity: 0.06, side: THREE.DoubleSide, depthWrite: false })
+          );
+          plane.position.set(0, 0.55, -0.015);
+          root.add(plane);
+        }
+        if (mode === 3) {
+          [0, 1.2].forEach((height, index) => {
+            const plane = new THREE.Mesh(
+              new THREE.CircleGeometry(1.48, 48),
+              new THREE.MeshBasicMaterial({ color: index ? 0x315d88 : 0x684e24, transparent: true, opacity: 0.075, side: THREE.DoubleSide, depthWrite: false })
+            );
+            plane.rotation.x = -Math.PI / 2;
+            plane.position.y = height;
+            root.add(plane);
+          });
+        }
+      }
+
+      function draw(mode) {
+        while (root.children.length) {
+          const child = root.children.pop();
+          child.traverse(object => {
+            if (object.geometry) object.geometry.dispose();
+            if (object.material) {
+              const materials = Array.isArray(object.material) ? object.material : [object.material];
+              materials.forEach(material => { if (material.map) material.map.dispose(); material.dispose(); });
+            }
+          });
+        }
+        const model = modes[mode];
+        drawScaffolding(mode);
+        drawAxes(mode);
+
+        const byId = Object.fromEntries(model.events.map(event => [event.id, event]));
+        const linkMaterial = new THREE.LineBasicMaterial({ color: colors.relation, transparent: true, opacity: 0.72 });
+        model.links.forEach(([from, to]) => root.add(line(world(byId[from].p), world(byId[to].p), linkMaterial)));
+
+        model.events.forEach(event => {
+          const position = world(event.p);
+          const sphere = new THREE.Mesh(
+            new THREE.SphereGeometry(event.endpoint ? 0.105 : 0.09, 28, 20),
+            new THREE.MeshStandardMaterial({ color: event.endpoint ? colors.endpoint : colors.middle, roughness: 0.28, metalness: 0.05, emissive: event.endpoint ? 0x4a3108 : 0x082d4f, emissiveIntensity: 0.5 })
+          );
+          sphere.position.copy(position);
+          root.add(sphere);
+          const label = labelSprite(event.id, event.endpoint ? "#f8cd78" : "#8bd7ff");
+          label.position.copy(position).add(new THREE.Vector3(0.18, 0.16, 0.06));
+          root.add(label);
+        });
+
+        modeKicker.textContent = model.kicker;
+        modeTitle.textContent = model.title;
+        modeCopy.textContent = model.copy;
+        relationCopy.innerHTML = model.relation;
+        formalSetValues[0].textContent = `= { ${model.events.map(event => event.id).join(", ")} }`;
+        formalSetValues[1].textContent = `= { ${model.links.map(([from, to]) => `(${from},${to})`).join(", ")} }`;
+        document.querySelectorAll("[data-mode]").forEach(button => button.setAttribute("aria-pressed", String(Number(button.dataset.mode) === mode)));
+      }
+
+      function resetView() {
+        camera.position.set(3.35, 2.4, 4.4);
+        controls.target.set(0, 0.65, 0);
+        controls.update();
+      }
+
+      // Myrheim–Meyer ordering-fraction illustration. Points are sampled
+      // uniformly by spacetime volume inside a flat Alexandrov interval.
+      const matrixCanvas = document.getElementById("relationMatrix");
+      const matrixContext = matrixCanvas.getContext("2d");
+      const matrixReadout = document.getElementById("matrixReadout");
+      const expectedFractions = { 1: 1, 2: 0.5, 3: 0.2286, 4: 0.1 };
+      const statDescriptions = {
+        1: ["0 space + 1 time", "One-dimensional spacetime", "With no spatial escape direction, every pair is temporally ordered."],
+        2: ["1 space + 1 time", "Two-dimensional spacetime", "Pairs can now fall on opposite sides of a light cone along one spatial axis."],
+        3: ["2 space + 1 time", "Three-dimensional spacetime", "A point has two independent spatial ways to fall outside another point’s light cone."],
+        4: ["3 space + 1 time", "Four-dimensional spacetime", "With three spatial directions, most pairs in the diamond are spacelike rather than causally ordered."]
+      };
+      let statisticalDimension = 3;
+      let currentPoints = [];
+      let currentRelations = [];
+      let currentRelationKeys = new Set();
+      let hoveredCell = null;
+
+      function randomGenerator(seed) {
+        return function random() {
+          seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+          let value = Math.imul(seed ^ seed >>> 15, 1 | seed);
+          value = value + Math.imul(value ^ value >>> 7, 61 | value) ^ value;
+          return ((value ^ value >>> 14) >>> 0) / 4294967296;
+        };
+      }
+
+      function sprinkle(dimension, count = 84) {
+        const random = randomGenerator(193 + dimension * 1009);
+        const spatialDimension = dimension - 1;
+        const points = [];
+        while (points.length < count) {
+          const t = random() * 2 - 1;
+          const radius = 1 - Math.abs(t);
+          if (random() > Math.pow(radius, spatialDimension)) continue;
+          const spatial = [];
+          if (spatialDimension) {
+            let normSquared;
+            do {
+              spatial.length = 0; normSquared = 0;
+              for (let axis = 0; axis < spatialDimension; axis++) {
+                const coordinate = random() * 2 - 1;
+                spatial.push(coordinate);
+                normSquared += coordinate * coordinate;
+              }
+            } while (normSquared > 1);
+            for (let axis = 0; axis < spatial.length; axis++) spatial[axis] *= radius;
+          }
+          points.push({ t, spatial });
+        }
+        return points.sort((a, b) => a.t - b.t);
+      }
+
+      function calculateRelations(points) {
+        const relations = [];
+        for (let earlier = 0; earlier < points.length; earlier++) {
+          for (let later = earlier + 1; later < points.length; later++) {
+            const dt = points[later].t - points[earlier].t;
+            let distanceSquared = 0;
+            for (let axis = 0; axis < points[earlier].spatial.length; axis++) {
+              const delta = points[later].spatial[axis] - points[earlier].spatial[axis];
+              distanceSquared += delta * delta;
+            }
+            if (distanceSquared <= dt * dt) relations.push([earlier, later]);
+          }
+        }
+        return relations;
+      }
+
+      function paintMatrix() {
+        const box = matrixCanvas.getBoundingClientRect();
+        if (!box.width || !box.height) return;
+        const ratio = Math.min(window.devicePixelRatio, 2);
+        matrixCanvas.width = Math.round(box.width * ratio);
+        matrixCanvas.height = Math.round(box.height * ratio);
+        matrixContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+        matrixContext.fillStyle = "#04060d";
+        matrixContext.fillRect(0, 0, box.width, box.height);
+        const count = 84;
+        const cellWidth = box.width / count;
+        const cellHeight = box.height / count;
+        matrixContext.fillStyle = "#08111f";
+        matrixContext.beginPath();
+        matrixContext.moveTo(0, 0);
+        matrixContext.lineTo(box.width, 0);
+        matrixContext.lineTo(box.width, box.height);
+        matrixContext.closePath();
+        matrixContext.fill();
+        matrixContext.fillStyle = "rgba(86,180,233,.86)";
+        currentRelations.forEach(([earlier, later]) => {
+          matrixContext.fillRect(later * cellWidth, earlier * cellHeight, Math.max(1, cellWidth), Math.max(1, cellHeight));
+        });
+        matrixContext.strokeStyle = "rgba(139,164,197,.32)";
+        matrixContext.lineWidth = 1;
+        matrixContext.beginPath();
+        matrixContext.moveTo(0, 0);
+        matrixContext.lineTo(box.width, box.height);
+        matrixContext.stroke();
+        if (hoveredCell) {
+          const [row, column] = hoveredCell;
+          matrixContext.fillStyle = "rgba(242,191,99,.11)";
+          matrixContext.fillRect(0, row * cellHeight, box.width, cellHeight);
+          matrixContext.fillRect(column * cellWidth, 0, cellWidth, box.height);
+          matrixContext.strokeStyle = "#f2bf63";
+          matrixContext.lineWidth = 1.5;
+          matrixContext.strokeRect(column * cellWidth, row * cellHeight, Math.max(2, cellWidth), Math.max(2, cellHeight));
+        }
+      }
+
+      function drawStatistics(dimension) {
+        statisticalDimension = dimension;
+        const points = sprinkle(dimension);
+        currentPoints = points;
+        currentRelations = calculateRelations(points);
+        currentRelationKeys = new Set(currentRelations.map(([earlier, later]) => `${earlier}:${later}`));
+        hoveredCell = null;
+        matrixReadout.innerHTML = "<strong>How to read it:</strong> cell <code>(r,c)</code> represents the pair <code>(eᵣ,e꜀)</code>. Choose a row and a later column: blue means <code>eᵣ ≺ e꜀</code>, while a dark upper cell means the pair is spacelike. Hover to inspect one pair.";
+        const possible = points.length * (points.length - 1) / 2;
+        const observed = currentRelations.length / possible;
+        const description = statDescriptions[dimension];
+        document.getElementById("statKicker").textContent = description[0];
+        document.getElementById("statTitle").textContent = description[1];
+        document.getElementById("statCopy").textContent = description[2];
+        document.getElementById("observedFraction").textContent = `${(observed * 100).toFixed(1)}%`;
+        document.getElementById("expectedFraction").textContent = `${(expectedFractions[dimension] * 100).toFixed(1)}%`;
+        document.getElementById("fractionMeter").style.width = `${observed * 100}%`;
+        document.querySelectorAll("[data-stat-d]").forEach(button => button.setAttribute("aria-pressed", String(Number(button.dataset.statD) === dimension)));
+        document.querySelectorAll("[data-formula-d]").forEach(value => value.classList.toggle("active", Number(value.dataset.formulaD) === dimension));
+        paintMatrix();
+      }
+
+      function inspectMatrix(event) {
+        const box = matrixCanvas.getBoundingClientRect();
+        const row = Math.max(0, Math.min(83, Math.floor((event.clientY - box.top) / box.height * 84)));
+        const column = Math.max(0, Math.min(83, Math.floor((event.clientX - box.left) / box.width * 84)));
+        hoveredCell = [row, column];
+        const rowName = `e<sub>${row + 1}</sub>`;
+        const columnName = `e<sub>${column + 1}</sub>`;
+        if (row === column) {
+          matrixReadout.innerHTML = `<strong>Diagonal:</strong> row and column both name ${rowName}. The strict causal relation does not relate an event to itself.`;
+        } else if (column < row) {
+          matrixReadout.innerHTML = `<strong>Below the diagonal:</strong> ${columnName} occurs earlier than ${rowName}. Read this pair at the mirrored upper cell: row ${columnName}, column ${rowName}.`;
+        } else {
+          const related = currentRelationKeys.has(`${row}:${column}`);
+          const rowTime = currentPoints[row].t.toFixed(3);
+          const columnTime = currentPoints[column].t.toFixed(3);
+          matrixReadout.innerHTML = `<strong>Row ${rowName}, column ${columnName}:</strong> <code>${rowName} ${related ? "≺" : "∥"} ${columnName}</code>. ${related ? "Blue: the row event can causally precede the column event." : "Dark: despite occurring later, the column event is spacelike to the row event."} <span>t = ${rowTime} → ${columnTime}</span>`;
+        }
+        paintMatrix();
+      }
+
+      matrixCanvas.addEventListener("pointermove", inspectMatrix);
+      matrixCanvas.addEventListener("pointerdown", inspectMatrix);
+      matrixCanvas.addEventListener("pointerleave", () => {
+        hoveredCell = null;
+        matrixReadout.innerHTML = "<strong>How to read it:</strong> cell <code>(r,c)</code> represents the pair <code>(eᵣ,e꜀)</code>. Choose a row and a later column: blue means <code>eᵣ ≺ e꜀</code>, while a dark upper cell means the pair is spacelike. Hover to inspect one pair.";
+        paintMatrix();
+      });
+
+      document.querySelectorAll("[data-mode]").forEach(button => button.addEventListener("click", () => draw(Number(button.dataset.mode))));
+      document.querySelectorAll("[data-stat-d]").forEach(button => button.addEventListener("click", () => drawStatistics(Number(button.dataset.statD))));
+      document.getElementById("reset").addEventListener("click", resetView);
+      new ResizeObserver(paintMatrix).observe(matrixCanvas.parentElement);
+
+      function resize() {
+        const width = stage.clientWidth;
+        const height = stage.clientHeight;
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      }
+      new ResizeObserver(resize).observe(stage);
+      resetView();
+      draw(3);
+      drawStatistics(3);
+      resize();
+      loading.remove();
+
+      function animate() {
+        controls.update();
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
+      animate();
+    } catch (error) {
+      loading.textContent = "The 3D viewer could not load. Check your network connection and WebGL support.";
+      console.error(error);
+    }
+  </script>
+  <script>
+    (() => {
+      const RUN_TIMEOUT_MS = 60_000;
+      const code = document.getElementById("pythonCode");
+      const highlight = document.getElementById("pythonHighlight");
+      const output = document.getElementById("pythonOutput");
+      const status = document.getElementById("pythonRunStatus");
+      const runButton = document.getElementById("pythonRun");
+      const stopButton = document.getElementById("pythonStop");
+      const resetButton = document.getElementById("pythonReset");
+      const fullscreenButton = document.getElementById("pythonFullscreen");
+      const sourcePanel = document.querySelector(".python-source-panel");
+      const originalSource = code.value;
+      let worker;
+      let timer;
+      let running = false;
+      let hasOutput = false;
+
+      function updateControls() {
+        runButton.disabled = running || !originalSource;
+        stopButton.disabled = !running;
+        resetButton.disabled = running || !originalSource;
+        code.readOnly = running || !originalSource;
+      }
+
+      function syncHighlightScroll() {
+        highlight.scrollTop = code.scrollTop;
+        highlight.scrollLeft = code.scrollLeft;
+      }
+
+      function highlightCode() {
+        const keywords = /^(from|import|for|in|if|else|elif|def|return|while|continue|raise|True|False|None|and|or|not)$/;
+        const tokens = code.value.match(/#[^\n]*|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\b(?:from|import|for|in|if|else|elif|def|return|while|continue|raise|True|False|None|and|or|not)\b|\b\d+(?:\.\d+)?\b|[^#"'\w]+|\w+|./g) || [];
+        const target = highlight.querySelector("code");
+        target.replaceChildren(...tokens.map(text => {
+          const kind = text.startsWith("#") ? "comment"
+            : /^["']/.test(text) ? "string"
+            : /^\d/.test(text) ? "number"
+            : keywords.test(text) ? "keyword" : null;
+          if (!kind) return document.createTextNode(text);
+          const span = document.createElement("span");
+          span.className = `tok-${kind}`;
+          span.textContent = text;
+          return span;
+        }), document.createTextNode("\n"));
+        syncHighlightScroll();
+      }
+
+      function appendOutput(line) {
+        if (!hasOutput) {
+          output.textContent = "";
+          hasOutput = true;
+        }
+        output.textContent = `${output.textContent}${output.textContent ? "\n" : ""}${line}`.slice(-20_000);
+        output.scrollTop = output.scrollHeight;
+      }
+
+      function finish(label) {
+        clearTimeout(timer);
+        worker?.terminate();
+        worker = undefined;
+        running = false;
+        status.textContent = label;
+        updateControls();
+      }
+
+      function stop(message, label = "Stopped") {
+        if (!running) return;
+        appendOutput(message);
+        finish(label);
+      }
+
+      runButton.addEventListener("click", () => {
+        if (running || !originalSource) return;
+        running = true;
+        hasOutput = false;
+        output.textContent = "Loading Python (the first run may take a moment)…";
+        status.textContent = "Loading Python";
+        updateControls();
+        worker = new Worker("order-fraction-worker.js?v=1");
+        worker.addEventListener("message", event => {
+          const message = event.data;
+          if (message?.type === "ready") {
+            status.textContent = "Running";
+            worker.postMessage({ type: "run", source: code.value });
+          } else if (message?.type === "line") {
+            appendOutput(message.line);
+          } else if (message?.type === "done") {
+            finish("Finished");
+          } else if (message?.type === "run-error" || message?.type === "boot-error") {
+            appendOutput(message.error);
+            finish("Failed");
+          }
+        });
+        worker.addEventListener("error", event => {
+          appendOutput(event.message || "The Python worker failed.");
+          finish("Failed");
+        });
+        timer = setTimeout(() => stop("Execution stopped after the 60-second limit.", "Timed out"), RUN_TIMEOUT_MS);
+      });
+
+      stopButton.addEventListener("click", () => stop("Execution stopped by the user."));
+
+      function setFullscreen(active) {
+        sourcePanel.classList.toggle("is-fullscreen", active);
+        document.body.classList.toggle("python-code-fullscreen", active);
+        fullscreenButton.textContent = active ? "Exit full screen" : "Full screen";
+        fullscreenButton.setAttribute("aria-pressed", String(active));
+      }
+
+      fullscreenButton.addEventListener("click", () => {
+        setFullscreen(!sourcePanel.classList.contains("is-fullscreen"));
+      });
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && sourcePanel.classList.contains("is-fullscreen")) {
+          setFullscreen(false);
+          fullscreenButton.focus();
+        }
+      });
+
+      resetButton.addEventListener("click", () => {
+        code.value = originalSource;
+        code.scrollTop = code.scrollLeft = 0;
+        highlightCode();
+        output.textContent = "Run to sprinkle events and count their causal pairs.";
+        status.textContent = "Reset";
+      });
+      code.addEventListener("input", () => {
+        highlightCode();
+        if (!running) status.textContent = "Edited";
+      });
+      code.addEventListener("scroll", syncHighlightScroll);
+      code.addEventListener("keydown", event => {
+        if (event.key === "Enter" && (event.ctrlKey || event.metaKey)) {
+          event.preventDefault();
+          runButton.click();
+        }
+      });
+      highlightCode();
+      updateControls();
+    })();
+  </script>
+</body>
+</html>
