@@ -84,9 +84,6 @@
     .expected { display: flex; justify-content: space-between; border-top: 1px solid hsl(var(--border)); padding-top: 12px; font-size: 13px; }
     .expected span { color: hsl(var(--muted-fg)); }
     .python-demo { margin-top: 12px; padding: 0; border: 1px solid #263750; border-radius: var(--radius); overflow: hidden; background: #04060d; color: #d9e4f5; }
-    .python-demo-head { display: flex; align-items: baseline; justify-content: space-between; gap: 18px; padding: 15px 17px; border-bottom: 1px solid #263750; background: #08111f; }
-    .python-demo-head h3 { margin: 0; color: #eef5ff; font-size: 18px; }
-    .python-demo-head p { margin: 0; color: #91a3bb; font-size: 12px; }
     .python-workbench { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr); }
     .python-panel { min-width: 0; }
     .python-panel + .python-panel { border-left: 1px solid #263750; }
@@ -124,7 +121,6 @@
       .dimension-layout, .statistics-lab, .python-workbench { grid-template-columns: 1fr; }
       .python-panel + .python-panel { border-left: 0; border-top: 1px solid #263750; }
       #pythonCode, #pythonOutput { height: 330px; }
-      .python-demo-head { align-items: flex-start; flex-direction: column; gap: 4px; }
       .stage { min-height: 520px; }
       .explanation-grid { grid-template-columns: 1fr; }
       .diamond-intro { grid-template-columns: 1fr; }
@@ -218,77 +214,60 @@
           </aside>
         </div>
 
-        <section class="python-demo" aria-labelledby="pythonDemoTitle">
-          <header class="python-demo-head">
-            <h3 id="pythonDemoTitle">Run the ordering-fraction experiment in Python</h3>
-            <p>Edit \(D\), \(N\), or the seed, then compare \(\hat r_D\) with \(r_D\).</p>
-          </header>
+        <section class="python-demo" aria-label="Ordering-fraction Python demo">
           <div class="python-workbench">
             <div class="python-panel">
               <div class="python-panel-head"><strong>order_fraction_demo.py</strong><button id="pythonReset" type="button" disabled>Reset</button></div>
               <label class="sr-only" for="pythonCode">Editable Python source</label>
-              <textarea id="pythonCode" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="pythonSafety">"""Estimate the causal ordering fraction in a flat spacetime diamond."""
+              <textarea id="pythonCode" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="pythonSafety">def ordering_fraction(D=3, N=200, seed=7):
+    from math import gamma
+    from random import Random
 
-from math import gamma
-from random import Random
+    if D not in (1, 2, 3, 4):
+        raise ValueError("choose D = 1, 2, 3, or 4")
+    if not 2 &lt;= N &lt;= 1000:
+        raise ValueError("choose 2–1000 events")
 
-D = 3       # spacetime dimensions: 1, 2, 3, or 4
-N = 200     # sprinkled events
-SEED = 7
-
-
-def sprinkle(count, dimension, seed):
-    """Uniform random sample, conditioned on exactly count events."""
     random = Random(seed)
-    space_dimensions = dimension - 1
+    space_dimensions = D - 1
     events = []
 
-    while len(events) &lt; count:
+    while len(events) &lt; N:
         t = random.uniform(-1, 1)
         radius = 1 - abs(t)
-
-        # A time slice has spatial volume proportional to radius^(D−1).
         if random.random() > radius ** space_dimensions:
             continue
 
         spatial = []
-        if space_dimensions:
-            while True:
-                candidate = [random.uniform(-1, 1)
-                             for _ in range(space_dimensions)]
-                if sum(x * x for x in candidate) &lt;= 1:
-                    spatial = [radius * x for x in candidate]
-                    break
-
+        while space_dimensions:
+            point = [random.uniform(-1, 1)
+                     for _ in range(space_dimensions)]
+            if sum(x * x for x in point) &lt;= 1:
+                spatial = [radius * x for x in point]
+                break
         events.append((t, *spatial))
 
-    return sorted(events)
+    events.sort()
+
+    def precedes(p, q):
+        dt = q[0] - p[0]
+        dx2 = sum((b - a) ** 2 for a, b in zip(p[1:], q[1:]))
+        return dt > 0 and dx2 &lt;= dt * dt
+
+    related = sum(precedes(events[i], events[j])
+                  for i in range(N) for j in range(i + 1, N))
+    pairs = N * (N - 1) // 2
+    observed = related / pairs
+    expected = gamma(D + 1) * gamma(D / 2) / (2 * gamma(3 * D / 2))
+    return related, pairs, observed, expected
 
 
-def precedes(p, q):
-    """p ≺ q when q is inside p's future light cone (c = 1)."""
-    Δt = q[0] - p[0]
-    Δx_sq = sum((b - a) ** 2 for a, b in zip(p[1:], q[1:]))  # Δx²
-    return Δt > 0 and Δx_sq &lt;= Δt ** 2
-
-
-if D not in (1, 2, 3, 4):
-    raise ValueError("D must be 1, 2, 3, or 4")
-if not 2 &lt;= N &lt;= 1000:
-    raise ValueError("N must be between 2 and 1000")
-
-events = sprinkle(N, D, SEED)
-R = sum(precedes(events[i], events[j])
-        for i in range(N) for j in range(i + 1, N))
-pairs = N * (N - 1) // 2
-observed = R / pairs
-expected = gamma(D + 1) * gamma(D / 2) / (2 * gamma(3 * D / 2))
-
+D, N, SEED = 3, 200, 7
+R, pairs, observed, expected = ordering_fraction(D, N, SEED)
 print(f"D = {D}, N = {N}, seed = {SEED}")
-print(f"related pairs R = {R:,}")
-print(f"all pairs C(N,2) = {pairs:,}")
-print(f"r̂_D = 2R / [N(N−1)] = {observed:.4f}  ({observed:.1%})")
-print(f"r_D = Γ(D+1)Γ(D/2) / [2Γ(3D/2)] = {expected:.4f}  ({expected:.1%})")
+print(f"related pairs R = {R:,} / {pairs:,}")
+print(f"r̂_D = {observed:.4f}  ({observed:.1%})")
+print(f"r_D = {expected:.4f}  ({expected:.1%})")
 print(f"sampling difference = {observed - expected:+.4f}")</textarea>
             </div>
             <div class="python-panel">
