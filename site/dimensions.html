@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Rotate a small causal set and compare one-, two-, and three-dimensional spacetime constructions.">
+  <title>Dimensions of a causal set — Causal Set Emergence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css?v=erdos193">
+  <style>
+    .page-head { padding: 18px 0 34px; }
+    .page-head h1 { max-width: 800px; }
+    .page-head .lede { max-width: 740px; }
+    .dimension-layout { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(260px, .55fr); gap: 12px; align-items: stretch; }
+    .stage {
+      position: relative; min-height: 620px; overflow: hidden;
+      border: 1px solid hsl(var(--border)); border-radius: var(--radius); background: #04060d;
+    }
+    .stage canvas { display: block; width: 100%; height: 100%; cursor: grab; }
+    .stage canvas:active { cursor: grabbing; }
+    .toolbar { position: absolute; z-index: 4; top: 12px; left: 12px; display: flex; flex-wrap: wrap; gap: 6px; max-width: calc(100% - 24px); }
+    .toolbar button {
+      cursor: pointer; border: 1px solid #263750; border-radius: 8px; padding: 7px 11px;
+      color: #c3cee0; background: rgb(4 6 13 / .82); font-size: 12px; font-weight: 600;
+    }
+    .toolbar button:hover { border-color: #56b4e9; }
+    .toolbar button[aria-pressed="true"] { border-color: #56b4e9; color: #fff; background: #1769c2; }
+    .toolbar button:focus-visible { outline: 3px solid #56b4e9; outline-offset: 2px; }
+    .stage-note, .coordinates {
+      position: absolute; z-index: 3; bottom: 12px; border-radius: 8px; padding: 6px 9px;
+      color: #aab9d0; background: rgb(4 6 13 / .76); font-size: 11px;
+    }
+    .stage-note { right: 12px; }
+    .coordinates { left: 12px; color: #d9e4f5; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .loading { position: absolute; inset: 0; z-index: 6; display: grid; place-items: center; color: #b9c6dc; background: #04060d; font-size: 13px; }
+    .side-panel { border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 20px; background: hsl(var(--card)); }
+    .side-panel h2 { margin: 4px 0 10px; font-size: 24px; }
+    .side-panel p { color: hsl(var(--muted-fg)); font-size: 14px; }
+    .event-list { margin: 20px 0 0; padding: 0; list-style: none; }
+    .event-list li { display: grid; grid-template-columns: 24px 1fr; gap: 9px; border-top: 1px solid hsl(var(--border)); padding: 10px 0; font-size: 13px; }
+    .event-key { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; color: #07101d; background: #56b4e9; font-size: 10px; font-weight: 700; }
+    .event-key.endpoint { background: #f2bf63; }
+    .event-list small { display: block; color: hsl(var(--muted-fg)); font: 11px ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .relation { margin-top: 16px; border-left: 3px solid hsl(var(--link)); padding: 11px 13px; color: hsl(var(--muted-fg)); background: hsl(var(--accent)); font-size: 13px; }
+    .explanation-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+    .explanation-grid article { border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 17px; background: hsl(var(--card)); }
+    .explanation-grid b { color: hsl(var(--link)); font: 700 11px ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .explanation-grid h2 { margin: 20px 0 6px; font-size: 18px; }
+    .explanation-grid p { margin: 0; color: hsl(var(--muted-fg)); font-size: 14px; }
+    .caveat { margin-top: 18px; border-left: 3px solid var(--gold); padding: 12px 14px; color: hsl(var(--muted-fg)); background: hsl(var(--accent)); font-size: 13px; }
+    @media (max-width: 780px) {
+      .dimension-layout { grid-template-columns: 1fr; }
+      .stage { min-height: 520px; }
+      .explanation-grid { grid-template-columns: 1fr; }
+      .stage-note { display: none; }
+    }
+    @media (max-width: 480px) { .stage { min-height: 460px; } }
+  </style>
+</head>
+<body>
+  <nav aria-label="Page navigation">
+    <div class="wrap nav-inner">
+      <div class="brand"><a href="index.html">Causal Set Emergence</a></div>
+      <div class="nav-links"><a href="index.html#pillars">Foundations</a><a href="index.html#locality">Locality</a><a href="index.html#quantum">Quantization</a></div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <header class="page-head">
+      <div class="eyebrow">Interactive construction · 1 time + 2 space</div>
+      <h1>Build a causal set into 3D spacetime.</h1>
+      <p class="lede">Move from a temporal chain to one spatial direction and then two. Drag to orbit, scroll to zoom, and right-drag to pan.</p>
+    </header>
+
+    <section style="padding:0 0 56px">
+      <div class="dimension-layout">
+        <div class="stage" id="stage" aria-label="Rotatable three-dimensional causal-set diagram">
+          <div class="toolbar" aria-label="Dimension controls">
+            <button type="button" data-mode="1" aria-pressed="false">1D · time</button>
+            <button type="button" data-mode="2" aria-pressed="false">2D · time + x</button>
+            <button type="button" data-mode="3" aria-pressed="true">3D · time + x + y</button>
+            <button type="button" id="reset">Reset view</button>
+          </div>
+          <div class="loading" id="loading">Loading 3D view…</div>
+          <div class="coordinates" id="coordinates">(t, x, y)</div>
+          <div class="stage-note">drag to rotate · scroll to zoom</div>
+        </div>
+
+        <aside class="side-panel" aria-live="polite">
+          <div class="eyebrow" id="modeKicker">3D spacetime</div>
+          <h2 id="modeTitle">Two spatial directions</h2>
+          <p id="modeCopy">At the middle time, events can be separated east–west and north–south. Time is the vertical axis.</p>
+          <ul class="event-list" id="eventList"></ul>
+          <div class="relation" id="relationCopy"><strong>Causal links:</strong> A precedes every middle event; every middle event precedes F. Events on the middle slice are mutually incomparable.</div>
+        </aside>
+      </div>
+
+      <div class="explanation-grid">
+        <article><b>1D</b><h2>A chain</h2><p>With time alone, the displayed events are totally ordered: A ≺ M ≺ F.</p></article>
+        <article><b>2D</b><h2>Add x</h2><p>E and W occur simultaneously at different x positions, so neither precedes the other.</p></article>
+        <article><b>3D</b><h2>Add y</h2><p>N and S add a second independent spatial direction. All four middle events remain spacelike.</p></article>
+      </div>
+
+      <div class="caveat"><strong>Construction scaffolding, not fundamental data.</strong> The axes, coordinates, spatial plane, and light cones show how this example is embedded in a continuum spacetime. A bare causal set retains only the events and their order. This six-event order alone is too small to establish dimension; dimension is inferred statistically from a much larger causal set.</div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-grid"><div><strong>Causal Set Emergence</strong><br>Interactive conceptual guide.</div><div><a href="index.html">← Return to the full guide</a></div></div></footer>
+
+  <script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1.10.0/dist/es-module-shims.js"></script>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+  <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+    const stage = document.getElementById("stage");
+    const loading = document.getElementById("loading");
+    const eventList = document.getElementById("eventList");
+    const modeKicker = document.getElementById("modeKicker");
+    const modeTitle = document.getElementById("modeTitle");
+    const modeCopy = document.getElementById("modeCopy");
+    const relationCopy = document.getElementById("relationCopy");
+
+    try {
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x04060d);
+      scene.fog = new THREE.Fog(0x04060d, 8, 15);
+
+      const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.domElement.setAttribute("role", "img");
+      renderer.domElement.setAttribute("aria-label", "A rotatable causal-set construction with time vertical and up to two spatial axes");
+      stage.insertBefore(renderer.domElement, stage.firstChild);
+
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.07;
+      controls.minDistance = 3.6;
+      controls.maxDistance = 12;
+      controls.target.set(0, 1, 0);
+
+      scene.add(new THREE.HemisphereLight(0xbcdcff, 0x182338, 2.4));
+      const key = new THREE.DirectionalLight(0xffffff, 2.2);
+      key.position.set(3, 5, 4);
+      scene.add(key);
+
+      const root = new THREE.Group();
+      scene.add(root);
+
+      const colors = {
+        endpoint: 0xf2bf63,
+        middle: 0x56b4e9,
+        relation: 0x8ba4c5,
+        x: 0xed8068,
+        y: 0x38c99a,
+        time: 0x56b4e9
+      };
+
+      const modes = {
+        1: {
+          kicker: "1D spacetime", title: "Time only",
+          copy: "There is no spatial separation. The three events form one temporal chain.",
+          relation: "<strong>Causal links:</strong> A ≺ M ≺ F. Transitivity also gives A ≺ F.",
+          events: [
+            { id: "A", label: "earlier center", p: [0, 0, 0], endpoint: true },
+            { id: "M", label: "middle event", p: [1, 0, 0] },
+            { id: "F", label: "later center", p: [2, 0, 0], endpoint: true }
+          ],
+          links: [["A", "M"], ["M", "F"]]
+        },
+        2: {
+          kicker: "2D spacetime", title: "One spatial direction",
+          copy: "E and W share a time but occupy different positions along x. They are spacelike and incomparable.",
+          relation: "<strong>Causal links:</strong> A ≺ E ≺ F and A ≺ W ≺ F. There is no relation between E and W.",
+          events: [
+            { id: "A", label: "earlier center", p: [0, 0, 0], endpoint: true },
+            { id: "E", label: "east", p: [1, 0.6, 0] },
+            { id: "W", label: "west", p: [1, -0.6, 0] },
+            { id: "F", label: "later center", p: [2, 0, 0], endpoint: true }
+          ],
+          links: [["A", "E"], ["A", "W"], ["E", "F"], ["W", "F"]]
+        },
+        3: {
+          kicker: "3D spacetime", title: "Two spatial directions",
+          copy: "At the middle time, events can be separated east–west and north–south. Time is the vertical axis.",
+          relation: "<strong>Causal links:</strong> A precedes every middle event; every middle event precedes F. Events on the middle slice are mutually incomparable.",
+          events: [
+            { id: "A", label: "earlier center", p: [0, 0, 0], endpoint: true },
+            { id: "E", label: "east", p: [1, 0.6, 0] },
+            { id: "W", label: "west", p: [1, -0.6, 0] },
+            { id: "N", label: "north", p: [1, 0, 0.6] },
+            { id: "S", label: "south", p: [1, 0, -0.6] },
+            { id: "F", label: "later center", p: [2, 0, 0], endpoint: true }
+          ],
+          links: [["A", "E"], ["A", "W"], ["A", "N"], ["A", "S"], ["E", "F"], ["W", "F"], ["N", "F"], ["S", "F"]]
+        }
+      };
+
+      function world([t, x, y]) { return new THREE.Vector3(x, t, y); }
+
+      function labelSprite(text, color = "#d9e4f5") {
+        const canvas = document.createElement("canvas");
+        canvas.width = 256; canvas.height = 96;
+        const context = canvas.getContext("2d");
+        context.font = "700 38px Outfit, sans-serif";
+        context.textAlign = "center";
+        context.textBaseline = "middle";
+        context.fillStyle = "rgba(4,6,13,.78)";
+        context.roundRect(44, 18, 168, 60, 16);
+        context.fill();
+        context.fillStyle = color;
+        context.fillText(text, 128, 48);
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.colorSpace = THREE.SRGBColorSpace;
+        const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, transparent: true, depthTest: false }));
+        sprite.scale.set(0.72, 0.27, 1);
+        sprite.renderOrder = 10;
+        return sprite;
+      }
+
+      function line(a, b, material) {
+        return new THREE.Line(new THREE.BufferGeometry().setFromPoints([a, b]), material);
+      }
+
+      function drawAxes(mode) {
+        const axisMaterial = color => new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.7 });
+        const origin = new THREE.Vector3(0, -0.12, 0);
+        root.add(line(origin, new THREE.Vector3(0, 2.45, 0), axisMaterial(colors.time)));
+        const tLabel = labelSprite("t", "#8bd7ff"); tLabel.position.set(0, 2.55, 0); root.add(tLabel);
+        if (mode >= 2) {
+          root.add(line(new THREE.Vector3(-1.25, 1, 0), new THREE.Vector3(1.25, 1, 0), axisMaterial(colors.x)));
+          const xLabel = labelSprite("x", "#ff9c86"); xLabel.position.set(1.35, 1, 0); root.add(xLabel);
+        }
+        if (mode >= 3) {
+          root.add(line(new THREE.Vector3(0, 1, -1.25), new THREE.Vector3(0, 1, 1.25), axisMaterial(colors.y)));
+          const yLabel = labelSprite("y", "#77ddb9"); yLabel.position.set(0, 1, 1.36); root.add(yLabel);
+        }
+      }
+
+      function drawScaffolding(mode) {
+        if (mode >= 2) {
+          const plane = new THREE.Mesh(
+            new THREE.PlaneGeometry(2.15, mode === 2 ? 2.15 : 2.15),
+            new THREE.MeshBasicMaterial({ color: 0x315d88, transparent: true, opacity: mode === 2 ? 0.055 : 0.075, side: THREE.DoubleSide, depthWrite: false })
+          );
+          if (mode === 2) {
+            plane.position.set(0, 1, -0.015);
+          } else {
+            plane.rotation.x = -Math.PI / 2;
+            plane.position.y = 1;
+          }
+          root.add(plane);
+        }
+        const coneMaterial = new THREE.MeshBasicMaterial({ color: 0x56b4e9, wireframe: true, transparent: true, opacity: 0.11, depthWrite: false });
+        const future = new THREE.Mesh(new THREE.ConeGeometry(1, 1, 32, 1, true), coneMaterial);
+        future.rotation.z = Math.PI;
+        future.position.y = 0.5;
+        root.add(future);
+        const past = new THREE.Mesh(new THREE.ConeGeometry(1, 1, 32, 1, true), coneMaterial.clone());
+        past.position.y = 1.5;
+        root.add(past);
+      }
+
+      function draw(mode) {
+        while (root.children.length) {
+          const child = root.children.pop();
+          child.traverse(object => {
+            if (object.geometry) object.geometry.dispose();
+            if (object.material) {
+              const materials = Array.isArray(object.material) ? object.material : [object.material];
+              materials.forEach(material => { if (material.map) material.map.dispose(); material.dispose(); });
+            }
+          });
+        }
+        const model = modes[mode];
+        drawScaffolding(mode);
+        drawAxes(mode);
+
+        const byId = Object.fromEntries(model.events.map(event => [event.id, event]));
+        const linkMaterial = new THREE.LineBasicMaterial({ color: colors.relation, transparent: true, opacity: 0.72 });
+        model.links.forEach(([from, to]) => root.add(line(world(byId[from].p), world(byId[to].p), linkMaterial)));
+
+        model.events.forEach(event => {
+          const position = world(event.p);
+          const sphere = new THREE.Mesh(
+            new THREE.SphereGeometry(event.endpoint ? 0.105 : 0.09, 28, 20),
+            new THREE.MeshStandardMaterial({ color: event.endpoint ? colors.endpoint : colors.middle, roughness: 0.28, metalness: 0.05, emissive: event.endpoint ? 0x4a3108 : 0x082d4f, emissiveIntensity: 0.5 })
+          );
+          sphere.position.copy(position);
+          root.add(sphere);
+          const label = labelSprite(event.id, event.endpoint ? "#f8cd78" : "#8bd7ff");
+          label.position.copy(position).add(new THREE.Vector3(0.18, 0.16, 0.06));
+          root.add(label);
+        });
+
+        modeKicker.textContent = model.kicker;
+        modeTitle.textContent = model.title;
+        modeCopy.textContent = model.copy;
+        relationCopy.innerHTML = model.relation;
+        eventList.innerHTML = model.events.map(event => `<li><span class="event-key${event.endpoint ? " endpoint" : ""}">${event.id}</span><span>${event.label}<small>(${event.p.join(", ")})</small></span></li>`).join("");
+        document.querySelectorAll("[data-mode]").forEach(button => button.setAttribute("aria-pressed", String(Number(button.dataset.mode) === mode)));
+      }
+
+      function resetView() {
+        camera.position.set(3.35, 2.75, 4.4);
+        controls.target.set(0, 1, 0);
+        controls.update();
+      }
+
+      document.querySelectorAll("[data-mode]").forEach(button => button.addEventListener("click", () => draw(Number(button.dataset.mode))));
+      document.getElementById("reset").addEventListener("click", resetView);
+
+      function resize() {
+        const width = stage.clientWidth;
+        const height = stage.clientHeight;
+        renderer.setSize(width, height, false);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      }
+      new ResizeObserver(resize).observe(stage);
+      resetView();
+      draw(3);
+      resize();
+      loading.remove();
+
+      function animate() {
+        controls.update();
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
+      animate();
+    } catch (error) {
+      loading.textContent = "The 3D viewer could not load. Check your network connection and WebGL support.";
+      console.error(error);
+    }
+  </script>
+</body>
+</html>
