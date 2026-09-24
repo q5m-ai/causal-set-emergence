@@ -84,9 +84,6 @@
     .expected { display: flex; justify-content: space-between; border-top: 1px solid hsl(var(--border)); padding-top: 12px; font-size: 13px; }
     .expected span { color: hsl(var(--muted-fg)); }
     .python-demo { margin-top: 12px; padding: 0; border: 1px solid #263750; border-radius: var(--radius); overflow: hidden; background: #04060d; color: #d9e4f5; }
-    .python-demo-head { display: flex; align-items: baseline; justify-content: space-between; gap: 18px; padding: 15px 17px; border-bottom: 1px solid #263750; background: #08111f; }
-    .python-demo-head h3 { margin: 0; color: #eef5ff; font-size: 18px; }
-    .python-demo-head p { margin: 0; color: #91a3bb; font-size: 12px; }
     .python-workbench { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr); }
     .python-panel { min-width: 0; }
     .python-panel + .python-panel { border-left: 1px solid #263750; }
@@ -108,7 +105,6 @@
     .python-controls button.primary { border-color: #1769c2; color: white; background: #1769c2; }
     .python-controls button:disabled { cursor: default; opacity: .45; }
     .python-status { margin-left: auto; color: #91a3bb; font-size: 11px; }
-    .python-safety { margin: 0; border-top: 1px solid #263750; padding: 9px 14px; color: #8191aa; background: #08111f; font-size: 10px; }
     .expectation-math { margin-top: 12px; border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 22px; background: hsl(var(--card)); }
     .expectation-math h3 { margin: 3px 0 8px; font-size: 22px; }
     .expectation-math > p, .diamond-intro p { max-width: 78ch; color: hsl(var(--muted-fg)); font-size: 14px; }
@@ -132,7 +128,6 @@
       .dimension-layout, .statistics-lab, .python-workbench { grid-template-columns: 1fr; }
       .python-panel + .python-panel { border-left: 0; border-top: 1px solid #263750; }
       .python-editor, #pythonOutput { height: 330px; }
-      .python-demo-head { align-items: flex-start; flex-direction: column; gap: 4px; }
       .stage { min-height: 520px; }
       .explanation-grid { grid-template-columns: 1fr; }
       .diamond-intro { grid-template-columns: 1fr; }
@@ -230,13 +225,11 @@
           </aside>
         </div>
 
-        <section class="python-demo" aria-labelledby="pythonDemoTitle">
-          <header class="python-demo-head"><h3 id="pythonDemoTitle">Try it in Python</h3></header>
+        <section class="python-demo" aria-label="Interactive Python ordering-fraction experiment">
           <div class="python-workbench">
             <div class="python-panel">
               <div class="python-panel-head"><strong>order_fraction_demo.py</strong><button id="pythonReset" type="button" disabled>Reset</button></div>
-              <label class="sr-only" for="pythonCode">Editable Python source</label>
-              <div class="python-editor"><pre id="pythonHighlight" aria-hidden="true"><code></code></pre><textarea id="pythonCode" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="pythonSafety">from math import gamma
+              <div class="python-editor"><pre id="pythonHighlight" aria-hidden="true"><code></code></pre><textarea id="pythonCode" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Editable Python source">from math import gamma
 from random import Random
 
 D, N, SEED = 3, 200, 7
@@ -284,7 +277,6 @@ print(f"difference = {r̂ - r:+.4f}")</textarea></div>
               <span class="python-status">Ctrl/⌘ + Enter to run</span>
             </div>
           </div>
-          <p class="python-safety" id="pythonSafety"><strong>Contained run:</strong> disposable browser worker · 60-second cutoff. First run downloads Pyodide. Edited code can make network requests; do not paste secrets or untrusted code.</p>
         </section>
 
         <div class="expectation-math">
