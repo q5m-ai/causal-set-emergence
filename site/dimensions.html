@@ -103,7 +103,6 @@
             <button type="button" data-mode="1" aria-pressed="false">1D · time</button>
             <button type="button" data-mode="2" aria-pressed="false">2D · time + x</button>
             <button type="button" data-mode="3" aria-pressed="true">3D · time + x + y</button>
-            <button type="button" data-mode="4" aria-pressed="false">Witness · needs 2 space</button>
             <button type="button" id="reset">Reset view</button>
           </div>
           <div class="loading" id="loading">Loading 3D view…</div>
@@ -113,20 +112,20 @@
 
         <aside class="side-panel" aria-live="polite">
           <div class="eyebrow" id="modeKicker">3D spacetime</div>
-          <h2 id="modeTitle">Two spatial directions</h2>
-          <p id="modeCopy">At the middle time, events can be separated east–west and north–south. Time is the vertical axis.</p>
+          <h2 id="modeTitle">Two spatial directions required</h2>
+          <p id="modeCopy">Each early event reaches two later events but misses its own partner. One spatial line cannot realize all three exclusions; a spatial triangle can.</p>
           <ul class="event-list" id="eventList"></ul>
-          <div class="relation" id="relationCopy"><strong>Causal links:</strong> A precedes every middle event; every middle event precedes F. Events on the middle slice are mutually incomparable.</div>
+          <div class="relation" id="relationCopy"><strong>Required pattern:</strong> a₁ reaches b₂ and b₃ but not b₁, and cyclically. Missing relations are as important as the links shown.</div>
         </aside>
       </div>
 
       <div class="explanation-grid">
-        <article><b>1D</b><h2>A chain</h2><p>With time alone, the displayed events are totally ordered: A ≺ M ≺ F.</p></article>
-        <article><b>2D</b><h2>Add x</h2><p>E and W occur simultaneously at different x positions, so neither precedes the other.</p></article>
-        <article><b>3D</b><h2>Add y</h2><p>N and S add a second independent spatial direction. All four middle events remain spacelike.</p></article>
+        <article><b>1D · 0+1</b><h2>One temporal pair</h2><p>With no space, the earlier event a₁ necessarily precedes the later event b₁.</p></article>
+        <article><b>2D · 1+1</b><h2>Two crossed pairs</h2><p>One spatial axis lets each a-event reach the other b-event while missing its named partner.</p></article>
+        <article><b>3D · 2+1</b><h2>Three cyclic exclusions</h2><p>A spatial triangle realizes the three-way pattern that cannot be arranged along one spatial line.</p></article>
       </div>
 
-      <div class="caveat"><strong>Construction scaffolding, not fundamental data.</strong> The axes, coordinates, spatial plane, and light cones show how an order is embedded in a continuum spacetime. The compass-point example does not require 3D. Select <strong>Witness</strong> to see a different six-event order that cannot fit in 1+1 dimensions but does fit in 2+1. In 1+1 dimensions, null coordinates turn causality into the intersection of two linear orderings; the witness requires three, so no rearrangement along one spatial line can preserve all six relations and all three non-relations.</div>
+      <div class="caveat"><strong>Construction scaffolding, not fundamental data.</strong> The axes, coordinates, and spatial slices show how each order is embedded in a continuum spacetime. The 3D example is a genuine dimension witness: in 1+1 dimensions, null coordinates turn causality into the intersection of two linear orderings; this six-event order requires three, so no rearrangement along one spatial line can preserve all six cross-layer relations and all three diagonal non-relations.</div>
 
       <div class="statistics" aria-labelledby="statisticsTitle">
         <div class="statistics-head">
@@ -196,7 +195,7 @@
       controls.dampingFactor = 0.07;
       controls.minDistance = 3.6;
       controls.maxDistance = 12;
-      controls.target.set(0, 1, 0);
+      controls.target.set(0, 0.65, 0);
 
       scene.add(new THREE.HemisphereLight(0xbcdcff, 0x182338, 2.4));
       const key = new THREE.DirectionalLight(0xffffff, 2.2);
@@ -217,47 +216,31 @@
 
       const modes = {
         1: {
-          kicker: "1D spacetime", title: "Time only",
-          copy: "There is no spatial separation. The three events form one temporal chain.",
-          relation: "<strong>Causal links:</strong> A ≺ M ≺ F. Transitivity also gives A ≺ F.",
+          kicker: "1D · 0 space + 1 time", title: "One temporal pair",
+          copy: "With no spatial direction, an event at the earlier time necessarily precedes an event at the later time.",
+          relation: "<strong>Causal relation:</strong> a₁ ≺ b₁.",
           events: [
-            { id: "A", label: "earlier center", p: [0, 0, 0], endpoint: true },
-            { id: "M", label: "middle event", p: [1, 0, 0] },
-            { id: "F", label: "later center", p: [2, 0, 0], endpoint: true }
+            { id: "a₁", label: "early event", p: [0, 0, 0], endpoint: true },
+            { id: "b₁", label: "later event", p: [1, 0, 0] }
           ],
-          links: [["A", "M"], ["M", "F"]]
+          links: [["a₁", "b₁"]]
         },
         2: {
-          kicker: "2D spacetime", title: "One spatial direction",
-          copy: "E and W share a time but occupy different positions along x. They are spacelike and incomparable.",
-          relation: "<strong>Causal links:</strong> A ≺ E ≺ F and A ≺ W ≺ F. There is no relation between E and W.",
+          kicker: "2D · 1 space + 1 time", title: "Two crossed pairs",
+          copy: "One spatial axis lets each early event reach the other later event while remaining spacelike to its named partner.",
+          relation: "<strong>Required pattern:</strong> a₁ ≺ b₂ and a₂ ≺ b₁, while a₁ is unrelated to b₁ and a₂ is unrelated to b₂.",
           events: [
-            { id: "A", label: "earlier center", p: [0, 0, 0], endpoint: true },
-            { id: "E", label: "east", p: [1, 0.6, 0] },
-            { id: "W", label: "west", p: [1, -0.6, 0] },
-            { id: "F", label: "later center", p: [2, 0, 0], endpoint: true }
+            { id: "a₁", label: "early left", p: [0, -0.6, 0], endpoint: true },
+            { id: "a₂", label: "early right", p: [0, 0.6, 0], endpoint: true },
+            { id: "b₁", label: "later right, paired with a₁", p: [0.5, 0.6, 0] },
+            { id: "b₂", label: "later left, paired with a₂", p: [0.5, -0.6, 0] }
           ],
-          links: [["A", "E"], ["A", "W"], ["E", "F"], ["W", "F"]]
+          links: [["a₁", "b₂"], ["a₂", "b₁"]]
         },
         3: {
-          kicker: "3D spacetime", title: "Two spatial directions",
-          copy: "At the middle time, events can be separated east–west and north–south. Time is the vertical axis.",
-          relation: "<strong>Causal links:</strong> A precedes every middle event; every middle event precedes F. Events on the middle slice are mutually incomparable.",
-          events: [
-            { id: "A", label: "earlier center", p: [0, 0, 0], endpoint: true },
-            { id: "E", label: "east", p: [1, 0.6, 0] },
-            { id: "W", label: "west", p: [1, -0.6, 0] },
-            { id: "N", label: "north", p: [1, 0, 0.6] },
-            { id: "S", label: "south", p: [1, 0, -0.6] },
-            { id: "F", label: "later center", p: [2, 0, 0], endpoint: true }
-          ],
-          links: [["A", "E"], ["A", "W"], ["A", "N"], ["A", "S"], ["E", "F"], ["W", "F"], ["N", "F"], ["S", "F"]]
-        },
-        4: {
-          kicker: "Dimension witness", title: "A cyclic exclusion pattern",
-          copy: "Each early event reaches two later events but misses its own partner. One spatial line cannot realize all three exclusions; a spatial triangle can.",
-          relation: "<strong>Required pattern:</strong> a₁ reaches b₂ and b₃ but not b₁, and cyclically. The missing diagonal relations are as important as the links shown.",
-          witness: true,
+          kicker: "3D · 2 space + 1 time", title: "Three cyclic exclusions",
+          copy: "Each early event reaches two later events but misses its named partner. One spatial line cannot realize all three exclusions; a spatial triangle can.",
+          relation: "<strong>Required pattern:</strong> a₁ reaches b₂ and b₃ but not b₁, and cyclically. Missing relations are as important as the links shown.",
           events: [
             { id: "a₁", label: "early triangle vertex 1", p: [0, 0, 1.1547], endpoint: true },
             { id: "a₂", label: "early triangle vertex 2", p: [0, -1, -0.5774], endpoint: true },
@@ -298,21 +281,30 @@
 
       function drawAxes(mode) {
         const axisMaterial = color => new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.7 });
+        const spatialLevel = mode === 2 ? 0.25 : 0.6;
         const origin = new THREE.Vector3(0, -0.12, 0);
-        root.add(line(origin, new THREE.Vector3(0, 2.45, 0), axisMaterial(colors.time)));
-        const tLabel = labelSprite("t", "#8bd7ff"); tLabel.position.set(0, 2.55, 0); root.add(tLabel);
+        root.add(line(origin, new THREE.Vector3(0, 1.62, 0), axisMaterial(colors.time)));
+        const tLabel = labelSprite("t", "#8bd7ff"); tLabel.position.set(0, 1.72, 0); root.add(tLabel);
         if (mode >= 2) {
-          root.add(line(new THREE.Vector3(-1.25, 1, 0), new THREE.Vector3(1.25, 1, 0), axisMaterial(colors.x)));
-          const xLabel = labelSprite("x", "#ff9c86"); xLabel.position.set(1.35, 1, 0); root.add(xLabel);
+          root.add(line(new THREE.Vector3(-1.3, spatialLevel, 0), new THREE.Vector3(1.3, spatialLevel, 0), axisMaterial(colors.x)));
+          const xLabel = labelSprite("x", "#ff9c86"); xLabel.position.set(1.4, spatialLevel, 0); root.add(xLabel);
         }
         if (mode >= 3) {
-          root.add(line(new THREE.Vector3(0, 1, -1.25), new THREE.Vector3(0, 1, 1.25), axisMaterial(colors.y)));
-          const yLabel = labelSprite("y", "#77ddb9"); yLabel.position.set(0, 1, 1.36); root.add(yLabel);
+          root.add(line(new THREE.Vector3(0, spatialLevel, -1.3), new THREE.Vector3(0, spatialLevel, 1.3), axisMaterial(colors.y)));
+          const yLabel = labelSprite("y", "#77ddb9"); yLabel.position.set(0, spatialLevel, 1.4); root.add(yLabel);
         }
       }
 
       function drawScaffolding(mode) {
-        if (mode === 4) {
+        if (mode === 2) {
+          const plane = new THREE.Mesh(
+            new THREE.PlaneGeometry(2.8, 1.45),
+            new THREE.MeshBasicMaterial({ color: 0x315d88, transparent: true, opacity: 0.06, side: THREE.DoubleSide, depthWrite: false })
+          );
+          plane.position.set(0, 0.55, -0.015);
+          root.add(plane);
+        }
+        if (mode === 3) {
           [0, 1.2].forEach((height, index) => {
             const plane = new THREE.Mesh(
               new THREE.CircleGeometry(1.48, 48),
@@ -322,29 +314,7 @@
             plane.position.y = height;
             root.add(plane);
           });
-          return;
         }
-        if (mode >= 2) {
-          const plane = new THREE.Mesh(
-            new THREE.PlaneGeometry(2.15, 2.15),
-            new THREE.MeshBasicMaterial({ color: 0x315d88, transparent: true, opacity: mode === 2 ? 0.055 : 0.075, side: THREE.DoubleSide, depthWrite: false })
-          );
-          if (mode === 2) {
-            plane.position.set(0, 1, -0.015);
-          } else {
-            plane.rotation.x = -Math.PI / 2;
-            plane.position.y = 1;
-          }
-          root.add(plane);
-        }
-        const coneMaterial = new THREE.MeshBasicMaterial({ color: 0x56b4e9, wireframe: true, transparent: true, opacity: 0.11, depthWrite: false });
-        const future = new THREE.Mesh(new THREE.ConeGeometry(1, 1, 32, 1, true), coneMaterial);
-        future.rotation.z = Math.PI;
-        future.position.y = 0.5;
-        root.add(future);
-        const past = new THREE.Mesh(new THREE.ConeGeometry(1, 1, 32, 1, true), coneMaterial.clone());
-        past.position.y = 1.5;
-        root.add(past);
       }
 
       function draw(mode) {
@@ -388,8 +358,8 @@
       }
 
       function resetView() {
-        camera.position.set(3.35, 2.75, 4.4);
-        controls.target.set(0, 1, 0);
+        camera.position.set(3.35, 2.4, 4.4);
+        controls.target.set(0, 0.65, 0);
         controls.update();
       }
 
