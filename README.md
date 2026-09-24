@@ -117,17 +117,25 @@ Hausdorff comparison of a C¹ graph with its tangent image.
 inequality by two perpendicular Steiner symmetrizations. Together with the
 existing disk-covering direction, `HausdorffPlane.lean` proves normalized planar
 Hausdorff measure equals Lebesgue measure on every set, including sets of
-infinite measure. `HausdorffDensity.lean` defines the graph pullback measure and
-proves that its variable density is determined once the shrinking closed-ball
-ratios are known almost everywhere. The required absolute continuity and ratio
-calculation—and hence identification with parametric graph area—remain unproved.
+infinite measure. `HausdorffDensity.lean` supplies closed-ball density uniqueness.
+`HausdorffLinear.lean` proves exact tangent-image area on arbitrary sets, using
+intrinsic orthonormal range coordinates and the Euclidean Haar determinant.
+`HausdorffArea.lean` proves the variable-Jacobian scalar-graph area formula by
+local distortion, local finiteness, absolute continuity, and shrinking-ball
+ratios. `HausdorffAreaLocal.lean` localizes it to open C¹ domains of continuous
+graphs and derives the signed integral identity. `GraphDensity.lean` defines
+canonical level measures and height density, proves finiteness and absolute
+integrability on a noncritical band, and identifies the zero-height value with
+the boundary integral. **Coarea, continuity of that density at zero, and
+agreement with the existing ellipsoid parametric measure remain unproved.**
 `GraphTail.lean` proves that every fixed positive-height remainder vanishes
 without coarea. The quartic regression retains its interior critical point.
 
 Still open in the formal program:
 
-- the surface-area normalization/coarea theorem and general graph-cap limit
-  identifying the boundary integral with `continuumMean`;
+- ellipsoid parametric/Hausdorff measure compatibility, collar coarea and
+  height-density continuity, and the general graph-cap limit identifying the
+  boundary integral with `continuumMean`;
 - arbitrary null boundaries and the induced null-joint area interpretation;
 - the Poisson-sprinkling expectation bridge.
 
