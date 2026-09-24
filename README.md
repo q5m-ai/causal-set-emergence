@@ -5,8 +5,9 @@ possibly dynamical laws can emerge from discrete causal order.
 
 This repository now has two deliberately separated layers:
 
-1. **A rigorous continuum-limit proof program** for boundary and joint terms in
-   the four-dimensional Benincasa–Dowker–Glaser (BDG) causal-set action.
+1. **A rigorous continuum-limit proof program** whose checked base cases concern
+   the four-dimensional Benincasa–Dowker–Glaser (BDG) causal-set action and
+   whose strategic target is the general boundary and joint conjecture.
 2. **An exploratory emergence program** collecting conceptual notes,
    visualizations, and research questions about causal growth, quantum
    histories, and automaton-like dynamics.
@@ -42,7 +43,8 @@ frame?
 ## Program 1 — BDG continuum limits
 
 [The analytic proof draft](notes/first-attempt.md) studies the flat-space
-specialization of Conjecture 1′ in Dowker–Liu–Lloyd-Jones:
+specialization of [Conjecture 1′, equation (11)](https://arxiv.org/html/2501.00139v2#S2.E11)
+in Dowker–Liu–Lloyd-Jones:
 
 ```math
  \lim_{\rho\to\infty}\mathcal A_\rho(M)
@@ -149,6 +151,26 @@ Accordingly, this is not yet a checked proof of the unrestricted conjecture or
 of convergence for individual random sprinklings. See
 [tracking issue #1](https://github.com/q5m-ai/causal-set-emergence/issues/1).
 
+### Strategic direction beyond the checked base cases
+
+Closing issue #1 is the minimum milestone for Program 1, not its final research
+target. The follow-on program aims to prove a precise general form of Conjecture
+1′, or to replace it with a corrected theorem if its unrestricted formulation
+is false. The first qualitative step is to remove the planar-future-boundary
+restriction and prove covariant joint localization for two general smooth
+spacelike boundary faces in four-dimensional Minkowski space. The later stages
+address arbitrary dimension, curved spacetime, and null or mixed joints.
+
+This direction prioritizes a general mechanism over accumulating more explicit
+profiles. Restricted families remain valuable as checked base cases and
+regressions, but they do not close the general-theorem target. The theorem's
+admissible regions, regularity, boundary strata, action regime, angle
+conventions, and mode of random convergence must be stated precisely before a
+proof can be claimed.
+
+See the [general-conjecture roadmap](notes/conjecture-roadmap.md) and
+[tracking issue #24](https://github.com/q5m-ai/causal-set-emergence/issues/24).
+
 ## Program 2 — dynamics and automaton-like growth
 
 The exploratory question is whether causal-set dynamics can be represented as
@@ -218,6 +240,7 @@ physics.
 ## Repository map
 
 - `notes/first-attempt.md` — analytic boundary-limit proof draft and scope.
+- `notes/conjecture-roadmap.md` — staged route from issue #1 to the general theorem.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.

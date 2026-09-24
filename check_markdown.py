@@ -16,7 +16,7 @@ import subprocess
 REJECTED_MACROS = frozenset("""
 DeclareMathOperator DeclarePairedDelimiters renewtagform newtagform
 colorbox fcolorbox hphantom vphantom phantom operatorname Newextarrow
-definecolor mathchoice unicode mmlToken
+definecolor mathchoice unicode mmlToken boldsymbol
 """.split())
 # Do not depend on custom definitions or dynamically loaded TeX packages.
 CUSTOM_MACROS = frozenset("newcommand renewcommand providecommand def gdef edef let require".split())

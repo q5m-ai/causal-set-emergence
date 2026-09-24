@@ -40,9 +40,10 @@ class MarkdownMathTest(unittest.TestCase):
                 self.assertIn("unsupported macro", lint_markdown(source)[0][1])
 
     def test_other_rejected_and_custom_macros(self):
-        for macro in ("phantom", "DeclareMathOperator", "require", "newcommand"):
+        for macro in ("phantom", "boldsymbol", "DeclareMathOperator", "require", "newcommand"):
             with self.subTest(macro=macro):
                 self.assertTrue(lint_markdown(f"$`\\{macro}{{x}}`$"))
+        self.assertEqual(lint_markdown(r"$`\mathbf{S}`$"), [])
 
     def test_literal_code_and_comments_are_not_math(self):
         source = r"""Use `\(x\)`? No. Literal ``$`\operatorname{Area}`$``.
