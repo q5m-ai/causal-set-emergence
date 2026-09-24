@@ -167,7 +167,7 @@
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
-  <link rel="stylesheet" href="site.css?v=nav1">
+  <link rel="stylesheet" href="site.css?v=home3d1">
 </head>
 <body>
   <nav aria-label="Page navigation">
@@ -225,7 +225,10 @@
             </div>
             <div id="conceptText" aria-live="polite"><h3>Manifold</h3><p>The continuous stage of GR: a collection of points that locally resembles ordinary coordinate space. It lets us draw smooth paths and define fields.</p><p><strong>Think:</strong> the fabric—not yet its measurements.</p></div>
           </div>
-          <div class="concept-art"><svg id="conceptSvg" viewBox="0 0 600 430" role="img" aria-label="Visualization of a manifold"></svg></div>
+          <div class="concept-art">
+            <div id="conceptStage" class="three-stage" role="img" aria-label="Rotatable three-dimensional visualization of a manifold"><div class="three-loading">Loading 3D view…</div><div class="three-hint">drag to rotate · scroll to zoom</div></div>
+            <svg id="conceptSvg" viewBox="0 0 600 430" aria-hidden="true"></svg>
+          </div>
         </div>
       </div>
     </section>
@@ -233,6 +236,21 @@
     <section id="locality">
       <div class="wrap">
         <div class="section-head"><div><div class="eyebrow">03 · Interactive</div><h2>The locality puzzle</h2></div><p>Click an event. Its light cone protects causal order, yet its order-theoretic nearest neighbors can reach surprisingly far. Long-range does not mean faster-than-light.</p></div>
+        <div class="locality-three-lab">
+          <div id="localityStage" class="three-stage locality-stage" role="img" aria-label="Rotatable causal diamond containing selectable sprinkled events">
+            <div class="locality-toolbar"><label for="localityDensity">Events <input id="localityDensity" type="range" min="24" max="72" step="8" value="48"><output id="localityDensityOut">48</output></label><button id="localityReset" type="button">Reset view</button></div>
+            <div class="three-loading">Loading locality explorer…</div><div class="three-hint">select an event · drag to rotate</div>
+          </div>
+          <aside class="locality-three-readout" aria-live="polite">
+            <div class="eyebrow">Selected event</div><h3 id="localitySelection">Event 24</h3>
+            <p>Blue events lie inside its past or future light cone. Gray events are spacelike. Coral lines are <strong>links</strong>: causal relations with no sprinkled event between them.</p>
+            <div class="locality-legend"><span class="related">causally related</span><span class="linked">direct link</span><span class="spacelike">spacelike</span></div>
+            <div class="stat"><span>Causally related</span><strong id="localityRelated">0</strong></div>
+            <div class="stat"><span>Direct links</span><strong id="localityLinks">0</strong></div>
+            <div class="callout"><strong>The locality puzzle</strong><br>A link means “no event in between,” not “nearby on this screen.” Links can hug the light cone and span large coordinate distances without permitting faster-than-light influence.</div>
+          </aside>
+        </div>
+        <p class="locality-three-note">This is a finite 2+1-dimensional illustration. Coordinates and cone surfaces are explanatory scaffolding; the causal set itself retains only events and order.</p>
         <div class="diamond-demo">
           <div class="diamond-art"><svg id="diamondSvg" viewBox="0 0 600 390" role="img" aria-labelledby="diamondTitle diamondDesc"><title id="diamondTitle">Interactive causal diamond</title><desc id="diamondDesc">The intersection of the future of event A and the past of event B. Toggle whether an intermediate event is present.</desc></svg></div>
           <div class="diamond-copy">
@@ -311,6 +329,9 @@
 
   <footer><div class="wrap footer-grid"><div><strong>Causal Set Emergence</strong><br>A working visual notebook built from the Fay Dowker / Curt Jaimungal viewing notes.</div><div>Conceptual guide—not a substitute for the cited papers or a claim that causal-set quantum dynamics is complete.<br><a href="https://github.com/q5m-ai/causal-set-emergence">Research repository →</a></div></div></footer>
 
+<script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1.10.0/dist/es-module-shims.js"></script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module" src="home-3d.js?v=1"></script>
 <script>
 (() => {
   const NS = "http://www.w3.org/2000/svg";

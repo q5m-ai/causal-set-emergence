@@ -238,7 +238,32 @@ section + section { border-top: 1px solid hsl(var(--border)); }
 .concept-copy h3 { font-size: 25px; }
 .concept-copy p { color: hsl(var(--muted-fg)); font-size: 15px; }
 .concept-art { min-height: 390px; border-radius: var(--radius); background: #e8eef2; }
-#conceptSvg { min-height: 390px; }
+#conceptSvg { display: none !important; }
+.three-stage { position: relative; overflow: hidden; background: #04060d; }
+.three-stage canvas { display: block; width: 100%; height: 100%; cursor: grab; }
+.three-stage canvas:active { cursor: grabbing; }
+#conceptStage { width: 100%; min-height: 390px; }
+.three-loading { position: absolute; inset: 0; z-index: 5; display: grid; place-items: center; color: #b9c6dc; background: #04060d; font-size: 12px; }
+.three-hint { position: absolute; right: 10px; bottom: 9px; z-index: 4; border-radius: 6px; padding: 4px 7px; color: #aab9d0; background: rgb(4 6 13 / .72); font-size: 10px; }
+
+/* The Three.js locality lab replaces the earlier two separate SVG demos. */
+#locality .diamond-demo, #locality .lab-shell, #locality > .wrap > p[style] { display: none; }
+.locality-three-lab { display: grid; grid-template-columns: minmax(0, 1fr) 290px; overflow: hidden; border: 1px solid hsl(var(--border)); border-radius: var(--radius); background: hsl(var(--card)); }
+.locality-stage { min-height: 570px; }
+.locality-toolbar { position: absolute; z-index: 5; top: 11px; left: 11px; display: flex; flex-wrap: wrap; align-items: center; gap: 7px; max-width: calc(100% - 22px); }
+.locality-toolbar label, .locality-toolbar button { border: 1px solid #263750; border-radius: 7px; padding: 6px 9px; color: #c3cee0; background: rgb(4 6 13 / .82); font: 600 11px Outfit, sans-serif; }
+.locality-toolbar label { display: flex; align-items: center; gap: 8px; }
+.locality-toolbar input { width: 105px; accent-color: #56b4e9; }
+.locality-toolbar button { cursor: pointer; }
+.locality-three-readout { border-left: 1px solid hsl(var(--border)); padding: 24px 20px; }
+.locality-three-readout h3 { margin: 8px 0 10px; font-size: 24px; }
+.locality-three-readout p { color: hsl(var(--muted-fg)); font-size: 14px; }
+.locality-legend { display: grid; gap: 6px; margin: 18px 0; color: hsl(var(--muted-fg)); font-size: 11px; }
+.locality-legend span::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 7px; border-radius: 50%; background: #7f90aa; }
+.locality-legend .related::before { background: #56b4e9; }
+.locality-legend .linked::before { background: #ed8068; }
+.locality-three-readout .stat { border-color: hsl(var(--border)); }
+.locality-three-note { margin: 10px 0 0; color: hsl(var(--muted-fg)); font-size: 12px; }
 
 .diamond-demo { margin-bottom: 14px; }
 .diamond-art { min-height: 360px; background: #e8eef2; }
@@ -383,7 +408,9 @@ footer {
   .pillars, .quantum-grid { grid-template-columns: 1fr; }
   .levels { grid-template-columns: 1fr; }
   .emerge-arrow { min-height: 36px; }
-  .diamond-demo, .causal-grid { grid-template-columns: 1fr; }
+  .diamond-demo, .causal-grid, .locality-three-lab { grid-template-columns: 1fr; }
+  .locality-three-readout { border-left: 0; border-top: 1px solid hsl(var(--border)); }
+  .locality-stage { min-height: 500px; }
   .observer-bar { align-items: flex-start; flex-direction: column; }
   .observer-concepts { grid-template-columns: 1fr; }
   .diamond-copy, .lab-readout { border-left: 0; border-top: 1px solid hsl(var(--border)); }
@@ -398,6 +425,8 @@ footer {
   h1 { font-size: 36px; }
   .causal-grid { margin-inline: 0; }
   #causalSvg { height: 440px; }
+  #conceptStage { min-height: 350px; }
+  .locality-stage { min-height: 440px; }
   .footer-grid { display: grid; }
 }
 
