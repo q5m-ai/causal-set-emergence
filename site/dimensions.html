@@ -232,40 +232,41 @@
               <div class="python-editor"><pre id="pythonHighlight" aria-hidden="true"><code></code></pre><textarea id="pythonCode" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Editable Python source">from math import gamma
 from random import Random
 
-D, N, SEED = 3, 200, 7
-random = Random(SEED)
 
+def experiment(D=3, N=200, seed=7):
+    random = Random(seed)
 
-def sprinkle():
-    while True:
-        t = random.uniform(-1, 1)
-        radius = 1 - abs(t)
-        if random.random() > radius ** (D - 1):
-            continue
+    def sprinkle():
         while True:
-            x = [random.uniform(-1, 1) for _ in range(D - 1)]
-            if sum(a * a for a in x) &lt;= 1:
-                return (t, *(radius * a for a in x))
+            t = random.uniform(-1, 1)
+            radius = 1 - abs(t)
+            if random.random() > radius ** (D - 1):
+                continue
+            while True:
+                x = [random.uniform(-1, 1) for _ in range(D - 1)]
+                if sum(a * a for a in x) &lt;= 1:
+                    return (t, *(radius * a for a in x))
+
+    def precedes(p, q):
+        Δt = q[0] - p[0]
+        Δx2 = sum((b - a) ** 2 for a, b in zip(p[1:], q[1:]))
+        return Δt > 0 and Δx2 &lt;= Δt ** 2
+
+    events = sorted(sprinkle() for _ in range(N))
+    R = sum(precedes(events[i], events[j])
+            for i in range(N) for j in range(i + 1, N))
+    pairs = N * (N - 1) // 2
+    r̂ = R / pairs
+    r = gamma(D + 1) * gamma(D / 2) / (2 * gamma(3 * D / 2))
+
+    print(f"D={D}, N={N}, seed={seed}")
+    print(f"R={R:,} related pairs out of {pairs:,}")
+    print(f"r̂_D = 2R/[N(N−1)] = {r̂:.4f}  ({r̂:.1%})")
+    print(f"r_D = Γ(D+1)Γ(D/2)/[2Γ(3D/2)] = {r:.4f}  ({r:.1%})")
+    print(f"difference = {r̂ - r:+.4f}")
 
 
-def precedes(p, q):
-    Δt = q[0] - p[0]
-    Δx2 = sum((b - a) ** 2 for a, b in zip(p[1:], q[1:]))
-    return Δt > 0 and Δx2 &lt;= Δt ** 2
-
-
-events = sorted(sprinkle() for _ in range(N))
-R = sum(precedes(events[i], events[j])
-        for i in range(N) for j in range(i + 1, N))
-pairs = N * (N - 1) // 2
-r̂ = R / pairs
-r = gamma(D + 1) * gamma(D / 2) / (2 * gamma(3 * D / 2))
-
-print(f"D={D}, N={N}, seed={SEED}")
-print(f"R={R:,} related pairs out of {pairs:,}")
-print(f"r̂_D = 2R/[N(N−1)] = {r̂:.4f}  ({r̂:.1%})")
-print(f"r_D = Γ(D+1)Γ(D/2)/[2Γ(3D/2)] = {r:.4f}  ({r:.1%})")
-print(f"difference = {r̂ - r:+.4f}")</textarea></div>
+experiment()</textarea></div>
             </div>
             <div class="python-panel">
               <div class="python-panel-head"><strong>Output</strong><span id="pythonRunStatus" role="status">Ready</span></div>
