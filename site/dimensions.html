@@ -42,7 +42,13 @@
     .event-key { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; color: #07101d; background: #56b4e9; font-size: 10px; font-weight: 700; }
     .event-key.endpoint { background: #f2bf63; }
     .event-list small { display: block; color: hsl(var(--muted-fg)); font: 11px ui-monospace, SFMono-Regular, Menlo, monospace; }
-    .relation { margin-top: 16px; border-left: 3px solid hsl(var(--link)); padding: 11px 13px; color: hsl(var(--muted-fg)); background: hsl(var(--accent)); font-size: 13px; }
+    .formal-relation { margin-top: 20px; border: 1px solid #263750; border-radius: var(--radius); padding: 14px; color: #d9e4f5; background: #04060d; font: 13px/1.65 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .formal-relation .definition { margin-bottom: 8px; color: #8bd7ff; font-weight: 700; }
+    .formal-relation .set-row { display: grid; grid-template-columns: 20px 1fr; gap: 7px; }
+    .formal-relation .set-row span:first-child { color: #f2bf63; font-weight: 700; }
+    .formal-relation .set-value { min-width: 0; overflow-wrap: anywhere; }
+    .formal-relation small { display: block; margin-top: 9px; border-top: 1px solid #263750; padding-top: 8px; color: #91a3bb; font: 11px/1.45 Outfit, sans-serif; }
+    .relation { margin-top: 12px; border-left: 3px solid hsl(var(--link)); padding: 11px 13px; color: hsl(var(--muted-fg)); background: hsl(var(--accent)); font-size: 13px; }
     .explanation-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
     .explanation-grid article { border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 17px; background: hsl(var(--card)); }
     .explanation-grid b { color: hsl(var(--link)); font: 700 11px ui-monospace, SFMono-Regular, Menlo, monospace; }
@@ -115,6 +121,12 @@
           <h2 id="modeTitle">Two spatial directions required</h2>
           <p id="modeCopy">Each early event reaches two later events but misses its own partner. One spatial line cannot realize all three exclusions; a spatial triangle can.</p>
           <ul class="event-list" id="eventList"></ul>
+          <div class="formal-relation" id="formalRelation" aria-label="Mathematical definition of the displayed causal set">
+            <div class="definition">C = (E, ≺)</div>
+            <div class="set-row"><span>E</span><div class="set-value">= {a₁, a₂, a₃, b₁, b₂, b₃}</div></div>
+            <div class="set-row"><span>≺</span><div class="set-value">= {(a₁,b₂), (a₁,b₃), (a₂,b₁), (a₂,b₃), (a₃,b₁), (a₃,b₂)}</div></div>
+            <small>Every other pair of distinct elements is incomparable.</small>
+          </div>
           <div class="relation" id="relationCopy"><strong>Required pattern:</strong> a₁ reaches b₂ and b₃ but not b₁, and cyclically. Missing relations are as important as the links shown.</div>
         </aside>
       </div>
@@ -176,6 +188,7 @@
     const modeTitle = document.getElementById("modeTitle");
     const modeCopy = document.getElementById("modeCopy");
     const relationCopy = document.getElementById("relationCopy");
+    const formalSetValues = document.querySelectorAll("#formalRelation .set-value");
 
     try {
       const scene = new THREE.Scene();
@@ -355,6 +368,8 @@
         modeCopy.textContent = model.copy;
         relationCopy.innerHTML = model.relation;
         eventList.innerHTML = model.events.map(event => `<li><span class="event-key${event.endpoint ? " endpoint" : ""}">${event.id}</span><span>${event.label}<small>(${event.p.join(", ")})</small></span></li>`).join("");
+        formalSetValues[0].textContent = `= { ${model.events.map(event => event.id).join(", ")} }`;
+        formalSetValues[1].textContent = `= { ${model.links.map(([from, to]) => `(${from},${to})`).join(", ")} }`;
         document.querySelectorAll("[data-mode]").forEach(button => button.setAttribute("aria-pressed", String(Number(button.dataset.mode) === mode)));
       }
 
