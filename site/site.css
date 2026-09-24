@@ -59,8 +59,11 @@ nav {
 }
 .nav-inner {
   min-height: 0;
-  padding: 40px 0 28px;
+  display: flex;
   align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 40px 0 28px;
 }
 .brand {
   gap: 0;
@@ -71,9 +74,10 @@ nav {
   text-transform: none;
 }
 .brand-mark { display: none; }
-.nav-links { gap: 16px; font-size: 15px; font-weight: 500; }
+.nav-links { display: flex; gap: 16px; font-size: 15px; font-weight: 500; }
 .nav-links a { color: hsl(var(--muted-fg)); }
 .nav-links a:hover { color: hsl(var(--foreground)); text-decoration: none; }
+.nav-links a[aria-current="page"] { color: hsl(var(--foreground)); font-weight: 700; }
 
 header { min-height: 0; padding: 18px 0 64px; }
 .hero { grid-template-columns: 1.05fr .95fr; gap: 28px; }
@@ -373,6 +377,7 @@ footer {
 
 @media (max-width: 850px) {
   .hero, .section-head, .concept-lab, .repo-bridge { grid-template-columns: 1fr; }
+  .nav-links { display: flex; }
   .hero { padding-top: 0; }
   .causal-orbit { width: min(76vw, 360px); }
   .pillars, .quantum-grid { grid-template-columns: 1fr; }
