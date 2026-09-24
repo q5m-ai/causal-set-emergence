@@ -43,7 +43,8 @@ frame?
 ## Program 1 — BDG continuum limits
 
 [The analytic proof draft](notes/first-attempt.md) studies the flat-space
-specialization of Conjecture 1′ in Dowker–Liu–Lloyd-Jones:
+specialization of [Conjecture 1′, equation (11)](https://arxiv.org/html/2501.00139v2#S2.E11)
+in Dowker–Liu–Lloyd-Jones:
 
 ```math
  \lim_{\rho\to\infty}\mathcal A_\rho(M)

@@ -23,6 +23,34 @@ Conjecture 1′ of Dowker–Liu–Lloyd-Jones:
 \coth\!\bigl(\theta(\lambda)\bigr)\,d\mu(\lambda).
 ```
 
+The source is [Conjecture 1′, equation (11)](https://arxiv.org/html/2501.00139v2#S2.E11)
+in *Timelike boundary and corner terms in the causal set action*.
+
+## Why Conjecture 1′ is the target
+
+The same paper computes a two-dimensional spacelike lozenge whose limiting mean
+action depends on the Lorentzian joint angle, contradicting the unweighted
+joint-volume term in Conjecture 1. A differently shaped spacelike triangle with
+the same angle gives the same contribution. These calculations motivate the
+`coth θ` correction in Conjecture 1′. The paper then checks compatible
+constant-angle cones through dimension 11, but does not prove localization for
+a general joint whose angle varies along the surface.
+
+Conjecture 1 is therefore retained only as the `coth θ = 1` specialization of
+the corrected formula, not as a competing unrestricted target. Conjecture 2 is
+complementary rather than superseded: it concerns timelike boundaries, for
+which the unscaled mean action is predicted to diverge like `ρ^(1/d)` and the
+coefficient depends on the embedded or isolated regime. Its proof requires a
+distinct asymptotic program and is not part of issue #24.
+
+Relevant source sections are:
+
+- [the lozenge counterexample](https://arxiv.org/html/2501.00139v2#S7.SS1);
+- [the Lorentzian-angle interpretation](https://arxiv.org/html/2501.00139v2#S7.SS2);
+- [the second two-dimensional shape](https://arxiv.org/html/2501.00139v2#S7.SS3);
+- [the higher-dimensional constant-angle evidence](https://arxiv.org/html/2501.00139v2#S7.SS4); and
+- [the timelike-boundary conjecture](https://arxiv.org/html/2501.00139v2#S2.E12).
+
 Special geometries remain useful as regression tests and sources of analytic
 structure. Accumulating additional examples is not, by itself, completion of
 the general-theorem program.
