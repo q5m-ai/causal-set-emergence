@@ -23,7 +23,11 @@ import BoundaryDraft.HausdorffGraph
 import BoundaryDraft.PlanarIsodiametric
 import BoundaryDraft.HausdorffPlane
 import BoundaryDraft.HausdorffDensity
+import BoundaryDraft.HausdorffLinear
+import BoundaryDraft.HausdorffArea
+import BoundaryDraft.HausdorffAreaLocal
 import BoundaryDraft.GraphSurface
+import BoundaryDraft.GraphDensity
 import BoundaryDraft.GraphTail
 import BoundaryDraft.NullGeometry
 import BoundaryDraft.CausalInterval

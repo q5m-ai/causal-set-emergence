@@ -3,8 +3,8 @@ import BoundaryDraft
 /-!
 Independent contracts for Euclidean tangent-to-graph distortion and the
 covering half of planar normalization. Full planar normalization is tested in
-`HausdorffPlaneRegression.lean`; the area formula and general graph-cap limit
-remain open.
+`HausdorffPlaneRegression.lean`, and scalar-graph area is tested separately in
+`HausdorffAreaRegression.lean`. The general graph-cap limit remains open.
 -/
 
 open BoundaryDraft MeasureTheory Set

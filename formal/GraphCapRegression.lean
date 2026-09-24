@@ -122,4 +122,12 @@ theorem quartic_surface_integrable :
     Integrable (fun x => 1 / ‖graphGradient quarticProfile x‖)
       (graphSurfaceMeasure quarticProfile) := quartic_admissible.integrable_reciprocal_slope
 
+-- The canonical level density is finite/integrable in a boundary band,
+-- while the same quartic retains its strictly positive critical point.
+theorem quartic_integrable_level_band_and_critical :
+    (∃ δ : ℝ, 0 < δ ∧ ∀ s ≤ δ, IsFiniteMeasure (graphLevelMeasure quarticProfile s) ∧
+      Integrable (fun x => 1 / ‖graphGradient quarticProfile x‖) (graphLevelMeasure quarticProfile s)) ∧
+    quarticProfile 0 = 3 / 16 ∧ fderiv ℝ (fun x : JointSpace => quarticProfile x) 0 = 0 :=
+  ⟨quartic_admissible.exists_integrable_level_band, quartic_positive_critical⟩
+
 end GraphCapRegression
