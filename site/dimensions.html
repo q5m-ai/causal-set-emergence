@@ -60,10 +60,13 @@
     .matrix-toolbar button { cursor: pointer; border: 1px solid hsl(var(--border)); border-radius: 8px; padding: 7px 10px; color: hsl(var(--muted-fg)); background: hsl(var(--card)); font: 600 12px Outfit, sans-serif; }
     .matrix-toolbar button[aria-pressed="true"] { border-color: hsl(var(--link)); color: white; background: hsl(var(--link)); }
     .matrix-wrap { position: relative; aspect-ratio: 1; min-height: 360px; padding: 28px; background: #04060d; }
-    #relationMatrix { display: block; width: 100%; height: 100%; }
-    .matrix-axis { position: absolute; color: #8191aa; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+    #relationMatrix { display: block; width: 100%; height: 100%; cursor: crosshair; }
+    .matrix-axis { position: absolute; color: #8191aa; font-size: 9px; letter-spacing: .07em; text-transform: uppercase; }
     .matrix-axis.x { right: 28px; bottom: 7px; }
     .matrix-axis.y { left: 5px; top: 30px; writing-mode: vertical-rl; }
+    .matrix-readout { min-height: 64px; border-top: 1px solid #263750; padding: 11px 14px; color: #aab9d0; background: #08111f; font-size: 12px; }
+    .matrix-readout strong { color: #d9e4f5; }
+    .matrix-readout code { color: #8bd7ff; font: 600 12px ui-monospace, SFMono-Regular, Menlo, monospace; }
     .statistics-panel { padding: 20px; }
     .statistics-panel h3 { margin: 5px 0 10px; font-size: 23px; }
     .statistics-panel p { color: hsl(var(--muted-fg)); font-size: 14px; }
@@ -73,10 +76,25 @@
     .meter span { display: block; height: 100%; border-radius: inherit; background: hsl(var(--link)); transition: width .25s; }
     .expected { display: flex; justify-content: space-between; border-top: 1px solid hsl(var(--border)); padding-top: 12px; font-size: 13px; }
     .expected span { color: hsl(var(--muted-fg)); }
+    .expectation-math { margin-top: 12px; border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 22px; background: hsl(var(--card)); }
+    .expectation-math h3 { margin: 3px 0 8px; font-size: 22px; }
+    .expectation-math > p { max-width: 78ch; color: hsl(var(--muted-fg)); font-size: 14px; }
+    .derivation { display: grid; grid-template-columns: 1fr auto 1fr; gap: 14px; align-items: center; margin: 20px 0; }
+    .derivation-step { min-width: 0; border: 1px solid hsl(var(--border)); border-radius: 8px; padding: 14px; background: hsl(var(--accent)); }
+    .derivation-step small { display: block; margin-bottom: 6px; color: hsl(var(--muted-fg)); text-transform: uppercase; letter-spacing: .08em; }
+    .math-line { overflow-x: auto; color: hsl(var(--foreground)); font: 14px/1.7 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: nowrap; }
+    .derivation-arrow { color: hsl(var(--link)); font-size: 22px; }
+    .fraction-values { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
+    .fraction-value { border: 1px solid hsl(var(--border)); border-radius: 8px; padding: 9px 11px; color: hsl(var(--muted-fg)); font-size: 12px; transition: border-color .2s, background .2s; }
+    .fraction-value strong { display: block; color: hsl(var(--foreground)); font-size: 16px; }
+    .fraction-value.active { border-color: hsl(var(--link)); background: hsl(var(--accent)); }
     @media (max-width: 780px) {
       .dimension-layout, .statistics-lab { grid-template-columns: 1fr; }
       .stage { min-height: 520px; }
       .explanation-grid { grid-template-columns: 1fr; }
+      .derivation { grid-template-columns: 1fr; }
+      .derivation-arrow { transform: rotate(90deg); text-align: center; }
+      .fraction-values { grid-template-columns: repeat(2, 1fr); }
       .stage-note { display: none; }
     }
     @media (max-width: 480px) { .stage { min-height: 460px; } }
@@ -149,8 +167,9 @@
             </div>
             <div class="matrix-wrap">
               <canvas id="relationMatrix" role="img" aria-label="Matrix of causal relations in a deterministic causal-set sprinkling"></canvas>
-              <span class="matrix-axis y">earlier rows</span><span class="matrix-axis x">later columns →</span>
+              <span class="matrix-axis y">row event · early → late ↓</span><span class="matrix-axis x">column event · early → late →</span>
             </div>
+            <div class="matrix-readout" id="matrixReadout" aria-live="polite"><strong>How to read it:</strong> cell <code>(r,c)</code> represents the pair <code>(eᵣ,e꜀)</code>. Choose a row and a later column: blue means <code>eᵣ ≺ e꜀</code>, while a dark upper cell means the pair is spacelike. Hover to inspect one pair.</div>
           </div>
           <aside class="statistics-panel" aria-live="polite">
             <div class="eyebrow" id="statKicker">2 space + 1 time</div>
@@ -162,6 +181,23 @@
             <div class="expected"><span>Flat-space expectation</span><strong id="expectedFraction">22.9%</strong></div>
             <p><strong>This is evidence, not a label.</strong> Dimension estimators invert statistics like this ordering fraction. A finite sample fluctuates, and generic causal sets may have no good continuum dimension.</p>
           </aside>
+        </div>
+        <div class="expectation-math">
+          <div class="eyebrow">Why those percentages?</div>
+          <h3>The flat-space ordering fraction</h3>
+          <p>Choose two events uniformly from a flat <em>D</em>-dimensional causal diamond <em>I</em>. They are related when either event lies in the other’s future light cone. If the diamond has volume <em>V</em>, fixing the first event <em>x</em> leaves a smaller future diamond whose volume scales as its proper-time height to the power <em>D</em>.</p>
+          <div class="derivation">
+            <div class="derivation-step"><small>Integrate the available future volume</small><div class="math-line">r<sub>D</sub> = (2/V²) ∫<sub>I</sub> Vol(I(x,q)) d<sup>D</sup>x</div></div>
+            <div class="derivation-arrow" aria-hidden="true">→</div>
+            <div class="derivation-step"><small>Evaluate the flat-diamond integral</small><div class="math-line">r<sub>D</sub> = Γ(D+1)Γ(D/2) / [2Γ(3D/2)]</div></div>
+          </div>
+          <p>The factor 2 counts both possible directions, <em>x ≺ y</em> and <em>y ≺ x</em>. The ratio is independent of the diamond’s size because both the numerator and <em>V²</em> scale the same way.</p>
+          <div class="fraction-values" aria-label="Exact flat-space ordering fractions">
+            <div class="fraction-value" data-formula-d="1"><span>D = 1</span><strong>1</strong><span>100%</span></div>
+            <div class="fraction-value" data-formula-d="2"><span>D = 2</span><strong>1/2</strong><span>50%</span></div>
+            <div class="fraction-value active" data-formula-d="3"><span>D = 3</span><strong>8/35</strong><span>≈ 22.9%</span></div>
+            <div class="fraction-value" data-formula-d="4"><span>D = 4</span><strong>1/10</strong><span>10%</span></div>
+          </div>
         </div>
       </div>
     </section>
@@ -375,6 +411,7 @@
       // uniformly by spacetime volume inside a flat Alexandrov interval.
       const matrixCanvas = document.getElementById("relationMatrix");
       const matrixContext = matrixCanvas.getContext("2d");
+      const matrixReadout = document.getElementById("matrixReadout");
       const expectedFractions = { 1: 1, 2: 0.5, 3: 0.2286, 4: 0.1 };
       const statDescriptions = {
         1: ["0 space + 1 time", "One-dimensional spacetime", "With no spatial escape direction, every pair is temporally ordered."],
@@ -383,7 +420,10 @@
         4: ["3 space + 1 time", "Four-dimensional spacetime", "With three spatial directions, most pairs in the diamond are spacelike rather than causally ordered."]
       };
       let statisticalDimension = 3;
+      let currentPoints = [];
       let currentRelations = [];
+      let currentRelationKeys = new Set();
+      let hoveredCell = null;
 
       function randomGenerator(seed) {
         return function random() {
@@ -448,22 +488,42 @@
         const count = 84;
         const cellWidth = box.width / count;
         const cellHeight = box.height / count;
+        matrixContext.fillStyle = "#08111f";
+        matrixContext.beginPath();
+        matrixContext.moveTo(0, 0);
+        matrixContext.lineTo(box.width, 0);
+        matrixContext.lineTo(box.width, box.height);
+        matrixContext.closePath();
+        matrixContext.fill();
         matrixContext.fillStyle = "rgba(86,180,233,.86)";
         currentRelations.forEach(([earlier, later]) => {
           matrixContext.fillRect(later * cellWidth, earlier * cellHeight, Math.max(1, cellWidth), Math.max(1, cellHeight));
         });
-        matrixContext.strokeStyle = "rgba(139,164,197,.28)";
+        matrixContext.strokeStyle = "rgba(139,164,197,.32)";
         matrixContext.lineWidth = 1;
         matrixContext.beginPath();
         matrixContext.moveTo(0, 0);
         matrixContext.lineTo(box.width, box.height);
         matrixContext.stroke();
+        if (hoveredCell) {
+          const [row, column] = hoveredCell;
+          matrixContext.fillStyle = "rgba(242,191,99,.11)";
+          matrixContext.fillRect(0, row * cellHeight, box.width, cellHeight);
+          matrixContext.fillRect(column * cellWidth, 0, cellWidth, box.height);
+          matrixContext.strokeStyle = "#f2bf63";
+          matrixContext.lineWidth = 1.5;
+          matrixContext.strokeRect(column * cellWidth, row * cellHeight, Math.max(2, cellWidth), Math.max(2, cellHeight));
+        }
       }
 
       function drawStatistics(dimension) {
         statisticalDimension = dimension;
         const points = sprinkle(dimension);
+        currentPoints = points;
         currentRelations = calculateRelations(points);
+        currentRelationKeys = new Set(currentRelations.map(([earlier, later]) => `${earlier}:${later}`));
+        hoveredCell = null;
+        matrixReadout.innerHTML = "<strong>How to read it:</strong> cell <code>(r,c)</code> represents the pair <code>(eᵣ,e꜀)</code>. Choose a row and a later column: blue means <code>eᵣ ≺ e꜀</code>, while a dark upper cell means the pair is spacelike. Hover to inspect one pair.";
         const possible = points.length * (points.length - 1) / 2;
         const observed = currentRelations.length / possible;
         const description = statDescriptions[dimension];
@@ -474,8 +534,37 @@
         document.getElementById("expectedFraction").textContent = `${(expectedFractions[dimension] * 100).toFixed(1)}%`;
         document.getElementById("fractionMeter").style.width = `${observed * 100}%`;
         document.querySelectorAll("[data-stat-d]").forEach(button => button.setAttribute("aria-pressed", String(Number(button.dataset.statD) === dimension)));
+        document.querySelectorAll("[data-formula-d]").forEach(value => value.classList.toggle("active", Number(value.dataset.formulaD) === dimension));
         paintMatrix();
       }
+
+      function inspectMatrix(event) {
+        const box = matrixCanvas.getBoundingClientRect();
+        const row = Math.max(0, Math.min(83, Math.floor((event.clientY - box.top) / box.height * 84)));
+        const column = Math.max(0, Math.min(83, Math.floor((event.clientX - box.left) / box.width * 84)));
+        hoveredCell = [row, column];
+        const rowName = `e<sub>${row + 1}</sub>`;
+        const columnName = `e<sub>${column + 1}</sub>`;
+        if (row === column) {
+          matrixReadout.innerHTML = `<strong>Diagonal:</strong> row and column both name ${rowName}. The strict causal relation does not relate an event to itself.`;
+        } else if (column < row) {
+          matrixReadout.innerHTML = `<strong>Below the diagonal:</strong> ${columnName} occurs earlier than ${rowName}. Read this pair at the mirrored upper cell: row ${columnName}, column ${rowName}.`;
+        } else {
+          const related = currentRelationKeys.has(`${row}:${column}`);
+          const rowTime = currentPoints[row].t.toFixed(3);
+          const columnTime = currentPoints[column].t.toFixed(3);
+          matrixReadout.innerHTML = `<strong>Row ${rowName}, column ${columnName}:</strong> <code>${rowName} ${related ? "≺" : "∥"} ${columnName}</code>. ${related ? "Blue: the row event can causally precede the column event." : "Dark: despite occurring later, the column event is spacelike to the row event."} <span>t = ${rowTime} → ${columnTime}</span>`;
+        }
+        paintMatrix();
+      }
+
+      matrixCanvas.addEventListener("pointermove", inspectMatrix);
+      matrixCanvas.addEventListener("pointerdown", inspectMatrix);
+      matrixCanvas.addEventListener("pointerleave", () => {
+        hoveredCell = null;
+        matrixReadout.innerHTML = "<strong>How to read it:</strong> cell <code>(r,c)</code> represents the pair <code>(eᵣ,e꜀)</code>. Choose a row and a later column: blue means <code>eᵣ ≺ e꜀</code>, while a dark upper cell means the pair is spacelike. Hover to inspect one pair.";
+        paintMatrix();
+      });
 
       document.querySelectorAll("[data-mode]").forEach(button => button.addEventListener("click", () => draw(Number(button.dataset.mode))));
       document.querySelectorAll("[data-stat-d]").forEach(button => button.addEventListener("click", () => drawStatistics(Number(button.dataset.statD))));
