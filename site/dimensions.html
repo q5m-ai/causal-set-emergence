@@ -103,7 +103,11 @@
     .python-safety { margin: 0; border-top: 1px solid #263750; padding: 9px 14px; color: #8191aa; background: #08111f; font-size: 10px; }
     .expectation-math { margin-top: 12px; border: 1px solid hsl(var(--border)); border-radius: var(--radius); padding: 22px; background: hsl(var(--card)); }
     .expectation-math h3 { margin: 3px 0 8px; font-size: 22px; }
-    .expectation-math > p { max-width: 78ch; color: hsl(var(--muted-fg)); font-size: 14px; }
+    .expectation-math > p, .diamond-intro p { max-width: 78ch; color: hsl(var(--muted-fg)); font-size: 14px; }
+    .diamond-intro { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 24px; align-items: center; }
+    .diamond-figure { margin: 0; border: 1px solid hsl(var(--border)); border-radius: 8px; padding: 10px; background: hsl(var(--accent)); }
+    .diamond-figure svg { display: block; width: 100%; height: auto; }
+    .diamond-figure figcaption { margin-top: 5px; color: hsl(var(--muted-fg)); font-size: 10px; line-height: 1.4; text-align: center; }
     .derivation { margin: 20px 0 12px; }
     .derivation-step { min-width: 0; border: 1px solid hsl(var(--border)); border-radius: 8px; padding: 16px; background: hsl(var(--accent)); }
     .derivation-step small { display: block; margin-bottom: 6px; color: hsl(var(--muted-fg)); text-align: center; text-transform: uppercase; letter-spacing: .08em; }
@@ -123,6 +127,8 @@
       .python-demo-head { align-items: flex-start; flex-direction: column; gap: 4px; }
       .stage { min-height: 520px; }
       .explanation-grid { grid-template-columns: 1fr; }
+      .diamond-intro { grid-template-columns: 1fr; }
+      .diamond-figure { width: min(230px, 100%); }
       .symbol-key, .fraction-values { grid-template-columns: repeat(2, 1fr); }
       .stage-note { display: none; }
     }
@@ -301,8 +307,33 @@ print(f"sampling difference = {observed - expected:+.4f}")</textarea>
         <div class="expectation-math">
           <div class="eyebrow">Why those percentages?</div>
           <h3>The flat-space ordering fraction</h3>
-          <p>Choose two events uniformly from a flat \(D\)-dimensional causal diamond \(I\). They are related when either event lies in the other’s future light cone. If the diamond has volume \(V\), fixing the first event \(x\) leaves a smaller future diamond whose volume scales as its proper-time height to the power \(D\).</p>
-          <p><strong>This is one equation in two forms, not two different laws.</strong> The middle expression counts the available future volume geometrically. The expression on the right is what that integral equals after evaluation.</p>
+          <div class="diamond-intro">
+            <div>
+              <p>Choose two events uniformly from a flat \(D\)-dimensional causal diamond \(I\). They are related when either event lies in the other’s future light cone. If the diamond has volume \(V\), fixing the first event \(x\) leaves a smaller future diamond whose volume scales as its proper-time height to the power \(D\).</p>
+              <p><strong>This is one equation in two forms, not two different laws.</strong> The middle expression counts the available future volume geometrically. The expression on the right is what that integral equals after evaluation.</p>
+            </div>
+            <figure class="diamond-figure">
+              <svg viewBox="0 0 220 220" role="img" aria-labelledby="smallDiamondTitle smallDiamondDesc">
+                <title id="smallDiamondTitle">A causal diamond and the future subdiamond above event x</title>
+                <desc id="smallDiamondDesc">The full diamond I runs from past endpoint p to future endpoint q. Event x lies inside it. The blue upper diamond is the interval from x to q.</desc>
+                <defs>
+                  <marker id="timeArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#66716d"/></marker>
+                </defs>
+                <path d="M110 15 L197 105 L110 195 L23 105 Z" fill="none" stroke="#8191aa" stroke-width="1.5"/>
+                <path d="M110 15 L166 72 L110 130 L54 72 Z" fill="#56b4e9" fill-opacity=".25" stroke="#1769c2" stroke-width="2"/>
+                <path d="M110 195 L110 15" stroke="#8191aa" stroke-width="1" stroke-dasharray="3 5"/>
+                <circle cx="110" cy="195" r="4.5" fill="#f2bf63"/><circle cx="110" cy="130" r="5" fill="#56b4e9"/><circle cx="110" cy="15" r="4.5" fill="#f2bf63"/>
+                <text x="120" y="201" fill="#17201e" font-size="13" font-weight="700">p</text>
+                <text x="120" y="135" fill="#1769c2" font-size="13" font-weight="700">x</text>
+                <text x="120" y="20" fill="#17201e" font-size="13" font-weight="700">q</text>
+                <text x="39" y="112" fill="#66716d" font-size="12">I</text>
+                <text x="120" y="69" fill="#1769c2" font-size="11" font-weight="600">I(x,q)</text>
+                <path d="M207 180 L207 42" stroke="#66716d" stroke-width="1.2" marker-end="url(#timeArrow)"/>
+                <text x="202" y="111" fill="#66716d" font-size="10" text-anchor="middle" transform="rotate(-90 202 111)">time</text>
+              </svg>
+              <figcaption>Full interval \(I\); blue is the available future interval \(I(x,q)\).</figcaption>
+            </figure>
+          </div>
           <div class="derivation">
             <div class="derivation-step"><small>geometric count &nbsp; = &nbsp; evaluated closed form</small><div class="math-line">\[r_D
               = \frac{2}{V^2}\int_I \mathrm{Vol}\!\left(I(x,q)\right)\,\mathrm{d}^D x
