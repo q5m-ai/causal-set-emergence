@@ -74,6 +74,8 @@ nav {
   text-transform: none;
 }
 .brand-mark { display: none; }
+.brand a { color: inherit; text-decoration: none; }
+.brand a span { color: hsl(var(--muted-fg)); font-weight: 500; }
 .nav-links { display: flex; gap: 16px; font-size: 15px; font-weight: 500; }
 .nav-links a { color: hsl(var(--muted-fg)); }
 .nav-links a:hover { color: hsl(var(--foreground)); text-decoration: none; }
@@ -376,6 +378,9 @@ section + section { border-top: 1px solid hsl(var(--border)); }
 }
 .repo-bridge p { color: hsl(var(--muted-fg)); }
 .equation {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   border-color: #263750;
   border-radius: var(--radius);
   padding: 18px;
@@ -383,22 +388,32 @@ section + section { border-top: 1px solid hsl(var(--border)); }
   background: #04060d;
   font-size: 13px;
 }
+.equation span {
+  color: #91a3bb;
+  font: 600 10px/1.2 "Outfit", sans-serif;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.equation strong { color: #fff; font-size: 15px; font-weight: 500; }
+.repo-link { display: inline-block; margin-top: 18px; font-size: 14px; font-weight: 600; }
 .chart-card { padding: 20px; background: #f5f1e8; }
 .chart-card h3 { color: #17201e; font-size: 18px; }
 
-footer {
-  border-color: hsl(var(--border));
-  padding: 28px 0 48px;
-}
-.footer-grid {
-  align-items: flex-start;
+footer { border-color: hsl(var(--border)); }
+.sitefoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-top: 1px solid hsl(var(--border));
+  padding-block: 24px 34px;
   color: hsl(var(--muted-fg));
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: .06em;
-  text-transform: uppercase;
+  font-size: 13px;
 }
-.footer-grid strong { color: hsl(var(--foreground)); }
+.sitefoot .right { display: flex; align-items: center; gap: 18px; }
+.sitefoot a { display: inline-flex; align-items: center; gap: 6px; color: hsl(var(--muted-fg)); }
+.sitefoot a:hover { color: hsl(var(--foreground)); text-decoration: none; }
+.footer-icon { width: 17px; height: 17px; flex: none; }
 
 @media (max-width: 850px) {
   .hero, .section-head, .concept-lab, .repo-bridge { grid-template-columns: 1fr; }
@@ -418,8 +433,10 @@ footer {
 
 @media (max-width: 600px) {
   .wrap { width: min(100% - 32px, 920px); }
-  .nav-inner { padding: 24px 0 18px; }
-  .nav-links { display: none; }
+  .nav-inner { gap: 12px; padding: 24px 0 18px; }
+  .brand { font-size: 13px; }
+  .brand a span { display: none; }
+  .nav-links { display: flex; gap: 12px; font-size: 13px; }
   header { padding-bottom: 44px; }
   section { padding: 42px 0; }
   h1 { font-size: 36px; }
@@ -427,7 +444,7 @@ footer {
   #causalSvg { height: 440px; }
   #conceptStage { min-height: 350px; }
   .locality-stage { min-height: 440px; }
-  .footer-grid { display: grid; }
+  .sitefoot { align-items: flex-start; flex-direction: column; }
 }
 
 @media (prefers-reduced-motion: reduce) {
