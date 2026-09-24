@@ -262,9 +262,10 @@
         context.font = "700 38px Outfit, sans-serif";
         context.textAlign = "center";
         context.textBaseline = "middle";
-        context.fillStyle = "rgba(4,6,13,.78)";
-        context.roundRect(44, 18, 168, 60, 16);
-        context.fill();
+        context.lineWidth = 8;
+        context.lineJoin = "round";
+        context.strokeStyle = "#04060d";
+        context.strokeText(text, 128, 48);
         context.fillStyle = color;
         context.fillText(text, 128, 48);
         const texture = new THREE.CanvasTexture(canvas);
