@@ -233,8 +233,8 @@
 from random import Random
 
 
-def sprinkle(D, N, seed):
-    random = Random(seed)
+def sprinkle(D, N):
+    random = Random(7)
     events = []
     while len(events) &lt; N:
         t = random.uniform(-1, 1)
@@ -255,15 +255,15 @@ def precedes(p, q):
     return Δt > 0 and Δx2 &lt;= Δt ** 2
 
 
-def experiment(D=3, N=200, seed=7):
-    events = sprinkle(D, N, seed)
+def experiment(D=3, N=200):
+    events = sprinkle(D, N)
     R = sum(precedes(events[i], events[j])
             for i in range(N) for j in range(i + 1, N))
     pairs = N * (N - 1) // 2
     r̂ = R / pairs
     r = gamma(D + 1) * gamma(D / 2) / (2 * gamma(3 * D / 2))
 
-    print(f"D={D}, N={N}, seed={seed}")
+    print(f"D={D}, N={N}")
     print(f"R={R:,} related pairs out of {pairs:,}")
     print(f"r̂_D = 2R/[N(N−1)] = {r̂:.4f}  ({r̂:.1%})")
     print(f"r_D = Γ(D+1)Γ(D/2)/[2Γ(3D/2)] = {r:.4f}  ({r:.1%})")
