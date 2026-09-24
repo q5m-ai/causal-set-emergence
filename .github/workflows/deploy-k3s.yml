@@ -1,0 +1,189 @@
+name: Deploy K3s production
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: >-
+    ${{ github.event_name == 'pull_request' &&
+        format('causal-set-emergence-pr-{0}', github.event.pull_request.number) ||
+        'causal-set-emergence-production-k3s' }}
+  cancel-in-progress: false
+
+jobs:
+  quality:
+    name: Quality and exact image
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out exact candidate
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22.22.0
+      - name: Validate source
+        run: |
+          python3 check_markdown.py
+          python3 -m unittest -v test_check_markdown
+          node --check site/home-3d.js
+          node --check site/order-fraction-worker.js
+      - name: Build and probe the hardened image
+        shell: bash
+        run: |
+          set -euo pipefail
+          image="q5m/causal-set-emergence:$GITHUB_SHA"
+          docker build \
+            --file q5m/Dockerfile \
+            --build-arg "Q5M_RELEASE=$GITHUB_SHA" \
+            --label "org.opencontainers.image.revision=$GITHUB_SHA" \
+            --tag "$image" \
+            .
+          container=$(docker run --detach \
+            --network none \
+            --read-only \
+            --user 1000:1000 \
+            --cap-drop ALL \
+            --security-opt no-new-privileges \
+            --tmpfs /tmp:rw,nosuid,nodev,noexec,size=32m \
+            "$image")
+          trap 'docker rm --force "$container" >/dev/null' EXIT
+          for attempt in {1..20}; do
+            if docker exec "$container" /usr/local/bin/causal-set-health; then
+              break
+            fi
+            sleep 0.5
+          done
+          docker exec "$container" /usr/local/bin/causal-set-health
+          test "$(docker exec "$container" /usr/bin/wget -q -O - \
+            http://127.0.0.1:8080/.q5m-release)" = "$GITHUB_SHA"
+
+  build:
+    name: Publish immutable image
+    if: github.ref == 'refs/heads/main'
+    needs: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Authenticate only to GHCR
+        env:
+          REGISTRY_TOKEN: ${{ github.token }}
+        run: printf '%s' "$REGISTRY_TOKEN" | docker login ghcr.io --username "$GITHUB_ACTOR" --password-stdin
+      - name: Build and publish exact source
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker buildx create --name causal-set-native --driver docker-container --driver-opt memory=2g --use
+          docker buildx build \
+            --file q5m/Dockerfile \
+            --build-arg "Q5M_RELEASE=$GITHUB_SHA" \
+            --label "org.opencontainers.image.revision=$GITHUB_SHA" \
+            --tag "ghcr.io/q5m-ai/causal-set-emergence:$GITHUB_SHA" \
+            --metadata-file "$RUNNER_TEMP/build-metadata.json" \
+            --push \
+            .
+          digest=$(jq -er '.["containerimage.digest"] | select(test("^sha256:[0-9a-f]{64}$"))' "$RUNNER_TEMP/build-metadata.json")
+          jq -n \
+            --arg revision "$GITHUB_SHA" \
+            --arg image "ghcr.io/q5m-ai/causal-set-emergence@$digest" \
+            '{version: 1, revision: $revision, images: {web: $image}}' \
+            > "$RUNNER_TEMP/build-receipt.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: causal-set-emergence-production-${{ github.sha }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/build-receipt.json
+          if-no-files-found: error
+          retention-days: 90
+      - name: Drop ephemeral registry login
+        if: always()
+        run: docker logout ghcr.io
+
+  promote:
+    name: Promote desired state
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: production-k3s
+      url: https://causal-set-emergence.q5m.ai
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Check out production desired state
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          ref: production
+          path: desired
+          fetch-depth: 0
+      - name: Check out exact candidate without credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          ref: ${{ github.sha }}
+          path: source
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: causal-set-emergence-production-${{ github.sha }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/native-receipt
+      - name: Fast-forward desired state and select immutable image
+        shell: bash
+        run: |
+          set -euo pipefail
+          git -C desired config user.name github-actions[bot]
+          git -C desired config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git -C desired fetch origin "$GITHUB_SHA"
+          git -C desired merge --no-edit "$GITHUB_SHA"
+          node source/scripts/promote-production.mjs \
+            --revision "$GITHUB_SHA" \
+            --receipt "$RUNNER_TEMP/native-receipt/build-receipt.json" \
+            --kustomization desired/deploy/production/kustomization.yaml
+          test "$(git -C desired diff --name-only)" = deploy/production/kustomization.yaml
+          git -C desired add deploy/production/kustomization.yaml
+          git -C desired commit -m "Promote Causal Set Emergence $GITHUB_SHA"
+      - name: Push one desired-state promotion
+        run: git -C desired push origin HEAD:production
+
+  verify:
+    name: Verify public release
+    if: github.ref == 'refs/heads/main'
+    needs: promote
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Wait for Flux and verify exact public identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          base=https://causal-set-emergence.q5m.ai
+          for attempt in {1..60}; do
+            release=$(curl --fail --silent --show-error --max-time 5 "$base/.q5m-release" || true)
+            if [[ "$release" == "$GITHUB_SHA" ]]; then
+              test "$(curl --fail --silent --show-error --max-time 5 "$base/healthz")" = healthy
+              page=$(curl --fail --silent --show-error --max-time 5 "$base/")
+              [[ "$page" == *'<title>Causal Set Emergence'* ]]
+              curl --fail --silent --show-error --max-time 5 --output /dev/null "$base/dimensions.html"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "Public release did not converge to $GITHUB_SHA" >&2
+          exit 1

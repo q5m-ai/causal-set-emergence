@@ -1,0 +1,11 @@
+.git
+.github
+.paseo
+AGENTS.md
+formal
+notes
+*.py
+*.md
+requirements.txt
+deploy
+scripts
