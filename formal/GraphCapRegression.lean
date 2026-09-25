@@ -147,6 +147,26 @@ theorem quartic_controlled_atlas : ∃ A : ControlledCollarAtlas quarticProfile,
   exact A.noncritical 0 ⟨hx, by simpa [quartic_positive_critical.1] using le_of_not_gt hn⟩
     quartic_positive_critical.2
 
+/-- Actual coarea and both absolute-integrability statements hold below,
+not through, the quartic's retained positive-height critical point. -/
+theorem quartic_collar_coarea : ∃ δ : ℝ, 0 < δ ∧ δ < 3 / 16 ∧ ∀ ρ : ℝ, 0 < ρ →
+    IntegrableOn (fun x : Spatial => planeKernel ρ (quarticProfile x))
+      {x | 0 < quarticProfile x ∧ quarticProfile x < δ} ∧
+    IntervalIntegrable (fun t => planeKernel ρ t * graphHeightDensity quarticProfile t) volume 0 δ ∧
+    (∫ x : Spatial in {x | 0 < quarticProfile x ∧ quarticProfile x < δ},
+      planeKernel ρ (quarticProfile x)) =
+      ∫ t in (0 : ℝ)..δ, planeKernel ρ t * graphHeightDensity quarticProfile t := by
+  obtain ⟨δ, hδ, hreg, hc⟩ := quartic_admissible.exists_collar_coarea
+  refine ⟨δ, hδ, ?_, fun ρ _ => hc _ (continuous_planeKernel ρ).continuousOn⟩
+  by_contra hn
+  have hx : (0 : JointSpace) ∈ graphClosedPositive quarticProfile := by
+    apply subset_closure
+    change 0 < quarticProfile 0
+    rw [quartic_positive_critical.1]
+    norm_num
+  exact hreg 0 ⟨hx, by simpa [quartic_positive_critical.1] using le_of_not_gt hn⟩
+    quartic_positive_critical.2
+
 -- The canonical density is measurable, uniformly bounded, and right
 -- continuous on that same controlled collar, strictly below the retained
 -- quartic critical height. No stronger admissibility premise is used.
