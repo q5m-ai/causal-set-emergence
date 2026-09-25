@@ -4,7 +4,8 @@ import BoundaryDraft
 Canonical level-density contracts: finite/integrable levels, measurability,
 a uniform collar bound, and the right-hand boundary limit. Negative-height
 vanishing and a nonzero ellipsoid boundary value distinguish the proved
-one-sided continuity from false two-sided continuity. Coarea is not asserted.
+one-sided continuity from false two-sided continuity. Coarea has separate
+regressions in `GraphCoareaRegression.lean`.
 -/
 
 open BoundaryDraft MeasureTheory Set

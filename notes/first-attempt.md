@@ -37,8 +37,9 @@ Dominated convergence now proves continuity and measurability of the canonical
 density on a closed nonnegative collar, a uniform bound there, and its
 right-hand limit equal to the existing boundary integral. Canonical Hausdorff
 area agrees with the existing ellipsoid parametric measure at measure level,
-with integral and integrability transport. Global collar coarea and the collar
-action limit are not proved. Thus the general graph-cap deterministic boundary
+with integral and integrability transport. Global collar coarea is now derived
+from the atlas, including endpoint nullity, absolute integrability and the
+signed kernel specialization. The general graph-cap deterministic boundary
 limit, arbitrary null boundaries, induced null-joint geometry, and
 Poisson-expectation bridge remain open.
 The checked results concern `continuumMean`, not yet a formalized random sprinkling expectation,
@@ -592,8 +593,8 @@ integrals are checked for that measure. Identification with scalar-graph
 parametric area is now proved. `SphereSurface.lean` and
 `EllipsoidHausdorff.lean` also prove agreement with the existing polar-sphere-based
 ellipsoid measure, without redefining either measure. One-sided density
-continuity is now checked; the coarea argument and the stronger C¹ regularity
-used for the draft rate below still require proofs.
+continuity and collar coarea are now checked separately; the stronger C¹
+regularity used for the draft rate below still requires a proof.
 The coordinate sup-norm Hausdorff measure is not a substitute for Euclidean area.
 `HausdorffGraph.lean` now proves the local C¹ graph/tangent-image Hausdorff
 bounds with factors `(1 − ε)²` and `(1 + ε)²` on every subset of a sufficiently
@@ -622,17 +623,20 @@ frame Jacobian. `GraphAtlas.lean` constructs a finite cover of a whole closed
 collar and smooth subordinate partition weights. `GraphAtlasRepresentation.lean`
 exports common finite-sum representations on fixed domains, joint local
 continuity, and uniform integrable domination. `GraphDensityRegularity.lean`
-now applies dominated convergence on each fixed disk and the proved
-partition-weighted sum to derive continuity and measurability on the whole
-nonnegative collar, a uniform finite bound, and the canonical right-hand
-boundary limit. The overlap and quartic regressions exercise this argument
-without disjoint-chart or global-noncriticality assumptions. Negative heights
+applies dominated convergence on each fixed disk and the partition-weighted
+sum to derive continuity, measurability and a uniform bound on the nonnegative
+collar, including the canonical right-hand boundary limit. Negative heights
 have zero canonical density, so two-sided continuity would force a zero
 boundary integral; the unequal-axis example has a checked nonzero right limit.
-Only these relevant negative-density lemmas are reused from draft PR #29,
-not its endpoint or kernel work. Global collar coarea and the collar action
-limit remain unproved. The general `GraphCapLimitGoal` remains an open target,
-not a proved theorem; no C¹ regularity or rate is claimed by this new module.
+Only the relevant negative-density lemmas were reused from draft PR #29 for
+this regularity proof. `GraphCoarea.lean` derives global collar coarea by
+justified height Fubini and finite overlap summation; `GraphEndpoints.lean`
+derives endpoint replacements from regular-level nullity. Spatial and height
+absolute integrability are explicit, and one selected collar works for
+`planeKernel` at every positive density. Coarea is not used above this
+noncritical collar; the quartic's interior critical point is retained. The
+collar action limit and general `GraphCapLimitGoal` remain open; no C¹
+regularity or rate is claimed by these new modules.
 
 **Proof.** By regularity and compactness of the joint there is a collar
 $`0\le h\le\delta`$ with no critical points. Coarea gives a $`C^1`$
