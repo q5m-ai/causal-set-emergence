@@ -11,9 +11,11 @@ including its open-domain and signed-integral forms. Canonical height levels
 have finite measure and integrable weights in a noncritical band. A finite
 controlled collar atlas, ambient and canonical slice transport, smooth overlap
 weights, and uniformly dominated finite-sum representations are now proved.
-Ellipsoid parametric/Hausdorff compatibility, global collar coarea, height-density continuity,
-the general deterministic limit, arbitrary null boundaries, induced null-joint
-geometry, and the Poisson-expectation bridge remain open.**
+Canonical Hausdorff and parametric ellipsoid measures agree, with subtype
+transport, integrability, and recovery of the original boundary value. Global
+collar coarea, height-density continuity, the general deterministic limit,
+arbitrary null boundaries, induced null-joint geometry, and the
+Poisson-expectation bridge remain open.**
 
 Lean **4.19.0** and mathlib **v4.19.0** are pinned. `lake-manifest.json` pins the
 resolved dependency commits; mathlib is
@@ -45,7 +47,11 @@ ellipsoid hypotheses. `GraphBoundaryRegression.lean` independently checks
 strict slopes/normals/angles, implicit charts, finite surface measure and
 integrable weights, the exact action split and vanishing remainder, and
 compatibility with the original unequal-axis gradient and parametric integral.
-It does not claim the missing Hausdorff/parametric-area identification.
+Its original parametric checks are retained; the new
+`EllipsoidHausdorffRegression.lean` independently checks the measure-level
+Hausdorff/parametric identification, arbitrary joint observables and
+ambient/subtype transport, canonical integrability, and both canonical `48π`
+integrals with the original unequal-axis endpoints and hypotheses.
 `HausdorffGraphRegression.lean` checks Euclidean rather than supremum norms,
 actual graph derivatives, zero-error comparisons without a finiteness premise,
 a nonlinear paraboloid's local bounds, the planar disk upper bound, and null
@@ -123,6 +129,8 @@ and limit at `T = 2`, `a = 1`.
 | `BoundaryDraft/EllipsoidJoint.lean` | Smooth profile, actual Euclidean gradient, nonzero joint differential, inward/outward unit normals, strict `0 < k < 1` | Arbitrary graph profiles |
 | `BoundaryDraft/EllipsoidAngle.lean` | Explicit positive rapidity, cosh/sinh/tanh/coth identities, spacelike face tangents and joint orthogonality | Null-angle limits or general joints |
 | `BoundaryDraft/EllipsoidSurface.lean` | Global sphere parameterization, cross-product/Gram Jacobian, parametric induced surface measure, integrability and exact variable-angle integral, connected nonconstant-angle joint | General coarea or a Hausdorff-measure identification for arbitrary surfaces |
+| `BoundaryDraft/SphereSurface.lean` | Normalized Euclidean Hausdorff sphere area equals the existing polar sphere measure, from hemisphere graph area, radial-sector volume and a finite cover | An arbitrary-surface or coarea theorem |
+| `BoundaryDraft/EllipsoidHausdorff.lean` | Canonical and original parametric ellipsoid measures agree under positive-axis hypotheses; subtype/ambient integral and integrability transport; canonical angle and reciprocal-gradient values and concrete limit interpretation | Collar coarea, height-density continuity or the general graph-cap limit |
 | `BoundaryDraft/NullGeometry.lean` | Open/measurable/bounded concrete cap, causal transitivity, causal convexity, and complete future slices | Arbitrary null boundaries |
 | `BoundaryDraft/CausalInterval.lean` | Four-dimensional polar/null Jacobians and exact standard causal-interval kernel identity by finite primitives | A probability bridge or power-series assumption |
 | `BoundaryDraft/IntervalMoments.lean` | Actual four-dimensional causal-interval moment formula for every natural `n` | A separate series interchange (not used by the kernel proof) |
@@ -365,12 +373,15 @@ the joint then proves finite two-dimensional Hausdorff measure globally.
 Euclidean space. This explicitly states the intended area convention: pinned
 mathlib uses unnormalized squared diameters. **Scalar-graph parametric area is
 now identified with this normalized Hausdorff convention. Agreement with the
-existing polar-sphere-based ellipsoid measure remains unproved.** Finiteness of
-this declared measure, continuity and absolute integrability of the reciprocal-gradient weight, integrability of
+existing polar-sphere-based ellipsoid measure is also proved in
+`EllipsoidHausdorff.lean`.** Finiteness of this declared measure, continuity and
+absolute integrability of the reciprocal-gradient weight, integrability of
 the angle weight, and equality of their integrals are proved independently.
 `graphBoundaryIntegral` is the reciprocal-gradient integral, and
 `GraphCapLimitGoal h` states convergence of the unchanged `continuumMean` to
-that integral. The latter is an **open proposition definition, not a theorem**.
+that integral. The latter is an **open general proposition definition, not a
+general theorem**; `ellipsoid_canonical_limit` supplies its concrete ellipsoid
+instance by reusing the existing deterministic limit.
 
 `HausdorffGraph.lean` now proves the local tangent-to-graph comparison from
 C¹ regularity, without assuming a surface transformation. For a scalar graph
@@ -427,8 +438,9 @@ Pushforward, signed integral, and absolute-integrability identities follow.
 `HausdorffAreaLocal.lean` constructs global C¹ cutoff representatives of local
 germs and glues the measure identities over a countable cover. Consequently a
 continuous scalar graph needs C¹ regularity only on the open domain of
-integration, not outside it. These results do not yet identify the existing
-ellipsoid polar parameterization or integrate a general height collar.
+integration, not outside it. `SphereSurface` and `EllipsoidHausdorff` reuse this
+formula to identify the existing ellipsoid polar parameterization below.
+Integration of a general height collar remains unproved.
 
 `GraphDensity.lean` defines `graphLevel h s` inside `graphClosedPositive h`,
 `graphLevelMeasure h s` by normalized Hausdorff restriction, and
@@ -486,9 +498,9 @@ The downstream API in `GraphAtlasRepresentation.lean` is:
 These are proved from unchanged `AdmissibleGraphCap` hypotheses. The atlas
 records only geometric charts and partition data, not assumed transformation
 laws. The API deliberately stops before height Fubini for #33, the one-sided
-continuity argument for #34, or limit assembly for #32. It does not identify
-the separate ellipsoid parametric measure (#30), and positive-height critical
-points beyond the selected collar remain permitted.
+continuity argument for #34, or limit assembly for #32. It does not modify
+the separate ellipsoid measure-compatibility theorem completed in #30, and
+positive-height critical points beyond the selected collar remain permitted.
 
 `GraphTail.lean` proves the scaled bound with the concrete constant
 `C = 1416/(π sqrt 6)` and width `ε = (sqrt (sqrt ρ))⁻¹`. On `h ≥ δ > 0`, the
@@ -500,9 +512,11 @@ so no level-set-nullity premise is used. No differential or coarea assumption
 is used for this entire tail argument, even at the quartic critical height.
 
 Issue #19's prerequisite layer is complete in PR #21. Milestone 5 remains
-incomplete: follow-up #23 owns ellipsoid measure compatibility, collar coarea,
-continuity of the height density at zero, and the collar limit. No structure field or hypothesis assumes those missing
-results. None of the original action or concrete limit definitions changes.
+incomplete: follow-up #23 owns collar coarea, continuity of the height density
+at zero, and the collar limit. The independent ellipsoid measure task split
+into #30 now has checked declarations in `EllipsoidHausdorff`. No structure
+field or hypothesis assumes the remaining results. None of the original action
+or concrete limit definitions changes.
 
 ### Ellipsoid compatibility and a nonquadratic example
 
@@ -703,6 +717,44 @@ weights on that connected surface. The original `(1/4, ![1,2,3])` regression
 retains the deterministic `48π` limit and separately checks the same joint
 integral, slopes `1/2` and `1/6`, and weights `2` and `6`.
 
+### Canonical/parametric ellipsoid compatibility (#30)
+
+`SphereSurface` applies the checked scalar-graph area formula to an upper
+hemisphere. The radial filling has volume Jacobian `r² / sqrt(1 - ‖y‖²)`;
+ordinary three-dimensional change of variables and Tonelli identify graph
+area with three times radial-sector volume. A finite isometric hemisphere
+cover proves equality with mathlib's existing `volume.toSphere` on the entire
+sphere. This is a measure identity, not just a total-area calculation.
+
+`EllipsoidHausdorff` writes the upper ellipsoid as a scalar graph over the
+axis-scaled disk. Its local density agrees with the original
+`ellipsoidSurfaceJacobian` by the already checked tangent-frame theorem.
+Negation treats the lower hemisphere. The equator has zero canonical area by
+planar normalization, and its linear image is proved null by a Lipschitz
+Hausdorff estimate. These local identities give the following global theorem
+under merely positive axes:
+
+```lean
+theorem normalizedHausdorffTwo_restrict_ellipsoidJoint
+    (b : Fin 3 → ℝ) (hb : ∀ i, 0 < b i) :
+    normalizedHausdorffTwo.restrict (ellipsoidJoint b) =
+      Measure.map (Subtype.val : ellipsoidJoint b → JointSpace)
+        (ellipsoidSurfaceMeasure b hb)
+```
+
+`normalizedHausdorffTwo_comap_ellipsoidJoint` expresses the same identity on
+the joint subtype. Nonnegative and signed integrals, and absolute
+integrability, transport for arbitrary observables, including functions
+defined only on the subtype. `graphSurfaceMeasure_ellipsoid` connects the
+unchanged general graph-cap measure to this identity. Under the original
+`a > 0`, `bᵢ > 2a` hypotheses, `integral_ellipsoid_canonical_coth` and
+`graphBoundaryIntegral_ellipsoid` recover `2π (∏ bᵢ) / a` by reusing the
+parametric evaluation. `ellipsoid_canonical_limit` rewrites the original
+concrete limit with that canonical boundary value. The independent regression
+checks both canonical `48π` integrals and the unchanged nonconstant endpoints.
+No collar coarea, height-density continuity, or general deterministic limit
+is claimed.
+
 ## Exact null-cap reduction and Gaussian limit
 
 The null proof starts from the unchanged `nullCapRegion`, `continuumMean`,
@@ -831,17 +883,18 @@ target or an assumed geometric reduction.
    four-dimensional action reduction are checked, with ellipsoid and quartic
    instances. Compact joints, the noncritical band, local height charts, and
    the vanishing non-collar remainder are now checked. Planar normalization,
-   tangent area, and the scalar-graph area formula are also proved. A finite
-   controlled collar atlas now supplies both local measure transports, smooth
-   overlap weights, and uniformly dominated finite-sum representations. Ellipsoid
-   measure compatibility, collar coarea, height-density continuity, and the
-   collar limit are still needed.
+   tangent area, the scalar-graph area formula, and ellipsoid measure
+   compatibility are also proved. A finite controlled collar atlas now supplies
+   both local measure transports, smooth overlap weights, and uniformly
+   dominated finite-sum representations. Global collar coarea, height-density
+   continuity, and the collar limit are still needed.
 5. **Concrete ellipsoid interpretation completed; general pointwise geometry checked.**
    The positive-angle identity now holds for every admissible graph cap.
-   Its two finite canonical boundary integrals are equal, but identification
-   with the existing ellipsoid parametric measure and the deterministic limit
-   remains open. Arbitrary null boundaries and induced null-joint area also
-   remain open. The checked
+   Its two finite canonical boundary integrals are equal. Identification with
+   the existing ellipsoid parametric measure and the concrete ellipsoid limit
+   is now checked; identification with a general deterministic limit remains
+   open. Arbitrary null boundaries and induced null-joint area also remain
+   open. The checked
    equality to `nullJointArea` still uses its existing explicit algebraic
    definition, not a theorem about induced null-joint geometry.
 6. **Beyond the present scope.** Curved spacetime, other dimensions,
@@ -850,9 +903,9 @@ target or an assumed geometric reduction.
 
 The two concrete deterministic milestones and the ellipsoid geometric
 interpretation, plus the general graph-cap exact reduction, are complete and
-audited. Ellipsoid measure compatibility, general graph-cap collar coarea and
-the collar limit, arbitrary null boundaries, induced null-joint geometry, and
-the probability bridge remain separate tasks.
+audited, including canonical/parametric ellipsoid measure compatibility.
+General graph-cap collar coarea and the collar limit, arbitrary null boundaries,
+induced null-joint geometry, and the probability bridge remain separate tasks.
 
 ## Reproduce
 
