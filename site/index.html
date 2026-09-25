@@ -169,7 +169,7 @@
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
-  <link rel="stylesheet" href="site.css?v=home3d1">
+  <link rel="stylesheet" href="site.css?v=hero2">
 </head>
 <body>
   <nav aria-label="Page navigation">
@@ -187,13 +187,11 @@
         <p class="lede">A visual guide to causal sets: discrete events, causal precedence, emergent geometry, and the strange locality of a Lorentzian universe.</p>
         <a class="scroll-cue" href="#pillars"><span aria-hidden="true">↓</span> Begin with three ideas</a>
       </div>
-      <div class="causal-orbit" aria-label="A stylized causal set">
-        <span class="event hot" style="left:50%;top:50%"></span>
-        <span class="event" style="left:27%;top:72%"></span><span class="event" style="left:70%;top:77%"></span>
-        <span class="event" style="left:21%;top:28%"></span><span class="event" style="left:75%;top:24%"></span>
-        <span class="event" style="left:50%;top:8%"></span><span class="event" style="left:50%;top:91%"></span>
-        <svg viewBox="0 0 100 100" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%"><g fill="none" stroke="currentColor" opacity=".26" stroke-width=".35"><path d="M50 50L27 72M50 50L70 77M50 50L21 28M50 50L75 24M21 28L50 8M75 24L50 8M27 72L50 91M70 77L50 91"/></g></svg>
-        <div class="hero-note"><strong>Read upward:</strong><br>later events sit toward the top; lines show possible causal precedence.</div>
+      <div id="heroStage" class="hero-stage three-stage" role="img" aria-label="Rotatable causal diamond with discrete events and direct causal links">
+        <div class="hero-viz-title"><strong>C = (E, ≺)</strong><span>order before geometry</span></div>
+        <div class="hero-viz-axis"><span>future</span><span>past</span></div>
+        <div class="three-loading">Loading causal set…</div>
+        <div class="three-hint">drag to rotate · scroll to zoom</div>
       </div>
     </div>
   </header>
@@ -333,7 +331,7 @@
 
 <script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1.10.0/dist/es-module-shims.js"></script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script type="module" src="home-3d.js?v=1"></script>
+<script type="module" src="home-3d.js?v=2"></script>
 <script>
 (() => {
   const NS = "http://www.w3.org/2000/svg";
