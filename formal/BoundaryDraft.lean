@@ -27,6 +27,7 @@ import BoundaryDraft.HausdorffLinear
 import BoundaryDraft.HausdorffArea
 import BoundaryDraft.HausdorffAreaLocal
 import BoundaryDraft.GraphSurface
+import BoundaryDraft.EllipsoidHausdorff
 import BoundaryDraft.GraphDensity
 import BoundaryDraft.GraphTail
 import BoundaryDraft.NullGeometry

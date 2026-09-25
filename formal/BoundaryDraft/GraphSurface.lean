@@ -9,9 +9,10 @@ import Mathlib.MeasureTheory.Measure.Hausdorff
 
 The surface measure is `(π/4) • μH[2]` in Euclidean space, restricted to the
 joint. The coefficient states the normalized Euclidean area convention for
-mathlib's diameter-based Hausdorff measure. Its identification with parametric
-area (in particular the existing ellipsoid measure) is a separate, still open
-obligation. No action or collar density is defined using its desired limit.
+mathlib's diameter-based Hausdorff measure. Its identification with scalar-graph
+area and with the existing ellipsoid measure is proved separately downstream
+in `HausdorffAreaLocal` and `EllipsoidHausdorff`. No action or collar density is
+defined using its desired limit.
 
 Finiteness is proved independently: the implicit function theorem gives local
 Lipschitz parametrizations over the actual two-dimensional tangent kernel;
