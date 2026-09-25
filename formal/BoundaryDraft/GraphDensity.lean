@@ -89,6 +89,16 @@ theorem hausdorff_finiteAt_regular_level (f : JointSpace → ℝ)
   rw [← hS y hyS]
   exact hinvy
 
+/-- At a positive height, restricting to the closed positive region does not
+remove any points of the actual level. This does not hold at height zero. -/
+theorem graphLevel_eq_of_pos (h : Spatial → ℝ) (s : ℝ) (hs : 0 < s) :
+    graphLevel h s = {x : JointSpace | h x = s} := by
+  ext x
+  constructor
+  · exact And.right
+  · intro hx
+    exact ⟨subset_closure (show 0 < h x from hx ▸ hs), hx⟩
+
 namespace AdmissibleGraphCap
 
 variable {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
@@ -109,6 +119,29 @@ theorem graphLevel_eq_empty_of_neg (s : ℝ) (hs : s < 0) : graphLevel h s = ∅
   rw [hx.2] at hn
   exact (not_le_of_gt hs) hn
 
+/-- Negative heights have no canonical surface mass: levels are restricted
+to the closed positive region, not an ambient continuation of the profile. -/
+theorem graphLevelMeasure_eq_zero_of_neg (s : ℝ) (hs : s < 0) :
+    graphLevelMeasure h s = 0 := by
+  simp only [graphLevelMeasure, hh.graphLevel_eq_empty_of_neg s hs, Measure.restrict_empty]
+
+theorem graphHeightDensity_eq_zero_of_neg (s : ℝ) (hs : s < 0) :
+    graphHeightDensity h s = 0 := by
+  simp only [graphHeightDensity, hh.graphLevelMeasure_eq_zero_of_neg s hs, integral_zero_measure]
+
+/-- Two-sided continuity of the canonical density would force the boundary
+integral to vanish. The collar argument instead needs continuity from
+nonnegative heights; it must not assume a continuous ambient extension is the
+canonical density itself. -/
+theorem graphBoundaryIntegral_eq_zero_of_continuousAt_heightDensity
+    (hc : ContinuousAt (graphHeightDensity h) 0) : graphBoundaryIntegral h = 0 := by
+  have hl : Tendsto (graphHeightDensity h) (𝓝[<] 0) (𝓝 0) := by
+    apply tendsto_const_nhds.congr'
+    filter_upwards [self_mem_nhdsWithin] with s hs
+    exact (hh.graphHeightDensity_eq_zero_of_neg s hs).symm
+  have he := tendsto_nhds_unique (hc.tendsto.mono_left nhdsWithin_le_nhds) hl
+  simpa only [graphHeightDensity_zero] using he
+
 /-- Finiteness at any regular level; no condition is imposed at other levels. -/
 theorem hausdorff_level_lt_top (s : ℝ)
     (hreg : ∀ x ∈ graphLevel h s, fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
@@ -118,6 +151,63 @@ theorem hausdorff_level_lt_top (s : ℝ)
   exact hausdorff_finiteAt_regular_level _ _ x
     ((hh.smooth_near x hx.1).hasStrictFDerivAt (by norm_num)) (hreg x hx) _
     (fun y hy => hy.2.trans hx.2.symm)
+
+/-- Finite two-dimensional Hausdorff measure makes each regular level null
+for three-dimensional volume. This is derived independently of coarea. -/
+theorem volume_graphLevel_eq_zero (s : ℝ)
+    (hreg : ∀ x ∈ graphLevel h s, fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
+    volume (graphLevel h s) = 0 := by
+  have hz : (μH[3] : Measure JointSpace) (graphLevel h s) = 0 :=
+    (Measure.hausdorffMeasure_zero_or_top (by norm_num : (2 : ℝ) < 3) _).resolve_right
+      (hh.hausdorff_level_lt_top s hreg).ne
+  have hz' : (μH[Module.finrank ℝ JointSpace] : Measure JointSpace) (graphLevel h s) = 0 := by
+    simpa only [JointSpace, finrank_euclideanSpace, Fintype.card_fin, Nat.cast_ofNat] using hz
+  exact (Measure.absolutelyContinuous_isAddHaarMeasure volume
+    (μH[Module.finrank ℝ JointSpace] : Measure JointSpace)) hz'
+
+/-- Nullity in the original coordinate-product spatial measure, not merely
+in the Euclidean coordinate model. Positive heights may be replaced as
+integration endpoints whenever that particular level is regular. -/
+theorem volume_spatial_level_eq_zero (s : ℝ) (hs : 0 < s)
+    (hreg : ∀ x ∈ graphLevel h s, fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
+    volume {x : Spatial | h x = s} = 0 := by
+  have he : (WithLp.equiv 2 (Fin 3 → ℝ)) '' graphLevel h s = {x : Spatial | h x = s} := by
+    rw [graphLevel_eq_of_pos h s hs]
+    ext x
+    constructor
+    · rintro ⟨y, hy, rfl⟩
+      exact hy
+    · intro hx
+      exact ⟨(WithLp.equiv 2 _).symm x, hx, rfl⟩
+  have hm : MeasurableSet {x : Spatial | h x = s} := by
+    rw [← he]
+    exact ((hh.isCompact_level s).image (PiLp.continuous_equiv 2 _)).isClosed.measurableSet
+  rw [← (PiLp.volume_preserving_equiv (Fin 3)).measure_preimage hm.nullMeasurableSet]
+  change volume {x : JointSpace | h x = s} = 0
+  rw [← graphLevel_eq_of_pos h s hs]
+  exact hh.volume_graphLevel_eq_zero s hreg
+
+/-- Strict and closed positive collar endpoints agree almost everywhere
+when the endpoint level is regular. Unrelated exterior zeros are not removed. -/
+theorem ae_collar_endpoint (s : ℝ) (hs : 0 < s)
+    (hreg : ∀ x ∈ graphLevel h s, fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
+    {x : Spatial | 0 < h x ∧ h x < s} =ᶠ[ae volume] {x | 0 < h x ∧ h x ≤ s} := by
+  have hn : ∀ᵐ x : Spatial, h x ≠ s := by
+    apply ae_iff.2
+    simpa only [not_not] using hh.volume_spatial_level_eq_zero s hs hreg
+  filter_upwards [hn] with x hx
+  apply propext
+  constructor
+  · exact fun hy => ⟨hy.1, hy.2.le⟩
+  · exact fun hy => ⟨hy.1, lt_of_le_of_ne hy.2 hx⟩
+
+/-- Endpoint replacement in the original spatial integral follows from
+proved nullity; it is not an assumed part of a coarea formula. -/
+theorem integral_collar_eq_closed_endpoint (s : ℝ) (hs : 0 < s)
+    (hreg : ∀ x ∈ graphLevel h s, fderiv ℝ (fun y : JointSpace => h y) x ≠ 0)
+    (f : Spatial → ℝ) :
+    (∫ x in {x | 0 < h x ∧ h x < s}, f x) = ∫ x in {x | 0 < h x ∧ h x ≤ s}, f x :=
+  setIntegral_congr_set (hh.ae_collar_endpoint s hs hreg)
 
 theorem finite_graphLevelMeasure (s : ℝ)
     (hreg : ∀ x ∈ graphLevel h s, fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
@@ -153,6 +243,15 @@ theorem exists_integrable_level_band : ∃ δ : ℝ, 0 < δ ∧ ∀ s ≤ δ,
     intro x hx
     exact hreg x hx.1 (hx.2.le.trans hs)
   exact ⟨hh.finite_graphLevelMeasure s hr, hh.integrable_graphLevel_reciprocal_slope s hr⟩
+
+/-- One noncritical band supplies all spatial endpoint replacements at once,
+without placing any restriction on levels above the band. -/
+theorem exists_null_level_band : ∃ δ : ℝ, 0 < δ ∧ ∀ s ∈ Ioc (0 : ℝ) δ,
+    volume {x : Spatial | h x = s} = 0 := by
+  obtain ⟨δ, hδ, hreg⟩ := hh.exists_noncritical_band
+  refine ⟨δ, hδ, fun s hs => hh.volume_spatial_level_eq_zero s hs.1 ?_⟩
+  intro x hx
+  exact hreg x hx.1 (hx.2.le.trans hs.2)
 
 /-- Any open neighborhood of the whole joint contains a sufficiently thin
 closed positive collar. Thus a finite collection of joint charts also covers

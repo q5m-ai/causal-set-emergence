@@ -130,4 +130,16 @@ theorem quartic_integrable_level_band_and_critical :
     quarticProfile 0 = 3 / 16 ∧ fderiv ℝ (fun x : JointSpace => quarticProfile x) 0 = 0 :=
   ⟨quartic_admissible.exists_integrable_level_band, quartic_positive_critical⟩
 
+-- Null endpoint levels are justified inside the existing regular band,
+-- which still stops strictly below the retained quartic critical height.
+theorem quartic_null_band_and_critical :
+    (∃ δ : ℝ, 0 < δ ∧ δ < 3 / 16 ∧ ∀ s ∈ Ioc (0 : ℝ) δ,
+      volume {x : Spatial | quarticProfile x = s} = 0) ∧
+    quarticProfile 0 = 3 / 16 ∧ fderiv ℝ (fun x : JointSpace => quarticProfile x) 0 = 0 := by
+  refine ⟨?_, quartic_positive_critical⟩
+  obtain ⟨δ, hδ, hcritical, hreg⟩ := quartic_noncritical_band
+  refine ⟨δ, hδ, hcritical, fun s hs => quartic_admissible.volume_spatial_level_eq_zero s hs.1 ?_⟩
+  intro x hx
+  exact hreg x hx.1 (hx.2.le.trans hs.2)
+
 end GraphCapRegression

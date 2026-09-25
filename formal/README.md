@@ -8,8 +8,11 @@ Hausdorff joint integrals, and the vanishing non-collar remainder are checked.
 Euclidean planar Hausdorff normalization and exact tangent-image area are
 proved on every set. The variable-Jacobian scalar-graph area formula is proved,
 including its open-domain and signed-integral forms. Canonical height levels
-have finite measure and integrable weights in a noncritical band. Ellipsoid
-parametric/Hausdorff compatibility, collar coarea, height-density continuity,
+have finite measure and integrable weights in a noncritical band; regular
+positive levels are null for the original spatial volume. The analytic
+signed-kernel collar limit for bounded measurable, right-continuous-at-zero
+weights is proved separately. Ellipsoid parametric/Hausdorff compatibility,
+collar coarea, right continuity of the canonical height density at zero,
 the general deterministic limit, arbitrary null boundaries, induced null-joint
 geometry, and the Poisson-expectation bridge remain open.**
 
@@ -57,9 +60,14 @@ infinite area, nonlinear graph area, derived local finiteness/absolute
 continuity, every-point density, open-domain localization, and signed
 integration/integrability. `GraphDensityRegression.lean` checks canonical level
 normalization, compactness, an integrable level band, the zero-height boundary
-value, and extension of a joint neighborhood to a thin collar. The quartic
-regression checks these level-measure facts together with its positive-height
-critical point. None asserts the missing collar coarea or general limit.
+value, and extension of a joint neighborhood to a thin collar. It also checks
+negative-height vanishing, the obstruction to two-sided continuity, spatial
+endpoint nullity, and strict/closed collar integral agreement. The quartic
+regression checks null endpoint levels strictly below its retained positive-height
+critical point. `KernelCollarRegression.lean` independently checks the one-sided
+analytic limit and absolute integrability, including a weight with left and
+positive-height jumps and a sign-reversed kernel. None asserts the missing
+collar coarea, canonical-density right continuity, or general limit.
 `EllipsoidRegression.lean` checks the original ellipsoid contract and
 its endpoint examples. `EllipsoidJointRegression.lean` separately checks
 regularity, the strict positive angle branch, connectedness, nonconstant weights,
@@ -98,7 +106,8 @@ and limit at `T = 2`, `a = 1`.
 | `BoundaryDraft/HausdorffLinear.lean` | Exact arbitrary-set area of injective planar linear images and the scalar-graph tangent factor | Nonlinear graph area by itself |
 | `BoundaryDraft/HausdorffArea.lean` | Derived local finiteness, absolute continuity, every-point closed-ball ratios, variable-Jacobian scalar-graph area, signed integration and integrability | Collar coarea or ellipsoid parametric measure compatibility |
 | `BoundaryDraft/HausdorffAreaLocal.lean` | Localization to an open C¹ domain of a continuous scalar graph, via cutoff extensions and countable gluing | General level-chart integration or height-density continuity |
-| `BoundaryDraft/GraphDensity.lean` | Canonical level measures and height density; finite measure and integrability in a noncritical band; exact zero-height boundary value; joint neighborhoods contain a thin collar | Coarea, continuity of the density in height, or a limit |
+| `BoundaryDraft/GraphDensity.lean` | Canonical level measures and height density; finite measure and integrability in a noncritical band; exact zero-height boundary value; negative-height vanishing; regular-level spatial nullity and endpoint replacement; joint neighborhoods contain a thin collar | Coarea, right continuity of the density in height, or a limit |
+| `BoundaryDraft/KernelCollar.lean` | Absolute integrability, exact rescaling, and signed collar limit for bounded measurable weights continuous from nonnegative heights at zero | Establishing these weight hypotheses for the canonical density, coarea, or the general graph-cap limit |
 | `BoundaryDraft/GraphSurface.lean` | Height-flattening local charts; canonical Hausdorff target with explicit coefficient; finite joint measure; absolute integrability and equality of reciprocal-gradient and angle integrals | Hausdorff/parametric-area identification, coarea, height-density continuity or the general limit |
 | `BoundaryDraft/GraphTail.lean` | Absolute scaled tail, exact action collar/remainder split, vanishing spatial remainder allowing critical points | The collar limit |
 | `BoundaryDraft/EllipsoidGeometry.lean` | Positive ellipsoid, measurability, boundedness, compact positive-part support, strict Euclidean Lipschitz estimate; instantiation of the general geometry | Sublevel volumes or coarea |
@@ -138,8 +147,14 @@ coarea and height-density continuity still need proofs. The theorem
 `planeKernel_rescaling_limit` now instantiates this lemma with the concrete
 BDG kernel and Lebesgue measure restricted to `Ioi 0`, using the proved
 absolute integrability and mass one, not additional kernel hypotheses.
-`EllipsoidLimit` now applies it to the actual globally extended ellipsoid
-weight; no collar/remainder split or global C¹ hypothesis is needed.
+`signed_rescaling_limit_right` in `AnalyticCore.lean` proves the one-sided
+variant for an integrable signed kernel supported on
+nonnegative arguments and a bounded measurable profile continuous from the
+right at zero. `KernelCollar` instantiates it with the concrete kernel and
+justifies the discontinuous cutoff at a positive collar endpoint. This avoids
+requiring a globally continuous weight or claiming a convergence rate.
+`EllipsoidLimit` applies the globally continuous version to the actual extended
+ellipsoid weight; no collar/remainder split or global C¹ hypothesis is needed.
 
 `Audit.lean` discovers the public declarations in the imported `BoundaryDraft`
 namespace rather than maintaining a theorem allowlist. In addition, the
@@ -427,8 +442,32 @@ noncritical band supplies these facts on every level of one band, not a uniform
 bound on the density or its derivative. At zero, the measure equals
 `graphSurfaceMeasure h` and the density equals `graphBoundaryIntegral h`, hence
 the variable-angle boundary integral. Every open neighborhood of the compact
-joint contains a sufficiently thin closed positive collar. **The density's
-continuity at zero and its role in coarea are still unproved.**
+joint contains a sufficiently thin closed positive collar.
+
+Regular levels have zero three-dimensional Hausdorff measure by finiteness of
+their two-dimensional measure. Absolute continuity of Euclidean volume with
+respect to its full-dimensional Hausdorff Haar measure, followed by the
+measure-preserving coordinate equivalence, proves
+`volume_spatial_level_eq_zero`. Thus `exists_null_level_band` and
+`integral_collar_eq_closed_endpoint` justify spatial endpoint replacements
+without applying coarea or constraining critical levels outside the band.
+
+`graphHeightDensity_eq_zero_of_neg` proves that the canonical density is zero
+at negative heights. `graphBoundaryIntegral_eq_zero_of_continuousAt_heightDensity`
+therefore proves that two-sided continuity at zero would force the boundary
+integral to vanish. The missing geometric statement must instead use
+`ContinuousWithinAt (graphHeightDensity h) (Ici 0) 0`, or an equivalent right-hand
+limit. This distinction does not change the density definition or admissibility.
+**Right continuity of the canonical density at zero and its role in coarea are
+still unproved.**
+
+`KernelCollar.lean` completes only the analytic implication: a measurable weight
+bounded on a positive collar and continuous from nonnegative heights at zero
+has the expected signed-kernel collar limit. It proves absolute integrability
+separately, rescales the unchanged kernel, and extends the weight by zero past
+the collar endpoint. The resulting jump is permitted by the one-sided dominated
+convergence theorem. No coarea or density-continuity premise has been added to
+`AdmissibleGraphCap`, and no theorem for `GraphCapLimitGoal` is asserted.
 
 `GraphTail.lean` proves the scaled bound with the concrete constant
 `C = 1416/(π sqrt 6)` and width `ε = (sqrt (sqrt ρ))⁻¹`. On `h ≥ δ > 0`, the

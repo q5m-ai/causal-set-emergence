@@ -128,10 +128,16 @@ ratios. `HausdorffAreaLocal.lean` localizes it to open C¹ domains of continuous
 graphs and derives the signed integral identity. `GraphDensity.lean` defines
 canonical level measures and height density, proves finiteness and absolute
 integrability on a noncritical band, and identifies the zero-height value with
-the boundary integral. **Coarea, continuity of that density at zero, and
-agreement with the existing ellipsoid parametric measure remain unproved.**
-`GraphTail.lean` proves that every fixed positive-height remainder vanishes
-without coarea. The quartic regression retains its interior critical point.
+the boundary integral. It also proves that regular positive levels are null
+in the original spatial volume, justifying collar endpoint replacements.
+`KernelCollar.lean` proves the analytic signed-kernel collar limit for bounded
+measurable weights continuous from nonnegative heights at zero. The canonical
+density vanishes at negative heights, so two-sided continuity would
+force its boundary value to be zero. **Collar coarea, right continuity of the
+canonical density at zero, and agreement with the existing ellipsoid parametric
+measure remain unproved; #23 is not complete.** `GraphTail.lean` proves that
+every fixed positive-height remainder vanishes without coarea. The quartic
+regression retains its interior critical point.
 
 Still open in the formal program:
 

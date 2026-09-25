@@ -30,7 +30,10 @@ are checked. The scalar-graph area transformation is now proved from local
 Hausdorff distortion and closed-ball density uniqueness, with exact Euclidean
 tangent normalization. Canonical level measures are finite with integrable
 weights on a noncritical band, and their height-zero density is the boundary
-integral. Collar coarea, continuity of this density at zero, and agreement with
+integral. Regular positive levels are also proved null for the original spatial
+volume, and the analytic signed-kernel collar limit is checked for bounded
+measurable weights continuous from nonnegative heights at zero. Collar coarea,
+right continuity of the canonical density at zero, and agreement with
 the existing ellipsoid parametric measure are not proved. Thus the general
 graph-cap deterministic boundary limit, arbitrary null boundaries, induced
 null-joint geometry, and Poisson-expectation bridge remain open.
@@ -603,9 +606,23 @@ domains of continuous graphs via smooth cutoff extensions and countable gluing.
 `GraphDensity.lean` defines the canonical level density independently of the
 action, proves finite level measure and absolute integrability on a noncritical
 band, and identifies its value at zero with the boundary integral. It also
-proves that joint neighborhoods contain a sufficiently thin collar. Coarea,
-height-density continuity, and ellipsoid measure compatibility remain unproved.
-The general `GraphCapLimitGoal` remains an open target, not a proved theorem.
+proves that joint neighborhoods contain a sufficiently thin collar. Regular
+positive levels are spatial-volume null, so strict/closed collar endpoint
+replacements are now checked independently of coarea. Coarea, right continuity
+of the canonical height density, and ellipsoid measure compatibility remain
+unproved. The general `GraphCapLimitGoal` remains an open target, not a proved
+theorem; issue #23 is not complete.
+
+**One-sided continuity distinction.** The canonical density is zero at negative
+heights because its levels are restricted to the closed positive region. The
+Lean theorem `graphBoundaryIntegral_eq_zero_of_continuousAt_heightDensity`
+shows that two-sided continuity of that density at zero would force its boundary
+integral to vanish. The draft's interval regularity below concerns only
+nonnegative heights. `KernelCollar.lean` now proves that boundedness,
+measurability, and right continuity at zero suffice for the analytic limit,
+allowing a jump at the positive collar cutoff. It does not prove those
+properties for the canonical density, the coarea identification, or the
+stronger differentiability and rate used in the draft estimate below.
 
 **Proof.** By regularity and compactness of the joint there is a collar
 $`0\le h\le\delta`$ with no critical points. Coarea gives a $`C^1`$
