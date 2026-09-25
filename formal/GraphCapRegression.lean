@@ -147,4 +147,20 @@ theorem quartic_controlled_atlas : ∃ A : ControlledCollarAtlas quarticProfile,
   exact A.noncritical 0 ⟨hx, by simpa [quartic_positive_critical.1] using le_of_not_gt hn⟩
     quartic_positive_critical.2
 
+-- The canonical density is measurable, uniformly bounded, and right
+-- continuous on that same controlled collar, strictly below the retained
+-- quartic critical height. No stronger admissibility premise is used.
+theorem quartic_density_regularity_and_critical :
+    (∃ δ : ℝ, 0 < δ ∧ δ < 3 / 16 ∧
+      ContinuousOn (graphHeightDensity quarticProfile) (Set.Icc 0 δ) ∧
+      Measurable (fun t : Set.Icc (0 : ℝ) δ => graphHeightDensity quarticProfile t) ∧
+      ∃ C : ℝ, 0 < C ∧ ∀ t ∈ Set.Icc 0 δ, ‖graphHeightDensity quarticProfile t‖ ≤ C) ∧
+    ContinuousWithinAt (graphHeightDensity quarticProfile) (Set.Ici 0) 0 ∧
+    quarticProfile 0 = 3 / 16 ∧ fderiv ℝ (fun x : JointSpace => quarticProfile x) 0 = 0 := by
+  obtain ⟨A, hA, _⟩ := quartic_controlled_atlas
+  exact ⟨⟨A.width, A.width_pos, hA, A.continuousOn_graphHeightDensity quartic_admissible,
+    A.measurable_graphHeightDensity quartic_admissible,
+    A.exists_bound_graphHeightDensity quartic_admissible⟩,
+    quartic_admissible.continuousWithinAt_graphHeightDensity_zero, quartic_positive_critical⟩
+
 end GraphCapRegression

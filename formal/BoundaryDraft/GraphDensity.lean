@@ -8,7 +8,9 @@ The level sets are taken only inside the closed positive region. Their
 normalized Hausdorff measures define a canonical density independently of
 the action. Regular levels have finite measure and an absolutely integrable
 reciprocal-gradient weight. At zero this is exactly the existing joint target.
-This file does not yet prove coarea or continuity of the density in height.
+Negative heights have zero density, so two-sided continuity at zero would
+force a zero boundary integral. `GraphDensityRegularity` proves the required
+one-sided continuity separately; this file does not prove coarea.
 -/
 
 open MeasureTheory Set Filter
@@ -108,6 +110,29 @@ theorem graphLevel_eq_empty_of_neg (s : ℝ) (hs : s < 0) : graphLevel h s = ∅
   have hn := hh.nonneg_on_closedPositive x hx.1
   rw [hx.2] at hn
   exact (not_le_of_gt hs) hn
+
+/-- Negative heights have no canonical surface mass: levels are restricted
+to the closed positive region, not an ambient continuation of the profile. -/
+theorem graphLevelMeasure_eq_zero_of_neg (s : ℝ) (hs : s < 0) :
+    graphLevelMeasure h s = 0 := by
+  simp only [graphLevelMeasure, hh.graphLevel_eq_empty_of_neg s hs, Measure.restrict_empty]
+
+theorem graphHeightDensity_eq_zero_of_neg (s : ℝ) (hs : s < 0) :
+    graphHeightDensity h s = 0 := by
+  simp only [graphHeightDensity, hh.graphLevelMeasure_eq_zero_of_neg s hs, integral_zero_measure]
+
+/-- Two-sided continuity of the canonical density would force the boundary
+integral to vanish. The collar argument instead needs continuity from
+nonnegative heights; it must not assume a continuous ambient extension is the
+canonical density itself. -/
+theorem graphBoundaryIntegral_eq_zero_of_continuousAt_heightDensity
+    (hc : ContinuousAt (graphHeightDensity h) 0) : graphBoundaryIntegral h = 0 := by
+  have hl : Tendsto (graphHeightDensity h) (𝓝[<] 0) (𝓝 0) := by
+    apply tendsto_const_nhds.congr'
+    filter_upwards [self_mem_nhdsWithin] with s hs
+    exact (hh.graphHeightDensity_eq_zero_of_neg s hs).symm
+  have he := tendsto_nhds_unique (hc.tendsto.mono_left nhdsWithin_le_nhds) hl
+  simpa only [graphHeightDensity_zero] using he
 
 /-- Finiteness at any regular level; no condition is imposed at other levels. -/
 theorem hausdorff_level_lt_top (s : ℝ)
