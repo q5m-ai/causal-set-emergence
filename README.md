@@ -133,9 +133,16 @@ ratios. `HausdorffAreaLocal.lean` localizes it to open C¹ domains of continuous
 graphs and derives the signed integral identity. `GraphDensity.lean` defines
 canonical level measures and height density, proves finiteness and absolute
 integrability on a noncritical band, and identifies the zero-height value with
-the boundary integral. **Collar coarea and continuity of that density at zero
-remain unproved.** The independent ellipsoid measure compatibility is now
-checked; it does not supply either missing general collar theorem.
+the boundary integral. `GraphAtlas.lean` constructs a finite controlled atlas
+of a whole smaller closed collar with smooth subordinate partition weights.
+`GraphChartTransport.lean` and `GraphSliceTransport.lean` prove ambient and
+canonical level-measure transport with the same checked Jacobian.
+`GraphAtlasRepresentation.lean` supplies both finite-sum representations on
+fixed chart domains, joint continuity of the local data, and a uniform
+integrable dominator. **Global collar coarea and continuity of the canonical
+density at zero remain unproved.** The independent ellipsoid measure
+compatibility is checked; it does not supply either missing general collar
+theorem.
 `GraphTail.lean` proves that every fixed positive-height remainder vanishes
 without coarea. The quartic regression retains its interior critical point.
 
