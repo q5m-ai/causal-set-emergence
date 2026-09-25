@@ -30,7 +30,10 @@ are checked. The scalar-graph area transformation is now proved from local
 Hausdorff distortion and closed-ball density uniqueness, with exact Euclidean
 tangent normalization. Canonical level measures are finite with integrable
 weights on a noncritical band, and their height-zero density is the boundary
-integral. Collar coarea, continuity of this density at zero, and agreement with
+integral. A finite controlled collar atlas now has proved ambient and canonical
+slice-measure transport, smooth overlap weights, and common finite-sum
+representations with jointly continuous local data and uniform domination.
+Global collar coarea, continuity of this density at zero, and agreement with
 the existing ellipsoid parametric measure are not proved. Thus the general
 graph-cap deterministic boundary limit, arbitrary null boundaries, induced
 null-joint geometry, and Poisson-expectation bridge remain open.
@@ -603,8 +606,17 @@ domains of continuous graphs via smooth cutoff extensions and countable gluing.
 `GraphDensity.lean` defines the canonical level density independently of the
 action, proves finite level measure and absolute integrability on a noncritical
 band, and identifies its value at zero with the boundary integral. It also
-proves that joint neighborhoods contain a sufficiently thin collar. Coarea,
-height-density continuity, and ellipsoid measure compatibility remain unproved.
+proves that joint neighborhoods contain a sufficiently thin collar.
+`GraphChart.lean` upgrades height charts to neighborhood-level C³ inverse
+regularity. `GraphCoordinateChart.lean` and `GraphSliceTransport.lean` identify
+local slices with scalar graphs in orthogonal coordinates and transport the
+canonical level measure using the checked area theorem.
+`GraphChartTransport.lean` proves ambient change of variables from the checked
+frame Jacobian. `GraphAtlas.lean` constructs a finite cover of a whole closed
+collar and smooth subordinate partition weights. `GraphAtlasRepresentation.lean`
+exports common finite-sum representations on fixed domains, joint local
+continuity, and uniform integrable domination. Global coarea, height-density
+continuity, and ellipsoid measure compatibility remain unproved.
 The general `GraphCapLimitGoal` remains an open target, not a proved theorem.
 
 **Proof.** By regularity and compactness of the joint there is a collar

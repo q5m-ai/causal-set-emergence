@@ -28,6 +28,12 @@ import BoundaryDraft.HausdorffArea
 import BoundaryDraft.HausdorffAreaLocal
 import BoundaryDraft.GraphSurface
 import BoundaryDraft.GraphDensity
+import BoundaryDraft.GraphChart
+import BoundaryDraft.GraphChartTransport
+import BoundaryDraft.GraphCoordinateChart
+import BoundaryDraft.GraphSliceTransport
+import BoundaryDraft.GraphAtlas
+import BoundaryDraft.GraphAtlasRepresentation
 import BoundaryDraft.GraphTail
 import BoundaryDraft.NullGeometry
 import BoundaryDraft.CausalInterval
