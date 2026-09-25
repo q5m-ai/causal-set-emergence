@@ -4,8 +4,9 @@ import BoundaryDraft
 Independent contracts for the controlled atlas and both measure transports.
 The overlap regression refines a whole atlas by duplicating every chart with
 half its weight. Both copies are active on a nonempty open overlap, while
-both finite-sum formulas remain unchanged. It does not assume disjoint charts,
-a multiplicity bound, discarded seams, coarea, or height-density continuity.
+both finite-sum formulas remain unchanged. Density continuity and boundedness
+also hold for this refinement. It does not assume disjoint charts, a
+multiplicity bound, discarded seams, coarea, or height-density continuity.
 -/
 
 open BoundaryDraft MeasureTheory Set
@@ -125,6 +126,18 @@ theorem overlapping_density {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
     graphHeightDensity h t =
       ∑ i, ∫ u in ((overlappingAtlas A).charts i).disk, (overlappingAtlas A).localTerm i t u :=
   (overlappingAtlas A).graphHeightDensity_eq_sum hh t ht
+
+/-- Density regularity uses this same deliberately overlapping atlas, with
+no disjointness or null-seam premise. -/
+theorem overlapping_density_regularity {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+    (A : ControlledCollarAtlas h) :
+    (∀ i, ContinuousOn (fun t => ∫ u in ((overlappingAtlas A).charts i).disk,
+      (overlappingAtlas A).localTerm i t u) (Icc 0 A.width)) ∧
+    ContinuousOn (graphHeightDensity h) (Icc 0 A.width) ∧
+    ∃ C : ℝ, 0 < C ∧ ∀ t ∈ Icc 0 A.width, ‖graphHeightDensity h t‖ ≤ C :=
+  ⟨(overlappingAtlas A).continuousOn_integral_localTerm,
+    (overlappingAtlas A).continuousOn_graphHeightDensity hh,
+    (overlappingAtlas A).exists_bound_graphHeightDensity hh⟩
 
 /-- The same overlap test exercises the ambient representation independently
 of any height Fubini step or final coarea theorem. -/

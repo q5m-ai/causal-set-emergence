@@ -139,17 +139,21 @@ of a whole smaller closed collar with smooth subordinate partition weights.
 canonical level-measure transport with the same checked Jacobian.
 `GraphAtlasRepresentation.lean` supplies both finite-sum representations on
 fixed chart domains, joint continuity of the local data, and a uniform
-integrable dominator. **Global collar coarea and continuity of the canonical
-density at zero remain unproved.** The independent ellipsoid measure
-compatibility is checked; it does not supply either missing general collar
-theorem.
+integrable dominator. `GraphDensityRegularity.lean` uses dominated convergence
+and that overlap-aware sum to prove continuity and measurability of the
+canonical density on a nonnegative collar, a uniform finite bound, and its
+right-hand limit equal to the existing boundary integral. Negative heights
+have zero canonical density; two-sided continuity is not claimed. **Global
+collar coarea and the general collar limit remain unproved.** The independent
+ellipsoid measure compatibility is checked; it does not supply either missing
+general theorem.
 `GraphTail.lean` proves that every fixed positive-height remainder vanishes
 without coarea. The quartic regression retains its interior critical point.
 
 Still open in the formal program:
 
-- collar coarea and height-density continuity, and the general graph-cap limit
-  identifying the boundary integral with `continuumMean`;
+- collar coarea and the general graph-cap limit identifying the boundary
+  integral with `continuumMean`;
 - arbitrary null boundaries and the induced null-joint area interpretation;
 - the Poisson-sprinkling expectation bridge.
 
