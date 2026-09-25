@@ -35,7 +35,9 @@ slice-measure transport, smooth overlap weights, and common finite-sum
 representations with jointly continuous local data and uniform domination.
 Canonical Hausdorff area agrees with the existing ellipsoid parametric measure
 at measure level, with integral and integrability transport. Global collar
-coarea and continuity of the height density at zero are not proved. Thus the
+coarea is now derived from that atlas, including endpoint nullity, absolute
+integrability and the signed kernel specialization. Continuity of the height
+density at zero is not proved. Thus the
 general graph-cap deterministic boundary limit, arbitrary null boundaries, induced
 null-joint geometry, and Poisson-expectation bridge remain open.
 The checked results concern `continuumMean`, not yet a formalized random sprinkling expectation,
@@ -588,8 +590,9 @@ Absolute integrability and equality of the reciprocal-gradient and angle
 integrals are checked for that measure. Identification with scalar-graph
 parametric area is now proved. `SphereSurface.lean` and
 `EllipsoidHausdorff.lean` also prove agreement with the existing polar-sphere-based
-ellipsoid measure, without redefining either measure. The coarea and
-height-density continuity arguments below still require proofs.
+ellipsoid measure, without redefining either measure. Collar coarea is now
+checked separately; the height-density continuity argument below still
+requires a proof.
 The coordinate sup-norm Hausdorff measure is not a substitute for Euclidean area.
 `HausdorffGraph.lean` now proves the local C¹ graph/tangent-image Hausdorff
 bounds with factors `(1 − ε)²` and `(1 + ε)²` on every subset of a sufficiently
@@ -617,9 +620,13 @@ canonical level measure using the checked area theorem.
 frame Jacobian. `GraphAtlas.lean` constructs a finite cover of a whole closed
 collar and smooth subordinate partition weights. `GraphAtlasRepresentation.lean`
 exports common finite-sum representations on fixed domains, joint local
-continuity, and uniform integrable domination. Global coarea and height-density
-continuity remain unproved; the independent ellipsoid measure compatibility
-does not discharge either obligation.
+continuity, and uniform integrable domination. `GraphCoarea.lean` now derives
+global collar coarea by justified height Fubini and finite overlap summation,
+with `GraphEndpoints.lean` deriving endpoint replacements from regular-level
+nullity. Spatial and height absolute integrability are explicit, and one
+selected collar works for `planeKernel` at every positive density. Coarea is
+not used above this noncritical collar; the quartic's interior critical point
+is retained. Height-density continuity remains unproved.
 The general `GraphCapLimitGoal` remains an open target, not a proved theorem.
 
 **Proof.** By regularity and compactness of the joint there is a collar

@@ -5,7 +5,8 @@ Independent contracts for the controlled atlas and both measure transports.
 The overlap regression refines a whole atlas by duplicating every chart with
 half its weight. Both copies are active on a nonempty open overlap, while
 both finite-sum formulas remain unchanged. It does not assume disjoint charts,
-a multiplicity bound, discarded seams, coarea, or height-density continuity.
+a multiplicity bound or discarded seams. Coarea is now also exercised on the
+refinement; height-density continuity is neither assumed nor asserted.
 -/
 
 open BoundaryDraft MeasureTheory Set
@@ -167,5 +168,13 @@ theorem ellipsoid_overlap_exists :
     nlinarith
   obtain ⟨A⟩ := hh.exists_controlledCollarAtlas
   exact ⟨overlappingAtlas A, x, active_overlap A x ⟨hx, hx0.le.trans A.width_pos.le⟩⟩
+
+/-- Global coarea is invariant under the genuinely overlapping refinement;
+the canonical density is not multiplied by the number of active charts. -/
+theorem overlapping_coarea {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+    (A : ControlledCollarAtlas h) (f : ℝ → ℝ) (hf : ContinuousOn f (Icc 0 A.width)) :
+    (∫ x : Spatial in {x | 0 < h x ∧ h x < (overlappingAtlas A).width}, f (h x)) =
+      ∫ t in (0 : ℝ)..A.width, f t * graphHeightDensity h t :=
+  (overlappingAtlas A).integral_openCollar_profile hh f hf
 
 end GraphAtlasRegression

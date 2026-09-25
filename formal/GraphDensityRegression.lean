@@ -2,7 +2,8 @@ import BoundaryDraft
 
 /-!
 Canonical level-density contracts. They check finiteness and integrability in
-a band and the boundary value, not the still-missing continuity or coarea.
+a band and the boundary value, not continuity. Coarea has separate regressions
+in `GraphCoareaRegression.lean`.
 -/
 
 open BoundaryDraft MeasureTheory Set
