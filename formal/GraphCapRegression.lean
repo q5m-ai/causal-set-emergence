@@ -130,4 +130,21 @@ theorem quartic_integrable_level_band_and_critical :
     quarticProfile 0 = 3 / 16 ∧ fderiv ℝ (fun x : JointSpace => quarticProfile x) 0 = 0 :=
   ⟨quartic_admissible.exists_integrable_level_band, quartic_positive_critical⟩
 
+-- A whole finite atlas now exists for this same nonquadratic cap, but its
+-- controlled width must stop before the retained positive-height critical point.
+theorem quartic_controlled_atlas : ∃ A : ControlledCollarAtlas quarticProfile,
+    A.width < 3 / 16 ∧ ∀ t ∈ Set.Icc 0 A.width,
+      graphHeightDensity quarticProfile t =
+        ∑ i, ∫ u in (A.charts i).disk, A.localTerm i t u := by
+  obtain ⟨A⟩ := quartic_admissible.exists_controlledCollarAtlas
+  refine ⟨A, ?_, fun t ht => A.graphHeightDensity_eq_sum quartic_admissible t ht⟩
+  by_contra hn
+  have hx : (0 : JointSpace) ∈ graphClosedPositive quarticProfile := by
+    apply subset_closure
+    change 0 < quarticProfile 0
+    rw [quartic_positive_critical.1]
+    norm_num
+  exact A.noncritical 0 ⟨hx, by simpa [quartic_positive_critical.1] using le_of_not_gt hn⟩
+    quartic_positive_critical.2
+
 end GraphCapRegression

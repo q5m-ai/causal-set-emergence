@@ -30,10 +30,13 @@ are checked. The scalar-graph area transformation is now proved from local
 Hausdorff distortion and closed-ball density uniqueness, with exact Euclidean
 tangent normalization. Canonical level measures are finite with integrable
 weights on a noncritical band, and their height-zero density is the boundary
-integral. Canonical Hausdorff area now agrees with the existing ellipsoid
-parametric measure at measure level, with integral and integrability transport.
-Collar coarea and continuity of the height density at zero are not proved. Thus
-the general graph-cap deterministic boundary limit, arbitrary null boundaries, induced
+integral. A finite controlled collar atlas now has proved ambient and canonical
+slice-measure transport, smooth overlap weights, and common finite-sum
+representations with jointly continuous local data and uniform domination.
+Canonical Hausdorff area agrees with the existing ellipsoid parametric measure
+at measure level, with integral and integrability transport. Global collar
+coarea and continuity of the height density at zero are not proved. Thus the
+general graph-cap deterministic boundary limit, arbitrary null boundaries, induced
 null-joint geometry, and Poisson-expectation bridge remain open.
 The checked results concern `continuumMean`, not yet a formalized random sprinkling expectation,
 and assert no convergence rate.
@@ -605,9 +608,18 @@ domains of continuous graphs via smooth cutoff extensions and countable gluing.
 `GraphDensity.lean` defines the canonical level density independently of the
 action, proves finite level measure and absolute integrability on a noncritical
 band, and identifies its value at zero with the boundary integral. It also
-proves that joint neighborhoods contain a sufficiently thin collar. Coarea
-and height-density continuity remain unproved; the independent ellipsoid
-measure compatibility does not discharge either obligation.
+proves that joint neighborhoods contain a sufficiently thin collar.
+`GraphChart.lean` upgrades height charts to neighborhood-level C³ inverse
+regularity. `GraphCoordinateChart.lean` and `GraphSliceTransport.lean` identify
+local slices with scalar graphs in orthogonal coordinates and transport the
+canonical level measure using the checked area theorem.
+`GraphChartTransport.lean` proves ambient change of variables from the checked
+frame Jacobian. `GraphAtlas.lean` constructs a finite cover of a whole closed
+collar and smooth subordinate partition weights. `GraphAtlasRepresentation.lean`
+exports common finite-sum representations on fixed domains, joint local
+continuity, and uniform integrable domination. Global coarea and height-density
+continuity remain unproved; the independent ellipsoid measure compatibility
+does not discharge either obligation.
 The general `GraphCapLimitGoal` remains an open target, not a proved theorem.
 
 **Proof.** By regularity and compactness of the joint there is a collar
