@@ -96,6 +96,11 @@ surface integral equals `2π (∏ bᵢ) / a`. The surface measure uses a global
 sphere-to-ellipsoid parameterization with a checked tangential Jacobian. Unequal
 axes give distinct weights on one connected joint; `(a,b) = (1/4, ![1,2,3])`
 has weights `2` and `6` at two axis endpoints and integral `48π`.
+`SphereSurface.lean` and `EllipsoidHausdorff.lean` now identify this measure
+with canonical normalized Euclidean Hausdorff area, including explicit
+ambient/subtype transport and absolute integrability. The same `48π` value
+is checked independently in both the canonical angle and reciprocal-gradient
+integrals, without changing the original ellipsoid hypotheses.
 
 The **general graph-cap exact reduction** is now checked at every positive
 density: `AdmissibleGraphCap.graphReduction` proves the unchanged
@@ -128,16 +133,16 @@ ratios. `HausdorffAreaLocal.lean` localizes it to open C¹ domains of continuous
 graphs and derives the signed integral identity. `GraphDensity.lean` defines
 canonical level measures and height density, proves finiteness and absolute
 integrability on a noncritical band, and identifies the zero-height value with
-the boundary integral. **Coarea, continuity of that density at zero, and
-agreement with the existing ellipsoid parametric measure remain unproved.**
+the boundary integral. **Collar coarea and continuity of that density at zero
+remain unproved.** The independent ellipsoid measure compatibility is now
+checked; it does not supply either missing general collar theorem.
 `GraphTail.lean` proves that every fixed positive-height remainder vanishes
 without coarea. The quartic regression retains its interior critical point.
 
 Still open in the formal program:
 
-- ellipsoid parametric/Hausdorff measure compatibility, collar coarea and
-  height-density continuity, and the general graph-cap limit identifying the
-  boundary integral with `continuumMean`;
+- collar coarea and height-density continuity, and the general graph-cap limit
+  identifying the boundary integral with `continuumMean`;
 - arbitrary null boundaries and the induced null-joint area interpretation;
 - the Poisson-sprinkling expectation bridge.
 
