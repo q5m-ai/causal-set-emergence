@@ -43,6 +43,144 @@ function disposeGroup(group) {
   }
 }
 
+// Hero: a causal diamond whose intrinsic content is only events and order.
+const heroStage = document.getElementById("heroStage");
+try {
+  const viewer = makeViewer(heroStage, new THREE.Vector3(3.5, 1.9, 4.3), new THREE.Vector3(0, 0, 0));
+  const { scene, controls } = viewer;
+  scene.fog = new THREE.Fog(0x04060d, 6.5, 11);
+  scene.add(new THREE.HemisphereLight(0xbfe5ff, 0x101726, 2.4));
+  const keyLight = new THREE.DirectionalLight(0xffffff, 2.8);
+  keyLight.position.set(3, 4, 4);
+  scene.add(keyLight);
+
+  const root = new THREE.Group();
+  root.rotation.y = -0.38;
+  root.rotation.z = -0.04;
+  scene.add(root);
+
+  const diamondRadius = 1.2;
+  const diamondHalfHeight = 1.5;
+  const coneMaterial = new THREE.MeshBasicMaterial({
+    color: 0x56b4e9,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.105,
+    depthWrite: false
+  });
+  const upperCone = new THREE.Mesh(new THREE.ConeGeometry(diamondRadius, diamondHalfHeight, 40, 5, true), coneMaterial);
+  upperCone.position.y = diamondHalfHeight / 2;
+  const lowerCone = new THREE.Mesh(new THREE.ConeGeometry(diamondRadius, diamondHalfHeight, 40, 5, true), coneMaterial.clone());
+  lowerCone.rotation.z = Math.PI;
+  lowerCone.position.y = -diamondHalfHeight / 2;
+  root.add(upperCone, lowerCone);
+
+  for (const [height, radius] of [[-0.75, 0.6], [0, 1.2], [0.75, 0.6]]) {
+    const points = [];
+    for (let step = 0; step <= 64; step++) {
+      const angle = step / 64 * Math.PI * 2;
+      points.push(new THREE.Vector3(Math.cos(angle) * radius, height, Math.sin(angle) * radius));
+    }
+    const ring = new THREE.LineLoop(
+      new THREE.BufferGeometry().setFromPoints(points),
+      new THREE.LineBasicMaterial({ color: 0x91a3bb, transparent: true, opacity: height ? 0.12 : 0.22 })
+    );
+    root.add(ring);
+  }
+
+  const random = (() => {
+    let seed = 0x5ca15e7;
+    return () => {
+      seed |= 0;
+      seed = seed + 0x6D2B79F5 | 0;
+      let value = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      value = value + Math.imul(value ^ value >>> 7, 61 | value) ^ value;
+      return ((value ^ value >>> 14) >>> 0) / 4294967296;
+    };
+  })();
+  const events = [{ t: -1, x: 0, z: 0 }, { t: 1, x: 0, z: 0 }];
+  while (events.length < 36) {
+    const t = random() * 2 - 1;
+    const radius = (1 - Math.abs(t)) * diamondRadius * 0.95 * Math.sqrt(random());
+    const angle = random() * Math.PI * 2;
+    events.push({ t, x: radius * Math.cos(angle), z: radius * Math.sin(angle) });
+  }
+  events.sort((a, b) => a.t - b.t);
+  const selected = events.reduce((best, event, index) => {
+    const score = Math.abs(event.t) + Math.hypot(event.x, event.z) * 0.35;
+    return score < best.score ? { index, score } : best;
+  }, { index: 0, score: Infinity }).index;
+  const position = event => new THREE.Vector3(event.x, event.t * diamondHalfHeight, event.z);
+  const precedes = (a, b) => {
+    const dt = (b.t - a.t) * diamondRadius;
+    return dt > 0 && (b.x - a.x) ** 2 + (b.z - a.z) ** 2 <= dt ** 2;
+  };
+  const isLink = (first, second) => {
+    if (!precedes(events[first], events[second])) return false;
+    return !events.some((event, index) => index !== first && index !== second && precedes(events[first], event) && precedes(event, events[second]));
+  };
+
+  for (let first = 0; first < events.length; first++) {
+    for (let second = first + 1; second < events.length; second++) {
+      if (!isLink(first, second)) continue;
+      const highlighted = first === selected || second === selected;
+      const line = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints([position(events[first]), position(events[second])]),
+        new THREE.LineBasicMaterial({
+          color: highlighted ? 0xed8068 : 0x56b4e9,
+          transparent: true,
+          opacity: highlighted ? 0.82 : 0.26
+        })
+      );
+      root.add(line);
+    }
+  }
+
+  const sphere = new THREE.SphereGeometry(0.042, 18, 12);
+  let selectedMesh;
+  events.forEach((event, index) => {
+    const endpoint = index === 0 || index === events.length - 1;
+    const related = index !== selected && (precedes(event, events[selected]) || precedes(events[selected], event));
+    const color = index === selected ? 0xf2bf63 : endpoint ? 0xffffff : related ? 0x8bd7ff : 0x76859b;
+    const point = new THREE.Mesh(sphere, new THREE.MeshStandardMaterial({
+      color,
+      emissive: color,
+      emissiveIntensity: index === selected ? 0.85 : related ? 0.28 : 0.08,
+      roughness: 0.32
+    }));
+    point.position.copy(position(event));
+    point.scale.setScalar(index === selected ? 1.8 : endpoint ? 1.25 : 1);
+    root.add(point);
+    if (index === selected) selectedMesh = point;
+  });
+
+  const axis = new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, -1.72, 0), new THREE.Vector3(0, 1.72, 0)]),
+    new THREE.LineDashedMaterial({ color: 0xf2bf63, transparent: true, opacity: 0.34, dashSize: 0.07, gapSize: 0.065 })
+  );
+  axis.computeLineDistances();
+  root.add(axis);
+
+  let engaged = false;
+  controls.addEventListener("start", () => { engaged = true; });
+  heroStage.querySelector(".three-loading")?.remove();
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const clock = new THREE.Clock();
+  const animate = () => {
+    const elapsed = clock.getElapsedTime();
+    if (!engaged && !reduceMotion) root.rotation.y += 0.0014;
+    if (selectedMesh && !reduceMotion) selectedMesh.scale.setScalar(1.72 + Math.sin(elapsed * 2.4) * 0.12);
+    controls.update();
+    viewer.renderer.render(scene, viewer.camera);
+    requestAnimationFrame(animate);
+  };
+  animate();
+} catch (error) {
+  const loading = heroStage?.querySelector(".three-loading");
+  if (loading) loading.textContent = "The causal-set view could not load.";
+  console.error(error);
+}
+
 // Continuum concepts: the same rotatable renderer, three different structures.
 const conceptStage = document.getElementById("conceptStage");
 const conceptText = document.getElementById("conceptText");
