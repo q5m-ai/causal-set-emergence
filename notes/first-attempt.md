@@ -30,9 +30,10 @@ are checked. The scalar-graph area transformation is now proved from local
 Hausdorff distortion and closed-ball density uniqueness, with exact Euclidean
 tangent normalization. Canonical level measures are finite with integrable
 weights on a noncritical band, and their height-zero density is the boundary
-integral. Collar coarea, continuity of this density at zero, and agreement with
-the existing ellipsoid parametric measure are not proved. Thus the general
-graph-cap deterministic boundary limit, arbitrary null boundaries, induced
+integral. Canonical Hausdorff area now agrees with the existing ellipsoid
+parametric measure at measure level, with integral and integrability transport.
+Collar coarea and continuity of the height density at zero are not proved. Thus
+the general graph-cap deterministic boundary limit, arbitrary null boundaries, induced
 null-joint geometry, and Poisson-expectation bridge remain open.
 The checked results concern `continuumMean`, not yet a formalized random sprinkling expectation,
 and assert no convergence rate.
@@ -582,9 +583,10 @@ unrelated exterior zeros. `graphSurfaceMeasure` uses the Euclidean convention
 `(π/4) · μH[2]`, since pinned mathlib uses unnormalized squared diameters.
 Absolute integrability and equality of the reciprocal-gradient and angle
 integrals are checked for that measure. Identification with scalar-graph
-parametric area is now proved. Agreement with the existing polar-sphere-based
-ellipsoid measure and the coarea/height-density continuity below still require
-proofs.
+parametric area is now proved. `SphereSurface.lean` and
+`EllipsoidHausdorff.lean` also prove agreement with the existing polar-sphere-based
+ellipsoid measure, without redefining either measure. The coarea and
+height-density continuity arguments below still require proofs.
 The coordinate sup-norm Hausdorff measure is not a substitute for Euclidean area.
 `HausdorffGraph.lean` now proves the local C¹ graph/tangent-image Hausdorff
 bounds with factors `(1 − ε)²` and `(1 + ε)²` on every subset of a sufficiently
@@ -603,8 +605,9 @@ domains of continuous graphs via smooth cutoff extensions and countable gluing.
 `GraphDensity.lean` defines the canonical level density independently of the
 action, proves finite level measure and absolute integrability on a noncritical
 band, and identifies its value at zero with the boundary integral. It also
-proves that joint neighborhoods contain a sufficiently thin collar. Coarea,
-height-density continuity, and ellipsoid measure compatibility remain unproved.
+proves that joint neighborhoods contain a sufficiently thin collar. Coarea
+and height-density continuity remain unproved; the independent ellipsoid
+measure compatibility does not discharge either obligation.
 The general `GraphCapLimitGoal` remains an open target, not a proved theorem.
 
 **Proof.** By regularity and compactness of the joint there is a collar
@@ -752,8 +755,14 @@ and Gram determinant prove the positive area Jacobian
 this density times mathlib's Euclidean polar sphere measure. The latter's
 mass `4π` is derived from the three-ball volume and polar measure construction;
 no ellipsoid surface-area identity is assumed. This global parameterization
-has no seams, omitted poles, or null-boundary replacements, and is not a claim
-about general Hausdorff-area/coarea infrastructure.
+has no seams, omitted poles, or null-boundary replacements.
+`SphereSurface` now identifies the polar sphere measure with canonical
+normalized Euclidean Hausdorff area, using radial-sector volume and the
+checked scalar-graph area formula. `EllipsoidHausdorff` transports that
+identity through the original axis map using its existing tangential
+Jacobian. The local comparison proves the equator and its image null; it
+then identifies measures on the entire joint with explicit subtype/ambient
+transport. This is not a general coarea theorem.
 
 The measurable density cancels the proved weight pointwise:
 `Jac₂ Φ · coth θ = (∏ bᵢ)/(2a)`. Finite spherical area establishes absolute
@@ -762,8 +771,10 @@ integrability and the exact integral `2π(∏ bᵢ)/a`. The theorem
 limit. Connectedness follows from the sphere; axis endpoint weights
 `bⱼ/(2a)` prove nonconstancy for unequal axes. The `(1/4, ![1,2,3])` regressions
 check slopes `1/2, 1/6`, weights `2, 6`, and surface integral `48π` alongside
-the unchanged deterministic regression. This completes only the concrete
-ellipsoid interpretation: general Theorem 2, arbitrary null boundaries,
+the unchanged deterministic regression. `EllipsoidHausdorffRegression` also
+checks `48π` in both canonical angle and reciprocal-gradient integrals,
+with absolute integrability and the original hypotheses retained. This completes
+only the concrete ellipsoid interpretation: general Theorem 2, arbitrary null boundaries,
 induced null-joint geometry, and the probability bridge remain separate.
 
 ## 7. What remains outside this attempt
