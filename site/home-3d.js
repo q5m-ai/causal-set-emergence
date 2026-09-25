@@ -59,6 +59,8 @@ try {
   root.rotation.z = -0.04;
   scene.add(root);
 
+  const diamondRadius = 1.2;
+  const diamondHalfHeight = 1.5;
   const coneMaterial = new THREE.MeshBasicMaterial({
     color: 0x56b4e9,
     wireframe: true,
@@ -66,11 +68,11 @@ try {
     opacity: 0.105,
     depthWrite: false
   });
-  const upperCone = new THREE.Mesh(new THREE.ConeGeometry(1.2, 1.5, 40, 5, true), coneMaterial);
-  upperCone.position.y = 0.75;
-  const lowerCone = new THREE.Mesh(new THREE.ConeGeometry(1.2, 1.5, 40, 5, true), coneMaterial.clone());
+  const upperCone = new THREE.Mesh(new THREE.ConeGeometry(diamondRadius, diamondHalfHeight, 40, 5, true), coneMaterial);
+  upperCone.position.y = diamondHalfHeight / 2;
+  const lowerCone = new THREE.Mesh(new THREE.ConeGeometry(diamondRadius, diamondHalfHeight, 40, 5, true), coneMaterial.clone());
   lowerCone.rotation.z = Math.PI;
-  lowerCone.position.y = -0.75;
+  lowerCone.position.y = -diamondHalfHeight / 2;
   root.add(upperCone, lowerCone);
 
   for (const [height, radius] of [[-0.75, 0.6], [0, 1.2], [0.75, 0.6]]) {
@@ -99,7 +101,7 @@ try {
   const events = [{ t: -1, x: 0, z: 0 }, { t: 1, x: 0, z: 0 }];
   while (events.length < 36) {
     const t = random() * 2 - 1;
-    const radius = (1 - Math.abs(t)) * 1.14 * Math.sqrt(random());
+    const radius = (1 - Math.abs(t)) * diamondRadius * 0.95 * Math.sqrt(random());
     const angle = random() * Math.PI * 2;
     events.push({ t, x: radius * Math.cos(angle), z: radius * Math.sin(angle) });
   }
@@ -108,9 +110,9 @@ try {
     const score = Math.abs(event.t) + Math.hypot(event.x, event.z) * 0.35;
     return score < best.score ? { index, score } : best;
   }, { index: 0, score: Infinity }).index;
-  const position = event => new THREE.Vector3(event.x, event.t * 1.5, event.z);
+  const position = event => new THREE.Vector3(event.x, event.t * diamondHalfHeight, event.z);
   const precedes = (a, b) => {
-    const dt = (b.t - a.t) * 1.15;
+    const dt = (b.t - a.t) * diamondRadius;
     return dt > 0 && (b.x - a.x) ** 2 + (b.z - a.z) ** 2 <= dt ** 2;
   };
   const isLink = (first, second) => {
