@@ -35,6 +35,7 @@ import BoundaryDraft.GraphCoordinateChart
 import BoundaryDraft.GraphSliceTransport
 import BoundaryDraft.GraphAtlas
 import BoundaryDraft.GraphAtlasRepresentation
+import BoundaryDraft.GraphDensityRegularity
 import BoundaryDraft.GraphTail
 import BoundaryDraft.NullGeometry
 import BoundaryDraft.CausalInterval

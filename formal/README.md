@@ -11,11 +11,13 @@ including its open-domain and signed-integral forms. Canonical height levels
 have finite measure and integrable weights in a noncritical band. A finite
 controlled collar atlas, ambient and canonical slice transport, smooth overlap
 weights, and uniformly dominated finite-sum representations are now proved.
-Canonical Hausdorff and parametric ellipsoid measures agree, with subtype
-transport, integrability, and recovery of the original boundary value. Global
-collar coarea, height-density continuity, the general deterministic limit,
-arbitrary null boundaries, induced null-joint geometry, and the
-Poisson-expectation bridge remain open.**
+The canonical density is continuous and measurable on a nonnegative collar,
+uniformly bounded there, and tends from the right to the existing boundary
+integral. Canonical Hausdorff and parametric ellipsoid measures agree, with
+subtype transport, integrability, and recovery of the original boundary value.
+Global collar coarea, the general deterministic limit, arbitrary null
+boundaries, induced null-joint geometry, and the Poisson-expectation bridge
+remain open.**
 
 Lean **4.19.0** and mathlib **v4.19.0** are pinned. `lake-manifest.json` pins the
 resolved dependency commits; mathlib is
@@ -65,16 +67,21 @@ infinite area, nonlinear graph area, derived local finiteness/absolute
 continuity, every-point density, open-domain localization, and signed
 integration/integrability. `GraphDensityRegression.lean` checks canonical level
 normalization, compactness, an integrable level band, the zero-height boundary
-value, and extension of a joint neighborhood to a thin collar. The quartic
-regression checks these level-measure facts together with its positive-height
-critical point; it now also checks that the controlled atlas stops below that
-critical height. `GraphAtlasRegression.lean` checks chart construction,
+value, and extension of a joint neighborhood to a thin collar. It also checks
+collar measurability, a uniform bound, the right-hand boundary limit, and a
+measurable cutoff usable by a signed-kernel consumer. The unequal-axis limit
+is `48π`, while two-sided continuity is explicitly disproved for that example.
+The quartic regression checks these regularity facts on a controlled collar
+strictly below its retained positive-height critical point.
+`GraphAtlasRegression.lean` checks chart construction,
 canonical slice transport, the common dominator, and an overlapping refinement
 of a whole finite atlas. Both duplicate chart entries have positive weights on
 an open overlap; a concrete ellipsoid specialization proves that the overlap
 has positive ambient volume. The density and ambient formulas are exercised
-on that refinement without disjointness or seam assumptions. None asserts the
-missing global collar coarea or general limit.
+on that refinement without disjointness or seam assumptions, together with
+continuity of its chart integrals and continuity and boundedness of the
+canonical density. None asserts the missing global collar coarea or general
+limit.
 `EllipsoidRegression.lean` checks the original ellipsoid contract and
 its endpoint examples. `EllipsoidJointRegression.lean` separately checks
 regularity, the strict positive angle branch, connectedness, nonconstant weights,
@@ -113,10 +120,11 @@ and limit at `T = 2`, `a = 1`.
 | `BoundaryDraft/HausdorffLinear.lean` | Exact arbitrary-set area of injective planar linear images and the scalar-graph tangent factor | Nonlinear graph area by itself |
 | `BoundaryDraft/HausdorffArea.lean` | Derived local finiteness, absolute continuity, every-point closed-ball ratios, variable-Jacobian scalar-graph area, signed integration and integrability | Collar coarea or ellipsoid parametric measure compatibility |
 | `BoundaryDraft/HausdorffAreaLocal.lean` | Localization to an open C¹ domain of a continuous scalar graph, via cutoff extensions and countable gluing | General level-chart integration or height-density continuity |
-| `BoundaryDraft/GraphDensity.lean` | Canonical level measures and height density; finite measure and integrability in a noncritical band; exact zero-height boundary value; joint neighborhoods contain a thin collar | Coarea, continuity of the density in height, or a limit |
+| `BoundaryDraft/GraphDensity.lean` | Canonical level measures and height density; finite measure and integrability in a noncritical band; exact zero-height boundary value; negative-height vanishing and the two-sided-continuity obstruction; joint neighborhoods contain a thin collar | Coarea or a continuity theorem |
 | `BoundaryDraft/GraphChart.lean`, `GraphCoordinateChart.lean` | Neighborhood-level C³ height charts; orthogonal coordinate complements and C¹ inverse extensions | A global flow or global chart |
 | `BoundaryDraft/GraphChartTransport.lean`, `GraphSliceTransport.lean` | Actual inverse-frame Jacobian, ambient change of variables, canonical normalized level-measure transport, signed integration and integrability | Global coarea or a limit |
 | `BoundaryDraft/GraphAtlas.lean`, `GraphAtlasRepresentation.lean` | Finite atlas of a whole closed collar, smooth subordinate overlap weights, common finite-sum representations on fixed domains, joint local continuity and one uniform integrable dominator | Height Fubini, continuity of the canonical density, or the general limit |
+| `BoundaryDraft/GraphDensityRegularity.lean` | Dominated convergence on fixed disks; continuity and measurability of the canonical density on a closed nonnegative collar; a uniform finite bound; the right-hand boundary limit | Global coarea, two-sided continuity, C¹ regularity, a rate, or the general action limit |
 | `BoundaryDraft/GraphSurface.lean` | Height-flattening local charts; canonical Hausdorff target with explicit coefficient; finite joint measure; absolute integrability and equality of reciprocal-gradient and angle integrals | Hausdorff/parametric-area identification, coarea, height-density continuity or the general limit |
 | `BoundaryDraft/GraphTail.lean` | Absolute scaled tail, exact action collar/remainder split, vanishing spatial remainder allowing critical points | The collar limit |
 | `BoundaryDraft/EllipsoidGeometry.lean` | Positive ellipsoid, measurability, boundedness, compact positive-part support, strict Euclidean Lipschitz estimate; instantiation of the general geometry | Sublevel volumes or coarea |
@@ -153,9 +161,10 @@ assuming `G` is integrable and `B` is globally bounded and continuous. There is
 no assumption that `G ≥ 0`. The measure `μ` may be Lebesgue measure restricted
 to the positive half-line. A bounded continuous extension of the collar
 profile fits this theorem; for general graph caps the exact geometric reduction,
-scalar-graph area formula, and non-collar remainder are checked, but collar
-coarea and height-density continuity still need proofs. The theorem
-`planeKernel_rescaling_limit` now instantiates this lemma with the concrete
+scalar-graph area formula, non-collar remainder, and one-sided density
+regularity are checked, but collar coarea and the collar action limit still
+need proofs. The theorem `planeKernel_rescaling_limit` now instantiates this
+lemma with the concrete
 BDG kernel and Lebesgue measure restricted to `Ioi 0`, using the proved
 absolute integrability and mass one, not additional kernel hypotheses.
 `EllipsoidLimit` now applies it to the actual globally extended ellipsoid
@@ -447,12 +456,17 @@ Integration of a general height collar remains unproved.
 `graphHeightDensity h s` by integrating the reciprocal actual gradient norm.
 The implicit-function argument proves finite surface measure on every regular
 level. Compactness and continuity give absolute integrability; the existing
-noncritical band supplies these facts on every level of one band, not a uniform
-bound on the density or its derivative. At zero, the measure equals
-`graphSurfaceMeasure h` and the density equals `graphBoundaryIntegral h`, hence
-the variable-angle boundary integral. Every open neighborhood of the compact
-joint contains a sufficiently thin closed positive collar. **The density's
-continuity at zero and its role in coarea are still unproved.**
+noncritical band supplies these facts on every level of one band. At zero,
+the measure equals `graphSurfaceMeasure h` and the density equals
+`graphBoundaryIntegral h`, hence the variable-angle boundary integral. Every
+open neighborhood of the compact joint contains a sufficiently thin closed
+positive collar. Negative-height levels have zero measure and zero density,
+so two-sided continuity would force the boundary integral to be zero. These
+three density lemmas are selectively reused from draft PR #29; its endpoint,
+coarea-preparation, and signed-kernel changes are not imported here.
+`GraphDensityRegularity` now supplies the uniform collar bound and one-sided
+continuity from the atlas below. **The density's role in global coarea remains
+unproved.**
 
 ### Controlled collar atlas and common transport API (#31)
 
@@ -497,10 +511,47 @@ The downstream API in `GraphAtlasRepresentation.lean` is:
 
 These are proved from unchanged `AdmissibleGraphCap` hypotheses. The atlas
 records only geometric charts and partition data, not assumed transformation
-laws. The API deliberately stops before height Fubini for #33, the one-sided
-continuity argument for #34, or limit assembly for #32. It does not modify
-the separate ellipsoid measure-compatibility theorem completed in #30, and
-positive-height critical points beyond the selected collar remain permitted.
+laws. This representation API stops before height Fubini for #33 and limit
+assembly for #32; the downstream regularity argument for #34 is now checked
+as described next. It does not modify the separate ellipsoid
+measure-compatibility theorem completed in #30, and positive-height critical
+points beyond the selected collar remain permitted.
+
+### One-sided canonical density regularity (#34)
+
+`GraphDensityRegularity.lean` applies dominated convergence to each
+`A.localTerm` on its fixed planar disk. `A.continuousOn_localTerm` gives
+pointwise continuity in height, including both endpoints, and
+`A.exists_uniform_integrable_dominator` supplies the height-independent
+integrable bound. `A.graphHeightDensity_eq_sum` then transfers continuity of
+the finite sum to the **existing canonical density**. The proved smooth
+partition weights account for all overlaps; no disjointness, multiplicity,
+or discarded-seam premise is introduced.
+
+`A.continuousOn_graphHeightDensity` holds on `Icc 0 A.width`. It yields Borel
+measurability on the interval subtype, almost-everywhere strong measurability
+for restricted Lebesgue measure, a measurable zero cutoff, and a uniform
+positive finite bound by compactness. Atlas construction removes the atlas
+premise in `AdmissibleGraphCap.exists_regular_heightDensity_band`.
+The boundary consequences are:
+
+```lean
+theorem AdmissibleGraphCap.continuousWithinAt_graphHeightDensity_zero
+    {h : Spatial → ℝ} (hh : AdmissibleGraphCap h) :
+    ContinuousWithinAt (graphHeightDensity h) (Set.Ici 0) 0
+
+theorem AdmissibleGraphCap.tendsto_graphHeightDensity_zero
+    {h : Spatial → ℝ} (hh : AdmissibleGraphCap h) :
+    Tendsto (graphHeightDensity h) (𝓝[≥] 0) (𝓝 (graphBoundaryIntegral h))
+```
+
+The last step reuses `graphHeightDensity_zero`; it does not introduce a new
+boundary value or any field in `AdmissibleGraphCap`. The unequal-axis example
+has right limit `48π` and is not two-sided continuous at zero. The quartic
+example retains its positive-height critical point outside the controlled
+collar, and the overlapping-atlas regression exercises the same convergence
+argument after duplicating every chart with half weights. No global density
+regularity, C¹ theorem, coarea, action limit, or rate is asserted.
 
 `GraphTail.lean` proves the scaled bound with the concrete constant
 `C = 1416/(π sqrt 6)` and width `ε = (sqrt (sqrt ρ))⁻¹`. On `h ≥ δ > 0`, the
@@ -512,9 +563,10 @@ so no level-set-nullity premise is used. No differential or coarea assumption
 is used for this entire tail argument, even at the quartic critical height.
 
 Issue #19's prerequisite layer is complete in PR #21. Milestone 5 remains
-incomplete: follow-up #23 owns collar coarea, continuity of the height density
-at zero, and the collar limit. The independent ellipsoid measure task split
-into #30 now has checked declarations in `EllipsoidHausdorff`. No structure
+incomplete: follow-up #23 owns the remaining collar coarea (#33) and collar
+limit assembly (#32); one-sided density regularity (#34) is now checked.
+The independent ellipsoid measure task split into #30 now has checked
+declarations in `EllipsoidHausdorff`. No structure
 field or hypothesis assumes the remaining results. None of the original action
 or concrete limit definitions changes.
 
@@ -752,8 +804,8 @@ unchanged general graph-cap measure to this identity. Under the original
 parametric evaluation. `ellipsoid_canonical_limit` rewrites the original
 concrete limit with that canonical boundary value. The independent regression
 checks both canonical `48π` integrals and the unchanged nonconstant endpoints.
-No collar coarea, height-density continuity, or general deterministic limit
-is claimed.
+These measure-compatibility theorems do not themselves prove collar coarea,
+height-density continuity, or a general deterministic limit.
 
 ## Exact null-cap reduction and Gaussian limit
 
@@ -886,8 +938,9 @@ target or an assumed geometric reduction.
    tangent area, the scalar-graph area formula, and ellipsoid measure
    compatibility are also proved. A finite controlled collar atlas now supplies
    both local measure transports, smooth overlap weights, and uniformly
-   dominated finite-sum representations. Global collar coarea, height-density
-   continuity, and the collar limit are still needed.
+   dominated finite-sum representations. One-sided canonical density continuity,
+   collar measurability, and a uniform bound are now proved from that API.
+   Global collar coarea and the collar limit are still needed.
 5. **Concrete ellipsoid interpretation completed; general pointwise geometry checked.**
    The positive-angle identity now holds for every admissible graph cap.
    Its two finite canonical boundary integrals are equal. Identification with
