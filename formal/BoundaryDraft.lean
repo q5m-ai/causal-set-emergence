@@ -54,3 +54,7 @@ import BoundaryDraft.NullCapLimit
 import BoundaryDraft.SpacetimeSprinkling
 import BoundaryDraft.FiniteCausalOrder
 import BoundaryDraft.DiscreteBDG
+import BoundaryDraft.PoissonExpectation
+import BoundaryDraft.ExpectationGeometry
+import BoundaryDraft.ExpectationBridge
+import BoundaryDraft.ExpectedLimits
