@@ -39,9 +39,12 @@ right-hand limit equal to the existing boundary integral. Canonical Hausdorff
 area agrees with the existing ellipsoid parametric measure at measure level,
 with integral and integrability transport. Global collar coarea is now derived
 from the atlas, including endpoint nullity, absolute integrability and the
-signed kernel specialization. The general graph-cap deterministic boundary
-limit, arbitrary null boundaries, induced null-joint geometry, and
-Poisson-expectation bridge remain open.
+signed kernel specialization. `GraphLimit.lean` now proves the **general
+graph-cap deterministic boundary limit** from these collar theorems, one-sided
+signed-kernel concentration reused from draft PR #29, and the spatial tail
+estimate. It identifies the limit with the existing reciprocal-gradient and
+angle integrals without strengthening admissibility. Arbitrary null boundaries,
+induced null-joint geometry, and the Poisson-expectation bridge remain open.
 The checked results concern `continuumMean`, not yet a formalized random sprinkling expectation,
 and assert no convergence rate.
 
@@ -431,10 +434,10 @@ available with its original statement and hypotheses as a specialization.
 proofs. A nonquadratic example `e - e²`, with `e` the spherical profile
 `(1 - |x|²)/4`, is also admitted: its positive interior maximum is `3/16`,
 its differential there is zero, and it is checked to differ from every
-quadratic ellipsoid profile. This milestone establishes an **exact deterministic
-reduction only**, not the general collar/coarea limit or variable-angle
-integral. The subsequent explicit ellipsoid integration and limit are checked
-separately, as described after (19); they reuse this exact reduction.
+quadratic ellipsoid profile. This reduction theorem is **deterministic and
+finite-density only**; the general limit is proved separately by the collar/tail
+assembly below. The original explicit ellipsoid integration and limit remain
+checked separately, as described after (19); they reuse this exact reduction.
 
 ## 5. The signed approximate identity
 
@@ -577,8 +580,10 @@ For every graph cap (10) satisfying the stated hypotheses,
 
 Constants in the error estimate may depend on the fixed region. The estimate
 is not asserted uniformly as the joint becomes tangent, $`|\nabla h|\to0`$.
-The displayed rate and the general limit remain **draft-level**, not Lean
-results. `GraphCollar.lean` proves the compact-joint and noncritical-band
+The displayed rate remains **draft-level**, not a Lean result. The deterministic
+limit underlying (17), with `continuumMean` in place of the still-unformalized
+Poisson expectation, is now checked by `AdmissibleGraphCap.graphCapLimit`.
+`GraphCollar.lean` proves the compact-joint and noncritical-band
 prerequisites. `GraphSurface.lean` adds height-flattening local charts and
 uses their local Lipschitz parametrizations to prove finite Hausdorff joint
 measure. `GraphAngle.lean` proves the strict positive angle and actual normals;
@@ -634,9 +639,18 @@ justified height Fubini and finite overlap summation; `GraphEndpoints.lean`
 derives endpoint replacements from regular-level nullity. Spatial and height
 absolute integrability are explicit, and one selected collar works for
 `planeKernel` at every positive density. Coarea is not used above this
-noncritical collar; the quartic's interior critical point is retained. The
-collar action limit and general `GraphCapLimitGoal` remain open; no C¹
-regularity or rate is claimed by these new modules.
+noncritical collar; the quartic's interior critical point is retained.
+`KernelCollar.lean` and `signed_rescaling_limit_right`, selectively reused from
+draft PR #29, prove the analytic collar limit with a measurable bounded weight
+continuous only from the right at zero. `GraphLimit.lean` uses a measurable
+cutoff of the canonical density on that same constructed collar; it neither
+assumes global density regularity nor discards the kernel's negative tail.
+Adding the existing spatial remainder limit proves `GraphCapLimitGoal h` for
+every `AdmissibleGraphCap h`, with no new premise. The exact zero-height density
+and angle identities give both canonical boundary integrals. Independent
+regressions recover the unequal-axis ellipsoid limit and apply the theorem to
+the quartic, keeping its critical point inside the tail domain. No C¹ density
+regularity, rate, or probability bridge is claimed by this assembly.
 
 **Proof.** By regularity and compactness of the joint there is a collar
 $`0\le h\le\delta`$ with no critical points. Coarea gives a $`C^1`$
@@ -760,8 +774,9 @@ normalization, or spacelikeness are added.
 This is the audited proof term `ellipsoidLimitGoal : EllipsoidLimitGoal`,
 not merely a definition of the desired conclusion. It establishes the
 **deterministic** value in (19). The identification with a Poisson expectation
-and general Theorem 2 remain draft-level. No quantitative rate follows from
-this checked limit.
+remains draft-level. The general deterministic limit is now checked separately
+in `GraphLimit`; the rate in Theorem 2 is not. No quantitative rate follows from
+these checked limits.
 
 **Checked geometric interpretation of the concrete ellipsoid.** The separate
 modules `EllipsoidJoint`, `EllipsoidAngle`, and `EllipsoidSurface` now interpret
@@ -801,9 +816,11 @@ limit. Connectedness follows from the sphere; axis endpoint weights
 check slopes `1/2, 1/6`, weights `2, 6`, and surface integral `48π` alongside
 the unchanged deterministic regression. `EllipsoidHausdorffRegression` also
 checks `48π` in both canonical angle and reciprocal-gradient integrals,
-with absolute integrability and the original hypotheses retained. This completes
-only the concrete ellipsoid interpretation: general Theorem 2, arbitrary null boundaries,
-induced null-joint geometry, and the probability bridge remain separate.
+with absolute integrability and the original hypotheses retained. These results
+complete the concrete ellipsoid interpretation; the general deterministic
+angle-integral limit is now checked separately in `GraphLimit`. The rate in
+Theorem 2, arbitrary null boundaries, induced null-joint geometry, and the
+probability bridge remain separate.
 
 ## 7. What remains outside this attempt
 

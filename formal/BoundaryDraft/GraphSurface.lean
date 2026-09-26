@@ -38,7 +38,8 @@ def graphSurfaceMeasure (h : Spatial → ℝ) : Measure JointSpace :=
 def graphBoundaryIntegral (h : Spatial → ℝ) : ℝ :=
   ∫ x, 1 / ‖graphGradient h x‖ ∂graphSurfaceMeasure h
 
-/-- Open general limit target. Defining this proposition is not its proof. -/
+/-- General limit target, proved downstream in `GraphLimit`. Defining this
+proposition is not its proof. -/
 def GraphCapLimitGoal (h : Spatial → ℝ) : Prop :=
   Tendsto (fun ρ => continuumMean ρ (graphCapRegion h)) atTop (𝓝 (graphBoundaryIntegral h))
 
