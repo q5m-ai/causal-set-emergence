@@ -1,4 +1,5 @@
 import BoundaryDraft.LorentzReflection
+import BoundaryDraft.IntervalMoments
 import Mathlib.Analysis.InnerProductSpace.PiL2
 import Mathlib.MeasureTheory.Integral.Prod
 
@@ -327,5 +328,50 @@ theorem causalInterval_kernel_identity (ρ : ℝ) (x q : Spacetime)
   rw [standard_causalInterval_kernel_identity ρ H hρ hH]
   have hHs : H ^ 2 = intervalSq x q := Real.sq_sqrt hsq.le
   rw [show H ^ 4 = (H ^ 2) ^ 2 by ring, hHs]
+
+/-- Four-dimensional Alexandrov volume for arbitrary future-timelike
+endpoints, obtained from the zeroth moment and the checked rest-frame map. -/
+theorem volume_causalInterval_timelike (x q : Spacetime)
+    (hxq : q ∈ chronologicalFuture x) :
+    (volume (causalInterval x q)).toReal = (Real.pi / 24) * intervalSq x q ^ 2 := by
+  let d := q - x
+  let H := Real.sqrt (intervalSq x q)
+  have hsq : 0 < intervalSq x q := sub_pos.mpr hxq.2
+  have hH : 0 < H := Real.sqrt_pos.2 hsq
+  have hd0 : 0 < d 0 := sub_pos.mpr hxq.1
+  have hdH : minkowskiInner d d = H ^ 2 := by
+    rw [← intervalSq_eq_minkowski_sub, Real.sq_sqrt hsq.le]
+  obtain ⟨L⟩ := exists_timelikeFrame d H hH hd0 hdH
+  have hpre : (fun y => x + L.map y) ⁻¹' causalInterval x q =
+      causalInterval 0 (timeAxis H) := by
+    simpa [d, sub_eq_add_neg, add_assoc, add_comm, add_left_comm] using
+      causalInterval_preimage_frame x d H hH hd0 (by rw [hdH]; positivity) L
+  have hv := ((measurePreserving_add_left volume x).comp L.measurePreserving).measure_preimage
+    (measurableSet_causalInterval x q).nullMeasurableSet
+  change volume ((fun y => x + L.map y) ⁻¹' causalInterval x q) = _ at hv
+  rw [hpre] at hv
+  rw [← hv]
+  have hm := standard_causalInterval_moment H hH 0
+  simp only [mul_zero, pow_zero, integral_const, measureReal_def, Measure.restrict_apply_univ,
+    smul_eq_mul, mul_one, Nat.cast_zero, zero_add, zero_mul] at hm
+  rw [hm]
+  have hHs : H ^ 2 = intervalSq x q := Real.sq_sqrt hsq.le
+  rw [show H ^ 4 = (H ^ 2) ^ 2 by ring, hHs]
+  ring
+
+/-- Extended-real form of Alexandrov volume. Finiteness follows from the
+strictly positive real volume just computed, not from totalising an infinite
+measure to zero. -/
+theorem volume_causalInterval_timelike_eq_ofReal (x q : Spacetime)
+    (hxq : q ∈ chronologicalFuture x) :
+    volume (causalInterval x q) = ENNReal.ofReal ((Real.pi / 24) * intervalSq x q ^ 2) := by
+  have hpos : 0 < (volume (causalInterval x q)).toReal := by
+    rw [volume_causalInterval_timelike x q hxq]
+    have hs : 0 < intervalSq x q := sub_pos.mpr hxq.2
+    positivity
+  have hn : volume (causalInterval x q) ≠ ⊤ := by
+    intro h
+    simp [h] at hpos
+  rw [← ENNReal.ofReal_toReal hn, volume_causalInterval_timelike x q hxq]
 
 end BoundaryDraft
