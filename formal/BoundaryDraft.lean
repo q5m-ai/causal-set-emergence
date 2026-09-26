@@ -13,6 +13,7 @@ import BoundaryDraft.ConeIntegral
 import BoundaryDraft.SpacetimeIntegration
 import BoundaryDraft.EllipsoidIntegration
 import BoundaryDraft.EllipsoidLimit
+import BoundaryDraft.KernelCollar
 import BoundaryDraft.EllipsoidJoint
 import BoundaryDraft.GraphExamples
 import BoundaryDraft.EllipsoidAngle
@@ -39,6 +40,7 @@ import BoundaryDraft.GraphDensityRegularity
 import BoundaryDraft.GraphEndpoints
 import BoundaryDraft.GraphCoarea
 import BoundaryDraft.GraphTail
+import BoundaryDraft.GraphLimit
 import BoundaryDraft.NullGeometry
 import BoundaryDraft.CausalInterval
 import BoundaryDraft.IntervalMoments

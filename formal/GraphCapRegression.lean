@@ -6,7 +6,8 @@ import BoundaryDraft
 Restate the finite-density action independently of the goal alias. Check
 complete slices with null points and the vertex, compact domination, the
 original ellipsoid hypotheses, and a genuinely nonquadratic admissible cap
-with a positive-height critical point. No collar or limit premise is used.
+with a positive-height critical point. The completed boundary limit retains
+that critical point outside the collar. No collar or limit premise is used.
 -/
 
 open BoundaryDraft MeasureTheory Set
@@ -182,5 +183,27 @@ theorem quartic_density_regularity_and_critical :
     A.measurable_graphHeightDensity quartic_admissible,
     A.exists_bound_graphHeightDensity quartic_admissible⟩,
     quartic_admissible.continuousWithinAt_graphHeightDensity_zero, quartic_positive_critical⟩
+
+-- The general deterministic limit applies to the same nonquadratic profile,
+-- retaining its checked positive-height critical point and original hypotheses.
+theorem quartic_limit_and_critical :
+    Filter.Tendsto (fun ρ => continuumMean ρ (graphCapRegion quarticProfile)) Filter.atTop
+      (nhds (∫ x, 1 / ‖graphGradient quarticProfile x‖ ∂graphSurfaceMeasure quarticProfile)) ∧
+    quarticProfile 0 = 3 / 16 ∧ fderiv ℝ (fun x : JointSpace => quarticProfile x) 0 = 0 :=
+  ⟨quartic_admissible.graphCapLimit, quartic_positive_critical⟩
+
+-- The very same collar used by the limit excludes the critical point, which
+-- remains in the tail domain controlled without coarea.
+theorem quartic_limit_collar_and_tail : ∃ A : ControlledCollarAtlas quarticProfile,
+    A.width < 3 / 16 ∧ A.width ≤ quarticProfile 0 ∧
+    Filter.Tendsto (fun ρ : ℝ => ∫ t in (0 : ℝ)..A.width,
+      planeKernel ρ t * graphHeightDensity quarticProfile t) Filter.atTop
+        (nhds (graphBoundaryIntegral quarticProfile)) ∧
+    Filter.Tendsto (fun ρ : ℝ => ∫ x in {x | A.width ≤ quarticProfile x},
+      planeKernel ρ (quarticProfile x)) Filter.atTop (nhds 0) := by
+  obtain ⟨A, hA, _⟩ := quartic_controlled_atlas
+  exact ⟨A, hA, by simpa only [quartic_positive_critical.1] using hA.le,
+    A.tendsto_integral_planeKernel_mul_graphHeightDensity quartic_admissible,
+    quartic_admissible.toGraphCapData.tendsto_integral_kernel_superlevel A.width A.width_pos⟩
 
 end GraphCapRegression

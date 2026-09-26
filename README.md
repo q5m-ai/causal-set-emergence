@@ -76,8 +76,13 @@ the coarea formula.
 [The Lean layer](formal/README.md) uses pinned Lean 4.19.0 and mathlib. It now
 proves the concrete kernel normalization and tails, exact four-dimensional
 admissible graph-cap and concrete null-cap action reductions, explicit ellipsoid
-height-integration formulae, and both
-**deterministic continuum limits**:
+height-integration formulae, and the **general deterministic graph-cap boundary
+limit**, alongside the original concrete limits:
+
+```lean
+theorem AdmissibleGraphCap.graphCapLimit {h : Spatial → ℝ}
+    (hh : AdmissibleGraphCap h) : GraphCapLimitGoal h
+```
 
 ```text
 ellipsoidLimitGoal : EllipsoidLimitGoal
@@ -85,9 +90,10 @@ nullCapLimitGoal   : NullCapLimitGoal
 ```
 
 All public theorems and definitions pass a transitive axiom audit permitting
-only Lean’s standard foundations. The ellipsoid proof retains the whole signed kernel,
-including its negative tail; the null proof derives the exact causal-interval
-cancellation and normalized Gaussian concentration.
+only Lean’s standard foundations. The general graph-cap and original ellipsoid
+proofs retain the whole signed kernel, including its negative tail; the null
+proof derives the exact causal-interval cancellation and normalized Gaussian
+concentration.
 
 The **concrete ellipsoid geometric interpretation** is also checked separately:
 its joint is a smooth regular level with nonzero Euclidean gradient, its angle
@@ -146,15 +152,18 @@ right-hand boundary value. Negative heights have zero canonical density;
 two-sided continuity is not claimed. `GraphCoarea.lean` derives **global collar
 coarea** with explicit absolute integrability and the signed `planeKernel`
 specialization. `GraphEndpoints.lean` derives both endpoint replacements
-without excluding unrelated exterior zeros. **The general boundary limit
-remains unproved.**
-`GraphTail.lean` proves that every fixed positive-height remainder vanishes
-without coarea. The quartic regression retains its interior critical point.
+without excluding unrelated exterior zeros. `KernelCollar.lean` reuses the
+one-sided signed-rescaling work from draft PR #29. `GraphLimit.lean` combines
+that analytic collar limit with coarea and density regularity on the **same
+constructed collar**, and the vanishing spatial remainder from `GraphTail.lean`.
+It proves the unchanged `GraphCapLimitGoal h` and identifies the limit with both
+canonical boundary integrals. Coarea is used only in the noncritical collar;
+no global density regularity is assumed. Independent regressions recover the
+original unequal-axis ellipsoid value and retain the quartic's interior critical
+point in the tail domain. No admissibility hypothesis is added.
 
 Still open in the formal program:
 
-- the general graph-cap limit identifying the boundary integral with
-  `continuumMean`;
 - arbitrary null boundaries and the induced null-joint area interpretation;
 - the Poisson-sprinkling expectation bridge.
 

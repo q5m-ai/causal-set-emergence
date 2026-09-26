@@ -29,6 +29,7 @@ run_cmd do
 #check BoundaryDraft.NullCapLimitGoal
 #check BoundaryDraft.EllipsoidLimitGoal
 #check BoundaryDraft.GraphReductionGoal
+#check BoundaryDraft.GraphCapLimitGoal
 #check BoundaryDraft.KernelMassGoal
 #check BoundaryDraft.KernelTailGoal
 
@@ -47,6 +48,11 @@ run_cmd do
 #check BoundaryDraft.integrableOn_ellipsoid_rescaled
 #check BoundaryDraft.ellipsoid_continuumMean_eq_rescaled
 #check BoundaryDraft.ellipsoidLimitGoal
+-- General limit assembly from the unchanged admissible graph-cap hypotheses.
+#check BoundaryDraft.signed_rescaling_limit_right
+#check BoundaryDraft.planeKernel_collar_limit
+#check BoundaryDraft.AdmissibleGraphCap.graphCapLimit
+#check BoundaryDraft.AdmissibleGraphCap.tendsto_continuumMean_graphCap_eq_angle
 -- Separate geometric interpretation; the deterministic target above is unchanged.
 #check BoundaryDraft.hasGradientAt_ellipsoidProfile
 #check BoundaryDraft.ellipsoid_joint_regular
