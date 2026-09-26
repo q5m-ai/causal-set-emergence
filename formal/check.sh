@@ -22,8 +22,6 @@ trap cleanup EXIT
 find . -type d \( -path ./.lake -o -path ./.tools -o -path ./.git \) -prune -o \
   -type f -name '*.lean' ! -path ./Audit.lean -print0 | sort -z > "$source_list"
 while IFS= read -r -d '' source; do
-  lake env lean -DwarningAsError=true "$source"
-
   # Recheck the source in a fresh current module and audit every public
   # declaration created by that source. This catches custom axioms in files
   # that are deliberately not imported by the library root.
