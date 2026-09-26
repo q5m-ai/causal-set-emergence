@@ -1,10 +1,11 @@
 # Lean verification: checked components and explicit targets
 
-**Status: the deterministic ellipsoid and null-plane-cap continuum limits and
-the concrete ellipsoid's Lorentzian angle/surface-integral interpretation are
-proved in Lean. The exact finite-density reduction is also proved for the
-general admissible graph-cap class. General positive-angle geometry, finite
-Hausdorff joint integrals, and the vanishing non-collar remainder are checked.
+**Status: the general admissible graph-cap deterministic boundary limit,
+the original ellipsoid and null-plane-cap continuum limits, and the concrete
+ellipsoid's Lorentzian angle/surface-integral interpretation are proved in Lean.
+The exact finite-density reduction is also proved for the general admissible
+graph-cap class. General positive-angle geometry, finite Hausdorff joint
+integrals, and the vanishing non-collar remainder are checked.
 Euclidean planar Hausdorff normalization and exact tangent-image area are
 proved on every set. The variable-Jacobian scalar-graph area formula is proved,
 including its open-domain and signed-integral forms. Canonical height levels
@@ -16,9 +17,10 @@ uniformly bounded there, and tends from the right to the existing boundary
 integral. Canonical Hausdorff and parametric ellipsoid measures agree, with
 subtype transport, integrability, and recovery of the original boundary value.
 Global collar coarea is derived from the atlas, including null endpoints,
-absolute integrability, and the signed kernel specialization. The general
-deterministic limit, arbitrary null boundaries, induced null-joint geometry,
-and the Poisson-expectation bridge remain open.**
+absolute integrability, and the signed kernel specialization. One-sided signed
+kernel concentration and the vanishing spatial tail now complete the general
+limit, retaining positive-height critical points. Arbitrary null boundaries,
+induced null-joint geometry, and the Poisson-expectation bridge remain open.**
 
 Lean **4.19.0** and mathlib **v4.19.0** are pinned. `lake-manifest.json` pins the
 resolved dependency commits; mathlib is
@@ -86,8 +88,14 @@ canonical density; global coarea is also checked on it.
 absolute integrability, joint measurability, endpoint nullity, original ellipsoid
 hypotheses, and a negative collar weight with a discontinuous ambient extension.
 The quartic coarea regression retains its critical point and proves that the
-selected width stops strictly below it. No regression asserts the still-open
-general limit.
+selected width stops strictly below it. `KernelCollarRegression.lean` checks
+one-sided analytic concentration with a discontinuous weight, a negative
+profile, and a sign-reversed kernel. `GraphLimitRegression.lean` independently
+restates the completed general limit with explicit canonical normalization,
+checks both boundary integrals and the common collar/tail decomposition, and
+recovers the original unequal-axis ellipsoid limit through the general theorem.
+`GraphCapRegression.lean` also applies that theorem to its existing quartic,
+retaining the positive-height critical point inside the tail domain.
 `EllipsoidRegression.lean` checks the original ellipsoid contract and
 its endpoint examples. `EllipsoidJointRegression.lean` separately checks
 regularity, the strict positive angle branch, connectedness, nonconstant weights,
@@ -105,7 +113,7 @@ and limit at `T = 2`, `a = 1`.
 | same | Null joint area decomposition | That the two geometric patches have those areas |
 | same | Uncut area specialization | The causal-diamond action limit |
 | same | Squared angle-weight algebra | The geometric angle relation or positive square-root step |
-| `BoundaryDraft/AnalyticCore.lean` | Signed rescaling limit | Integrability of the particular BDG kernel |
+| `BoundaryDraft/AnalyticCore.lean` | Signed rescaling limits for continuous weights and one-sided continuous, measurable bounded weights | Integrability of the particular BDG kernel |
 | same | Unit-mass specialization | Normalization of the particular BDG kernel |
 | `BoundaryDraft/KernelScaling.lean` | Auxiliary-integral scaling; fourth-power and positive-density kernel scaling | Mass one or tail estimates |
 | `BoundaryDraft/KernelDerivatives.lean` | Differentiation under the auxiliary integral through order three | The BDG future-cone/action-density identity |
@@ -115,6 +123,7 @@ and limit at `T = 2`, `a = 1`.
 | `BoundaryDraft/KernelEstimates.lean` | Explicit absolute `O(u⁻³)` kernel bound; `KernelTailGoal`; vanishing-moment boundary estimate | Graph-cap geometry or its non-collar reduction |
 | `BoundaryDraft/KernelHalfLine.lean` | Large-argument limits; absolute integrability and first moment; mass one; `KernelMassGoal`; signed first moment zero | The four-dimensional action reduction |
 | same | Concrete positive-half-line signed-rescaling limit | Coarea or either main boundary-limit theorem |
+| `BoundaryDraft/KernelCollar.lean` | One-sided signed-kernel rescaling, positive-density integrability, exact cutoff identity, and analytic collar limit | Geometric coarea or density regularity |
 | `BoundaryDraft/GraphGeometry.lean` | Separate reduction/collar APIs, positive-part continuity, open/measurable/bounded cap, compact positive-part support, complete future slices and causal convexity | Regular-collar construction, coarea or a boundary limit |
 | `BoundaryDraft/GraphCollar.lean` | Compact/measurable Euclidean joint, uniform noncritical boundary band, ambient C³ regular neighborhoods | Integration charts, normalized surface measure, coarea or a boundary limit |
 | `BoundaryDraft/GraphAngle.lean` | Actual Euclidean gradient, uniform strict slope bound, inward/outward unit normals, positive rapidity, face geometry and `coth` identity | Coarea or a deterministic limit |
@@ -135,6 +144,7 @@ and limit at `T = 2`, `a = 1`.
 | `BoundaryDraft/GraphCoarea.lean` | Global collar coarea from the common atlas, justified height Fubini and finite sums, absolute integrability, signed kernel specialization and exact action split | A collar through critical points or the general limit |
 | `BoundaryDraft/GraphSurface.lean` | Height-flattening local charts; canonical Hausdorff target with explicit coefficient; finite joint measure; absolute integrability and equality of reciprocal-gradient and angle integrals | Hausdorff/parametric-area identification, coarea, height-density continuity or the general limit |
 | `BoundaryDraft/GraphTail.lean` | Absolute scaled tail, exact action collar/remainder split, vanishing spatial remainder allowing critical points | The collar limit |
+| `BoundaryDraft/GraphLimit.lean` | `AdmissibleGraphCap.graphCapLimit` proves the unchanged general deterministic target; identification with the canonical angle integral | A rate, arbitrary future boundaries, or the probability bridge |
 | `BoundaryDraft/EllipsoidGeometry.lean` | Positive ellipsoid, measurability, boundedness, compact positive-part support, strict Euclidean Lipschitz estimate; instantiation of the general geometry | Sublevel volumes or coarea |
 | `BoundaryDraft/GraphExamples.lean` | Full ellipsoid admissibility under the original hypotheses; quartic damped-ellipsoid admissibility and exact reduction | A new limit or joint integral |
 | `BoundaryDraft/ConeIntegral.lean` | Exact radial action-density identity by a zero-endpoint primitive; finite-fibre FTC | A boundary limit |
@@ -167,10 +177,14 @@ notation it proves
 
 assuming `G` is integrable and `B` is globally bounded and continuous. There is
 no assumption that `G ≥ 0`. The measure `μ` may be Lebesgue measure restricted
-to the positive half-line. A bounded continuous extension of the collar
-profile fits this theorem; for general graph caps the exact geometric reduction,
-scalar-graph area formula, non-collar remainder, one-sided density regularity,
-and collar coarea are checked, but the collar action limit still needs a proof.
+to the positive half-line. The additional `signed_rescaling_limit_right`,
+selectively reused from draft PR #29, allows a measurable bounded weight with
+only right continuity at zero when the measure is supported on nonnegative
+arguments. The weight can jump at a positive cutoff and on the negative side
+of zero. `KernelCollar` instantiates this with the entire signed kernel and
+proves `planeKernel_collar_limit`. `GraphLimit` applies it to a measurable cutoff
+of the canonical density on one controlled collar, without assuming global
+density regularity.
 The theorem `planeKernel_rescaling_limit` now instantiates this lemma with the concrete
 BDG kernel and Lebesgue measure restricted to `Ioi 0`, using the proved
 absolute integrability and mass one, not additional kernel hypotheses.
@@ -344,9 +358,9 @@ continuumMean ρ (graphCapRegion h) = ∫ x in {x | 0 < h x}, planeKernel ρ (h 
 ```
 
 This reduction is deterministic and finite-density only. The separate general
-angle, canonical boundary-integral identities, and collar coarea are checked,
-but the collar limit, arbitrary null boundaries, and the Poisson-expectation
-bridge are not proved here.
+angle, canonical boundary-integral identities, collar coarea, and general limit
+are checked in their own modules. Arbitrary null boundaries and the
+Poisson-expectation bridge remain unproved.
 
 ### Compact joint and noncritical band (#19 prerequisite layer)
 
@@ -395,9 +409,10 @@ absolute integrability of the reciprocal-gradient weight, integrability of
 the angle weight, and equality of their integrals are proved independently.
 `graphBoundaryIntegral` is the reciprocal-gradient integral, and
 `GraphCapLimitGoal h` states convergence of the unchanged `continuumMean` to
-that integral. The latter is an **open general proposition definition, not a
-general theorem**; `ellipsoid_canonical_limit` supplies its concrete ellipsoid
-instance by reusing the existing deterministic limit.
+that integral. This proposition now has the general proof term
+`AdmissibleGraphCap.graphCapLimit` in `GraphLimit`; its definition and admissible
+hypotheses are unchanged. The earlier `ellipsoid_canonical_limit` still supplies
+its concrete ellipsoid instance by reusing the original deterministic limit.
 
 `HausdorffGraph.lean` now proves the local tangent-to-graph comparison from
 C¹ regularity, without assuming a surface transformation. For a scalar graph
@@ -517,9 +532,9 @@ The downstream API in `GraphAtlasRepresentation.lean` is:
 
 These are proved from unchanged `AdmissibleGraphCap` hypotheses. The atlas
 records only geometric charts and partition data, not assumed transformation
-laws. This representation API stops before height Fubini for #33 and limit
-assembly for #32; the downstream regularity argument for #34 is now checked
-as described next. It does not modify the separate ellipsoid
+laws. This representation API stops before downstream height Fubini (#33),
+density regularity (#34), and limit assembly (#32); those are now checked in
+separate modules as described below. It does not modify the separate ellipsoid
 measure-compatibility theorem completed in #30, and positive-height critical
 points beyond the selected collar remain permitted.
 
@@ -593,8 +608,8 @@ width for every positive density, retaining the signed kernel.
 `A.continuumMean_eq_height_collar_add_remainder` rewrites the exact action
 split with this height integral; the remainder may still contain critical
 points. No coarea field, equivalent premise, or stronger graph-cap hypothesis
-is introduced. Density regularity (#34) is separately checked; final limit
-assembly (#32) remains an open obligation.
+is introduced. Density regularity (#34) and final limit assembly (#32) are
+separately checked in `GraphDensityRegularity` and `GraphLimit`.
 
 `GraphTail.lean` proves the scaled bound with the concrete constant
 `C = 1416/(π sqrt 6)` and width `ε = (sqrt (sqrt ρ))⁻¹`. On `h ≥ δ > 0`, the
@@ -605,13 +620,53 @@ is split into `0 < h < δ` and `h ≥ δ`; the endpoint remains in the remainder
 so no level-set-nullity premise is used. No differential or coarea assumption
 is used for this entire tail argument, even at the quartic critical height.
 
-Issue #19's prerequisite layer is complete in PR #21. Milestone 5 remains
-incomplete: collar coarea (#33) and one-sided density regularity (#34) now
-have checked declarations; collar limit assembly (#32) remains open. The
-independent ellipsoid measure task split into #30 has checked declarations in
-`EllipsoidHausdorff`. No structure
-field or hypothesis assumes the remaining results. None of the original action
-or concrete limit definitions changes.
+Issue #19's prerequisite layer is complete in PR #21. The collar infrastructure
+(#31), coarea (#33), one-sided density regularity (#34), and final assembly (#32)
+now have checked declarations. The independent ellipsoid measure task split
+into #30 has checked declarations in `EllipsoidHausdorff`. No structure field
+or hypothesis assumes these results. None of the original action or concrete
+limit definitions changes.
+
+### General deterministic boundary limit (#32)
+
+`GraphLimit.lean` constructs one `ControlledCollarAtlas` from the unchanged
+admissibility hypotheses, so coarea and density regularity use the same width.
+Its canonical density need not be measurable or regular beyond that collar:
+`A.measurable_indicator_graphHeightDensity` supplies a measurable zero extension
+from the closed height interval. The extension agrees with the density near
+zero from the right and has its proved uniform collar bound.
+
+`KernelCollar.lean` and `signed_rescaling_limit_right` are selectively reused
+from draft PR #29, not by merging that draft or duplicating its endpoint and
+negative-density lemmas already integrated by #33/#34. Positive-density scaling,
+absolute kernel integrability, mass one, and the exact cutoff identity give
+`planeKernel_collar_limit`. The cutoff need not be two-sided continuous at zero
+or continuous at its positive endpoint. No part of the signed kernel is dropped.
+`A.tendsto_integral_planeKernel_mul_graphHeightDensity` removes the cutoff inside
+the finite integral and identifies the limit via `graphHeightDensity_zero`.
+
+The exact action split from `GraphCoarea` starts with `continuumMean` through
+`graphCap_graphReduction`. Adding the collar limit and the `GraphCapData`
+non-collar tail limit proves:
+
+```lean
+theorem AdmissibleGraphCap.graphCapLimit {h : Spatial → ℝ}
+    (hh : AdmissibleGraphCap h) : GraphCapLimitGoal h
+
+theorem AdmissibleGraphCap.tendsto_continuumMean_graphCap_eq_angle
+    {h : Spatial → ℝ} (hh : AdmissibleGraphCap h) :
+    Tendsto (fun ρ => continuumMean ρ (graphCapRegion h)) atTop
+      (𝓝 (∫ x, jointCoth (graphSlope h x) ∂graphSurfaceMeasure h))
+```
+
+The second conclusion uses the existing `graphBoundaryIntegral_eq_angle`.
+Coarea and noncriticality are used only in the collar. Every positive-height
+critical point outside it stays in the spatial remainder, where the absolute
+tail theorem needs no differential or coarea assumption. Independent regressions
+recover the original unequal-axis ellipsoid limit (including `48π`) through
+this general proof and apply it to the existing nonquadratic quartic with its
+retained critical point. No convergence rate or Poisson-expectation bridge is
+claimed.
 
 ### Ellipsoid compatibility and a nonquadratic example
 
@@ -948,21 +1003,23 @@ def EllipsoidLimitGoal : Prop :=
 
 These `Goal` declarations are **definitions of propositions, not themselves
 proofs**. The unchanged goals now have proof terms `ellipsoidLimitGoal` and
-`nullCapLimitGoal`. `GraphReductionGoal h` now has a proof for every member
+`nullCapLimitGoal`; the unchanged `GraphCapLimitGoal h` has the proof term
+`AdmissibleGraphCap.graphCapLimit` for every `AdmissibleGraphCap h`.
+`GraphReductionGoal h` now has a proof for every member
 of `GraphCapData h` (hence every `AdmissibleGraphCap h`), not for unrestricted
 profiles. `ellipsoid_graphReduction` remains the concrete specialization. The original
 `KernelMassGoal` and `KernelTailGoal` also have proof terms, `kernelMassGoal` and
 `kernelTailGoal`. All are audited transitively with the rest of the library.
 
-The continuum action is not defined to be its conjectured answer. Both limit
-proofs start from the actual four-dimensional integral, not a reformulated
-target or an assumed geometric reduction.
+The continuum action is not defined to be its conjectured answer. The general
+and concrete limit proofs start from the actual four-dimensional integral,
+not a reformulated target or an assumed geometric reduction.
 
 ## Remaining proof graph
 
 1. **Probability bridge, separate milestone.** Define Poisson sprinkling,
    interval counts, and the discrete BDG action; derive `continuumMean` as its
-   expectation. Neither deterministic limit by itself proves that bridge,
+   expectation. No deterministic limit by itself proves that bridge,
    variance bounds, or convergence in probability.
 2. **Concrete deterministic limits: completed.** The full ellipsoid and
    null-plane-cap reductions and limits are proved under their original
@@ -972,9 +1029,9 @@ target or an assumed geometric reduction.
 3. **Concrete kernel estimates: completed.** `KernelMassGoal`,
    `KernelTailGoal`, the required limits, and the signed graph-cap rescaling
    theorem are proved. The sharper differentiable asymptotic expansion remains
-   draft-level and is not needed by either checked limit.
-4. **General graph caps: exact reduction completed; limit open.** The admissible
-   API, complete slices, causal convexity, compact domination, and exact
+   draft-level and is not needed by the checked limits.
+4. **General graph caps: exact reduction and deterministic limit completed.**
+   The admissible API, complete slices, causal convexity, compact domination, and exact
    four-dimensional action reduction are checked, with ellipsoid and quartic
    instances. Compact joints, the noncritical band, local height charts, and
    the vanishing non-collar remainder are now checked. Planar normalization,
@@ -984,14 +1041,15 @@ target or an assumed geometric reduction.
    dominated finite-sum representations. One-sided canonical density continuity,
    collar measurability, and a uniform bound are now proved from that API.
    Global collar coarea, including endpoint replacements and the signed kernel
-   specialization, is also derived from those representations. The collar
-   limit is still needed.
+   specialization, is also derived from those representations. One-sided
+   signed-kernel concentration and the vanishing non-collar tail now prove
+   `AdmissibleGraphCap.graphCapLimit` without extra premises.
 5. **Concrete ellipsoid interpretation completed; general pointwise geometry checked.**
    The positive-angle identity now holds for every admissible graph cap.
    Its two finite canonical boundary integrals are equal. Identification with
    the existing ellipsoid parametric measure and the concrete ellipsoid limit
-   is now checked; identification with a general deterministic limit remains
-   open. Arbitrary null boundaries and induced null-joint area also remain
+   is checked, as is identification with the general deterministic limit.
+   Arbitrary null boundaries and induced null-joint area remain
    open. The checked
    equality to `nullJointArea` still uses its existing explicit algebraic
    definition, not a theorem about induced null-joint geometry.
@@ -1002,9 +1060,10 @@ target or an assumed geometric reduction.
 The two concrete deterministic milestones and the ellipsoid geometric
 interpretation, plus the general graph-cap exact reduction, are complete and
 audited, including canonical/parametric ellipsoid measure compatibility.
-General graph-cap collar coarea and one-sided height-density continuity are
-also checked. The collar limit, arbitrary null boundaries, induced null-joint
-geometry, and the probability bridge remain separate tasks.
+General graph-cap collar coarea, one-sided height-density continuity, and the
+complete deterministic boundary limit are also checked. Arbitrary null
+boundaries, induced null-joint geometry, and the probability bridge remain
+separate tasks.
 
 ## Reproduce
 
