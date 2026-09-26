@@ -52,3 +52,5 @@ import BoundaryDraft.NullCapReduction
 import BoundaryDraft.NullGaussian
 import BoundaryDraft.NullCapLimit
 import BoundaryDraft.SpacetimeSprinkling
+import BoundaryDraft.FiniteCausalOrder
+import BoundaryDraft.DiscreteBDG
