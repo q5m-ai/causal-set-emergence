@@ -36,6 +36,18 @@ mathematical scope. This directory contains the proved components and explicit
 open targets. The [acceptance and gap-history audit](ACCEPTANCE.md) maps the
 merged implementation to trackers #1 and #40 without expanding their scope.
 
+The separate [translated-overlap reduction](TRANSLATED_OVERLAP.md) now rewrites
+unchanged `continuumMean` on every bounded measurable region, retaining the
+entire signed kernel and all future-causal displacements. It derives radial
+null coordinates, the actual measurable bounded compactly supported
+long-displacement density and its signed integration law, and a separate
+two-global-graph overlap formula. The original graph-cap class embeds through
+its positive-part envelope without stronger raw-profile assumptions.
+`OverlapRegression.lean` calibrates both existing exact base cases, the
+Jacobians, sphere normalization, null displacements, and zero-volume regions.
+This finite-density representation is prior work of Dowker–Liu–Lloyd-Jones
+§2.6, not a new localization or overlap-regularity theorem.
+
 ## What actually compiles and is proved
 
 `./check.sh` builds the library, discovers **every local Lean source** (excluding
