@@ -179,6 +179,15 @@ and density limit under exactly `0 < a < T`. Its expected-action version has the
 same hypotheses and algebraic `nullJointArea` target. Arbitrary null boundaries
 and a general induced-null-joint area interpretation remain open.
 
+The [ambient covariance and scaling API](formal/ACTION_TRANSPORT.md) also
+proves affine time-oriented Lorentz invariance of the unchanged finite-density
+action, allowing translations and spatial orientation reversal. Independent
+positive dilation gives the second-power action factor and fourth-power density
+transformation. Both identities transfer through the existing expectation
+bridge. A translated boost of the original unequal-axis ellipsoid and explicit
+inverse/dilation checks serve as calibrations, not new curved-face limits.
+General induced-joint measure transport remains separate work.
+
 These results complete the mathematical implementation of the restricted
 four-dimensional program, **not** the unrestricted conjecture, a convergence
 rate, variance or concentration bounds, convergence in probability, or
