@@ -175,6 +175,7 @@ and quartic regressions to expectations.
 | `BoundaryDraft/NullBoundary.lean` | The null cone has product Lebesgue measure zero; strict and closed future-tip slices have equal integrals | Boundary distributions or non-Lebesgue measures |
 | `BoundaryDraft/NullCoordinates.lean`, `NullCapReduction.lean` | Null-coordinate Jacobian, transverse polar coarea, two dominated Fubini swaps, exact support and logarithmic `nullCapWeight` | A formula assumed from numerical quadrature |
 | `BoundaryDraft/NullGaussian.lean` | Unit mass, absolute integrability, exact density rescaling, and half-line Gaussian concentration | A convergence rate |
+| `BoundaryDraft/NullTransverseMoments.lean`, `NullTransverseCancellation.lean` | Original-kernel signed transverse moments and conditional cancellation for a bounded measurable weight with a right quadratic jet | Geometric overlap regularity, localization, or a quantitative rate |
 | `BoundaryDraft/NullCapLimit.lean` | Exact bilocal cancellation, bounded continuous weight extension, absolute integrability, and `nullCapLimitGoal : NullCapLimitGoal` | Poisson variance/convergence, arbitrary null boundaries, or angle interpretation |
 | `BoundaryDraft/FiniteConfiguration.lean`, `FinitePoisson.lean`, `PoissonCounts.lean`, `PoissonDisjoint.lean`, `PoissonSimplicity.lean`, `PoissonIntegration.lean`, `SpacetimeSprinkling.lean` | Constructed finite Poisson law, measurable counts, exact count laws, reduced Campbell–Mecke identities, factorial moments, support, and almost-sure simplicity | A BDG action or expectation bridge by themselves; an infinite-volume process |
 | `BoundaryDraft/FiniteCausalOrder.lean`, `DiscreteBDG.lean` | Genuine finite-order BDG action, all signed coefficients and normalization, measurability, and absolute integrability | The expectation identity by themselves |
@@ -205,6 +206,14 @@ BDG kernel and Lebesgue measure restricted to `Ioi 0`, using the proved
 absolute integrability and mass one, not additional kernel hypotheses.
 `EllipsoidLimit` now applies it to the actual globally extended ellipsoid
 weight; no collar/remainder split or global C¹ hypothesis is needed.
+
+The separate [null-transverse cancellation component](NULL_TRANSVERSE.md)
+uses the **original** `bdgKernel`, not `planeKernel`. Its first three transverse
+moments vanish and its third-order moment is negative one-half. A right-hand
+quadratic jet suffices for the normalized density limit of any bounded measurable
+weight, including a discontinuous compact-support cutoff. The geometric expansion
+of the actual overlap density remains a separate obligation; no admissibility
+structure or existing action/kernel definition is changed.
 
 `Audit.lean` discovers the public declarations in the imported `BoundaryDraft`
 namespace rather than maintaining a theorem allowlist. In addition, the
