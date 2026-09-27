@@ -147,8 +147,10 @@ For every original reduction-admissible cap, the lower causal envelope
 exactly `graphCapRegion h`. `GraphCapData.translatedOverlap_causal` derives the
 corresponding overlap formula without requiring global Lipschitz control of
 the raw height. Interior critical points and irrelevant exterior zeros remain
-allowed. This is coordinate compatibility, not the unfinished two-face
-geometric theorem contract in #49.
+allowed. The separate [two-face geometry integration](TWO_FACE_GEOMETRY.md)
+now proves #49's region/stratum contract and specializes this API through its
+causal envelopes. Intrinsic area is proved separately in
+[the joint-geometry work](JOINT_GEOMETRY.md); two-face asymptotic goals remain open.
 
 ## Verification and remaining boundary
 

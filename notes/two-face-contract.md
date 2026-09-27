@@ -5,7 +5,12 @@ work package A of the [flat-localization plan](flat-localization-plan.md).
 The definitions and nonvacuity regressions compile in
 [`TwoFaceContract.lean`](../formal/BoundaryDraft/TwoFaceContract.lean) and
 [`TwoFaceExamples.lean`](../formal/BoundaryDraft/TwoFaceExamples.lean).
-Defining a proposition does not prove it. This does not close #24.
+Defining a proposition does not prove it. The separate
+[region geometry and API integration](../formal/TWO_FACE_GEOMETRY.md) now
+proves `TwoFaceRegionGoal` and exact finite-density overlap/expectation
+identities. The independent [joint-geometry proof](../formal/JOINT_GEOMETRY.md)
+now establishes the area and planar-target goals. The asymptotic obligations
+remain open; this does not close #24.
 
 ## 1. Fixed geometry, action, and deliberately restricted class
 
@@ -110,10 +115,11 @@ joint. Strict spacelikeness of either face makes the joint spacelike.
 Positive-height critical points of `h`, and critical points of either face,
 are allowed: they are not degeneracies of the joint.
 
-The region/stratum consequences remain **outstanding** in `TwoFaceRegionGoal`.
-The separate [work package C proof](../formal/JOINT_GEOMETRY.md) now derives the
-face slope bounds, actual normals, positive joint metric and angle, and finite
-intrinsic joint measure. None is a field in `AdmissibleTwoFace`.
+The topological/compact stratum consequences and ambient causal convexity
+are proved by `twoFaceRegionGoal` in `TwoFaceGeometry.lean`, with the unchanged
+contract. The separate [work package C proof](../formal/JOINT_GEOMETRY.md)
+derives the face slope bounds, actual normals, positive joint metric and angle,
+and finite intrinsic joint measure. None is a field in `AdmissibleTwoFace`.
 
 ### Exact constructor obligations for the existing probability bridge
 
@@ -125,27 +131,29 @@ intrinsic joint measure. None is a field in `AdmissibleTwoFace`.
   ambient causal interval** with endpoints in the region, including null
   segments and vertices.
 
-No such new constructor is claimed proved here. A direct proof route is:
+`AdmissibleTwoFace.boundedCausalRegion` now supplies this constructor:
 
 1. Continuous envelopes make the strict inequalities open, hence measurable.
-2. The existing compact `closure Ω` bounds `h₊` and `f`, hence all four
-   coordinates of `M`. Equivalently, use the continuous time shear of the
-   compact closure of the old graph cap for boundedness. This shear is **not**
-   an action-preserving Lorentz transformation.
+2. A continuous filling of the existing compact `closure Ω` times the closed
+   unit interval has image exactly `closure M`. Density of the open product
+   and closedness of the compact image prove both inclusions, giving actual
+   boundedness rather than a new structure field.
 3. The lower envelope has Lipschitz constant at most `κ + λ < 1`, so its
    strict epigraph is a future set. The upper envelope has constant
    `λ < 1`, so its strict hypograph is a past set. Their intersection is
    ambient-causally-convex. This does not use an assumed expectation identity.
-4. For the separate boundary/stratum goal, continuity and the regular zero
-   level give the displayed closed-face union and intersection. Projection
-   and the graph embeddings supply compactness and exclude extra strata.
+4. Removing `M` from its derived closure leaves precisely the two endpoint
+   graphs. Their intersection is height zero in `closure Ω`. Continuous graph
+   embeddings give compactness; no exterior zero or extra stratum is added.
 
-Once the first three obligations are proved,
-`BoundedCausalRegion.expectedBDGAction_eq` gives the exact expectation identity
-at every positive density. The checked
-`twoFace_expectedLimit_of_region_and_limit` only transfers the **open**
-region and deterministic-limit goals to the expected-limit goal. It does not
-rebuild the probability bridge or prove either input.
+`TwoFaceOverlap.lean` specializes #52 using these same envelopes and the actual
+region. The existing `BoundedCausalRegion.expectedBDGAction_eq` gives the exact
+expectation identity at every positive density, with the full signed overlap
+representation and fixed-positive-cutoff density identities. The original
+conditional `twoFace_expectedLimit_of_region_and_limit` remains available;
+`twoFace_expectedLimit_of_limit` discharges only its geometry premise. The
+**deterministic two-face limit remains open**. Neither theorem reconstructs
+the probability law. See the [proof and regression guide](../formal/TWO_FACE_GEOMETRY.md).
 
 ## 3. Positive angle and independent Lorentzian area
 
@@ -295,21 +303,22 @@ wedge asymptotics, the limit, or the expectation identity into the geometry.
 
 ## 7. Verification boundary and handoff
 
-`TwoFaceRegionGoal`, `TwoFaceLimitGoal`, and `TwoFaceExpectedLimitGoal` remain
-**open proposition definitions**, without admissions, custom axioms, or fake
-proof terms. `TwoFaceAreaGoal` and `TwoFacePlanarTargetGoal` now have separate
-proofs in `TwoFaceSurface`, with intrinsic chart and transport results in
-`TwoFaceCharts` and `JointTransport`. The contract's original planar inclusion,
-exact envelope/set identities, sine construction and nonplanarity, and
-conditional bridge transfer remain unchanged, as do the action definitions
-and all old hypotheses.
+`TwoFaceRegionGoal` is proved by `twoFaceRegionGoal`, with reusable per-region
+geometry and exact overlap/expectation specializations. `TwoFaceAreaGoal` and
+`TwoFacePlanarTargetGoal` have independent proofs in `TwoFaceSurface`, with
+intrinsic chart and transport results in `TwoFaceCharts` and `JointTransport`.
+`TwoFaceLimitGoal` and `TwoFaceExpectedLimitGoal` remain **open proposition
+definitions**, without admissions, custom axioms, or fake proof terms. Planar
+inclusion, exact envelope/set identities, the sine construction and concrete
+nonplanarity remain checked. The original action definitions and all old
+hypotheses are unchanged.
 
-The #51 geometry is separate from the still-open action limit.
-For #52 specialize its general bounded-region overlap theorem only after the
-listed region constructor is proved; its graph specialization must use causal
-envelopes, not globally Lipschitz raw heights. For #54 keep the geometry fixed
-and use the curved sine family as a nonplanar test, not a proved limit. The
-later G1–G4 research gates remain open even after these interfaces compile.
+The #51 geometry is separate from the still-open action limit. #60 connects
+#52's merged overlap API through the proved region constructor and causal
+envelopes, not globally Lipschitz raw heights. Its density is the existing
+actual density; geometric long-null regularity remains #61. For #54 keep the
+geometry fixed and use the curved sine family as a nonplanar test, not a
+proved limit. The later G1–G4 research gates remain open.
 
 Validation commands: `formal/check.sh` (library build, every source with
 warnings as errors, isolated transitive axiom audits, aggregate audit), the

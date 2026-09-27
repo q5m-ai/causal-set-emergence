@@ -9,8 +9,8 @@ unchanged `AdmissibleGraphCap` API; an independently chosen future graph uses
 part of the remaining strict Lipschitz budget. Smooth germs `f - h, f` are
 separate from causal envelopes `f - max 0 h, f`. No analytic conclusion is a
 field. `Goal` declarations below define propositions, not their proofs.
-`TwoFaceSurface` now proves the area and planar-target goals. Region/stratum
-and asymptotic goals remain open.
+`TwoFaceGeometry` proves the region/stratum goal; `TwoFaceSurface` proves the
+area and planar-target goals. The asymptotic goals remain open.
 
 The area is defined independently by the Lorentzian Gram density on the
 projected joint. `TwoFaceCharts` proves its intrinsic chart interpretation;
@@ -88,8 +88,8 @@ def twoFaceJointArea (h f : Spatial → ℝ) : Measure Spacetime :=
 def twoFaceBoundaryIntegral (h f : Spatial → ℝ) : ℝ :=
   ∫ x, twoFaceWeight h f x ∂twoFaceProjectedArea h f
 
-/-- Exact outstanding constructor/stratum obligations. In particular ambient
-causal convexity is NOT replaced by an intrinsic global-hyperbolicity premise. -/
+/-- Exact constructor/stratum contract, proved separately in `TwoFaceGeometry`.
+Ambient causal convexity is NOT replaced by intrinsic global hyperbolicity. -/
 def TwoFaceRegionGoal : Prop :=
   ∀ h f, AdmissibleTwoFace h f →
     IsOpen (twoFaceRegion h f) ∧ BoundedCausalRegion (twoFaceRegion h f) ∧
