@@ -159,10 +159,11 @@ probability integral. It checks:
 
 A boosted graph cap still has a planar future face. Its transported limit is
 only a **covariance calibration**, not a new two-curved-face boundary theorem.
-Generic induced spacelike joint measure, angle-weighted area, and their Lorentz
-transport remain [work package C / #51](https://github.com/q5m-ai/causal-set-emergence/issues/51).
-This ambient API does not close tracker #24, prove localization, supply rates
-or variance, or establish convergence of individual sprinklings.
+The separate [work package C geometry](JOINT_GEOMETRY.md) now constructs the
+induced spacelike area and angle-weighted integral for the two-graph subclass,
+with chart compatibility and Lorentz/dilation transport using this ambient API.
+Neither layer closes tracker #24, proves localization, supplies rates
+or variance, or establishes convergence of individual sprinklings.
 
 ## Reproduction
 

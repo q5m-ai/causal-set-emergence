@@ -186,7 +186,14 @@ positive dilation gives the second-power action factor and fourth-power density
 transformation. Both identities transfer through the existing expectation
 bridge. A translated boost of the original unequal-axis ellipsoid and explicit
 inverse/dilation checks serve as calibrations, not new curved-face limits.
-General induced-joint measure transport remains separate work.
+The [spacelike joint geometry layer](formal/JOINT_GEOMETRY.md) now proves the
+induced Lorentzian area and positive two-normal angle for the stated two-graph
+subclass, including compact-joint finiteness, absolute integrability, chart
+overlap compatibility, affine Lorentz transport, and area dilation scaling.
+It recovers the unchanged planar measure and boundary integral exactly.
+A boosted unequal-axis joint retains `48π`, while its ambient Euclidean
+spacetime area is an explicit negative control. This is geometry, not a new
+two-curved-face action-limit theorem.
 
 These results complete the mathematical implementation of the restricted
 four-dimensional program, **not** the unrestricted conjecture, a convergence
@@ -216,8 +223,9 @@ See the [general-conjecture roadmap](notes/conjecture-roadmap.md) and
 [tracking issue #24](https://github.com/q5m-ai/causal-set-emergence/issues/24).
 The [first two-face contract](notes/two-face-contract.md) now specifies a
 restricted global two-graph class, an independent Lorentzian-area target,
-nonplanar examples, and explicit open geometric/asymptotic goals. This is an
-interface and nonvacuity result, not a proof of two-face localization.
+nonplanar examples, and explicit region/stratum and asymptotic goals. Its area
+and planar-target goals now have the separate geometric proofs above. Neither
+the contract nor those proofs establish two-face localization.
 
 ## Program 2 — dynamics and automaton-like growth
 

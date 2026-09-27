@@ -110,9 +110,10 @@ joint. Strict spacelikeness of either face makes the joint spacelike.
 Positive-height critical points of `h`, and critical points of either face,
 are allowed: they are not degeneracies of the joint.
 
-These geometric consequences have a conventional argument, but their new
-Lean proofs are **outstanding**, explicitly recorded in `TwoFaceRegionGoal`
-and work package C. They are not fields in `AdmissibleTwoFace`.
+The region/stratum consequences remain **outstanding** in `TwoFaceRegionGoal`.
+The separate [work package C proof](../formal/JOINT_GEOMETRY.md) now derives the
+face slope bounds, actual normals, positive joint metric and angle, and finite
+intrinsic joint measure. None is a field in `AdmissibleTwoFace`.
 
 ### Exact constructor obligations for the existing probability bridge
 
@@ -195,13 +196,14 @@ and `twoFaceJointArea` is its pushforward to spacetime. The target
 against the projected measure. No action, overlap, or desired limit occurs
 in its definition.
 
-**Deferred to C / #51:** formal normal/angle identities and strictness;
-identification of this coordinate measure with the intrinsic chart rule;
-chart independence and measure transport; finite area and absolute
-integrability of the weight; Poincaré transport with #50; and exact planar
-compatibility. `TwoFaceAreaGoal` records strictness, finiteness and
-integrability, but is not an exhaustive formalization of C. Total Lean square
-roots, division and integrals are not proofs of nondegeneracy or integrability.
+**Now proved separately by C / #51:** normal/angle identities and strictness;
+identification with the intrinsic Gram-density rule in constructed covering
+charts and their overlaps; finite area and absolute integrability; affine
+Lorentz and positive-dilation transport using #50; and exact planar
+compatibility. See the [proof and scope](../formal/JOINT_GEOMETRY.md).
+`TwoFaceAreaGoal` has a proof term; it is not an exhaustive formalization of C.
+Nondegeneracy and integrability are derived theorems, not consequences of
+Lean's total square roots, division or integrals.
 
 ## 4. Nonvacuity and unchanged base cases
 
@@ -212,8 +214,8 @@ equality with `graphCapRegion h`. Independent regressions reapply the already
 proved deterministic and expected limits with the original
 `graphBoundaryIntegral h`. Geometrically `j_L = 1`, and the angle weight is
 `1 / |∇h|`, so the new target must recover `graphSurfaceMeasure` and
-`graphBoundaryIntegral` exactly. `TwoFacePlanarTargetGoal` explicitly leaves
-that new target identification to C rather than claiming it from compilation.
+`graphBoundaryIntegral` exactly. `TwoFacePlanarTargetGoal` records
+that exact identification; C now proves it without changing either target.
 
 The old unequal-axis ellipsoids keep their original hypotheses. The damped
 quartic is instantiated in the new regression, and its existing checked
@@ -293,15 +295,16 @@ wedge asymptotics, the limit, or the expectation identity into the geometry.
 
 ## 7. Verification boundary and handoff
 
-`TwoFaceRegionGoal`, `TwoFaceAreaGoal`, `TwoFacePlanarTargetGoal`,
-`TwoFaceLimitGoal`, and `TwoFaceExpectedLimitGoal` are **open proposition
-definitions**, without admissions, custom axioms, or fake proof terms. The
-new checked facts are planar inclusion, exact envelope/set identities, the
-sine construction and concrete nonplanarity, and a conditional transfer using
-the existing bridge. The original action definitions and all old hypotheses
-are unchanged.
+`TwoFaceRegionGoal`, `TwoFaceLimitGoal`, and `TwoFaceExpectedLimitGoal` remain
+**open proposition definitions**, without admissions, custom axioms, or fake
+proof terms. `TwoFaceAreaGoal` and `TwoFacePlanarTargetGoal` now have separate
+proofs in `TwoFaceSurface`, with intrinsic chart and transport results in
+`TwoFaceCharts` and `JointTransport`. The contract's original planar inclusion,
+exact envelope/set identities, sine construction and nonplanarity, and
+conditional bridge transfer remain unchanged, as do the action definitions
+and all old hypotheses.
 
-For #51 use the independently specified area/angle and planar recovery goals.
+The #51 geometry is separate from the still-open action limit.
 For #52 specialize its general bounded-region overlap theorem only after the
 listed region constructor is proved; its graph specialization must use causal
 envelopes, not globally Lipschitz raw heights. For #54 keep the geometry fixed
