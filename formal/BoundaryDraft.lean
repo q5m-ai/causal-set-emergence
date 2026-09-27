@@ -60,6 +60,10 @@ import BoundaryDraft.PoissonExpectation
 import BoundaryDraft.ExpectationGeometry
 import BoundaryDraft.ExpectationBridge
 import BoundaryDraft.ExpectedLimits
+import BoundaryDraft.TranslatedOverlap
+import BoundaryDraft.OverlapCoordinates
+import BoundaryDraft.OverlapDensity
+import BoundaryDraft.GraphOverlap
 import BoundaryDraft.Poincare
 import BoundaryDraft.ActionTransport
 import BoundaryDraft.TwoFaceContract
