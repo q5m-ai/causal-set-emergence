@@ -1,4 +1,4 @@
-"""Exact algebra checks supporting (not replacing) notes/first-attempt.md."""
+"""Exact algebra checks supporting (not replacing) the proof and research notes."""
 
 import sympy as s
 
@@ -24,6 +24,18 @@ def main():
     residual = box(box(f)) + 8 * s.pi * rho * P.subs(z, c * rho * sigma**2) * f
     assert s.simplify(residual) == 0
     print("PASS: interior radial identity box^2 exp(-c*rho*sigma^2)")
+
+    # Proposed long-null cancellation route in notes/flat-localization-plan.md.
+    # Gamma recurrence supplies this factor in the moment of z^j K(z^2).
+    # This is the original BDG kernel, NOT the mass-one planeKernel. These
+    # algebra checks do not establish regularity of any geometric overlap.
+    j = s.symbols("j", integer=True, nonnegative=True)
+    gamma_factor = sum(P.coeff(z, k) * s.rf((j + 1) / 2, k) for k in range(4)) / 2
+    assert s.simplify(gamma_factor + j * (j - 1) * (j - 2) / 12) == 0
+    for order, expected_moment in enumerate([0, 0, 0, -s.Rational(1, 2)]):
+        moment = s.integrate(z**order * P.subs(z, z**2) * s.exp(-z**2), (z, 0, s.oo))
+        assert s.simplify(moment - expected_moment) == 0
+    print("PASS: signed transverse-null moments 0, 1, 2 vanish; moment 3 is -1/2")
 
     # m_n/m_(n-1), from the beta integral in the plane-cap proof.
     ratio = 4 * (2 * n) * (2 * n - 1) / ((4 * n + 1) * (4 * n + 3))
