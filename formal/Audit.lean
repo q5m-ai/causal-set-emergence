@@ -38,6 +38,11 @@ run_cmd do
 #check BoundaryDraft.kernelMassGoal
 #check BoundaryDraft.kernelTailGoal
 #check BoundaryDraft.planeKernel_rescaling_limit
+-- Original-kernel transverse cancellation is conditional analytic work, not localization.
+#check BoundaryDraft.integrableOn_bdgKernel_transverse_moment
+#check BoundaryDraft.integral_bdgKernel_transverse_moment
+#check BoundaryDraft.integral_bdgKernel_transverse_three
+#check BoundaryDraft.bdgKernel_transverse_cancellation
 #check BoundaryDraft.ellipsoid_complete_future
 #check BoundaryDraft.planeAuxiliaryThird_eq_coneIntegral
 #check BoundaryDraft.ellipsoid_graphReduction
