@@ -22,8 +22,12 @@ kernel concentration and the vanishing spatial tail now complete the general
 limit, retaining positive-height critical points. The separate finite Poisson
 law, discrete BDG action, exact expectation identity with `continuumMean`, and
 expected-action versions of all three checked limits are now proved.
-Arbitrary null boundaries, induced null-joint geometry, quantitative rates,
-variance, and sample-wise convergence remain outside the checked claims.**
+Induced spacelike joint area and the two-future-normal positive angle are now
+checked for the two-graph subclass, with chart-overlap measure compatibility,
+finiteness, integrability, Lorentz/dilation transport and exact planar recovery.
+This does not prove a two-curved-face action limit. Arbitrary null boundaries,
+induced null-joint geometry, quantitative rates, variance, and sample-wise
+convergence remain outside the checked claims.**
 
 Lean **4.19.0** and mathlib **v4.19.0** are pinned. `lake-manifest.json` pins the
 resolved dependency commits; mathlib is
@@ -131,6 +135,11 @@ independently checks affine Lorentz covariance and positive-dilation scaling
 of the actual action, including a translated nontrivial boost of the original
 unequal-axis ellipsoid, explicit inverse coordinates, determinant-negative
 spatial parity, null and diagonal pairs, and non-unit/reciprocal dilations.
+`JointSurfaceRegression.lean` independently checks induced two-face geometry,
+actual chart derivatives and overlap measures, compact nondegeneracy and
+integrability, exact planar recovery, a boosted unequal-axis `48π` joint,
+positive/reciprocal area scaling, and the wrong Euclidean spacetime metric
+factor on that joint. It also exercises the existing curved-sine family.
 
 | File | Checked result | What it does **not** establish |
 |---|---|---|
@@ -199,6 +208,9 @@ spatial parity, null and diagonal pairs, and non-unit/reciprocal dilations.
 | `BoundaryDraft/ExpectedLimits.lean` | Expected-action ellipsoid, admissible graph-cap, and null-cap limits under the original hypotheses | Rates, random convergence, unrestricted boundaries, or induced null-joint geometry |
 | `BoundaryDraft/Poincare.lean` | Affine time-oriented Lorentz equivalences, interval/causal transport, derived absolute determinant one, product Lebesgue preservation, and bounded measurable causally convex image regions | Generic induced-joint measure transport or a boundary limit |
 | `BoundaryDraft/ActionTransport.lean` | Exact covariance and positive-dilation scaling of the unchanged bilocal action, absolute integrability, and transfer through the existing expectation bridge | A new Poisson-law coupling, localization, curved-face limits, or sample-wise convergence |
+| `BoundaryDraft/JointMetric.lean`, `TwoFaceAngle.lean` | Actual future unit normals, positive joint metric, strict positive angle and invariant cotangent weight, compact nondegeneracy margins | A boundary measure or asymptotic identity by themselves |
+| `BoundaryDraft/TwoFaceSurface.lean`, `TwoFaceCharts.lean` | Finite induced area, absolutely integrable weight, exact planar measure/integral recovery, actual Gram-density chart rule and overlap measure compatibility | Arbitrary manifold atlases, region/stratum construction, or localization |
+| `BoundaryDraft/JointTransport.lean` | Derivative-based induced area, affine Lorentz covariance and positive-dilation scaling, transported chart rules and angle-weighted integrals | A new action limit, unrestricted embedded-joint theorem, or sample-wise convergence |
 
 The analytic theorem genuinely permits a **signed** kernel. In ordinary
 notation it proves
@@ -1078,8 +1090,10 @@ ensures absolute integrability, including the outer integral.
 The [ambient transport proof explanation](ACTION_TRANSPORT.md) records the
 contracts, Jacobians, inverse-coordinate regressions, and scope. A boosted
 existing ellipsoid remains a covariance calibration, not a genuinely curved
-future boundary. Induced-joint measure transport remains work package C (#51).
-No original definition, base-case hypothesis, or toolchain pin changes.
+future boundary. The separate [joint geometry proof](JOINT_GEOMETRY.md) now
+supplies induced-area and angle-weight transport for the two-graph subclass
+and its transformed embeddings. No original definition, base-case hypothesis,
+or toolchain pin changes.
 
 ## The actual main targets, not weakened substitutes
 
@@ -1195,13 +1209,17 @@ three points inside its future face. `TwoFaceContractRegression.lean` checks
 the unchanged deterministic/expected action contracts, old planar limits,
 quartic admissibility and the genuinely nonplanar example.
 
-The new region/stratum constructor, area nondegeneracy and integrability,
-planar target identification, deterministic limit and expected limit are
-**open proposition definitions**, not proof terms. The Lorentzian area
-candidate is independently specified by a tangential Gram density, not
-ambient Euclidean spacetime area or an action-defined answer. Intrinsic area
-identification and transport remain work package C. Only the conditional
-transfer through the already proved expectation bridge is checked. See the
+The region/stratum constructor, deterministic limit and expected limit remain
+**open proposition definitions**, not proof terms. The area/nondegeneracy and
+planar-target goals now have proofs in `TwoFaceSurface`. `TwoFaceCharts`
+identifies the independently defined measure with positive Lorentzian Gram
+density on covering charts and proves overlap compatibility. `JointTransport`
+computes transported area from actual derivatives and proves Lorentz covariance,
+positive-dilation scaling, and angle-weighted integral transport. These results
+cover the stated coordinate subclass and its transformed embeddings, not all
+immersed surfaces. See the [conventional geometric proof](JOINT_GEOMETRY.md).
+The expectation-limit transfer remains conditional on the open region and
+limit goals. See the
 [contract, source review, exact obligations and obstruction register](../notes/two-face-contract.md).
 This does not close #24 or assume overlap regularity, localization, wedge
 asymptotics or any sample-wise convergence.

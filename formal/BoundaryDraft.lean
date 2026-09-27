@@ -68,3 +68,8 @@ import BoundaryDraft.Poincare
 import BoundaryDraft.ActionTransport
 import BoundaryDraft.TwoFaceContract
 import BoundaryDraft.TwoFaceExamples
+import BoundaryDraft.JointMetric
+import BoundaryDraft.TwoFaceAngle
+import BoundaryDraft.TwoFaceSurface
+import BoundaryDraft.TwoFaceCharts
+import BoundaryDraft.JointTransport
