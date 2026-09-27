@@ -214,6 +214,10 @@ proof can be claimed.
 
 See the [general-conjecture roadmap](notes/conjecture-roadmap.md) and
 [tracking issue #24](https://github.com/q5m-ai/causal-set-emergence/issues/24).
+The [first two-face contract](notes/two-face-contract.md) now specifies a
+restricted global two-graph class, an independent Lorentzian-area target,
+nonplanar examples, and explicit open geometric/asymptotic goals. This is an
+interface and nonvacuity result, not a proof of two-face localization.
 
 ## Program 2 — dynamics and automaton-like growth
 

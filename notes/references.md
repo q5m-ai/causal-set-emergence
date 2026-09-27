@@ -40,6 +40,16 @@
   [doi:10.1088/1361-6382/abc274](https://doi.org/10.1088/1361-6382/abc274).
   Relevant curved-small-diamond evidence, outside this flat-space attempt.
 
+## Focused two-face contract review
+
+The [#49 contract review](two-face-contract.md#5-source-review-and-attribution)
+records a reading of the pinned 2025 source's §§2.4–2.7 and all of §7, including
+isolated/embedded regimes, the prior weighted-overlap method, smearing limits,
+lozenge/triangle evidence, and constant-angle cones checked through dimension
+11. It distinguishes those calculations from general curved-face localization
+and lists literature not reviewed in this task. This does not upgrade the
+related-work inventory above to an exhaustive novelty search.
+
 ## Attribution and claim boundary
 
 The conjecture, action coefficients, interval-volume formula, and known

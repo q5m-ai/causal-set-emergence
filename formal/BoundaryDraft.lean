@@ -4,6 +4,8 @@ import BoundaryDraft.Specification
 import BoundaryDraft.KernelScaling
 import BoundaryDraft.KernelDerivatives
 import BoundaryDraft.GaussianCancellation
+import BoundaryDraft.NullTransverseMoments
+import BoundaryDraft.NullTransverseCancellation
 import BoundaryDraft.KernelEstimates
 import BoundaryDraft.KernelHalfLine
 import BoundaryDraft.GraphGeometry
@@ -60,3 +62,5 @@ import BoundaryDraft.ExpectationBridge
 import BoundaryDraft.ExpectedLimits
 import BoundaryDraft.Poincare
 import BoundaryDraft.ActionTransport
+import BoundaryDraft.TwoFaceContract
+import BoundaryDraft.TwoFaceExamples
