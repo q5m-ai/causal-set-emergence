@@ -43,10 +43,16 @@ signed kernel specialization. `GraphLimit.lean` now proves the **general
 graph-cap deterministic boundary limit** from these collar theorems, one-sided
 signed-kernel concentration reused from draft PR #29, and the spatial tail
 estimate. It identifies the limit with the existing reciprocal-gradient and
-angle integrals without strengthening admissibility. Arbitrary null boundaries,
-induced null-joint geometry, and the Poisson-expectation bridge remain open.
-The checked results concern `continuumMean`, not yet a formalized random sprinkling expectation,
-and assert no convergence rate.
+angle integrals without strengthening admissibility. The separate
+[Poisson-expectation bridge](../formal/EXPECTATION_BRIDGE.md), completed by merged
+PR #47 after the finite-law and discrete-action constructions, now identifies
+`continuumMean` with the normalized expected discrete action at every positive
+density for the checked regions. `ExpectedLimits.lean` transfers all three
+limits under their existing hypotheses. Arbitrary null boundaries, induced
+null-joint geometry, quantitative rates, and sample-wise convergence remain
+outside the checked claims. The [acceptance audit](../formal/ACCEPTANCE.md)
+records the earlier proof obligations and their resolutions without changing
+the draft statements or equations below.
 
 ## 1. Precise target and conventions
 
@@ -273,10 +279,12 @@ coordinate Jacobian and both Fubini swaps under compact domination, and obtain
 measurability, and absolute integrability. The bilocal action then cancels
 exactly to (6). A normalized half-line Gaussian with proved mass and domination
 concentrates at zero, giving the unchanged proof term
-`nullCapLimitGoal : NullCapLimitGoal` under exactly `0<a<T`. The displayed
-quantitative error rate, induced-joint area interpretation, arbitrary-null
-version of Theorem 1, and Poisson probability statements are not claimed as
-Lean results.
+`nullCapLimitGoal : NullCapLimitGoal` under exactly `0<a<T`.
+The separate `nullCap_expectedBDGAction_limit` in `ExpectedLimits.lean`
+transfers this result to the expected discrete action under the same hypotheses.
+The displayed quantitative error rate, induced-joint area interpretation,
+arbitrary-null version of Theorem 1, and
+sample-wise convergence are not claimed as Lean results.
 
 ## 4. A different exact reduction: planar future boundary
 
@@ -581,8 +589,9 @@ For every graph cap (10) satisfying the stated hypotheses,
 Constants in the error estimate may depend on the fixed region. The estimate
 is not asserted uniformly as the joint becomes tangent, $`|\nabla h|\to0`$.
 The displayed rate remains **draft-level**, not a Lean result. The deterministic
-limit underlying (17), with `continuumMean` in place of the still-unformalized
-Poisson expectation, is now checked by `AdmissibleGraphCap.graphCapLimit`.
+limit underlying (17) is checked by `AdmissibleGraphCap.graphCapLimit` for
+`continuumMean`. The separate `AdmissibleGraphCap.expectedBDGAction_limit`
+now transfers it to the normalized Poisson expectation.
 `GraphCollar.lean` proves the compact-joint and noncritical-band
 prerequisites. `GraphSurface.lean` adds height-flattening local charts and
 uses their local Lipschitz parametrizations to prove finite Hausdorff joint
@@ -773,10 +782,11 @@ normalization, or spacelikeness are added.
 
 This is the audited proof term `ellipsoidLimitGoal : EllipsoidLimitGoal`,
 not merely a definition of the desired conclusion. It establishes the
-**deterministic** value in (19). The identification with a Poisson expectation
-remains draft-level. The general deterministic limit is now checked separately
-in `GraphLimit`; the rate in Theorem 2 is not. No quantitative rate follows from
-these checked limits.
+**deterministic** value in (19). The separate expectation bridge and
+`ellipsoid_expectedBDGAction_limit` now prove the same value for the normalized
+Poisson expectation under the original hypotheses. The general deterministic
+limit is checked separately in `GraphLimit`; the rate in Theorem 2 is not.
+No quantitative rate follows from these checked limits.
 
 **Checked geometric interpretation of the concrete ellipsoid.** The separate
 modules `EllipsoidJoint`, `EllipsoidAngle`, and `EllipsoidSurface` now interpret
@@ -819,8 +829,9 @@ checks `48π` in both canonical angle and reciprocal-gradient integrals,
 with absolute integrability and the original hypotheses retained. These results
 complete the concrete ellipsoid interpretation; the general deterministic
 angle-integral limit is now checked separately in `GraphLimit`. The rate in
-Theorem 2, arbitrary null boundaries, induced null-joint geometry, and the
-probability bridge remain separate.
+Theorem 2, arbitrary null boundaries, and induced null-joint geometry remain
+outside the checked claims. The probability bridge is proved separately in
+`ExpectationBridge`, with expected-action limits in `ExpectedLimits`.
 
 ## 7. What remains outside this attempt
 

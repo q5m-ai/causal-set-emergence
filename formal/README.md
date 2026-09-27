@@ -19,8 +19,11 @@ subtype transport, integrability, and recovery of the original boundary value.
 Global collar coarea is derived from the atlas, including null endpoints,
 absolute integrability, and the signed kernel specialization. One-sided signed
 kernel concentration and the vanishing spatial tail now complete the general
-limit, retaining positive-height critical points. Arbitrary null boundaries,
-induced null-joint geometry, and the Poisson-expectation bridge remain open.**
+limit, retaining positive-height critical points. The separate finite Poisson
+law, discrete BDG action, exact expectation identity with `continuumMean`, and
+expected-action versions of all three checked limits are now proved.
+Arbitrary null boundaries, induced null-joint geometry, quantitative rates,
+variance, and sample-wise convergence remain outside the checked claims.**
 
 Lean **4.19.0** and mathlib **v4.19.0** are pinned. `lake-manifest.json` pins the
 resolved dependency commits; mathlib is
@@ -30,7 +33,8 @@ This is the checked layer for Program 1 of **Causal Set Emergence**. The Lake
 package identifier remains `causal_set_gravity` because this program studies the
 BDG gravitational action; renaming the research umbrella does not change its
 mathematical scope. This directory contains the proved components and explicit
-open targets.
+open targets. The [acceptance and gap-history audit](ACCEPTANCE.md) maps the
+merged implementation to trackers #1 and #40 without expanding their scope.
 
 ## What actually compiles and is proved
 
@@ -104,6 +108,13 @@ the north-pole area Jacobian, absolute integrability, and the `48π` joint integ
 unchanged null target, specializes the actual four-dimensional interval moment
 at `n = 0,1`, checks both weight endpoints, and instantiates the exact reduction
 and limit at `T = 2`, `a = 1`.
+`PoissonRegression.lean` checks the actual finite probability law, count and
+Mecke identities, null-volume cases, multiplicities, and endpoint conventions.
+`DiscreteBDGRegression.lean` checks the finite-order action, signed coefficients,
+normalization, measurability, and integrability. `ExpectationRegression.lean`
+independently expands the probability/action/continuum contracts, exercises
+null and diagonal exclusions, and transfers the original ellipsoid, null-cap,
+and quartic regressions to expectations.
 
 | File | Checked result | What it does **not** establish |
 |---|---|---|
@@ -165,6 +176,10 @@ and limit at `T = 2`, `a = 1`.
 | `BoundaryDraft/NullCoordinates.lean`, `NullCapReduction.lean` | Null-coordinate Jacobian, transverse polar coarea, two dominated Fubini swaps, exact support and logarithmic `nullCapWeight` | A formula assumed from numerical quadrature |
 | `BoundaryDraft/NullGaussian.lean` | Unit mass, absolute integrability, exact density rescaling, and half-line Gaussian concentration | A convergence rate |
 | `BoundaryDraft/NullCapLimit.lean` | Exact bilocal cancellation, bounded continuous weight extension, absolute integrability, and `nullCapLimitGoal : NullCapLimitGoal` | Poisson variance/convergence, arbitrary null boundaries, or angle interpretation |
+| `BoundaryDraft/FiniteConfiguration.lean`, `FinitePoisson.lean`, `PoissonCounts.lean`, `PoissonDisjoint.lean`, `PoissonSimplicity.lean`, `PoissonIntegration.lean`, `SpacetimeSprinkling.lean` | Constructed finite Poisson law, measurable counts, exact count laws, reduced Campbell–Mecke identities, factorial moments, support, and almost-sure simplicity | A BDG action or expectation bridge by themselves; an infinite-volume process |
+| `BoundaryDraft/FiniteCausalOrder.lean`, `DiscreteBDG.lean` | Genuine finite-order BDG action, all signed coefficients and normalization, measurability, and absolute integrability | The expectation identity by themselves |
+| `BoundaryDraft/PoissonExpectation.lean`, `ExpectationGeometry.lean`, `ExpectationBridge.lean` | Exact normalized expectation equals the unchanged `continuumMean`; restricted interval rates identified from geometric causal convexity | Variance, concentration, or a sample-wise limit |
+| `BoundaryDraft/ExpectedLimits.lean` | Expected-action ellipsoid, admissible graph-cap, and null-cap limits under the original hypotheses | Rates, random convergence, unrestricted boundaries, or induced null-joint geometry |
 
 The analytic theorem genuinely permits a **signed** kernel. In ordinary
 notation it proves
@@ -359,8 +374,9 @@ continuumMean ρ (graphCapRegion h) = ∫ x in {x | 0 < h x}, planeKernel ρ (h 
 
 This reduction is deterministic and finite-density only. The separate general
 angle, canonical boundary-integral identities, collar coarea, and general limit
-are checked in their own modules. Arbitrary null boundaries and the
-Poisson-expectation bridge remain unproved.
+are checked in their own modules. The separate `ExpectationBridge` and
+`ExpectedLimits` now connect this deterministic result to the expected discrete
+action; arbitrary null boundaries remain outside these results.
 
 ### Compact joint and noncritical band (#19 prerequisite layer)
 
@@ -971,6 +987,54 @@ it does not establish the Poisson-expectation bridge, variance, convergence in
 probability, a general graph-cap limit, arbitrary null boundaries, or the
 Lorentzian angle/joint interpretation. No quantitative rate is claimed.
 
+## Finite Poisson expectation and limit transfer (#40)
+
+The independent layers completed by merged PRs #44, #46, and #47 are:
+
+1. [Finite Poisson infrastructure](FINITE_POISSON.md): an actual probability
+   law on unordered finite configurations, measurable counts, exact Poisson
+   count laws, and reduced one-/two-point Campbell–Mecke identities. Finite
+   volume and positive density suffice; the measure is not an assumed field.
+2. [Discrete BDG action](DISCRETE_BDG.md): the normalized observable is defined
+   from cardinality and interval-layer counts. Its finite-order interpretation,
+   coefficients, normalization, measurability, and integrability are proved
+   without referring to a continuum integral or expectation in its definition.
+3. [Expectation bridge](EXPECTATION_BRIDGE.md): interval-layer averaging,
+   timelike interval volume, endpoint removal, and the almost-everywhere
+   null-cone step prove the exact finite-density identity:
+
+   ```lean
+   theorem FiniteSprinkling.expectation_eq_continuumMean (S : FiniteSprinkling)
+       (hconv : CausallyConvex S.region) :
+       (∫ c, discreteBDGAction S.density c ∂S.probability) =
+         continuumMean S.density S.region
+   ```
+
+The sprinkling supplies measurability, finite volume, and positive density;
+`CausallyConvex` assumes interval containment, not an expectation or volume
+identity. Boundedness and integrability are discharged for the checked region
+classes. Neither side of the identity is defined using the other. In
+particular, the deterministic results above remain independently auditable.
+
+`expectedBDGAction` is defined by integrating the original discrete action
+against the constructed Poisson law. `ExpectedLimits.lean` rewrites it to
+`continuumMean` for positive densities and applies the existing limit theorems:
+
+```lean
+AdmissibleGraphCap.expectedBDGAction_limit
+AdmissibleGraphCap.expectedBDGAction_limit_eq_angle
+ellipsoid_expectedBDGAction_limit
+nullCap_expectedBDGAction_limit
+```
+
+These are limits **of expectations**, with no added geometric hypotheses.
+The general graph-cap target remains the canonical reciprocal-gradient integral,
+equivalently its angle integral; interior critical points are still allowed.
+The ellipsoid retains its original unequal-axis value. The null-cap target
+remains the existing algebraic `nullJointArea`, not a newly proved induced
+null-joint theorem. No variance, concentration, convergence in probability,
+almost-sure convergence, or random-dynamics model is asserted.
+
 ## The actual main targets, not weakened substitutes
 
 `BoundaryDraft/Specification.lean` defines:
@@ -1015,12 +1079,14 @@ The continuum action is not defined to be its conjectured answer. The general
 and concrete limit proofs start from the actual four-dimensional integral,
 not a reformulated target or an assumed geometric reduction.
 
-## Remaining proof graph
+## Completed proof graph and remaining scope
 
-1. **Probability bridge, separate milestone.** Define Poisson sprinkling,
-   interval counts, and the discrete BDG action; derive `continuumMean` as its
-   expectation. No deterministic limit by itself proves that bridge,
-   variance bounds, or convergence in probability.
+1. **Probability bridge: completed as a separate milestone.** The finite
+   Poisson law, interval counts, and discrete BDG action are constructed;
+   `FiniteSprinkling.expectation_eq_continuumMean` proves the exact expectation
+   identity, and `ExpectedLimits` transfers the three deterministic limits.
+   No deterministic limit by itself proves this bridge. Variance bounds and
+   convergence in probability remain unproved.
 2. **Concrete deterministic limits: completed.** The full ellipsoid and
    null-plane-cap reductions and limits are proved under their original
    hypotheses. The null proof includes causal convexity, complete interval
@@ -1061,9 +1127,12 @@ The two concrete deterministic milestones and the ellipsoid geometric
 interpretation, plus the general graph-cap exact reduction, are complete and
 audited, including canonical/parametric ellipsoid measure compatibility.
 General graph-cap collar coarea, one-sided height-density continuity, and the
-complete deterministic boundary limit are also checked. Arbitrary null
-boundaries, induced null-joint geometry, and the probability bridge remain
-separate tasks.
+complete deterministic boundary limit are also checked. The separate probability
+bridge and expected-action limits complete the mathematical implementation of
+trackers #40 and #1. Arbitrary null boundaries, induced null-joint geometry,
+quantitative rates, variance, and sample-wise convergence remain separate tasks.
+The [acceptance audit](ACCEPTANCE.md) records the proof-gap history and validation;
+this is not a proof of the unrestricted conjecture or a claim of peer review.
 
 ## Reproduce
 
@@ -1112,13 +1181,31 @@ lake exe cache get \
   Mathlib.MeasureTheory.Integral.Prod \
   Mathlib.MeasureTheory.Constructions.HaarToSphere \
   Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls \
+  Mathlib.Algebra.BigOperators.Group.Finset.Basic \
+  Mathlib.Analysis.Calculus.ContDiff.Basic \
+  Mathlib.Analysis.Calculus.ContDiff.Defs \
+  Mathlib.Analysis.Calculus.InverseFunctionTheorem.FDeriv \
+  Mathlib.Analysis.Convex.Topology \
+  Mathlib.Analysis.Normed.Module.Convex \
+  Mathlib.Analysis.SpecificLimits.Basic \
+  Mathlib.Data.List.FinRange \
+  Mathlib.Data.Multiset.FinsetOps \
+  Mathlib.MeasureTheory.Covering.Besicovitch \
+  Mathlib.MeasureTheory.Covering.Differentiation \
+  Mathlib.MeasureTheory.Integral.Pi \
+  Mathlib.MeasureTheory.Measure.Comap \
+  Mathlib.MeasureTheory.Measure.Decomposition.RadonNikodym \
+  Mathlib.Probability.Distributions.Poisson \
+  Mathlib.Topology.Constructions.SumProd \
   Mathlib.Tactic.Ring Mathlib.Tactic.FieldSimp \
   Mathlib.Tactic.Linarith Mathlib.Tactic.NormNum Mathlib.Tactic.Positivity
 ./check.sh
 ```
 
-The current workspace also has an ignored, task-local Lean distribution under
-`.tools/`; `check.sh` detects it. No global toolchain configuration was changed.
+An optional task-local Lean 4.19.0 distribution can be installed at
+`.tools/lean-4.19.0-linux/`; `check.sh` detects it without changing global
+toolchain configuration. For the `lake` commands above, also prepend its `bin/`
+to `PATH` if Lean/elan is not otherwise installed.
 Dependencies and build products under `.lake/`, and the local distribution,
 are excluded from Git. Only the formal sources, configuration, and lockfile
 are committed. The enclosing repository is private; no paper or result has

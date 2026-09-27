@@ -162,20 +162,29 @@ no global density regularity is assumed. Independent regressions recover the
 original unequal-axis ellipsoid value and retain the quartic's interior critical
 point in the tail domain. No admissibility hypothesis is added.
 
-Still open in the formal program:
-
-- arbitrary null boundaries and the induced null-joint area interpretation;
-- the Poisson-sprinkling expectation bridge.
+The **separate Poisson-expectation bridge is now proved**, through merged
+PRs #44, #46, and #47. The finite sprinkling probability law and the normalized
+discrete BDG action are constructed independently of `continuumMean`.
+`FiniteSprinkling.expectation_eq_continuumMean` identifies their exact
+finite-density expectation with that unchanged deterministic integral for
+measurable finite-volume causally convex regions at positive density.
+`ExpectedLimits.lean` then transfers the ellipsoid, admissible graph-cap,
+and null-cap limits under their original hypotheses. See the
+[probability API](formal/FINITE_POISSON.md), [discrete action](formal/DISCRETE_BDG.md),
+and [expectation bridge](formal/EXPECTATION_BRIDGE.md).
 
 The null result starts from the unchanged four-dimensional `continuumMean` and
 proves the exact logarithmic weight, support, endpoint, absolute integrability,
-and density limit under exactly `0 < a < T`. It does not formalize the
-Poisson-expectation bridge or identify the algebraic `nullJointArea` with a
-general induced-joint theorem.
+and density limit under exactly `0 < a < T`. Its expected-action version has the
+same hypotheses and algebraic `nullJointArea` target. Arbitrary null boundaries
+and a general induced-null-joint area interpretation remain open.
 
-Accordingly, this is not yet a checked proof of the unrestricted conjecture or
-of convergence for individual random sprinklings. See
-[tracking issue #1](https://github.com/q5m-ai/causal-set-emergence/issues/1).
+These results complete the mathematical implementation of the restricted
+four-dimensional program, **not** the unrestricted conjecture, a convergence
+rate, variance or concentration bounds, convergence in probability, or
+almost-sure convergence of individual sprinklings. The
+[acceptance and gap-history audit](formal/ACCEPTANCE.md) records the checked
+contracts and scope for [tracker #1](https://github.com/q5m-ai/causal-set-emergence/issues/1).
 
 ### Strategic direction beyond the checked base cases
 

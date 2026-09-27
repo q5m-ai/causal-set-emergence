@@ -1,10 +1,11 @@
 # Finite Poisson API
 
-This is the finite-volume probability infrastructure for issue #41. It does
-not define a BDG action, identify an action expectation with `continuumMean`,
-or assert sample-wise convergence. Existing deterministic definitions and
-theorem contracts are unchanged. Tracker and main proof-status updates remain
-separate from this implementation PR.
+This is the finite-volume probability infrastructure completed by issue #41
+and merged PR #44. This layer does not itself define a BDG action or identify
+its expectation with `continuumMean`: those separate results are now proved in
+the [discrete-action](DISCRETE_BDG.md) and [expectation-bridge](EXPECTATION_BRIDGE.md)
+layers. Existing deterministic definitions and theorem contracts are unchanged.
+No sample-wise convergence is asserted.
 
 ## Construction and conventions
 
@@ -91,9 +92,10 @@ nonnegative weights. `lintegral_intervalLayer` combines reduced two-point Mecke
 and the subset count law into the exact bilocal Poisson-PMF formula for any
 layer. `integrable_intervalPairSum` handles bounded signed weights.
 
-The later action/expectation work must still supply the actual BDG coefficients
+The separate action/expectation layers now supply the actual BDG coefficients
 and normalization, the appropriate causal-convexity and interval-volume
-identifications, and the bridge to the unchanged `continuumMean`.
+identifications, and the bridge to the unchanged `continuumMean`. None of
+these downstream results is an assumption of this probability construction.
 
 ## Validation
 
