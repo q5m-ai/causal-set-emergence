@@ -17,7 +17,8 @@ ellipsoid `GraphReductionGoal`, `EllipsoidLimit` proves the unchanged
 The main targets refer to the actual four-dimensional deterministic continuum
 integral, not an action defined to equal its expected limiting answer.
 The separate identification of that integral with a Poisson expectation is
-not yet formalized.
+proved in `ExpectationBridge`; `ExpectedLimits` transfers the deterministic
+limits without changing these definitions or asserting sample-wise convergence.
 -/
 
 open MeasureTheory Filter Set
@@ -49,8 +50,9 @@ def chronologicalFuture (x : Spacetime) : Set Spacetime :=
 
 def bdgKernel (z : ℝ) : ℝ := bdgPolynomial z * Real.exp (-z)
 
-/-- Equation (2) of the draft, normalized as l_p² E[S]/hbar when the
-unformalized Poisson-counting bridge and causal convexity apply. -/
+/-- Equation (2) of the draft, defined as a deterministic integral.
+`FiniteSprinkling.expectation_eq_continuumMean` identifies it with l_p² E[S]/hbar
+under finite-volume measurable sprinkling and causal-convexity hypotheses. -/
 def continuumMean (ρ : ℝ) (M : Set Spacetime) : ℝ :=
   (4 / Real.sqrt 6) * Real.sqrt ρ *
     ((∫ _x in M, (1 : ℝ)) - ρ *

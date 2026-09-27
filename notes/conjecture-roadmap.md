@@ -78,9 +78,12 @@ claimed limit.
 
 ### Stage 0 — finish the checked base case
 
-Close issue #1, including the general admissible graph-cap limit and the
-Poisson-expectation bridge. Preserve the distinction between the deterministic
-integral, the expected discrete action, and individual random sprinklings.
+The mathematical implementation for issue #1 is now merged, including the
+general admissible graph-cap limit and the separate Poisson-expectation bridge.
+The [acceptance audit](../formal/ACCEPTANCE.md) records the theorem contracts,
+proof-gap history, and validation needed for tracker closure. Preserve the
+distinction between the deterministic integral, the expected discrete action,
+and individual random sprinklings. Stages 1–4 below remain open.
 
 ### Stage 1 — general flat localization in four dimensions
 

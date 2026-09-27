@@ -1,12 +1,12 @@
 # Discrete four-dimensional BDG action
 
-This is the finite-action API for issue #42, built on the constructed
-[finite Poisson infrastructure](FINITE_POISSON.md). It defines a random
-finite-order observable and proves its measurability and absolute
-integrability. It does **not** identify its expectation with `continuumMean`;
-that bridge remains issue #43. No deterministic definition or theorem
-hypothesis is changed. Tracker and main proof-status updates remain separate
-until merge.
+This is the finite-action API completed by issue #42 and merged PR #46,
+built on the constructed [finite Poisson infrastructure](FINITE_POISSON.md).
+It defines a random finite-order observable and proves its measurability and
+absolute integrability. This layer does **not itself** identify its expectation
+with `continuumMean`; that separate [bridge](EXPECTATION_BRIDGE.md) is now proved
+by issue #43 / merged PR #47. No deterministic definition or theorem hypothesis
+is changed.
 
 ## Finite order and counting conventions
 
@@ -116,6 +116,7 @@ cd formal
 
 This checks every local Lean source with warnings as errors, isolated
 public-declaration axiom audits, and the aggregate library audit. Only the
-standard Lean foundations are permitted. The final expectation identity,
-transfer of deterministic limits to expectations, variance, and sample-wise
-convergence remain outside this implementation.
+standard Lean foundations are permitted. The final expectation identity and
+transfer of deterministic limits are proved separately in `ExpectationBridge`
+and `ExpectedLimits`. Variance and sample-wise convergence remain outside the
+checked program.
