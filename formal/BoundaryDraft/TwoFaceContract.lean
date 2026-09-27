@@ -8,13 +8,13 @@ A deliberately restricted global two-graph class: the thickness retains the
 unchanged `AdmissibleGraphCap` API; an independently chosen future graph uses
 part of the remaining strict Lipschitz budget. Smooth germs `f - h, f` are
 separate from causal envelopes `f - max 0 h, f`. No analytic conclusion is a
-field. All `Goal` declarations below are proposition definitions, not proofs.
-`TwoFaceGeometry` supplies the separate proof of `TwoFaceRegionGoal`; the area
-and asymptotic goals remain open here.
+field. `Goal` declarations below define propositions, not their proofs.
+`TwoFaceGeometry` proves the region/stratum goal; `TwoFaceSurface` proves the
+area and planar-target goals. The asymptotic goals remain open.
 
-The area candidate is defined independently by the Lorentzian Gram density
-on the projected joint. Its identification with intrinsic joint area, and its
-transport/normalization, belong to work package C (#51).
+The area is defined independently by the Lorentzian Gram density on the
+projected joint. `TwoFaceCharts` proves its intrinsic chart interpretation;
+`JointTransport` proves affine Lorentz covariance and dilation scaling (#51).
 -/
 
 open MeasureTheory Set Filter
@@ -56,8 +56,8 @@ def twoFaceNormal (f : Spatial → ℝ) (x : JointSpace) : Spacetime :=
   (Real.sqrt (1 - ‖graphGradient f x‖ ^ 2))⁻¹ •
     (Fin.cons 1 (graphGradient f x) : Spacetime)
 
-/-- Intended to equal cosh of the positive angle; strictness is a goal below,
-not an assumption or a consequence of Lean's total square root/division. -/
+/-- Cosh of the positive angle; strictness is proved in `TwoFaceAngle`,
+not assumed or inferred from Lean's total square root/division. -/
 def twoFaceCosh (h f : Spatial → ℝ) (x : JointSpace) : ℝ :=
   minkowskiInner (twoFaceNormal (fun y => f y - h y) x) (twoFaceNormal f x)
 
@@ -74,13 +74,14 @@ def twoFaceTangentialGradient (h f : Spatial → ℝ) (x : JointSpace) : JointSp
 def twoFaceAreaDensity (h f : Spatial → ℝ) (x : JointSpace) : ℝ :=
   Real.sqrt (1 - ‖twoFaceTangentialGradient h f x‖ ^ 2)
 
-/-- Coordinate candidate for induced Lorentzian area, with the existing π/4
-Hausdorff normalization on the spatial joint. No action enters this definition. -/
+/-- Induced Lorentzian area in spatial coordinates, with the existing π/4
+Hausdorff normalization. `TwoFaceCharts` proves the chart rule; no action
+enters this definition. -/
 def twoFaceProjectedArea (h f : Spatial → ℝ) : Measure JointSpace :=
   (graphSurfaceMeasure h).withDensity (fun x => ENNReal.ofReal (twoFaceAreaDensity h f x))
 
-/-- The same candidate pushed to the actual spacetime joint. Work package C
-must prove its intrinsic chart meaning and covariance; these are not fields. -/
+/-- The same measure on the actual spacetime joint. Its intrinsic chart rule
+and covariance are downstream theorems, not structure fields. -/
 def twoFaceJointArea (h f : Spatial → ℝ) : Measure Spacetime :=
   Measure.map (twoFaceLift f) (twoFaceProjectedArea h f)
 
@@ -97,15 +98,15 @@ def TwoFaceRegionGoal : Prop :=
     frontier (twoFaceRegion h f) = twoFacePast h f ∪ twoFaceFuture h f ∧
     twoFacePast h f ∩ twoFaceFuture h f = twoFaceJoint h f
 
-/-- Finiteness and nondegeneracy are geometric goals, not admissibility fields.
-This does not replace #51's intrinsic-area and transport obligations. -/
+/-- Finiteness and nondegeneracy, proved in `TwoFaceSurface`, not admissibility
+fields. Intrinsic chart and transport theorems are proved separately. -/
 def TwoFaceAreaGoal : Prop :=
   ∀ h f, AdmissibleTwoFace h f →
     (∀ x ∈ graphJoint h, 1 < twoFaceCosh h f x ∧ 0 < twoFaceAreaDensity h f x) ∧
     IsFiniteMeasure (twoFaceProjectedArea h f) ∧
     Integrable (twoFaceWeight h f) (twoFaceProjectedArea h f)
 
-/-- Recovery of the original target is itself an explicit geometric goal. -/
+/-- Recovery of the original target, proved without changing it in `TwoFaceSurface`. -/
 def TwoFacePlanarTargetGoal : Prop :=
   ∀ h, AdmissibleGraphCap h →
     twoFaceProjectedArea h (fun _ => 0) = graphSurfaceMeasure h ∧

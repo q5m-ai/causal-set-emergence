@@ -2,8 +2,9 @@
 
 **Status:** checked geometry and finite-density identities for every unchanged
 `AdmissibleTwoFace h f`. The original `TwoFaceRegionGoal` now has the proof term
-`twoFaceRegionGoal`. This is an integration prerequisite, not a two-face limit,
-an overlap Taylor theorem, or an induced joint-area theorem.
+`twoFaceRegionGoal`. This is an integration prerequisite, not a two-face limit
+or an overlap Taylor theorem. The separate [joint-geometry proof](JOINT_GEOMETRY.md)
+now supplies induced joint area, angle, and transport results.
 
 The [two-face contract](../notes/two-face-contract.md) retains the original
 `AdmissibleGraphCap h`, local C³ face germs, and combined Euclidean Lipschitz
@@ -64,8 +65,9 @@ long-displacement density, and geometric target are all unchanged.
    assembles this constructor and the compactness/frontier/intersection facts
    into the original proposition without adding a premise.
 
-This proves the topological/compact stratum statements, not an intrinsic area,
-normal/angle identity, or manifold-with-boundary area interpretation.
+This module proves the topological/compact stratum statements. Intrinsic area,
+normal/angle identities and covering-chart interpretation are proved separately
+in the [joint-geometry modules](JOINT_GEOMETRY.md), not inferred from this proof.
 
 ## Exact overlap and expectation
 
@@ -140,10 +142,10 @@ checks do not replace this local Lean audit.
 
 ## Remaining obligations
 
-Intrinsic joint area, positive angle identities, angle-weight integrability,
-planar target identification and joint-measure transport remain #51. Geometric
-long-null regularity and connection to the conditional cancellation theorem
-remain #61. Translated-boundary tangencies, wedge asymptotics, curved-face error
+Joint area, positive angle identities, angle-weight integrability, planar
+target identification and joint-measure transport are separately proved in
+#51, not consequences of the region/overlap theorem. Geometric long-null
+regularity and connection to the conditional cancellation theorem remain #61. Translated-boundary tangencies, wedge asymptotics, curved-face error
 bounds and globalization remain research gates in the
 [localization plan](../notes/flat-localization-plan.md). No two-face boundary
 limit, convergence rate, variance bound or sample-wise convergence follows

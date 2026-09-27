@@ -186,7 +186,14 @@ positive dilation gives the second-power action factor and fourth-power density
 transformation. Both identities transfer through the existing expectation
 bridge. A translated boost of the original unequal-axis ellipsoid and explicit
 inverse/dilation checks serve as calibrations, not new curved-face limits.
-General induced-joint measure transport remains separate work.
+The [spacelike joint geometry layer](formal/JOINT_GEOMETRY.md) now proves the
+induced Lorentzian area and positive two-normal angle for the stated two-graph
+subclass, including compact-joint finiteness, absolute integrability, chart
+overlap compatibility, affine Lorentz transport, and area dilation scaling.
+It recovers the unchanged planar measure and boundary integral exactly.
+A boosted unequal-axis joint retains `48π`, while its ambient Euclidean
+spacetime area is an explicit negative control. This is geometry, not a new
+two-curved-face action-limit theorem.
 
 These results complete the mathematical implementation of the restricted
 four-dimensional program, **not** the unrestricted conjecture, a convergence
@@ -217,11 +224,12 @@ See the [general-conjecture roadmap](notes/conjecture-roadmap.md) and
 The [first two-face contract](notes/two-face-contract.md) now specifies a
 restricted global two-graph class, an independent Lorentzian-area target,
 nonplanar examples, and explicit geometric/asymptotic goals. The separate
-[two-face geometry integration](formal/TWO_FACE_GEOMETRY.md) now proves the
+[two-face geometry integration](formal/TWO_FACE_GEOMETRY.md) proves the
 region/stratum contract and connects every admissible region to the exact signed
-overlap and Poisson-expectation APIs. Intrinsic joint area, overlap regularity,
-and two-face limits remain separate obligations; this is not a proof of
-two-face localization.
+overlap and Poisson-expectation APIs. The [joint-geometry proof](formal/JOINT_GEOMETRY.md)
+proves the area and planar-target goals, including intrinsic chart meaning and
+transport. Overlap regularity and two-face limits remain open; these results do
+not establish two-face localization.
 
 ## Program 2 — dynamics and automaton-like growth
 
