@@ -6,9 +6,9 @@ currently phrased.
 ## Strategic objective
 
 The restricted four-dimensional results are a foundation, not the endpoint of
-Program 1. The minimum near-term milestone is to close
-[issue #1](https://github.com/q5m-ai/causal-set-emergence/issues/1) without
-weakening its existing contracts. The follow-on objective in
+Program 1. The checked base-case milestone,
+[issue #1](https://github.com/q5m-ai/causal-set-emergence/issues/1), is now closed
+without weakening its existing contracts. The follow-on objective in
 [issue #24](https://github.com/q5m-ai/causal-set-emergence/issues/24) is a
 precise proof—or, if necessary, a counterexample and corrected theorem—for
 Conjecture 1′ of Dowker–Liu–Lloyd-Jones:
@@ -96,6 +96,15 @@ passing to the density limit.
 
 This is the first qualitative generalization: it targets arbitrary admissible
 faces rather than another explicit profile.
+
+The [two-curved-face decomposition](flat-localization-plan.md) takes stock of
+the completed base case and breaks this stage into theorem contracts,
+covariance, induced joint geometry, exact translated-overlap reduction, signed
+near-null cancellation, and diagnostic experiments. It separates those first
+work packages from the still-unproved geometric regularity, tangent-wedge,
+stability, and globalization steps. The overlap method is prior work; its
+proposed use for uniform estimates is a research route, not a localization
+claim or a new admissibility assumption.
 
 ### Stage 2 — arbitrary dimension
 
