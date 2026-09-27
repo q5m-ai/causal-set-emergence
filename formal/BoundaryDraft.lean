@@ -4,6 +4,8 @@ import BoundaryDraft.Specification
 import BoundaryDraft.KernelScaling
 import BoundaryDraft.KernelDerivatives
 import BoundaryDraft.GaussianCancellation
+import BoundaryDraft.NullTransverseMoments
+import BoundaryDraft.NullTransverseCancellation
 import BoundaryDraft.KernelEstimates
 import BoundaryDraft.KernelHalfLine
 import BoundaryDraft.GraphGeometry
@@ -62,3 +64,5 @@ import BoundaryDraft.TranslatedOverlap
 import BoundaryDraft.OverlapCoordinates
 import BoundaryDraft.OverlapDensity
 import BoundaryDraft.GraphOverlap
+import BoundaryDraft.TwoFaceContract
+import BoundaryDraft.TwoFaceExamples
