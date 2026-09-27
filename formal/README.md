@@ -114,7 +114,11 @@ Mecke identities, null-volume cases, multiplicities, and endpoint conventions.
 normalization, measurability, and integrability. `ExpectationRegression.lean`
 independently expands the probability/action/continuum contracts, exercises
 null and diagonal exclusions, and transfers the original ellipsoid, null-cap,
-and quartic regressions to expectations.
+and quartic regressions to expectations. `ActionTransportRegression.lean`
+independently checks affine Lorentz covariance and positive-dilation scaling
+of the actual action, including a translated nontrivial boost of the original
+unequal-axis ellipsoid, explicit inverse coordinates, determinant-negative
+spatial parity, null and diagonal pairs, and non-unit/reciprocal dilations.
 
 | File | Checked result | What it does **not** establish |
 |---|---|---|
@@ -181,6 +185,8 @@ and quartic regressions to expectations.
 | `BoundaryDraft/FiniteCausalOrder.lean`, `DiscreteBDG.lean` | Genuine finite-order BDG action, all signed coefficients and normalization, measurability, and absolute integrability | The expectation identity by themselves |
 | `BoundaryDraft/PoissonExpectation.lean`, `ExpectationGeometry.lean`, `ExpectationBridge.lean` | Exact normalized expectation equals the unchanged `continuumMean`; restricted interval rates identified from geometric causal convexity | Variance, concentration, or a sample-wise limit |
 | `BoundaryDraft/ExpectedLimits.lean` | Expected-action ellipsoid, admissible graph-cap, and null-cap limits under the original hypotheses | Rates, random convergence, unrestricted boundaries, or induced null-joint geometry |
+| `BoundaryDraft/Poincare.lean` | Affine time-oriented Lorentz equivalences, interval/causal transport, derived absolute determinant one, product Lebesgue preservation, and bounded measurable causally convex image regions | Generic induced-joint measure transport or a boundary limit |
+| `BoundaryDraft/ActionTransport.lean` | Exact covariance and positive-dilation scaling of the unchanged bilocal action, absolute integrability, and transfer through the existing expectation bridge | A new Poisson-law coupling, localization, curved-face limits, or sample-wise convergence |
 
 The analytic theorem genuinely permits a **signed** kernel. In ordinary
 notation it proves
@@ -1043,6 +1049,25 @@ The ellipsoid retains its original unequal-axis value. The null-cap target
 remains the existing algebraic `nullJointArea`, not a newly proved induced
 null-joint theorem. No variance, concentration, convergence in probability,
 almost-sure convergence, or random-dynamics model is asserted.
+
+## Ambient covariance and positive dilation (#50)
+
+`PoincareEquiv` takes only a linear equivalence preserving the Minkowski
+bilinear form, an arbitrary translation, and future orientation on the unit
+time axis. Causal-pair equivalence, absolute determinant one, product Lebesgue
+preservation, and preservation of `BoundedCausalRegion` are derived. Spatial
+orientation reversal is allowed. `PoincareEquiv.continuumMean_image` substitutes
+in both endpoint integrals of the unchanged action. Independently,
+`continuumMean_dilate` proves the second-power action factor with density
+multiplied by the fourth power of a positive dilation. Both identities transfer
+to `expectedBDGAction` through the exact bridge. Bounded-region domination
+ensures absolute integrability, including the outer integral.
+
+The [ambient transport proof explanation](ACTION_TRANSPORT.md) records the
+contracts, Jacobians, inverse-coordinate regressions, and scope. A boosted
+existing ellipsoid remains a covariance calibration, not a genuinely curved
+future boundary. Induced-joint measure transport remains work package C (#51).
+No original definition, base-case hypothesis, or toolchain pin changes.
 
 ## The actual main targets, not weakened substitutes
 
