@@ -58,3 +58,5 @@ import BoundaryDraft.PoissonExpectation
 import BoundaryDraft.ExpectationGeometry
 import BoundaryDraft.ExpectationBridge
 import BoundaryDraft.ExpectedLimits
+import BoundaryDraft.TwoFaceContract
+import BoundaryDraft.TwoFaceExamples

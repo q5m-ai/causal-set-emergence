@@ -1134,6 +1134,32 @@ quantitative rates, variance, and sample-wise convergence remain separate tasks.
 The [acceptance audit](ACCEPTANCE.md) records the proof-gap history and validation;
 this is not a proof of the unrestricted conjecture or a claim of peer review.
 
+## Open two-spacelike-face contract (#49)
+
+`TwoFaceContract.lean` specifies a restricted global two-graph class, not a new
+asymptotic theorem. `AdmissibleTwoFace h f` retains the original
+`AdmissibleGraphCap h` and adds an independently chosen C³ future graph with
+a strict combined Lipschitz budget. Smooth face germs and globally causal
+positive-part envelopes are separate. Planar inclusion and exact set identities
+are proved without stronger hypotheses on old caps.
+
+`TwoFaceExamples.lean` constructs a small sine future graph for every admissible
+height. A concrete nonempty example violates the affine midpoint identity at
+three points inside its future face. `TwoFaceContractRegression.lean` checks
+the unchanged deterministic/expected action contracts, old planar limits,
+quartic admissibility and the genuinely nonplanar example.
+
+The new region/stratum constructor, area nondegeneracy and integrability,
+planar target identification, deterministic limit and expected limit are
+**open proposition definitions**, not proof terms. The Lorentzian area
+candidate is independently specified by a tangential Gram density, not
+ambient Euclidean spacetime area or an action-defined answer. Intrinsic area
+identification and transport remain work package C. Only the conditional
+transfer through the already proved expectation bridge is checked. See the
+[contract, source review, exact obligations and obstruction register](../notes/two-face-contract.md).
+This does not close #24 or assume overlap regularity, localization, wedge
+asymptotics or any sample-wise convergence.
+
 ## Reproduce
 
 With Lean/elan installed and the pinned toolchain selected by `lean-toolchain`:
@@ -1160,6 +1186,8 @@ lake exe cache get \
   Mathlib.Analysis.SpecialFunctions.Exp \
   Mathlib.Analysis.SpecialFunctions.ExpDeriv \
   Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic \
+  Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv \
+  Mathlib.Data.Real.Pi.Bounds \
   Mathlib.Analysis.InnerProductSpace.PiL2 \
   Mathlib.Analysis.Calculus.Gradient.Basic \
   Mathlib.Analysis.Calculus.ContDiff.Operations \
