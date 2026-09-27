@@ -48,6 +48,14 @@ Jacobians, sphere normalization, null displacements, and zero-volume regions.
 This finite-density representation is prior work of Dowker–Liu–Lloyd-Jones
 §2.6, not a new localization or overlap-regularity theorem.
 
+The [two-face geometry integration](TWO_FACE_GEOMETRY.md) now proves the
+unchanged `TwoFaceRegionGoal`: open bounded ambient-causally-convex regions,
+compact faces and joint, the complete frontier, and the exact face intersection.
+The causal envelopes instantiate the overlap API without global assumptions on
+the raw height. The existing density and Poisson expectation bridge specialize
+to every admissible two-face region. No intrinsic area or two-face limit is
+inferred.
+
 ## What actually compiles and is proved
 
 `./check.sh` builds the library, discovers **every local Lean source** (excluding
@@ -199,6 +207,8 @@ spatial parity, null and diagonal pairs, and non-unit/reciprocal dilations.
 | `BoundaryDraft/ExpectedLimits.lean` | Expected-action ellipsoid, admissible graph-cap, and null-cap limits under the original hypotheses | Rates, random convergence, unrestricted boundaries, or induced null-joint geometry |
 | `BoundaryDraft/Poincare.lean` | Affine time-oriented Lorentz equivalences, interval/causal transport, derived absolute determinant one, product Lebesgue preservation, and bounded measurable causally convex image regions | Generic induced-joint measure transport or a boundary limit |
 | `BoundaryDraft/ActionTransport.lean` | Exact covariance and positive-dilation scaling of the unchanged bilocal action, absolute integrability, and transfer through the existing expectation bridge | A new Poisson-law coupling, localization, curved-face limits, or sample-wise convergence |
+| `BoundaryDraft/TwoFaceGeometry.lean` | `twoFaceRegionGoal`, strict causal envelopes, openness, compact closure/faces/joint, ambient causal convexity, complete frontier and face intersection | Intrinsic joint area, angle identities, or a two-face limit |
+| `BoundaryDraft/TwoFaceOverlap.lean` | Exact signed overlap and fixed-positive-cutoff density specializations; actual Poisson expectation equals unchanged `continuumMean` at positive density | Overlap Taylor regularity, geometric long-null cancellation, induced area, or a new limit |
 
 The analytic theorem genuinely permits a **signed** kernel. In ordinary
 notation it proves
@@ -1195,13 +1205,21 @@ three points inside its future face. `TwoFaceContractRegression.lean` checks
 the unchanged deterministic/expected action contracts, old planar limits,
 quartic admissibility and the genuinely nonplanar example.
 
-The new region/stratum constructor, area nondegeneracy and integrability,
-planar target identification, deterministic limit and expected limit are
-**open proposition definitions**, not proof terms. The Lorentzian area
-candidate is independently specified by a tangential Gram density, not
-ambient Euclidean spacetime area or an action-defined answer. Intrinsic area
-identification and transport remain work package C. Only the conditional
-transfer through the already proved expectation bridge is checked. See the
+`TwoFaceGeometry.lean` now proves the unchanged region/stratum contract.
+`TwoFaceOverlap.lean` supplies the exact finite-density overlap and expectation
+specializations through the causal envelopes and existing bridge.
+`TwoFaceGeometryRegression.lean` independently covers the full region contract,
+planar and curved examples, null displacements, the retained quartic critical
+point, empty regions, and actual signed density/expectation identities.
+`TwoFaceExteriorRegression.lean` retains a nonempty cap with an exterior zero
+half-space and a discontinuous raw height away from the closed positive set.
+See the [geometry proof and compatibility guide](TWO_FACE_GEOMETRY.md).
+
+Area nondegeneracy and integrability, planar target identification,
+deterministic limit and expected limit remain **open proposition definitions**.
+The Lorentzian area candidate is independently specified by a tangential Gram
+density, not ambient Euclidean spacetime area or an action-defined answer.
+Intrinsic area identification and transport remain work package C. See the
 [contract, source review, exact obligations and obstruction register](../notes/two-face-contract.md).
 This does not close #24 or assume overlap regularity, localization, wedge
 asymptotics or any sample-wise convergence.

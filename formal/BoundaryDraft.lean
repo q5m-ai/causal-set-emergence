@@ -68,3 +68,5 @@ import BoundaryDraft.Poincare
 import BoundaryDraft.ActionTransport
 import BoundaryDraft.TwoFaceContract
 import BoundaryDraft.TwoFaceExamples
+import BoundaryDraft.TwoFaceGeometry
+import BoundaryDraft.TwoFaceOverlap

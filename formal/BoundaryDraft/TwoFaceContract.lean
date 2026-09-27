@@ -8,7 +8,9 @@ A deliberately restricted global two-graph class: the thickness retains the
 unchanged `AdmissibleGraphCap` API; an independently chosen future graph uses
 part of the remaining strict Lipschitz budget. Smooth germs `f - h, f` are
 separate from causal envelopes `f - max 0 h, f`. No analytic conclusion is a
-field. All `Goal` declarations below are propositions, NOT proved theorems.
+field. All `Goal` declarations below are proposition definitions, not proofs.
+`TwoFaceGeometry` supplies the separate proof of `TwoFaceRegionGoal`; the area
+and asymptotic goals remain open here.
 
 The area candidate is defined independently by the Lorentzian Gram density
 on the projected joint. Its identification with intrinsic joint area, and its
@@ -85,8 +87,8 @@ def twoFaceJointArea (h f : Spatial → ℝ) : Measure Spacetime :=
 def twoFaceBoundaryIntegral (h f : Spatial → ℝ) : ℝ :=
   ∫ x, twoFaceWeight h f x ∂twoFaceProjectedArea h f
 
-/-- Exact outstanding constructor/stratum obligations. In particular ambient
-causal convexity is NOT replaced by an intrinsic global-hyperbolicity premise. -/
+/-- Exact constructor/stratum contract, proved separately in `TwoFaceGeometry`.
+Ambient causal convexity is NOT replaced by intrinsic global hyperbolicity. -/
 def TwoFaceRegionGoal : Prop :=
   ∀ h f, AdmissibleTwoFace h f →
     IsOpen (twoFaceRegion h f) ∧ BoundedCausalRegion (twoFaceRegion h f) ∧
