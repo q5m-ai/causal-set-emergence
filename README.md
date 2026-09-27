@@ -308,6 +308,8 @@ physics.
   and reproduction guide.
 - `calculations.py`, `check_symbolic.py` — deterministic numerical and symbolic checks.
 - `RESULTS.md` — reproducible finite-density tables.
+- [Two-face diagnostics](notes/two-face-diagnostics.md) — controlled deterministic
+  experiments, cancellation/refinement checks, and limitations; not a new theorem.
 - `site/` — standalone interactive explainer.
 
 ## Writing mathematics on GitHub
