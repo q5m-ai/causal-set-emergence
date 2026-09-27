@@ -73,3 +73,5 @@ import BoundaryDraft.TwoFaceAngle
 import BoundaryDraft.TwoFaceSurface
 import BoundaryDraft.TwoFaceCharts
 import BoundaryDraft.JointTransport
+import BoundaryDraft.TwoFaceGeometry
+import BoundaryDraft.TwoFaceOverlap

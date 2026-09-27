@@ -52,6 +52,14 @@ Jacobians, sphere normalization, null displacements, and zero-volume regions.
 This finite-density representation is prior work of Dowker–Liu–Lloyd-Jones
 §2.6, not a new localization or overlap-regularity theorem.
 
+The [two-face geometry integration](TWO_FACE_GEOMETRY.md) now proves the
+unchanged `TwoFaceRegionGoal`: open bounded ambient-causally-convex regions,
+compact faces and joint, the complete frontier, and the exact face intersection.
+The causal envelopes instantiate the overlap API without global assumptions on
+the raw height. The existing density and Poisson expectation bridge specialize
+to every admissible two-face region. Intrinsic area is proved separately in
+[the joint-geometry work](JOINT_GEOMETRY.md); no two-face limit is inferred.
+
 ## What actually compiles and is proved
 
 `./check.sh` builds the library, discovers **every local Lean source** (excluding
@@ -208,8 +216,10 @@ factor on that joint. It also exercises the existing curved-sine family.
 | `BoundaryDraft/ExpectedLimits.lean` | Expected-action ellipsoid, admissible graph-cap, and null-cap limits under the original hypotheses | Rates, random convergence, unrestricted boundaries, or induced null-joint geometry |
 | `BoundaryDraft/Poincare.lean` | Affine time-oriented Lorentz equivalences, interval/causal transport, derived absolute determinant one, product Lebesgue preservation, and bounded measurable causally convex image regions | Generic induced-joint measure transport or a boundary limit |
 | `BoundaryDraft/ActionTransport.lean` | Exact covariance and positive-dilation scaling of the unchanged bilocal action, absolute integrability, and transfer through the existing expectation bridge | A new Poisson-law coupling, localization, curved-face limits, or sample-wise convergence |
+| `BoundaryDraft/TwoFaceGeometry.lean` | `twoFaceRegionGoal`, strict causal envelopes, openness, compact closure/faces/joint, ambient causal convexity, complete frontier and face intersection | Intrinsic joint area or a two-face limit by itself |
+| `BoundaryDraft/TwoFaceOverlap.lean` | Exact signed overlap and fixed-positive-cutoff density specializations; actual Poisson expectation equals unchanged `continuumMean` at positive density | Overlap Taylor regularity, geometric long-null cancellation or a new limit |
 | `BoundaryDraft/JointMetric.lean`, `TwoFaceAngle.lean` | Actual future unit normals, positive joint metric, strict positive angle and invariant cotangent weight, compact nondegeneracy margins | A boundary measure or asymptotic identity by themselves |
-| `BoundaryDraft/TwoFaceSurface.lean`, `TwoFaceCharts.lean` | Finite induced area, absolutely integrable weight, exact planar measure/integral recovery, actual Gram-density chart rule and overlap measure compatibility | Arbitrary manifold atlases, region/stratum construction, or localization |
+| `BoundaryDraft/TwoFaceSurface.lean`, `TwoFaceCharts.lean` | Finite induced area, absolutely integrable weight, exact planar measure/integral recovery, actual Gram-density chart rule and overlap measure compatibility | Arbitrary manifold atlases or localization |
 | `BoundaryDraft/JointTransport.lean` | Derivative-based induced area, affine Lorentz covariance and positive-dilation scaling, transported chart rules and angle-weighted integrals | A new action limit, unrestricted embedded-joint theorem, or sample-wise convergence |
 
 The analytic theorem genuinely permits a **signed** kernel. In ordinary
@@ -1209,17 +1219,27 @@ three points inside its future face. `TwoFaceContractRegression.lean` checks
 the unchanged deterministic/expected action contracts, old planar limits,
 quartic admissibility and the genuinely nonplanar example.
 
-The region/stratum constructor, deterministic limit and expected limit remain
-**open proposition definitions**, not proof terms. The area/nondegeneracy and
-planar-target goals now have proofs in `TwoFaceSurface`. `TwoFaceCharts`
-identifies the independently defined measure with positive Lorentzian Gram
-density on covering charts and proves overlap compatibility. `JointTransport`
-computes transported area from actual derivatives and proves Lorentz covariance,
-positive-dilation scaling, and angle-weighted integral transport. These results
-cover the stated coordinate subclass and its transformed embeddings, not all
-immersed surfaces. See the [conventional geometric proof](JOINT_GEOMETRY.md).
-The expectation-limit transfer remains conditional on the open region and
-limit goals. See the
+`TwoFaceGeometry.lean` proves the unchanged region/stratum contract.
+`TwoFaceOverlap.lean` supplies the exact finite-density overlap and expectation
+specializations through the causal envelopes and existing bridge.
+`TwoFaceGeometryRegression.lean` independently covers the full region contract,
+planar and curved examples, null displacements, the retained quartic critical
+point, empty regions, and actual signed density/expectation identities.
+`TwoFaceExteriorRegression.lean` retains a nonempty cap with an exterior zero
+half-space and a discontinuous raw height away from the closed positive set.
+See the [region proof and compatibility guide](TWO_FACE_GEOMETRY.md).
+
+The area/nondegeneracy and planar-target goals have separate proofs in
+`TwoFaceSurface`. `TwoFaceCharts` identifies the independently defined measure
+with positive Lorentzian Gram density on covering charts and proves overlap
+compatibility. `JointTransport` computes transported area from actual
+derivatives and proves Lorentz covariance, positive-dilation scaling, and
+angle-weighted integral transport. These results cover the stated coordinate
+subclass and its transformed embeddings, not all immersed surfaces. See the
+[conventional joint-geometry proof](JOINT_GEOMETRY.md). The deterministic and
+expected two-face limits remain **open proposition definitions**, not proof
+terms. The expectation-limit transfer requires the still-open deterministic
+limit, but no longer requires the proved region goal. See the
 [contract, source review, exact obligations and obstruction register](../notes/two-face-contract.md).
 This does not close #24 or assume overlap regularity, localization, wedge
 asymptotics or any sample-wise convergence.

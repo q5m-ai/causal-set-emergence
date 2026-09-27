@@ -56,6 +56,7 @@ example : ∃ c : ℝ, 0 < c ∧
   twoFace_curved_nonvacuity
 
 -- Neither the region-constructor goal nor the deterministic limit is assumed
--- by admissibility. Only this conditional bridge implication is already proved.
+-- by admissibility. The original conditional bridge remains available; the
+-- region goal now has its separate proof in TwoFaceGeometry.
 example (hg : TwoFaceRegionGoal) (hl : TwoFaceLimitGoal) : TwoFaceExpectedLimitGoal :=
   twoFace_expectedLimit_of_region_and_limit hg hl

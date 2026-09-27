@@ -223,9 +223,13 @@ See the [general-conjecture roadmap](notes/conjecture-roadmap.md) and
 [tracking issue #24](https://github.com/q5m-ai/causal-set-emergence/issues/24).
 The [first two-face contract](notes/two-face-contract.md) now specifies a
 restricted global two-graph class, an independent Lorentzian-area target,
-nonplanar examples, and explicit region/stratum and asymptotic goals. Its area
-and planar-target goals now have the separate geometric proofs above. Neither
-the contract nor those proofs establish two-face localization.
+nonplanar examples, and explicit geometric/asymptotic goals. The separate
+[two-face geometry integration](formal/TWO_FACE_GEOMETRY.md) proves the
+region/stratum contract and connects every admissible region to the exact signed
+overlap and Poisson-expectation APIs. The [joint-geometry proof](formal/JOINT_GEOMETRY.md)
+proves the area and planar-target goals, including intrinsic chart meaning and
+transport. Overlap regularity and two-face limits remain open; these results do
+not establish two-face localization.
 
 ## Program 2 — dynamics and automaton-like growth
 
