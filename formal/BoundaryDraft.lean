@@ -64,5 +64,7 @@ import BoundaryDraft.TranslatedOverlap
 import BoundaryDraft.OverlapCoordinates
 import BoundaryDraft.OverlapDensity
 import BoundaryDraft.GraphOverlap
+import BoundaryDraft.Poincare
+import BoundaryDraft.ActionTransport
 import BoundaryDraft.TwoFaceContract
 import BoundaryDraft.TwoFaceExamples
