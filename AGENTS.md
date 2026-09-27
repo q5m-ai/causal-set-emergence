@@ -3,8 +3,9 @@
 ## Mathematics and verification status
 
 - Preserve mathematical statements, hypotheses, equation numbers, and the
-  distinction between draft arguments, checked deterministic results, and the
-  still-open probability bridge. Formatting changes must not change claims.
+  distinction between draft arguments, checked deterministic results, the
+  separately proved Poisson-expectation bridge, and unproved sample-wise
+  convergence. Formatting changes must not change claims.
 - Keep Lean declarations and theorem-contract examples as code, not rendered
   LaTeX. Do not rewrite historical issue/PR status as part of a formatting pass.
 

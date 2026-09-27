@@ -1,11 +1,11 @@
 # Poisson expectation bridge API
 
-This implementation for issue #43 connects the actual finite Poisson law and
-original discrete four-dimensional BDG action to the pre-existing
+Issue #43, completed by merged PR #47, connects the actual finite Poisson law
+and original discrete four-dimensional BDG action to the pre-existing
 `continuumMean`. It transfers the existing deterministic limits without
-changing their definitions or hypotheses. Tracker #1 and the main proof-status
-documentation are deliberately unchanged: their updates are deferred until
-these declarations merge.
+changing their definitions or hypotheses. The [main proof-status guide](README.md)
+and [acceptance audit](ACCEPTANCE.md) now record the completed implementation
+chain for trackers #40 and #1, separately from unproved sample-wise convergence.
 
 ## Exact expectation, before any limit
 
