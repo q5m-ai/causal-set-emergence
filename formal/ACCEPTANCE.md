@@ -135,8 +135,10 @@ definitions from proofs. None of these missing results was declared as an axiom.
 ### Probability bridge and this completion pass
 
 The initial record already identifies the probability bridge as a separate
-missing formalization. [Issues #41–#43](https://github.com/q5m-ai/causal-set-emergence/issues/40)
-then split the finite law, discrete action, and expectation theorem explicitly.
+missing formalization. Issues [#41](https://github.com/q5m-ai/causal-set-emergence/issues/41),
+[#42](https://github.com/q5m-ai/causal-set-emergence/issues/42), and
+[#43](https://github.com/q5m-ai/causal-set-emergence/issues/43) then split the finite law,
+discrete action, and expectation theorem explicitly.
 [PR #44](https://github.com/q5m-ai/causal-set-emergence/pull/44),
 [PR #46](https://github.com/q5m-ai/causal-set-emergence/pull/46), and
 [PR #47](https://github.com/q5m-ai/causal-set-emergence/pull/47) each include an
