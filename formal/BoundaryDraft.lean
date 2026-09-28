@@ -77,3 +77,4 @@ import BoundaryDraft.TwoFaceGeometry
 import BoundaryDraft.TwoFaceOverlap
 import BoundaryDraft.WeightedGraphAction
 import BoundaryDraft.TangentWedge
+import BoundaryDraft.ShortDisplacement
