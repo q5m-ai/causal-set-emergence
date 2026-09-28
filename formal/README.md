@@ -1244,6 +1244,16 @@ limit, but no longer requires the proved region goal. See the
 This does not close #24 or assume overlap regularity, localization, wedge
 asymptotics or any sample-wise convergence.
 
+The [long-null gap estimates](LONG_NULL_GAP.md) are **partial progress on #61**.
+`TwoFaceNullGap.lean` proves endpoint-height margins, null-ray transversality,
+right-hand shrinkage, and a quantitative crossing-layer bound, including
+cutoff contacts and positive-height critical points. `TwoFaceLongNull.lean`
+checks the half-line endpoint replacement and normalized cancellation **given**
+the still-unproved quadratic jet of the actual density. Independent planar,
+curved, and contact regressions test these preparatory statements, not the
+missing jet. The length-integrated second-order remainder and geometric
+long-null cancellation remain open; no admissibility condition is added.
+
 ## Reproduce
 
 With Lean/elan installed and the pinned toolchain selected by `lean-toolchain`:
