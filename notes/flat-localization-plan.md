@@ -278,6 +278,13 @@ Recover the planar graph result, and require uniform estimates when the angle
 stays in a fixed compact subset of the positive branch. This calculation and
 G1 can be investigated in parallel once their interfaces are fixed.
 
+The [regulated wedge proof](regulated-tangent-wedge.md) implements this local
+calculation with compact first-endpoint weights and a bounded tent regulator.
+It records the exact artificial-complement subtraction, retained cross-region
+pairs, checked finite-density reduction and limit, and conventional
+invariant-area/uniformity arguments. It does not replace G1 or the stability
+and globalization obligations below.
+
 ### G3 — stability and short-displacement cancellation
 
 Compare genuinely curved faces with their tangent wedges **after accounting
