@@ -1229,6 +1229,18 @@ point, empty regions, and actual signed density/expectation identities.
 half-space and a discontinuous raw height away from the closed positive set.
 See the [region proof and compatibility guide](TWO_FACE_GEOMETRY.md).
 
+The [regulated tangent-wedge result](../notes/regulated-tangent-wedge.md)
+adds `WeightedGraphAction` and `TangentWedge`. They check first-endpoint-weighted
+linearity and transport of the original action, a geometrically defined bounded
+tent regulator, the exact four-dimensional profile reduction, the regulated
+positive-angle limit, and a scalar absolute error bound. Profile regularity and
+boundedness are derived from the compact continuous test observable, not assumed
+as analytic conclusions. The invariant-area assembly and uniform-angle family
+argument are conventional proofs, explicitly distinguished from those Lean
+contracts. `TangentWedgeRegression.lean` retains complete causal partners and
+exercises a nonempty regulator with a nonzero negative weight. This is a local
+regulated result, not the full two-face limit.
+
 The area/nondegeneracy and planar-target goals have separate proofs in
 `TwoFaceSurface`. `TwoFaceCharts` identifies the independently defined measure
 with positive Lorentzian Gram density on covering charts and proves overlap

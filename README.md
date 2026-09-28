@@ -231,6 +231,14 @@ proves the area and planar-target goals, including intrinsic chart meaning and
 transport. Overlap regularity and two-face limits remain open; these results do
 not establish two-face localization.
 
+The [regulated tangent-wedge calculation](notes/regulated-tangent-wedge.md)
+now derives the local positive-angle coefficient using a compact first-endpoint
+weight and an independently specified bounded regulator. Lean checks its exact
+signed action reduction, regulated limit, and scalar error estimate. The proof
+notes separately explain invariant area, uniformity away from zero angle, and
+exact artificial-complement subtraction with cross-patch partners retained.
+This local result does not prove curved-face stability or the two-face limit.
+
 ## Program 2 — dynamics and automaton-like growth
 
 The exploratory question is whether causal-set dynamics can be represented as
