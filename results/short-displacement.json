@@ -1,0 +1,290 @@
+{
+  "status": "finite-density/finite-displacement diagnostics, not a proof",
+  "arithmetic": "IEEE float64; refinement differences are not certified errors",
+  "families": [
+    {
+      "family": "planar_unequal_axes",
+      "beta": 0,
+      "fixed_geometry": {
+        "depth": 0.25,
+        "axes": [
+          1.0,
+          2.0,
+          3.0
+        ],
+        "bend": 0
+      },
+      "independent_target": 150.7964473723097,
+      "quadratic_short_coefficient": 150.79644737231007,
+      "density_rows": [
+        {
+          "delta": 0.08,
+          "sigma": 0.00025600000000000004,
+          "orders": [
+            16,
+            24
+          ],
+          "density_low": 0.0066692331458827634,
+          "density_high": 0.0066692331458896685,
+          "refinement_difference_not_bound": 6.905066796125681e-15,
+          "quadratic_model": 0.006676158606081135,
+          "difference_from_model": -6.925460191466171e-06,
+          "absolute_difference_over_delta5": 2.1134827244464627
+        },
+        {
+          "delta": 0.04,
+          "sigma": 6.400000000000001e-05,
+          "orders": [
+            16,
+            24
+          ],
+          "density_low": 0.0019857126848974688,
+          "density_high": 0.001985712684899696,
+          "refinement_difference_not_bound": 2.2273849431542203e-15,
+          "quadratic_model": 0.001985927100223475,
+          "difference_from_model": -2.1441532377895756e-07,
+          "absolute_difference_over_delta5": 2.093899646278882
+        },
+        {
+          "delta": 0.02,
+          "sigma": 1.6000000000000003e-05,
+          "orders": [
+            16,
+            24
+          ],
+          "density_low": 0.0005395658885765225,
+          "density_high": 0.0005395658885771473,
+          "refinement_difference_not_bound": 6.248257120033962e-16,
+          "quadratic_model": 0.0005395725587848907,
+          "difference_from_model": -6.670207743455538e-09,
+          "absolute_difference_over_delta5": 2.084439919829855
+        }
+      ]
+    },
+    {
+      "family": "curved_sine",
+      "beta": 0,
+      "fixed_geometry": {
+        "depth": 0.25,
+        "axes": [
+          1.0,
+          2.0,
+          3.0
+        ],
+        "bend": 0.0625
+      },
+      "independent_target": 150.36801796184636,
+      "quadratic_short_coefficient": 150.36801796184648,
+      "density_rows": [
+        {
+          "delta": 0.08,
+          "sigma": 0.00025600000000000004,
+          "orders": [
+            16,
+            24
+          ],
+          "density_low": 0.006669439269709889,
+          "density_high": 0.006669439269716794,
+          "refinement_difference_not_bound": 6.905066796125681e-15,
+          "quadratic_model": 0.006676371750647202,
+          "difference_from_model": -6.9324809304077695e-06,
+          "absolute_difference_over_delta5": 2.1156252839379177
+        },
+        {
+          "delta": 0.04,
+          "sigma": 6.400000000000001e-05,
+          "orders": [
+            16,
+            24
+          ],
+          "density_low": 0.001985725803477905,
+          "density_high": 0.001985725803480133,
+          "refinement_difference_not_bound": 2.2278186240232145e-15,
+          "quadratic_model": 0.0019859404217588542,
+          "difference_from_model": -2.146182787213062e-07,
+          "absolute_difference_over_delta5": 2.0958816281377555
+        },
+        {
+          "delta": 0.02,
+          "sigma": 1.6000000000000003e-05,
+          "orders": [
+            16,
+            24
+          ],
+          "density_low": 0.0005395667150699865,
+          "density_high": 0.0005395667150706113,
+          "refinement_difference_not_bound": 6.248257120033962e-16,
+          "quadratic_model": 0.000539573391380852,
+          "difference_from_model": -6.676310240652343e-09,
+          "absolute_difference_over_delta5": 2.0863469502038567
+        }
+      ]
+    },
+    {
+      "family": "boosted_planar_lab_cutoff",
+      "beta": 0.6,
+      "fixed_geometry": {
+        "depth": 0.25,
+        "axes": [
+          1.0,
+          2.0,
+          3.0
+        ],
+        "bend": 0
+      },
+      "independent_target": 150.7964473723097,
+      "quadratic_short_coefficient": 150.79644737231007,
+      "density_rows": [
+        {
+          "delta": 0.08,
+          "sigma": 0.00025600000000000004,
+          "orders": [
+            16,
+            24
+          ],
+          "density_low": 0.006122771505259923,
+          "density_high": 0.006122771505265981,
+          "refinement_difference_not_bound": 6.05765437811101e-15,
+          "quadratic_model": 0.006140260979242601,
+          "difference_from_model": -1.7489473976619978e-05,
+          "absolute_difference_over_delta5": 5.337363884466545
+        },
+        {
+          "delta": 0.04,
+          "sigma": 6.400000000000001e-05,
+          "orders": [
+            16,
+            24
+          ],
+          "density_low": 0.0019053244266386625,
+          "density_high": 0.0019053244266407636,
+          "refinement_difference_not_bound": 2.1011838102769076e-15,
+          "quadratic_model": 0.0019058628621759217,
+          "difference_from_model": -5.384355351580831e-07,
+          "absolute_difference_over_delta5": 5.258159523028154
+        },
+        {
+          "delta": 0.02,
+          "sigma": 1.6000000000000003e-05,
+          "orders": [
+            16,
+            24
+          ],
+          "density_low": 0.000528730507811901,
+          "density_high": 0.0005287305078125089,
+          "refinement_difference_not_bound": 6.079121581126223e-16,
+          "quadratic_model": 0.0005287472143606504,
+          "difference_from_model": -1.670654814153478e-08,
+          "absolute_difference_over_delta5": 5.2207962942296176
+        }
+      ]
+    }
+  ],
+  "signed_weight_x1_over_axis": {
+    "weighted_volume": 0.0,
+    "single_face_laplacian": -0.2923332954959893,
+    "short_limit_coefficient": 0.2923332954959893,
+    "cutoff_derivative": 1.4192239638727244,
+    "joint_coefficient": -1.1268906683767352
+  },
+  "quadratic_model_only_not_region_action": [
+    {
+      "rho": 1000000.0,
+      "delta": 0.15,
+      "orders": [
+        32,
+        48
+      ],
+      "model_action_low": 233.1362584327494,
+      "model_action_high": 233.13625841571866,
+      "refinement_difference_not_bound": 1.7030743038048968e-08
+    },
+    {
+      "rho": 100000000.0,
+      "delta": 0.15,
+      "orders": [
+        32,
+        48
+      ],
+      "model_action_low": 159.5673149736249,
+      "model_action_high": 159.56731480955204,
+      "refinement_difference_not_bound": 1.6407284419983625e-07
+    },
+    {
+      "rho": 1000000000.0,
+      "delta": 0.15,
+      "orders": [
+        32,
+        48
+      ],
+      "model_action_low": 153.29925427878334,
+      "model_action_high": 153.2992538111721,
+      "refinement_difference_not_bound": 4.676112439483404e-07
+    }
+  ],
+  "quadratic_model_gaussian_z_limit": 10,
+  "curved_sine_actual_region": [
+    {
+      "rho": 1000000.0,
+      "delta": 0.08,
+      "order": 16,
+      "full_action": 151.44370939060033,
+      "short_action": 639.3590120984545,
+      "normalized_long_pair": 487.91530270785415,
+      "cancellation_ratio": 1458.739605277918
+    },
+    {
+      "rho": 1000000.0,
+      "delta": 0.08,
+      "order": 24,
+      "full_action": 151.44370682554793,
+      "short_action": 639.3590103683009,
+      "normalized_long_pair": 487.915303542753,
+      "cancellation_ratio": 1458.7396301984897
+    },
+    {
+      "rho": 100000000.0,
+      "delta": 0.08,
+      "order": 16,
+      "full_action": 150.52788607356763,
+      "short_action": 209.28170275814045,
+      "normalized_long_pair": 58.75381668457284,
+      "cancellation_ratio": 209666.98458210478
+    },
+    {
+      "rho": 100000000.0,
+      "delta": 0.08,
+      "order": 24,
+      "full_action": 150.52800047586857,
+      "short_action": 209.28181712314836,
+      "normalized_long_pair": 58.7538166472798,
+      "cancellation_ratio": 209666.82525266474
+    }
+  ],
+  "curved_radial_actual_region": [
+    {
+      "rho": 10000,
+      "delta": 0.08,
+      "order": 16,
+      "full_action": 26.131879307902285,
+      "short_action": 66.07345058933389,
+      "normalized_long_pair": 39.9415712814316,
+      "cancellation_ratio": 5.765837710367454
+    },
+    {
+      "rho": 10000,
+      "delta": 0.08,
+      "order": 24,
+      "full_action": 26.131879109077158,
+      "short_action": 66.07345059115012,
+      "normalized_long_pair": 39.94157148207296,
+      "cancellation_ratio": 5.765837741452093
+    }
+  ],
+  "limitations": [
+    "No conclusion about #61 or the full curved-face limit.",
+    "Bulk/pair and full/long subtractions can amplify numerical errors.",
+    "The model-action table omits the actual overlap remainder.",
+    "Changing displacement cutoffs does not change the fixed geometry."
+  ]
+}
