@@ -37,9 +37,11 @@ Choose an orthonormal basis on it for the positive metric **minus** the
 restricted Minkowski form. Write a point as
 
 ```math
-X=t n_+ + r e + z,\qquad z\in J,\qquad
-W=\{g(n_-,X)>0,\ g(n_+,X)<0\}
-  =\{-kr<t<0\}.
+\begin{aligned}
+X&=t n_+ + r e + z,\qquad z\in J,\\
+W&=\{g(n_-,X)>0,\ g(n_+,X)\lt 0\}
+  =\{-kr\lt t\lt 0\}.
+\end{aligned}
 ```
 
 Thus membership implies positive normal coordinate. This construction fixes the
@@ -74,8 +76,10 @@ R>0,\qquad H\ge 2kR,\qquad
 There is **no sign restriction** on the test function. Define
 
 ```math
-h_{k,H}(x)=\min\{kr,H-k\lVert x\rVert_\infty\},\qquad
-M_{k,H}=\{-h_{k,H}(x)<t<0\},\qquad w(t,x)=a(x).
+\begin{aligned}
+h_{k,H}(x)&=\min\{kr,H-k\lVert x\rVert_\infty\},\\
+M_{k,H}&=\{-h_{k,H}(x)\lt t\lt 0\},\qquad w(t,x)=a(x).
+\end{aligned}
 \tag{W1}
 ```
 
@@ -115,10 +119,12 @@ q(x,y)=g(y-x,y-x).
 For a bounded measurable region and a continuous real weight define
 
 ```math
-\mathcal A_\rho[M;w]=\frac4{\sqrt6}\sqrt\rho
+\begin{aligned}
+\mathcal A_\rho[M;w]&=\frac4{\sqrt6}\sqrt\rho
 \left[\int_M w(x)\,dx
 -\rho\int_M w(x)\int_{M\cap J^+(x)}
  K\bigl(c\rho q(x,y)^2\bigr)\,dy\,dx\right].
+\end{aligned}
 \tag{W2}
 ```
 
@@ -150,9 +156,11 @@ Then all the integrals in the following identity are absolutely integrable,
 and
 
 ```math
+\begin{aligned}
 \lim_{\rho\to\infty}\mathcal A_\rho[M_{k,H};w]
- =\frac1k\int_J a(0,z)\,dA(z)
- =\int_J a(0,z)\coth\theta\,dA(z).
+ &=\frac1k\int_J a(0,z)\,dA(z)\\
+ &=\int_J a(0,z)\coth\theta\,dA(z).
+\end{aligned}
 \tag{W4}
 ```
 
@@ -179,7 +187,9 @@ first point belongs to the cap, every future causal point below the future
 plane still lies above that lower epigraph. Therefore
 
 ```math
-M_{k,H}\cap J^+(x)=\{y\in J^+(x):y^0<0\}.
+\begin{aligned}
+M_{k,H}\cap J^+(x)&=\{y\in J^+(x):y^0\lt 0\}.
+\end{aligned}
 \tag{W5}
 ```
 
@@ -193,10 +203,11 @@ the checked `coneIntegral` identity. If depth below the future plane is denoted
 by the positive variable below, the result is
 
 ```math
-Q_\rho(d)=\int_{J^+(0)\cap\{y^0<d\}}K\bigl(c\rho q(0,y)^2\bigr)\,dy,
-\qquad
+\begin{aligned}
+Q_\rho(d)&=\int_{J^+(0)\cap\{y^0\lt d\}}K\bigl(c\rho q(0,y)^2\bigr)\,dy,\\
 \frac4{\sqrt6}\sqrt\rho\,[1-\rho Q_\rho(d)]
- =\frac{\sqrt\rho}{2\pi\sqrt6}F_\rho'''(d).
+ &=\frac{\sqrt\rho}{2\pi\sqrt6}F_\rho'''(d).
+\end{aligned}
 ```
 
 The boundary constant in this identity is essential; it cancels the point term
@@ -237,8 +248,10 @@ The kernel is absolutely integrable but is **not positive**. Substitution in
 (W3), followed by subtraction of its signed mass, yields
 
 ```math
+\begin{aligned}
 \mathcal A_\rho[M_{k,H};w]-\frac{B(0)}k
- =\frac1k\int_0^\infty G(u)\,[B(\varepsilon u/k)-B(0)]\,du.
+ &=\frac1k\int_0^\infty G(u)\,[B(\varepsilon u/k)-B(0)]\,du.
+\end{aligned}
 \tag{W6}
 ```
 
@@ -250,10 +263,12 @@ For the quantitative class, suppose in addition that the independently chosen
 profile obeys a normal Lipschitz bound. Then
 
 ```math
-|B(r)-B(0)|\le L_B r\quad(r\ge0)
-\quad\Longrightarrow\quad
+\begin{aligned}
+|B(r)-B(0)|&\le L_B r\quad(r\ge0)\\
+&\Longrightarrow\quad
 \left|\mathcal A_\rho[M_{k,H};w]-\frac{B(0)}k\right|
 \le \frac{L_B M_1}{k^2}\rho^{-1/4}.
+\end{aligned}
 \tag{W7}
 ```
 
@@ -296,8 +311,10 @@ The repair is **not** to declare those terms negligible. Use the exact
 first-endpoint observable (W2). Linearity gives, at each finite density,
 
 ```math
+\begin{aligned}
 \mathcal A_\rho[M;w]
- =\mathrm{continuumMean}_\rho(M)-\mathcal A_\rho[M;1-w].
+ &=\mathrm{continuumMean}_\rho(M)-\mathcal A_\rho[M;1-w].
+\end{aligned}
 \tag{W8}
 ```
 
@@ -313,10 +330,12 @@ weight inside the finite region. Restricting partners to that subregion would
 change the answer by
 
 ```math
+\begin{aligned}
 \mathcal A_\rho[M;w]-\mathcal A_\rho[S;w]
- =-\frac4{\sqrt6}\rho^{3/2}
+ &=-\frac4{\sqrt6}\rho^{3/2}
    \int_S w(x)\int_{(M\setminus S)\cap J^+(x)}
      K\bigl(c\rho q(x,y)^2\bigr)\,dy\,dx.
+\end{aligned}
 \tag{W9}
 ```
 
