@@ -239,6 +239,16 @@ notes separately explain invariant area, uniformity away from zero angle, and
 exact artificial-complement subtraction with cross-patch partners retained.
 This local result does not prove curved-face stability or the two-face limit.
 
+The separate [short-displacement stability argument](notes/curved-face-stability.md)
+gives a conventional proof for the unchanged two-face class at a fixed small
+coordinate-displacement cutoff. It derives a local C³ overlap extension,
+retains the signed logarithmic cancellations and quantifies the normalized
+curved-versus-wedge error. Spatial source weights have a generally nonzero
+cutoff-derivative term; it cancels only in the complete partition. This argument
+awaits independent mathematical review and is not an end-to-end Lean theorem.
+Lean checks the exact short/long and source-partition identities separately.
+The long-pair problem #61 and the full two-face limit remain open.
+
 ## Program 2 — dynamics and automaton-like growth
 
 The exploratory question is whether causal-set dynamics can be represented as

@@ -60,6 +60,18 @@ the raw height. The existing density and Poisson expectation bridge specialize
 to every admissible two-face region. Intrinsic area is proved separately in
 [the joint-geometry work](JOINT_GEOMETRY.md); no two-face limit is inferred.
 
+The [short-displacement proof note](../notes/curved-face-stability.md) is a
+**conventional analytic argument, not an end-to-end Lean theorem**.
+`ShortDisplacement.lean` proves only the exact disjoint short/long partition,
+its signed integrability and action identity with the actual existing long
+density, and finite first-endpoint weight partitions retaining all partners.
+`ShortDisplacementRegression.lean` independently expands the normalization,
+keeps the cutoff equality in the long domain, retains all original planar
+hypotheses, and exercises overlapping and negative weights. The note's C³
+extension, logarithmic cancellation, cutoff-derivative term and curved-face
+error estimate are not claimed as checked Lean results. No limit goal or
+admissibility structure is modified.
+
 ## What actually compiles and is proved
 
 `./check.sh` builds the library, discovers **every local Lean source** (excluding
