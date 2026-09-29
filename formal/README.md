@@ -25,7 +25,10 @@ expected-action versions of all three checked limits are now proved.
 Induced spacelike joint area and the two-future-normal positive angle are now
 checked for the two-graph subclass, with chart-overlap measure compatibility,
 finiteness, integrability, Lorentz/dilation transport and exact planar recovery.
-This does not prove a two-curved-face action limit. Arbitrary null boundaries,
+For every admissible two-face region and fixed positive cutoff, the actual
+long-overlap density now has a checked right quadratic jet, and its fully
+normalized signed long-displacement contribution tends to zero. This does not
+prove a two-curved-face action limit. Arbitrary null boundaries,
 induced null-joint geometry, quantitative rates, variance, and sample-wise
 convergence remain outside the checked claims.**
 
@@ -230,6 +233,11 @@ factor on that joint. It also exercises the existing curved-sine family.
 | `BoundaryDraft/ActionTransport.lean` | Exact covariance and positive-dilation scaling of the unchanged bilocal action, absolute integrability, and transfer through the existing expectation bridge | A new Poisson-law coupling, localization, curved-face limits, or sample-wise convergence |
 | `BoundaryDraft/TwoFaceGeometry.lean` | `twoFaceRegionGoal`, strict causal envelopes, openness, compact closure/faces/joint, ambient causal convexity, complete frontier and face intersection | Intrinsic joint area or a two-face limit by itself |
 | `BoundaryDraft/TwoFaceOverlap.lean` | Exact signed overlap and fixed-positive-cutoff density specializations; actual Poisson expectation equals unchanged `continuumMean` at positive density | Overlap Taylor regularity, geometric long-null cancellation or a new limit |
+| `BoundaryDraft/MonotoneHingeIntegral.lean` | Three fibre regimes, explicit moving-contact coefficient, right quadratic jet and common normalized-remainder domination | Uniform fibre little-o or geometric averaging by itself |
+| `BoundaryDraft/TwoFaceLongGeometry.lean` | Common monotone-hinge hypotheses and compact active tubes from unchanged two-face admissibility | Parameter averaging by itself |
+| `BoundaryDraft/TwoFaceLongDisintegration.lean` | Pointwise actual-density triple-integral identity, joint measurability and nonnegative finiteness before real transport | A density jet by itself |
+| `BoundaryDraft/AveragedQuadraticJet.lean` | Coefficient measurability without root selection and dominated averaging of pointwise quadratic jets | Geometric coefficient integrability by itself |
+| `BoundaryDraft/TwoFaceLongNull.lean` | Three-probe coefficient integrability, finite-support domination, actual-density right quadratic jet and unconditional fixed-cutoff long cancellation with full signed normalization | Cutoff removal, short-displacement cancellation or the complete two-face limit |
 | `BoundaryDraft/JointMetric.lean`, `TwoFaceAngle.lean` | Actual future unit normals, positive joint metric, strict positive angle and invariant cotangent weight, compact nondegeneracy margins | A boundary measure or asymptotic identity by themselves |
 | `BoundaryDraft/TwoFaceSurface.lean`, `TwoFaceCharts.lean` | Finite induced area, absolutely integrable weight, exact planar measure/integral recovery, actual Gram-density chart rule and overlap measure compatibility | Arbitrary manifold atlases or localization |
 | `BoundaryDraft/JointTransport.lean` | Derivative-based induced area, affine Lorentz covariance and positive-dilation scaling, transported chart rules and angle-weighted integrals | A new action limit, unrestricted embedded-joint theorem, or sample-wise convergence |
@@ -263,9 +271,10 @@ The separate [null-transverse cancellation component](NULL_TRANSVERSE.md)
 uses the **original** `bdgKernel`, not `planeKernel`. Its first three transverse
 moments vanish and its third-order moment is negative one-half. A right-hand
 quadratic jet suffices for the normalized density limit of any bounded measurable
-weight, including a discontinuous compact-support cutoff. The geometric expansion
-of the actual overlap density remains a separate obligation; no admissibility
-structure or existing action/kernel definition is changed.
+weight, including a discontinuous compact-support cutoff. The separate
+[geometric long-null proof](LONG_NULL_GAP.md) now derives the expansion for the
+actual admissible two-face density and applies this conditional component.
+No admissibility structure or existing action/kernel definition is changed.
 
 `Audit.lean` discovers the public declarations in the imported `BoundaryDraft`
 namespace rather than maintaining a theorem allowlist. In addition, the
@@ -1267,6 +1276,27 @@ limit, but no longer requires the proved region goal. See the
 [contract, source review, exact obligations and obstruction register](../notes/two-face-contract.md).
 This does not close #24 or assume overlap regularity, localization, wedge
 asymptotics or any sample-wise convergence.
+
+The [fixed-positive-cutoff long-null theorem](LONG_NULL_GAP.md) now proves
+`AdmissibleTwoFace.longOverlapDensity_right_quadratic_jet` for the **actual**
+unchanged density. The four component proofs supply the monotone-hinge fibre
+jet, common geometric constants, exact pointwise disintegration, and dominated
+averaging. `TwoFaceLongNull.lean` derives coefficient integrability using three
+fixed positive probes, confines the common dominator to the compact active
+spatial tube, and identifies the full product-space average with the density.
+No root measurability, contact-set nullity, or coefficient continuity at contact
+is assumed. The proof distinguishes pointwise little-o from uniform domination.
+
+`AdmissibleTwoFace.tendsto_longOverlap` and
+`AdmissibleTwoFace.tendsto_normalized_longOverlap` apply the original signed
+kernel cancellation and transport through `integral_longOverlap_bdg`, retaining
+the interval coefficient, both density factors, and the negative signed
+contribution. The final regressions instantiate these unconditional results on
+original planar caps, the unequal-axis critical-point example, exact and
+approaching cutoff contacts, the genuinely curved sine face, and empty and
+zero-volume cases. This completes the fixed-positive-cutoff obligation of #61,
+not uniformity in the cutoff, short-displacement cancellation, cutoff removal,
+the complete two-face action limit, #24, or sample-wise convergence.
 
 ## Reproduce
 
