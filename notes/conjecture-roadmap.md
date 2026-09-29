@@ -113,6 +113,12 @@ uniform estimates, and recover the same geometric joint formula. Known causal
 diamonds and constant-angle regions should become consequences or regression
 cases rather than separate arguments.
 
+The [dimension-indexed prerequisite note](dimension-kernels.md) inventories
+these normalizations and derives signed moments, a regulated local coefficient,
+and parity-specific proof obligations. It separates its conventional analytic
+proofs and bounded Lean algebra/scaling checks from the still-open global limit.
+Its next-step proposal remains gated on #67's actual outcome.
+
 ### Stage 3 — curved spacetime
 
 Control the local causal-interval volume and action-density expansions in

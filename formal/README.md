@@ -1298,6 +1298,22 @@ zero-volume cases. This completes the fixed-positive-cutoff obligation of #61,
 not uniformity in the cutoff, short-displacement cancellation, cutoff removal,
 the complete two-face action limit, #24, or sample-wise convergence.
 
+## Dimension-indexed prerequisites (#71)
+
+`DimensionKernel.lean` defines the dimension-dependent Euler-polynomial
+recurrence, proves the algebraic Mellin multiplier's roots and transverse
+substitution, checks equality with the unchanged four-dimensional kernel and
+its integrated moments, and proves positive-density pointwise scaling with
+real powers, including odd dimensions. `DimensionKernelRegression.lean`
+independently exercises 2D/3D polynomials, the expanded 4D kernel and multiplier,
+a nonzero odd critical multiplier, and 5D scaling. The general multiplier is
+not defined to be an integral: its integrated interpretation, slice tails,
+mass-one reduction and regulated local coefficient have conventional proofs in
+[the normalization note](../notes/dimension-kernels.md), not general-dimensional
+Lean proofs here. The note supplies non-vacuous finite-density/local/global
+contracts and an explicitly gated next-step proposal. No new expectation
+bridge, curved-face estimate, or higher-dimensional global limit is asserted.
+
 ## Reproduce
 
 With Lean/elan installed and the pinned toolchain selected by `lean-toolchain`:
@@ -1348,6 +1364,7 @@ lake exe cache get \
   Mathlib.MeasureTheory.Constructions.HaarToSphere \
   Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls \
   Mathlib.Algebra.BigOperators.Group.Finset.Basic \
+  Mathlib.Algebra.Polynomial.Derivative \
   Mathlib.Analysis.Calculus.ContDiff.Basic \
   Mathlib.Analysis.Calculus.ContDiff.Defs \
   Mathlib.Analysis.Calculus.InverseFunctionTheorem.FDeriv \

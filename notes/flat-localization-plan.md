@@ -330,7 +330,10 @@ two-face theorem would be a major partial resolution, **not closure**.
   action normalization and area dimension from dimension-independent geometry.
   Do not port four-dimensional coefficients unchanged. The generic finite
   Poisson construction is reusable; the action and interval-volume bridge need
-  dimension-specific extensions.
+  dimension-specific extensions. The [#71 prerequisite note](dimension-kernels.md)
+  now gives the dimension-indexed constants, signed moments, regulated local
+  normalization and explicit parity-dependent gaps. It does not assume #67's
+  global assembly or supply a higher-dimensional two-face limit.
 - **Curved spacetime:** translated overlap is not a global curved-space method.
   It may teach which estimates a covariant replacement needs, but interval
   volumes, volume densities, the bulk curvature coefficient, and nonlocal

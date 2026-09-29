@@ -5,6 +5,7 @@ import BoundaryDraft.KernelScaling
 import BoundaryDraft.KernelDerivatives
 import BoundaryDraft.GaussianCancellation
 import BoundaryDraft.NullTransverseMoments
+import BoundaryDraft.DimensionKernel
 import BoundaryDraft.NullTransverseCancellation
 import BoundaryDraft.KernelEstimates
 import BoundaryDraft.KernelHalfLine

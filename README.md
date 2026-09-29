@@ -319,6 +319,9 @@ physics.
 
 - `notes/first-attempt.md` — analytic boundary-limit proof draft and scope.
 - `notes/conjecture-roadmap.md` — staged route from issue #1 to the general theorem.
+- [Dimension-indexed kernel prerequisites](notes/dimension-kernels.md) — action
+  normalizations, signed moments, parity-dependent remainders and a regulated
+  local coefficient; not a higher-dimensional two-face limit.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.
