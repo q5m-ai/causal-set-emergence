@@ -104,6 +104,9 @@ class AxialCap:
     def shift_prime(self, x):
         return self.bend / self.axes[0] * np.cos(x / self.axes[0])
 
+    def shift_second(self, x):
+        return -self.bend / self.axes[0]**2 * np.sin(x / self.axes[0])
+
     def dilated(self, scale):
         _positive(scale, "scale")
         return AxialCap(scale * self.depth, tuple(scale * a for a in self.axes), scale * self.bend)
@@ -327,11 +330,12 @@ def ellipsoid_overlap(s, depth, axes):
     return 8 * math.pi * depth * math.prod(axes) / 15 * np.maximum(0, 1 - s / depth)**2.5
 
 
-def axial_overlap(cap, s, a1, order=32):
+def axial_overlap(cap, s, a1, order=32, *, weight=None):
     """V((s,a)) with f depending on x_1, for a future-causal displacement.
 
     Only the axial component a1 is needed; the caller must have s>=|a|.
-    This function enforces the necessary axial inequality.
+    This function enforces the necessary axial inequality. An optional spatial
+    first-endpoint weight depends only on x_1; partners remain unrestricted.
     """
     if not math.isfinite(s) or not math.isfinite(a1) or s < abs(a1):
         raise ValueError("require s >= |a1|")
@@ -347,7 +351,7 @@ def axial_overlap(cap, s, a1, order=32):
     lo = -a if gap(-a) >= 0 else _root(gap, -a, peak)
     hi = a if gap(a) >= 0 else _root(gap, peak, a)
     return math.pi * cap.axes[1] * cap.axes[2] / (2 * cap.depth) * quadrature(
-        lambda x: gap(x)**2, [lo, peak, hi], order,
+        lambda x: gap(x)**2 * (1 if weight is None else weight(x)), [lo, peak, hi], order,
     )
 
 

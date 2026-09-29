@@ -75,6 +75,9 @@ import BoundaryDraft.TwoFaceCharts
 import BoundaryDraft.JointTransport
 import BoundaryDraft.TwoFaceGeometry
 import BoundaryDraft.TwoFaceOverlap
+import BoundaryDraft.WeightedGraphAction
+import BoundaryDraft.TangentWedge
+import BoundaryDraft.ShortDisplacement
 import BoundaryDraft.TwoFaceNullGap
 import BoundaryDraft.MonotoneHingeIntegral
 import BoundaryDraft.TwoFaceLongGeometry

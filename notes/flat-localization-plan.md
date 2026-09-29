@@ -278,6 +278,13 @@ Recover the planar graph result, and require uniform estimates when the angle
 stays in a fixed compact subset of the positive branch. This calculation and
 G1 can be investigated in parallel once their interfaces are fixed.
 
+The [regulated wedge proof](regulated-tangent-wedge.md) implements this local
+calculation with compact first-endpoint weights and a bounded tent regulator.
+It records the exact artificial-complement subtraction, retained cross-region
+pairs, checked finite-density reduction and limit, and conventional
+invariant-area/uniformity arguments. It does not replace G1 or the stability
+and globalization obligations below.
+
 ### G3 — stability and short-displacement cancellation
 
 Compare genuinely curved faces with their tangent wedges **after accounting
@@ -287,6 +294,16 @@ because the conjectured answer lacks them. Establish a uniform normalized
 error, not pointwise Taylor convergence. If an extra term survives, identify
 it and test the candidate theorem against it. This is the second high-risk
 gate; a small shape displacement alone is not an adequate error estimate.
+
+The [short-displacement argument](curved-face-stability.md) supplies a
+conventional proof at a fixed sufficiently small cutoff for the unchanged
+two-graph class, awaiting independent review. It derives the local overlap
+extension from C³ face germs, quantifies the signed normalized remainder and
+compares with regulated tangent-wedge observables. A spatial source partition
+has a nonzero cutoff-derivative term in general; the argument retains it until
+the complete partition cancels it. Only the exact finite-density partitions
+are newly machine checked, not this full analytic proof. No long-null or
+complete two-face limit is inferred.
 
 ### G4 — globalization, then expectation
 

@@ -63,6 +63,18 @@ the raw height. The existing density and Poisson expectation bridge specialize
 to every admissible two-face region. Intrinsic area is proved separately in
 [the joint-geometry work](JOINT_GEOMETRY.md); no two-face limit is inferred.
 
+The [short-displacement proof note](../notes/curved-face-stability.md) is a
+**conventional analytic argument, not an end-to-end Lean theorem**.
+`ShortDisplacement.lean` proves only the exact disjoint short/long partition,
+its signed integrability and action identity with the actual existing long
+density, and finite first-endpoint weight partitions retaining all partners.
+`ShortDisplacementRegression.lean` independently expands the normalization,
+keeps the cutoff equality in the long domain, retains all original planar
+hypotheses, and exercises overlapping and negative weights. The note's C³
+extension, logarithmic cancellation, cutoff-derivative term and curved-face
+error estimate are not claimed as checked Lean results. No limit goal or
+admissibility structure is modified.
+
 ## What actually compiles and is proved
 
 `./check.sh` builds the library, discovers **every local Lean source** (excluding
@@ -1237,6 +1249,18 @@ point, empty regions, and actual signed density/expectation identities.
 `TwoFaceExteriorRegression.lean` retains a nonempty cap with an exterior zero
 half-space and a discontinuous raw height away from the closed positive set.
 See the [region proof and compatibility guide](TWO_FACE_GEOMETRY.md).
+
+The [regulated tangent-wedge result](../notes/regulated-tangent-wedge.md)
+adds `WeightedGraphAction` and `TangentWedge`. They check first-endpoint-weighted
+linearity and transport of the original action, a geometrically defined bounded
+tent regulator, the exact four-dimensional profile reduction, the regulated
+positive-angle limit, and a scalar absolute error bound. Profile regularity and
+boundedness are derived from the compact continuous test observable, not assumed
+as analytic conclusions. The invariant-area assembly and uniform-angle family
+argument are conventional proofs, explicitly distinguished from those Lean
+contracts. `TangentWedgeRegression.lean` retains complete causal partners and
+exercises a nonempty regulator with a nonzero negative weight. This is a local
+regulated result, not the full two-face limit.
 
 The area/nondegeneracy and planar-target goals have separate proofs in
 `TwoFaceSurface`. `TwoFaceCharts` identifies the independently defined measure
