@@ -16,11 +16,14 @@
   `cd formal && ./check.sh --incremental --base origin/main` for edit-loop
   feedback. The base must be an ancestor of the branch; do not mistake this
   changed-source check for a full audit.
-- Before handing off a mathematical result, run `cd formal && ./check.sh` on
-  the final integrated commit. It builds, audits every local Lean source with
-  warnings as errors and the transitive-axiom rule, then runs the aggregate
-  audit. The default is two workers; adjust with `--workers N` only after
-  checking memory/swap headroom. GitHub CI does not replace this local gate.
+- Before review or handoff of Lean/checker work, run `cd formal && ./check.sh`
+  after the last change to Lean sources, checker logic, dependencies, build
+  configuration, or another input affecting Lean validation. It builds, audits
+  every local Lean source with warnings as errors and the transitive-axiom
+  rule, then runs the aggregate audit. The default is two workers; adjust with
+  `--workers N` only after checking memory/swap headroom. GitHub CI does not
+  replace this local gate. Subsequent documentation- or instruction-only
+  changes need Markdown/relevant lightweight checks, not another Lean audit.
 
 ## GitHub-compatible mathematics
 
