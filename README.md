@@ -228,8 +228,10 @@ nonplanar examples, and explicit geometric/asymptotic goals. The separate
 region/stratum contract and connects every admissible region to the exact signed
 overlap and Poisson-expectation APIs. The [joint-geometry proof](formal/JOINT_GEOMETRY.md)
 proves the area and planar-target goals, including intrinsic chart meaning and
-transport. Overlap regularity and two-face limits remain open; these results do
-not establish two-face localization.
+transport. The separate [long-null theorem](formal/LONG_NULL_GAP.md) proves
+actual-overlap regularity and signed long-pair cancellation at every fixed
+positive cutoff. None of these geometric or finite-density identities alone
+establishes the full two-face limit.
 
 The [regulated tangent-wedge calculation](notes/regulated-tangent-wedge.md)
 now derives the local positive-angle coefficient using a compact first-endpoint
@@ -247,7 +249,15 @@ curved-versus-wedge error. Spatial source weights have a generally nonzero
 cutoff-derivative term; it cancels only in the complete partition. This argument
 awaits independent mathematical review and is not an end-to-end Lean theorem.
 Lean checks the exact short/long and source-partition identities separately.
-The long-pair problem #61 and the full two-face limit remain open.
+The [two-face assembly](notes/two-face-limit.md) combines this written argument
+with the checked long-null result at one common fixed cutoff, cancels the
+artificial derivative terms in the complete finite source partition, and only
+then transfers the deterministic limit to Poisson expectations. It covers the
+unchanged two-graph class as a **conventional theorem, not an end-to-end Lean
+proof**. The new checked assembly interface proves asymptotic equivalences and
+cutoff independence; `TwoFaceLimitGoal` and `TwoFaceExpectedLimitGoal` still lack
+unconditional Lean proof terms. No shrinking-cutoff uniformity or sample-wise
+convergence is claimed.
 
 ## Program 2 — dynamics and automaton-like growth
 

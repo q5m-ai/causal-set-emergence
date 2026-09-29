@@ -27,9 +27,11 @@ checked for the two-graph subclass, with chart-overlap measure compatibility,
 finiteness, integrability, Lorentz/dilation transport and exact planar recovery.
 For every admissible two-face region and fixed positive cutoff, the actual
 long-overlap density now has a checked right quadratic jet, and its fully
-normalized signed long-displacement contribution tends to zero. This does not
-prove a two-curved-face action limit. Arbitrary null boundaries,
-induced null-joint geometry, quantitative rates, variance, and sample-wise
+normalized signed long-displacement contribution tends to zero. The assembly
+interface checks full/short/expectation limit equivalences and fixed-cutoff
+independence. The conventional two-face assembly is not an end-to-end Lean
+proof: its general short-displacement asymptotics remain unencoded. Arbitrary
+null boundaries, induced null-joint geometry, quantitative rates, variance, and sample-wise
 convergence remain outside the checked claims.**
 
 Lean **4.19.0** and mathlib **v4.19.0** are pinned. `lake-manifest.json` pins the
@@ -238,6 +240,7 @@ factor on that joint. It also exercises the existing curved-sine family.
 | `BoundaryDraft/TwoFaceLongDisintegration.lean` | Pointwise actual-density triple-integral identity, joint measurability and nonnegative finiteness before real transport | A density jet by itself |
 | `BoundaryDraft/AveragedQuadraticJet.lean` | Coefficient measurability without root selection and dominated averaging of pointwise quadratic jets | Geometric coefficient integrability by itself |
 | `BoundaryDraft/TwoFaceLongNull.lean` | Three-probe coefficient integrability, finite-support domination, actual-density right quadratic jet and unconditional fixed-cutoff long cancellation with full signed normalization | Cutoff removal, short-displacement cancellation or the complete two-face limit |
+| `BoundaryDraft/TwoFaceAssembly.lean` | Full-minus-short vanishing, limit equivalences, independence of two fixed cutoffs, expectation equivalence and unconditional planar short limits | A proof term of either general two-face limit goal, a shrinking-cutoff bound or the unencoded G3 analysis |
 | `BoundaryDraft/JointMetric.lean`, `TwoFaceAngle.lean` | Actual future unit normals, positive joint metric, strict positive angle and invariant cotangent weight, compact nondegeneracy margins | A boundary measure or asymptotic identity by themselves |
 | `BoundaryDraft/TwoFaceSurface.lean`, `TwoFaceCharts.lean` | Finite induced area, absolutely integrable weight, exact planar measure/integral recovery, actual Gram-density chart rule and overlap measure compatibility | Arbitrary manifold atlases or localization |
 | `BoundaryDraft/JointTransport.lean` | Derivative-based induced area, affine Lorentz covariance and positive-dilation scaling, transported chart rules and angle-weighted integrals | A new action limit, unrestricted embedded-joint theorem, or sample-wise convergence |
@@ -1297,6 +1300,30 @@ approaching cutoff contacts, the genuinely curved sine face, and empty and
 zero-volume cases. This completes the fixed-positive-cutoff obligation of #61,
 not uniformity in the cutoff, short-displacement cancellation, cutoff removal,
 the complete two-face action limit, #24, or sample-wise convergence.
+
+### Fixed-cutoff assembly and its verification boundary (#67)
+
+The [conventional assembly](../notes/two-face-limit.md) uses #66's written
+short-displacement theorem and #61 at one common fixed positive cutoff. The
+same finite source partition retains all partners, accounts for the complement
+of the collar, and cancels the artificial weight-derivative terms only after
+summation. The short coefficient already equals the induced-area target at
+every sufficiently small fixed cutoff, so no cutoff-to-zero interchange is
+needed. Expectation transfer comes last. This is a conventional theorem for
+the unchanged class, **not a complete Lean encoding**.
+
+`TwoFaceAssembly.lean` discharges the long term from geometry and proves that
+full and short limits to any given target are equivalent. It also proves that
+short actions at any two fixed positive cutoffs have difference tending to
+zero, and that deterministic and expected limit goals are equivalent. The
+existence of one positive-cutoff short limit is explicitly equivalent to the
+unchanged `TwoFaceLimitGoal`; the module does not supply that missing general
+short proof or assume it as a field. `TwoFaceAssemblyRegression.lean` expands
+the actual normalization and target, recovers original planar/unequal-axis
+short limits, retains the sine face's nonaffinity witness for cutoff
+independence, and keeps the concrete null expectation theorem separate.
+`GraphCapRegression.lean` additionally retains the quartic critical point in
+its planar short-limit specialization.
 
 ## Reproduce
 
