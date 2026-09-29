@@ -13,7 +13,7 @@ usage() {
 }
 mode=full
 base=
-workers=1
+workers=2
 while (($#)); do
   case "$1" in
     --incremental) [[ $mode == full ]] || usage; mode=incremental; shift ;;
