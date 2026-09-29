@@ -77,7 +77,7 @@ admissibility structure is modified.
 
 ## What actually compiles and is proved
 
-`./check.sh` builds the library, discovers **every local Lean source** (excluding
+`./check.sh` is the required full gate: it builds the library, discovers **every local Lean source** (excluding
 `.lake/` and `.tools/`), and checks each with warnings treated as errors. Each
 source is also rechecked in an isolated current module so all of its public
 declarations receive a transitive axiom audit even when that source is not
@@ -1367,6 +1367,52 @@ lake exe cache get \
   Mathlib.Tactic.Linarith Mathlib.Tactic.NormNum Mathlib.Tactic.Positivity
 ./check.sh
 ```
+
+For a quick developer loop after fetching the intended integration base, use
+`./check.sh --incremental --base origin/main` from `formal/`. The base must be
+an ancestor of `HEAD`; the command examines staged, unstaged, renamed, deleted,
+and untracked sources against that base. It builds, then rechecks changed and
+new local sources (including unimported ones) with the same warning and
+transitive-axiom rules. Changed `Audit.lean` is also checked. Deleted sources
+are not rechecked. An unreliable base or ignored Lean source stops the check.
+**Incremental mode is not a full proof audit.** Always run `./check.sh` on the
+integrated commit before accepting a mathematical result, including #67 and
+#71. For explicit bounded parallelism in the full gate, run
+`./check.sh --workers 2` (default), or choose `--workers 1`, `3`, or `4`
+for a host with appropriate memory and swap. All source checks must pass
+before the final aggregate `Audit.lean` check.
+
+Measured on **q5m-n02**, Lean 4.19.0 (commit `6caaee842e94`), mathlib at
+`c44e0c8ee63ca166450922a373c7409c5d26b00b`, 128 local Lean files
+(127 source rechecks plus `Audit.lean`). With a freshly downloaded targeted
+mathlib cache, the first full run built local modules; later runs reused
+build products. `/usr/bin/time -v` measures the largest single process RSS,
+**not** the sum of concurrently running Lean processes. Wall times vary with
+other host activity; these are individual runs, not controlled averages.
+
+| Check | Wall time | Peak process RSS | Result |
+|---|---:|---:|---|
+| Original sequential script, warm build | 1:10:28 | 2,876,228 KiB | passed |
+| New full, 1 worker, first local build | 1:14:41 | 2,870,492 KiB | passed |
+| New full, 2 workers, warm build | 57:42 | 2,862,940 KiB | passed |
+| New full, 3 workers, warm build | 51:31 | 2,858,116 KiB | passed |
+| New full, 4 workers, warm build | 48:09 | 2,856,896 KiB | passed |
+| Incremental untracked unimported source, warm build | 0:03.15 | 507,264 KiB | passed |
+| Incremental unimported unexpected axiom, warm build | 0:03.34 | 513,312 KiB | correctly failed |
+
+In the original warm run, `lake build` took 0:02.59 (506,484 KiB), the
+127 source rechecks took 45:57.12 summed wall time (maximum 2,876,228 KiB),
+and the final aggregate audit took 24:27.72 (2,664,196 KiB). For worker
+counts 2, 3, and 4, 10-second `free -m` samples recorded minimum available
+memory of 8198, 7782, and 7690 MiB respectively, and maximum swap used
+of 2170, 2195, and 2340 MiB (the host already used swap before testing).
+Two workers are the conservative portable default: four were faster on this
+host but increase simultaneous memory demand; select more only after checking
+headroom on the target host. A subsequent four-worker full run with both an
+unimported unexpected axiom and a compiler error reported both failures and
+skipped the aggregate audit. No uncached dependency-download or cold-cache
+baseline was measured, and no cross-run audit caching or fleet distribution
+has been added.
 
 An optional task-local Lean 4.19.0 distribution can be installed at
 `.tools/lean-4.19.0-linux/`; `check.sh` detects it without changing global
