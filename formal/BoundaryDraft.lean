@@ -78,3 +78,9 @@ import BoundaryDraft.TwoFaceOverlap
 import BoundaryDraft.WeightedGraphAction
 import BoundaryDraft.TangentWedge
 import BoundaryDraft.ShortDisplacement
+import BoundaryDraft.TwoFaceNullGap
+import BoundaryDraft.MonotoneHingeIntegral
+import BoundaryDraft.TwoFaceLongGeometry
+import BoundaryDraft.TwoFaceLongDisintegration
+import BoundaryDraft.AveragedQuadraticJet
+import BoundaryDraft.TwoFaceLongNull
