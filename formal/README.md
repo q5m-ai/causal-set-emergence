@@ -77,7 +77,7 @@ admissibility structure is modified.
 
 ## What actually compiles and is proved
 
-`./check.sh` builds the library, discovers **every local Lean source** (excluding
+`./check.sh` is the required full gate: it builds the library, discovers **every local Lean source** (excluding
 `.lake/` and `.tools/`), and checks each with warnings treated as errors. Each
 source is also rechecked in an isolated current module so all of its public
 declarations receive a transitive axiom audit even when that source is not
@@ -1367,6 +1367,32 @@ lake exe cache get \
   Mathlib.Tactic.Linarith Mathlib.Tactic.NormNum Mathlib.Tactic.Positivity
 ./check.sh
 ```
+
+For a quick developer loop after fetching the intended integration base, use
+`./check.sh --incremental --base origin/main` from `formal/`. The base must be
+an ancestor of `HEAD`; the command examines staged, unstaged, renamed, deleted,
+and untracked sources against that base. It builds, then rechecks changed and
+new local sources (including unimported ones) with the same warning and
+transitive-axiom rules. Changed `Audit.lean` is also checked. Deleted sources
+are not rechecked. An unreliable base or ignored Lean source stops the check.
+**Incremental mode is not a full proof audit.** Always run `./check.sh` on the
+integrated commit before accepting a mathematical result, including #67 and
+#71. For explicit bounded parallelism in the full gate, run
+`./check.sh --workers 1` (conservative default), or use `--workers 2`, `3`,
+or `4` only after checking host memory and swap. All source checks must pass
+before the final aggregate `Audit.lean` check.
+
+Benchmark status for this host (q5m-n02): no working Lean/Lake installation
+was available in this checkout, so pinned-version, warm-cache elapsed time
+and peak RSS for the baseline, incremental cycle, and full mode at 1–4 workers
+are **not measured**. The cold-cache baseline is also unavailable. Do not
+infer a speedup from the orchestration tests. On a toolchain-equipped host,
+record `lean --version`, source count, host, cache state, and `/usr/bin/time -v`
+for `lake build`, per-source and aggregate phases of the original script,
+then for the incremental cycle and `./check.sh --workers N` at each N from
+1 to 4, observing memory and swap. Keep the default at one until those
+measurements justify a change. Cross-run audit caching and fleet distribution
+remain deferred.
 
 An optional task-local Lean 4.19.0 distribution can be installed at
 `.tools/lean-4.19.0-linux/`; `check.sh` detects it without changing global
