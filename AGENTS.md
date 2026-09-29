@@ -9,6 +9,22 @@
 - Keep Lean declarations and theorem-contract examples as code, not rendered
   LaTeX. Do not rewrite historical issue/PR status as part of a formatting pass.
 
+## Lean proof-check workflow
+
+- Read [the Lean setup and measured checker workflow](formal/README.md#reproduce)
+  before working on formal proofs. After fetching the intended base, use
+  `cd formal && ./check.sh --incremental --base origin/main` for edit-loop
+  feedback. The base must be an ancestor of the branch; do not mistake this
+  changed-source check for a full audit.
+- Before review or handoff of Lean/checker work, run `cd formal && ./check.sh`
+  after the last change to Lean sources, checker logic, dependencies, build
+  configuration, or another input affecting Lean validation. It builds, audits
+  every local Lean source with warnings as errors and the transitive-axiom
+  rule, then runs the aggregate audit. The default is two workers; adjust with
+  `--workers N` only after checking memory/swap headroom. GitHub CI does not
+  replace this local gate. Subsequent documentation- or instruction-only
+  changes need Markdown/relevant lightweight checks, not another Lean audit.
+
 ## GitHub-compatible mathematics
 
 Follow [the GitHub math authoring and validation guide](notes/github-math.md)
