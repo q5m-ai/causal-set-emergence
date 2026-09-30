@@ -27,9 +27,13 @@ checked for the two-graph subclass, with chart-overlap measure compatibility,
 finiteness, integrability, Lorentz/dilation transport and exact planar recovery.
 For every admissible two-face region and fixed positive cutoff, the actual
 long-overlap density now has a checked right quadratic jet, and its fully
-normalized signed long-displacement contribution tends to zero. This does not
-prove a two-curved-face action limit. Arbitrary null boundaries,
-induced null-joint geometry, quantitative rates, variance, and sample-wise
+normalized signed long-displacement contribution tends to zero. The assembly
+interface checks full/short/expectation limit equivalences and fixed-cutoff
+independence. The actual short-overlap C³ extension and its two-jet, signed
+logarithmic response, nearly-null remainder cancellation, spatial divergence
+identity, and target identification now complete both original two-face limit
+goals. The independently proved Poisson bridge supplies the expectation limit.
+Arbitrary null boundaries, induced null-joint geometry, quantitative rates, variance, and sample-wise
 convergence remain outside the checked claims.**
 
 Lean **4.19.0** and mathlib **v4.19.0** are pinned. `lake-manifest.json` pins the
@@ -70,10 +74,11 @@ its signed integrability and action identity with the actual existing long
 density, and finite first-endpoint weight partitions retaining all partners.
 `ShortDisplacementRegression.lean` independently expands the normalization,
 keeps the cutoff equality in the long domain, retains all original planar
-hypotheses, and exercises overlapping and negative weights. The note's C³
-extension, logarithmic cancellation, cutoff-derivative term and curved-face
-error estimate are not claimed as checked Lean results. No limit goal or
-admissibility structure is modified.
+hypotheses, and exercises overlapping and negative weights. The note's full weighted cutoff-derivative/error estimate is not claimed as a
+checked Lean result. The end-to-end proof below instead compares the unweighted
+actual overlap with the planar cap at the same height; its C³ extension,
+logarithmic cancellation and remainder estimates are checked separately.
+No limit goal or admissibility structure is modified.
 
 ## What actually compiles and is proved
 
@@ -238,6 +243,13 @@ factor on that joint. It also exercises the existing curved-sine family.
 | `BoundaryDraft/TwoFaceLongDisintegration.lean` | Pointwise actual-density triple-integral identity, joint measurability and nonnegative finiteness before real transport | A density jet by itself |
 | `BoundaryDraft/AveragedQuadraticJet.lean` | Coefficient measurability without root selection and dominated averaging of pointwise quadratic jets | Geometric coefficient integrability by itself |
 | `BoundaryDraft/TwoFaceLongNull.lean` | Three-probe coefficient integrability, finite-support domination, actual-density right quadratic jet and unconditional fixed-cutoff long cancellation with full signed normalization | Cutoff removal, short-displacement cancellation or the complete two-face limit |
+| `BoundaryDraft/TwoFaceAssembly.lean` | Full-minus-short vanishing, limit equivalences, independence of two fixed cutoffs, expectation equivalence and unconditional planar short limits | The short geometric theorem by itself, or a shrinking-cutoff bound |
+| `BoundaryDraft/ShortDisplacementCoordinates.lean`, `ShortOverlapDensity.lean` | Exact sharp-cutoff transport, actual nonnegative density, finite bounds, absolute integrability and signed finite-density disintegration | An assumed alternative density or an asymptotic theorem by themselves |
+| `BoundaryDraft/MovingCollarIntegral.lean`, `MovingCollarJet.lean`, `TwoFaceShortOverlapJet.lean`, `ShortOverlapTaylor.lean` | Actual local C³ overlap-difference extension, common moving roots, compact parameter differentiation, complete finite-atlas sum, and explicit source/surface two-jet from unchanged admissibility | C³ Jacobians, a postulated overlap jet, or unrestricted boundary geometry |
+| `BoundaryDraft/NullTransverseLogMoments.lean`, `ShortRadialQuadratic.lean`, `ShortRadialIntegral.lean`, `ShortRadialQuadraticLimit.lean` | Absolute logarithmic moments, exact sharp-cutoff radial density, signed response and physical normalization | A full geometric limit without the overlap theorem |
+| `BoundaryDraft/TruncatedQuadraticJet.lean`, `ShortNullRemainder.lean`, `CubicRemainderBounds.lean`, `ShortTaylorRemainder.lean`, `NullCubicRemainder.lean` | Dominated averaging without a common positive fibre cutoff, derivative-controlled null remainder cancellation, measurable representatives and cubic estimates from actual vanishing two-jets | A value-only cubic bound as a substitute for derivative control |
+| `BoundaryDraft/GraphWeightedCoarea.lean`, `GraphDivergence.lean`, `SphereQuadraticMoments.lean`, `TwoFaceCoefficient.lean`, `TwoFaceAngularJet.lean` | Weighted collar transport, spatial divergence derived by a height ramp, full sphere moments, original induced-area coefficient and target identification | An assumed divergence identity or a redefined boundary target |
+| `BoundaryDraft/ShortOverlapAsymptotics.lean`, `TwoFaceShortReduction.lean`, `TwoFaceShortLimit.lean`, `TwoFaceLimit.lean` | Actual signed density assembly, exact planar point-term cancellation, every fixed-positive-cutoff short limit, `twoFaceLimitGoal` and `twoFaceExpectedLimitGoal` | Shrinking-cutoff uniformity, rates, sample-wise convergence or the unrestricted conjecture |
 | `BoundaryDraft/JointMetric.lean`, `TwoFaceAngle.lean` | Actual future unit normals, positive joint metric, strict positive angle and invariant cotangent weight, compact nondegeneracy margins | A boundary measure or asymptotic identity by themselves |
 | `BoundaryDraft/TwoFaceSurface.lean`, `TwoFaceCharts.lean` | Finite induced area, absolutely integrable weight, exact planar measure/integral recovery, actual Gram-density chart rule and overlap measure compatibility | Arbitrary manifold atlases or localization |
 | `BoundaryDraft/JointTransport.lean` | Derivative-based induced area, affine Lorentz covariance and positive-dilation scaling, transported chart rules and angle-weighted integrals | A new action limit, unrestricted embedded-joint theorem, or sample-wise convergence |
@@ -1225,7 +1237,7 @@ quantitative rates, variance, and sample-wise convergence remain separate tasks.
 The [acceptance audit](ACCEPTANCE.md) records the proof-gap history and validation;
 this is not a proof of the unrestricted conjecture or a claim of peer review.
 
-## Open two-spacelike-face contract (#49)
+## Original two-spacelike-face contract (#49)
 
 `TwoFaceContract.lean` specifies a restricted global two-graph class, not a new
 asymptotic theorem. `AdmissibleTwoFace h f` retains the original
@@ -1269,10 +1281,11 @@ compatibility. `JointTransport` computes transported area from actual
 derivatives and proves Lorentz covariance, positive-dilation scaling, and
 angle-weighted integral transport. These results cover the stated coordinate
 subclass and its transformed embeddings, not all immersed surfaces. See the
-[conventional joint-geometry proof](JOINT_GEOMETRY.md). The deterministic and
-expected two-face limits remain **open proposition definitions**, not proof
-terms. The expectation-limit transfer requires the still-open deterministic
-limit, but no longer requires the proved region goal. See the
+[conventional joint-geometry proof](JOINT_GEOMETRY.md). The original deterministic
+and expectation propositions are now proved in `TwoFaceLimit.lean`, after the
+short and long analytic obligations are derived. The expectation transfer
+still uses the separately proved positive-density bridge, not a random-limit
+assumption. See the
 [contract, source review, exact obligations and obstruction register](../notes/two-face-contract.md).
 This does not close #24 or assume overlap regularity, localization, wedge
 asymptotics or any sample-wise convergence.
@@ -1298,6 +1311,60 @@ zero-volume cases. This completes the fixed-positive-cutoff obligation of #61,
 not uniformity in the cutoff, short-displacement cancellation, cutoff removal,
 the complete two-face action limit, #24, or sample-wise convergence.
 
+### Fixed-cutoff assembly and its verification boundary (#67)
+
+The [conventional assembly](../notes/two-face-limit.md) uses #66's written
+short-displacement theorem and #61 at one common fixed positive cutoff. The
+same finite source partition retains all partners, accounts for the complement
+of the collar, and cancels the artificial weight-derivative terms only after
+summation. The short coefficient already equals the induced-area target at
+every sufficiently small fixed cutoff, so no cutoff-to-zero interchange is
+needed. Expectation transfer comes last. This remains a conventional argument;
+the checked proof of the same original goals uses the unweighted comparison
+route described next, rather than encoding every weighted estimate in #66.
+
+`TwoFaceAssembly.lean` discharges the long term from geometry and proves that
+full and short limits to any given target are equivalent. It also proves that
+short actions at any two fixed positive cutoffs have difference tending to
+zero, and that deterministic and expected limit goals are equivalent. The
+existence of one positive-cutoff short limit is explicitly equivalent to the
+unchanged `TwoFaceLimitGoal`; no short limit is an admissibility field.
+
+The checked short proof subtracts the planar cap with the same height, whose
+volume agrees exactly with the original region. `TwoFaceShortOverlapJet` and
+`ShortOverlapTaylor` construct a local C³ extension of the **actual** overlap
+difference and identify its first two derivatives. A finite collar atlas is
+used only for the moving-collar correction; the full source region and all
+causal partners are retained. Moving-endpoint differentiation requires only
+a C² weighted Jacobian. `ShortTaylorRemainder` derives a measurable,
+derivative-controlled cubic remainder from that actual Taylor polynomial.
+`ShortNullRemainder` averages its truncated nearly-null fibres without a
+common positive lower cutoff. The exact radial-square response uses the
+signed logarithmic moments, not an absolute-value replacement of the kernel.
+
+`GraphDivergence` proves the spatial flux identity by compactly supported
+height ramps and linewise integration by parts. Full sphere moments and
+`TwoFaceCoefficient` identify the resulting coefficient with the original
+induced-area target. `TwoFaceShortLimit` discharges every analytic input and
+proves the short limit. The final public declarations are:
+
+```lean
+theorem twoFaceLimitGoal : TwoFaceLimitGoal
+theorem twoFaceExpectedLimitGoal : TwoFaceExpectedLimitGoal
+```
+
+They retain precisely the original `AdmissibleTwoFace` assumptions and goal
+definitions, without `sorry`, new axioms, or a short-limit premise.
+`TwoFaceAssemblyRegression.lean` instantiates both original goals and expands
+the independent target. It requires unconditional deterministic and expected
+limits for the genuinely curved sine face while retaining nonaffinity,
+original planar/unequal-axis hypotheses, cutoff independence, and the separate
+null-cap theorem. `TwoFaceShortAnalysisRegression.lean` checks the analytic
+normalizations and geometric interfaces. `GraphCapRegression.lean` retains
+the quartic critical point in its planar short-limit specialization.
+Independent human mathematical review remains outstanding; the full weighted
+estimate in #66 and sample-wise convergence are not promoted by these proofs.
+
 ## Reproduce
 
 With Lean/elan installed and the pinned toolchain selected by `lean-toolchain`:
@@ -1320,6 +1387,9 @@ lake exe cache get \
   Mathlib.MeasureTheory.Integral.IntervalIntegral.IntegrationByParts \
   Mathlib.Analysis.SpecialFunctions.Gaussian.GaussianIntegral \
   Mathlib.Analysis.SpecialFunctions.ImproperIntegrals \
+  Mathlib.Analysis.SpecialFunctions.Integrals \
+  Mathlib.MeasureTheory.Integral.IntegralEqImproper \
+  Mathlib.Topology.MetricSpace.Thickening \
   Mathlib.Analysis.SpecialFunctions.Log.NegMulLog \
   Mathlib.Analysis.SpecialFunctions.Exp \
   Mathlib.Analysis.SpecialFunctions.ExpDeriv \
@@ -1333,6 +1403,9 @@ lake exe cache get \
   Mathlib.Analysis.Calculus.Implicit \
   Mathlib.Analysis.Calculus.InverseFunctionTheorem.ContDiff \
   Mathlib.Analysis.Calculus.BumpFunction.InnerProduct \
+  Mathlib.Analysis.Calculus.BumpFunction.FiniteDimension \
+  Mathlib.Analysis.Calculus.FDeriv.Symmetric \
+  Mathlib.Analysis.Calculus.LineDeriv.IntegrationByParts \
   Mathlib.MeasureTheory.Function.Jacobian \
   Mathlib.Geometry.Manifold.PartitionOfUnity \
   Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace \
