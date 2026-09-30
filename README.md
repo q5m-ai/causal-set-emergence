@@ -287,6 +287,16 @@ transfers the result to expectations. The original class and all goal
 definitions are unchanged. No shrinking-cutoff uniformity, convergence rate,
 unrestricted-conjecture result, or sample-wise convergence is claimed.
 
+The [independent-face enlargement audit](notes/independent-face-extension.md)
+derives a larger fixed 4D class in writing, with independent strict causal
+bounds and the same intrinsic area/angle target. A steep capsule lies outside
+even transported old presentations. Its same-height planar reference is not
+causally convex and has the wrong causal overlap formula. This is a rigorous
+obstruction to that comparison route, **not** a counterexample to the full
+conjecture or a new enlarged-class limit. The audit records surviving local
+jets, replacement long-ray margins and the bounded
+[direct-origin proof task #97](https://github.com/q5m-ai/causal-set-emergence/issues/97).
+
 ### Curved-spacetime feasibility boundary
 
 The [fixed-geometry conformal pilot](notes/curved-bulk-pilot.md) derives an
