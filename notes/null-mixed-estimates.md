@@ -45,9 +45,11 @@ $`K(z)=(1-9z+8z^2-4z^3/3)e^{-z}`$. For a bounded measurable first-endpoint
 weight $`\phi`$ define
 
 ```math
-\mathcal A_\rho[\phi]=C\sqrt\rho\left[
+\begin{aligned}
+\mathcal A_\rho[\phi]&=C\sqrt\rho\left[
  \int_{M_H}\phi(p)\,dp-\rho\int_{M_H}\phi(p)
  \int_{M_H\cap J^+(p)}K(c\rho\tau_{py}^4)\,dy\,dp\right].
+\end{aligned}
 \tag{NM2}
 ```
 
@@ -66,9 +68,11 @@ entire closed interval $`I(p,0)`$. Define $`\sigma(p)=t^2-|x|^2>0`$.
 The existing exact interval identity gives
 
 ```math
+\begin{aligned}
 \rho\int_{I(p,0)}K(c\rho\tau_{py}^4)\,dy
-  =1-e^{-c\rho\sigma(p)^2},\qquad
-\mathcal A_\rho[\phi]=C\sqrt\rho\int_{M_H}\phi(p)e^{-c\rho\sigma(p)^2}\,dp.
+  &=1-e^{-c\rho\sigma(p)^2},\\
+\mathcal A_\rho[\phi]&=C\sqrt\rho\int_{M_H}\phi(p)e^{-c\rho\sigma(p)^2}\,dp.
+\end{aligned}
 \tag{NM3}
 ```
 
@@ -112,10 +116,12 @@ angular weights and radial step cutoffs independent of time are allowed.
 For $`0\lt\sigma\le T^2/4`$, the following explicit estimate holds:
 
 ```math
-|W_\phi(\sigma)-W_\phi(0)|\le E(\sigma),\qquad
-E(\sigma)=\pi\sigma\left[
+\begin{aligned}
+|W_\phi(\sigma)-W_\phi(0)|&\le E(\sigma),\\
+E(\sigma)&=\pi\sigma\left[
  M\left(1+\log\frac B{\sqrt\sigma}
        +\frac{2B}{m(1-\lambda)}\right)+LB\right].
+\end{aligned}
 \tag{NM5}
 ```
 
@@ -159,7 +165,9 @@ is an actual weighted remainder estimate, not an assumed geometric jet.
 The Gaussian has mass **four**, not one:
 
 ```math
-C\sqrt\rho\int_0^\infty e^{-c\rho\sigma^2}\,d\sigma=4.
+\begin{aligned}
+C\sqrt\rho\int_0^\infty e^{-c\rho\sigma^2}\,d\sigma&=4.
+\end{aligned}
 \tag{NM6}
 ```
 
@@ -167,8 +175,10 @@ For any fixed split $`0\lt s\le T^2/4`$, $`E`$ is increasing on $`[0,s]`$
 with $`E(0)=0`$. The global bound and Gaussian tail give
 
 ```math
+\begin{aligned}
 \left|\mathcal A_\rho[\phi]-4W_\phi(0)\right|
- \le4E(s)+8M\pi B^2\,\mathrm{erfc}(\sqrt{c\rho}\,s).
+ &\le4E(s)+8M\pi B^2\,\mathrm{erfc}(\sqrt{c\rho}\,s).
+\end{aligned}
 \tag{NM7}
 ```
 
@@ -189,8 +199,10 @@ traces with integrable $`r^2\partial_r\phi_0`$ (in particular smooth weights),
 integration by parts identifies the actual weighted response:
 
 ```math
-4W_\phi(0)=\int_{S^2}R^2\phi_0(R,\omega)\,d\omega
+\begin{aligned}
+4W_\phi(0)&=\int_{S^2}R^2\phi_0(R,\omega)\,d\omega
  -\int_{S^2}\int_0^R r^2\partial_r\phi_0(r,\omega)\,dr\,d\omega.
+\end{aligned}
 \tag{NM8}
 ```
 
@@ -240,8 +252,10 @@ such comparison is used in the proof above.
 After the signed cancellation, for every density and $`0\lt\delta\le B`$,
 
 ```math
+\begin{aligned}
 |\mathcal A_\rho[\phi\,\mathbf1_{r\lt\delta}]|
- \le4M\pi\delta^2.
+ &\le4M\pi\delta^2.
+\end{aligned}
 \tag{NM9}
 ```
 
@@ -257,9 +271,11 @@ Now put $`\phi_h=\mathbf1_{R(\omega)-h\lt r\lt R(\omega)}`$, independent
 of time, with $`0\lt h\lt m`$. Formula (NM7) applies with $`L=0`$, and gives
 
 ```math
+\begin{aligned}
 \lim_{\rho\to\infty}\mathcal A_\rho[\phi_h]
- =\int_{S^2}\left[R^2-(R-h)^2\right]d\omega
- \le8\pi Bh\ \longrightarrow\ 0\quad(h\downarrow0).
+ &=\int_{S^2}\left[R^2-(R-h)^2\right]d\omega\\
+ &\le8\pi Bh\ \longrightarrow\ 0\quad(h\downarrow0).
+\end{aligned}
 \tag{NM10}
 ```
 
@@ -332,11 +348,13 @@ For $`H=T`$, the joint radius is $`T`$, the candidate area is $`4\pi T^2`$,
 and the exact radial primitive gives
 
 ```math
-W_T(\sigma)=\pi\left[
+\begin{aligned}
+W_T(\sigma)&=\pi\left[
  T\sqrt{T^2-\sigma}
  -\sigma\log\frac{T+\sqrt{T^2-\sigma}}{\sqrt\sigma}\right]
- \quad(0\lt\sigma\lt T^2),
-\qquad W_T(0)=\pi T^2.
+ \quad(0\lt\sigma\lt T^2),\\
+W_T(0)&=\pi T^2.
+\end{aligned}
 \tag{NM12}
 ```
 
