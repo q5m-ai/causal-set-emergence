@@ -50,6 +50,13 @@ Markdown can consume their contents first. In issue #19, a standalone `=` line
 became a Setext heading underline, turning half the equation into a heading.
 Fenced math prevents that failure.
 
+Use `\lt` for less-than comparisons in displays, especially before a letter:
+GitHub can consume raw `<t` or `<H` as HTML even in a math fence. During #90's
+browser preview, a region equation silently lost everything after `<t` while
+still producing a `math-renderer math` element without an error. Compare the
+**whole rendered equation** with its source, including closing braces and
+trailing inequalities; counting MathML elements alone cannot catch this.
+
 ### Commands and literal code
 
 - Use portable built-ins: `\mathrm{Area}(J)`, `\mathrm{continuumMean}`,

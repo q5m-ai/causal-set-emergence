@@ -39,6 +39,26 @@ class MarkdownMathTest(unittest.TestCase):
             with self.subTest(source=source):
                 self.assertIn("unsupported macro", lint_markdown(source)[0][1])
 
+    def test_display_comparison_can_silently_truncate_mathml(self):
+        # Observed on GitHub in #90: a math-renderer and MathML existed, but
+        # both region definitions stopped before <t and lost the closing set.
+        for expression in (r"M=\{(t,x):-H(x)<t<-|x|\}", r"D=\{x:|x|<H(x)\}"):
+            for prefix in ("", "   ", "> "):
+                source = f"{prefix}```math\n{prefix}{expression}\n{prefix}```\n"
+                with self.subTest(source=source):
+                    errors = lint_markdown(source)
+                    self.assertTrue(errors)
+                    self.assertTrue(all(line == 2 and "HTML-like comparison" in message
+                                        for line, message in errors))
+                    self.assertEqual(lint_markdown(source.replace("<", r"\lt ")), [])
+
+    def test_comparison_guard_preserves_literal_code_and_protected_inline(self):
+        for source in ("```lean\n-- h<t is literal code\n```", "`h<t`",
+                       "$`h<t`$", "<!-- ```math\nx<t\n``` -->",
+                       "```math\nx < t < 0\n```", r"$`0<a<T`$"):
+            with self.subTest(source=source):
+                self.assertEqual(lint_markdown(source), [])
+
     def test_other_rejected_and_custom_macros(self):
         for macro in ("phantom", "boldsymbol", "DeclareMathOperator", "require", "newcommand"):
             with self.subTest(macro=macro):
