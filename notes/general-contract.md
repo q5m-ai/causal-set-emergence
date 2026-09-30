@@ -175,7 +175,7 @@ one of the general-curved risks that a proof must handle.
 
 **Nonvacuity in every target dimension.** In spatial dimension $`d-1`$,
 $`h(x)=a(1-|x|^2)`$, $`f(x)=\epsilon\sin x_1`$ with
-$`a,\epsilon>0`$, $`2a+\epsilon<1`$ give smooth flat members with regular
+$`a,\epsilon>0`$, $`2a+\epsilon\lt 1`$ give smooth flat members with regular
 sphere joint (two points in 2D); see the explicit dimension-ledger construction.
 The origin's height critical point is permitted. This is not an all-dimensional
 Lean instance or limit theorem.
@@ -184,7 +184,7 @@ Lean instance or limit theorem.
 $`h(x)=\frac14(1-x_1^2-x_2^2/4-x_3^2/9)`$, $`f=0`$, and
 $`\Omega=1+bt^2`$, $`b>0`$, on Minkowski space. The causal cones, convexity
 and joint angles are unchanged by the conformal factor. On the compact region
-$`-h<t<0`$, the scalar curvature above is positive, so the bulk integral is
+$`-h\lt t\lt 0`$, the scalar curvature above is positive, so the bulk integral is
 strictly positive. At the joint $`t=0`$ the conformal factor is one: the old
 weights 2 and 6 at axis endpoints and the joint integral $`48\pi`$ remain.
 The geometry therefore has nonzero bulk **and** variable angle. This is a
@@ -309,7 +309,7 @@ may fail. Neither this elementary coefficient limit nor a pointwise metric
 limit permits interchange with density, cutoff removal or the joint integral.
 
 **Inventory, not a general null theorem.** The checked cap is precisely
-`nullCapRegion T a` with $`0<a<T`$, the open diamond from $`(-T,0)`$ to zero
+`nullCapRegion T a` with $`0\lt a\lt T`$, the open diamond from $`(-T,0)`$ to zero
 cut by $`t-x_1>-a`$. Its deterministic and expected limits equal the algebraic
 `nullJointArea T a` $`=\pi a(2T-a)`$. `NullGeometry` checks containment;
 `NullCapLimit` does not give general induced-null-joint geometry or arbitrary
@@ -328,7 +328,7 @@ proof. Neither calibration is obtained by an automatic spacelike/null limit.
   No requirement of a nonzero height gradient in the whole interior is added.
 - **Included topology test:** the thin solid-torus height
   $`h=a[\delta^2-(\sqrt{x_1^2+x_2^2}-R_0)^2-x_3^2]`$ with
-  $`R_0>\delta>0`$, $`2a\delta<1`$, and $`f=0`$. Its positive part is
+  $`R_0>\delta>0`$, $`2a\delta\lt 1`$, and $`f=0`$. Its positive part is
   globally $`2a\delta`$-Lipschitz, and near its closed positive set the axis
   singularity is absent. Its joint is a regular torus with gradient norm
   $`2a\delta`$. This conventional inclusion test shows why “sphere” or
@@ -341,11 +341,11 @@ proof. Neither calibration is obtained by an automatic spacelike/null limit.
 For #85 fix $`s=3/4`$ and consider the rotationally symmetric region
 
 ```math
-M_s=\{(t,x):|x|<1,\quad
- -\tfrac{s}{2}(1-|x|^2)<t<\tfrac{s}{2}(1-|x|^2)\}.
+M_s=\{(t,x):|x|\lt 1,\quad
+ -\tfrac{s}{2}(1-|x|^2)\lt t\lt\tfrac{s}{2}(1-|x|^2)\}.
 ```
 
-Both raw face germs are smooth and have slope at most $`s<1`$ on the closed
+Both raw face germs are smooth and have slope at most $`s\lt 1`$ on the closed
 ball; their causal envelopes are respectively minus/plus
 $`s(1-|x|^2)_+/2`$, each globally $`s`$-Lipschitz. The region is their strict
 epigraph/hypograph intersection, hence ambient-causally-convex and bounded.
@@ -355,7 +355,7 @@ planar reference cap fails the old hypothesis. The old combined budget would
 require at least $`3s=9/4`$.
 
 This is not merely a poor choice of one Lorentz frame. For any common boost
-with speed $`0\le v<1`$, rotational symmetry lets us choose the antipodal
+with speed $`0\le v\lt 1`$, rotational symmetry lets us choose the antipodal
 joint points along its axis. The transformed future slope maximum is at least
 $`u=(s+v)/(1+sv)`$, and at one of those points the slope difference is
 $`\Delta=2s(1-v^2)/(1-s^2v^2)`$. Any old combined constants must bound
@@ -364,7 +364,7 @@ $`u+\Delta`$. Direct algebra gives
 ```math
 u+\Delta-1=
  \frac{(1-v)[3s-1+(3s-s^2)v]}{1-s^2v^2}>0
- \qquad(s=3/4,\ 0\le v<1).
+ \qquad(s=3/4,\ 0\le v\lt 1).
 ```
 
 Rotations, translations and positive dilations do not evade this necessary
@@ -377,11 +377,11 @@ jets and replace the invalid planar comparison, rather than rename the class.
 
 **GO, directly at fixed null geometry.** Put the future tip at zero. Choose a
 smooth globally Euclidean-Lipschitz $`H:\mathbb R^3\to\mathbb R`$ with constant
-$`\lambda<1`$ and $`H(0)>0`$, all fixed. Define
+$`\lambda\lt 1`$ and $`H(0)>0`$, all fixed. Define
 
 ```math
-M_H=\{(t,x):-H(x)<t<-|x|\},\qquad
-D_H=\{x:|x|<H(x)\}.
+M_H=\{(t,x):-H(x)\lt t\lt -|x|\},\qquad
+D_H=\{x:|x|\lt H(x)\}.
 ```
 
 The lower face is spacelike; the upper face is the past null cone of zero,
@@ -413,7 +413,7 @@ full-partner interval reduction is a promising route; proving and instantiating
 its exact integration identity is work for #83, not an assumed limit here.
 
 An explicit member is $`H(x)=T+\epsilon\sin x_1`$ with
-$`T>\epsilon>0`$, $`\epsilon<1`$. Its lower face is genuinely nonplanar on the
+$`T>\epsilon>0`$, $`\epsilon\lt 1`$. Its lower face is genuinely nonplanar on the
 region, its radial joint varies, and it is not the already-checked all-null
 plane cut (causal face type is invariant under Lorentz transformations).
 “New member” here means outside that repository calibration, not a novelty
