@@ -59,6 +59,16 @@ Jacobians, sphere normalization, null displacements, and zero-volume regions.
 This finite-density representation is prior work of Dowker–Liu–Lloyd-Jones
 §2.6, not a new localization or overlap-regularity theorem.
 
+The separate [controlled conformal API](CONFORMAL_ACTION.md) proves an exact
+finite-density expectation identity on the original two-face coordinate
+regions with a positive smooth conformal metric. It constructs the curved
+Poisson law and uses actual restricted metric interval volume, leaving the
+flat API unchanged. Measurability, integrability, atomlessness, ambient
+compatibility and constant-factor calibration are derived. A nonconstant
+admissible example has independently calculated nonzero scalar curvature
+(written and symbolic verification, not a Lean curvature theorem). No curved
+continuum limit, bulk coefficient or new induced-joint target is asserted.
+
 The [two-face geometry integration](TWO_FACE_GEOMETRY.md) now proves the
 unchanged `TwoFaceRegionGoal`: open bounded ambient-causally-convex regions,
 compact faces and joint, the complete frontier, and the exact face intersection.
@@ -234,6 +244,7 @@ factor on that joint. It also exercises the existing curved-sine family.
 | `BoundaryDraft/FiniteCausalOrder.lean`, `DiscreteBDG.lean` | Genuine finite-order BDG action, all signed coefficients and normalization, measurability, and absolute integrability | The expectation identity by themselves |
 | `BoundaryDraft/PoissonExpectation.lean`, `ExpectationGeometry.lean`, `ExpectationBridge.lean` | Exact normalized expectation equals the unchanged `continuumMean`; restricted interval rates identified from geometric causal convexity | Variance, concentration, or a sample-wise limit |
 | `BoundaryDraft/ExpectedLimits.lean` | Expected-action ellipsoid, admissible graph-cap, and null-cap limits under the original hypotheses | Rates, random convergence, unrestricted boundaries, or induced null-joint geometry |
+| `BoundaryDraft/FiniteMeasureBDG.lean`, `ConformalGeometry.lean`, `ConformalAction.lean`, `ConformalExamples.lean` | Finite-measure BDG averaging, controlled conformal metric volume, restricted-interval action, constructed law and exact expectation, integrability, ambient compatibility, flat/constant calibration and nonconstant admissibility | A Lean curvature theorem, curved joint/bulk target, continuum limit, rates or sample-wise convergence |
 | `BoundaryDraft/Poincare.lean` | Affine time-oriented Lorentz equivalences, interval/causal transport, derived absolute determinant one, product Lebesgue preservation, and bounded measurable causally convex image regions | Generic induced-joint measure transport or a boundary limit |
 | `BoundaryDraft/ActionTransport.lean` | Exact covariance and positive-dilation scaling of the unchanged bilocal action, absolute integrability, and transfer through the existing expectation bridge | A new Poisson-law coupling, localization, curved-face limits, or sample-wise convergence |
 | `BoundaryDraft/TwoFaceGeometry.lean` | `twoFaceRegionGoal`, strict causal envelopes, openness, compact closure/faces/joint, ambient causal convexity, complete frontier and face intersection | Intrinsic joint area or a two-face limit by itself |

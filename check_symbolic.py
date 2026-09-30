@@ -2,6 +2,7 @@
 
 import sympy as s
 
+from conformal_geometry import check_conformal_identities
 from dimension_kernels import check_dimension_identities
 
 
@@ -108,6 +109,7 @@ def main():
     assert s.simplify(cosh_squared / (cosh_squared - 1) - 1 / k**2) == 0
     print("PASS: coth(theta)=1/|grad h| for 0<|grad h|<1")
     check_dimension_identities()
+    check_conformal_identities()
     print("All symbolic checks passed.")
 
 
