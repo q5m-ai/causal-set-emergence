@@ -50,6 +50,18 @@ lozenge/triangle evidence, and constant-angle cones checked through dimension
 and lists literature not reviewed in this task. This does not upgrade the
 related-work inventory above to an exhaustive novelty search.
 
+## Focused curved-bulk feasibility audit
+
+The [#73 pilot audit](curved-bulk-pilot.md#6-literature-audit-coefficient-agreement-is-not-a-new-global-theorem)
+compares the scalar-operator near/long-null decomposition of
+Belenchia–Benincasa–Dowker, [arXiv:1510.04656v2](https://arxiv.org/html/1510.04656v2),
+with Dowker's conformal first-curvature calculation and Machet–Wang's
+[small-diamond calculation, v2](https://arxiv.org/html/2007.13192v2).
+It records signature/Riemann-sign conversion, field-support and null-tube
+hypotheses, and the difference between curvature-truncated evidence and a
+controlled full signed action remainder. It does not claim novelty for the
+local curvature coefficient or an exhaustive review of these sources.
+
 ## Attribution and claim boundary
 
 The conjecture, action coefficients, interval-volume formula, and known
