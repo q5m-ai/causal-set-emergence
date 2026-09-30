@@ -90,6 +90,33 @@ A_a(\rho,M)&=a^2 A_1(\rho a^4,M).
 These are written calibrations of the specified integral; formal API
 identifications belong to #93. A constant factor is not a curved example.
 
+### Pinned #93 API identification (source-level, not an integrated audit)
+
+After the initial calculation, #93 published
+[`373cacaac38f6773c09f87441fcb5d068befb55f`](https://github.com/q5m-ai/causal-set-emergence/commit/373cacaac38f6773c09f87441fcb5d068befb55f).
+The [action source](https://github.com/q5m-ai/causal-set-emergence/blob/373cacaac38f6773c09f87441fcb5d068befb55f/formal/BoundaryDraft/ConformalAction.lean)
+and [API note](https://github.com/q5m-ai/causal-set-emergence/blob/373cacaac38f6773c09f87441fcb5d068befb55f/formal/CONFORMAL_ACTION.md)
+were inspected. The precise identification is:
+
+```text
+mu_g              <-> BoundaryDraft.conformalVolume Omega
+V_M(x,y)          <-> BoundaryDraft.conformalIntervalVolume Omega M x y
+A_g(rho,M)        <-> BoundaryDraft.conformalAction Omega rho M
+(C1) integral     <-> conformalAction_eq_integral
+ambient equality  <-> ControlledConformalFactor.intervalVolume_ambient
+flat / scaling    <-> conformalAction_one / conformalAction_const
+```
+
+The source retains the original region and closed order, exclusive endpoints,
+both curved endpoint measures, restricted interval volume and normalization.
+Its `ControlledConformalFactor` also requires a globally measurable extension;
+our globally smooth factor meets this without changing it. Its finite-density
+integrability is compatible with the ordinary pair-domain split (C19), which
+is an analytic identity here, not a new Lean declaration. No use is made of
+its expectation theorem in any estimate above or below. At the owner's
+publication of this revision, the full audit was still running; inspecting
+proof terms does not certify that gate or an integrated #73/#93 build.
+
 ## 2. Curvature convention, fixed before the coefficient calculation
 
 Let $`\Gamma`$ be the Levi-Civita connection. Our convention is
@@ -132,6 +159,16 @@ its $`\Box\phi-R\phi/2`$ corresponds here to
 $`\Box_g\phi+R\phi/2`$. This conversion is a check, **not** the derivation
 of the coefficient in §4. Keeping the other Riemann sign with our signature
 would instead write that curvature term as $`-R/2`$.
+
+This also resolves the concurrent source conventions explicitly: #93's
+nonzero-curvature example at the pinned revision uses the opposite Riemann
+sign, so $`R_{93}=-R`$ and our candidate $`R/2=-R_{93}/2`$. Its production
+finite-density API defines no curvature and imposes no bulk target; the
+examples need not use the same conformal factor. The proposed #90 general
+contract at [`67c2029430d8b91942e5df7c929e756b7cb85714`](https://github.com/q5m-ai/causal-set-emergence/blob/67c2029430d8b91942e5df7c929e756b7cb85714/notes/general-contract.md#curvature-sign-not-just-metric-signature)
+uses exactly (C4). There is no action/region conflict or proposed interface
+change. Any later scalar-curvature API must preserve this conversion rather
+than treating the common metric signature as sufficient.
 
 ## 3. Actual interval and endpoint-measure corrections
 
