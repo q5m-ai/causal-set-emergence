@@ -287,6 +287,18 @@ transfers the result to expectations. The original class and all goal
 definitions are unchanged. No shrinking-cutoff uniformity, convergence rate,
 unrestricted-conjecture result, or sample-wise convergence is claimed.
 
+### Fixed-null mixed estimates
+
+The [fixed-null mixed pilot](notes/null-mixed-estimates.md) derives the signed
+unit joint coefficient directly for a smooth spacelike lower face beneath a
+null cone. Its conventional proof gives an explicit weighted near-cone bound,
+uniform tip control, and the generator-derivative term needed for source
+partitions. Discarding the complement of a shrinking joint collar is a proved
+localization-route obstruction, not a counterexample to the full action.
+The [nonplanar sine diagnostics](results/null-mixed.md) retain all future
+partners. These are written arguments and executable regressions, not a new
+Lean-checked mixed-region or Poisson-expectation theorem; #84 owns that assembly.
+
 ### Curved-spacetime feasibility boundary
 
 The [fixed-geometry conformal pilot](notes/curved-bulk-pilot.md) derives an
@@ -377,6 +389,8 @@ physics.
   theorem, null/mixed taxonomy, obstruction tests and downstream contracts.
 - `notes/general-contract-literature.md` — checked source passages, normalization
   differences, dimensional/curvature qualifications and unresolved attribution.
+- `notes/null-mixed-estimates.md`, `null_mixed.py` — fixed-null weighted estimates,
+  tip/complement accounting and nonplanar diagnostics for the selected mixed class.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.
