@@ -287,6 +287,18 @@ transfers the result to expectations. The original class and all goal
 definitions are unchanged. No shrinking-cutoff uniformity, convergence rate,
 unrestricted-conjecture result, or sample-wise convergence is claimed.
 
+### Curved-spacetime feasibility boundary
+
+The [fixed-geometry conformal pilot](notes/curved-bulk-pilot.md) derives an
+exact curved interval-volume formula and the candidate bulk response of a
+second-jet model, with explicit curvature conventions and endpoint derivative
+terms. It proves a conventional signed estimate for smooth interior long-null
+sectors and an obstruction to dropping macroscopic nearly-null partners by
+absolute bounds. The actual boundary-truncated unweighted remainder remains
+open. This is analytic feasibility work for #73, with symbolic/numerical
+regressions, **not** a Lean-verified curved limit or an expected-action theorem;
+#93 owns the canonical curved finite-density API.
+
 ## Program 2 — dynamics and automaton-like growth
 
 The exploratory question is whether causal-set dynamics can be represented as
