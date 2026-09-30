@@ -1300,19 +1300,57 @@ the complete two-face action limit, #24, or sample-wise convergence.
 
 ## Dimension-indexed prerequisites (#71)
 
-`DimensionKernel.lean` defines the dimension-dependent Euler-polynomial
-recurrence, proves the algebraic Mellin multiplier's roots and transverse
-substitution, checks equality with the unchanged four-dimensional kernel and
-its integrated moments, and proves positive-density pointwise scaling with
-real powers, including odd dimensions. `DimensionKernelRegression.lean`
-independently exercises 2D/3D polynomials, the expanded 4D kernel and multiplier,
-a nonzero odd critical multiplier, and 5D scaling. The general multiplier is
-not defined to be an integral: its integrated interpretation, slice tails,
-mass-one reduction and regulated local coefficient have conventional proofs in
-[the normalization note](../notes/dimension-kernels.md), not general-dimensional
-Lean proofs here. The note supplies non-vacuous finite-density/local/global
-contracts and an explicitly gated next-step proposal. No new expectation
-bridge, curved-face estimate, or higher-dimensional global limit is asserted.
+The dimension-indexed analysis and regulated deterministic local coefficient
+are now checked, not merely the recurrence and its algebraic multiplier:
+
+- `DimensionKernel` and `DimensionMellin` prove actual absolutely convergent
+  signed integrals, roots, endpoint nonintegrability, and density scaling.
+  The Mellin factor is independently defined as an algebraic product.
+- `DimensionCancellation` proves the bounded-amplitude cancellation theorem
+  with its stated jet, deriving the global remainder bound and exact
+  subtraction. It does not infer those jets from geometric admissibility.
+- `DimensionRodrigues` proves the recurrence's derivative identity and
+  one-sided endpoint jets, without an odd-dimensional endpoint-smoothness
+  assumption.
+- `DimensionSlice` and `DimensionSliceMellin` prove the genuine slice bounds,
+  including the 2D endpoint singularity, odd exponential tails, positive even
+  fifth-power tail, and actual signed moments through order three. Absolute
+  Fubini on the initial Mellin strip precedes the checked analytic continuation;
+  divergent higher moments are not assigned continuation values.
+- `DimensionActionConstants`, `DimensionReduction`, and
+  `DimensionNormalizedKernel` prove independent coefficient calibrations,
+  absolute tail-moment Fubini, equality of finite action and tail reductions,
+  actual unit mass in every physical dimension, and the first-height-moment
+  parity distinction. Signed concentration and a fixed-observable Lipschitz
+  error bound use the finite absolute first moment, not a second moment.
+- `DimensionReducedTail` proves the negative even cubic tail with fifth-power
+  remainder, divergent second absolute moment and signed truncated divergence
+  to negative infinity. All natural absolute height moments exist in odd
+  dimensions.
+- `DimensionGeometry`, `DimensionSpacetime`, and `DimensionWedge` connect these
+  scalar results to the actual bounded weighted bilocal observable using
+  Euclidean product volume, causal futures, polar integration, the exact sphere
+  factor, and density scaling. Partners outside the source patch are retained.
+  `dimensionWeighted_wedge_limit` has only geometric/source hypotheses, with
+  no mass or integrability premise; it includes zero tangential dimension and
+  signed weights. Its rapidity version is a scalar reformulation, not a new
+  general Lorentz/area theorem.
+- `DimensionFourCompatibility` identifies the new reduction with the
+  unchanged 4D `planeKernel` and calibrates the arbitrary-density weighted
+  graph-cap action. Original 4D action files are unchanged.
+
+Seven `Dimension*Regression.lean` files exercise low-dimensional constants,
+nonunit density, actual normalization, moments/divergence, endpoint jets, an
+independent toy slice, 4D compatibility, negative weights, and a concrete
+nonzero 2D bilocal-action limit. All modules are imported by `BoundaryDraft`;
+regressions do not replace the full source and transitive-axiom audit.
+
+[The normalization note](../notes/dimension-kernels.md) maps exact theorem
+contracts and remaining obligations. The general-dimensional interval-volume
+and Poisson-expectation bridge, log-inserted derivative identities, geometric
+long-null jets, general induced-area transport, regulator removal, and global
+two-face/sample-wise limits are not proved here. Neither #67 nor #24 is assumed
+complete.
 
 ## Reproduce
 
@@ -1330,6 +1368,11 @@ lake exe cache get \
   Mathlib.Analysis.Calculus.Deriv.Comp \
   Mathlib.Analysis.Calculus.Deriv.Mul \
   Mathlib.Analysis.Calculus.Deriv.Pow \
+  Mathlib.Analysis.Calculus.Deriv.Polynomial \
+  Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas \
+  Mathlib.Analysis.Calculus.Taylor \
+  Mathlib.Analysis.MellinTransform \
+  Mathlib.Analysis.SpecialFunctions.Gamma.Beta \
   Mathlib.Analysis.Calculus.ParametricIntervalIntegral \
   Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic \
   Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus \

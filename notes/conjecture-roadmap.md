@@ -114,10 +114,13 @@ diamonds and constant-angle regions should become consequences or regression
 cases rather than separate arguments.
 
 The [dimension-indexed prerequisite note](dimension-kernels.md) inventories
-these normalizations and derives signed moments, a regulated local coefficient,
-and parity-specific proof obligations. It separates its conventional analytic
-proofs and bounded Lean algebra/scaling checks from the still-open global limit.
-Its next-step proposal remains gated on #67's actual outcome.
+these normalizations and maps the checked signed integrals, parity-specific
+tails/moments, unit reduced-kernel mass, and regulated weighted local-action
+coefficient. The Lean theorem uses the actual bilocal observable, with all
+future partners and no normalization premise. General-dimensional Poisson
+expectations, geometric long-null jets, induced-area transport, and global
+localization remain separate obligations. Its next-step proposal remains gated
+on #67's actual outcome.
 
 ### Stage 3 — curved spacetime
 

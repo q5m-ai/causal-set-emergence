@@ -7,12 +7,18 @@ not the higher-dimensional two-face limit. Dimension one is excluded. No
 smearing parameter, curved-space bulk term, null-angle limit, or convergence
 of individual sprinklings is introduced.
 
-**Verification:** §§1–6 give conventional analytic derivations, awaiting
-independent mathematical review. Exact SymPy regressions and independent
-quadrature check their constants; neither is a proof assistant. The narrowly
-specified Lean results in §8 are machine checked. General-dimensional geometry,
-expectation identities and integrated moments below are **not** thereby Lean
-theorems. Existing four-dimensional definitions and proofs are unchanged.
+**Verification:** §§1–6 explain the analytic derivations. Their signed Mellin
+integrals, cancellation contract K, parity-specific slice and reduced-kernel
+bounds, normalization, and fixed-regulator local coefficient now have Lean
+proofs, mapped precisely in §8. The local theorem concerns the actual
+first-endpoint-weighted deterministic bilocal observable, not an assumed
+mass-one kernel. SymPy and quadrature remain diagnostics, not proofs. A
+general-dimensional Poisson-expectation bridge, Lorentz/induced-area transport,
+geometric long-null jet construction, and global two-face convergence are
+**not** thereby proved. Existing four-dimensional definitions and proofs are
+unchanged; an additional equality theorem calibrates the new reduction against
+their kernel. The explanatory argument still benefits from independent
+mathematical review.
 
 ## 1. Sources, conventions and normalization table
 
@@ -404,7 +410,8 @@ the existing analytic draft (its sharper coefficient is not an old Lean claim).
 
 ## 5. Regulated local coefficient and example compatibility
 
-**Local contract L (conventional proof):** let $`0\lt\kappa\lt 1`$, and choose a
+**Local contract L (analytic formulation; a checked regulated weighted
+realization is given in §8):** let $`0\lt\kappa\lt 1`$, and choose a
 bounded Lipschitz regulator cap agreeing with $`h(s,y)=\kappa s`$ on
 $`0\lt s\lt a`$ and the support of a compact continuous tangential weight $`\eta`$.
 For example, take
@@ -536,11 +543,11 @@ is a regulated calculation, not that missing derivation.
 
 | Obligation | All-dimension status here | Existing checked 4D anchor | Next proof obligation |
 |---|---|---|---|
-| Action, coefficients, interval-volume constant | published formulas; conventional derivation and exact regressions | `Specification`, `DiscreteBDG`, `IntervalMoments` | dimension-indexed measurable causal geometry and discrete action |
+| Action, coefficients, interval-volume constant | published coefficients and Gamma conversion checked; proper-time interval-volume law conventional | `Specification`, `DiscreteBDG`, `IntervalMoments` | discrete observable and general interval-volume/Lorentz transport |
 | Finite Poisson mean | conventional contract F; generic probability reusable | `ExpectationBridge` | interval volume/nullity and dimension-indexed instantiation, without new probability axioms |
-| Euler polynomials, Mellin multiplier roots, density rescaling | bounded Lean algebra/scaling; general integrated identities conventional | `NullTransverseMoments` | formal general Mellin integral and absolute-integrability proofs |
-| Slice tails, mass-one plane kernel, local wedge | conventional §4 and contract L; symbolic/numerical regressions | `KernelHalfLine`, `TangentWedge` | formal dimension-dependent slice moments/tails and regulated partner accounting |
-| Fixed-cutoff long-null cancellation | conditional contract K outside the checked 4D case | merged #61 / PR #68 | actual higher jets; odd-dimensional fractional remainder and tangency estimates |
+| Euler polynomials, Mellin multiplier roots, density rescaling | actual absolutely convergent integrals, exact roots, scaling and Rodrigues jets checked | `NullTransverseMoments` | geometric uses and log-inserted derivative identities |
+| Slice tails, mass-one plane kernel, local wedge | actual moments, parity tails, unit mass and full-partner regulated weighted action checked | `KernelHalfLine`, `TangentWedge` | general induced-area transport and complementary-region control |
+| Fixed-cutoff long-null cancellation | analytic contract K checked in every dimension, conditional on its stated jet | merged #61 / PR #68 | actual higher jets; odd-dimensional fractional remainder and tangency estimates |
 | Curved-versus-wedge short error | not supplied here | #66 / PR #70: conventional proof plus checked exact partitions | rederive all powers, signed/log cancellations and partition-derivative terms |
 | Global deterministic/expected limits | open goals D/E, not theorems | #67 still open | common atlas, cutoff hierarchy, complementary region bounds, then F |
 | Conventional expert review | outstanding for this note | machine checking is not peer review | independent mathematical and physical scrutiny |
@@ -552,15 +559,18 @@ actual quadratic jet and long-null cancellation at each fixed positive cutoff;
 #66's complete short-limit argument is conventional, not end-to-end Lean.
 Neither gives #67's full assembly. We do not assume that outcome or close #24.
 
-Prepare these reviewable tasks first:
+Keep these prerequisites and remaining gates distinct:
 
-1. **Dimension-indexed finite-density API:** construct the actual causal order,
-   interval law, discrete observable and F in Lean, preserve the 4D action by
-   an equality theorem, and cover 2D counting geometry separately.
-2. **General integrated kernel/local coefficient:** formalize §3–§5, including
-   parity-specific tails, odd nonzero first height moment and even divergent
-   second absolute moment. The target is the regulated local observable, not
-   a full region action.
+1. **Dimension-indexed finite-density API:** the Euclidean causal geometry,
+   graph-cap bilocal reduction, density scaling, zero-dimensional tangential
+   measure, and equality with the unchanged 4D reduced kernel are now checked.
+   The general interval-volume/Lorentz transport theorem, discrete observable,
+   and Poisson-expectation identity in F still require a separate extension.
+2. **Completed integrated-kernel/local-coefficient prerequisite:** the actual
+   moments, parity-specific tails, odd positive first height moment, even
+   divergent second absolute moment, and regulated deterministic weighted
+   action limit are now checked in Lean. This is a local observable, not a
+   full-region boundary limit or a general induced-area transport theorem.
 3. **Geometric long-null gate:** start with 3D/5D and the even 6D jet; establish
    the actual averaged remainder or exhibit the obstructing fractional/log
    coefficient. Do not add contract K to admissibility. Specify any higher
@@ -585,19 +595,91 @@ sample-wise limits remain outside that issue.
 
 ## 8. Reproduction and exact machine-checked boundary
 
-`formal/BoundaryDraft/DimensionKernel.lean` checks the actual polynomial
-recurrence; every root of the algebraic Mellin multiplier; the normalized
-transverse multiplier substitution; equality with the unchanged 4D polynomial
-and kernel; its already proved integrated 4D moments; and positive-density
-squared-proper-time scaling for every positive integer dimension, including
-odd dimensions with real powers. `dimensionMellinFactor` is named and documented
-as **algebra**, not defined to be an integral. Its general-dimensional integral
-identification in §3 is not a Lean theorem in this change.
+The files below are in `formal/BoundaryDraft/` and are imported by the public
+`BoundaryDraft` entry point. They keep independent definitions of the
+polynomial, published action constants, physical slice, and finite-height
+reduction; none is defined by its desired integral or normalization.
 
-`formal/DimensionKernelRegression.lean` independently checks the 2D/3D
-polynomials, expanded 4D signed kernel and multiplier, all-dimensional roots,
-a nonzero odd critical multiplier, the negative third 4D moment, and 5D scaling.
-No axiom, admission or global limit proposition is assumed.
+- **`DimensionKernel.lean` and `DimensionMellin.lean`:** the Euler recurrence,
+  algebraic roots, actual absolutely convergent Mellin/transverse integrals,
+  arbitrary positive-density scaling, failure of integrability at or below the
+  lower-endpoint threshold, and surviving odd critical half-orders.
+  `dimensionMellinFactor` remains an algebraic product; the integral identity
+  is a theorem, not a definition.
+- **`DimensionCancellation.lean`:** contract K for measurable bounded
+  amplitudes with the specified jet. The global remainder-quotient bound,
+  finite-density integrability, exact subtraction, and normalized rescaling
+  are proved rather than added as premises. This does not construct a jet
+  from geometric admissibility.
+- **`DimensionRodrigues.lean`:** the exact derivative identity for the
+  recurrence polynomial and all necessary lower-endpoint jet limits/bounds.
+  Odd fractional powers are differentiated on the positive domain, without
+  assuming arbitrary-order smoothness at zero.
+- **`DimensionSlice.lean` and `DimensionSliceMellin.lean`:** the actual
+  squared-proper-time slice, including the integrable 2D endpoint singularity;
+  odd exponential tails and all natural moments; the positive even fifth-power
+  leading tail with seventh-power remainder; absolute slice moments through
+  order three and failure at order four in even dimensions. Absolute Fubini
+  is proved on its initial strip before complex Mellin continuation evaluates
+  the four required signed moments. No divergent integral is assigned a
+  continuation value. The alternative Abel proof is not claimed as formalized.
+- **`DimensionActionConstants.lean`, `DimensionReduction.lean`, and
+  `DimensionNormalizedKernel.lean`:** independent sphere/interval/point/pair
+  coefficients, Gamma duplication and low-dimensional calibration; absolute
+  tail-moment Fubini; equality of finite action and tail reductions; actual
+  unit mass in every physical dimension; finite absolute first height moment,
+  zero even signed first moment and strictly positive odd signed first moment.
+  The regulated limit and fixed-observable Lipschitz error bound have no
+  remaining normalization premise and require no second moment.
+- **`DimensionReducedTail.lean`:** the actual negative even cubic leading
+  tail with fifth-power remainder, strict positivity of its magnitude,
+  eventual negativity, failure of second absolute and signed integrability,
+  and divergence of the signed truncated second moment to negative infinity.
+  Every natural absolute height moment is finite in odd dimensions.
+- **`DimensionGeometry.lean`, `DimensionSpacetime.lean`, and
+  `DimensionWedge.lean`:** canonical Euclidean product volume, genuine causal
+  futures and squared proper time; full-partner weighted bilocal reduction,
+  polar-to-squared-proper-time transport with the proved sphere factor,
+  density scaling, and the actual regulated local action limit. Source weights
+  may be signed and restrict only the first endpoint. The explicit bounded
+  regulator leaves the supported source region unchanged; no regulator-removal
+  or uniform zero-angle limit is asserted.
+- **`DimensionFourCompatibility.lean`:** pointwise equality with the unchanged
+  4D `planeKernel` at every nonnegative height, plus arbitrary-density vertical
+  and weighted graph-cap action calibrations. Original 4D action files are
+  unchanged.
+
+The final physical theorem's contract has **no mass, moment, convergence, or
+integrability assumption**. Its hypotheses describe only the fixed slope,
+regulator clearance, and continuous compactly supported source. Here `n` is the
+tangential dimension, so `n = 0` includes physical dimension two:
+
+```lean
+theorem dimensionWeighted_wedge_limit (n : ℕ) {κ H R : ℝ}
+    (hκ : 0 < κ) (hκ1 : κ < 1) (hH : 2 * κ * R ≤ H)
+    (w : DimensionSpatial (n + 1) → ℝ) (hw : Continuous w)
+    (hsource : ∀ x, R < ‖x‖ → w x = 0) :
+    Tendsto (fun ρ : ℝ => dimensionWeightedAction (n + 1)
+      (dimensionPointCoefficient (n + 2)) (dimensionPairCoefficient (n + 2))
+      (dimensionIntervalCoefficient (n + 2)) ρ
+      (dimensionGraphCap (dimensionWedgeRegulator n κ H)) (fun p => w p.2))
+      atTop (𝓝 (κ⁻¹ * ∫ z : DimensionSpatial n, w (dimensionWedgePoint 0 z)))
+```
+
+`dimensionWeighted_wedge_coth_limit` reformulates this using the existing
+scalar rapidity identity. It is not a dimension-general Lorentz-geometric
+assembly. The deterministic observable is independently defined; its
+identification with a general-dimensional Poisson expectation remains separate.
+Log-inserted derivative identities and the proposed geometric construction of
+contract K in §3 are not included in the checked map above.
+
+The seven `formal/Dimension*Regression.lean` files cover low-dimensional
+polynomials and constants, nonunit density, cancellation, an independent toy
+slice, the expanded actual mass integral, even/odd moments and divergence,
+2D endpoint integrability, endpoint derivative jets, 4D compatibility, signed
+weights, and a concrete nonzero 2D bilocal-action limit. The full audit checks
+all public declarations and their transitive dependencies, not just these
+examples. No admission, custom axiom, or global-limit proposition is assumed.
 
 ```sh
 .venv/bin/python check_symbolic.py

@@ -7,10 +7,11 @@ import Mathlib.Algebra.Polynomial.Derivative
 
 The finite polynomial recurrence implements Glaser's operator with
 `H = d * z * d/dz`. The Mellin multiplier is a separate algebraic object:
-its identification with a general-dimensional integral is proved conventionally
-in `notes/dimension-kernels.md`, not assumed or asserted here.
-The four-dimensional integral regression uses the existing checked theorem.
-No general-dimensional expectation bridge or localization theorem is asserted.
+its identification with a general-dimensional integral is proved in
+`DimensionMellin`, rather than built into its definition here.
+The four-dimensional integral regression retains the existing checked theorem.
+`DimensionWedge` proves the separately regulated local coefficient; no
+general-dimensional Poisson bridge or global localization theorem is asserted.
 -/
 
 open Finset Polynomial
