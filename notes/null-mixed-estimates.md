@@ -121,34 +121,37 @@ E(\sigma)=\pi\sigma\left[
 
 Here is a proof that includes both moving endpoints and the tip.
 
-1. If $`r\le m/2`$, then $`H(r\omega)-r\ge T/2`$ while
-   $`\sqrt{r^2+\sigma}-r\le\sqrt\sigma\le T/2`$; strict inclusion follows
-   also at the possible endpoints (at $`r=0`$, $`H=T`$). Consequently any
-   removed radius in $`(0,R)\setminus D_\sigma`$ is at least $`m/2`$.
-2. By the radial slope bound,
-   $`H(r\omega)-r\ge(1-\lambda)(R-r)`$. A removed radius therefore satisfies
+**Step 1.** If $`r\le m/2`$, then $`H(r\omega)-r\ge T/2`$ while
+$`\sqrt{r^2+\sigma}-r\le\sqrt\sigma\le T/2`$; strict inclusion follows
+also at the possible endpoints (at $`r=0`$, $`H=T`$). Consequently any
+removed radius in $`(0,R)\setminus D_\sigma`$ is at least $`m/2`$.
 
-   ```math
-   (1-\lambda)(R-r)\le\sqrt{r^2+\sigma}-r
-     =\frac\sigma{\sqrt{r^2+\sigma}+r}\le\frac\sigma m.
-   ```
+**Step 2.** By the radial slope bound,
+$`H(r\omega)-r\ge(1-\lambda)(R-r)`$. A removed radius therefore satisfies
 
-   The removed set, even without connectedness, lies in an endpoint shell
-   of width $`\sigma/[m(1-\lambda)]`$. Bounding its Jacobian by $`B/2`$
-   and integrating over the sphere costs at most
-   $`2\pi B\sigma/[m(1-\lambda)]`$.
-3. The Jacobian change on the full original interval is bounded by
+```math
+(1-\lambda)(R-r)\le\sqrt{r^2+\sigma}-r
+  =\frac\sigma{\sqrt{r^2+\sigma}+r}\le\frac\sigma m.
+```
 
-   ```math
-   0\le\frac r2-\frac{r^2}{2\sqrt{r^2+\sigma}}
-     \le\min\left(\frac r2,\frac\sigma{4r}\right).
-   ```
+The removed set, even without connectedness, lies in an endpoint shell
+of width $`\sigma/[m(1-\lambda)]`$. Bounding its Jacobian by $`B/2`$
+and integrating over the sphere costs at most
+$`2\pi B\sigma/[m(1-\lambda)]`$.
 
-   Split at $`r=\sqrt\sigma\le B`$. Integration up to $`B`$ and over
-   $`S^2`$ gives $`\pi\sigma[1+\log(B/\sqrt\sigma)]`$.
-4. The change of the weight itself costs at most $`\pi LB\sigma`$, since
-   its pointwise product with the Jacobian is bounded by
-   $`L(r/2)\sigma/(2r)=L\sigma/4`$ for $`r>0`$.
+**Step 3.** The Jacobian change on the full original interval is bounded by
+
+```math
+0\le\frac r2-\frac{r^2}{2\sqrt{r^2+\sigma}}
+  \le\min\left(\frac r2,\frac\sigma{4r}\right).
+```
+
+Split at $`r=\sqrt\sigma\le B`$. Integration up to $`B`$ and over
+$`S^2`$ gives $`\pi\sigma[1+\log(B/\sqrt\sigma)]`$.
+
+**Step 4.** The change of the weight itself costs at most $`\pi LB\sigma`$, since
+its pointwise product with the Jacobian is bounded by
+$`L(r/2)\sigma/(2r)=L\sigma/4`$ for $`r>0`$.
 
 Multiplying the geometric changes by $`M`$ proves (NM5). In particular this
 is an actual weighted remainder estimate, not an assumed geometric jet.
