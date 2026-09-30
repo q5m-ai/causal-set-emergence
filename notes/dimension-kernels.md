@@ -549,7 +549,7 @@ is a regulated calculation, not that missing derivation.
 | Slice tails, mass-one plane kernel, local wedge | actual moments, parity tails, unit mass and full-partner regulated weighted action checked | `KernelHalfLine`, `TangentWedge` | general induced-area transport and complementary-region control |
 | Fixed-cutoff long-null cancellation | analytic contract K checked in every dimension, conditional on its stated jet | merged #61 / PR #68 | actual higher jets; odd-dimensional fractional remainder and tangency estimates |
 | Curved-versus-wedge short error | not supplied here | #66 / PR #70: conventional proof plus checked exact partitions | rederive all powers, signed/log cancellations and partition-derivative terms |
-| Global deterministic/expected limits | open goals D/E, not theorems | #67 still open | common atlas, cutoff hierarchy, complementary region bounds, then F |
+| Global deterministic/expected limits | higher-dimensional goals D/E remain open | #67 completed in merged PR #89 for the original 4D class | port the checked proof decomposition, geometry and dimension-specific estimates, then F |
 | Conventional expert review | outstanding for this note | machine checking is not peer review | independent mathematical and physical scrutiny |
 
 **Actual dependency snapshot:** this branch starts at `faee2e3` on `main`, after
@@ -557,7 +557,13 @@ merged #61 (PR #68), #65 (PR #69), #66 (PR #70), and checker PR #87. At issue
 inspection #67 is **open**, with no implementing open PR found. #61 proves the
 actual quadratic jet and long-null cancellation at each fixed positive cutoff;
 #66's complete short-limit argument is conventional, not end-to-end Lean.
-Neither gives #67's full assembly. We do not assume that outcome or close #24.
+Neither gave #67's full assembly at that snapshot.
+
+**Integration update:** PR #89 subsequently merged at `2f1addf`, completing
+#67's original four-dimensional deterministic and expected limit goals.
+The present combined candidate includes that proof; see
+[its decomposition](two-face-limit.md) and `formal/BoundaryDraft/TwoFaceLimit.lean`.
+It does not discharge the higher-dimensional goals D/E or close #24.
 
 Keep these prerequisites and remaining gates distinct:
 
@@ -582,11 +588,12 @@ Keep these prerequisites and remaining gates distinct:
 **Scoped later issue proposal (not opened as an asserted theorem):**
 “Establish a flat two-spacelike-face limit in a specified dimension and
 regularity class using the completed four-dimensional assembly.” Before opening
-that implementation issue, read #67's actual theorem and proof decomposition.
-If it succeeds, use its common atlas and exact partner-preserving decomposition
-as the template, but require tasks 1–4 above and independent angle/area transport
-in the new dimension. If #67 is narrowed or obstructed, revise the class or
-replace its failed mechanism first; do not claim an all-dimension consequence.
+that implementation issue, read #67's now-checked theorem and proof decomposition
+in merged PR #89. Use that decomposition as the template, while distinguishing
+its checked unweighted planar-comparison route from #66's conventional full
+weighted estimates. Require the remaining tasks above and independent
+angle/area transport in the new dimension; do not claim an all-dimension
+consequence merely from the 4D completion.
 Acceptance must require the independently defined D, followed by E, with no
 new limit premise, and regressions for unchanged 4D caps and genuinely curved
 future faces. Full local source/axiom audit and conventional proof review stay

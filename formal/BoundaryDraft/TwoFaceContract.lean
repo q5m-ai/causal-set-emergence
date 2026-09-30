@@ -2,7 +2,7 @@ import BoundaryDraft.GraphSurface
 import BoundaryDraft.ExpectationBridge
 
 /-!
-# An open two-spacelike-face contract
+# The two-spacelike-face contract
 
 A deliberately restricted global two-graph class: the thickness retains the
 unchanged `AdmissibleGraphCap` API; an independently chosen future graph uses
@@ -10,7 +10,8 @@ part of the remaining strict Lipschitz budget. Smooth germs `f - h, f` are
 separate from causal envelopes `f - max 0 h, f`. No analytic conclusion is a
 field. `Goal` declarations below define propositions, not their proofs.
 `TwoFaceGeometry` proves the region/stratum goal; `TwoFaceSurface` proves the
-area and planar-target goals. The asymptotic goals remain open.
+area and planar-target goals. `TwoFaceLimit` proves the two asymptotic goals
+without changing these definitions or adding analytic admissibility fields.
 
 The area is defined independently by the Lorentzian Gram density on the
 projected joint. `TwoFaceCharts` proves its intrinsic chart interpretation;
@@ -112,13 +113,13 @@ def TwoFacePlanarTargetGoal : Prop :=
     twoFaceProjectedArea h (fun _ => 0) = graphSurfaceMeasure h ∧
     twoFaceBoundaryIntegral h (fun _ => 0) = graphBoundaryIntegral h
 
-/-- OPEN deterministic asymptotic contract at fixed geometry. -/
+/-- Deterministic asymptotic contract at fixed geometry, proved in `TwoFaceLimit`. -/
 def TwoFaceLimitGoal : Prop :=
   ∀ h f, AdmissibleTwoFace h f →
     Tendsto (fun ρ => continuumMean ρ (twoFaceRegion h f)) atTop
       (𝓝 (twoFaceBoundaryIntegral h f))
 
-/-- OPEN expectation-only contract for the unchanged unsmeared discrete action.
+/-- Expectation-only contract for the unchanged unsmeared discrete action, proved in `TwoFaceLimit`.
 No assertion is made about individual sprinklings or rates. -/
 def TwoFaceExpectedLimitGoal : Prop :=
   ∀ h f, AdmissibleTwoFace h f →
@@ -151,7 +152,7 @@ theorem twoFaceRegion_eq_envelopes (h f : Spatial → ℝ) :
     constructor <;> rintro ⟨h₁, h₂⟩ <;> constructor <;> linarith
 
 /-- Reuse, rather than reconstruct, the proved four-dimensional bridge.
-This conditional implication proves neither of its two open input goals. -/
+This conditional transfer lemma is not the source of either input goal. -/
 theorem twoFace_expectedLimit_of_region_and_limit
     (hregion : TwoFaceRegionGoal) (hlimit : TwoFaceLimitGoal) :
     TwoFaceExpectedLimitGoal := by
