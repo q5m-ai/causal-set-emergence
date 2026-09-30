@@ -89,6 +89,18 @@ ellipsoidLimitGoal : EllipsoidLimitGoal
 nullCapLimitGoal   : NullCapLimitGoal
 ```
 
+The original restricted **two-face deterministic and expected-action goals**
+now also have unconditional Lean proofs, without changing `AdmissibleTwoFace`,
+the action, the region, or the induced-area target:
+
+```lean
+theorem twoFaceLimitGoal : TwoFaceLimitGoal
+theorem twoFaceExpectedLimitGoal : TwoFaceExpectedLimitGoal
+```
+
+These cover genuinely curved future faces in the stated four-dimensional
+two-graph class, not the unrestricted conjecture or individual sprinklings.
+
 All public theorems and definitions pass a transitive axiom audit permitting
 only Lean’s standard foundations. The general graph-cap and original ellipsoid
 proofs retain the whole signed kernel, including its negative tail; the null
@@ -228,8 +240,10 @@ nonplanar examples, and explicit geometric/asymptotic goals. The separate
 region/stratum contract and connects every admissible region to the exact signed
 overlap and Poisson-expectation APIs. The [joint-geometry proof](formal/JOINT_GEOMETRY.md)
 proves the area and planar-target goals, including intrinsic chart meaning and
-transport. Overlap regularity and two-face limits remain open; these results do
-not establish two-face localization.
+transport. The separate [long-null theorem](formal/LONG_NULL_GAP.md) proves
+actual-overlap regularity and signed long-pair cancellation at every fixed
+positive cutoff. None of these geometric or finite-density identities alone
+establishes the full two-face limit.
 
 The [regulated tangent-wedge calculation](notes/regulated-tangent-wedge.md)
 now derives the local positive-angle coefficient using a compact first-endpoint
@@ -245,9 +259,21 @@ coordinate-displacement cutoff. It derives a local C³ overlap extension,
 retains the signed logarithmic cancellations and quantifies the normalized
 curved-versus-wedge error. Spatial source weights have a generally nonzero
 cutoff-derivative term; it cancels only in the complete partition. This argument
-awaits independent mathematical review and is not an end-to-end Lean theorem.
-Lean checks the exact short/long and source-partition identities separately.
-The long-pair problem #61 and the full two-face limit remain open.
+awaits independent mathematical review; its full weighted error estimate is
+not asserted as a Lean theorem. Lean checks the exact short/long and
+source-partition identities separately.
+
+The [two-face assembly](notes/two-face-limit.md) now also has an **end-to-end
+Lean proof of both original limit goals**. Its checked route subtracts the
+planar cap with the same height rather than formalizing every weighted-wedge
+estimate. It derives the actual local C³ overlap difference and its two-jet,
+controls the nearly-null remainder, evaluates the signed logarithmic response,
+and proves the spatial divergence identity and independent target
+identification. One common fixed positive cutoff combines this short limit
+with the checked long-null theorem; the separately proved Poisson bridge then
+transfers the result to expectations. The original class and all goal
+definitions are unchanged. No shrinking-cutoff uniformity, convergence rate,
+unrestricted-conjecture result, or sample-wise convergence is claimed.
 
 ## Program 2 — dynamics and automaton-like growth
 

@@ -206,4 +206,11 @@ theorem quartic_limit_collar_and_tail : ∃ A : ControlledCollarAtlas quarticPro
     A.tendsto_integral_planeKernel_mul_graphHeightDensity quartic_admissible,
     quartic_admissible.toGraphCapData.tendsto_integral_kernel_superlevel A.width A.width_pos⟩
 
+-- Fixed-displacement assembly calibration keeps the same interior critical point.
+theorem quartic_short_limit_and_critical {δ : ℝ} (hδ : 0 < δ) :
+    Filter.Tendsto (fun ρ => shortContinuumMean ρ δ (graphCapRegion quarticProfile))
+      Filter.atTop (nhds (graphBoundaryIntegral quarticProfile)) ∧
+    quarticProfile 0 = 3 / 16 ∧ fderiv ℝ (fun x : JointSpace => quarticProfile x) 0 = 0 :=
+  ⟨quartic_admissible.shortContinuumMean_limit hδ, quartic_positive_critical⟩
+
 end GraphCapRegression
