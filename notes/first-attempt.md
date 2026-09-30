@@ -253,7 +253,7 @@ For reproducible finite-density checks, the exact weight in (6) is
 ```math
  W_{T,a}(\sigma)=\frac\pi4\left[
  a(2T-a)-2(1-a/T)\sigma-\frac{\sigma^2}{T^2}
- -2\sigma\log\frac{aT}{\sigma}\right],\quad 0<\sigma<aT,
+ -2\sigma\log\frac{aT}{\sigma}\right],\quad 0\lt\sigma\lt aT,
  \tag{9}
 ```
 
@@ -317,7 +317,7 @@ integral.
 Consider
 
 ```math
- M_h=\{(t,x):x\in\Omega,\ -h(x)<t<0\}.
+ M_h=\{(t,x):x\in\Omega,\ -h(x)\lt t\lt 0\}.
  \tag{10}
 ```
 

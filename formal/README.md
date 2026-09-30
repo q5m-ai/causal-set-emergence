@@ -844,7 +844,7 @@ and the general result is exercised on a non-ellipsoidal graph profile.
 `EllipsoidIntegration.lean` proves, for positive axes and `a > 0`,
 
 ```math
- |\{x:s<h(x)\}|=\frac{4\pi}{3}\Bigl(\prod_i b_i\Bigr)
+ |\{x:s\lt h(x)\}|=\frac{4\pi}{3}\Bigl(\prod_i b_i\Bigr)
    \sqrt{1-s/a}^{\,3},\qquad 0\le s\le a.
 ```
 

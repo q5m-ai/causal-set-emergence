@@ -242,8 +242,13 @@ admissible regions, regularity, boundary strata, action regime, angle
 conventions, and mode of random convergence must be stated precisely before a
 proof can be claimed.
 
-See the [general-conjecture roadmap](notes/conjecture-roadmap.md) and
+See the [general-conjecture roadmap](notes/conjecture-roadmap.md), the
+[general contract and scope gate](notes/general-contract.md), and
 [tracking issue #24](https://github.com/q5m-ai/causal-set-emergence/issues/24).
+The scope gate separates the general curved/dimensional target from the proved
+restricted cases, specifies null/mixed and steep-face pilots, and records
+[source-review limitations](notes/general-contract-literature.md). It is a
+research contract, not another limit theorem.
 The [first two-face contract](notes/two-face-contract.md) now specifies a
 restricted global two-graph class, an independent Lorentzian-area target,
 nonplanar examples, and explicit geometric/asymptotic goals. The separate
@@ -285,6 +290,18 @@ with the checked long-null theorem; the separately proved Poisson bridge then
 transfers the result to expectations. The original class and all goal
 definitions are unchanged. No shrinking-cutoff uniformity, convergence rate,
 unrestricted-conjecture result, or sample-wise convergence is claimed.
+
+### Curved-spacetime feasibility boundary
+
+The [fixed-geometry conformal pilot](notes/curved-bulk-pilot.md) derives an
+exact curved interval-volume formula and the candidate bulk response of a
+second-jet model, with explicit curvature conventions and endpoint derivative
+terms. It proves a conventional signed estimate for smooth interior long-null
+sectors and an obstruction to dropping macroscopic nearly-null partners by
+absolute bounds. The actual boundary-truncated unweighted remainder remains
+open. This is analytic feasibility work for #73, with symbolic/numerical
+regressions, **not** a Lean-verified curved limit or an expected-action theorem;
+#93 owns the canonical curved finite-density API.
 
 ## Program 2 — dynamics and automaton-like growth
 
@@ -360,6 +377,10 @@ physics.
   normalizations, checked signed integrals, parity-dependent tails/moments and
   a checked regulated weighted local coefficient; not a higher-dimensional
   two-face limit.
+- `notes/general-contract.md` — general coverage matrix, independent candidate
+  theorem, null/mixed taxonomy, obstruction tests and downstream contracts.
+- `notes/general-contract-literature.md` — checked source passages, normalization
+  differences, dimensional/curvature qualifications and unresolved attribution.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.

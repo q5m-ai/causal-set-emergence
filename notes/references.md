@@ -27,18 +27,25 @@
    - The proof draft also derives that flat identity directly by interval
      moments, so it does not rely on a truncated curvature expansion.
 
-## Related prior work identified, not fully reviewed here
+## Related prior work and the later general-contract audit
 
 - **Michel Buck, Fay Dowker, Ian Jubb, Sumati Surya.**
   *Boundary terms for causal sets*, *Class. Quantum Grav.* **32**, 205004 (2015).
   [doi:10.1088/0264-9381/32/20/205004](https://doi.org/10.1088/0264-9381/32/20/205004).
-  Flat causal-diamond boundary results in arbitrary dimension are already
-  known; reproducing a full diamond would not be a new theorem.
+  Flat causal-diamond boundary results are prior work. The later
+  [passage audit](general-contract-literature.md) checked §4 of
+  [1502.05388v2](https://arxiv.org/html/1502.05388v2): the explicit asymptotic
+  evaluations run through dimensions 2–16. An all-dimension proof is not
+  established by that passage; the previous unqualified attribution was too
+  broad. Reproducing the inspected cases is not a new theorem.
 - **Ludovico Machet, Jinzhao Wang.**
   *On the continuum limit of Benincasa–Dowker–Glaser causal set action.*
   [arXiv:2007.13192](https://arxiv.org/abs/2007.13192),
   [doi:10.1088/1361-6382/abc274](https://doi.org/10.1088/1361-6382/abc274).
-  Relevant curved-small-diamond evidence, outside this flat-space attempt.
+  Relevant curved-small-diamond evidence, outside the original flat-space
+  attempt. The later audit checked the first-order-curvature qualification,
+  the 2D calculation and the explicit 3D/4D/5D comparisons; these are not
+  controlled all-orders limits for arbitrary fixed curved regions.
 
 ## Focused two-face contract review
 
@@ -49,6 +56,26 @@ lozenge/triangle evidence, and constant-angle cones checked through dimension
 11. It distinguishes those calculations from general curved-face localization
 and lists literature not reviewed in this task. This does not upgrade the
 related-work inventory above to an exhaustive novelty search.
+
+The subsequent [#90 literature audit](general-contract-literature.md) expands
+that reading to the 2020 boundary/bulk calculations, flat and curved diamonds,
+marked-null angle conventions and selected later work. It records exact
+passages, normalization differences, snapshot hashes and a bounded search.
+Chevalier's 2023 primary overlap-method text was not retrieved; only the
+attribution and exposition in the 2025 source were checked. That provenance
+question and an exhaustive novelty search remain open.
+
+## Focused curved-bulk feasibility audit
+
+The [#73 pilot audit](curved-bulk-pilot.md#6-literature-audit-coefficient-agreement-is-not-a-new-global-theorem)
+compares the scalar-operator near/long-null decomposition of
+Belenchia–Benincasa–Dowker, [arXiv:1510.04656v2](https://arxiv.org/html/1510.04656v2),
+with Dowker's conformal first-curvature calculation and Machet–Wang's
+[small-diamond calculation, v2](https://arxiv.org/html/2007.13192v2).
+It records signature/Riemann-sign conversion, field-support and null-tube
+hypotheses, and the difference between curvature-truncated evidence and a
+controlled full signed action remainder. It does not claim novelty for the
+local curvature coefficient or an exhaustive review of these sources.
 
 ## Attribution and claim boundary
 

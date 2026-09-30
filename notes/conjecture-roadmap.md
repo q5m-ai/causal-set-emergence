@@ -1,7 +1,12 @@
 # Roadmap toward the general BDG continuum conjecture
 
 **Status:** research plan, not a proof or a claim that the conjecture is true as
-currently phrased.
+currently phrased. The subsequent [#90 contract gate](general-contract.md)
+records the current target/proved/unresolved coverage, candidate general core,
+null/mixed conventions and exact downstream interfaces. Its
+[literature audit](general-contract-literature.md) qualifies the dimensional
+and curvature claims in earlier source summaries. The staged strategy below
+is not a replacement for that coverage matrix or the actual Lean contracts.
 
 ## Strategic objective
 
