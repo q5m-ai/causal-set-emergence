@@ -238,8 +238,13 @@ admissible regions, regularity, boundary strata, action regime, angle
 conventions, and mode of random convergence must be stated precisely before a
 proof can be claimed.
 
-See the [general-conjecture roadmap](notes/conjecture-roadmap.md) and
+See the [general-conjecture roadmap](notes/conjecture-roadmap.md), the
+[general contract and scope gate](notes/general-contract.md), and
 [tracking issue #24](https://github.com/q5m-ai/causal-set-emergence/issues/24).
+The scope gate separates the general curved/dimensional target from the proved
+restricted cases, specifies null/mixed and steep-face pilots, and records
+[source-review limitations](notes/general-contract-literature.md). It is a
+research contract, not another limit theorem.
 The [first two-face contract](notes/two-face-contract.md) now specifies a
 restricted global two-graph class, an independent Lorentzian-area target,
 nonplanar examples, and explicit geometric/asymptotic goals. The separate
@@ -356,6 +361,10 @@ physics.
   normalizations, checked signed integrals, parity-dependent tails/moments and
   a checked regulated weighted local coefficient; not a higher-dimensional
   two-face limit.
+- `notes/general-contract.md` — general coverage matrix, independent candidate
+  theorem, null/mixed taxonomy, obstruction tests and downstream contracts.
+- `notes/general-contract-literature.md` — checked source passages, normalization
+  differences, dimensional/curvature qualifications and unresolved attribution.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.
