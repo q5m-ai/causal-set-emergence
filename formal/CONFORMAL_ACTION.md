@@ -225,6 +225,18 @@ Einstein--Hilbert coefficient is defined or assumed here. Before downstream
 work starts, compare #73's feasibility output and decomposition with this API;
 this package does not certify that compatibility check in advance.
 
+The integrated [#73 feasibility report](../notes/curved-bulk-pilot.md#pinned-93-api-identification-source-level-not-an-integrated-audit)
+now explicitly identifies its observable with the API at `373caca`, with the
+same region class, measure, exclusive intervals and normalization. Its fixed
+pair-domain split (C19) is compatible with the signed integrability proved
+here, but remains a written analytic identity rather than a new Lean result.
+The decision is **narrow**: #74 still needs signed short-remainder and
+boundary-truncated long-amplitude estimates; #75 must retain that same
+unproved analytic work. #73 and the general contract use the opposite Riemann
+sign from this note's example, so `R_93 = -R_73 = -R_90`; the finite-density API
+contains no scalar curvature or bulk target and is unaffected. This source
+comparison supplies no missing localization theorem or human review.
+
 This does not close #24, prove a general curved/global theorem, or assert
 singular-angle uniformity, shrinking-cutoff interchange, a rate, variance,
 concentration or individual-sprinkling convergence.
