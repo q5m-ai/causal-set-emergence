@@ -89,6 +89,18 @@ ellipsoidLimitGoal : EllipsoidLimitGoal
 nullCapLimitGoal   : NullCapLimitGoal
 ```
 
+The original restricted **two-face deterministic and expected-action goals**
+now also have unconditional Lean proofs, without changing `AdmissibleTwoFace`,
+the action, the region, or the induced-area target:
+
+```lean
+theorem twoFaceLimitGoal : TwoFaceLimitGoal
+theorem twoFaceExpectedLimitGoal : TwoFaceExpectedLimitGoal
+```
+
+These cover genuinely curved future faces in the stated four-dimensional
+two-graph class, not the unrestricted conjecture or individual sprinklings.
+
 All public theorems and definitions pass a transitive axiom audit permitting
 only Lean’s standard foundations. The general graph-cap and original ellipsoid
 proofs retain the whole signed kernel, including its negative tail; the null
@@ -247,17 +259,21 @@ coordinate-displacement cutoff. It derives a local C³ overlap extension,
 retains the signed logarithmic cancellations and quantifies the normalized
 curved-versus-wedge error. Spatial source weights have a generally nonzero
 cutoff-derivative term; it cancels only in the complete partition. This argument
-awaits independent mathematical review and is not an end-to-end Lean theorem.
-Lean checks the exact short/long and source-partition identities separately.
-The [two-face assembly](notes/two-face-limit.md) combines this written argument
-with the checked long-null result at one common fixed cutoff, cancels the
-artificial derivative terms in the complete finite source partition, and only
-then transfers the deterministic limit to Poisson expectations. It covers the
-unchanged two-graph class as a **conventional theorem, not an end-to-end Lean
-proof**. The new checked assembly interface proves asymptotic equivalences and
-cutoff independence; `TwoFaceLimitGoal` and `TwoFaceExpectedLimitGoal` still lack
-unconditional Lean proof terms. No shrinking-cutoff uniformity or sample-wise
-convergence is claimed.
+awaits independent mathematical review; its full weighted error estimate is
+not asserted as a Lean theorem. Lean checks the exact short/long and
+source-partition identities separately.
+
+The [two-face assembly](notes/two-face-limit.md) now also has an **end-to-end
+Lean proof of both original limit goals**. Its checked route subtracts the
+planar cap with the same height rather than formalizing every weighted-wedge
+estimate. It derives the actual local C³ overlap difference and its two-jet,
+controls the nearly-null remainder, evaluates the signed logarithmic response,
+and proves the spatial divergence identity and independent target
+identification. One common fixed positive cutoff combines this short limit
+with the checked long-null theorem; the separately proved Poisson bridge then
+transfers the result to expectations. The original class and all goal
+definitions are unchanged. No shrinking-cutoff uniformity, convergence rate,
+unrestricted-conjecture result, or sample-wise convergence is claimed.
 
 ## Program 2 — dynamics and automaton-like growth
 

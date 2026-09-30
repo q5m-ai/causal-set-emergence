@@ -8,9 +8,9 @@ import BoundaryDraft.GraphLimit
 
 Unconditional asymptotic equivalences for the unchanged two-face class. The
 long term is discharged by geometry, not supplied by a caller. These results
-are NOT a proof of `TwoFaceLimitGoal`: the general short-limit argument remains
-a conventional proof in `notes/curved-face-stability.md`. In particular no
-short limit is inserted into admissibility or silently asserted here.
+alone do not prove `TwoFaceLimitGoal`: `TwoFaceShortLimit` supplies the geometric
+short limit and `TwoFaceLimit` completes both original goals. No short limit
+is inserted into admissibility or assumed by those final theorems.
 -/
 
 open MeasureTheory Set Filter
@@ -72,9 +72,9 @@ theorem tendsto_expectedBDGAction_iff {L : ℝ} :
 
 end AdmissibleTwoFace
 
-/-- This is a checked reduction of the unchanged open Lean goal, NOT its
-proof. Existence of ONE positive fixed cutoff suffices; no shrinking cutoff
-or uniform long-null bound is needed. -/
+/-- Reduction of the unchanged goal, completed separately in `TwoFaceLimit`.
+Existence of ONE positive fixed cutoff suffices; no shrinking cutoff or
+uniform long-null bound is needed. -/
 theorem twoFaceLimitGoal_iff_exists_short_limit :
     TwoFaceLimitGoal ↔ ∀ h f, AdmissibleTwoFace h f → ∃ δ : ℝ, 0 < δ ∧
       Tendsto (fun ρ => shortContinuumMean ρ δ (twoFaceRegion h f)) atTop

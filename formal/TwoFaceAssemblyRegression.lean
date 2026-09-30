@@ -1,14 +1,29 @@
 import BoundaryDraft
 
 /-!
-Independent contracts for the fixed-cutoff assembly interface. The curved
-regression proves equivalence and cutoff independence, NOT the missing general
-short-limit theorem. Original planar and null limits stay unconditional.
+Independent contracts for the original two-face goals and fixed-cutoff
+assembly interface. The curved regressions retain the old nonaffinity witness
+and require unconditional deterministic and expectation limits. Original
+planar and null limits remain unchanged.
 -/
 
 open BoundaryDraft MeasureTheory Set Filter
 open scoped Topology
 noncomputable section
+
+-- The ORIGINAL goal propositions, with no analytic premises or new aliases.
+example : TwoFaceLimitGoal := twoFaceLimitGoal
+example : TwoFaceExpectedLimitGoal := twoFaceExpectedLimitGoal
+
+-- Expand the independently defined target; the only hypothesis is the
+-- original admissibility class, not an overlap jet or short-limit assertion.
+example {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f) :
+    Tendsto (fun ρ => continuumMean ρ (twoFaceRegion h f)) atTop
+      (𝓝 (∫ x, twoFaceWeight h f x ∂twoFaceProjectedArea h f)) := hf.twoFaceLimit
+
+example {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f) :
+    Tendsto (fun ρ => expectedBDGAction ρ (twoFaceRegion h f)) atTop
+      (𝓝 (∫ x, twoFaceWeight h f x ∂twoFaceProjectedArea h f)) := hf.expectedBDGAction_limit
 
 -- Expand the actual short action and its sharp domain, not a new goal alias.
 example {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f) {δ : ℝ} (hδ : 0 < δ) :
@@ -22,7 +37,7 @@ example {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f) {δ : ℝ} (hδ : 0
     hf.tendsto_continuumMean_sub_short hδ
 
 -- The target is independently defined by induced area, not the action itself.
--- This equivalence does not claim that either limit has a proof for all faces.
+-- The old equivalence remains available alongside the unconditional proofs.
 example {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f) {δ : ℝ} (hδ : 0 < δ) :
     Tendsto (fun ρ => expectedBDGAction ρ (twoFaceRegion h f)) atTop
       (𝓝 (∫ x, twoFaceWeight h f x ∂twoFaceProjectedArea h f)) ↔
@@ -57,6 +72,21 @@ example {δ ε : ℝ} (hδ : 0 < δ) (hε : 0 < ε) : ∃ c : ℝ, 0 < c ∧
         (twoFaceSine c))) atTop (𝓝 0) := by
   obtain ⟨c, hc, hf, _, hn⟩ := twoFace_curved_nonvacuity
   exact ⟨c, hc, hf, hn, hf.tendsto_short_sub_short hδ hε⟩
+
+-- Unconditional action and expectation limits for the existing genuinely
+-- curved example; nonaffinity is retained rather than replaced by a plane.
+example : ∃ c : ℝ, 0 < c ∧
+    AdmissibleTwoFace (ellipsoidProfile (1 / 4) (fun _ => 4)) (twoFaceSine c) ∧
+    twoFaceSine c ![Real.pi / 2, 0, 0] ≠
+      (twoFaceSine c ![0, 0, 0] + twoFaceSine c ![Real.pi, 0, 0]) / 2 ∧
+    Tendsto (fun ρ => continuumMean ρ
+      (twoFaceRegion (ellipsoidProfile (1 / 4) (fun _ => 4)) (twoFaceSine c))) atTop
+      (𝓝 (twoFaceBoundaryIntegral (ellipsoidProfile (1 / 4) (fun _ => 4)) (twoFaceSine c))) ∧
+    Tendsto (fun ρ => expectedBDGAction ρ
+      (twoFaceRegion (ellipsoidProfile (1 / 4) (fun _ => 4)) (twoFaceSine c))) atTop
+      (𝓝 (twoFaceBoundaryIntegral (ellipsoidProfile (1 / 4) (fun _ => 4)) (twoFaceSine c))) := by
+  obtain ⟨c, hc, hf, _, hn⟩ := twoFace_curved_nonvacuity
+  exact ⟨c, hc, hf, hn, hf.twoFaceLimit, hf.expectedBDGAction_limit⟩
 
 -- The concrete null cap is a separate theorem, not a singular-angle instance.
 example (T a : ℝ) (ha : 0 < a) (haT : a < T) :

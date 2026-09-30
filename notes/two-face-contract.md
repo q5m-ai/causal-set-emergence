@@ -1,7 +1,8 @@
 # Four-dimensional two-spacelike-face contract (#49)
 
-**Status: an open asymptotic contract, not a localization theorem.** This is
-work package A of the [flat-localization plan](flat-localization-plan.md).
+**Status: the original restricted contract now has deterministic and
+expectation-limit proofs; it is not an unrestricted localization theorem.**
+This began as work package A of the [flat-localization plan](flat-localization-plan.md).
 The definitions and nonvacuity regressions compile in
 [`TwoFaceContract.lean`](../formal/BoundaryDraft/TwoFaceContract.lean) and
 [`TwoFaceExamples.lean`](../formal/BoundaryDraft/TwoFaceExamples.lean).
@@ -9,8 +10,10 @@ Defining a proposition does not prove it. The separate
 [region geometry and API integration](../formal/TWO_FACE_GEOMETRY.md) now
 proves `TwoFaceRegionGoal` and exact finite-density overlap/expectation
 identities. The independent [joint-geometry proof](../formal/JOINT_GEOMETRY.md)
-now establishes the area and planar-target goals. The asymptotic obligations
-remain open; this does not close #24.
+now establishes the area and planar-target goals. The subsequent
+[two-face assembly](two-face-limit.md) supplies unconditional Lean proofs of
+both original asymptotic goals without changing the contract. This does not
+close #24 or assert sample-wise convergence.
 
 ## 1. Fixed geometry, action, and deliberately restricted class
 
@@ -56,8 +59,9 @@ function space's supremum norm. The budget is a sufficient geometric
 restriction, not an overlap-density or asymptotic assumption. It excludes, for
 example, some pairs of steep oppositely sloped spacelike faces whose thickness
 has Lipschitz constant greater than one. Such pairs require a later, larger
-interface. C³ is the initial regularity target; whether it suffices for the
-analytic research gates remains unproved.
+interface. The subsequent two-face limit proof establishes that the original
+C³ regularity suffices for these fixed-geometry deterministic and expectation
+goals; it does not prove every stronger weighted or uniform-family estimate.
 
 Keep the present four-dimensional, **unsmeared** normalized discrete action
 `discreteBDGAction`, the constructed finite Poisson law, and `continuumMean`
@@ -152,8 +156,8 @@ expectation identity at every positive density, with the full signed overlap
 representation and fixed-positive-cutoff density identities. The original
 conditional `twoFace_expectedLimit_of_region_and_limit` remains available;
 `twoFace_expectedLimit_of_limit` discharges only its geometry premise. The
-**deterministic two-face limit remains open**. Neither theorem reconstructs
-the probability law. See the [proof and regression guide](../formal/TWO_FACE_GEOMETRY.md).
+**deterministic two-face limit is now proved separately in `TwoFaceLimit`**.
+Neither transfer theorem reconstructs the probability law. See the [proof and regression guide](../formal/TWO_FACE_GEOMETRY.md).
 
 ## 3. Positive angle and independent Lorentzian area
 
@@ -247,7 +251,9 @@ midpoint, so the future face is not affine even **on the face domain**.
 identity. Thus this is not merely a Lorentz boost of a planar future face.
 The past graph is also curved (its quadratic height contribution is independent
 of the sine). Changing `h` while fixing the sine independently changes the
-past face. No asymptotic limit for this example is claimed.
+past face. Its asymptotic limit was not supplied by the initial contract;
+`TwoFaceAssemblyRegression.lean` now instantiates the unconditional
+deterministic and expectation theorems while retaining this nonaffinity witness.
 
 ## 5. Source review and attribution
 
@@ -281,10 +287,15 @@ priority for two-curved-face results, or exhaustive absence of counterexamples
 follows from this reading. Repository planar, ellipsoid, quartic and concrete
 null-cap results retain their own machine-checked scope and attribution.
 
-## 6. Obstruction register and research decisions still open
+## 6. Original obstruction register and remaining research decisions
 
-None of the following is an admissibility field. The first four are mandatory
-checks before the proposed asymptotic theorem can be claimed.
+The register below preserves the initial #49 research status, not the current
+proof inventory. Its fixed-cutoff G1 obligations were subsequently proved in
+#61; the unweighted short analysis and end-to-end assembly now discharge the
+original limit goals. The full weighted G3 estimate is a distinct conventional
+argument. Uniform angle/cutoff limits and enlargement of the coordinate class
+remain outside these results. None of these analytic conclusions is an
+admissibility field.
 
 | Obstruction | Concrete question / required test | Status and possible stronger hypothesis |
 | --- | --- | --- |
@@ -307,18 +318,22 @@ wedge asymptotics, the limit, or the expectation identity into the geometry.
 geometry and exact overlap/expectation specializations. `TwoFaceAreaGoal` and
 `TwoFacePlanarTargetGoal` have independent proofs in `TwoFaceSurface`, with
 intrinsic chart and transport results in `TwoFaceCharts` and `JointTransport`.
-`TwoFaceLimitGoal` and `TwoFaceExpectedLimitGoal` remain **open proposition
-definitions**, without admissions, custom axioms, or fake proof terms. Planar
+`TwoFaceLimitGoal` and `TwoFaceExpectedLimitGoal` now have unconditional proof
+terms `twoFaceLimitGoal` and `twoFaceExpectedLimitGoal` in `TwoFaceLimit.lean`,
+without admissions, custom axioms, or assumed short-limit premises. Planar
 inclusion, exact envelope/set identities, the sine construction and concrete
-nonplanarity remain checked. The original action definitions and all old
-hypotheses are unchanged.
+nonplanarity remain checked. The original action, region, target, goal
+definitions and all old hypotheses are unchanged.
 
-The #51 geometry is separate from the still-open action limit. #60 connects
-#52's merged overlap API through the proved region constructor and causal
-envelopes, not globally Lipschitz raw heights. Its density is the existing
-actual density; geometric long-null regularity remains #61. For #54 keep the
-geometry fixed and use the curved sine family as a nonplanar test, not a
-proved limit. The later G1–G4 research gates remain open.
+The #51 geometry remains a separate proof layer. #60 connects #52's merged
+overlap API through the proved region constructor and causal envelopes, not
+globally Lipschitz raw heights. #61 derives the actual long-density regularity
+and cancellation. The subsequent unweighted short proof constructs the actual
+overlap extension, controls its remainder, and identifies the original
+boundary coefficient before assembly. Geometry stays fixed throughout; the
+sine family is now also a nonplanar limit regression. This does not retroactively
+turn the original contract or earlier finite-density identities into proofs
+of their later analytic obligations.
 
 Validation commands: `formal/check.sh` (library build, every source with
 warnings as errors, isolated transitive axiom audits, aggregate audit), the

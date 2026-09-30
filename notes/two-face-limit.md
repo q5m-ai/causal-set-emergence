@@ -1,14 +1,15 @@
 # Fixed-cutoff assembly of the flat two-face limits (#67)
 
-**Verification boundary:** this is a conventional proof assembled from the
-[short-displacement argument](curved-face-stability.md) and the
-[checked long-null theorem](../formal/LONG_NULL_GAP.md). It is **not an
-end-to-end Lean proof**. In particular, the geometric short-overlap extension,
-its logarithmic asymptotics and the divergence theorem application in #66
-remain written mathematics. `TwoFaceAssembly.lean` checks the fixed-cutoff
-asymptotic equivalences, cutoff independence and expectation transfer, not the
-missing general short limit. The original Lean goals remain unchanged and
-unproved. Numerical regressions are not proofs of those goals.
+**Verification boundary:** the weighted argument below is a conventional
+proof assembled from the [short-displacement argument](curved-face-stability.md)
+and the [checked long-null theorem](../formal/LONG_NULL_GAP.md). Both original
+limit goals now also have **unconditional end-to-end Lean proofs** in
+`TwoFaceLimit.lean`. The checked route subtracts the planar cap at the same
+height, derives the actual unweighted overlap two-jet and its controlled
+remainder, and proves the signed logarithmic and spatial divergence identities.
+It does not encode every weighted-wedge estimate in this note or #66. The
+original admissibility and goal definitions are unchanged. Numerical
+regressions remain diagnostics, not proofs of the goals.
 
 This concerns the original `AdmissibleTwoFace h f` class: two global graphs in
 four-dimensional Minkowski space with the original C³ germs, bounded positive
@@ -379,8 +380,9 @@ probability or almost-sure convergence is used or inferred.
   with the original positive-axis and strict slope hypotheses. The prior
   canonical-area and expected-action regressions are unchanged.
 - **Genuinely curved future face:** the existing sine example retains its
-  nonaffinity witness while exercising the checked cutoff-independence result.
-  Its full limit here is conventional, not a newly checked Lean limit.
+  nonaffinity witness while exercising cutoff independence and the unconditional
+  Lean deterministic and expected-action limits. The target remains the
+  independently defined induced-area integral.
 - **Separate null cap:** its old deterministic and expected limits remain
   separate unconditional results with the original algebraic target. It is
   not obtained by degenerating the positive angle in this theorem.
@@ -399,12 +401,24 @@ by the stronger fixed-cutoff short proposition, **not** by silently asserting
 uniform long-null cancellation. The original action, region, induced-area
 target, admissibility and goal definitions are unchanged.
 
-The new Lean module proves equivalences and unconditional asymptotic
-**differences**. It cannot be cited as a proof term of `TwoFaceLimitGoal` or
-`TwoFaceExpectedLimitGoal`. An end-to-end encoding still requires formalizing
-the geometric short-overlap extension, signed logarithmic asymptotics and
-spatial divergence calculation used above. A conventional theorem and a
-machine-checked theorem are distinct deliverables.
+The initial `TwoFaceAssembly.lean` delivery supplied equivalences and
+unconditional asymptotic **differences**, not proofs of the original goals.
+The subsequent formalization closes that gap without weakening the contract.
+`ShortOverlapTaylor` identifies the actual overlap-difference two-jet;
+`ShortTaylorRemainder` and `ShortNullRemainder` derive its controlled remainder
+and cancellation. The sharp-cutoff radial response, full sphere moments,
+spatial divergence identity, and independent boundary coefficient are proved
+separately before `TwoFaceShortLimit` and `TwoFaceLimit` assemble them.
+
+```lean
+theorem twoFaceLimitGoal : TwoFaceLimitGoal
+theorem twoFaceExpectedLimitGoal : TwoFaceExpectedLimitGoal
+```
+
+`TwoFaceShortAnalysisRegression.lean` checks analytic normalizations and
+geometric interfaces; `TwoFaceAssemblyRegression.lean` requires both original
+goal propositions without analytic premises. The unweighted checked route and
+the conventional weighted argument remain distinct proof presentations.
 
 ## 8. Independent scrutiny and remaining review boundary
 
@@ -419,10 +433,13 @@ new assembly/regression Lean files found no remaining mathematical blocker;
 the displacement-differentiation wording was clarified in response.
 
 This is **independent AI scrutiny, not expert peer review or a Lean audit**.
-The conventional theorem still awaits independent human mathematical review.
-The local warnings-as-errors/source/transitive-axiom gate validates only the
-encoded declarations; it cannot validate the unencoded G3 analysis. Reproduce
-that gate with `(cd formal && ./check.sh)`, and run the Markdown, Python and
+The conventional theorem and its new formalization still await independent
+human mathematical review. The AI review history above concerns the original
+written argument and limited assembly delivery, not a review of every new
+Lean module. The local warnings-as-errors/source/transitive-axiom gate now
+validates the encoded end-to-end goal proofs; it does not validate every
+unencoded weighted estimate in G3. Reproduce that gate with
+`(cd formal && ./check.sh)`, and run the Markdown, Python and
 symbolic checks described in the repository README. No claim about the
 unrestricted conjecture or individual random sprinklings is promoted by these
 checks.
