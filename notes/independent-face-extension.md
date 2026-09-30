@@ -90,7 +90,9 @@ make M open. Over compact K their values are bounded; hence M is bounded,
 Borel measurable and has finite four-volume. Vertical Fubini gives
 
 ```math
-|M|=\int_\Omega h(x)\,dx.
+\begin{aligned}
+|M|&=\int_\Omega h(x)\,dx.
+\end{aligned}
 \tag{E3}
 ```
 
@@ -142,9 +144,10 @@ containment. The original, separately checked 4D
 at every positive density:
 
 ```math
-\mathbb E_{\mathrm{Poisson}(\rho\,d^4x|_M)}
- A^{\mathrm{disc}}_\rho
- =\mathrm{continuumMean}(\rho,M),\qquad \rho>0.
+\begin{aligned}
+\mathbb E_{\mathrm{Poisson}(\rho\,d^4x|_M)} A^{\mathrm{disc}}_\rho
+ &=\mathrm{continuumMean}(\rho,M),\qquad \rho>0.
+\end{aligned}
 \tag{E6}
 ```
 
@@ -216,8 +219,10 @@ critical point. Thus this is an actual member of E, not a density-dependent
 approximation. Its independent target and volume are
 
 ```math
-\mathcal J(M_s)=4\pi\frac{1+s^2}{2s}=\frac{25\pi}{6},
-\qquad |M_s|=\frac{8\pi s}{15}=\frac{2\pi}{5}.
+\begin{aligned}
+\mathcal J(M_s)&=4\pi\frac{1+s^2}{2s}=\frac{25\pi}{6},
+& |M_s|&=\frac{8\pi s}{15}=\frac{2\pi}{5}.
+\end{aligned}
 \tag{E10}
 ```
 
@@ -255,7 +260,9 @@ coordinates. This is a coverage statement, not a literature novelty claim.
 Let P be the proposed reference cap with exactly this H and future time zero:
 
 ```math
-P=\{(t,x):-H(x)\lt t\lt0\}.
+\begin{aligned}
+P&=\{(t,x):-H(x)\lt t\lt0\}.
+\end{aligned}
 \tag{E12}
 ```
 
@@ -283,8 +290,10 @@ causal displacement $`(\tau,b)`$, direct intersection of the two vertical
 intervals of P gives fibre length
 
 ```math
-\left[\min\{H(x)-\tau,H(x+b)\}\right]_+,
+\begin{aligned}
+&\left[\min\{H(x)-\tau,H(x+b)\}\right]_+,
 \quad\hbox{not in general }[H(x)-\tau]_+.
+\end{aligned}
 \tag{E14}
 ```
 
@@ -299,7 +308,9 @@ neighborhoods. It is not an ignorable null set in the pair integral. In fact for
 $`b=\tau(1,0,0)`$ and every $`0\lt\tau\lt1/4`$ at this fixed x,
 
 ```math
-H(x)-\tau-H(x+b)=\tau/8+3\tau^2/4>0.
+\begin{aligned}
+H(x)-\tau-H(x+b)&=\tau/8+3\tau^2/4>0.
+\end{aligned}
 \tag{E15}
 ```
 
@@ -322,7 +333,9 @@ order the two lower bounds and the two upper bounds. Vertical integration
 therefore gives the **actual** overlap, with all partners retained:
 
 ```math
-V_M(\tau,b)=\int_{\mathbb R^3}[U(x+b)-L(x)-\tau]_+\,dx.
+\begin{aligned}
+V_M(\tau,b)&=\int_{\mathbb R^3}[U(x+b)-L(x)-\tau]_+\,dx.
+\end{aligned}
 \tag{E16}
 ```
 
@@ -339,7 +352,9 @@ $`q=\tau-f(x+b)+f(x)`$. Then q is nonnegative on the causal cone. If
 $`h(x)-q>0`$, the lower *raw* derivative bound along the segment gives
 
 ```math
-h(x+b)\ge h(x)-q+\tau-\bar\lambda_-|b|>0.
+\begin{aligned}
+h(x+b)&\ge h(x)-q+\tau-\bar\lambda_-|b|>0.
+\end{aligned}
 \tag{E17}
 ```
 
@@ -351,8 +366,10 @@ justifies using the smooth raw f locally despite the nonsmooth extension U.
 Now split (E16) on the fixed spatial domain:
 
 ```math
-V_M=\int_\Omega h-\int_\Omega q
+\begin{aligned}
+V_M&=\int_\Omega h-\int_\Omega q
  +\int_{\{0\lt h\lt q\}}(q-h).
+\end{aligned}
 \tag{E18}
 ```
 
@@ -393,8 +410,10 @@ critical point. The argument uses exactly the regularity count detailed in
 square in the actual vertical gap gives, for all future causal displacements,
 
 ```math
-V_{M_s}(\tau,b)=\frac{8\pi s}{15}
+\begin{aligned}
+V_{M_s}(\tau,b)&=\frac{8\pi s}{15}
  \left(1-\frac\tau s-\frac{|b|^2}{4}\right)_+^{5/2}.
+\end{aligned}
 \tag{E20}
 ```
 
@@ -414,8 +433,10 @@ $`\Lambda=\lambda_++\lambda_-`$. For a nonnegative causal gap
 $`G=U(y)-L(x)-\tau`$, two separate estimates give
 
 ```math
-H(x)\ge(1-\lambda_+)\tau,\qquad
-H(y)\ge(1-\lambda_-)\tau.
+\begin{aligned}
+H(x)&\ge(1-\lambda_+)\tau,&
+H(y)&\ge(1-\lambda_-)\tau.
+\end{aligned}
 \tag{E21}
 ```
 
@@ -456,8 +477,10 @@ most $`\sigma/(2\delta)`$. Unlike the old convenient bound, Lambda can exceed
 one, so choose the common interval explicitly:
 
 ```math
-0\le\sigma\le e:=\min\left\{\delta^2/2,
+\begin{aligned}
+0\le\sigma\le e&:=\min\left\{\delta^2/2,
  \frac{m\delta^2}{2(1+\Lambda)}\right\}.
+\end{aligned}
 \tag{E24}
 ```
 
