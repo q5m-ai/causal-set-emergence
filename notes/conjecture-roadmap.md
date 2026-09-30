@@ -113,6 +113,16 @@ uniform estimates, and recover the same geometric joint formula. Known causal
 diamonds and constant-angle regions should become consequences or regression
 cases rather than separate arguments.
 
+The [dimension-indexed prerequisite note](dimension-kernels.md) inventories
+these normalizations and maps the checked signed integrals, parity-specific
+tails/moments, unit reduced-kernel mass, and regulated weighted local-action
+coefficient. The Lean theorem uses the actual bilocal observable, with all
+future partners and no normalization premise. General-dimensional Poisson
+expectations, geometric long-null jets, induced-area transport, and global
+localization remain separate obligations. With #67 completed by merged PR #89,
+its next-step proposal can use the checked four-dimensional proof decomposition,
+not assume an all-dimension consequence.
+
 ### Stage 3 — curved spacetime
 
 Control the local causal-interval volume and action-density expansions in
