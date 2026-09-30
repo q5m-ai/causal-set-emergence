@@ -107,6 +107,13 @@ proofs retain the whole signed kernel, including its negative tail; the null
 proof derives the exact causal-interval cancellation and normalized Gaussian
 concentration.
 
+The [dimension-indexed prerequisite layer](notes/dimension-kernels.md) now also
+proves the actual signed integrals, parity-dependent tails and moments, unit
+reduced-kernel mass, and a fixed-regulator weighted flat local coefficient in
+every integer dimension at least two. The bilocal theorem retains all future
+partners and assumes neither mass nor convergence. It does **not** prove a new
+general-dimensional Poisson bridge or global two-face limit.
+
 The **concrete ellipsoid geometric interpretation** is also checked separately:
 its joint is a smooth regular level with nonzero Euclidean gradient, its angle
 lies on the strict positive branch with `coth θ = 1 / ‖∇h‖`, and its variable-angle
@@ -345,6 +352,10 @@ physics.
 
 - `notes/first-attempt.md` — analytic boundary-limit proof draft and scope.
 - `notes/conjecture-roadmap.md` — staged route from issue #1 to the general theorem.
+- [Dimension-indexed kernel prerequisites](notes/dimension-kernels.md) — action
+  normalizations, checked signed integrals, parity-dependent tails/moments and
+  a checked regulated weighted local coefficient; not a higher-dimensional
+  two-face limit.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.

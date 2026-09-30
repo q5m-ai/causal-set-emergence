@@ -1311,7 +1311,61 @@ zero-volume cases. This completes the fixed-positive-cutoff obligation of #61,
 not uniformity in the cutoff, short-displacement cancellation, cutoff removal,
 the complete two-face action limit, #24, or sample-wise convergence.
 
-### Fixed-cutoff assembly and its verification boundary (#67)
+## Dimension-indexed prerequisites (#71)
+
+The dimension-indexed analysis and regulated deterministic local coefficient
+are now checked, not merely the recurrence and its algebraic multiplier:
+
+- `DimensionKernel` and `DimensionMellin` prove actual absolutely convergent
+  signed integrals, roots, endpoint nonintegrability, and density scaling.
+  The Mellin factor is independently defined as an algebraic product.
+- `DimensionCancellation` proves the bounded-amplitude cancellation theorem
+  with its stated jet, deriving the global remainder bound and exact
+  subtraction. It does not infer those jets from geometric admissibility.
+- `DimensionRodrigues` proves the recurrence's derivative identity and
+  one-sided endpoint jets, without an odd-dimensional endpoint-smoothness
+  assumption.
+- `DimensionSlice` and `DimensionSliceMellin` prove the genuine slice bounds,
+  including the 2D endpoint singularity, odd exponential tails, positive even
+  fifth-power tail, and actual signed moments through order three. Absolute
+  Fubini on the initial Mellin strip precedes the checked analytic continuation;
+  divergent higher moments are not assigned continuation values.
+- `DimensionActionConstants`, `DimensionReduction`, and
+  `DimensionNormalizedKernel` prove independent coefficient calibrations,
+  absolute tail-moment Fubini, equality of finite action and tail reductions,
+  actual unit mass in every physical dimension, and the first-height-moment
+  parity distinction. Signed concentration and a fixed-observable Lipschitz
+  error bound use the finite absolute first moment, not a second moment.
+- `DimensionReducedTail` proves the negative even cubic tail with fifth-power
+  remainder, divergent second absolute moment and signed truncated divergence
+  to negative infinity. All natural absolute height moments exist in odd
+  dimensions.
+- `DimensionGeometry`, `DimensionSpacetime`, and `DimensionWedge` connect these
+  scalar results to the actual bounded weighted bilocal observable using
+  Euclidean product volume, causal futures, polar integration, the exact sphere
+  factor, and density scaling. Partners outside the source patch are retained.
+  `dimensionWeighted_wedge_limit` has only geometric/source hypotheses, with
+  no mass or integrability premise; it includes zero tangential dimension and
+  signed weights. Its rapidity version is a scalar reformulation, not a new
+  general Lorentz/area theorem.
+- `DimensionFourCompatibility` identifies the new reduction with the
+  unchanged 4D `planeKernel` and calibrates the arbitrary-density weighted
+  graph-cap action. Original 4D action files are unchanged.
+
+Seven `Dimension*Regression.lean` files exercise low-dimensional constants,
+nonunit density, actual normalization, moments/divergence, endpoint jets, an
+independent toy slice, 4D compatibility, negative weights, and a concrete
+nonzero 2D bilocal-action limit. All modules are imported by `BoundaryDraft`;
+regressions do not replace the full source and transitive-axiom audit.
+
+[The normalization note](../notes/dimension-kernels.md) maps exact theorem
+contracts and remaining obligations. The general-dimensional interval-volume
+and Poisson-expectation bridge, log-inserted derivative identities, geometric
+long-null jets, general induced-area transport, regulator removal, and global
+two-face/sample-wise limits are not proved by this dimension-indexed layer.
+The separate four-dimensional completion of #67 below does not close #24.
+
+## Fixed-cutoff assembly and its verification boundary (#67)
 
 The [conventional assembly](../notes/two-face-limit.md) uses #66's written
 short-displacement theorem and #61 at one common fixed positive cutoff. The
@@ -1381,6 +1435,11 @@ lake exe cache get \
   Mathlib.Analysis.Calculus.Deriv.Comp \
   Mathlib.Analysis.Calculus.Deriv.Mul \
   Mathlib.Analysis.Calculus.Deriv.Pow \
+  Mathlib.Analysis.Calculus.Deriv.Polynomial \
+  Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas \
+  Mathlib.Analysis.Calculus.Taylor \
+  Mathlib.Analysis.MellinTransform \
+  Mathlib.Analysis.SpecialFunctions.Gamma.Beta \
   Mathlib.Analysis.Calculus.ParametricIntervalIntegral \
   Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic \
   Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus \
@@ -1421,6 +1480,7 @@ lake exe cache get \
   Mathlib.MeasureTheory.Constructions.HaarToSphere \
   Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls \
   Mathlib.Algebra.BigOperators.Group.Finset.Basic \
+  Mathlib.Algebra.Polynomial.Derivative \
   Mathlib.Analysis.Calculus.ContDiff.Basic \
   Mathlib.Analysis.Calculus.ContDiff.Defs \
   Mathlib.Analysis.Calculus.InverseFunctionTheorem.FDeriv \

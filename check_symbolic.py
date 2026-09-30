@@ -2,6 +2,8 @@
 
 import sympy as s
 
+from dimension_kernels import check_dimension_identities
+
 
 def main():
     n = s.symbols("n", integer=True, nonnegative=True)
@@ -105,6 +107,7 @@ def main():
     cosh_squared = 1 / (1 - k**2)
     assert s.simplify(cosh_squared / (cosh_squared - 1) - 1 / k**2) == 0
     print("PASS: coth(theta)=1/|grad h| for 0<|grad h|<1")
+    check_dimension_identities()
     print("All symbolic checks passed.")
 
 
