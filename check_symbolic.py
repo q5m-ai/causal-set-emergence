@@ -4,6 +4,7 @@ import sympy as s
 
 from conformal_geometry import check_conformal_identities
 from dimension_kernels import check_dimension_identities
+from curved_bulk_pilot import check_curved_pilot_identities
 
 
 def main():
@@ -110,6 +111,7 @@ def main():
     print("PASS: coth(theta)=1/|grad h| for 0<|grad h|<1")
     check_dimension_identities()
     check_conformal_identities()
+    check_curved_pilot_identities()
     print("All symbolic checks passed.")
 
 
