@@ -50,7 +50,13 @@ def lint_markdown(text):
     def report(offset, message):
         errors.append((text.count("\n", 0, offset) + 1, message))
 
-    def check_math(source, offset):
+    def check_math(source, offset, *, display=False):
+        if display:
+            # GitHub can consume <t or <H as HTML even inside a math fence,
+            # producing valid MathML for only the prefix of the equation.
+            for match in re.finditer(r"<[A-Za-z]", source):
+                report(offset + match.start(),
+                       r"HTML-like comparison in display math; use \lt instead of <")
         for match in re.finditer(r"\\([A-Za-z]+)", source):
             macro = match[1]
             if macro in REJECTED_MACROS | CUSTOM_MACROS:
@@ -73,7 +79,7 @@ def lint_markdown(text):
                     and len(match[1]) >= len(marker) and not match[2].strip()):
                 fence = None
             elif language == "math":
-                check_math(line, offset)
+                check_math(line, offset, display=True)
             prose.append(blank(line))
         elif match:
             marker, info = match.groups()

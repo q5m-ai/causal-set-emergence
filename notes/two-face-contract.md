@@ -287,6 +287,14 @@ priority for two-curved-face results, or exhaustive absence of counterexamples
 follows from this reading. Repository planar, ellipsoid, quartic and concrete
 null-cap results retain their own machine-checked scope and attribution.
 
+**Subsequent #90 audit:** [the expanded passage review](general-contract-literature.md)
+now covers the 2020 papers, BDJS §4 and selected later work. In particular,
+BDJS explicitly evaluates diamond asymptotics in dimensions 2–16; the earlier
+unqualified arbitrary-dimensional attribution above is not supported by that
+passage. Chevalier's primary overlap-method text remains unavailable. The
+[general scope gate](general-contract.md) preserves these uncertainties and
+does not redefine this original restricted contract.
+
 ## 6. Original obstruction register and remaining research decisions
 
 The register below preserves the initial #49 research status, not the current

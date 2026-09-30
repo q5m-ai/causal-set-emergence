@@ -37,8 +37,11 @@ The action and coefficients are prior work:
   11. Their approximation in (72) is not used as a localization proof here.
 - Buck–Dowker–Jubb–Surya, *Boundary terms for causal sets*,
   [CQG 32 (2015) 205004](https://doi.org/10.1088/0264-9381/32/20/205004):
-  the known flat causal-diamond limit in arbitrary dimension. That result is
-  a calibration, not a novelty claim or a proof for spacelike two-face regions.
+  flat causal-diamond evidence in multiple dimensions. The subsequent
+  [#90 passage audit](general-contract-literature.md) finds explicit asymptotic
+  evaluations for dimensions 2–16 in §4, not an all-dimension proof. Those
+  results are calibrations, not a novelty claim or a proof for spacelike
+  two-face regions.
 
 Use signature $`(+,-,\ldots,-)`$, proper time $`\tau`$, squared proper time
 $`\sigma=\tau^2`$, and **unnormalized** radial null coordinates
@@ -460,10 +463,13 @@ stability nor disappearance of a regulator's artificial complement.
   cone apex or a discarded part of its overlap has no extra contribution.
   The 2D triangle/lozenge similarly use counting measure on their joints;
   there is no missing angular factor or extra half per spacelike joint.
-- **Causal diamonds:** the known target is $`S_{d-2}(T/2)^{d-2}`$, including
-  value two in 2D and $`\pi T^2`$ in 4D. Diamonds have null faces and are not
-  instances of contract L or the spacelike class below. Their known limit is
-  not obtained by interchanging density and zero/null-angle limits.
+- **Causal diamonds:** the target is $`S_{d-2}(T/2)^{d-2}`$, including
+  value two in 2D and $`\pi T^2`$ in 4D. The inspected BDJS source explicitly
+  evaluates dimensions 2–16; arbitrary-dimensional asymptotic proof provenance
+  remains unresolved in the [later audit](general-contract-literature.md).
+  Diamonds have null faces and are not instances of contract L or the spacelike
+  class below. These limits are not obtained by interchanging density and
+  zero/null-angle limits.
 
 For an independent finite-density diamond calculation, radial null coordinates
 give the interval power integral
