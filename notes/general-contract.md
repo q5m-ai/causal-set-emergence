@@ -373,6 +373,16 @@ presentations. This is a conventional geometric argument, with symbolic
 regressions, **not** a newly proved BDG limit. #85 must audit the surviving
 jets and replace the invalid planar comparison, rather than rename the class.
 
+**#85 handoff:** [the independent-face audit](independent-face-extension.md)
+now states the larger class and proves its region/stratum/area geometry in
+writing. It exhibits a closed-interval containment failure and an actual
+short-null overlap discrepancy for the same-height reference cap, derives the
+actual local two-jet and replacement long-ray bounds, and records the bounded
+[direct-origin replacement #97](https://github.com/q5m-ai/causal-set-emergence/issues/97).
+This is the obstruction branch of #85, **not
+new global limit coverage**. No original Lean contract or theorem is changed;
+independent human review remains outstanding.
+
 ## 6. Selected first flat 4D mixed pilot for #83 / #84
 
 **GO, directly at fixed null geometry.** Put the future tip at zero. Choose a
