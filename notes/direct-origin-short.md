@@ -7,7 +7,7 @@ expansion in Lean, port its long-null theorem, or prove an enlarged-class
 deterministic/expected-action limit. It is neither a counterexample nor a new
 obstruction stopping result for #97. Independent human review remains open.
 
-The inputs remain exactly the class E specified in
+The intended geometric input for #97 remains exactly class E as specified in
 [the independent-face audit](independent-face-extension.md); no geometric
 contract, original action, Poisson law or joint target is changed here. That
 note's geometry, local overlap jet and long-ray bounds remain **written
@@ -158,9 +158,13 @@ coverage to add to the #90 matrix.
   coefficient against its independent normal/area expression. That last test
   is **not** an action-limit proof. Existing variable-angle, original planar,
   unequal-axis and positive-height-critical-point regressions are retained.
-- Run the full integrated local source/warnings/transitive-axiom gate after
-  the last Lean change, plus the symbolic, Python and Markdown suites. The
-  incremental check alone is not a full audit.
+- Validation completed: the full integrated local build, all 192 local Lean
+  sources (including the aggregate audit), warnings-as-errors and transitive
+  axiom gate passed on the final Lean inputs with the default two workers.
+  All 157 Python tests, symbolic checks, Markdown lint and 20 Markdown tests
+  passed. All three changed equations were rendered and visually checked on
+  GitHub, with no math errors or overflow. The incremental check also passed
+  but is not a substitute for that full audit.
 - Independent human mathematical/physical scrutiny remains outstanding under
   #94/#86. No arbitrary-atlas, null/mixed, curved, other-dimensional, rate,
   shrinking-cutoff, variance or individual-sprinkling result is promoted.
