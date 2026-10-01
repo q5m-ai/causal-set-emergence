@@ -101,6 +101,14 @@ theorem twoFaceExpectedLimitGoal : TwoFaceExpectedLimitGoal
 These cover genuinely curved future faces in the stated four-dimensional
 two-graph class, not the unrestricted conjecture or individual sprinklings.
 
+The separate [controlled conformal pilot](formal/CONFORMAL_ACTION.md) now
+constructs the curved finite-volume Poisson law and proves its exact
+finite-density expectation equals the independently defined restricted-volume
+BDG integral. It retains the original two-face coordinate regions and flat API.
+A nonconstant admissible conformal factor has independently calculated nonzero
+scalar curvature; no curved continuum limit or bulk/joint coefficient is
+claimed by this finite-density result.
+
 All public theorems and definitions pass a transitive axiom audit permitting
 only Lean’s standard foundations. The general graph-cap and original ellipsoid
 proofs retain the whole signed kernel, including its negative tail; the null

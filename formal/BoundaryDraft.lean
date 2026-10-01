@@ -78,6 +78,10 @@ import BoundaryDraft.DiscreteBDG
 import BoundaryDraft.PoissonExpectation
 import BoundaryDraft.ExpectationGeometry
 import BoundaryDraft.ExpectationBridge
+import BoundaryDraft.FiniteMeasureBDG
+import BoundaryDraft.ConformalGeometry
+import BoundaryDraft.ConformalAction
+import BoundaryDraft.ConformalExamples
 import BoundaryDraft.ExpectedLimits
 import BoundaryDraft.TranslatedOverlap
 import BoundaryDraft.OverlapCoordinates
