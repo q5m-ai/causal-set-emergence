@@ -123,8 +123,13 @@ partners and assumes neither mass nor convergence. The separate
 [finite-geometry bridge](formal/DIMENSION_INTERVALS.md) now proves actual
 causal-interval volumes, Lorentz and positive-dilation action transport, and
 unchanged 4D coordinate/measure compatibility in the same dimension range.
-Neither proves a new general-dimensional Poisson bridge or global two-face
-limit; independent human mathematical review remains outstanding.
+The separate [dimension-indexed Poisson bridge](formal/DIMENSION_EXPECTATION.md)
+now constructs the genuine finite-order action and proves its exact expectation
+using actual restricted interval volume, then specializes to that flat action
+under ambient causal convexity. It calibrates the dimensionless 2D action and
+transports the unchanged 4D action and probability law through the proved
+coordinate map. No global higher-dimensional two-face limit or sample-wise
+convergence follows; independent human mathematical review remains outstanding.
 
 The **concrete ellipsoid geometric interpretation** is also checked separately:
 its joint is a smooth regular level with nonzero Euclidean gradient, its angle
