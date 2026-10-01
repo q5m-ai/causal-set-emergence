@@ -143,8 +143,11 @@ the final short analytic consumer does not remove those hypotheses. Factoring
 regular compact height geometry and porting the actual producers remain
 necessary; this is missing implementation, not proof that the route fails.
 
-Thus #97, #24 and #86 must remain open. There is no new global asymptotic
-coverage to add to the #90 matrix.
+Thus #97 and #86 remain open, and this package does not meet #24's general
+completion criterion. A final GitHub status check found that a maintainer had
+already closed #24 on 2026-10-01 before this work; that state is left unchanged,
+not treated as proof of the conjecture. No closure is requested here. There is
+no new global asymptotic coverage to add to the #90 matrix.
 
 ## 4. Verification boundary
 
