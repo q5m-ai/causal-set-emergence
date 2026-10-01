@@ -122,9 +122,11 @@ The [dimension-indexed prerequisite note](dimension-kernels.md) inventories
 these normalizations and maps the checked signed integrals, parity-specific
 tails/moments, unit reduced-kernel mass, and regulated weighted local-action
 coefficient. The Lean theorem uses the actual bilocal observable, with all
-future partners and no normalization premise. General-dimensional Poisson
-expectations, geometric long-null jets, induced-area transport, and global
-localization remain separate obligations. With #67 completed by merged PR #89,
+future partners and no normalization premise. The separate
+[dimension-indexed expectation bridge](../formal/DIMENSION_EXPECTATION.md) now
+proves the exact finite-density identity after constructing the discrete action
+and using actual interval geometry. Geometric long-null jets, induced-area
+transport, and global localization remain separate obligations. With #67 completed by merged PR #89,
 its next-step proposal can use the checked four-dimensional proof decomposition,
 not assume an all-dimension consequence.
 
