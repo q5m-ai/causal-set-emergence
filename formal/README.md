@@ -1441,6 +1441,20 @@ the quartic critical point in its planar short-limit specialization.
 Independent human mathematical review remains outstanding; the full weighted
 estimate in #66 and sample-wise convergence are not promoted by these proofs.
 
+## Direct-origin analytic backend (partial #97)
+
+`ShortCutoffPolynomial`, `ShortRadialAbsolute`, and `AbsoluteShortModel` prove
+fixed-cutoff absolute-overlap basis responses: the volume logarithm cancels the
+point term, the moving-endpoint time-linear term vanishes, and both quadratic
+terms retain their distinct signed responses. A separate conditional theorem
+transfers an exact absolute density decomposition with derivative-controlled
+remainder bounds. `AbsoluteShortRegression.lean` checks these interfaces.
+
+This does **not** encode the independent-envelope class E or derive its actual
+geometric expansion, long-density cancellation, target identification or global
+limit. No original admissibility or action is changed. Issue #97 remains open;
+see the [analytic proof and remaining-work ledger](../notes/direct-origin-short.md).
+
 ## Reproduce
 
 With Lean/elan installed and the pinned toolchain selected by `lean-toolchain`:

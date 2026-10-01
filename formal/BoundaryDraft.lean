@@ -129,6 +129,9 @@ import BoundaryDraft.TwoFaceShortOverlapJet
 import BoundaryDraft.ShortOverlapTaylor
 import BoundaryDraft.TwoFaceAngularJet
 import BoundaryDraft.ShortOverlapAsymptotics
+import BoundaryDraft.ShortCutoffPolynomial
+import BoundaryDraft.ShortRadialAbsolute
+import BoundaryDraft.AbsoluteShortModel
 import BoundaryDraft.TwoFaceShortReduction
 import BoundaryDraft.TwoFaceShortLimit
 import BoundaryDraft.TwoFaceLimit

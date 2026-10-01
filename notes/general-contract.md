@@ -383,6 +383,12 @@ This is the obstruction branch of #85, **not
 new global limit coverage**. No original Lean contract or theorem is changed;
 independent human review remains outstanding.
 
+**Partial #97 handoff:** [the direct-origin analytic backend](direct-origin-short.md)
+checks the absolute short basis responses and conditional derivative-controlled
+remainder transfer in Lean. It does not yet connect those inputs to class E,
+port its long density, or establish its global deterministic/expected limit.
+The new consumer adds no global coverage to this matrix; #97 and #86 remain open.
+
 ## 6. Selected first flat 4D mixed pilot for #83 / #84
 
 **GO, directly at fixed null geometry.** Put the future tip at zero. Choose a

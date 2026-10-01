@@ -322,6 +322,10 @@ obstruction to that comparison route, **not** a counterexample to the full
 conjecture or a new enlarged-class limit. The audit records surviving local
 jets, replacement long-ray margins and the bounded
 [direct-origin proof task #97](https://github.com/q5m-ai/causal-set-emergence/issues/97).
+The [partial direct-origin analytic backend](notes/direct-origin-short.md) now
+checks the absolute short basis responses and a conditional remainder transfer
+in Lean. The actual class-E geometric producers and enlarged-class limit remain
+unproved; #97 stays open.
 
 ### Curved-spacetime feasibility boundary
 
