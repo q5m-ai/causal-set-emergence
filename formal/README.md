@@ -244,6 +244,8 @@ factor on that joint. It also exercises the existing curved-sine family.
 | `BoundaryDraft/FiniteCausalOrder.lean`, `DiscreteBDG.lean` | Genuine finite-order BDG action, all signed coefficients and normalization, measurability, and absolute integrability | The expectation identity by themselves |
 | `BoundaryDraft/PoissonExpectation.lean`, `ExpectationGeometry.lean`, `ExpectationBridge.lean` | Exact normalized expectation equals the unchanged `continuumMean`; restricted interval rates identified from geometric causal convexity | Variance, concentration, or a sample-wise limit |
 | `BoundaryDraft/ExpectedLimits.lean` | Expected-action ellipsoid, admissible graph-cap, and null-cap limits under the original hypotheses | Rates, random convergence, unrestricted boundaries, or induced null-joint geometry |
+| `BoundaryDraft/MeasuredOrder.lean`, `MeasuredOrderPoisson.lean`, `PoissonTransport.lean` | Measurable finite-order layers, actual finite-measure layer expectations from existing Mecke/count laws, factorial-moment integrability and probability-law coordinate transport | A metric volume law, asymptotic limit or new probability axiom |
+| `BoundaryDraft/DimensionDiscrete.lean`, `DimensionMeasureExpectation.lean`, `DimensionExpectation.lean`, `DimensionExpectationCompatibility.lean` | Genuine dimension-indexed action, exact restricted-volume expectation, Minkowski specialization for every integer dimension at least two, dimensionless 2D normalization and unchanged 4D action/law/expectation recovery | General-dimensional joint geometry, global boundary limits, rates or sample-wise convergence |
 | `BoundaryDraft/FiniteMeasureBDG.lean`, `ConformalGeometry.lean`, `ConformalAction.lean`, `ConformalExamples.lean` | Finite-measure BDG averaging, controlled conformal metric volume, restricted-interval action, constructed law and exact expectation, integrability, ambient compatibility, flat/constant calibration and nonconstant admissibility | A Lean curvature theorem, curved joint/bulk target, continuum limit, rates or sample-wise convergence |
 | `BoundaryDraft/Poincare.lean` | Affine time-oriented Lorentz equivalences, interval/causal transport, derived absolute determinant one, product Lebesgue preservation, and bounded measurable causally convex image regions | Generic induced-joint measure transport or a boundary limit |
 | `BoundaryDraft/ActionTransport.lean` | Exact covariance and positive-dilation scaling of the unchanged bilocal action, absolute integrability, and transfer through the existing expectation bridge | A new Poisson-law coupling, localization, curved-face limits, or sample-wise convergence |
@@ -1371,8 +1373,21 @@ covariance/dilation. Its 4D coordinate equivalence preserves actual measures
 and recovers the entire unchanged `continuumMean`, not only the reduced kernel.
 No desired volume or transport identity is a geometric premise.
 
-Nine `Dimension*Regression.lean` files exercise low-dimensional constants,
-nonunit density, actual normalization, moments/divergence, endpoint jets, an
+The separate [dimension-indexed expectation bridge (#77)](DIMENSION_EXPECTATION.md)
+defines the genuine finite-order action from the published point/pair and layer
+coefficients. Generic measured-order layer proofs reuse the existing Poisson
+law, count laws, Mecke identities and factorial moments. The finite-measure
+identity first uses actual restricted interval volumes; #91's geometry then
+identifies it with constant-weight-one `dimensionWeightedAction`. The physical
+range is every integer dimension at least two. Dimension two has the exact
+dimensionless normalization. In 4D both configurations and the probability law
+transport to the unchanged discrete/expected action, even on non-convex
+finite-volume regions. `DimensionExpectationRegression.lean` independently
+expands these contracts and exercises the coefficient, order and measure edge
+cases; no old flat or conformal definition is changed.
+
+The original nine `Dimension*Regression.lean` files exercise low-dimensional
+constants, nonunit density, actual normalization, moments/divergence, endpoint jets, an
 independent toy slice, 4D compatibility, negative weights, and a concrete
 nonzero 2D bilocal-action limit. The interval/transport regressions additionally
 check the quantified contracts, null intermediates, non-convex restrictions,
@@ -1381,11 +1396,11 @@ by `BoundaryDraft`; regressions do not replace the full source and
 transitive-axiom audit. Independent human mathematical review is outstanding.
 
 [The normalization note](../notes/dimension-kernels.md) maps exact theorem
-contracts and remaining obligations. The general-dimensional Poisson-expectation
-bridge, log-inserted derivative identities, geometric long-null jets, general
-induced-area transport, regulator removal, and global two-face/sample-wise
-limits are not proved by this dimension-indexed layer. The separate
-four-dimensional completion of #67 below does not close #24.
+contracts and remaining obligations. Log-inserted derivative identities,
+geometric long-null jets, general induced-area transport, regulator removal,
+and global higher-dimensional two-face/sample-wise limits are not proved by
+this dimension-indexed layer or its exact finite-density expectation bridge.
+The separate four-dimensional completion of #67 below does not close #24.
 
 ## Fixed-cutoff assembly and its verification boundary (#67)
 
