@@ -42,10 +42,19 @@ theorem isCompact_closedPositive : IsCompact (graphClosedPositive h) := by
 
 end GraphCapData
 
-namespace AdmissibleGraphCap
+namespace RegularHeight
 
-variable {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+variable {h : Spatial → ℝ} (hh : RegularHeight h)
 include hh
+
+/-- Boundedness, not a cap slope bound, supplies compactness. -/
+theorem isCompact_closedPositive : IsCompact (graphClosedPositive h) := by
+  let e := (PiLp.continuousLinearEquiv 2 ℝ (fun _ : Fin 3 => ℝ)).toHomeomorph
+  have he : graphClosedPositive h = e ⁻¹' closure {x : Spatial | 0 < h x} := by
+    rw [e.preimage_closure]
+    rfl
+  rw [he]
+  exact e.isCompact_preimage.mpr hh.bounded_positive.isCompact_closure
 
 theorem continuousOn_closedPositive :
     ContinuousOn (fun x : EuclideanSpace ℝ (Fin 3) => h x) (graphClosedPositive h) :=
@@ -62,12 +71,12 @@ theorem graphJoint_eq_frontier :
     graphJoint h = frontier {x : EuclideanSpace ℝ (Fin 3) | 0 < h x} := by
   let e := (PiLp.continuousLinearEquiv 2 ℝ (fun _ : Fin 3 => ℝ)).toHomeomorph
   have he := e.preimage_frontier {x : Spatial | 0 < h x}
-  rw [hh.frontier_eq h, preimage_inter, e.preimage_closure] at he
+  rw [hh.frontier_eq, preimage_inter, e.preimage_closure] at he
   exact he
 
 theorem isCompact_joint : IsCompact (graphJoint h) := by
   rw [hh.graphJoint_eq_frontier]
-  exact hh.toGraphCapData.isCompact_closedPositive.of_isClosed_subset
+  exact hh.isCompact_closedPositive.of_isClosed_subset
     isClosed_frontier frontier_subset_closure
 
 theorem measurableSet_joint : MeasurableSet (graphJoint h) :=
@@ -89,7 +98,7 @@ theorem exists_noncritical_band : ∃ δ : ℝ, 0 < δ ∧
     ∀ x ∈ graphClosedPositive h, h x ≤ δ →
       fderiv ℝ (fun y : EuclideanSpace ℝ (Fin 3) => h y) x ≠ 0 := by
   let K := graphClosedPositive h
-  letI : CompactSpace K := isCompact_iff_compactSpace.mp hh.toGraphCapData.isCompact_closedPositive
+  letI : CompactSpace K := isCompact_iff_compactSpace.mp hh.isCompact_closedPositive
   let C : Set K := {x | fderiv ℝ (fun y : EuclideanSpace ℝ (Fin 3) => h y) x.val = 0}
   have hC : IsCompact C :=
     (isClosed_eq hh.continuousOn_fderiv_closedPositive.restrict continuous_const).isCompact
@@ -125,5 +134,45 @@ theorem exists_regular_neighborhood (x : EuclideanSpace ℝ (Fin 3))
   intro y hy
   exact hVsub hy.2
 
+end RegularHeight
+
+-- Preserve the original theorem signatures and field-notation API.
+namespace AdmissibleGraphCap
+variable {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+include hh
+
+theorem continuousOn_closedPositive :
+    ContinuousOn (fun x : EuclideanSpace ℝ (Fin 3) => h x) (graphClosedPositive h) :=
+  hh.toRegularHeight.continuousOn_closedPositive
+
+theorem continuousOn_fderiv_closedPositive :
+    ContinuousOn (fderiv ℝ (fun x : EuclideanSpace ℝ (Fin 3) => h x))
+      (graphClosedPositive h) := hh.toRegularHeight.continuousOn_fderiv_closedPositive
+
+theorem graphJoint_eq_frontier :
+    graphJoint h = frontier {x : EuclideanSpace ℝ (Fin 3) | 0 < h x} :=
+  hh.toRegularHeight.graphJoint_eq_frontier
+
+theorem isCompact_joint : IsCompact (graphJoint h) := hh.toRegularHeight.isCompact_joint
+
+theorem measurableSet_joint : MeasurableSet (graphJoint h) := hh.toRegularHeight.measurableSet_joint
+
+theorem nonneg_on_closedPositive (x : EuclideanSpace ℝ (Fin 3))
+    (hx : x ∈ graphClosedPositive h) : 0 ≤ h x := hh.toRegularHeight.nonneg_on_closedPositive x hx
+
+theorem exists_noncritical_band : ∃ δ : ℝ, 0 < δ ∧
+    ∀ x ∈ graphClosedPositive h, h x ≤ δ →
+      fderiv ℝ (fun y : EuclideanSpace ℝ (Fin 3) => h y) x ≠ 0 :=
+  hh.toRegularHeight.exists_noncritical_band
+
+theorem exists_regular_neighborhood (x : EuclideanSpace ℝ (Fin 3))
+    (hx : x ∈ graphClosedPositive h)
+    (hr : fderiv ℝ (fun y : EuclideanSpace ℝ (Fin 3) => h y) x ≠ 0) :
+    ∃ U : Set (EuclideanSpace ℝ (Fin 3)), IsOpen U ∧ x ∈ U ∧
+      ContDiffOn ℝ 3 (fun y : EuclideanSpace ℝ (Fin 3) => h y) U ∧
+      ∀ y ∈ U, fderiv ℝ (fun z : EuclideanSpace ℝ (Fin 3) => h z) y ≠ 0 :=
+  hh.toRegularHeight.exists_regular_neighborhood x hx hr
+
 end AdmissibleGraphCap
+
 end BoundaryDraft

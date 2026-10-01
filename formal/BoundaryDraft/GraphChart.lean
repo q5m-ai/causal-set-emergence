@@ -43,9 +43,9 @@ structure RegularHeightChart (h : Spatial → ℝ) where
   contDiff_height : ContDiffOn ℝ 3 (fun y : JointSpace => h y) chart.source
   regular : ∀ y ∈ chart.source, fderiv ℝ (fun z : JointSpace => h z) y ≠ 0
 
-namespace AdmissibleGraphCap
+namespace RegularHeight
 
-variable {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+variable {h : Spatial → ℝ} (hh : RegularHeight h)
 include hh
 
 /-- The existing implicit chart can be shrunk to a genuine C³ height chart.
@@ -147,6 +147,28 @@ theorem exists_regularHeightChart (x : JointSpace) (hx : x ∈ graphClosedPositi
     rw [he0]
     change surfaceGraph (fun _ => h x) (k 0) = _
     rw [map_zero]
+
+end RegularHeight
+
+namespace AdmissibleGraphCap
+variable {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+include hh
+
+theorem exists_contDiff_level_chart (x : JointSpace) (hx : x ∈ graphClosedPositive h)
+    (hr : fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
+    ∃ e : PartialHomeomorph JointSpace (ℝ × graphTangentSpace h x),
+      x ∈ e.source ∧ e x = (h x, 0) ∧ (∀ y, (e y).1 = h y) ∧
+      ContDiffOn ℝ 3 e e.source ∧ ContDiffOn ℝ 3 e.symm e.target ∧
+      ContDiffOn ℝ 3 (fun y : JointSpace => h y) e.source ∧
+      (∀ y ∈ e.source, fderiv ℝ (fun z : JointSpace => h z) y ≠ 0) ∧
+      HasStrictFDerivAt (fun z => e.symm (h x, z)) (graphTangentSpace h x).subtypeL 0 :=
+  hh.toRegularHeight.exists_contDiff_level_chart x hx hr
+
+theorem exists_regularHeightChart (x : JointSpace) (hx : x ∈ graphClosedPositive h)
+    (hr : fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
+    ∃ c : RegularHeightChart h, x ∈ c.chart.source ∧
+      c.chart x = surfaceGraph (fun _ => h x) 0 :=
+  hh.toRegularHeight.exists_regularHeightChart x hx hr
 
 end AdmissibleGraphCap
 end BoundaryDraft

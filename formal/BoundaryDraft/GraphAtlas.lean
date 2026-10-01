@@ -157,13 +157,13 @@ structure ControlledCollarAtlas (h : Spatial → ℝ) where
   weights : SmoothPartitionOfUnity (Fin count) 𝓘(ℝ, JointSpace) JointSpace (graphClosedCollar h width)
   subordinate : weights.IsSubordinate (fun i => (charts i).patch)
 
-namespace AdmissibleGraphCap
+namespace RegularHeight
 
-variable {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+variable {h : Spatial → ℝ} (hh : RegularHeight h)
 include hh
 
 theorem isCompact_closedCollar (δ : ℝ) : IsCompact (graphClosedCollar h δ) := by
-  apply hh.toGraphCapData.isCompact_closedPositive.of_isClosed_subset _ inter_subset_left
+  apply hh.isCompact_closedPositive.of_isClosed_subset _ inter_subset_left
   exact hh.continuousOn_closedPositive.preimage_isClosed_of_isClosed isClosed_closure isClosed_Iic
 
 /-- Construct a finite controlled atlas, choosing its width strictly within
@@ -212,6 +212,18 @@ theorem exists_controlledCollarAtlas : Nonempty (ControlledCollarAtlas h) := by
     covers := hcover'
     weights := w
     subordinate := hw }⟩
+
+end RegularHeight
+
+namespace AdmissibleGraphCap
+variable {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+include hh
+
+theorem isCompact_closedCollar (δ : ℝ) : IsCompact (graphClosedCollar h δ) :=
+  hh.toRegularHeight.isCompact_closedCollar δ
+
+theorem exists_controlledCollarAtlas : Nonempty (ControlledCollarAtlas h) :=
+  hh.toRegularHeight.exists_controlledCollarAtlas
 
 end AdmissibleGraphCap
 end BoundaryDraft
