@@ -101,6 +101,14 @@ theorem twoFaceExpectedLimitGoal : TwoFaceExpectedLimitGoal
 These cover genuinely curved future faces in the stated four-dimensional
 two-graph class, not the unrestricted conjecture or individual sprinklings.
 
+The separate [controlled conformal pilot](formal/CONFORMAL_ACTION.md) now
+constructs the curved finite-volume Poisson law and proves its exact
+finite-density expectation equals the independently defined restricted-volume
+BDG integral. It retains the original two-face coordinate regions and flat API.
+A nonconstant admissible conformal factor has independently calculated nonzero
+scalar curvature; no curved continuum limit or bulk/joint coefficient is
+claimed by this finite-density result.
+
 All public theorems and definitions pass a transitive axiom audit permitting
 only Lean’s standard foundations. The general graph-cap and original ellipsoid
 proofs retain the whole signed kernel, including its negative tail; the null
@@ -111,8 +119,12 @@ The [dimension-indexed prerequisite layer](notes/dimension-kernels.md) now also
 proves the actual signed integrals, parity-dependent tails and moments, unit
 reduced-kernel mass, and a fixed-regulator weighted flat local coefficient in
 every integer dimension at least two. The bilocal theorem retains all future
-partners and assumes neither mass nor convergence. It does **not** prove a new
-general-dimensional Poisson bridge or global two-face limit.
+partners and assumes neither mass nor convergence. The separate
+[finite-geometry bridge](formal/DIMENSION_INTERVALS.md) now proves actual
+causal-interval volumes, Lorentz and positive-dilation action transport, and
+unchanged 4D coordinate/measure compatibility in the same dimension range.
+Neither proves a new general-dimensional Poisson bridge or global two-face
+limit; independent human mathematical review remains outstanding.
 
 The **concrete ellipsoid geometric interpretation** is also checked separately:
 its joint is a smooth regular level with nonzero Euclidean gradient, its angle
@@ -298,6 +310,18 @@ localization-route obstruction, not a counterexample to the full action.
 The [nonplanar sine diagnostics](results/null-mixed.md) retain all future
 partners. These are written arguments and executable regressions, not a new
 Lean-checked mixed-region or Poisson-expectation theorem; #84 owns that assembly.
+
+### Independent-face enlargement
+
+The [independent-face enlargement audit](notes/independent-face-extension.md)
+derives a larger fixed 4D class in writing, with independent strict causal
+bounds and the same intrinsic area/angle target. A steep capsule lies outside
+even transported old presentations. Its same-height planar reference is not
+causally convex and has the wrong causal overlap formula. This is a rigorous
+obstruction to that comparison route, **not** a counterexample to the full
+conjecture or a new enlarged-class limit. The audit records surviving local
+jets, replacement long-ray margins and the bounded
+[direct-origin proof task #97](https://github.com/q5m-ai/causal-set-emergence/issues/97).
 
 ### Curved-spacetime feasibility boundary
 

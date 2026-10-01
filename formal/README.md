@@ -59,6 +59,16 @@ Jacobians, sphere normalization, null displacements, and zero-volume regions.
 This finite-density representation is prior work of Dowker–Liu–Lloyd-Jones
 §2.6, not a new localization or overlap-regularity theorem.
 
+The separate [controlled conformal API](CONFORMAL_ACTION.md) proves an exact
+finite-density expectation identity on the original two-face coordinate
+regions with a positive smooth conformal metric. It constructs the curved
+Poisson law and uses actual restricted metric interval volume, leaving the
+flat API unchanged. Measurability, integrability, atomlessness, ambient
+compatibility and constant-factor calibration are derived. A nonconstant
+admissible example has independently calculated nonzero scalar curvature
+(written and symbolic verification, not a Lean curvature theorem). No curved
+continuum limit, bulk coefficient or new induced-joint target is asserted.
+
 The [two-face geometry integration](TWO_FACE_GEOMETRY.md) now proves the
 unchanged `TwoFaceRegionGoal`: open bounded ambient-causally-convex regions,
 compact faces and joint, the complete frontier, and the exact face intersection.
@@ -234,6 +244,7 @@ factor on that joint. It also exercises the existing curved-sine family.
 | `BoundaryDraft/FiniteCausalOrder.lean`, `DiscreteBDG.lean` | Genuine finite-order BDG action, all signed coefficients and normalization, measurability, and absolute integrability | The expectation identity by themselves |
 | `BoundaryDraft/PoissonExpectation.lean`, `ExpectationGeometry.lean`, `ExpectationBridge.lean` | Exact normalized expectation equals the unchanged `continuumMean`; restricted interval rates identified from geometric causal convexity | Variance, concentration, or a sample-wise limit |
 | `BoundaryDraft/ExpectedLimits.lean` | Expected-action ellipsoid, admissible graph-cap, and null-cap limits under the original hypotheses | Rates, random convergence, unrestricted boundaries, or induced null-joint geometry |
+| `BoundaryDraft/FiniteMeasureBDG.lean`, `ConformalGeometry.lean`, `ConformalAction.lean`, `ConformalExamples.lean` | Finite-measure BDG averaging, controlled conformal metric volume, restricted-interval action, constructed law and exact expectation, integrability, ambient compatibility, flat/constant calibration and nonconstant admissibility | A Lean curvature theorem, curved joint/bulk target, continuum limit, rates or sample-wise convergence |
 | `BoundaryDraft/Poincare.lean` | Affine time-oriented Lorentz equivalences, interval/causal transport, derived absolute determinant one, product Lebesgue preservation, and bounded measurable causally convex image regions | Generic induced-joint measure transport or a boundary limit |
 | `BoundaryDraft/ActionTransport.lean` | Exact covariance and positive-dilation scaling of the unchanged bilocal action, absolute integrability, and transfer through the existing expectation bridge | A new Poisson-law coupling, localization, curved-face limits, or sample-wise convergence |
 | `BoundaryDraft/TwoFaceGeometry.lean` | `twoFaceRegionGoal`, strict causal envelopes, openness, compact closure/faces/joint, ambient causal convexity, complete frontier and face intersection | Intrinsic joint area or a two-face limit by itself |
@@ -1352,18 +1363,29 @@ are now checked, not merely the recurrence and its algebraic multiplier:
   unchanged 4D `planeKernel` and calibrates the arbitrary-density weighted
   graph-cap action. Original 4D action files are unchanged.
 
-Seven `Dimension*Regression.lean` files exercise low-dimensional constants,
+The subsequent [finite-geometry bridge (#91)](DIMENSION_INTERVALS.md) proves
+actual closed/exclusive interval measurability and nullity, all-dimension
+rest-frame volume and future-preserving Lorentz transport, restricted-volume
+equality under ambient causal convexity, and finite-density weighted-action
+covariance/dilation. Its 4D coordinate equivalence preserves actual measures
+and recovers the entire unchanged `continuumMean`, not only the reduced kernel.
+No desired volume or transport identity is a geometric premise.
+
+Nine `Dimension*Regression.lean` files exercise low-dimensional constants,
 nonunit density, actual normalization, moments/divergence, endpoint jets, an
 independent toy slice, 4D compatibility, negative weights, and a concrete
-nonzero 2D bilocal-action limit. All modules are imported by `BoundaryDraft`;
-regressions do not replace the full source and transitive-axiom audit.
+nonzero 2D bilocal-action limit. The interval/transport regressions additionally
+check the quantified contracts, null intermediates, non-convex restrictions,
+non-rest translation, parity and reciprocal scaling. All modules are imported
+by `BoundaryDraft`; regressions do not replace the full source and
+transitive-axiom audit. Independent human mathematical review is outstanding.
 
 [The normalization note](../notes/dimension-kernels.md) maps exact theorem
-contracts and remaining obligations. The general-dimensional interval-volume
-and Poisson-expectation bridge, log-inserted derivative identities, geometric
-long-null jets, general induced-area transport, regulator removal, and global
-two-face/sample-wise limits are not proved by this dimension-indexed layer.
-The separate four-dimensional completion of #67 below does not close #24.
+contracts and remaining obligations. The general-dimensional Poisson-expectation
+bridge, log-inserted derivative identities, geometric long-null jets, general
+induced-area transport, regulator removal, and global two-face/sample-wise
+limits are not proved by this dimension-indexed layer. The separate
+four-dimensional completion of #67 below does not close #24.
 
 ## Fixed-cutoff assembly and its verification boundary (#67)
 
@@ -1475,6 +1497,7 @@ lake exe cache get \
   Mathlib.LinearAlgebra.CrossProduct \
   Mathlib.LinearAlgebra.Matrix.FiniteDimensional \
   Mathlib.LinearAlgebra.Matrix.SchurComplement \
+  Mathlib.LinearAlgebra.Matrix.BilinearForm \
   Mathlib.Data.Fintype.Lattice \
   Mathlib.MeasureTheory.Integral.Prod \
   Mathlib.MeasureTheory.Constructions.HaarToSphere \
@@ -1509,8 +1532,8 @@ new local sources (including unimported ones) with the same warning and
 transitive-axiom rules. Changed `Audit.lean` is also checked. Deleted sources
 are not rechecked. An unreliable base or ignored Lean source stops the check.
 **Incremental mode is not a full proof audit.** Always run `./check.sh` on the
-integrated commit before accepting a mathematical result, including #67 and
-#71. For explicit bounded parallelism in the full gate, run
+integrated commit before accepting a mathematical result, including #67,
+#71 and #91. For explicit bounded parallelism in the full gate, run
 `./check.sh --workers 2` (default), or choose `--workers 1`, `3`, or `4`
 for a host with appropriate memory and swap. All source checks must pass
 before the final aggregate `Audit.lean` check.

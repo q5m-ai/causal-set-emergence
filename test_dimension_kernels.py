@@ -85,6 +85,22 @@ class DimensionKernelTests(unittest.TestCase):
         self.assertEqual(s.simplify(a4 - 4 / s.sqrt(6)), 0)
         self.assertEqual(a4, b4)
 
+    def test_rest_interval_volume_by_ball_slices(self):
+        # Integrate actual Euclidean ball slices, independently of the kernel,
+        # Mellin moments and radial-null-coordinate interval series. This finite
+        # range is diagnostic; DimensionIntervalVolume proves every integer d>=2.
+        for d in (2, 3, 4, 5, 6, 7, 11, 20, 21):
+            unit_ball = float(s.pi ** s.Rational(d - 1, 2)
+                              / s.gamma(s.Rational(d + 1, 2)))
+            for duration in (0.0, 0.7, 3.0):
+                with self.subTest(d=d, duration=duration):
+                    actual, error = quad(
+                        lambda t: unit_ball * min(t, duration - t) ** (d - 1),
+                        0, duration, points=[duration / 2], epsabs=1e-12)
+                    expected = float(dk.interval_coefficient(d)) * duration ** d
+                    self.assertLessEqual(abs(actual - expected),
+                                         2e-12 * max(1, abs(expected)) + error)
+
     def test_operator_and_mellin_identities(self):
         dk.check_dimension_identities()
 
