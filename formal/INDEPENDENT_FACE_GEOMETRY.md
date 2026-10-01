@@ -63,15 +63,15 @@ Unless otherwise indicated, the following methods take
 | `strictGraphLipschitz_lower`, `strictGraphLipschitz_upper` | Independent strict bounds |
 | `envelope_gap`, `upper_eq`, `lower_eq` | Exact positive-height difference everywhere; raw-germ agreement on `graphClosedPositive h` |
 | `envelopes_eq_of_nonpos` | Coincidence wherever raw height is nonpositive |
-| `exists_thickness_bound` | A nonnegative thickness Lipschitz constant below two, not below one |
+| `exists_thickness_bound` | A nonnegative Lipschitz constant below two for `fun x => max 0 (h x)`; no global bound for arbitrary exterior raw heights |
 | `region_eq_twoGraphRegion` | Exact equality of the original raw-germ region and envelope region |
 | `isOpen_region`, `measurableSet_region`, `isCompact_closure_region`, `isBounded_region` | Open, measurable, bounded region with compact closure |
 | `mem_closure_region` | Exactly the closed fibres over `graphClosedPositive h` |
 | `causallyConvex_region`, `boundedCausalRegion` | Containment of every **closed ambient causal interval**, including vertices and null relations |
 | `isCompact_past`, `isCompact_future`, `isCompact_joint`, `frontier_region` | Compact original strata; the two closed faces exhaust the frontier |
 | `past_inter_future` | Exact face intersection; this set identity needs no admissibility hypothesis |
-| `exists_face_slope_bound`, `face_slopes_lt_one` | Both raw gradients are bounded by the maximum of independent strict envelope constants |
-| `normals_future_unit`, `normals_independent` | Actual future unit timelike normals; a vanishing linear combination at a joint point has both coefficients zero |
+| `exists_face_slope_bound`, `face_slopes_lt_one` | Both raw gradients are bounded **on `graphClosedPositive h`** by the maximum of independent strict envelope constants |
+| `normals_future_unit`, `normals_independent` | Actual future unit timelike normals on `graphClosedPositive h`; a vanishing linear combination at a joint point has both coefficients zero |
 | `cosh_gt_one`, `angle_identities`, `areaDensity_pos`, `joint_tangent_geometry` | Positive angle and induced spacelike tangent metric at every `x ∈ graphJoint h` |
 | `continuousOn_weight`, `continuousOn_areaDensity` | Continuity on the compact spatial joint |
 | `finite_projectedArea`, `finite_jointArea`, `integrable_weight` | Finite original area measures and absolutely integrable original angle weight |
