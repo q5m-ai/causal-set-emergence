@@ -17,10 +17,12 @@ general-dimensional Poisson-expectation bridge, induced-area transport,
 geometric long-null jet construction, and global two-face convergence are
 **not** thereby proved. The subsequent [finite-geometry bridge](../formal/DIMENSION_INTERVALS.md)
 proves actual interval volumes, ambient Lorentz transport, and finite-density
-weighted-action covariance/dilation in every supported dimension. Existing
-four-dimensional definitions and proofs are unchanged; an additional equality
-theorem calibrates the new reduction against
-their kernel. The explanatory argument still benefits from independent
+weighted-action covariance/dilation in every supported dimension. The separate
+[#77 expectation bridge](../formal/DIMENSION_EXPECTATION.md) now proves contract F
+from a genuine finite-order action, restricted interval volumes and that geometry;
+it proves no new global limit. Existing four-dimensional definitions and proofs
+are unchanged; an additional equality theorem calibrates the new reduction
+against their kernel. The explanatory argument still benefits from independent
 mathematical review.
 
 ## 1. Sources, conventions and normalization table
@@ -152,7 +154,7 @@ Separately define the deterministic functional at positive density:
  K_d\bigl(c_d\rho\tau_{xy}^{d}\bigr)\right].
 ```
 
-**Finite-density contract F (conventional proof, new Lean port outstanding):**
+**Finite-density contract F (conventional proof and separate #77 Lean proof):**
 for bounded measurable ambient-causally-convex $`M`$ and its independently
 constructed finite Poisson sprinkling of intensity $`\rho>0`$,
 $`\mathbb E A^{\mathrm{disc}}_{\rho,d}=\mathcal A_{\rho,d}(M)`$.
@@ -177,8 +179,12 @@ construction and Mecke identities are reusable. The subsequent
 [dimension-indexed interval geometry](../formal/DIMENSION_INTERVALS.md) now proves
 the required actual volume law, nullity and coordinate transport.
 `SpacetimeSprinkling`, `DiscreteBDG`, `ExpectationBridge` and their probability
-instantiations remain four-dimensional: they require genuine ports, not a new
-name for `continuumMean`. In four dimensions contract F is already checked.
+instantiations remain four-dimensional and unchanged. The separate
+[dimension-indexed bridge](../formal/DIMENSION_EXPECTATION.md) constructs its
+own finite-order observable using those generic probability APIs, proves the
+restricted-volume identity before invoking convexity, and recovers the original
+4D discrete action and probability law through the proved coordinate map.
+Contract F is now checked throughout the supported dimension range.
 
 Positive dilation follows from endpoint Jacobians and the interval law:
 
@@ -565,13 +571,13 @@ is a regulated calculation, not that missing derivation.
 
 | Obligation | All-dimension status here | Existing checked 4D anchor | Next proof obligation |
 |---|---|---|---|
-| Action, coefficients, interval-volume constant | published coefficients, Gamma conversion, actual interval-volume law and ambient Lorentz transport checked | `Specification`, `DiscreteBDG`, `IntervalMoments` | dimension-indexed discrete observable and expectation instantiation |
-| Finite Poisson mean | conventional contract F; generic probability reusable; dimension-indexed interval volume/nullity checked | `ExpectationBridge` | dimension-indexed probability instantiation, without new probability axioms |
+| Action, coefficients, interval-volume constant | published coefficients, genuine finite-order action, Gamma conversion, actual interval-volume law and ambient Lorentz transport checked | `Specification`, `DiscreteBDG`, `IntervalMoments` | geometric uses beyond finite density |
+| Finite Poisson mean | contract F checked separately in #77; actual restricted-volume identity, factorial-moment integrability, Minkowski specialization and exact 4D law transport | `ExpectationBridge` | independently prove a higher-dimensional deterministic limit before expectation transfer |
 | Euler polynomials, Mellin multiplier roots, density rescaling | actual absolutely convergent integrals, exact roots, scaling and Rodrigues jets checked | `NullTransverseMoments` | geometric uses and log-inserted derivative identities |
 | Slice tails, mass-one plane kernel, local wedge | actual moments, parity tails, unit mass and full-partner regulated weighted action checked | `KernelHalfLine`, `TangentWedge` | general induced-area transport and complementary-region control |
 | Fixed-cutoff long-null cancellation | analytic contract K checked in every dimension, conditional on its stated jet | merged #61 / PR #68 | actual higher jets; odd-dimensional fractional remainder and tangency estimates |
 | Curved-versus-wedge short error | not supplied here | #66 / PR #70: conventional proof plus checked exact partitions | rederive all powers, signed/log cancellations and partition-derivative terms |
-| Global deterministic/expected limits | higher-dimensional goals D/E remain open | #67 completed in merged PR #89 for the original 4D class | port the checked proof decomposition, geometry and dimension-specific estimates, then F |
+| Global deterministic/expected limits | higher-dimensional goals D/E remain open | #67 completed in merged PR #89 for the original 4D class | port the checked proof decomposition, geometry and dimension-specific estimates, then apply F |
 | Conventional expert review | outstanding for this note | machine checking is not peer review | independent mathematical and physical scrutiny |
 
 **Actual dependency snapshot:** this branch starts at `faee2e3` on `main`, after
@@ -594,9 +600,11 @@ Keep these prerequisites and remaining gates distinct:
    measure, and equality with the unchanged 4D reduced kernel are now checked.
    The subsequent #91 [finite-geometry extension](../formal/DIMENSION_INTERVALS.md)
    proves the actual interval-volume/Lorentz theorem and action covariance/dilation.
-   The dimension-indexed discrete observable and Poisson-expectation identity
-   in F remain separate work for #77. #92 supplies the independent geometric
-   target and named pilot, not a probability port.
+   The separate #77 [expectation bridge](../formal/DIMENSION_EXPECTATION.md)
+   now proves F from the genuine dimension-indexed discrete observable and
+   actual restricted interval rate, without a new probability axiom.
+   #92 supplies the independent geometric target and named pilot, not a
+   probability port.
 2. **Completed integrated-kernel/local-coefficient prerequisite:** the actual
    moments, parity-specific tails, odd positive first height moment, even
    divergent second absolute moment, and regulated deterministic weighted
@@ -708,13 +716,15 @@ theorem dimensionWeighted_wedge_limit (n : ℕ) {κ H R : ℝ}
 
 `dimensionWeighted_wedge_coth_limit` reformulates this using the existing
 scalar rapidity identity. It is not a dimension-general Lorentz-geometric
-assembly. The deterministic observable is independently defined; its
-identification with a general-dimensional Poisson expectation remains separate.
+assembly. The deterministic observable is independently defined. The separate
+#77 bridge identifies its unweighted full-region version with an exact Poisson
+expectation under ambient causal convexity; it does not supply a weighted
+random-action theorem or global assembly.
 Log-inserted derivative identities and the proposed geometric construction of
 contract K in §3 are not included in the checked map above.
 
-The nine `formal/Dimension*Regression.lean` files cover low-dimensional
-polynomials and constants, nonunit density, cancellation, an independent toy
+The kernel/local-coefficient `formal/Dimension*Regression.lean` files cover
+low-dimensional polynomials and constants, nonunit density, cancellation, an independent toy
 slice, the expanded actual mass integral, even/odd moments and divergence,
 2D endpoint integrability, endpoint derivative jets, 4D compatibility, signed
 weights, and a concrete nonzero 2D bilocal-action limit. The interval/transport

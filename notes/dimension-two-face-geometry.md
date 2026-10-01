@@ -7,7 +7,8 @@
 The first new global pilot is **`SmoothPilot3`**, in physical dimension three,
 with smooth face germs. The all-dimension C³ candidate is retained separately.
 No higher-dimensional action limit, actual overlap jet, or new Poisson bridge
-is proved. The geometric arguments below are **written, not new Lean theorems
+is proved by this geometry package. The separately merged #77 now supplies
+the dimension-indexed finite-density expectation identity. The geometric arguments below are **written, not new Lean theorems
 or independently human-reviewed results**. Python/SymPy checks are regressions,
 not proofs for arbitrary inputs. Existing Lean results are cited explicitly.
 
@@ -443,10 +444,12 @@ with factorial denominators. Measurable order relations give measurable
 counts; their bound by the square of the Poisson cardinality gives absolute
 integrability. This construction is not a definition of expectation as
 (G16). The dimension-indexed Lean instantiation and exact identity
-$`\mathcal E_{\rho,d}=\mathcal A_{\rho,d}`$ belong to
-[#77](https://github.com/q5m-ai/causal-set-emergence/issues/77), not to #92.
-The earlier conventional Mecke argument is recorded in kernel contract F;
-no new machine-checked expectation claim is made here.
+$`\mathcal E_{\rho,d}=\mathcal A_{\rho,d}`$ are now proved separately in
+[#77's expectation bridge](../formal/DIMENSION_EXPECTATION.md), not by #92.
+Its `DimensionBoundedCausalRegion.expectedAction_eq` applies to these regions
+via the written Theorem G; a compiled dimension-indexed region constructor
+remains outstanding. The earlier conventional Mecke argument is recorded in
+kernel contract F; no new expectation proof is supplied by this package.
 
 The independent propositions, at fixed geometry, are
 
@@ -470,7 +473,7 @@ stay open under #24, even though their finite geometry is proved in writing.
 |---|---|---|
 | #78 | `SmoothPilot3`, actual M, product volume and action (G16) | Actual fixed-cutoff overlap disintegration and sufficient averaged jet, or a precise obstruction |
 | #79 | The **same** pilot/action and independent target (G13) | Short-overlap estimates, signed coefficient and target identification; a planar base theorem if that route is used |
-| #77 | Bounded measurable causally convex M from Theorem G | Port actual finite law/counts and prove the exact expectation identity |
+| #77 (completed) | Bounded measurable causally convex M from Theorem G | The separate checked identity is available; the dimension-indexed Lean region constructor remains outstanding |
 | #80 | D(3,infinity), then E(3,infinity) | Assemble compatible complete signed short/long pieces, then transfer via #77 |
 
 In particular the source overlap is always the actual
