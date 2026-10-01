@@ -111,6 +111,7 @@ import BoundaryDraft.TwoFaceAssembly
 import BoundaryDraft.TwoFaceCoefficient
 import BoundaryDraft.GraphWeightedCoarea
 import BoundaryDraft.GraphDivergence
+import BoundaryDraft.IndependentFace
 import BoundaryDraft.SphereQuadraticMoments
 import BoundaryDraft.NullTransverseLogMoments
 import BoundaryDraft.NullCubicRemainder

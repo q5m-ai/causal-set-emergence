@@ -77,6 +77,17 @@ the raw height. The existing density and Poisson expectation bridge specialize
 to every admissible two-face region. Intrinsic area is proved separately in
 [the joint-geometry work](JOINT_GEOMETRY.md); no two-face limit is inferred.
 
+The [independent-envelope geometry package](INDEPENDENT_FACE_GEOMETRY.md) now
+encodes class E without changing either original admissibility contract.
+It proves old-class inclusion, region/stratum geometry, independent spacelike
+face bounds, positive angle, intrinsic area and chart compatibility, and the
+existing finite-density Poisson equality. Slope-independent regular-height
+atlases, weighted coarea and spatial divergence serve downstream consumers.
+The steep symmetric capsule is admitted and excluded from the original
+coordinate contracts, with its positive-height critical point retained.
+This completes #106's geometric prerequisites, **not** the enlarged-class
+short/long overlap theorems or deterministic/expected limits in #97.
+
 The [short-displacement proof note](../notes/curved-face-stability.md) is a
 **conventional analytic argument, not an end-to-end Lean theorem**.
 `ShortDisplacement.lean` proves only the exact disjoint short/long partition,
