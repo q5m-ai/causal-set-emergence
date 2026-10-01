@@ -1352,18 +1352,29 @@ are now checked, not merely the recurrence and its algebraic multiplier:
   unchanged 4D `planeKernel` and calibrates the arbitrary-density weighted
   graph-cap action. Original 4D action files are unchanged.
 
-Seven `Dimension*Regression.lean` files exercise low-dimensional constants,
+The subsequent [finite-geometry bridge (#91)](DIMENSION_INTERVALS.md) proves
+actual closed/exclusive interval measurability and nullity, all-dimension
+rest-frame volume and future-preserving Lorentz transport, restricted-volume
+equality under ambient causal convexity, and finite-density weighted-action
+covariance/dilation. Its 4D coordinate equivalence preserves actual measures
+and recovers the entire unchanged `continuumMean`, not only the reduced kernel.
+No desired volume or transport identity is a geometric premise.
+
+Nine `Dimension*Regression.lean` files exercise low-dimensional constants,
 nonunit density, actual normalization, moments/divergence, endpoint jets, an
 independent toy slice, 4D compatibility, negative weights, and a concrete
-nonzero 2D bilocal-action limit. All modules are imported by `BoundaryDraft`;
-regressions do not replace the full source and transitive-axiom audit.
+nonzero 2D bilocal-action limit. The interval/transport regressions additionally
+check the quantified contracts, null intermediates, non-convex restrictions,
+non-rest translation, parity and reciprocal scaling. All modules are imported
+by `BoundaryDraft`; regressions do not replace the full source and
+transitive-axiom audit. Independent human mathematical review is outstanding.
 
 [The normalization note](../notes/dimension-kernels.md) maps exact theorem
-contracts and remaining obligations. The general-dimensional interval-volume
-and Poisson-expectation bridge, log-inserted derivative identities, geometric
-long-null jets, general induced-area transport, regulator removal, and global
-two-face/sample-wise limits are not proved by this dimension-indexed layer.
-The separate four-dimensional completion of #67 below does not close #24.
+contracts and remaining obligations. The general-dimensional Poisson-expectation
+bridge, log-inserted derivative identities, geometric long-null jets, general
+induced-area transport, regulator removal, and global two-face/sample-wise
+limits are not proved by this dimension-indexed layer. The separate
+four-dimensional completion of #67 below does not close #24.
 
 ## Fixed-cutoff assembly and its verification boundary (#67)
 
@@ -1475,6 +1486,7 @@ lake exe cache get \
   Mathlib.LinearAlgebra.CrossProduct \
   Mathlib.LinearAlgebra.Matrix.FiniteDimensional \
   Mathlib.LinearAlgebra.Matrix.SchurComplement \
+  Mathlib.LinearAlgebra.Matrix.BilinearForm \
   Mathlib.Data.Fintype.Lattice \
   Mathlib.MeasureTheory.Integral.Prod \
   Mathlib.MeasureTheory.Constructions.HaarToSphere \
@@ -1509,8 +1521,8 @@ new local sources (including unimported ones) with the same warning and
 transitive-axiom rules. Changed `Audit.lean` is also checked. Deleted sources
 are not rechecked. An unreliable base or ignored Lean source stops the check.
 **Incremental mode is not a full proof audit.** Always run `./check.sh` on the
-integrated commit before accepting a mathematical result, including #67 and
-#71. For explicit bounded parallelism in the full gate, run
+integrated commit before accepting a mathematical result, including #67,
+#71 and #91. For explicit bounded parallelism in the full gate, run
 `./check.sh --workers 2` (default), or choose `--workers 1`, `3`, or `4`
 for a host with appropriate memory and swap. All source checks must pass
 before the final aggregate `Audit.lean` check.
