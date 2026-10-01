@@ -19,6 +19,11 @@ import BoundaryDraft.DimensionGeometry
 import BoundaryDraft.DimensionSpacetime
 import BoundaryDraft.DimensionWedge
 import BoundaryDraft.DimensionFourCompatibility
+import BoundaryDraft.DimensionCausalInterval
+import BoundaryDraft.DimensionLorentz
+import BoundaryDraft.DimensionIntervalVolume
+import BoundaryDraft.DimensionActionTransport
+import BoundaryDraft.DimensionIntervalCompatibility
 import BoundaryDraft.NullTransverseCancellation
 import BoundaryDraft.KernelEstimates
 import BoundaryDraft.KernelHalfLine

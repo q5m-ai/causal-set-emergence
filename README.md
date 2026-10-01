@@ -119,8 +119,12 @@ The [dimension-indexed prerequisite layer](notes/dimension-kernels.md) now also
 proves the actual signed integrals, parity-dependent tails and moments, unit
 reduced-kernel mass, and a fixed-regulator weighted flat local coefficient in
 every integer dimension at least two. The bilocal theorem retains all future
-partners and assumes neither mass nor convergence. It does **not** prove a new
-general-dimensional Poisson bridge or global two-face limit.
+partners and assumes neither mass nor convergence. The separate
+[finite-geometry bridge](formal/DIMENSION_INTERVALS.md) now proves actual
+causal-interval volumes, Lorentz and positive-dilation action transport, and
+unchanged 4D coordinate/measure compatibility in the same dimension range.
+Neither proves a new general-dimensional Poisson bridge or global two-face
+limit; independent human mathematical review remains outstanding.
 
 The **concrete ellipsoid geometric interpretation** is also checked separately:
 its joint is a smooth regular level with nonzero Euclidean gradient, its angle
