@@ -30,7 +30,7 @@ variable {h f : Spatial → ℝ} (c : CollarHeightChart h)
 
 /-- The height differential cancels at zero displacement. The surviving
 parameter differential is the actual future graph differential. -/
-theorem hasFDerivAt_movingGap_zero (hf : AdmissibleTwoFace h f) (y : SurfacePlane)
+theorem hasFDerivAt_movingGap_zero (hf : RegularHeightPair h f) (y : SurfacePlane)
     (hy : y ∈ c.closedDisk) :
     HasFDerivAt (fun p : Displacement × ℝ => c.movingGap f ((y, p.1), p.2))
       ((shortGapLinear f (c.chart.symm (jointHeightCoordinates.symm (0, y)))).comp
@@ -98,7 +98,7 @@ def chartCorrection (i : Fin A.count) (f : Spatial → ℝ)
 set_option maxHeartbeats 800000 in
 /-- Integrating the true fibre jets yields the explicit chart Hessian. The
 root hypotheses below are furnished by `exists_actual_collarFibre`. -/
-theorem chartCorrection_twoJet (hf : AdmissibleTwoFace h f) (i : Fin A.count)
+theorem chartCorrection_twoJet (hf : RegularHeightPair h f) (i : Fin A.count)
     {δ : ℝ} (hδ : 0 < δ) (η : SurfacePlane × Displacement → ℝ)
     (hη₀ : ∀ y ∈ (A.charts i).closedDisk, η (y, 0) = 0)
     (hη : ∀ y ∈ (A.charts i).closedDisk, ∀ z ∈ Metric.ball (0 : Displacement) δ,
@@ -187,7 +187,7 @@ theorem chartCorrection_twoJet (hf : AdmissibleTwoFace h f) (i : Fin A.count)
     exact htwo y (Metric.ball_subset_closedBall hy) v w
 
 /-- Canonical normalization of the summed chart Hessians. -/
-theorem sum_chartCorrection_hessian (hf : AdmissibleTwoFace h f) (v w : Displacement) :
+theorem sum_chartCorrection_hessian (hf : RegularHeightPair h f) (v w : Displacement) :
     (∑ i, ∫ y in (A.charts i).disk, A.movingWeight i (y, 0) *
       shortGapLinear f ((A.charts i).chart.symm (jointHeightCoordinates.symm (0, y))) v *
       shortGapLinear f ((A.charts i).chart.symm (jointHeightCoordinates.symm (0, y))) w) =
@@ -197,7 +197,7 @@ theorem sum_chartCorrection_hessian (hf : AdmissibleTwoFace h f) (v w : Displace
     fun x hx => ((hf.smooth_future x hx).fderiv_right (m := 2) (by norm_num)).continuousAt.continuousWithinAt
   have hc (u : Displacement) : ContinuousOn (fun x => shortGapLinear f x u) (graphClosedPositive h) :=
     continuousOn_const.sub (hD.clm_apply continuousOn_const)
-  have he := A.graphWeightedHeightDensity_eq_sum hf.toAdmissibleGraphCap
+  have he := A.graphWeightedHeightDensity_eq_sum hf.toRegularHeight
     (fun x => shortGapLinear f x v * shortGapLinear f x w) ((hc v).mul (hc w)) 0
       ⟨le_rfl, A.width_pos.le⟩
   rw [graphWeightedHeightDensity, graphLevelMeasure_zero] at he
@@ -229,7 +229,7 @@ theorem exists_collarCorrection_twoJet (hf : AdmissibleTwoFace h f) :
   classical
   choose d hd η hη₀ hη heq using A.exists_actual_collarFibre hf
   let V : Fin A.count → Displacement → ℝ := fun i => A.chartCorrection i f (η i)
-  have hj (i : Fin A.count) := A.chartCorrection_twoJet hf i (hd i) (η i) (hη₀ i) (hη i)
+  have hj (i : Fin A.count) := A.chartCorrection_twoJet hf.toRegularHeightPair i (hd i) (η i) (hη₀ i) (hη i)
   have hsmooth (i : Fin A.count) : ContDiffAt ℝ 3 (V i) 0 := (hj i).1
   have hsmall : ∀ᶠ δ : ℝ in 𝓝[>] 0,
       0 < δ ∧ δ < A.width / 4 ∧ ∀ i, δ < d i :=
@@ -254,7 +254,7 @@ theorem exists_collarCorrection_twoJet (hf : AdmissibleTwoFace h f) :
           shortGapLinear f ((A.charts i).chart.symm (jointHeightCoordinates.symm (0, y))) v *
           shortGapLinear f ((A.charts i).chart.symm (jointHeightCoordinates.symm (0, y))) w :=
         Finset.sum_congr rfl (fun i _ => (hj i).2.2.2 v w)
-      _ = _ := A.sum_chartCorrection_hessian hf v w
+      _ = _ := A.sum_chartCorrection_hessian hf.toRegularHeightPair v w
   · intro z hz hc
     have hzn : ‖z‖ < δ := by simpa only [Metric.mem_ball, dist_zero_right] using hz
     rw [A.shortOverlapCollarCorrection_eq_sum hf z (by nlinarith [norm_nonneg z])]
@@ -309,9 +309,9 @@ private theorem fderiv_fderiv_bulkSlice {g : JointSpace → ℝ} {x : JointSpace
   rw [he.fderiv_eq, hHeq]
   simp [ContinuousLinearMap.comp_apply, S]
 
-namespace AdmissibleTwoFace
+namespace RegularHeightPair
 
-variable {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+variable {h f : Spatial → ℝ} (hf : RegularHeightPair h f)
 include hf
 
 /-- The fixed-domain source two-jet, with the actual future graph gradient
@@ -327,7 +327,7 @@ theorem shortOverlapBulk_twoJet : ContDiffAt ℝ 3 (shortOverlapBulk h f) 0 ∧
   let F : Displacement × JointSpace → ℝ := fun p => f (p.2 + p.1.2) - f p.2
   have hm : μ.restrict (graphClosedPositive h) = μ := by
     dsimp only [μ]
-    rw [Measure.restrict_restrict hf.toGraphCapData.isCompact_closedPositive.measurableSet,
+    rw [Measure.restrict_restrict hf.toRegularHeight.isCompact_closedPositive.measurableSet,
       inter_eq_right.mpr (show {x : JointSpace | 0 < h x} ⊆ graphClosedPositive h from subset_closure)]
   have hF (x : JointSpace) (hx : x ∈ graphClosedPositive h) : ContDiffAt ℝ 2 F (0, x) := by
     have hfx := hf.smooth_future x hx
@@ -335,7 +335,7 @@ theorem shortOverlapBulk_twoJet : ContDiffAt ℝ 3 (shortOverlapBulk h f) 0 ∧
     exact ((hfb.comp (0, x) (contDiffAt_snd.add contDiffAt_fst.snd)).sub
       (hfx.comp (0, x) contDiffAt_snd)).of_le (show (2 : WithTop ℕ∞) ≤ 3 by decide)
   have hj := MovingCollar.integral_twoJet (μ := μ) (F := F) (x₀ := (0 : Displacement))
-    hf.toGraphCapData.isCompact_closedPositive hF
+    hf.toRegularHeight.isCompact_closedPositive hF
   simp only [IntegrableOn, hm] at hj
   refine ⟨hf.contDiffAt_shortOverlapBulk, by simp [shortOverlapBulk], ?_, ?_⟩
   · intro v
@@ -343,7 +343,7 @@ theorem shortOverlapBulk_twoJet : ContDiffAt ℝ 3 (shortOverlapBulk h f) 0 ∧
     change fderiv ℝ (shortOverlapBulk h f) 0 = ∫ x, fderiv ℝ (fun z => F (z, x)) 0 ∂μ at he
     rw [he, ContinuousLinearMap.integral_apply hj.1]
     apply setIntegral_congr_fun
-      (hf.toGraphCapData.isOpen_positive.preimage (PiLp.continuous_equiv 2 _)).measurableSet
+      (hf.toRegularHeight.isOpen_positive.preimage (PiLp.continuous_equiv 2 _)).measurableSet
     intro x hx
     have hd := hasFDerivAt_bulkSlice ((hf.smooth_future x (subset_closure hx)).differentiableAt (by norm_num))
     exact congrArg (fun L : Displacement →L[ℝ] ℝ => L v) hd.fderiv
@@ -354,9 +354,25 @@ theorem shortOverlapBulk_twoJet : ContDiffAt ℝ 3 (shortOverlapBulk h f) 0 ∧
     rw [he, ContinuousLinearMap.integral_apply hj.2.1,
       ContinuousLinearMap.integral_apply (hj.2.1.apply_continuousLinearMap v)]
     apply setIntegral_congr_fun
-      (hf.toGraphCapData.isOpen_positive.preimage (PiLp.continuous_equiv 2 _)).measurableSet
+      (hf.toRegularHeight.isOpen_positive.preimage (PiLp.continuous_equiv 2 _)).measurableSet
     intro x hx
     exact fderiv_fderiv_bulkSlice (hf.smooth_future x (subset_closure hx)) v w
+
+end RegularHeightPair
+
+namespace AdmissibleTwoFace
+variable {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+include hf
+
+/-- Compatibility with the original source two-jet contract. -/
+theorem shortOverlapBulk_twoJet : ContDiffAt ℝ 3 (shortOverlapBulk h f) 0 ∧
+    shortOverlapBulk h f 0 = 0 ∧
+    (∀ v : Displacement, fderiv ℝ (shortOverlapBulk h f) 0 v =
+      ∫ x in {x : JointSpace | 0 < h x}, fderiv ℝ (fun y : JointSpace => f y) x v.2) ∧
+    ∀ v w : Displacement, fderiv ℝ (fderiv ℝ (shortOverlapBulk h f)) 0 v w =
+      ∫ x in {x : JointSpace | 0 < h x},
+        fderiv ℝ (fderiv ℝ (fun y : JointSpace => f y)) x v.2 w.2 :=
+  hf.toRegularHeightPair.shortOverlapBulk_twoJet
 
 theorem integrable_shortGapLinear_pair (v w : Displacement) :
     Integrable (fun x => (shortGapLinear f x v * shortGapLinear f x w) / ‖graphGradient h x‖)
