@@ -229,7 +229,7 @@ end SliceHeightChart
 
 /-- These are genuine covering charts: each joint point occurs in the interior
 of a constructed regular parameter domain. No chart-existence field is added. -/
-theorem AdmissibleGraphCap.exists_jointChart {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+theorem RegularHeight.exists_jointChart {h : Spatial → ℝ} (hh : RegularHeight h)
     (x : JointSpace) (hx : x ∈ graphJoint h) :
     ∃ c : SliceHeightChart h, ∃ u ∈ c.sliceDomain 0, c.slice 0 u = x := by
   obtain ⟨c, hxC, hc⟩ := hh.exists_sliceHeightChart x hx.1 (hh.regular_zero x hx.1 hx.2)
@@ -245,5 +245,10 @@ theorem AdmissibleGraphCap.exists_jointChart {h : Spatial → ℝ} (hh : Admissi
     rw [he, hc]
     exact Metric.mem_ball_self c.radius_pos
   exact ⟨c, u, hu, by rw [c.slice_eq_symm 0 u hu, he, c.chart.left_inv hxC]⟩
+
+theorem AdmissibleGraphCap.exists_jointChart {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+    (x : JointSpace) (hx : x ∈ graphJoint h) :
+    ∃ c : SliceHeightChart h, ∃ u ∈ c.sliceDomain 0, c.slice 0 u = x :=
+  hh.toRegularHeight.exists_jointChart x hx
 
 end BoundaryDraft

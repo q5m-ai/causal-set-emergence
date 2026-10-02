@@ -340,6 +340,14 @@ conjecture or a new enlarged-class limit. The audit records surviving local
 jets, replacement long-ray margins and the bounded
 [direct-origin proof task #97](https://github.com/q5m-ai/causal-set-emergence/issues/97).
 
+The separate [Lean geometry package for #106](formal/INDEPENDENT_FACE_GEOMETRY.md)
+now encodes that independent-envelope class and proves its region, strata,
+positive-angle/induced-area geometry and finite-density Poisson equality.
+It includes every old member and the genuinely steep symmetric capsule,
+retains interior critical points, and exposes slope-independent height-atlas
+and divergence prerequisites. The enlarged-class overlap and limit proofs
+remain separate work under #107–#109; no new asymptotic coverage is claimed.
+
 ### Curved-spacetime feasibility boundary
 
 The [fixed-geometry conformal pilot](notes/curved-bulk-pilot.md) derives an
