@@ -130,6 +130,12 @@ under ambient causal convexity. It calibrates the dimensionless 2D action and
 transports the unchanged 4D action and probability law through the proved
 coordinate map. No global higher-dimensional two-face limit or sample-wise
 convergence follows; independent human mathematical review remains outstanding.
+The [dimension-indexed two-face geometry package](notes/dimension-two-face-geometry.md)
+now supplies a written region/stratum and intrinsic-area proof, with chart
+compatibility, finite target, Lorentz/dilation transport, exact 4D identification,
+and a named smooth 3D pilot for the next analytic tasks. Its independent
+higher-dimensional deterministic/expected goals remain open. This is
+conventional geometry plus regressions, not a new Lean geometry theorem.
 
 The **concrete ellipsoid geometric interpretation** is also checked separately:
 its joint is a smooth regular level with nonzero Euclidean gradient, its angle
@@ -414,6 +420,9 @@ physics.
   normalizations, checked signed integrals, parity-dependent tails/moments and
   a checked regulated weighted local coefficient; not a higher-dimensional
   two-face limit.
+- [Dimension-indexed two-face geometry](notes/dimension-two-face-geometry.md) —
+  written finite geometry and intrinsic targets, the `SmoothPilot3` contract,
+  all-component examples and dimension/regularity obligations; no new limit.
 - `notes/general-contract.md` — general coverage matrix, independent candidate
   theorem, null/mixed taxonomy, obstruction tests and downstream contracts.
 - `notes/general-contract-literature.md` — checked source passages, normalization
