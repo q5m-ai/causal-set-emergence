@@ -353,8 +353,17 @@ now derives the raw/envelope agreement, absolute overlap two-jet, measurable
 derivative-controlled remainder and actual density decomposition. It proves
 the short-action limit to the unchanged intrinsic target at every sufficiently
 small fixed positive cutoff, including the steep and variable-angle members.
-Long cancellation and full deterministic/expected assembly remain #108/#109;
-this adds no enlarged-class **global** limit coverage.
+The [class-E long proof](formal/INDEPENDENT_LONG_NULL.md) supplies actual signed
+long cancellation at every fixed positive cutoff. The subsequent
+[#109 assembly and complete #97 acceptance map](formal/INDEPENDENT_LIMIT.md)
+combine these producers at one common fixed positive cutoff and then apply
+the separately proved Poisson bridge. They give unconditional deterministic
+and expected-action limits for exactly class E, without changing the old
+contract or using the inadmissible planar reference. The steep capsule,
+variable-angle members and interior critical points are retained. This is
+still a restricted flat 4D global two-graph theorem, not a general curved,
+null/mixed, other-dimensional or sample-wise result; independent human review
+remains outstanding under #94/#86. PR #104 owns final integration to `main`.
 
 ### Curved-spacetime feasibility boundary
 
