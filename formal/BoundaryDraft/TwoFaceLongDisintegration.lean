@@ -1,4 +1,4 @@
-import BoundaryDraft.TwoFaceNullGap
+import BoundaryDraft.LongEnvelopeData
 
 /-! Exact finite-density transport from the existing overlap to spatial gap fibres.
 The cutoff is fixed and the polar sphere retains its full mass. -/
@@ -13,10 +13,10 @@ namespace BoundaryDraft
 
 private def gapWeight (σ v : ℝ) : ℝ := (v - σ / v)^2 / (8 * v)
 
-private theorem measurable_gap {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f) :
+private theorem measurable_gap {h f : Spatial → ℝ} (hf : LongEnvelopeData h f) :
     Measurable (fun p : ((ℝ × OverlapSphere) × Spatial) × ℝ =>
       max 0 (twoFaceRayGap h f p.1.2 p.1.1.2 p.1.1.1 p.2)) := by
-  have hh := hf.toGraphCapData.continuous_positivePart.measurable
+  have hh := hf.toRegularHeight.continuous_positivePart.measurable
   have hff := hf.strictGraphLipschitz_upper.continuous.measurable
   unfold twoFaceRayGap twoFaceGap
   apply Measurable.max measurable_const
@@ -28,8 +28,8 @@ private theorem measurable_gap {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h
       (hff.comp (measurable_snd.comp measurable_fst)) |>.sub (by fun_prop)
 
 /-- Joint measurability, including the Jacobian and the closed cutoff. -/
-theorem AdmissibleTwoFace.measurable_longGapIntegrand {h f : Spatial → ℝ}
-    (hf : AdmissibleTwoFace h f) (δ : ℝ) :
+theorem LongEnvelopeData.measurable_longGapIntegrand {h f : Spatial → ℝ}
+    (hf : LongEnvelopeData h f) (δ : ℝ) :
     Measurable (fun p : ((ℝ × OverlapSphere) × Spatial) × ℝ =>
       (Ici δ).indicator (fun v =>
         ENNReal.ofReal ((v - p.1.1.1 / v)^2 / (8*v)) *
@@ -43,12 +43,12 @@ theorem AdmissibleTwoFace.measurable_longGapIntegrand {h f : Spatial → ℝ}
     hm.indicator (measurableSet_Ici.preimage measurable_snd)
 
 /-- The positive spatial gap is integrable at every causal displacement. -/
-private theorem gap_integrable {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+private theorem gap_integrable {h f : Spatial → ℝ} (hf : LongEnvelopeData h f)
     {s : ℝ} {a : Spatial} (hz : Fin.cons s a ∈ causalFuture 0) :
     Integrable (fun x : Spatial => max 0 (twoFaceGap h f x (x + a) s)) := by
   have hc : Continuous (fun x : Spatial => max 0 (twoFaceGap h f x (x + a) s)) := by
     unfold twoFaceGap
-    exact (continuous_const.max (((hf.toGraphCapData.continuous_positivePart).add
+    exact (continuous_const.max (((hf.toRegularHeight.continuous_positivePart).add
       (hf.strictGraphLipschitz_upper.continuous.comp (continuous_id.add continuous_const))).sub
       hf.strictGraphLipschitz_upper.continuous |>.sub continuous_const))
   have hle (x : Spatial) : max 0 (twoFaceGap h f x (x + a) s) ≤ max 0 (h x) := by
@@ -68,8 +68,8 @@ private theorem gap_integrable {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h
     simp only [twoFaceGap]
     exact max_le (le_max_left _ _) (by linarith)
   have hi : Integrable (fun x : Spatial => max 0 (h x)) :=
-    hf.toGraphCapData.continuous_positivePart.integrable_of_hasCompactSupport
-      hf.toGraphCapData.hasCompactSupport_positivePart
+    hf.toRegularHeight.continuous_positivePart.integrable_of_hasCompactSupport
+      hf.toRegularHeight.hasCompactSupport_positivePart
   apply Integrable.mono' hi hc.aestronglyMeasurable
   filter_upwards with x
   simpa only [Real.norm_eq_abs, abs_of_nonneg (show 0 ≤ max 0 (twoFaceGap h f x (x + a) s) from le_max_left _ _),
@@ -105,8 +105,8 @@ private theorem ray_causal {δ σ v : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ)
 
 /-- The x-integral conversion is pointwise, not merely almost everywhere in σ.
 Its finite value follows from compact support of the original cap envelope. -/
-theorem AdmissibleTwoFace.ofReal_integral_gap_eq_lintegral {h f : Spatial → ℝ}
-    (hf : AdmissibleTwoFace h f) {δ σ v : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ)
+theorem LongEnvelopeData.ofReal_integral_gap_eq_lintegral {h f : Spatial → ℝ}
+    (hf : LongEnvelopeData h f) {δ σ v : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ)
     (hs : σ < δ ^ 2) (hv : δ ≤ v) (ω : OverlapSphere) :
     ENNReal.ofReal (∫ x : Spatial, max 0 (twoFaceRayGap h f x ω σ v)) =
       ∫⁻ x : Spatial, ENNReal.ofReal (max 0 (twoFaceRayGap h f x ω σ v)) := by
@@ -118,8 +118,8 @@ theorem AdmissibleTwoFace.ofReal_integral_gap_eq_lintegral {h f : Spatial → �
 
 /-- The spatial gap lintegral is finite for each admissible ray, not just a.e.
 in direction or proper-time square. -/
-theorem AdmissibleTwoFace.lintegral_gap_lt_top {h f : Spatial → ℝ}
-    (hf : AdmissibleTwoFace h f) {δ σ v : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ)
+theorem LongEnvelopeData.lintegral_gap_lt_top {h f : Spatial → ℝ}
+    (hf : LongEnvelopeData h f) {δ σ v : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ)
     (hs : σ < δ ^ 2) (hv : δ ≤ v) (ω : OverlapSphere) :
     (∫⁻ x : Spatial, ENNReal.ofReal (max 0 (twoFaceRayGap h f x ω σ v))) < ⊤ := by
   rw [← hf.ofReal_integral_gap_eq_lintegral hδ hσ hs hv ω]
@@ -127,8 +127,8 @@ theorem AdmissibleTwoFace.lintegral_gap_lt_top {h f : Spatial → ℝ}
 
 /-- Tonelli is applied to the nonnegative gap BEFORE any real-valued Fubini.
 The spatial integral is converted only after proving its integrability. -/
-theorem AdmissibleTwoFace.longOverlapDensityENN_eq_gap_fibres {h f : Spatial → ℝ}
-    (hf : AdmissibleTwoFace h f) {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ)
+theorem LongEnvelopeData.longOverlapDensityENN_eq_gap_fibres {h f : Spatial → ℝ}
+    (hf : LongEnvelopeData h f) {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ)
     (hs : σ < δ ^ 2) :
     longOverlapDensityENN (twoFaceRegion h f) δ σ =
       ∫⁻ ω, (∫⁻ x : Spatial, ∫⁻ v in Ici δ,
@@ -189,8 +189,8 @@ private def spatialENN (h f : Spatial → ℝ) (δ σ : ℝ) (ω : OverlapSphere
   ∫⁻ x : Spatial, fibreENN h f δ σ ω x
 
 /-- Finiteness is established before converting the threefold integral to ℝ. -/
-theorem AdmissibleTwoFace.longOverlapDensity_eq_gap_fibres {h f : Spatial → ℝ}
-    (hf : AdmissibleTwoFace h f) {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ)
+theorem LongEnvelopeData.longOverlapDensity_eq_gap_fibres {h f : Spatial → ℝ}
+    (hf : LongEnvelopeData h f) {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ)
     (hs : σ < δ ^ 2) :
     longOverlapDensity (twoFaceRegion h f) δ σ =
       ∫ ω, (∫ x : Spatial, ∫ v in Ici δ,
@@ -263,8 +263,8 @@ theorem AdmissibleTwoFace.longOverlapDensity_eq_gap_fibres {h f : Spatial → �
 
 /-- Under uniform upper clearance the finite closed fibre equals the
 untruncated one. The direction/spatial order and full sphere measure persist. -/
-theorem AdmissibleTwoFace.longOverlapDensity_eq_gap_fibres_Icc {h f : Spatial → ℝ}
-    (hf : AdmissibleTwoFace h f) {δ σ V : ℝ} (hδ : 0 < δ)
+theorem LongEnvelopeData.longOverlapDensity_eq_gap_fibres_Icc {h f : Spatial → ℝ}
+    (hf : LongEnvelopeData h f) {δ σ V : ℝ} (hδ : 0 < δ)
     (hσ : 0 ≤ σ) (hs : σ < δ ^ 2)
     (hclear : ∀ (ω : OverlapSphere) (x : Spatial) (v : ℝ), V < v →
       twoFaceRayGap h f x ω σ v ≤ 0) :
@@ -289,4 +289,55 @@ theorem AdmissibleTwoFace.longOverlapDensity_eq_gap_fibres_Icc {h f : Spatial �
       rw [max_eq_left (hclear ω x v this), mul_zero]
     · rw [indicator_of_not_mem hlow]
 
+/- Original contracts and callers are retained verbatim as specializations. -/
+namespace AdmissibleTwoFace
+variable {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+include hf
+
+theorem measurable_longGapIntegrand (δ : ℝ) :
+    Measurable (fun p : ((ℝ × OverlapSphere) × Spatial) × ℝ =>
+      (Ici δ).indicator (fun v =>
+        ENNReal.ofReal ((v - p.1.1.1 / v)^2 / (8*v)) *
+          ENNReal.ofReal (max 0 (twoFaceRayGap h f p.1.2 p.1.1.2 p.1.1.1 v))) p.2) :=
+  hf.toLongEnvelopeData.measurable_longGapIntegrand δ
+
+theorem ofReal_integral_gap_eq_lintegral {δ σ v : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ)
+    (hs : σ < δ ^ 2) (hv : δ ≤ v) (ω : OverlapSphere) :
+    ENNReal.ofReal (∫ x : Spatial, max 0 (twoFaceRayGap h f x ω σ v)) =
+      ∫⁻ x : Spatial, ENNReal.ofReal (max 0 (twoFaceRayGap h f x ω σ v)) :=
+  hf.toLongEnvelopeData.ofReal_integral_gap_eq_lintegral hδ hσ hs hv ω
+
+theorem lintegral_gap_lt_top {δ σ v : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ)
+    (hs : σ < δ ^ 2) (hv : δ ≤ v) (ω : OverlapSphere) :
+    (∫⁻ x : Spatial, ENNReal.ofReal (max 0 (twoFaceRayGap h f x ω σ v))) < ⊤ :=
+  hf.toLongEnvelopeData.lintegral_gap_lt_top hδ hσ hs hv ω
+
+theorem longOverlapDensityENN_eq_gap_fibres {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ)
+    (hs : σ < δ ^ 2) :
+    longOverlapDensityENN (twoFaceRegion h f) δ σ =
+      ∫⁻ ω, (∫⁻ x : Spatial, ∫⁻ v in Ici δ,
+        ENNReal.ofReal ((v - σ/v)^2 / (8*v)) *
+          ENNReal.ofReal (max 0 (twoFaceRayGap h f x ω σ v)))
+        ∂overlapSphereMeasure :=
+  hf.toLongEnvelopeData.longOverlapDensityENN_eq_gap_fibres hδ hσ hs
+
+theorem longOverlapDensity_eq_gap_fibres {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ)
+    (hs : σ < δ ^ 2) :
+    longOverlapDensity (twoFaceRegion h f) δ σ =
+      ∫ ω, (∫ x : Spatial, ∫ v in Ici δ,
+        ((v - σ/v)^2 / (8*v)) * max 0 (twoFaceRayGap h f x ω σ v))
+        ∂overlapSphereMeasure :=
+  hf.toLongEnvelopeData.longOverlapDensity_eq_gap_fibres hδ hσ hs
+
+theorem longOverlapDensity_eq_gap_fibres_Icc {δ σ V : ℝ} (hδ : 0 < δ)
+    (hσ : 0 ≤ σ) (hs : σ < δ ^ 2)
+    (hclear : ∀ (ω : OverlapSphere) (x : Spatial) (v : ℝ), V < v →
+      twoFaceRayGap h f x ω σ v ≤ 0) :
+    longOverlapDensity (twoFaceRegion h f) δ σ =
+      ∫ ω, (∫ x : Spatial, ∫ v in Icc δ V,
+        ((v - σ/v)^2 / (8*v)) * max 0 (twoFaceRayGap h f x ω σ v))
+        ∂overlapSphereMeasure :=
+  hf.toLongEnvelopeData.longOverlapDensity_eq_gap_fibres_Icc hδ hσ hs hclear
+
+end AdmissibleTwoFace
 end BoundaryDraft

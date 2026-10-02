@@ -81,8 +81,10 @@ def integrandENN (h f : Spatial → ℝ) (δ V σ : ℝ) (p : Parameter × ℝ) 
 def fibreENN (h f : Spatial → ℝ) (δ V σ : ℝ) (p : Parameter) : ℝ≥0∞ :=
   ∫⁻ v, integrandENN h f δ V σ (p, v)
 
+namespace Envelope
+
 /-- WP3's joint measurability, with only the additional upper cutoff. -/
-theorem measurable_integrandENN {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+theorem measurable_integrandENN {h f : Spatial → ℝ} (hf : LongEnvelopeData h f)
     (δ V σ : ℝ) : Measurable (integrandENN h f δ V σ) := by
   have hmap : Measurable (fun p : Parameter × ℝ => (((σ, p.1.1), p.1.2), p.2)) := by
     fun_prop
@@ -93,13 +95,13 @@ theorem measurable_integrandENN {h f : Spatial → ℝ} (hf : AdmissibleTwoFace 
   by_cases hlo : δ ≤ p.2 <;> by_cases hhi : p.2 ≤ V <;>
     simp [integrandENN, TwoFaceLongGeometry.weight, hlo, hhi, mem_Icc, mem_Ici, mem_Iic]
 
-theorem measurable_fibreENN {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+theorem measurable_fibreENN {h f : Spatial → ℝ} (hf : LongEnvelopeData h f)
     (δ V σ : ℝ) : Measurable (fibreENN h f δ V σ) :=
   (measurable_integrandENN hf δ V σ).lintegral_prod_right'
 
 /-- Oriented `δ..V` equals closed `Icc δ V` because δ ≤ V and Lebesgue
 endpoints are null. The ENNReal conversion is pointwise in every parameter. -/
-theorem fibre_eq_toReal {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+theorem fibre_eq_toReal {h f : Spatial → ℝ} (hf : LongEnvelopeData h f)
     {δ V : ℝ} (hδ : 0 < δ) (hV : δ ≤ V) (σ : ℝ) (p : Parameter) :
     MonotoneHinge.fibre (twoFaceRayGap h f p.2 p.1) TwoFaceLongGeometry.weight δ V σ =
       (fibreENN h f δ V σ p).toReal := by
@@ -125,7 +127,7 @@ theorem fibre_eq_toReal {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
 
 /-- Tonelli and WP3's finite triple identity dominate the finite fibre integral
 on the UNRESTRICTED direction × spatial parameter space. -/
-theorem lintegral_fibreENN_lt_top {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+theorem lintegral_fibreENN_lt_top {h f : Spatial → ℝ} (hf : LongEnvelopeData h f)
     {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ) (hs : σ < δ ^ 2) (V : ℝ) :
     (∫⁻ p, fibreENN h f δ V σ p ∂(overlapSphereMeasure.prod volume)) < ⊤ := by
   rw [lintegral_prod _ (measurable_fibreENN hf δ V σ).aemeasurable]
@@ -140,7 +142,7 @@ theorem lintegral_fibreENN_lt_top {h f : Spatial → ℝ} (hf : AdmissibleTwoFac
   exact lintegral_mono_set Icc_subset_Ici_self
 
 /-- Measurability and absolute integrability are proved before real Fubini. -/
-theorem measurable_integrable_fibre {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+theorem measurable_integrable_fibre {h f : Spatial → ℝ} (hf : LongEnvelopeData h f)
     {δ V σ : ℝ} (hδ : 0 < δ) (hV : δ ≤ V) (hσ : 0 ≤ σ) (hs : σ < δ ^ 2) :
     Measurable (fun p : Parameter => MonotoneHinge.fibre
       (twoFaceRayGap h f p.2 p.1) TwoFaceLongGeometry.weight δ V σ) ∧
@@ -151,6 +153,37 @@ theorem measurable_integrable_fibre {h f : Spatial → ℝ} (hf : AdmissibleTwoF
   exact ⟨(measurable_fibreENN hf δ V σ).ennreal_toReal,
     integrable_toReal_of_lintegral_ne_top (measurable_fibreENN hf δ V σ).aemeasurable
       (lintegral_fibreENN_lt_top hf hδ hσ hs V).ne⟩
+
+end Envelope
+
+/- Original helper contracts remain available. -/
+theorem measurable_integrandENN {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+    (δ V σ : ℝ) : Measurable (integrandENN h f δ V σ) :=
+  Envelope.measurable_integrandENN hf.toLongEnvelopeData δ V σ
+
+theorem measurable_fibreENN {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+    (δ V σ : ℝ) : Measurable (fibreENN h f δ V σ) :=
+  Envelope.measurable_fibreENN hf.toLongEnvelopeData δ V σ
+
+theorem fibre_eq_toReal {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+    {δ V : ℝ} (hδ : 0 < δ) (hV : δ ≤ V) (σ : ℝ) (p : Parameter) :
+    MonotoneHinge.fibre (twoFaceRayGap h f p.2 p.1) TwoFaceLongGeometry.weight δ V σ =
+      (fibreENN h f δ V σ p).toReal :=
+  Envelope.fibre_eq_toReal hf.toLongEnvelopeData hδ hV σ p
+
+theorem lintegral_fibreENN_lt_top {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+    {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ) (hs : σ < δ ^ 2) (V : ℝ) :
+    (∫⁻ p, fibreENN h f δ V σ p ∂(overlapSphereMeasure.prod volume)) < ⊤ :=
+  Envelope.lintegral_fibreENN_lt_top hf.toLongEnvelopeData hδ hσ hs V
+
+theorem measurable_integrable_fibre {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+    {δ V σ : ℝ} (hδ : 0 < δ) (hV : δ ≤ V) (hσ : 0 ≤ σ) (hs : σ < δ ^ 2) :
+    Measurable (fun p : Parameter => MonotoneHinge.fibre
+      (twoFaceRayGap h f p.2 p.1) TwoFaceLongGeometry.weight δ V σ) ∧
+    Integrable (fun p : Parameter => MonotoneHinge.fibre
+      (twoFaceRayGap h f p.2 p.1) TwoFaceLongGeometry.weight δ V σ)
+      (overlapSphereMeasure.prod volume) :=
+  Envelope.measurable_integrable_fibre hf.toLongEnvelopeData hδ hV hσ hs
 
 end TwoFaceLongNull
 
@@ -165,9 +198,9 @@ theorem integral_longOverlapDensity_eq_Ioi (M : Set Spacetime) (δ : ℝ) (w : �
   have hneg : σ < 0 := lt_of_not_ge hσ
   simp [longOverlapDensity, longOverlapDensityENN_negative M δ hneg]
 
-namespace AdmissibleTwoFace
+namespace LongEnvelopeData
 
-variable {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+variable {h f : Spatial → ℝ} (hf : LongEnvelopeData h f)
 include hf
 
 /-- Exact pointwise product-space identification on the entire range
@@ -184,7 +217,7 @@ theorem longOverlapDensity_eq_parameterFibre {δ V σ : ℝ}
   have ht (ω : OverlapSphere) (x : Spatial) (v : ℝ) (hv : V < v) :
       twoFaceRayGap h f x ω σ v ≤ 0 :=
     twoFaceRayGap_nonpos_of_cutoff hη hlip h x ω (hδ.trans hV) hσ hv.le (hclear x ω)
-  rw [integral_prod _ (TwoFaceLongNull.measurable_integrable_fibre hf hδ hV.le hσ hs).2,
+  rw [integral_prod _ (TwoFaceLongNull.Envelope.measurable_integrable_fibre hf hδ hV.le hσ hs).2,
     hf.longOverlapDensity_eq_gap_fibres_Icc hδ hσ hs ht]
   apply integral_congr_ae
   filter_upwards with ω
@@ -201,7 +234,7 @@ theorem longOverlapDensity_right_quadratic_jet {δ : ℝ} (hδ : 0 < δ) :
       (fun σ => longOverlapDensity (twoFaceRegion h f) δ σ -
         (b0 + b1 * σ + b2 * σ ^ 2)) =o[𝓝[>] 0] (fun σ => σ ^ 2) := by
   obtain ⟨V, ε, c, A, M, B, hV, hε, hc, hA, hM, hB, hall⟩ :=
-    TwoFaceLongGeometry.exists_hypotheses hf hδ
+    TwoFaceLongGeometry.Envelope.exists_hypotheses hf hδ
   let e := min ε (δ ^ 2 / 2)
   have he : 0 < e := lt_min hε (by positivity)
   have hsmall {σ : ℝ} (hσ : σ ∈ Ioc 0 e) : σ ∈ Ioc 0 ε ∧ σ < δ ^ 2 := by
@@ -229,14 +262,14 @@ theorem longOverlapDensity_right_quadratic_jet {δ : ℝ} (hδ : 0 < δ) :
   have hFi (σ : ℝ) (hσ : σ ∈ Ioc 0 e) :
       Measurable (fun p => F p σ) ∧
         Integrable (fun p => F p σ) (overlapSphereMeasure.prod volume) :=
-    TwoFaceLongNull.measurable_integrable_fibre hf hδ hV.le hσ.1.le (hsmall hσ).2
+    TwoFaceLongNull.Envelope.measurable_integrable_fibre hf hδ hV.le hσ.1.le (hsmall hσ).2
   have hm := AveragedQuadraticJet.measurable_coefficients_of_right_jet
     F C0 C1 C2 he (fun σ hσ => (hFi σ hσ).1) hj
   -- The endpoint-height margin supplies one compact active spatial set.
   obtain ⟨m, hmpos, hmargin⟩ := hf.exists_gap_height_margin
   let S : Set Spatial := (WithLp.equiv 2 (Fin 3 → ℝ)) ''
     TwoFaceLongGeometry.tube h (m * δ / 2)
-  have hS : IsCompact S := (TwoFaceLongGeometry.compact_tube hf _).image
+  have hS : IsCompact S := (TwoFaceLongGeometry.compact_tube_of_regular hf.toRegularHeight _).image
     (PiLp.continuous_equiv 2 _)
   let P : Set TwoFaceLongNull.Parameter := univ ×ˢ S
   have hPm : MeasurableSet P := MeasurableSet.univ.prod hS.measurableSet
@@ -368,6 +401,57 @@ theorem tendsto_normalized_longOverlap {δ : ℝ} (hδ : 0 < δ) :
       _ = _ := by rw [Real.sqrt_eq_rpow, Real.rpow_one]
   rw [hp]
   ring
+
+end LongEnvelopeData
+
+/- Preserve the original public theorem contracts and downstream callers. -/
+namespace AdmissibleTwoFace
+variable {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+include hf
+
+theorem longOverlapDensity_eq_parameterFibre {δ V σ : ℝ}
+    (hδ : 0 < δ) (hV : δ < V) (hσ : 0 ≤ σ) (hs : σ < δ ^ 2)
+    (hclear : ∀ (x : Spatial) (ω : OverlapSphere), twoFaceRayGap h f x ω 0 V ≤ 0) :
+    longOverlapDensity (twoFaceRegion h f) δ σ =
+      ∫ p : TwoFaceLongNull.Parameter, MonotoneHinge.fibre
+        (twoFaceRayGap h f p.2 p.1) TwoFaceLongGeometry.weight δ V σ
+        ∂(overlapSphereMeasure.prod volume) :=
+  hf.toLongEnvelopeData.longOverlapDensity_eq_parameterFibre hδ hV hσ hs hclear
+
+theorem longOverlapDensity_right_quadratic_jet {δ : ℝ} (hδ : 0 < δ) :
+    ∃ b0 b1 b2 : ℝ,
+      (fun σ => longOverlapDensity (twoFaceRegion h f) δ σ -
+        (b0 + b1 * σ + b2 * σ ^ 2)) =o[𝓝[>] 0] (fun σ => σ ^ 2) :=
+  hf.toLongEnvelopeData.longOverlapDensity_right_quadratic_jet hδ
+
+theorem integrableOn_longOverlap_bdg (δ ρ : ℝ) :
+    IntegrableOn (fun z => bdgKernel ((Real.pi / 24) * ρ * intervalSq 0 z ^ 2) *
+      translatedOverlap (twoFaceRegion h f) z) (longFuture δ) :=
+  hf.toLongEnvelopeData.integrableOn_longOverlap_bdg δ ρ
+
+theorem integral_longOverlap_bdg_Ioi {δ : ℝ} (hδ : 0 < δ) (ρ : ℝ) :
+    (∫ z in longFuture δ, bdgKernel ((Real.pi / 24) * ρ * intervalSq 0 z ^ 2) *
+      translatedOverlap (twoFaceRegion h f) z) =
+      ∫ σ : ℝ in Ioi 0, longOverlapDensity (twoFaceRegion h f) δ σ *
+        bdgKernel ((Real.pi / 24) * ρ * σ ^ 2) :=
+  hf.toLongEnvelopeData.integral_longOverlap_bdg_Ioi hδ ρ
+
+theorem integrableOn_longOverlapDensity_bdg (δ ρ : ℝ) (hδ : 0 < δ) :
+    IntegrableOn (fun σ => longOverlapDensity (twoFaceRegion h f) δ σ *
+      bdgKernel ((Real.pi / 24) * ρ * σ ^ 2)) (Ioi 0) :=
+  hf.toLongEnvelopeData.integrableOn_longOverlapDensity_bdg δ ρ hδ
+
+theorem tendsto_longOverlap {δ : ℝ} (hδ : 0 < δ) :
+    Tendsto (fun ρ : ℝ => ρ ^ (3 / 2 : ℝ) *
+      ∫ z in longFuture δ, bdgKernel ((Real.pi / 24) * ρ * intervalSq 0 z ^ 2) *
+        translatedOverlap (twoFaceRegion h f) z) atTop (𝓝 0) :=
+  hf.toLongEnvelopeData.tendsto_longOverlap hδ
+
+theorem tendsto_normalized_longOverlap {δ : ℝ} (hδ : 0 < δ) :
+    Tendsto (fun ρ : ℝ => -(4 / Real.sqrt 6) * Real.sqrt ρ * ρ *
+      ∫ z in longFuture δ, bdgKernel ((Real.pi / 24) * ρ * intervalSq 0 z ^ 2) *
+        translatedOverlap (twoFaceRegion h f) z) atTop (𝓝 0) :=
+  hf.toLongEnvelopeData.tendsto_normalized_longOverlap hδ
 
 end AdmissibleTwoFace
 end BoundaryDraft
