@@ -172,9 +172,13 @@ is not silently substituted for it.
 - **Independent human mathematical review:** outstanding. Machine checking is
   not an assertion of independent review or physical applicability.
 
-The dimension-indexed finite Poisson/discrete-action expectation instantiation
-in #92, general induced joint-area transport, geometric higher-dimensional
-long-null jets, and global higher-dimensional two-face limits remain separate.
+The separate [#77 expectation bridge](DIMENSION_EXPECTATION.md) now instantiates
+the dimension-indexed discrete action and finite Poisson law using this interval
+geometry. Geometric higher-dimensional long-null jets and global
+higher-dimensional two-face limits remain open. The subsequent
+[#92 geometry package](../notes/dimension-two-face-geometry.md) supplies written
+intrinsic joint-area/transport proofs and a named 3D pilot; a corresponding
+dimension-indexed Lean geometry port remains outstanding.
 No probability axiom, expectation identity, jet, asymptotic cancellation or
 limit has been added to geometric admissibility. No rates, density-dependent
 geometry, shrinking-cutoff uniformity or sample-wise convergence are inferred.

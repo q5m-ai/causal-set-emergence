@@ -442,6 +442,14 @@ unit coefficient alone is insufficient. No smoothing family or density/null
 limit interchange is authorized. This pilot does not cover NN joints,
 curved-null geometry or other dimensions.
 
+**#83/#84 handoff:** the [fixed-null estimates](null-mixed-estimates.md) and
+[written expected-action assembly](null-mixed-assembly.md) now cover exactly
+this selected flat 4D class. The latter proves the geometric bridge hypotheses,
+complete strata, global deterministic induced-area limit and exact Poisson
+transfer without dropping any partners or cutoff complements. These are written
+proofs with executable regressions, not new Lean-checked mixed-region results;
+independent human review and the broader branches in the matrix remain open.
+
 ## 7. Obstruction register and falsifiable tests
 
 The tests in `test_general_contract.py` check algebra and explicit examples;
