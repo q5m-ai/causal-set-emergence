@@ -514,6 +514,15 @@ dimensions: even its series coefficients differ in 2D.
 
 ## 6. Non-vacuous global contracts, explicitly still open
 
+**Geometry-interface update (#92):** the
+[dimension-indexed two-face package](dimension-two-face-geometry.md) supplies
+written region/stratum, intrinsic metric/area, chart compatibility, finiteness,
+and transport proofs, with exact unchanged 4D identification. It freezes the
+stronger smooth `SmoothPilot3` as the first new global pilot and retains this
+all-dimension C³ candidate separately. Its geometric proofs are conventional,
+not new Lean declarations; the global goals below and actual overlap jets
+remain open outside the already checked 4D case.
+
 For each fixed dimension, use spatial Euclidean space $`\mathbb R^{d-1}`$.
 A candidate class has bounded $`\Omega=\{h>0\}`$, a globally strictly
 Lipschitz positive part $`h_+`$, $`C^3`$ raw height germs near its closure,
@@ -594,6 +603,8 @@ Keep these prerequisites and remaining gates distinct:
    The separate #77 [expectation bridge](../formal/DIMENSION_EXPECTATION.md)
    now proves F from the genuine dimension-indexed discrete observable and
    actual restricted interval rate, without a new probability axiom.
+   #92 supplies the independent geometric target and named pilot, not a
+   probability port.
 2. **Completed integrated-kernel/local-coefficient prerequisite:** the actual
    moments, parity-specific tails, odd positive first height moment, even
    divergent second absolute moment, and regulated deterministic weighted
