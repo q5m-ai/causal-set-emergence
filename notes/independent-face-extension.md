@@ -16,6 +16,12 @@ All new proofs below are **written, not Lean checked or independently human
 reviewed**. Executable regressions check their algebra/examples, not arbitrary
 admissibility or asymptotic convergence.
 
+**Subsequent implementation:** [#109's assembly and complete #97 acceptance
+map](../formal/INDEPENDENT_LIMIT.md) records the later class-E geometry,
+actual short/long producers, unconditional deterministic/expected declarations
+and integrated verification scope. This does not rewrite #85's original
+obstruction-only handoff or claim independent human review of this note.
+
 ## 1. Fixed 4D class E: smooth face germs, independent causal envelopes
 
 Work in Minkowski space with signature $`(+---)`$. Specify raw functions

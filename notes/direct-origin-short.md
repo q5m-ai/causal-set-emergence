@@ -6,7 +6,10 @@
 geometric jet, derivative-controlled remainder, actual density decomposition
 and fixed-cutoff short limit. The ledger below records this backend package's
 own scope; it is not a statement that those later producers are still absent.
-Long cancellation and full/expected assembly remain separate obligations.
+The subsequent [#108 long proof](../formal/INDEPENDENT_LONG_NULL.md) and
+[#109 full/expected assembly](../formal/INDEPENDENT_LIMIT.md) discharge those
+separate obligations. The latter records the complete #97 acceptance mapping,
+combined validation scope and still-outstanding independent human review.
 
 **Status: analytic backend only. Issue #97 remains open.** This package proves
 fixed-cutoff absolute-overlap **basis responses and a conditional remainder
