@@ -50,9 +50,9 @@ private theorem coordinateHeightDerivative_injective (L : JointSpace →L[ℝ] �
   rw [hz, zero_smul] at hev
   exact hev
 
-namespace AdmissibleGraphCap
+namespace RegularHeight
 
-variable {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+variable {h : Spatial → ℝ} (hh : RegularHeight h)
 include hh
 
 /-- Every noncritical point has a C³ height chart with scalar-graph slices in
@@ -113,7 +113,13 @@ theorem exists_coordinateHeightChart (x : JointSpace) (hx : x ∈ graphClosedPos
     ((hsU.contDiffAt (hU.mem_nhds hy.1.2)).prodMk
       (surfaceGraphBaseL.contDiff.contDiffAt.comp y R.contDiff.contDiffAt))).contDiffWithinAt
 
-end AdmissibleGraphCap
+end RegularHeight
+
+theorem AdmissibleGraphCap.exists_coordinateHeightChart {h : Spatial → ℝ}
+    (hh : AdmissibleGraphCap h) (x : JointSpace) (hx : x ∈ graphClosedPositive h)
+    (hr : fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
+    ∃ c : CoordinateHeightChart h, x ∈ c.chart.source :=
+  hh.toRegularHeight.exists_coordinateHeightChart x hx hr
 
 namespace CoordinateHeightChart
 

@@ -26,10 +26,10 @@ structure SliceHeightChart (h : Spatial → ℝ) extends CoordinateHeightChart h
   contDiff_extension : ContDiff ℝ 1 inverseExtension
   extension_eq : EqOn inverseExtension chart.symm (Metric.ball center radius)
 
-namespace AdmissibleGraphCap
+namespace RegularHeight
 
-/-- Construct the one-chart data from the unchanged admissibility hypotheses. -/
-theorem exists_sliceHeightChart {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+/-- Construct the one-chart data from compact regular height geometry, without a slope bound. -/
+theorem exists_sliceHeightChart {h : Spatial → ℝ} (hh : RegularHeight h)
     (x : JointSpace) (hx : x ∈ graphClosedPositive h)
     (hr : fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
     ∃ c : SliceHeightChart h, x ∈ c.chart.source ∧ c.center = c.chart x := by
@@ -45,7 +45,13 @@ theorem exists_sliceHeightChart {h : Spatial → ℝ} (hh : AdmissibleGraphCap h
     contDiff_extension := hk
     extension_eq := he }, hxC, rfl⟩
 
-end AdmissibleGraphCap
+end RegularHeight
+
+theorem AdmissibleGraphCap.exists_sliceHeightChart {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+    (x : JointSpace) (hx : x ∈ graphClosedPositive h)
+    (hr : fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
+    ∃ c : SliceHeightChart h, x ∈ c.chart.source ∧ c.center = c.chart x :=
+  hh.toRegularHeight.exists_sliceHeightChart x hx hr
 
 private theorem graphAreaJacobian_isometry (R : JointSpace ≃ₗᵢ[ℝ] JointSpace)
     (v w : JointSpace) : graphAreaJacobian (R v) (R w) = graphAreaJacobian v w := by

@@ -43,9 +43,9 @@ proposition is not its proof. -/
 def GraphCapLimitGoal (h : Spatial → ℝ) : Prop :=
   Tendsto (fun ρ => continuumMean ρ (graphCapRegion h)) atTop (𝓝 (graphBoundaryIntegral h))
 
-namespace AdmissibleGraphCap
+namespace RegularHeight
 
-variable {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+variable {h : Spatial → ℝ} (hh : RegularHeight h)
 include hh
 
 theorem graphTangentSpace_finrank (x : JointSpace) (hx : x ∈ graphJoint h) :
@@ -153,6 +153,43 @@ theorem integrable_reciprocal_slope :
     (μ := graphSurfaceMeasure h) hh.isCompact_joint
   simpa only [IntegrableOn, graphSurfaceMeasure, Measure.restrict_smul,
     Measure.restrict_restrict_of_subset (Subset.refl (graphJoint h))] using hi
+
+end RegularHeight
+
+namespace AdmissibleGraphCap
+variable {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+include hh
+
+theorem graphTangentSpace_finrank (x : JointSpace) (hx : x ∈ graphJoint h) :
+    Module.finrank ℝ (graphTangentSpace h x) = 2 := hh.toRegularHeight.graphTangentSpace_finrank x hx
+
+theorem exists_level_chart (x : JointSpace) (hx : x ∈ graphClosedPositive h)
+    (hr : fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
+    ∃ e : PartialHomeomorph JointSpace (ℝ × graphTangentSpace h x),
+      x ∈ e.source ∧ e x = (h x, 0) ∧ (∀ y, (e y).1 = h y) ∧
+      HasStrictFDerivAt (fun z => e.symm (h x, z)) (graphTangentSpace h x).subtypeL 0 :=
+  hh.toRegularHeight.exists_level_chart x hx hr
+
+theorem hausdorff_finiteAt_joint (x : JointSpace) (hx : x ∈ graphJoint h) :
+    (μH[2] : Measure JointSpace).FiniteAtFilter (𝓝[graphJoint h] x) :=
+  hh.toRegularHeight.hausdorff_finiteAt_joint x hx
+
+theorem hausdorff_joint_lt_top : (μH[2] : Measure JointSpace) (graphJoint h) < ∞ :=
+  hh.toRegularHeight.hausdorff_joint_lt_top
+
+theorem finite_graphSurfaceMeasure : IsFiniteMeasure (graphSurfaceMeasure h) :=
+  hh.toRegularHeight.finite_graphSurfaceMeasure
+
+theorem continuousOn_graphSlope : ContinuousOn (graphSlope h) (graphClosedPositive h) :=
+  hh.toRegularHeight.continuousOn_graphSlope
+
+theorem continuousOn_reciprocal_slope :
+    ContinuousOn (fun x => 1 / ‖graphGradient h x‖) (graphJoint h) :=
+  hh.toRegularHeight.continuousOn_reciprocal_slope
+
+theorem integrable_reciprocal_slope :
+    Integrable (fun x => 1 / ‖graphGradient h x‖) (graphSurfaceMeasure h) :=
+  hh.toRegularHeight.integrable_reciprocal_slope
 
 /-- The proved pointwise angle identity identifies the two canonical integrals.
 This is not yet a deterministic-limit or parametric-area identification. -/

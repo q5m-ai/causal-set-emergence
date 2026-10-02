@@ -91,13 +91,13 @@ theorem hausdorff_finiteAt_regular_level (f : JointSpace → ℝ)
   rw [← hS y hyS]
   exact hinvy
 
-namespace AdmissibleGraphCap
+namespace RegularHeight
 
-variable {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+variable {h : Spatial → ℝ} (hh : RegularHeight h)
 include hh
 
 theorem isCompact_level (s : ℝ) : IsCompact (graphLevel h s) := by
-  apply hh.toGraphCapData.isCompact_closedPositive.of_isClosed_subset _ inter_subset_left
+  apply hh.isCompact_closedPositive.of_isClosed_subset _ inter_subset_left
   exact hh.continuousOn_closedPositive.preimage_isClosed_of_isClosed
     isClosed_closure (isClosed_singleton (x := s))
 
@@ -186,7 +186,7 @@ theorem exists_band_subset_joint_neighborhood (U : Set JointSpace) (hU : IsOpen 
     (hJU : graphJoint h ⊆ U) : ∃ δ : ℝ, 0 < δ ∧
       ∀ x ∈ graphClosedPositive h, h x ≤ δ → x ∈ U := by
   let K := graphClosedPositive h \ U
-  have hK : IsCompact K := hh.toGraphCapData.isCompact_closedPositive.diff hU
+  have hK : IsCompact K := hh.isCompact_closedPositive.diff hU
   have hp : ∀ x ∈ K, 0 < h x := by
     intro x hx
     apply lt_of_le_of_ne (hh.nonneg_on_closedPositive x hx.1)
@@ -199,6 +199,54 @@ theorem exists_band_subset_joint_neighborhood (U : Set JointSpace) (hU : IsOpen 
   by_contra hxU
   have hle := hmin x (show x ∈ K from ⟨hx, hxU⟩)
   linarith
+
+end RegularHeight
+
+namespace AdmissibleGraphCap
+variable {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+include hh
+
+theorem isCompact_level (s : ℝ) : IsCompact (graphLevel h s) := hh.toRegularHeight.isCompact_level s
+
+theorem measurableSet_level (s : ℝ) : MeasurableSet (graphLevel h s) :=
+  hh.toRegularHeight.measurableSet_level s
+
+theorem graphLevel_eq_empty_of_neg (s : ℝ) (hs : s < 0) : graphLevel h s = ∅ :=
+  hh.toRegularHeight.graphLevel_eq_empty_of_neg s hs
+
+theorem graphLevelMeasure_eq_zero_of_neg (s : ℝ) (hs : s < 0) : graphLevelMeasure h s = 0 :=
+  hh.toRegularHeight.graphLevelMeasure_eq_zero_of_neg s hs
+
+theorem graphHeightDensity_eq_zero_of_neg (s : ℝ) (hs : s < 0) : graphHeightDensity h s = 0 :=
+  hh.toRegularHeight.graphHeightDensity_eq_zero_of_neg s hs
+
+theorem graphBoundaryIntegral_eq_zero_of_continuousAt_heightDensity
+    (hc : ContinuousAt (graphHeightDensity h) 0) : graphBoundaryIntegral h = 0 :=
+  hh.toRegularHeight.graphBoundaryIntegral_eq_zero_of_continuousAt_heightDensity hc
+
+theorem hausdorff_level_lt_top (s : ℝ)
+    (hreg : ∀ x ∈ graphLevel h s, fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
+    (μH[2] : Measure JointSpace) (graphLevel h s) < ∞ :=
+  hh.toRegularHeight.hausdorff_level_lt_top s hreg
+
+theorem finite_graphLevelMeasure (s : ℝ)
+    (hreg : ∀ x ∈ graphLevel h s, fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
+    IsFiniteMeasure (graphLevelMeasure h s) := hh.toRegularHeight.finite_graphLevelMeasure s hreg
+
+theorem integrable_graphLevel_reciprocal_slope (s : ℝ)
+    (hreg : ∀ x ∈ graphLevel h s, fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
+    Integrable (fun x => 1 / ‖graphGradient h x‖) (graphLevelMeasure h s) :=
+  hh.toRegularHeight.integrable_graphLevel_reciprocal_slope s hreg
+
+theorem exists_integrable_level_band : ∃ δ : ℝ, 0 < δ ∧ ∀ s ≤ δ,
+    IsFiniteMeasure (graphLevelMeasure h s) ∧
+      Integrable (fun x => 1 / ‖graphGradient h x‖) (graphLevelMeasure h s) :=
+  hh.toRegularHeight.exists_integrable_level_band
+
+theorem exists_band_subset_joint_neighborhood (U : Set JointSpace) (hU : IsOpen U)
+    (hJU : graphJoint h ⊆ U) : ∃ δ : ℝ, 0 < δ ∧
+      ∀ x ∈ graphClosedPositive h, h x ≤ δ → x ∈ U :=
+  hh.toRegularHeight.exists_band_subset_joint_neighborhood U hU hJU
 
 theorem graphHeightDensity_zero_eq_angle : graphHeightDensity h 0 =
     ∫ x, jointCoth (graphSlope h x) ∂graphSurfaceMeasure h := by

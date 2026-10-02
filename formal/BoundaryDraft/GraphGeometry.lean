@@ -59,6 +59,64 @@ structure GraphCapRegularity (h : Spatial → ℝ) : Prop where
 structure AdmissibleGraphCap (h : Spatial → ℝ) : Prop
     extends GraphCapData h, GraphCapRegularity h
 
+/-- Compact regular height geometry, without any causal or slope restriction.
+This does not assert that the same-height planar cap is causally convex. -/
+structure RegularHeight (h : Spatial → ℝ) : Prop extends GraphCapRegularity h where
+  bounded_positive : Bornology.IsBounded {x | 0 < h x}
+
+/-- Forget only the cap's strict slope restriction; the old contract is unchanged. -/
+theorem AdmissibleGraphCap.toRegularHeight {h : Spatial → ℝ} (hh : AdmissibleGraphCap h) :
+    RegularHeight h := ⟨hh.toGraphCapRegularity, hh.bounded_positive⟩
+
+instance {h : Spatial → ℝ} : Coe (AdmissibleGraphCap h) (RegularHeight h) :=
+  ⟨AdmissibleGraphCap.toRegularHeight⟩
+
+namespace RegularHeight
+variable {h : Spatial → ℝ} (hh : RegularHeight h)
+include hh
+
+/-- Continuity uses the raw germ near the closure, and the identically zero
+positive part off that closure. No global raw-profile continuity is required. -/
+theorem continuous_positivePart : Continuous (fun x => max 0 (h x)) := by
+  have hc : Continuous (fun x : EuclideanSpace ℝ (Fin 3) => max 0 (h x)) := by
+    apply continuous_iff_continuousAt.mpr
+    intro x
+    by_cases hx : x ∈ closure {y : EuclideanSpace ℝ (Fin 3) | 0 < h y}
+    · exact continuousAt_const.max (hh.smooth_near x hx).continuousAt
+    · have he : (fun y : EuclideanSpace ℝ (Fin 3) => max 0 (h y)) =ᶠ[nhds x]
+          (fun _ => 0) := by
+        filter_upwards [isClosed_closure.isOpen_compl.mem_nhds hx] with y hy
+        exact max_eq_left (le_of_not_gt (fun hp => hy (subset_closure hp)))
+      exact continuousAt_const.congr he.symm
+  exact hc.comp (PiLp.continuous_equiv_symm 2 (fun _ : Fin 3 => ℝ))
+
+theorem isOpen_positive : IsOpen {x | 0 < h x} := by
+  have he : {x | 0 < h x} = {x | 0 < max 0 (h x)} := by ext x; simp
+  rw [he]
+  exact isOpen_lt continuous_const hh.continuous_positivePart
+
+theorem measurableSet_positive : MeasurableSet {x | 0 < h x} :=
+  hh.isOpen_positive.measurableSet
+
+theorem hasCompactSupport_positivePart : HasCompactSupport (fun x => max 0 (h x)) := by
+  apply HasCompactSupport.intro hh.bounded_positive.isCompact_closure
+  intro x hx
+  exact max_eq_left (le_of_not_gt fun hp => hx (subset_closure hp))
+
+theorem frontier_eq : frontier {x | 0 < h x} =
+    closure {x | 0 < h x} ∩ {x | h x = 0} := by
+  rw [hh.isOpen_positive.frontier_eq]
+  ext x
+  constructor
+  · rintro ⟨hc, hn⟩
+    exact ⟨hc, hh.boundary_zero x (by
+      rw [hh.isOpen_positive.frontier_eq]
+      exact ⟨hc, hn⟩)⟩
+  · rintro ⟨hc, hz⟩
+    exact ⟨hc, by change ¬0 < h x; rw [show h x = 0 from hz]; exact lt_irrefl _⟩
+
+end RegularHeight
+
 namespace GraphCapData
 
 variable {h : Spatial → ℝ} (hh : GraphCapData h)

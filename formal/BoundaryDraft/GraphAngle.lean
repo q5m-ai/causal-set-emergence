@@ -66,6 +66,12 @@ theorem graphSlope_lt_one (x : JointSpace) (hx : x ∈ graphClosedPositive h) :
   obtain ⟨κ, _, hκ, hbound⟩ := hh.exists_slope_bound
   exact (hbound x hx).trans_lt hκ
 
+end AdmissibleGraphCap
+
+namespace RegularHeight
+variable {h : Spatial → ℝ} (hh : RegularHeight h)
+include hh
+
 theorem graphSlope_pos (x : JointSpace) (hx : x ∈ graphJoint h) :
     0 < graphSlope h x := by
   rw [graphSlope_eq_norm_fderiv]
@@ -75,7 +81,16 @@ theorem hasGradientAt (x : JointSpace) (hx : x ∈ graphClosedPositive h) :
     HasGradientAt (fun y : JointSpace => h y) (graphGradient h x) x :=
   ((hh.smooth_near x hx).differentiableAt (by norm_num)).hasGradientAt
 
-end AdmissibleGraphCap
+end RegularHeight
+
+theorem AdmissibleGraphCap.graphSlope_pos {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+    (x : JointSpace) (hx : x ∈ graphJoint h) : 0 < graphSlope h x :=
+  hh.toRegularHeight.graphSlope_pos x hx
+
+theorem AdmissibleGraphCap.hasGradientAt {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+    (x : JointSpace) (hx : x ∈ graphClosedPositive h) :
+    HasGradientAt (fun y : JointSpace => h y) (graphGradient h x) x :=
+  hh.toRegularHeight.hasGradientAt x hx
 
 /-- Inward unit normal: increasing height enters the positive region. -/
 def graphInward (h : Spatial → ℝ) (x : JointSpace) : JointSpace :=
@@ -85,9 +100,9 @@ def graphInward (h : Spatial → ℝ) (x : JointSpace) : JointSpace :=
 def graphOutward (h : Spatial → ℝ) (x : JointSpace) : JointSpace :=
   -graphInward h x
 
-namespace AdmissibleGraphCap
+namespace RegularHeight
 
-variable {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+variable {h : Spatial → ℝ} (hh : RegularHeight h)
 include hh
 
 theorem graphInward_norm (x : JointSpace) (hx : x ∈ graphJoint h) :
@@ -110,6 +125,26 @@ theorem graph_differential_inward (x : JointSpace) (hx : x ∈ graphJoint h) :
 theorem graph_differential_outward (x : JointSpace) (hx : x ∈ graphJoint h) :
     fderiv ℝ (fun y : JointSpace => h y) x (graphOutward h x) = -graphSlope h x := by
   rw [graphOutward, map_neg, hh.graph_differential_inward x hx]
+
+end RegularHeight
+
+namespace AdmissibleGraphCap
+variable {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+include hh
+
+theorem graphInward_norm (x : JointSpace) (hx : x ∈ graphJoint h) :
+    ‖graphInward h x‖ = 1 := hh.toRegularHeight.graphInward_norm x hx
+
+theorem graphOutward_norm (x : JointSpace) (hx : x ∈ graphJoint h) :
+    ‖graphOutward h x‖ = 1 := hh.toRegularHeight.graphOutward_norm x hx
+
+theorem graph_differential_inward (x : JointSpace) (hx : x ∈ graphJoint h) :
+    fderiv ℝ (fun y : JointSpace => h y) x (graphInward h x) = graphSlope h x :=
+  hh.toRegularHeight.graph_differential_inward x hx
+
+theorem graph_differential_outward (x : JointSpace) (hx : x ∈ graphJoint h) :
+    fderiv ℝ (fun y : JointSpace => h y) x (graphOutward h x) = -graphSlope h x :=
+  hh.toRegularHeight.graph_differential_outward x hx
 
 /-- The rapidity is strictly positive, not a choice of sign from a squared
 identity. The quotient is the actual `cosh θ / sinh θ`. -/

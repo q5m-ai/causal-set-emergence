@@ -25,9 +25,9 @@ theorem graphLevel_eq_of_pos (h : Spatial → ℝ) (s : ℝ) (hs : 0 < s) :
   · intro hx
     exact ⟨subset_closure (show 0 < h x from hx ▸ hs), hx⟩
 
-namespace AdmissibleGraphCap
+namespace RegularHeight
 
-variable {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+variable {h : Spatial → ℝ} (hh : RegularHeight h)
 include hh
 
 /-- Finite two-dimensional Hausdorff measure makes each regular level null
@@ -42,6 +42,22 @@ theorem volume_graphLevel_eq_zero (s : ℝ)
     simpa only [JointSpace, finrank_euclideanSpace, Fintype.card_fin, Nat.cast_ofNat] using hz
   exact (Measure.absolutelyContinuous_isAddHaarMeasure volume
     (μH[Module.finrank ℝ JointSpace] : Measure JointSpace)) hz'
+
+end RegularHeight
+
+namespace AdmissibleGraphCap
+variable {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+include hh
+
+theorem volume_graphLevel_eq_zero (s : ℝ)
+    (hreg : ∀ x ∈ graphLevel h s, fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
+    volume (graphLevel h s) = 0 := hh.toRegularHeight.volume_graphLevel_eq_zero s hreg
+
+end AdmissibleGraphCap
+
+namespace RegularHeight
+variable {h : Spatial → ℝ} (hh : RegularHeight h)
+include hh
 
 /-- Nullity in the original coordinate-product spatial measure, not merely
 in the Euclidean coordinate model. -/
@@ -135,6 +151,45 @@ theorem integrableOn_spatial_openCollar_iff (s : ℝ)
       {x : Spatial | 0 < h x ∧ h x < s}).integrable_comp_emb he
   rw [IntegrableOn, Measure.restrict_congr_set (hh.ae_openCollar_eq_closedCollar s hreg)] at hi
   exact hi.symm
+
+end RegularHeight
+
+namespace AdmissibleGraphCap
+variable {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+include hh
+
+theorem volume_spatial_level_eq_zero (s : ℝ) (hs : 0 < s)
+    (hreg : ∀ x ∈ graphLevel h s, fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
+    volume {x : Spatial | h x = s} = 0 := hh.toRegularHeight.volume_spatial_level_eq_zero s hs hreg
+
+theorem ae_collar_endpoint (s : ℝ) (hs : 0 < s)
+    (hreg : ∀ x ∈ graphLevel h s, fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
+    {x : Spatial | 0 < h x ∧ h x < s} =ᶠ[ae volume] {x | 0 < h x ∧ h x ≤ s} :=
+  hh.toRegularHeight.ae_collar_endpoint s hs hreg
+
+theorem integral_collar_eq_closed_endpoint (s : ℝ) (hs : 0 < s)
+    (hreg : ∀ x ∈ graphLevel h s, fderiv ℝ (fun y : JointSpace => h y) x ≠ 0)
+    (f : Spatial → ℝ) :
+    (∫ x in {x | 0 < h x ∧ h x < s}, f x) = ∫ x in {x | 0 < h x ∧ h x ≤ s}, f x :=
+  hh.toRegularHeight.integral_collar_eq_closed_endpoint s hs hreg f
+
+theorem ae_openCollar_eq_closedCollar (s : ℝ)
+    (hreg : ∀ x ∈ graphLevel h s, fderiv ℝ (fun y : JointSpace => h y) x ≠ 0) :
+    {x : JointSpace | 0 < h x ∧ h x < s} =ᶠ[ae volume] graphClosedCollar h s :=
+  hh.toRegularHeight.ae_openCollar_eq_closedCollar s hreg
+
+theorem integral_spatial_openCollar_eq_closedCollar (s : ℝ)
+    (hreg : ∀ x ∈ graphLevel h s, fderiv ℝ (fun y : JointSpace => h y) x ≠ 0)
+    (f : Spatial → ℝ) :
+    (∫ x in {x | 0 < h x ∧ h x < s}, f x) = ∫ x in graphClosedCollar h s, f x :=
+  hh.toRegularHeight.integral_spatial_openCollar_eq_closedCollar s hreg f
+
+theorem integrableOn_spatial_openCollar_iff (s : ℝ)
+    (hreg : ∀ x ∈ graphLevel h s, fderiv ℝ (fun y : JointSpace => h y) x ≠ 0)
+    (f : Spatial → ℝ) :
+    IntegrableOn f {x | 0 < h x ∧ h x < s} ↔
+      IntegrableOn (fun x : JointSpace => f x) (graphClosedCollar h s) :=
+  hh.toRegularHeight.integrableOn_spatial_openCollar_iff s hreg f
 
 end AdmissibleGraphCap
 end BoundaryDraft
