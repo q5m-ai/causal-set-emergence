@@ -95,6 +95,16 @@ contacts, coefficient integrability and positive-height critical points.
 Original long theorem contracts are preserved. This completes #108's long
 obligation only; the actual short proof and final #97 assembly remain separate.
 
+The separate [actual independent-envelope short proof](INDEPENDENT_SHORT.md)
+now supplies #107: local raw/envelope positive-part agreement, a complete
+absolute C³ overlap two-jet, primitive derivative-controlled measurable
+remainder, the actual four-mode density decomposition, and the unchanged
+intrinsic coefficient. Every sufficiently small fixed positive cutoff has the
+proved short-action limit. The steep capsule, variable-angle symmetric member,
+old planar/unequal-axis cases and positive-height critical points are covered.
+The enlarged-class long theorem and full/expected assembly remain #108/#109;
+no global class-E limit follows from this short theorem alone.
+
 The [short-displacement proof note](../notes/curved-face-stability.md) is a
 **conventional analytic argument, not an end-to-end Lean theorem**.
 `ShortDisplacement.lean` proves only the exact disjoint short/long partition,
@@ -1487,6 +1497,9 @@ This does **not** encode the independent-envelope class E or derive its actual
 geometric expansion, long-density cancellation, target identification or global
 limit. No original admissibility or action is changed. Issue #97 remains open;
 see the [analytic proof and remaining-work ledger](../notes/direct-origin-short.md).
+The subsequent [#107 geometric producer](INDEPENDENT_SHORT.md) now discharges
+that backend's inputs for the actual class-E short density. It does not
+complete the still-separate long or full/expected assembly obligations.
 
 ## Reproduce
 

@@ -1,5 +1,13 @@
 # Direct-origin short analysis: partial implementation of #97
 
+**Subsequent integration:** #106 supplies the separate
+[independent-envelope geometry](../formal/INDEPENDENT_FACE_GEOMETRY.md), and
+[#107's actual short proof](../formal/INDEPENDENT_SHORT.md) now derives the
+geometric jet, derivative-controlled remainder, actual density decomposition
+and fixed-cutoff short limit. The ledger below records this backend package's
+own scope; it is not a statement that those later producers are still absent.
+Long cancellation and full/expected assembly remain separate obligations.
+
 **Status: analytic backend only. Issue #97 remains open.** This package proves
 fixed-cutoff absolute-overlap **basis responses and a conditional remainder
 transfer** in Lean. It does not encode class E, derive its actual density

@@ -341,16 +341,20 @@ jets, replacement long-ray margins and the bounded
 [direct-origin proof task #97](https://github.com/q5m-ai/causal-set-emergence/issues/97).
 The [partial direct-origin analytic backend](notes/direct-origin-short.md) now
 checks the absolute short basis responses and a conditional remainder transfer
-in Lean. The actual class-E geometric producers and enlarged-class limit remain
-unproved; #97 stays open.
+in Lean. That backend alone is not a geometric limit theorem; #97 stays open.
 
 The separate [Lean geometry package for #106](formal/INDEPENDENT_FACE_GEOMETRY.md)
 now encodes that independent-envelope class and proves its region, strata,
 positive-angle/induced-area geometry and finite-density Poisson equality.
 It includes every old member and the genuinely steep symmetric capsule,
 retains interior critical points, and exposes slope-independent height-atlas
-and divergence prerequisites. The enlarged-class overlap and limit proofs
-remain separate work under #107–#109; no new asymptotic coverage is claimed.
+and divergence prerequisites. The separate [actual class-E short proof](formal/INDEPENDENT_SHORT.md)
+now derives the raw/envelope agreement, absolute overlap two-jet, measurable
+derivative-controlled remainder and actual density decomposition. It proves
+the short-action limit to the unchanged intrinsic target at every sufficiently
+small fixed positive cutoff, including the steep and variable-angle members.
+Long cancellation and full deterministic/expected assembly remain #108/#109;
+this adds no enlarged-class **global** limit coverage.
 
 ### Curved-spacetime feasibility boundary
 
