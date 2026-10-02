@@ -310,7 +310,7 @@ transfers the result to expectations. The original class and all goal
 definitions are unchanged. No shrinking-cutoff uniformity, convergence rate,
 unrestricted-conjecture result, or sample-wise convergence is claimed.
 
-### Fixed-null mixed estimates
+### Fixed-null mixed estimates and written expected-action assembly
 
 The [fixed-null mixed pilot](notes/null-mixed-estimates.md) derives the signed
 unit joint coefficient directly for a smooth spacelike lower face beneath a
@@ -319,8 +319,14 @@ uniform tip control, and the generator-derivative term needed for source
 partitions. Discarding the complement of a shrinking joint collar is a proved
 localization-route obstruction, not a counterexample to the full action.
 The [nonplanar sine diagnostics](results/null-mixed.md) retain all future
-partners. These are written arguments and executable regressions, not a new
-Lean-checked mixed-region or Poisson-expectation theorem; #84 owns that assembly.
+partners. The [written assembly for #84](notes/null-mixed-assembly.md) now
+proves the complete region/stratum geometry and global induced-area limit,
+then uses an exact positive-density Poisson identity to obtain the expected-action
+limit. Independent finite-order and positive-layer quadrature regressions
+check the normalization without defining expectation from the reduced action.
+This is a written proof, not a new Lean-checked mixed-region theorem or an
+independently reviewed result. Arbitrary null/mixed boundaries, curved and
+dimensional extensions, and sample-wise convergence remain open.
 
 ### Independent-face enlargement
 
@@ -429,6 +435,8 @@ physics.
   differences, dimensional/curvature qualifications and unresolved attribution.
 - `notes/null-mixed-estimates.md`, `null_mixed.py` — fixed-null weighted estimates,
   tip/complement accounting and nonplanar diagnostics for the selected mixed class.
+- `notes/null-mixed-assembly.md`, `mixed_poisson.py` — written global deterministic
+  and expected-action proof for that class; independent finite-order/layer checks.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.
