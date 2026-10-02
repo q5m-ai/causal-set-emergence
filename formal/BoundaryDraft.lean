@@ -24,6 +24,13 @@ import BoundaryDraft.DimensionLorentz
 import BoundaryDraft.DimensionIntervalVolume
 import BoundaryDraft.DimensionActionTransport
 import BoundaryDraft.DimensionIntervalCompatibility
+import BoundaryDraft.MeasuredOrder
+import BoundaryDraft.MeasuredOrderPoisson
+import BoundaryDraft.PoissonTransport
+import BoundaryDraft.DimensionDiscrete
+import BoundaryDraft.DimensionMeasureExpectation
+import BoundaryDraft.DimensionExpectation
+import BoundaryDraft.DimensionExpectationCompatibility
 import BoundaryDraft.NullTransverseCancellation
 import BoundaryDraft.KernelEstimates
 import BoundaryDraft.KernelHalfLine
@@ -111,6 +118,7 @@ import BoundaryDraft.TwoFaceAssembly
 import BoundaryDraft.TwoFaceCoefficient
 import BoundaryDraft.GraphWeightedCoarea
 import BoundaryDraft.GraphDivergence
+import BoundaryDraft.IndependentFace
 import BoundaryDraft.SphereQuadraticMoments
 import BoundaryDraft.NullTransverseLogMoments
 import BoundaryDraft.NullCubicRemainder

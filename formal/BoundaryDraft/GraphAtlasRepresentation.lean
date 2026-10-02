@@ -86,7 +86,7 @@ theorem exists_uniform_integrable_dominator : ∃ M : ℝ, 0 < M ∧
 
 /-- The weighted contribution of one canonical level is exactly its chart
 term. Subordination, not a multiplicity assumption, localizes the integral. -/
-theorem weighted_level_integral (hh : AdmissibleGraphCap h) (i : Fin A.count)
+theorem weighted_level_integral (hh : RegularHeight h) (i : Fin A.count)
     (t : ℝ) (ht : t ∈ Icc 0 A.width) :
     (∫ x, A.weights i x * (1 / ‖graphGradient h x‖) ∂graphLevelMeasure h t) =
       ∫ u in (A.charts i).disk, A.localTerm i t u := by
@@ -116,7 +116,7 @@ theorem weighted_level_integral (hh : AdmissibleGraphCap h) (i : Fin A.count)
 
 /-- Finite-sum representation of the canonical height density. This equality
 alone does not assert continuity or perform any height integration. -/
-theorem graphHeightDensity_eq_sum (hh : AdmissibleGraphCap h) (t : ℝ)
+theorem graphHeightDensity_eq_sum (hh : RegularHeight h) (t : ℝ)
     (ht : t ∈ Icc 0 A.width) :
     graphHeightDensity h t = ∑ i, ∫ u in (A.charts i).disk, A.localTerm i t u := by
   have hreg : ∀ x ∈ graphLevel h t, fderiv ℝ (fun y : JointSpace => h y) x ≠ 0 :=
@@ -134,7 +134,7 @@ theorem graphHeightDensity_eq_sum (hh : AdmissibleGraphCap h) (t : ℝ)
 
 /-- One weighted ambient collar contribution in fixed Euclidean coordinates.
 No height Fubini or global coarea theorem is used here. -/
-theorem weighted_collar_integral (hh : AdmissibleGraphCap h) (i : Fin A.count)
+theorem weighted_collar_integral (hh : RegularHeight h) (i : Fin A.count)
     (f : JointSpace → ℝ) :
     (∫ x in graphClosedCollar h A.width, A.weights i x * f x) =
       ∫ p in (A.charts i).parameterRegion A.width,
@@ -164,7 +164,7 @@ theorem weighted_collar_integral (hh : AdmissibleGraphCap h) (i : Fin A.count)
 
 /-- Common finite-sum ambient representation for every absolutely integrable
 collar test function, including the signed kernel. -/
-theorem integral_closedCollar_eq_sum (hh : AdmissibleGraphCap h) (f : JointSpace → ℝ)
+theorem integral_closedCollar_eq_sum (hh : RegularHeight h) (f : JointSpace → ℝ)
     (hf : IntegrableOn f (graphClosedCollar h A.width)) :
     (∫ x in graphClosedCollar h A.width, f x) =
       ∑ i, ∫ p in (A.charts i).parameterRegion A.width,

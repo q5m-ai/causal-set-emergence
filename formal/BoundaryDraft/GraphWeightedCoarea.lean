@@ -63,7 +63,7 @@ theorem integrableOn_weightedLocalTerm (w : JointSpace → ℝ)
     Metric.ball_subset_closedBall
 
 /-- Absolute integrability on each canonical level, including height zero. -/
-theorem integrable_graphLevel_weight_div (hh : AdmissibleGraphCap h)
+theorem integrable_graphLevel_weight_div (hh : RegularHeight h)
     (w : JointSpace → ℝ) (hw : ContinuousOn w (graphClosedPositive h))
     (t : ℝ) (ht : t ∈ Icc 0 A.width) :
     Integrable (fun x => w x / ‖graphGradient h x‖) (graphLevelMeasure h t) := by
@@ -81,7 +81,7 @@ theorem integrable_graphLevel_weight_div (hh : AdmissibleGraphCap h)
   simpa only [IntegrableOn, graphLevelMeasure,
     Measure.restrict_restrict_of_subset (Subset.refl (graphLevel h t))] using hi
 
-theorem weighted_level_integral_spatial (hh : AdmissibleGraphCap h)
+theorem weighted_level_integral_spatial (hh : RegularHeight h)
     (w : JointSpace → ℝ) (i : Fin A.count) (t : ℝ) (ht : t ∈ Icc 0 A.width) :
     (∫ x, A.weights i x * (w x / ‖graphGradient h x‖) ∂graphLevelMeasure h t) =
       ∫ u in (A.charts i).disk, A.weightedLocalTerm w i t u := by
@@ -109,7 +109,7 @@ theorem weighted_level_integral_spatial (hh : AdmissibleGraphCap h)
   rw [c.abs_det_fderiv_symm _ (c.ball_subset huD)]
   ring
 
-theorem graphWeightedHeightDensity_eq_sum (hh : AdmissibleGraphCap h)
+theorem graphWeightedHeightDensity_eq_sum (hh : RegularHeight h)
     (w : JointSpace → ℝ) (hw : ContinuousOn w (graphClosedPositive h))
     (t : ℝ) (ht : t ∈ Icc 0 A.width) :
     graphWeightedHeightDensity h w t =
@@ -151,14 +151,14 @@ theorem continuousOn_integral_weightedLocalTerm (w : JointSpace → ℝ)
       (continuous_id.prodMk continuous_const).continuousOn
         (fun _ hs => ⟨hs, Metric.ball_subset_closedBall hu⟩)) t ht
 
-theorem continuousOn_graphWeightedHeightDensity (hh : AdmissibleGraphCap h)
+theorem continuousOn_graphWeightedHeightDensity (hh : RegularHeight h)
     (w : JointSpace → ℝ) (hw : ContinuousOn w (graphClosedPositive h)) :
     ContinuousOn (graphWeightedHeightDensity h w) (Icc 0 A.width) := by
   apply (continuousOn_finset_sum _
     (fun i _ => A.continuousOn_integral_weightedLocalTerm w hw i)).congr
   exact fun t ht => A.graphWeightedHeightDensity_eq_sum hh w hw t ht
 
-theorem integrableOn_closedCollar_weighted (hh : AdmissibleGraphCap h)
+theorem integrableOn_closedCollar_weighted (hh : RegularHeight h)
     (w : JointSpace → ℝ) (hw : ContinuousOn w (graphClosedPositive h))
     (g : ℝ → ℝ) (hg : ContinuousOn g (Icc 0 A.width)) :
     IntegrableOn (fun x : JointSpace => g (h x) * w x) (graphClosedCollar h A.width) := by
@@ -220,7 +220,7 @@ theorem integral_chart_weighted (w : JointSpace → ℝ)
   rfl
 
 /-- Coarea with a spatial observable and a continuous height profile. -/
-theorem integral_closedCollar_weighted (hh : AdmissibleGraphCap h)
+theorem integral_closedCollar_weighted (hh : RegularHeight h)
     (w : JointSpace → ℝ) (hw : ContinuousOn w (graphClosedPositive h))
     (g : ℝ → ℝ) (hg : ContinuousOn g (Icc 0 A.width)) :
     (∫ x in graphClosedCollar h A.width, g (h x) * w x) =
@@ -236,11 +236,11 @@ theorem integral_closedCollar_weighted (hh : AdmissibleGraphCap h)
 
 end ControlledCollarAtlas
 
-namespace AdmissibleGraphCap
+namespace RegularHeight
 
 /-- A continuous spatial observable has the actual canonical boundary flux
 as its one-sided density limit. No global noncriticality is needed. -/
-theorem tendsto_graphWeightedHeightDensity_zero {h : Spatial → ℝ} (hh : AdmissibleGraphCap h)
+theorem tendsto_graphWeightedHeightDensity_zero {h : Spatial → ℝ} (hh : RegularHeight h)
     (w : JointSpace → ℝ) (hw : ContinuousOn w (graphClosedPositive h)) :
     Tendsto (graphWeightedHeightDensity h w) (𝓝[≥] 0)
       (𝓝 (∫ x, w x / ‖graphGradient h x‖ ∂graphSurfaceMeasure h)) := by
@@ -249,5 +249,13 @@ theorem tendsto_graphWeightedHeightDensity_zero {h : Spatial → ℝ} (hh : Admi
     (A.continuousOn_graphWeightedHeightDensity hh w hw 0 ⟨le_rfl, A.width_pos.le⟩)
   simpa only [graphWeightedHeightDensity_zero] using hc.tendsto
 
-end AdmissibleGraphCap
+end RegularHeight
+
+theorem AdmissibleGraphCap.tendsto_graphWeightedHeightDensity_zero {h : Spatial → ℝ}
+    (hh : AdmissibleGraphCap h) (w : JointSpace → ℝ)
+    (hw : ContinuousOn w (graphClosedPositive h)) :
+    Tendsto (graphWeightedHeightDensity h w) (𝓝[≥] 0)
+      (𝓝 (∫ x, w x / ‖graphGradient h x‖ ∂graphSurfaceMeasure h)) :=
+  hh.toRegularHeight.tendsto_graphWeightedHeightDensity_zero w hw
+
 end BoundaryDraft

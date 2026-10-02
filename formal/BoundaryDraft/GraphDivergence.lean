@@ -3,7 +3,7 @@ import BoundaryDraft.TwoFaceAngle
 import Mathlib.Analysis.Calculus.LineDeriv.IntegrationByParts
 
 /-!
-# Spatial divergence for the original admissible two-face class
+# Spatial divergence for compact regular height geometry
 
 The cutoff argument uses whole-space integration by parts (one-dimensional
 FTC and Fubini), not an assumed smooth-boundary Stokes theorem. The collar
@@ -183,9 +183,19 @@ private theorem tendsto_ramp_density {δ : ℝ} (hδ : 0 < δ)
   filter_upwards [hsmall] with ε hε
   exact (integral_ramp_density_rescale hε.1 hε.2 B).symm
 
-namespace AdmissibleTwoFace
+/-- A regular height and an independent C³ observable. No spacelikeness,
+causal envelope, overlap jet or divergence conclusion is assumed. -/
+structure RegularHeightPair (h f : Spatial → ℝ) : Prop extends RegularHeight h where
+  smooth_future : ∀ x ∈ graphClosedPositive h,
+    ContDiffAt ℝ 3 (fun y : JointSpace => f y) x
 
-variable {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+theorem AdmissibleTwoFace.toRegularHeightPair {h f : Spatial → ℝ}
+    (hf : AdmissibleTwoFace h f) : RegularHeightPair h f :=
+  ⟨hf.toAdmissibleGraphCap.toRegularHeight, hf.smooth_future⟩
+
+namespace RegularHeightPair
+
+variable {h f : Spatial → ℝ} (hf : RegularHeightPair h f)
 include hf
 
 theorem continuousOn_graphLaplacian : ContinuousOn (graphLaplacian f) (graphClosedPositive h) := by
@@ -195,7 +205,7 @@ theorem continuousOn_graphLaplacian : ContinuousOn (graphLaplacian f) (graphClos
 
 theorem integrableOn_graphLaplacian : IntegrableOn (graphLaplacian f) {x : JointSpace | 0 < h x} :=
   (hf.continuousOn_graphLaplacian.integrableOn_compact
-    hf.toGraphCapData.isCompact_closedPositive).mono_set subset_closure
+    hf.toRegularHeight.isCompact_closedPositive).mono_set subset_closure
 
 theorem continuousOn_graphFlux :
     ContinuousOn (fun x => inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x))
@@ -206,9 +216,9 @@ theorem continuousOn_graphFlux :
 theorem integrable_graphSurface_flux :
     Integrable (fun x => inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x) /
       ‖graphGradient h x‖) (graphSurfaceMeasure h) := by
-  obtain ⟨A⟩ := hf.toAdmissibleGraphCap.exists_controlledCollarAtlas
+  obtain ⟨A⟩ := hf.toRegularHeight.exists_controlledCollarAtlas
   simpa only [graphLevelMeasure_zero] using A.integrable_graphLevel_weight_div
-    hf.toAdmissibleGraphCap _ hf.continuousOn_graphFlux 0 ⟨le_rfl, A.width_pos.le⟩
+    hf.toRegularHeight _ hf.continuousOn_graphFlux 0 ⟨le_rfl, A.width_pos.le⟩
 
 omit hf in
 private theorem graphRampField_zero (ε : ℝ) (hε : 0 < ε) (x : JointSpace)
@@ -232,7 +242,7 @@ private theorem contDiff_graphRampField (ε : ℝ) (hε : 0 < ε) :
 
 private theorem hasCompactSupport_graphRampField (ε : ℝ) (hε : 0 < ε) :
     HasCompactSupport (graphRampField h f ε) := by
-  apply hf.toGraphCapData.isCompact_closedPositive.of_isClosed_subset isClosed_closure
+  apply hf.toRegularHeight.isCompact_closedPositive.of_isClosed_subset isClosed_closure
   apply closure_minimal _ isClosed_closure
   intro x hx
   by_contra hn
@@ -267,7 +277,7 @@ private theorem divergence_graphRampField (ε : ℝ) (x : JointSpace)
 
 private theorem ae_positive_eq_closedPositive :
     {x : JointSpace | 0 < h x} =ᶠ[ae volume] graphClosedPositive h := by
-  have hz := hf.toAdmissibleGraphCap.volume_graphLevel_eq_zero 0
+  have hz := hf.toRegularHeight.volume_graphLevel_eq_zero 0
     (fun x hx => hf.regular_zero x hx.1 hx.2)
   have hn : ∀ᵐ x : JointSpace, x ∉ graphLevel h 0 := by
     simpa only [ae_iff, not_not] using hz
@@ -276,7 +286,7 @@ private theorem ae_positive_eq_closedPositive :
   constructor
   · exact fun hp => (subset_closure (s := {y : JointSpace | 0 < h y}) hp)
   · intro hxc
-    exact lt_of_le_of_ne (hf.toAdmissibleGraphCap.nonneg_on_closedPositive x hxc)
+    exact lt_of_le_of_ne (hf.toRegularHeight.nonneg_on_closedPositive x hxc)
       (fun he => hx ⟨hxc, he.symm⟩)
 
 private theorem integral_graphDivergence_ramp_closedPositive (ε : ℝ) (hε : 0 < ε) :
@@ -295,14 +305,14 @@ private theorem continuousOn_ramp_laplacian (ε : ℝ) :
     ContinuousOn (fun x : JointSpace => graphHeightRamp (h x / ε) * graphLaplacian f x)
       (graphClosedPositive h) :=
   (contDiff_graphHeightRamp.continuous.comp_continuousOn
-    (hf.toAdmissibleGraphCap.continuousOn_closedPositive.div_const ε)).mul
+    (hf.toRegularHeight.continuousOn_closedPositive.div_const ε)).mul
       hf.continuousOn_graphLaplacian
 
 private theorem continuousOn_ramp_flux (ε : ℝ) :
     ContinuousOn (fun x : JointSpace => (deriv graphHeightRamp (h x / ε) / ε) *
       inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x)) (graphClosedPositive h) :=
   ((continuous_deriv_graphHeightRamp.comp_continuousOn
-    (hf.toAdmissibleGraphCap.continuousOn_closedPositive.div_const ε)).div_const ε).mul
+    (hf.toRegularHeight.continuousOn_closedPositive.div_const ε)).div_const ε).mul
       hf.continuousOn_graphFlux
 
 private theorem integral_ramp_flux_eq_height (A : ControlledCollarAtlas h)
@@ -313,9 +323,9 @@ private theorem integral_ramp_flux_eq_height (A : ControlledCollarAtlas h)
         graphWeightedHeightDensity h
           (fun x => inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x)) t := by
   rw [setIntegral_eq_of_subset_of_forall_diff_eq_zero
-    hf.toGraphCapData.isCompact_closedPositive.isClosed.measurableSet
+    hf.toRegularHeight.isCompact_closedPositive.isClosed.measurableSet
     (show graphClosedCollar h A.width ⊆ graphClosedPositive h from inter_subset_left)]
-  · exact A.integral_closedCollar_weighted hf.toAdmissibleGraphCap _ hf.continuousOn_graphFlux
+  · exact A.integral_closedCollar_weighted hf.toRegularHeight _ hf.continuousOn_graphFlux
       _ ((continuous_deriv_graphHeightRamp.comp (continuous_id.div_const ε)).div_const ε).continuousOn
   · intro x hx
     have hxt : A.width < h x := lt_of_not_ge (fun hle => hx.2 ⟨hx.1, hle⟩)
@@ -332,11 +342,11 @@ theorem graph_ramp_balance (A : ControlledCollarAtlas h)
           (fun x => inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x)) t) := by
   rw [setIntegral_congr_set hf.ae_positive_eq_closedPositive]
   have he := hf.integral_graphDivergence_ramp_closedPositive ε hε
-  rw [setIntegral_congr_fun hf.toGraphCapData.isCompact_closedPositive.isClosed.measurableSet
+  rw [setIntegral_congr_fun hf.toRegularHeight.isCompact_closedPositive.isClosed.measurableSet
     (fun x hx => hf.divergence_graphRampField ε x hx),
     integral_add
-      ((hf.continuousOn_ramp_laplacian ε).integrableOn_compact hf.toGraphCapData.isCompact_closedPositive)
-      ((hf.continuousOn_ramp_flux ε).integrableOn_compact hf.toGraphCapData.isCompact_closedPositive),
+      ((hf.continuousOn_ramp_laplacian ε).integrableOn_compact hf.toRegularHeight.isCompact_closedPositive)
+      ((hf.continuousOn_ramp_flux ε).integrableOn_compact hf.toRegularHeight.isCompact_closedPositive),
     hf.integral_ramp_flux_eq_height A ε hε hεA] at he
   linarith
 
@@ -345,7 +355,7 @@ private theorem tendsto_integral_ramp_laplacian :
       graphHeightRamp (h x / ε) * graphLaplacian f x) (𝓝[>] 0)
       (𝓝 (∫ x in {x : JointSpace | 0 < h x}, graphLaplacian f x)) := by
   have hm : MeasurableSet {x : JointSpace | 0 < h x} :=
-    (hf.toGraphCapData.isOpen_positive.preimage (PiLp.continuous_equiv 2 _)).measurableSet
+    (hf.toRegularHeight.isOpen_positive.preimage (PiLp.continuous_equiv 2 _)).measurableSet
   apply tendsto_integral_filter_of_dominated_convergence (fun x => ‖graphLaplacian f x‖)
   · exact Eventually.of_forall (fun ε =>
       ((hf.continuousOn_ramp_laplacian ε).mono subset_closure).aestronglyMeasurable hm)
@@ -360,7 +370,7 @@ private theorem tendsto_integral_ramp_laplacian :
       nhdsWithin_le_nhds (gt_mem_nhds hx)] with ε hε hεx
     rw [graphHeightRamp_one ((one_le_div hε).mpr hεx.le), one_mul]
 
-/-- S19 with weight one, on the actual original admissible two-face class.
+/-- S19 with weight one, on compact regular height geometry without any slope restriction.
 The outward normal is minus the increasing-height normal. The surface measure
 is the existing normalized Hausdorff measure, and positive-height critical
 points are permitted. -/
@@ -368,9 +378,9 @@ theorem spatial_divergence :
     (∫ x in {x : JointSpace | 0 < h x}, graphLaplacian f x) =
       -(∫ x, inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x) /
         ‖graphGradient h x‖ ∂graphSurfaceMeasure h) := by
-  obtain ⟨A⟩ := hf.toAdmissibleGraphCap.exists_controlledCollarAtlas
+  obtain ⟨A⟩ := hf.toRegularHeight.exists_controlledCollarAtlas
   have hr := (tendsto_ramp_density A.width_pos _
-    (A.continuousOn_graphWeightedHeightDensity hf.toAdmissibleGraphCap _ hf.continuousOn_graphFlux)).neg
+    (A.continuousOn_graphWeightedHeightDensity hf.toRegularHeight _ hf.continuousOn_graphFlux)).neg
   simp only [graphWeightedHeightDensity_zero] at hr
   have he : Tendsto (fun ε : ℝ => ∫ x in {x : JointSpace | 0 < h x},
       graphHeightRamp (h x / ε) * graphLaplacian f x) (𝓝[>] 0)
@@ -381,6 +391,39 @@ theorem spatial_divergence :
       nhdsWithin_le_nhds (gt_mem_nhds A.width_pos)] with ε hε hεA
     exact (hf.graph_ramp_balance A ε hε hεA).symm
   exact tendsto_nhds_unique hf.tendsto_integral_ramp_laplacian he
+
+end RegularHeightPair
+
+namespace AdmissibleTwoFace
+variable {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+include hf
+
+theorem continuousOn_graphLaplacian : ContinuousOn (graphLaplacian f) (graphClosedPositive h) :=
+  hf.toRegularHeightPair.continuousOn_graphLaplacian
+
+theorem integrableOn_graphLaplacian : IntegrableOn (graphLaplacian f) {x : JointSpace | 0 < h x} :=
+  hf.toRegularHeightPair.integrableOn_graphLaplacian
+
+theorem continuousOn_graphFlux :
+    ContinuousOn (fun x => inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x))
+      (graphClosedPositive h) := hf.toRegularHeightPair.continuousOn_graphFlux
+
+theorem integrable_graphSurface_flux :
+    Integrable (fun x => inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x) /
+      ‖graphGradient h x‖) (graphSurfaceMeasure h) := hf.toRegularHeightPair.integrable_graphSurface_flux
+
+theorem graph_ramp_balance (A : ControlledCollarAtlas h)
+    (ε : ℝ) (hε : 0 < ε) (hεA : ε < A.width) :
+    (∫ x in {x : JointSpace | 0 < h x}, graphHeightRamp (h x / ε) * graphLaplacian f x) =
+      -(∫ t in Icc 0 A.width, (deriv graphHeightRamp (t / ε) / ε) *
+        graphWeightedHeightDensity h
+          (fun x => inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x)) t) :=
+  hf.toRegularHeightPair.graph_ramp_balance A ε hε hεA
+
+theorem spatial_divergence :
+    (∫ x in {x : JointSpace | 0 < h x}, graphLaplacian f x) =
+      -(∫ x, inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x) /
+        ‖graphGradient h x‖ ∂graphSurfaceMeasure h) := hf.toRegularHeightPair.spatial_divergence
 
 end AdmissibleTwoFace
 end BoundaryDraft

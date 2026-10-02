@@ -123,8 +123,19 @@ partners and assumes neither mass nor convergence. The separate
 [finite-geometry bridge](formal/DIMENSION_INTERVALS.md) now proves actual
 causal-interval volumes, Lorentz and positive-dilation action transport, and
 unchanged 4D coordinate/measure compatibility in the same dimension range.
-Neither proves a new general-dimensional Poisson bridge or global two-face
-limit; independent human mathematical review remains outstanding.
+The separate [dimension-indexed Poisson bridge](formal/DIMENSION_EXPECTATION.md)
+now constructs the genuine finite-order action and proves its exact expectation
+using actual restricted interval volume, then specializes to that flat action
+under ambient causal convexity. It calibrates the dimensionless 2D action and
+transports the unchanged 4D action and probability law through the proved
+coordinate map. No global higher-dimensional two-face limit or sample-wise
+convergence follows; independent human mathematical review remains outstanding.
+The [dimension-indexed two-face geometry package](notes/dimension-two-face-geometry.md)
+now supplies a written region/stratum and intrinsic-area proof, with chart
+compatibility, finite target, Lorentz/dilation transport, exact 4D identification,
+and a named smooth 3D pilot for the next analytic tasks. Its independent
+higher-dimensional deterministic/expected goals remain open. This is
+conventional geometry plus regressions, not a new Lean geometry theorem.
 
 The **concrete ellipsoid geometric interpretation** is also checked separately:
 its joint is a smooth regular level with nonzero Euclidean gradient, its angle
@@ -299,7 +310,7 @@ transfers the result to expectations. The original class and all goal
 definitions are unchanged. No shrinking-cutoff uniformity, convergence rate,
 unrestricted-conjecture result, or sample-wise convergence is claimed.
 
-### Fixed-null mixed estimates
+### Fixed-null mixed estimates and written expected-action assembly
 
 The [fixed-null mixed pilot](notes/null-mixed-estimates.md) derives the signed
 unit joint coefficient directly for a smooth spacelike lower face beneath a
@@ -308,8 +319,14 @@ uniform tip control, and the generator-derivative term needed for source
 partitions. Discarding the complement of a shrinking joint collar is a proved
 localization-route obstruction, not a counterexample to the full action.
 The [nonplanar sine diagnostics](results/null-mixed.md) retain all future
-partners. These are written arguments and executable regressions, not a new
-Lean-checked mixed-region or Poisson-expectation theorem; #84 owns that assembly.
+partners. The [written assembly for #84](notes/null-mixed-assembly.md) now
+proves the complete region/stratum geometry and global induced-area limit,
+then uses an exact positive-density Poisson identity to obtain the expected-action
+limit. Independent finite-order and positive-layer quadrature regressions
+check the normalization without defining expectation from the reduced action.
+This is a written proof, not a new Lean-checked mixed-region theorem or an
+independently reviewed result. Arbitrary null/mixed boundaries, curved and
+dimensional extensions, and sample-wise convergence remain open.
 
 ### Independent-face enlargement
 
@@ -326,6 +343,14 @@ The [partial direct-origin analytic backend](notes/direct-origin-short.md) now
 checks the absolute short basis responses and a conditional remainder transfer
 in Lean. The actual class-E geometric producers and enlarged-class limit remain
 unproved; #97 stays open.
+
+The separate [Lean geometry package for #106](formal/INDEPENDENT_FACE_GEOMETRY.md)
+now encodes that independent-envelope class and proves its region, strata,
+positive-angle/induced-area geometry and finite-density Poisson equality.
+It includes every old member and the genuinely steep symmetric capsule,
+retains interior critical points, and exposes slope-independent height-atlas
+and divergence prerequisites. The enlarged-class overlap and limit proofs
+remain separate work under #107–#109; no new asymptotic coverage is claimed.
 
 ### Curved-spacetime feasibility boundary
 
@@ -413,12 +438,17 @@ physics.
   normalizations, checked signed integrals, parity-dependent tails/moments and
   a checked regulated weighted local coefficient; not a higher-dimensional
   two-face limit.
+- [Dimension-indexed two-face geometry](notes/dimension-two-face-geometry.md) —
+  written finite geometry and intrinsic targets, the `SmoothPilot3` contract,
+  all-component examples and dimension/regularity obligations; no new limit.
 - `notes/general-contract.md` — general coverage matrix, independent candidate
   theorem, null/mixed taxonomy, obstruction tests and downstream contracts.
 - `notes/general-contract-literature.md` — checked source passages, normalization
   differences, dimensional/curvature qualifications and unresolved attribution.
 - `notes/null-mixed-estimates.md`, `null_mixed.py` — fixed-null weighted estimates,
   tip/complement accounting and nonplanar diagnostics for the selected mixed class.
+- `notes/null-mixed-assembly.md`, `mixed_poisson.py` — written global deterministic
+  and expected-action proof for that class; independent finite-order/layer checks.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.
