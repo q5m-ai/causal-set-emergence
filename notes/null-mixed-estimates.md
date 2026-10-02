@@ -9,6 +9,11 @@ No new Poisson instance or expected-action theorem is asserted. #84 owns that
 geometric/API assembly. This does not close #24, cover arbitrary null/null
 joints, or establish convergence of individual sprinklings.
 
+**Subsequent handoff:** [the #84 assembly](null-mixed-assembly.md) supplies the
+written region/stratum proof, global induced-area limit and exact Poisson
+transfer, with independent layer regressions. It does not add Lean declarations
+or independent human review. The #83-only verification claims below are retained.
+
 The unweighted all-partner strategy already appears in
 [first-attempt §3](first-attempt.md#3-first-class-one-null-cone-future-boundary).
 The additions here are the weighted fixed-geometry bound, uniform tip estimate,
