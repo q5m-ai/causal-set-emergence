@@ -389,6 +389,16 @@ remainder transfer in Lean. It does not yet connect those inputs to class E,
 port its long density, or establish its global deterministic/expected limit.
 The new consumer adds no global coverage to this matrix; #97 and #86 remain open.
 
+**#107 short handoff:** the subsequent [actual class-E short proof](../formal/INDEPENDENT_SHORT.md)
+now produces raw/envelope agreement, the complete absolute overlap two-jet,
+measurable derivative-controlled remainder, actual four-mode density
+expansion and independent coefficient identification. Its unconditional
+short-action limit holds for every sufficiently small fixed positive cutoff,
+including steep, variable-angle and positive-height-critical-point members.
+This connects the backend to geometry, but it is still **not a global class-E
+limit**: #108 owns long cancellation and #109 owns full/expected assembly.
+The global coverage matrix and outstanding human-review status are unchanged.
+
 ## 6. Selected first flat 4D mixed pilot for #83 / #84
 
 **GO, directly at fixed null geometry.** Put the future tip at zero. Choose a

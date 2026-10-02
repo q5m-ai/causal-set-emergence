@@ -140,6 +140,7 @@ import BoundaryDraft.ShortOverlapAsymptotics
 import BoundaryDraft.ShortCutoffPolynomial
 import BoundaryDraft.ShortRadialAbsolute
 import BoundaryDraft.AbsoluteShortModel
+import BoundaryDraft.IndependentShortLimit
 import BoundaryDraft.TwoFaceShortReduction
 import BoundaryDraft.TwoFaceShortLimit
 import BoundaryDraft.TwoFaceLimit
