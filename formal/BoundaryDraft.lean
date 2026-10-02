@@ -114,6 +114,7 @@ import BoundaryDraft.TwoFaceLongGeometry
 import BoundaryDraft.TwoFaceLongDisintegration
 import BoundaryDraft.AveragedQuadraticJet
 import BoundaryDraft.TwoFaceLongNull
+import BoundaryDraft.IndependentFaceLongNull
 import BoundaryDraft.TwoFaceAssembly
 import BoundaryDraft.TwoFaceCoefficient
 import BoundaryDraft.GraphWeightedCoarea

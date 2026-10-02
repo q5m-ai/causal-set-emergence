@@ -1,4 +1,4 @@
-import BoundaryDraft.TwoFaceNullGap
+import BoundaryDraft.LongEnvelopeData
 import BoundaryDraft.MonotoneHingeIntegral
 
 /-!
@@ -19,11 +19,13 @@ are derivatives of the actual smooth product, not extra analytic premises.
 
 ## Common constants and compact sets
 
-Choose `κ, η` from the slope budget and `m > 0` from the already proved
-`exists_gap_height_margin`. Let `H ≥ 0` bound the positive-part height globally.
-The proof uses `c = (1-η)/2`, `A = (1+η)/(2*δ)`,
-`V = δ + (H+1)/c` and `ε = m*δ^2/2`. Since `κ < 1`, moving the endpoint
-by at most `ε/(2*δ)` loses at most `m*δ/4` in positive-part height.
+Choose independent lower/upper constants `κ, η` and `m > 0` from the
+proved minimum endpoint margin. Let `H ≥ 0` bound the positive-part height.
+The proof uses `c = (1-η)/2`, `A = (1+η)/(2*δ)`, `V = δ + (H+1)/c`
+and `ε = min (δ^2/2) (m*δ^2/(2*(1+κ+η)))`. The thickness constant is
+`κ+η`, potentially greater than one. E24 keeps the height loss below
+`m*δ/4`, including old-active endpoints whose new gap is negative.
+`Envelope` contains the shared proof; the original signatures are wrappers.
 The fixed active spatial set is `tube h (m*δ/2)`, and the perturbed-endpoint
 tube is `tube h (m*δ/4)`. Both are compact; the latter is contained in `{h>0}`.
 
@@ -49,11 +51,14 @@ def weight (σ v : ℝ) : ℝ := (v - σ / v) ^ 2 / (8 * v)
 def tube (h : Spatial → ℝ) (a : ℝ) : Set JointSpace :=
   graphClosedPositive h ∩ {x | a ≤ max 0 (h x)}
 
-theorem compact_tube {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f) (a : ℝ) :
+theorem compact_tube_of_regular {h : Spatial → ℝ} (hh : RegularHeight h) (a : ℝ) :
     IsCompact (tube h a) := by
-  apply hf.toGraphCapData.isCompact_closedPositive.inter_right
+  apply hh.isCompact_closedPositive.inter_right
   exact isClosed_le continuous_const
-    (hf.toGraphCapData.continuous_positivePart.comp (PiLp.continuous_equiv 2 _))
+    (hh.continuous_positivePart.comp (PiLp.continuous_equiv 2 _))
+
+theorem compact_tube {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f) (a : ℝ) :
+    IsCompact (tube h a) := compact_tube_of_regular hf.toAdmissibleGraphCap.toRegularHeight a
 
 theorem tube_positive {h : Spatial → ℝ} {a : ℝ} (ha : 0 < a)
     {x : JointSpace} (hx : x ∈ tube h a) : 0 < h x := by
@@ -121,6 +126,23 @@ theorem perturbed_endpoint_margin {h f : Spatial → ℝ} {κ m δ ε σ v : ℝ
     gcongr
     exact hσ.2
   linarith
+
+/-- The E24 interval uses the SUM of the independent envelope constants. -/
+def perturbationWidth (Λ m δ : ℝ) : ℝ :=
+  min (δ ^ 2 / 2) (m * δ ^ 2 / (2 * (1 + Λ)))
+
+theorem perturbationWidth_pos {Λ m δ : ℝ} (hΛ : 0 ≤ Λ) (hm : 0 < m) (hδ : 0 < δ) :
+    0 < perturbationWidth Λ m δ := by unfold perturbationWidth; positivity
+
+theorem perturbationWidth_loss {Λ m δ : ℝ} (hΛ : 0 ≤ Λ) (hm : 0 < m) (hδ : 0 < δ) :
+    Λ * perturbationWidth Λ m δ / (2 * δ) ≤ m * δ / 4 := by
+  have he := (le_div_iff₀ (show 0 < 2 * (1 + Λ) by positivity)).mp
+    (min_le_right (δ ^ 2 / 2) (m * δ ^ 2 / (2 * (1 + Λ))))
+  have hp := perturbationWidth_pos hΛ hm hδ
+  apply (div_le_iff₀ (by positivity : 0 < 2 * δ)).mpr
+  change Λ * perturbationWidth Λ m δ ≤ _
+  change perturbationWidth Λ m δ * (2 * (1 + Λ)) ≤ _ at he
+  nlinarith
 
 /-- Smooth ambient parameters: proper-time square, length, frozen height-minus-
 future-value, base point, direction. Directions are not differentiated on a sphere. -/
@@ -288,10 +310,12 @@ def activeBox (h f : Spatial → ℝ) (a δ V ε : ℝ) : Set Index :=
   ((tube h a ×ˢ univ) ×ˢ (Icc 0 ε ×ˢ Icc δ V)) ∩
     {p | 0 ≤ twoFaceRayGap h f p.1.1 p.1.2 0 p.2.2}
 
-theorem continuous_parameters {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f) :
+namespace Envelope
+
+theorem continuous_parameters {h f : Spatial → ℝ} (hf : LongEnvelopeData h f) :
     Continuous (indexParameters h f) := by
   have he := PiLp.continuous_equiv 2 (fun _ : Fin 3 => ℝ)
-  have hH := hf.toGraphCapData.continuous_positivePart.comp he
+  have hH := hf.toRegularHeight.continuous_positivePart.comp he
   have hF := hf.strictGraphLipschitz_upper.continuous.comp he
   change Continuous (fun p : Index => (p.2.1, p.2.2,
     max 0 (h p.1.1) - f p.1.1, p.1.1, p.1.2.val))
@@ -299,10 +323,10 @@ theorem continuous_parameters {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h 
     (((hH.sub hF).comp continuous_fst.fst).prodMk
       (continuous_fst.fst.prodMk (continuous_subtype_val.comp continuous_fst.snd))))
 
-theorem continuous_null {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f) :
+theorem continuous_null {h f : Spatial → ℝ} (hf : LongEnvelopeData h f) :
     Continuous (fun p : Index => twoFaceRayGap h f p.1.1 p.1.2 0 p.2.2) := by
   have he := PiLp.continuous_equiv 2 (fun _ : Fin 3 => ℝ)
-  have hH := hf.toGraphCapData.continuous_positivePart.comp he
+  have hH := hf.toRegularHeight.continuous_positivePart.comp he
   have hF := hf.strictGraphLipschitz_upper.continuous.comp he
   have hh : Continuous (fun p : Index =>
       max 0 (h p.1.1) + f (p.1.1 + (p.2.2 / 2) • p.1.2.val : JointSpace) -
@@ -316,11 +340,24 @@ theorem continuous_null {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f) :
   simp only [twoFaceRayGap, twoFaceGap, zero_div, sub_zero, add_zero]
   rfl
 
-theorem compact_activeBox {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+theorem compact_activeBox {h f : Spatial → ℝ} (hf : LongEnvelopeData h f)
     (a δ V ε : ℝ) : IsCompact (activeBox h f a δ V ε) := by
-  exact (((compact_tube hf a).prod isCompact_univ).prod
+  exact (((compact_tube_of_regular hf.toRegularHeight a).prod isCompact_univ).prod
     (isCompact_Icc.prod isCompact_Icc)).inter_right
       (isClosed_le continuous_const (continuous_null hf))
+
+end Envelope
+
+theorem continuous_parameters {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f) :
+    Continuous (indexParameters h f) := Envelope.continuous_parameters hf.toLongEnvelopeData
+
+theorem continuous_null {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f) :
+    Continuous (fun p : Index => twoFaceRayGap h f p.1.1 p.1.2 0 p.2.2) :=
+  Envelope.continuous_null hf.toLongEnvelopeData
+
+theorem compact_activeBox {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+    (a δ V ε : ℝ) : IsCompact (activeBox h f a δ V ε) :=
+  Envelope.compact_activeBox hf.toLongEnvelopeData a δ V ε
 
 /-- A positive superlevel bound gives membership without any exterior regularity. -/
 theorem mem_tube_of_margin {h : Spatial → ℝ} {a : ℝ} (ha : 0 < a)
@@ -330,18 +367,20 @@ theorem mem_tube_of_margin {h : Spatial → ℝ} {a : ℝ} (ha : 0 < a)
   have hp := ha.trans_le hx
   simpa only [mem_setOf_eq, lt_max_iff, lt_self_iff_false, false_or] using hp
 
+namespace Envelope
+
 /-- Common constants for EVERY spatial point and direction, derived from the
-unchanged admissibility. `B` is a compact bound on the proved second derivative
+independent causal envelopes and interior smooth germs. `B` is a compact bound on the proved second derivative
 of the full product, rather than an assumed analytic bound. -/
-theorem exists_hypotheses {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+theorem exists_hypotheses {h f : Spatial → ℝ} (hf : LongEnvelopeData h f)
     {δ : ℝ} (hδ : 0 < δ) :
     ∃ V ε c A M B : ℝ, δ < V ∧ 0 < ε ∧ 0 < c ∧ 0 ≤ A ∧ 0 ≤ M ∧ 0 ≤ B ∧
       ∀ (x : Spatial) (ω : OverlapSphere),
         MonotoneHinge.Hypotheses (twoFaceRayGap h f x ω) weight δ V ε c A M B := by
-  obtain ⟨κ, η, hκ, hη, hbudget, hh, hfl⟩ := hf.slope_budget
+  obtain ⟨κ, η, hκ, hη, hκ1, hη1, _, hfl, hh⟩ := hf.envelope_bounds
   obtain ⟨m, hm, hmargin⟩ := hf.exists_gap_height_margin
-  obtain ⟨H₀, hH₀⟩ := hf.toGraphCapData.hasCompactSupport_positivePart.exists_bound_of_continuous
-    hf.toGraphCapData.continuous_positivePart
+  obtain ⟨H₀, hH₀⟩ := hf.toRegularHeight.hasCompactSupport_positivePart.exists_bound_of_continuous
+    hf.toRegularHeight.continuous_positivePart
   let H := max 0 H₀
   have hH : ∀ x, max 0 (h x) ≤ H := by
     intro x
@@ -358,27 +397,22 @@ theorem exists_hypotheses {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
     have hH0 : 0 ≤ H := le_max_left _ _
     dsimp [V]
     exact lt_add_of_pos_right _ (div_pos (by linarith) hc)
-  let ε := m * δ ^ 2 / 2
-  have hε : 0 < ε := by dsimp [ε]; positivity
+  let ε := perturbationWidth (κ + η) m δ
+  have hε : 0 < ε := perturbationWidth_pos (add_nonneg hκ hη) hm hδ
   let a := m * δ / 4
   have ha : 0 < a := by dsimp [a]; positivity
-  have hsmall : κ * ε / (2 * δ) ≤ m * δ / 4 := by
-    have he : ε / (2 * δ) = m * δ / 4 := by
-      dsimp [ε]
-      field_simp
-      ring
-    rw [mul_div_assoc, he]
-    exact mul_le_of_le_one_left ha.le (by linarith)
+  have hsmall : (κ + η) * ε / (2 * δ) ≤ m * δ / 4 :=
+    perturbationWidth_loss (add_nonneg hκ hη) hm hδ
   have htube (x : Spatial) (ω : OverlapSphere) {σ v : ℝ}
       (hσ : σ ∈ Icc 0 ε) (hv : δ ≤ v) (hg : 0 ≤ twoFaceRayGap h f x ω 0 v) :
       endpoint (parameters h f x ω σ v) ∈ tube h a := by
-    have hb := perturbed_endpoint_margin hκ hm hδ hh hmargin hsmall x ω hv hσ hg
+    have hb := perturbed_endpoint_margin (add_nonneg hκ hη) hm hδ hh hmargin hsmall x ω hv hσ hg
     exact mem_tube_of_margin ha _ hb
   have hsmooth (x : Spatial) (ω : OverlapSphere) {σ v : ℝ}
       (hσ : σ ∈ Icc 0 ε) (hv : v ∈ MonotoneHinge.active (twoFaceRayGap h f x ω) δ V) :
       ContDiffAt ℝ 3 (product f) (parameters h f x ω σ v) :=
     smooth_product (ne_of_gt (hδ.trans_le hv.1.1))
-      (hf.smooth_future _ (htube x ω hσ hv.1.1 hv.2).1)
+      (hf.smooth_positive _ (tube_positive ha (htube x ω hσ hv.1.1 hv.2)))
   let K := activeBox h f (m * δ / 2) δ V ε
   have hK : IsCompact K := compact_activeBox hf _ _ _ _
   have hsK (p : Index) (hp : p ∈ K) : ContDiffAt ℝ 3 (product f) (indexParameters h f p) :=
@@ -456,7 +490,7 @@ theorem exists_hypotheses {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
     constructor <;> linarith [ht.1, ht.2]
   · intro σ hσ v hv
     have hs := smooth_gap (ne_of_gt (hδ.trans_le hv.1.1))
-      (hf.smooth_future _ (htube x ω hσ hv.1.1 hv.2).1)
+      (hf.smooth_positive _ (tube_positive ha (htube x ω hσ hv.1.1 hv.2)))
     simpa only [Function.comp_def, gap_parameters] using
       (hs.continuousAt.comp (hpc σ).continuousAt).continuousWithinAt
   · intro σ _ v hv
@@ -464,7 +498,7 @@ theorem exists_hypotheses {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
       (continuous_const.prodMk continuous_id).continuousAt).continuousWithinAt
   · intro v hv
     have hs := smooth_gap (ne_of_gt (hδ.trans_le hv.1.1))
-      (hf.smooth_future _ (htube x ω hz hv.1.1 hv.2).1)
+      (hf.smooth_positive _ (tube_positive ha (htube x ω hz hv.1.1 hv.2)))
     have hp : ContDiffAt ℝ 3 (fun p : ℝ × ℝ => parameters h f x ω p.1 p.2) (0, v) :=
       contDiffAt_fst.prodMk (contDiffAt_snd.prodMk contDiffAt_const)
     simpa only [Function.comp_def, gap_parameters] using
@@ -499,6 +533,16 @@ theorem exists_hypotheses {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
     calc
       _ ≤ B₀ := by simpa only [Real.norm_eq_abs] using hB₀ _ hp
       _ ≤ B := le_max_right _ _
+
+end Envelope
+
+/-- Original geometric contract, supplied by the shared envelope proof. -/
+theorem exists_hypotheses {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+    {δ : ℝ} (hδ : 0 < δ) :
+    ∃ V ε c A M B : ℝ, δ < V ∧ 0 < ε ∧ 0 < c ∧ 0 ≤ A ∧ 0 ≤ M ∧ 0 ≤ B ∧
+      ∀ (x : Spatial) (ω : OverlapSphere),
+        MonotoneHinge.Hypotheses (twoFaceRayGap h f x ω) weight δ V ε c A M B :=
+  Envelope.exists_hypotheses hf.toLongEnvelopeData hδ
 
 /-- Geometric specialization of the three regimes, right quadratic jet and
 common normalized-remainder bound. The same constants precede BOTH fibre

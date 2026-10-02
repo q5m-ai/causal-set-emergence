@@ -85,8 +85,15 @@ existing finite-density Poisson equality. Slope-independent regular-height
 atlases, weighted coarea and spatial divergence serve downstream consumers.
 The steep symmetric capsule is admitted and excluded from the original
 coordinate contracts, with its positive-height critical point retained.
-This completes #106's geometric prerequisites, **not** the enlarged-class
-short/long overlap theorems or deterministic/expected limits in #97.
+This completes #106's geometric prerequisites, **not** by itself the
+enlarged-class overlap theorems or deterministic/expected limits in #97.
+The separate [class-E long proof](INDEPENDENT_LONG_NULL.md) now derives the
+actual long-density right quadratic jet and fully normalized signed long
+cancellation at every fixed positive cutoff. It uses independent endpoint
+margins and the sum-controlled compact perturbation tube, retaining moving
+contacts, coefficient integrability and positive-height critical points.
+Original long theorem contracts are preserved. This completes #108's long
+obligation only; the actual short proof and final #97 assembly remain separate.
 
 The [short-displacement proof note](../notes/curved-face-stability.md) is a
 **conventional analytic argument, not an end-to-end Lean theorem**.
