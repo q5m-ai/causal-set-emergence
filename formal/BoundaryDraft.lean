@@ -31,6 +31,13 @@ import BoundaryDraft.DimensionDiscrete
 import BoundaryDraft.DimensionMeasureExpectation
 import BoundaryDraft.DimensionExpectation
 import BoundaryDraft.DimensionExpectationCompatibility
+import BoundaryDraft.Pilot3Contract
+import BoundaryDraft.Pilot3RegularHeight
+import BoundaryDraft.Pilot3Geometry
+import BoundaryDraft.Pilot3Metric
+import BoundaryDraft.Pilot3Surface
+import BoundaryDraft.Pilot3Examples
+import BoundaryDraft.Pilot3Components
 import BoundaryDraft.NullTransverseCancellation
 import BoundaryDraft.KernelEstimates
 import BoundaryDraft.KernelHalfLine
