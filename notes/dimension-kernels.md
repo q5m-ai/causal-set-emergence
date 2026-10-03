@@ -569,6 +569,15 @@ is a regulated calculation, not that missing derivation.
 
 ## 7. Proof-obligation ledger and proposed next issues
 
+**Subsequent #78 geometric input:** [the written long-null package](dimension-long-null.md)
+derives the actual 3D overlap jet and normalized long cancellation at every
+fixed positive cutoff. Its bounded transfer proves sufficient 5D/6D jets for
+a separately named C⁴ class at sufficiently small fixed cutoffs. It retains
+critical fractional/logarithmic contact-model responses and makes no arbitrary-
+cutoff or all-C³ higher-dimensional claim. These are written proofs plus
+regressions, not new Lean specializations of contract K; the older prerequisite
+ledger below records what the kernel package itself established.
+
 | Obligation | All-dimension status here | Existing checked 4D anchor | Next proof obligation |
 |---|---|---|---|
 | Action, coefficients, interval-volume constant | published coefficients, genuine finite-order action, Gamma conversion, actual interval-volume law and ambient Lorentz transport checked | `Specification`, `DiscreteBDG`, `IntervalMoments` | geometric uses beyond finite density |
