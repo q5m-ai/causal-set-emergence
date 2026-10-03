@@ -390,6 +390,16 @@ open. This is analytic feasibility work for #73, with symbolic/numerical
 regressions, **not** a Lean-verified curved limit or an expected-action theorem;
 #93 owns the canonical curved finite-density API.
 
+The [contact-averaged long proof](notes/curved-contact-long.md) now derives
+actual fixed-cutoff signed long cancellation for the original two-face class
+with exactly that polynomial density, including smooth endpoint weights.
+It integrates source time before seeking dominated jet control and retains
+both moving-boundary contributions. This is a conventional written proof with
+independent executable regressions, not a new Lean theorem or independent
+human review. The raw-first-endpoint obstruction remains valid; the actual
+short remainder, supported bulk theorem, curved joint comparison and complete
+deterministic/expected limit remain separate obligations under #74/#75/#76.
+
 ## Program 2 — dynamics and automaton-like growth
 
 The exploratory question is whether causal-set dynamics can be represented as
