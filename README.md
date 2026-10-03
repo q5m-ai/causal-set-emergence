@@ -390,6 +390,15 @@ open. This is analytic feasibility work for #73, with symbolic/numerical
 regressions, **not** a Lean-verified curved limit or an expected-action theorem;
 #93 owns the canonical curved finite-density API.
 
+The subsequent [sharp-cutoff contact analysis](notes/curved-remainders.md)
+for #74 gives the actual phase-straightened amplitudes and moving-contact
+terms. On that fixed curved pilot, even the normalized **signed** long fibre
+has no density-uniform integrable first-endpoint dominator. This obstructs
+one order of averaging, not the complete action limit. Contacts must instead
+be averaged, or explicitly subtracted and restored, before signed domination.
+The corrected long and actual short contracts and the supported bulk theorem
+remain open; #74 is not closed by this partial, non-Lean delivery.
+
 ## Program 2 — dynamics and automaton-like growth
 
 The exploratory question is whether causal-set dynamics can be represented as
