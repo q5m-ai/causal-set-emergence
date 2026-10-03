@@ -585,6 +585,13 @@ The existing 4D regressions are retained, not replaced by these examples.
 
 ## 7. Regularity ledger: geometry is not an averaged jet
 
+**Subsequent #78 written result:** [the actual long-null analysis](dimension-long-null.md)
+now supplies the 3D jet and cancellation at every fixed positive cutoff, and a
+bounded 5D/6D transfer for C⁴ germs at sufficiently small fixed cutoffs. It
+proves the needed cutoff regularity from the joint collar, rather than assuming
+generic transversality. This does not turn the trial policies below into an
+all-dimension theorem or a Lean geometric specialization.
+
 The matrix/chart argument needs only C¹ regular germs. More face derivatives
 are needed to control an **actual translated overlap**, whose moving contacts
 and exceptional directions can lose regularity even with smooth faces.
