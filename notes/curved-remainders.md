@@ -33,8 +33,9 @@ weights and positive cutoffs are independent of density. On a fixed compact
 time slab containing the region and its causal intervals, put:
 
 ```math
-q(t)=1+t^2,\qquad 1\leq q\leq Q=1+T_*^2,\qquad d\mu_g=q(t)\,d^4x.
-\tag{R1}
+\begin{aligned}
+q(t)&=1+t^2,\qquad 1\leq q\leq Q=1+T_*^2,\qquad d\mu_g=q(t)\,d^4x.
+\end{aligned}\tag{R1}
 ```
 
 The factor is globally smooth, positive and measurable, and bounded on an
@@ -54,9 +55,10 @@ convention is exactly [#73, (C4)](curved-bulk-pilot.md#2-curvature-convention-fi
 opposite to #93's independent example convention:
 
 ```math
-R=\frac{3(1-t^2/2)}{(1+t^2)^{5/2}},\qquad
+\begin{aligned}
+R&=\frac{3(1-t^2/2)}{(1+t^2)^{5/2}},\qquad
 R_{93}=-R,\qquad C=\frac4{\sqrt6},\qquad c=\frac\pi{24}.
-\tag{R2}
+\end{aligned}\tag{R2}
 ```
 
 The candidate bulk integral remains one half of this independently calculated
@@ -149,7 +151,9 @@ For any finite smooth first-endpoint partition with sum one on the region,
 including overlapping or signed weights,
 
 ```math
-A_g(\rho,M)=\sum_i(S_{\chi_i,1}+L_{\chi_i,1}).\tag{R7}
+\begin{aligned}
+A_g(\rho,M)&=\sum_i(S_{\chi_i,1}+L_{\chi_i,1}).
+\end{aligned}\tag{R7}
 ```
 
 The point term occurs exactly once, in the short part. Equality at the sharp
@@ -214,10 +218,11 @@ fibres (R5). The next example shows why that distinction is essential.
 Use the original nonvacuous example (C2):
 
 ```math
-f=\tfrac18,\qquad h(z)=\tfrac14(1-|z|^2),\qquad
-M=\{(t,z): |z|^2/4-1/8\lt t\lt1/8\},\qquad
+\begin{aligned}
+f&=\tfrac18,\qquad h(z)=\tfrac14(1-|z|^2),\\
+M&=\{(t,z): |z|^2/4-1/8\lt t\lt1/8\},\qquad
 \delta=\tfrac1{32}.
-\tag{R10}
+\end{aligned}\tag{R10}
 ```
 
 Its original slope, face and joint margins are unchanged. Its scalar curvature
@@ -227,8 +232,10 @@ Take $`0<a\leq\delta/2`$ and any $`|z|<1/4`$. These first endpoints are
 strictly in the original region. Their **entire** long future is exactly
 
 ```math
-n\in S^2,\qquad \delta\leq v<\delta+a,\qquad
-0\leq u<\delta+a-v.\tag{R11}
+\begin{aligned}
+n&\in S^2,\qquad \delta\leq v<\delta+a,\qquad
+0\leq u<\delta+a-v.
+\end{aligned}\tag{R11}
 ```
 
 Indeed the future plane imposes $`u+v<2(f-t)`$, the lower condition is
@@ -241,9 +248,10 @@ It contains all long partners of each such first endpoint.
 For the complete sphere-integrated amplitude with $`\phi=1`$, define
 
 ```math
-k_*=\delta\sqrt{H(t_*,0,\delta)},\qquad
+\begin{aligned}
+k_*&=\delta\sqrt{H(t_*,0,\delta)},\qquad
 A_*=\frac{\pi\delta q(f)}{2\sqrt{H(t_*,0,\delta)}}>0.
-\tag{R12}
+\end{aligned}\tag{R12}
 ```
 
 Smooth inverse/exit Taylor expansion on a fixed neighbourhood of this planar
@@ -272,8 +280,10 @@ At $`w=2k_*a`$ the actual fibre is closed for sufficiently small positive
 $`a`$, while the polynomial extrapolation is not. Thus
 
 ```math
+\begin{aligned}
 \frac{B_t^\geq(w;1)-b_0(t)-b_1(t)w-b_2(t)w^2}{w^2}
- =\frac{A_*}{4k_*^2a}+O(1).\tag{R14}
+ &=\frac{A_*}{4k_*^2a}+O(1).
+\end{aligned}\tag{R14}
 ```
 
 Any bound on the absolute normalized quadratic remainder, valid on a common
@@ -291,7 +301,9 @@ $`\epsilon=1/100`$, use the valid slab bound $`Q=2`$, and for the endpoints
 in (R11) probe the density
 
 ```math
-\rho_a=\frac{\epsilon}{cQ a^2(\delta+a)^2}.\tag{R15}
+\begin{aligned}
+\rho_a&=\frac{\epsilon}{cQ a^2(\delta+a)^2}.
+\end{aligned}\tag{R15}
 ```
 
 Every one of their long partners then has $`0\leq\rho_a V\leq\epsilon`$,
@@ -350,10 +362,11 @@ contribution, and restore it in the common short/long accounting. No boundary
 term is to be declared zero by hypothesis. The positive-part toy identity
 
 ```math
+\begin{aligned}
 \int_0^A(a-\beta w)_+\,da
- =\frac{A^2}{2}-A\beta w+\frac{\beta^2w^2}{2},
- \qquad 0\leq\beta w\leq A,
-\tag{R17}
+ &=\frac{A^2}{2}-A\beta w+\frac{\beta^2w^2}{2},
+ \qquad 0\leq\beta w\leq A.
+\end{aligned}\tag{R17}
 ```
 
 shows the mechanism and its nonzero quadratic contact coefficient. Its three
@@ -385,9 +398,10 @@ phase is bounded, including away from zero, and tends to zero at zero. With
 $`s=\sqrt{c\rho}`$, the normalized remainder integral is
 
 ```math
-\frac{C}{c^{3/2}}\int_0^\infty z^2K(z^2)
+\begin{aligned}
+&\frac{C}{c^{3/2}}\int_0^\infty z^2K(z^2)
  \frac{B(z/s)-b_0-b_1z/s-b_2(z/s)^2}{(z/s)^2}\,dz\longrightarrow0.
-\tag{R18}
+\end{aligned}\tag{R18}
 ```
 
 The dominating function is a constant times $`z^2|K(z^2)|`$, which is
@@ -436,9 +450,10 @@ full-cone model where that cone leaves the region.
 For compact interior weights the derivative identity (C18) remains:
 
 ```math
+\begin{aligned}
 \int_M\chi\Box_g\phi\,d\mu_g
- =-\int_M g^{\mu\nu}\partial_\mu\chi\,\partial_\nu\phi\,d\mu_g.
-\tag{R19}
+ &=-\int_M g^{\mu\nu}\partial_\mu\chi\,\partial_\nu\phi\,d\mu_g.
+\end{aligned}\tag{R19}
 ```
 
 There are boundary fluxes without that support condition. A first-endpoint
