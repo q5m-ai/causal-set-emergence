@@ -396,8 +396,18 @@ terms. On that fixed curved pilot, even the normalized **signed** long fibre
 has no density-uniform integrable first-endpoint dominator. This obstructs
 one order of averaging, not the complete action limit. Contacts must instead
 be averaged, or explicitly subtracted and restored, before signed domination.
-The corrected long and actual short contracts and the supported bulk theorem
-remain open; #74 is not closed by this partial, non-Lean delivery.
+That partial, non-Lean delivery does not close #74 or supply its corrected
+long and actual short contracts or supported bulk theorem.
+
+The [contact-averaged long proof](notes/curved-contact-long.md) now derives
+actual fixed-cutoff signed long cancellation for the original two-face class
+with exactly that polynomial density, including smooth endpoint weights.
+It integrates source time before seeking dominated jet control and retains
+both moving-boundary contributions. This is a conventional written proof with
+independent executable regressions, not a new Lean theorem or independent
+human review. The raw-first-endpoint obstruction remains valid; the actual
+short remainder, supported bulk theorem, curved joint comparison and complete
+deterministic/expected limit remain separate obligations under #74/#75/#76.
 
 ## Program 2 — dynamics and automaton-like growth
 
