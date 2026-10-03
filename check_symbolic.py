@@ -6,6 +6,7 @@ from conformal_geometry import check_conformal_identities
 from dimension_kernels import check_dimension_identities
 from dimension_joint_geometry import check_joint_identities
 from curved_bulk_pilot import check_curved_pilot_identities
+from curved_remainders import check_curved_remainder_identities
 
 
 def main():
@@ -114,6 +115,7 @@ def main():
     check_joint_identities()
     check_conformal_identities()
     check_curved_pilot_identities()
+    check_curved_remainder_identities()
     print("All symbolic checks passed.")
 
 
