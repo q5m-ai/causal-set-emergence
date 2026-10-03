@@ -139,7 +139,8 @@ conventional geometry plus regressions, not a new Lean geometry theorem.
 The follow-on [partial smooth 3D formal foundation](formal/PILOT3_GEOMETRY.md)
 now compiles that exact pilot's region/strata, positive-angle and pointwise
 Gram geometry, finite canonical candidate target, local regular-height charts,
-and the existing finite-density Poisson specialization. Intrinsic chart-measure
+actual signed causal overlap and compact perturbation tubes, and the existing
+finite-density Poisson specialization. Intrinsic chart-measure
 compatibility and controlled collar coarea remain open under #115; this does
 not complete its acceptance or supply a new action limit.
 
