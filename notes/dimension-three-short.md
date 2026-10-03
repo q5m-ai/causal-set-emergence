@@ -258,7 +258,7 @@ Mellin moment
 m(j)&=\int_0^\infty u^j K_3(u^{3/2})\,du
  =\frac23\Gamma\left(\frac{2(j+1)}3\right)
         (1-(j+1))(1-(j+1)/2),\\
-m(0)&=m(1)=0,&m(1/2)&=-1/12,&m(3/2)&=\Gamma(5/3)/4,\\
+m(0)&=m(1)=0,\qquad m(1/2)=-1/12,\qquad m(3/2)=\Gamma(5/3)/4,\\
 \rho^{5/3}\int_0^\infty\sigma^j K_3(c\rho\sigma^{3/2})\,d\sigma
  &=c^{-2(j+1)/3}\rho^{(3-2j)/3}m(j).
 \end{aligned}
@@ -499,6 +499,10 @@ Assembly reserved to #80:
   final Lean-affecting change, not just a changed-source check or GitHub CI.
 - **Independent human mathematical review:** outstanding and separate from
   written arguments, regression tests and the pre-existing checked results.
+
+Local validation passed: all 192 Python tests (including nine new focused
+regressions), all symbolic checks, Markdown lint and its 20 tests. This is not
+an independent mathematical review or a Lean-check receipt.
 
 ```sh
 .venv/bin/python -m unittest -v test_dimension_short
