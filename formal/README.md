@@ -116,17 +116,18 @@ checks old/new and critical-point instances, and preserves both original
 limit contracts. The linked note maps every #97 acceptance item and records
 the integrated validation scope; human mathematical review remains separate.
 
-The [partial smooth 3D foundation](PILOT3_GEOMETRY.md) fixes the exact
-`SmoothPilot3` combined-budget interface and proves finite-region/stratum
-geometry, positive future-normal angle and pointwise Gram geometry, finite
-canonical candidate area and weight integrability, local regular-height charts,
-actual signed causal overlap, compact long/short perturbation tubes, and
+The [smooth 3D geometry package](PILOT3_GEOMETRY.md) preserves the exact
+`SmoothPilot3` combined-budget interface and proves whole-region/stratum
+geometry, intrinsic canonical Lorentzian joint area, every Borel chart overlap,
+finite-atlas gluing and independence, signed normalized collar coarea,
+right-sided density regularity, finite-order chart bounds and spatial divergence.
+It retains the actual signed causal overlap, compact perturbation tubes and
 specialization of the existing dimension-indexed Poisson bridge.
-The actual chart derivatives and line normalization are checked, but intrinsic
-chart-measure compatibility and controlled collar coarea remain open under
-#115. Standalone #78/#79 contracts and the curved ball/sine, planar, empty,
-critical-point and all-component set controls are included. This is a partial
-geometry port, not an all-dimensional specialization or a new limit theorem.
+The [integration interface](PILOT3_INTEGRATION.md) records exact signatures.
+Five standalone regressions include #78/#79 contracts, ball/sine, planar, empty,
+admissible disconnected/annular and retained-critical-point controls, regular
+2D endpoint counting, and exact compatibility for every original 4D C³ member.
+This is not an all-dimensional geometry port or a new pilot limit theorem.
 
 The [short-displacement proof note](../notes/curved-face-stability.md) is a
 **conventional analytic argument, not an end-to-end Lean theorem**.
@@ -297,8 +298,12 @@ factor on that joint. It also exercises the existing curved-sine family.
 | `BoundaryDraft/ExpectedLimits.lean` | Expected-action ellipsoid, admissible graph-cap, and null-cap limits under the original hypotheses | Rates, random convergence, unrestricted boundaries, or induced null-joint geometry |
 | `BoundaryDraft/MeasuredOrder.lean`, `MeasuredOrderPoisson.lean`, `PoissonTransport.lean` | Measurable finite-order layers, actual finite-measure layer expectations from existing Mecke/count laws, factorial-moment integrability and probability-law coordinate transport | A metric volume law, asymptotic limit or new probability axiom |
 | `BoundaryDraft/DimensionDiscrete.lean`, `DimensionMeasureExpectation.lean`, `DimensionExpectation.lean`, `DimensionExpectationCompatibility.lean` | Genuine dimension-indexed action, exact restricted-volume expectation, Minkowski specialization for every integer dimension at least two, dimensionless 2D normalization and unchanged 4D action/law/expectation recovery | General-dimensional joint geometry, global boundary limits, rates or sample-wise convergence |
-| `BoundaryDraft/Pilot3Contract.lean`, `Pilot3RegularHeight.lean`, `Pilot3Geometry.lean`, `Pilot3Metric.lean`, `Pilot3Surface.lean`, `Pilot3Examples.lean`, `Pilot3Components.lean` | Exact smooth 3D pilot; whole finite region/strata and Poisson specialization; positive angle/Gram geometry; finite candidate joint measure and integrability; local height charts; curved, planar, empty and component controls | Intrinsic chart-measure compatibility, controlled collar coarea, disconnected/annular admissibility, dimension-indexed 2D/4D geometry specialization or an action limit |
-| `BoundaryDraft/Pilot3Overlap.lean`, `Pilot3Tubes.lean` | Actual signed causal overlap with absolute integrability and exact moving-collar split; all-direction/contact endpoint margins and finite differences; compact old-active perturbation tubes, finite length support, common raw smooth translation neighborhood and derivative bounds | Long density/signed null-coordinate transport or jet, short analytic remainder, intrinsic chart measures, controlled collar/coarea, divergence, cancellation or action limit |
+| `BoundaryDraft/Pilot3Contract.lean`, `Pilot3RegularHeight.lean`, `Pilot3Geometry.lean`, `Pilot3Metric.lean`, `Pilot3Surface.lean`, `Pilot3Examples.lean`, `Pilot3Components.lean` | Exact smooth 3D pilot; whole finite region/strata and Poisson specialization; positive angle/Gram geometry; independently fixed finite joint measure and integrability; local height charts; curved, planar, empty and component controls | A pilot action limit or sample-wise result |
+| `BoundaryDraft/Pilot3Overlap.lean`, `Pilot3Tubes.lean` | Actual signed causal overlap with absolute integrability and exact moving-collar split; all-direction/contact endpoint margins and finite differences; compact old-active perturbation tubes, finite length support, common raw smooth translation neighborhood and derivative bounds | Long density/signed null-coordinate transport or jet, short analytic remainder, cancellation or action limit |
+| `BoundaryDraft/Pilot3Curve.lean`, `Pilot3CurveArea.lean`, `Pilot3CurveAreaLocal.lean`, `Pilot3Levels.lean`, `Pilot3HeightCharts.lean`, `Pilot3ChartTransport.lean`, `Pilot3SliceCharts.lean`, `Pilot3JointCharts.lean`, `Pilot3JointAtlas.lean` | Variable-speed canonical curve area, actual inverse Jacobians and level transport, Lorentzian joint chart measures on every Borel overlap, finite gluing and atlas independence | Arbitrary supplied target measures, Euclidean spacetime area or an action coefficient |
+| `BoundaryDraft/Pilot3Atlas.lean`, `Pilot3AtlasRepresentation.lean`, `Pilot3AtlasRegularity.lean`, `Pilot3Coarea.lean`, `Pilot3Endpoints.lean`, `Pilot3Ramp.lean`, `Pilot3Divergence.lean` | Constructed finite smooth collar/partition, fixed compact rectangles, signed coarea and integrability, right-sided canonical density limit, finite-order chart bounds and whole-region outward divergence | Two-sided density continuity at zero, overlap jets, action asymptotics or regularity of irrelevant exterior data |
+| `BoundaryDraft/Pilot3Disconnected.lean`, `Pilot3Annulus.lean` | Genuine combined-budget disconnected/annular curved and planar members, all joint circles, retained positive-height critical points and actual coarea/divergence controls | Bilocal-action additivity or arbitrary exterior-max smoothness |
+| `BoundaryDraft/DimensionTwoEndpoints.lean`, `DimensionFourGeometry.lean` | Compact regular 2D endpoint finiteness and counting integrals; exact region/normal/metric/measure/target/action/expectation compatibility for every unchanged 4D C³ member, including the existing limit | Full 2D or all-dimensional two-face classes, strengthened old hypotheses or a new limit |
 | `BoundaryDraft/FiniteMeasureBDG.lean`, `ConformalGeometry.lean`, `ConformalAction.lean`, `ConformalExamples.lean` | Finite-measure BDG averaging, controlled conformal metric volume, restricted-interval action, constructed law and exact expectation, integrability, ambient compatibility, flat/constant calibration and nonconstant admissibility | A Lean curvature theorem, curved joint/bulk target, continuum limit, rates or sample-wise convergence |
 | `BoundaryDraft/Poincare.lean` | Affine time-oriented Lorentz equivalences, interval/causal transport, derived absolute determinant one, product Lebesgue preservation, and bounded measurable causally convex image regions | Generic induced-joint measure transport or a boundary limit |
 | `BoundaryDraft/ActionTransport.lean` | Exact covariance and positive-dilation scaling of the unchanged bilocal action, absolute integrability, and transfer through the existing expectation bridge | A new Poisson-law coupling, localization, curved-face limits, or sample-wise convergence |

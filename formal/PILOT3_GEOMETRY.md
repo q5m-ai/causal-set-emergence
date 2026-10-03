@@ -1,15 +1,16 @@
-# Smooth 3D pilot: partial formal foundation for #115
+# Smooth 3D pilot: shared formal geometry for #115
 
 ## Scope and verification boundary
 
-This is a **partial port**, not completion of #115. It fixes one production
-`SmoothPilot3` interface for #78/#79, implements its finite-region and
-pointwise geometry, proves the actual signed causal overlap and compact
-perturbation-tube interfaces, and specializes #77's unchanged expectation bridge.
-It does **not** yet prove the canonical measure's intrinsic chart area
-formula, equality of chart measures on overlaps, or the controlled collar
-integration interface. Consequently this package must not be advertised as
-all the proved geometric input required by #80.
+This package implements the shared smooth 3D geometry in #115 through one
+production `SmoothPilot3` interface for #78/#79. It proves the whole finite
+region and strata, intrinsic canonical joint area and Borel-overlap compatibility,
+finite-atlas gluing, signed collar coarea and spatial divergence, actual causal
+overlap and compact perturbation tubes, and #77's unchanged expectation
+specialization. The [integration completion layer](PILOT3_INTEGRATION.md)
+records exact area/collar/divergence signatures and proof architecture.
+This supplies geometry, **not** the remaining #78/#79 analytic estimates or
+#80's full-action assembly; the pilot's two action-limit goals remain open.
 
 The class is exactly the smooth global two-graph class in
 [the written #92 contract](../notes/dimension-two-face-geometry.md), with the
@@ -42,6 +43,13 @@ the producer modules rather than relying on the library root.
 | `Pilot3Surface` | Exact line normalization, finite candidate projected/spacetime measures, weight integrability, actual chart derivative and pointwise Gram factor, exact planar recovery |
 | `Pilot3Examples` | Concrete unit ball/sine and planar pilots, nonempty curved future, retained critical point, whole circular joint and empty member |
 | `Pilot3Components` | Whole-region/closed-positive maximum identities, both joints of separated components, exclusion of irrelevant exterior raw zeros |
+| `Pilot3Curve`, `Pilot3CurveArea`, `Pilot3CurveAreaLocal` | Canonical variable-speed Hausdorff curve area, local restriction, signed integration and integrability equivalence |
+| `Pilot3Levels`, `Pilot3HeightCharts`, `Pilot3ChartTransport`, `Pilot3SliceCharts` | Compact canonical levels, constructed smooth coordinate charts, actual determinant/tangent-speed identity and level-measure transport |
+| `Pilot3JointCharts`, `Pilot3JointAtlas` | Actual Lorentzian lifted-curve density, all Borel chart restrictions/overlaps, finite gluing and atlas independence of the fixed measure |
+| `Pilot3Atlas`, `Pilot3AtlasRepresentation`, `Pilot3AtlasRegularity` | Constructed finite smooth collar/partition, fixed compact rectangles, shared signed integrands and finite-order derivative bounds |
+| `Pilot3Coarea`, `Pilot3Endpoints`, `Pilot3Ramp`, `Pilot3Divergence` | Normalized signed spatial coarea, proved null-endpoint removal, right-sided canonical density limit and outward-flux divergence |
+| `Pilot3Disconnected`, `Pilot3Annulus` | Admissible disconnected/annular curved and planar controls, whole joint components, retained critical points and actual integration |
+| `DimensionTwoEndpoints`, `DimensionFourGeometry` | Regular 2D endpoint finiteness/counting and exact coordinate/measure/action compatibility for every unchanged 4D C³ member |
 
 The complete defining fields live in `Pilot3Contract.lean`; none is a jet,
 measure choice, integral, coarea, cancellation, expectation identity or limit
@@ -95,8 +103,11 @@ one-dimensional Hausdorff measure and actual gradients, checks positivity,
 finiteness, integrability, spacetime pushforward, planar recovery and the
 actual tangent Gram factor for #79. It checks the open goals and conditional
 expectation transfer, and now the exact raw overlap/moving-collar identities
-and smooth compact translation-tube interface. It does not assert the short
-asymptotic estimate or a target/coefficient identity.
+and smooth compact translation-tube interface. It also checks intrinsic
+Borel chart measures/overlaps, signed spatial coarea with both integrability
+claims, right-sided density regularity, and spatial divergence with its outward
+sign. It does not assert the short asymptotic estimate or a target/coefficient
+identity.
 `Pilot3OverlapRegression.lean` additionally checks null/zero displacements,
 signed weights, exact contact, empty geometry, and a retained critical source
 whose old gap is zero and new gap is negative while tube containment still holds.
@@ -118,9 +129,10 @@ signed outer pair factor: -dimensionPairCoefficient 3 * rho^(1 + 2/3)
 
 The selected short route is direct-origin absolute overlap. The actual causal
 positive-part overlap and compact perturbation tubes are now proved below.
-Controlled signed collar/coarea integration and inward normal divergence flux
-remain outstanding. An exact moving-collar set integral is not a coarea formula,
-and raw-germ derivative bounds are not an overlap jet.
+Controlled signed collar/coarea integration and outward divergence flux are
+proved in the [integration layer](PILOT3_INTEGRATION.md). An exact moving-collar
+set integral alone is still not a coarea formula, and raw-germ or chart-integrand
+derivative bounds are not an overlap jet.
 
 ### Actual overlap and compact-tube signatures
 
@@ -226,8 +238,10 @@ SmoothPilot3.exists_translationTube_derivative_bounds (hf : SmoothPilot3 h f) :
 
 The first theorem retains an actual common open smooth neighborhood. The
 second uses one tube for all finite orders, with a separate bound for each
-order; neither says the clipped height is smooth. These theorems are not a
-controlled collar atlas or a normalized regular-level/coarea identification.
+order; neither says the clipped height is smooth. The separately constructed
+`Pilot3CollarAtlas`, canonical level transport and coarea theorems are recorded
+in [the integration interface](PILOT3_INTEGRATION.md); they are not inferred
+merely from these tube bounds.
 
 ## What the geometric proofs actually give
 
@@ -260,7 +274,10 @@ controlled collar atlas or a normalized regular-level/coarea identification.
 - `chart_gramDensity` identifies the actual derivative of a differentiable
   level curve after the future lift. `pilot3GramDensity_smul` supplies the
   absolute one-dimensional Jacobian, including orientation reversal. These
-  are **pointwise facts, not equality of measures on chart overlaps**.
+  are pointwise facts. `Pilot3SliceChart.jointArea_chart` in
+  `Pilot3JointCharts.lean` uses the independent variable-speed curve area theorem
+  to obtain equality of the actual measures on Borel chart subsets and overlaps;
+  `Pilot3CollarAtlas.sum_localJointMeasure` then proves finite gluing.
 - `integral_region` and `volume_region` give product-volume vertical Fubini
   with the original open time endpoints and no omitted positive components.
   They are not spatial coarea.
@@ -268,24 +285,24 @@ controlled collar atlas or a normalized regular-level/coarea identification.
 The target is specified independently as the angle-weighted measure obtained
 from canonical spatial one-measure and the Lorentzian tangential Gram factor,
 then pushed to the actual spacetime joint. `boundaryIntegral_eq_joint` proves
-that projection/pushforward agreement. The missing chart area theorem must
-identify this fixed measure, not replace it by an arbitrary supplied measure
-or redefine it from an action coefficient.
+that projection/pushforward agreement. The new curve/chart/atlas theorems
+identify this **same fixed measure** intrinsically; they neither replace it
+with an arbitrary supplied measure nor redefine it from an action coefficient.
 
-## Coverage ledger and remaining acceptance
+## Coverage ledger and remaining scope
 
-| #115 item | Delivered here | Still open under #115 |
+| #115 item | Delivered here | Verification boundary |
 | --- | --- | --- |
-| Exact 3D class, region, independent target and goals | Compiled definitions; no analytic admissibility fields | Intrinsic interpretation still needs the chart-measure theorem below |
-| Region and all strata | Open/measurable/bounded, finite volume, complete closed ambient interval containment, closure/frontier, compact faces/joint and exact intersection | Bundled smooth manifold-with-boundary face construction, if required by consumers |
-| Normals, angle, Gram density and canonical measure | Strict future unit normals/angle, positive induced metric, correct one-dimensional Gram factor, exact line normalization, finite measure and integrable weight | Variable-density Hausdorff curve area formula, equality on every Borel chart overlap, finite-atlas gluing/independence |
-| #77 constructor | `boundedCausalRegion`, existing action/law, derived finite-density expectation identity | None for this finite-density specialization |
-| Actual overlap and perturbation tubes | Signed covariogram and absolute integrability; causal positive-part formula and exact bulk/moving-collar split; both-endpoint margins including contacts; compact old-active tubes, finite length support and finite-difference controls; common raw smooth translation neighborhood and finite-order derivative bounds | Long density/null-coordinate signed transport and averaged jet belong to #78; short response/remainder and coefficient identification belong to #79 |
-| Regular-height/collar/integration | Slope-independent noncritical band and local level charts; vertical Fubini with product volume; exact moving-collar set integral | Controlled finite collar atlas, normalized regular-level transport, signed spatial coarea and divergence interfaces needed by direct-origin analysis |
-| Examples and consumer contracts | Exact unit ball/sine smooth pilot, curved-future second derivative at an interior point, nonempty region, planar member, critical point, whole circle, empty member, separated-component set identities, standalone #78/#79 regressions, null/zero and signed overlap controls, exact critical-source contact with negative perturbed gap | Admissibility and integration of the disconnected/annular curved examples; set identities alone are not their admissibility proofs |
-| Physical dimension two | No new theorem claimed; existing written/Python four-endpoint controls retained | Compiled zero-dimensional counting measure and all-component endpoint target |
-| Physical dimension four | Old production files and contracts unchanged; existing full regression audit retained | A compiled equivalence/specialization of a dimension-indexed geometry class to every old C³ member, not just examples |
-| Other dimensions | No geometry or analytic port claimed | Separately named candidate/proofs, not inferred from this 3D package |
+| Exact 3D class, region, independent target and goals | Original definitions preserved; no analytic admissibility fields; intrinsic target now identified by chart measures | The two pilot action-limit propositions remain open |
+| Region and all strata | Open/measurable/bounded, finite volume, complete closed ambient interval containment, closure/frontier, compact faces/joint and exact intersection | No extra bundled manifold-with-boundary object is claimed or required by the supplied direct-origin interfaces |
+| Normals, angle, Gram density and canonical measure | Strict future unit normals/angle, positive induced metric, line normalization one, finite area/integrable weight; variable-density Hausdorff area, every Borel chart overlap, finite gluing and atlas independence | The measure remains fixed independently of the action |
+| #77 constructor | Existing action/law and derived finite-density expectation identity | Not a definition of expectation or a sample-wise result |
+| Actual overlap and perturbation tubes | Signed actual covariogram, exact causal gap and bulk/moving-collar identities; old-active compact tubes, finite length support, contacts/critical points, common raw smooth neighborhood and derivative bounds | Long density/signed null-coordinate transport and averaged jet belong to #78; short response/remainder and coefficient identification belong to #79 |
+| Regular-height/collar/integration | Constructed finite smooth collar and partition, fixed compact rectangles, canonical regular-level transport, signed coarea with integrability, null endpoints, right-sided density regularity, finite-order chart bounds and spatial divergence | Only the selected collar is noncritical; no overlap jet or 4D analytic coefficient is ported |
+| Examples and consumer contracts | Ball/sine, planar, empty, whole-circle and contact controls; disconnected/annular admissibility, all joint components, retained critical centers/circle and actual integration; standalone #78/#79 regressions | No bilocal-action additivity or arbitrary-max smoothness claim |
+| Physical dimension two | Compact regular zero-set finiteness, canonical zero-dimensional counting measure, all-endpoint integrals, four-endpoint signed regression | No full 2D two-face/action-limit contract or general-dimensional class is introduced |
+| Physical dimension four | Exact region/normal/metric/measure/target/action/expectation coordinate compatibility for every unchanged old C³ member; old limit re-expressed in dimension-indexed coordinates | No old hypothesis is strengthened and no new 4D analytic result is inferred |
+| Other dimensions | No geometry or analytic port claimed | The separately named written candidate remains a follow-up, not an all-dimensional Lean theorem |
 
 No long/short asymptotic overlap jet, parity cancellation, asymptotic action theorem,
 curved metric, null/mixed geometry, rates or sample-wise convergence are added.
@@ -311,7 +328,7 @@ python3 check_markdown.py
 python3 -m unittest -v test_check_markdown
 ```
 
-Validation results are recorded in the PR after observation. All four
+Validation results are recorded in the PR after observation. All five
 standalone pilot regressions are discovered by `check.sh`, with warnings as errors
 and the transitive-axiom rule, even though they are not library-root imports.
 No independent human review is implied by a successful integrated Lean audit.
