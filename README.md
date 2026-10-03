@@ -390,6 +390,15 @@ open. This is analytic feasibility work for #73, with symbolic/numerical
 regressions, **not** a Lean-verified curved limit or an expected-action theorem;
 #93 owns the canonical curved finite-density API.
 
+The subsequent [sharp-cutoff contact analysis](notes/curved-remainders.md)
+for #74 gives the actual phase-straightened amplitudes and moving-contact
+terms. On that fixed curved pilot, even the normalized **signed** long fibre
+has no density-uniform integrable first-endpoint dominator. This obstructs
+one order of averaging, not the complete action limit. Contacts must instead
+be averaged, or explicitly subtracted and restored, before signed domination.
+That partial, non-Lean delivery does not close #74 or supply its corrected
+long and actual short contracts or supported bulk theorem.
+
 The [contact-averaged long proof](notes/curved-contact-long.md) now derives
 actual fixed-cutoff signed long cancellation for the original two-face class
 with exactly that polynomial density, including smooth endpoint weights.
