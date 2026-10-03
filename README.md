@@ -405,9 +405,20 @@ with exactly that polynomial density, including smooth endpoint weights.
 It integrates source time before seeking dominated jet control and retains
 both moving-boundary contributions. This is a conventional written proof with
 independent executable regressions, not a new Lean theorem or independent
-human review. The raw-first-endpoint obstruction remains valid; the actual
-short remainder, supported bulk theorem, curved joint comparison and complete
-deterministic/expected limit remain separate obligations under #74/#75/#76.
+human review. The raw-first-endpoint obstruction remains valid; that long-only
+result does not supply the short or bulk theorem.
+
+The [interior short/bulk proof](notes/curved-interior-short.md) now derives the
+actual signed short remainder uniformly on compact interior source supports,
+retaining the entire second jet, both endpoint measures and all moving-diagonal
+terms. Combined with the already proved averaged long result, it gives the
+supported half-curvature response with an independently calculated scalar and
+the original normalization. Nonconstant endpoint fields retain their
+wave-operator terms. These are written theorems with separate executable regressions,
+**not new Lean proofs** or independent human review. The exact boundary-collar
+short term remains in the common decomposition: #74 stays open, and #75/#76
+still need its compatible boundary/joint accounting before complete
+deterministic or expected assembly.
 
 ## Program 2 — dynamics and automaton-like growth
 
