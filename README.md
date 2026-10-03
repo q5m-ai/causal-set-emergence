@@ -136,6 +136,12 @@ compatibility, finite target, Lorentz/dilation transport, exact 4D identificatio
 and a named smooth 3D pilot for the next analytic tasks. Its independent
 higher-dimensional deterministic/expected goals remain open. This is
 conventional geometry plus regressions, not a new Lean geometry theorem.
+The [dimensional long-null analysis](notes/dimension-long-null.md) now derives
+actual signed disintegration and fixed-cutoff long cancellation in writing for
+every `SmoothPilot3`, including translated contacts and exceptional directions.
+Its bounded 5D/6D transfer uses a separately named C⁴ class and a proved regular
+small fixed cutoff. This is not a new Lean specialization or a full pilot
+limit; short analysis, formal integration and independent review remain separate.
 
 The **concrete ellipsoid geometric interpretation** is also checked separately:
 its joint is a smooth regular level with nonzero Euclidean gradient, its angle
