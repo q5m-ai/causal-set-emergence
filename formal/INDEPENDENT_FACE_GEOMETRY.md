@@ -12,8 +12,10 @@ restriction.
 
 This completes the geometry package for #106, **not** the direct-origin limit
 in #97. The actual overlap Taylor theorem belongs to #107, fixed-cutoff long
-cancellation to #108, and coefficient identification/asymptotic assembly to
-#109. Draft PR #104 is not an import or dependency. Its analytic backend is not
+cancellation to #108, and final asymptotic assembly to #109.
+The subsequent [#107 short package](INDEPENDENT_SHORT.md) now derives the
+actual overlap, density, coefficient identification and fixed-cutoff short
+limit using these interfaces. Draft PR #104 is not an import or dependency. Its analytic backend is not
 silently assumed here. Independent human mathematical scrutiny remains
 outstanding under #94/#86; kernel checking verifies the encoded statements,
 not physical applicability or novelty.

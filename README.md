@@ -339,14 +339,31 @@ obstruction to that comparison route, **not** a counterexample to the full
 conjecture or a new enlarged-class limit. The audit records surviving local
 jets, replacement long-ray margins and the bounded
 [direct-origin proof task #97](https://github.com/q5m-ai/causal-set-emergence/issues/97).
+The [partial direct-origin analytic backend](notes/direct-origin-short.md) now
+checks the absolute short basis responses and a conditional remainder transfer
+in Lean. That backend alone is not a geometric limit theorem; #97 stays open.
 
 The separate [Lean geometry package for #106](formal/INDEPENDENT_FACE_GEOMETRY.md)
 now encodes that independent-envelope class and proves its region, strata,
 positive-angle/induced-area geometry and finite-density Poisson equality.
 It includes every old member and the genuinely steep symmetric capsule,
 retains interior critical points, and exposes slope-independent height-atlas
-and divergence prerequisites. The enlarged-class overlap and limit proofs
-remain separate work under #107–#109; no new asymptotic coverage is claimed.
+and divergence prerequisites. The separate [actual class-E short proof](formal/INDEPENDENT_SHORT.md)
+now derives the raw/envelope agreement, absolute overlap two-jet, measurable
+derivative-controlled remainder and actual density decomposition. It proves
+the short-action limit to the unchanged intrinsic target at every sufficiently
+small fixed positive cutoff, including the steep and variable-angle members.
+The [class-E long proof](formal/INDEPENDENT_LONG_NULL.md) supplies actual signed
+long cancellation at every fixed positive cutoff. The subsequent
+[#109 assembly and complete #97 acceptance map](formal/INDEPENDENT_LIMIT.md)
+combine these producers at one common fixed positive cutoff and then apply
+the separately proved Poisson bridge. They give unconditional deterministic
+and expected-action limits for exactly class E, without changing the old
+contract or using the inadmissible planar reference. The steep capsule,
+variable-angle members and interior critical points are retained. This is
+still a restricted flat 4D global two-graph theorem, not a general curved,
+null/mixed, other-dimensional or sample-wise result; independent human review
+remains outstanding under #94/#86. PR #104 owns final integration to `main`.
 
 ### Curved-spacetime feasibility boundary
 

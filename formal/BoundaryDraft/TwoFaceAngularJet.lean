@@ -1,6 +1,7 @@
 import BoundaryDraft.SphereQuadraticMoments
 import BoundaryDraft.GraphDivergence
 import BoundaryDraft.TwoFaceCoefficient
+import BoundaryDraft.IndependentFace
 
 /-!
 # Angular average of the two-face short polynomial
@@ -9,7 +10,9 @@ This file isolates the finite polynomial supplied by the geometric overlap
 jet.  It proves its absolute integrability and smoothness, computes its full
 sphere average from the checked spherical moments, and identifies the
 resulting coefficient with the independently defined two-face boundary
-correction.  No overlap expansion or short-displacement limit is asserted.
+correction under independent-envelope bounds. The polynomial calculations use
+only `RegularHeightPair`; explicit wrappers retain the original signatures.
+No overlap expansion or short-displacement limit is asserted by this file.
 -/
 
 open MeasureTheory Set Metric
@@ -40,9 +43,9 @@ def twoFaceShortCoefficient (h f : Spatial → ℝ) : ℝ :=
       ∫ x, ‖graphGradient f x‖ ^ 2 / ‖graphGradient h x‖
         ∂graphSurfaceMeasure h)
 
-namespace AdmissibleTwoFace
+namespace RegularHeightPair
 
-variable {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+variable {h f : Spatial → ℝ} (hf : RegularHeightPair h f)
 include hf
 
 private theorem continuousOn_futureHessian :
@@ -55,7 +58,7 @@ private theorem continuousOn_futureHessian :
 private theorem integrableOn_positive_of_continuousOn
     {g : JointSpace → ℝ} (hg : ContinuousOn g (graphClosedPositive h)) :
     IntegrableOn g {x : JointSpace | 0 < h x} :=
-  (hg.integrableOn_compact hf.toGraphCapData.isCompact_closedPositive).mono_set subset_closure
+  (hg.integrableOn_compact hf.toRegularHeight.isCompact_closedPositive).mono_set subset_closure
 
 /-- Absolute integrability of the source linear observable. -/
 theorem integrableOn_shortLinear (v : JointSpace) :
@@ -77,9 +80,9 @@ integrable against the canonical surface measure. -/
 theorem integrable_graphSurface_weight_div (w : JointSpace → ℝ)
     (hw : ContinuousOn w (graphClosedPositive h)) :
     Integrable (fun x => w x / ‖graphGradient h x‖) (graphSurfaceMeasure h) := by
-  obtain ⟨A⟩ := hf.toAdmissibleGraphCap.exists_controlledCollarAtlas
+  obtain ⟨A⟩ := hf.toRegularHeight.exists_controlledCollarAtlas
   simpa only [graphLevelMeasure_zero] using A.integrable_graphLevel_weight_div
-    hf.toAdmissibleGraphCap w hw 0 ⟨le_rfl, A.width_pos.le⟩
+    hf.toRegularHeight w hw 0 ⟨le_rfl, A.width_pos.le⟩
 
 /-- Absolute integrability of a slope-weighted future-gradient component. -/
 theorem integrable_graphSurface_inner_div (v : JointSpace) :
@@ -419,7 +422,7 @@ private theorem integrable_shortProduct_of_continuousOn
       ({x : JointSpace | 0 < h x} ×ˢ (univ : Set OverlapSphere))
       ((volume : Measure JointSpace).prod overlapSphereMeasure) :=
     (hg.integrableOn_compact
-      (hf.toGraphCapData.isCompact_closedPositive.prod isCompact_univ)).mono_set
+      (hf.toRegularHeight.isCompact_closedPositive.prod isCompact_univ)).mono_set
         (prod_mono subset_closure (Subset.refl univ))
   rw [IntegrableOn, ← Measure.prod_restrict] at hi
   simpa using hi
@@ -428,13 +431,13 @@ private theorem integrable_surfaceProduct_of_continuousOn
     {g : JointSpace × OverlapSphere → ℝ}
     (hg : ContinuousOn g (graphJoint h ×ˢ (univ : Set OverlapSphere))) :
     Integrable g ((graphSurfaceMeasure h).prod overlapSphereMeasure) := by
-  letI := hf.toAdmissibleGraphCap.finite_graphSurfaceMeasure
+  letI := hf.toRegularHeight.finite_graphSurfaceMeasure
   have hi : IntegrableOn g (graphJoint h ×ˢ (univ : Set OverlapSphere))
       ((graphSurfaceMeasure h).prod overlapSphereMeasure) :=
     hg.integrableOn_compact
-      (hf.toAdmissibleGraphCap.isCompact_joint.prod isCompact_univ)
+      (hf.toRegularHeight.isCompact_joint.prod isCompact_univ)
   rw [IntegrableOn, ← Measure.prod_restrict] at hi
-  rw [Measure.restrict_eq_self_of_ae_mem (ae_graphJoint hf.toAdmissibleGraphCap),
+  rw [Measure.restrict_eq_self_of_ae_mem (ae_graphJoint hf.toRegularHeight),
     Measure.restrict_univ] at hi
   exact hi
 
@@ -490,7 +493,7 @@ theorem integrable_shortSurface_angular (s r : ℝ) :
   apply (((hp.inner hv.continuousOn).pow 2).sub
     ((continuousOn_const.mul continuousOn_const).mul (hp.inner hv.continuousOn))).div hg
   intro p hpJ
-  exact (hf.toAdmissibleGraphCap.graphSlope_pos p.1 hpJ.1).ne'
+  exact (hf.toRegularHeight.graphSlope_pos p.1 hpJ.1).ne'
 
 /-- The complete source-linear contribution has zero full-sphere average. -/
 theorem integral_overlapSphere_shortLinear (r : ℝ) :
@@ -501,7 +504,7 @@ theorem integral_overlapSphere_shortLinear (r : ℝ) :
   have hi := hf.integrable_shortLinear_angular r
   rw [← integral_integral_swap hi]
   have hm : MeasurableSet {x : JointSpace | 0 < h x} :=
-    (hf.toGraphCapData.isOpen_positive.preimage (PiLp.continuous_equiv 2 _)).measurableSet
+    (hf.toRegularHeight.isOpen_positive.preimage (PiLp.continuous_equiv 2 _)).measurableSet
   calc
     (∫ x in {x : JointSpace | 0 < h x},
         ∫ ω : OverlapSphere,
@@ -528,7 +531,7 @@ theorem integral_overlapSphere_shortHessian (r : ℝ) :
   have hi := hf.integrable_shortHessian_angular r
   rw [← integral_integral_swap hi]
   have hm : MeasurableSet {x : JointSpace | 0 < h x} :=
-    (hf.toGraphCapData.isOpen_positive.preimage (PiLp.continuous_equiv 2 _)).measurableSet
+    (hf.toRegularHeight.isOpen_positive.preimage (PiLp.continuous_equiv 2 _)).measurableSet
   calc
     (∫ x in {x : JointSpace | 0 < h x},
         ∫ ω : OverlapSphere,
@@ -570,7 +573,7 @@ theorem integral_overlapSphere_shortSurface (s r : ℝ) :
       (4 * Real.pi / 3) * r ^ 2 *
         (∫ x, ‖graphGradient f x‖ ^ 2 / ‖graphGradient h x‖
           ∂graphSurfaceMeasure h) := by
-  letI := hf.toAdmissibleGraphCap.finite_graphSurfaceMeasure
+  letI := hf.toRegularHeight.finite_graphSurfaceMeasure
   have hi := hf.integrable_shortSurface_angular s r
   rw [← integral_integral_swap hi]
   calc
@@ -624,7 +627,7 @@ joint absolute-integrability statements above, before its integral is split. -/
 theorem integrable_overlapSphere_twoFaceShortPolynomial (s r : ℝ) :
     Integrable (fun ω : OverlapSphere =>
       twoFaceShortPolynomial h f (s, r • ω.val)) overlapSphereMeasure := by
-  letI := hf.toAdmissibleGraphCap.finite_graphSurfaceMeasure
+  letI := hf.toRegularHeight.finite_graphSurfaceMeasure
   have hlin : Integrable (fun ω : OverlapSphere =>
       ∫ x in {x : JointSpace | 0 < h x},
         inner (𝕜 := ℝ) (graphGradient f x) (r • ω.val)) overlapSphereMeasure := by
@@ -648,7 +651,7 @@ independent of the time coordinate `s`. -/
 theorem integral_overlapSphere_twoFaceShortPolynomial (s r : ℝ) :
     (∫ ω : OverlapSphere, twoFaceShortPolynomial h f (s, r • ω.val)
       ∂overlapSphereMeasure) = twoFaceShortCoefficient h f * r ^ 2 := by
-  letI := hf.toAdmissibleGraphCap.finite_graphSurfaceMeasure
+  letI := hf.toRegularHeight.finite_graphSurfaceMeasure
   let A : OverlapSphere → ℝ := fun ω =>
     ∫ x in {x : JointSpace | 0 < h x},
       inner (𝕜 := ℝ) (graphGradient f x) (r • ω.val)
@@ -696,6 +699,100 @@ theorem integral_overlapSphere_twoFaceShortPolynomial (s r : ℝ) :
         twoFaceShortCoefficient]
       ring
 
+end RegularHeightPair
+
+-- Compatibility wrappers: the polynomial calculations need only regular
+-- height geometry and a smooth observable, not either causal slope budget.
+namespace AdmissibleTwoFace
+variable {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+include hf
+
+theorem integrableOn_shortLinear (v : JointSpace) :
+    IntegrableOn (fun x : JointSpace => inner (𝕜 := ℝ) (graphGradient f x) v)
+      {x : JointSpace | 0 < h x} := hf.toRegularHeightPair.integrableOn_shortLinear v
+
+theorem integrableOn_shortHessian (u v : JointSpace) :
+    IntegrableOn (fun x : JointSpace =>
+      fderiv ℝ (fderiv ℝ (fun y : JointSpace => f y)) x u v)
+      {x : JointSpace | 0 < h x} := hf.toRegularHeightPair.integrableOn_shortHessian u v
+
+theorem integrable_graphSurface_weight_div (w : JointSpace → ℝ)
+    (hw : ContinuousOn w (graphClosedPositive h)) :
+    Integrable (fun x => w x / ‖graphGradient h x‖) (graphSurfaceMeasure h) :=
+  hf.toRegularHeightPair.integrable_graphSurface_weight_div w hw
+
+theorem integrable_graphSurface_inner_div (v : JointSpace) :
+    Integrable (fun x => inner (𝕜 := ℝ) (graphGradient f x) v / ‖graphGradient h x‖)
+      (graphSurfaceMeasure h) := hf.toRegularHeightPair.integrable_graphSurface_inner_div v
+
+theorem integrable_graphSurface_inner_mul_div (u v : JointSpace) :
+    Integrable (fun x => (inner (𝕜 := ℝ) (graphGradient f x) u *
+      inner (𝕜 := ℝ) (graphGradient f x) v) / ‖graphGradient h x‖) (graphSurfaceMeasure h) :=
+  hf.toRegularHeightPair.integrable_graphSurface_inner_mul_div u v
+
+theorem integrable_graphSurface_norm_sq_div :
+    Integrable (fun x => ‖graphGradient f x‖ ^ 2 / ‖graphGradient h x‖) (graphSurfaceMeasure h) :=
+  hf.toRegularHeightPair.integrable_graphSurface_norm_sq_div
+
+theorem sum_futureHessian_basis_eq_graphLaplacian (x : JointSpace) (hx : x ∈ graphClosedPositive h) :
+    (∑ i : Fin 3, fderiv ℝ (fderiv ℝ (fun y : JointSpace => f y)) x
+      (EuclideanSpace.basisFun (Fin 3) ℝ i) (EuclideanSpace.basisFun (Fin 3) ℝ i)) = graphLaplacian f x :=
+  hf.toRegularHeightPair.sum_futureHessian_basis_eq_graphLaplacian x hx
+
+theorem contDiff_twoFaceShortPolynomial : ContDiff ℝ ⊤ (twoFaceShortPolynomial h f) :=
+  hf.toRegularHeightPair.contDiff_twoFaceShortPolynomial
+
+theorem continuous_twoFaceShortPolynomial : Continuous (twoFaceShortPolynomial h f) :=
+  hf.toRegularHeightPair.continuous_twoFaceShortPolynomial
+
+theorem integrable_shortLinear_angular (r : ℝ) :
+    Integrable (fun p : JointSpace × OverlapSphere => inner (𝕜 := ℝ) (graphGradient f p.1) (r • p.2.val))
+      ((volume.restrict {x : JointSpace | 0 < h x}).prod overlapSphereMeasure) :=
+  hf.toRegularHeightPair.integrable_shortLinear_angular r
+
+theorem integrable_shortHessian_angular (r : ℝ) :
+    Integrable (fun p : JointSpace × OverlapSphere => fderiv ℝ (fderiv ℝ (fun y : JointSpace => f y)) p.1
+      (r • p.2.val) (r • p.2.val)) ((volume.restrict {x : JointSpace | 0 < h x}).prod overlapSphereMeasure) :=
+  hf.toRegularHeightPair.integrable_shortHessian_angular r
+
+theorem integrable_shortSurface_angular (s r : ℝ) :
+    Integrable (fun p : JointSpace × OverlapSphere =>
+      (inner (𝕜 := ℝ) (graphGradient f p.1) (r • p.2.val) ^ 2 -
+        2 * s * inner (𝕜 := ℝ) (graphGradient f p.1) (r • p.2.val)) / ‖graphGradient h p.1‖)
+      ((graphSurfaceMeasure h).prod overlapSphereMeasure) := hf.toRegularHeightPair.integrable_shortSurface_angular s r
+
+theorem integral_overlapSphere_shortLinear (r : ℝ) :
+    (∫ ω : OverlapSphere, (∫ x in {x : JointSpace | 0 < h x},
+      inner (𝕜 := ℝ) (graphGradient f x) (r • ω.val)) ∂overlapSphereMeasure) = 0 :=
+  hf.toRegularHeightPair.integral_overlapSphere_shortLinear r
+
+theorem integral_overlapSphere_shortHessian (r : ℝ) :
+    (∫ ω : OverlapSphere, (∫ x in {x : JointSpace | 0 < h x},
+      fderiv ℝ (fderiv ℝ (fun y : JointSpace => f y)) x (r • ω.val) (r • ω.val)) ∂overlapSphereMeasure) =
+      (4 * Real.pi / 3) * r ^ 2 * (∫ x in {x : JointSpace | 0 < h x}, graphLaplacian f x) :=
+  hf.toRegularHeightPair.integral_overlapSphere_shortHessian r
+
+theorem integral_overlapSphere_shortSurface (s r : ℝ) :
+    (∫ ω : OverlapSphere, (∫ x,
+      (inner (𝕜 := ℝ) (graphGradient f x) (r • ω.val) ^ 2 -
+        2 * s * inner (𝕜 := ℝ) (graphGradient f x) (r • ω.val)) / ‖graphGradient h x‖
+          ∂graphSurfaceMeasure h) ∂overlapSphereMeasure) =
+      (4 * Real.pi / 3) * r ^ 2 * (∫ x, ‖graphGradient f x‖ ^ 2 / ‖graphGradient h x‖ ∂graphSurfaceMeasure h) :=
+  hf.toRegularHeightPair.integral_overlapSphere_shortSurface s r
+
+theorem integrable_overlapSphere_twoFaceShortPolynomial (s r : ℝ) :
+    Integrable (fun ω : OverlapSphere => twoFaceShortPolynomial h f (s, r • ω.val)) overlapSphereMeasure :=
+  hf.toRegularHeightPair.integrable_overlapSphere_twoFaceShortPolynomial s r
+
+theorem integral_overlapSphere_twoFaceShortPolynomial (s r : ℝ) :
+    (∫ ω : OverlapSphere, twoFaceShortPolynomial h f (s, r • ω.val) ∂overlapSphereMeasure) =
+      twoFaceShortCoefficient h f * r ^ 2 := hf.toRegularHeightPair.integral_overlapSphere_twoFaceShortPolynomial s r
+end AdmissibleTwoFace
+
+namespace AdmissibleIndependentTwoFace
+variable {h f : Spatial → ℝ} (hf : AdmissibleIndependentTwoFace h f)
+include hf
+
 /-- The normalized angular coefficient is exactly the independently defined
 two-face target minus its planar counterpart.  This uses the proved spatial
 divergence theorem and geometric coefficient identity, not either statement
@@ -711,8 +808,8 @@ theorem twoFaceShortCoefficient_identification :
         ‖graphGradient h x‖ ∂graphSurfaceMeasure h) -
       ∫ x, ‖graphGradient f x‖ ^ 2 / ‖graphGradient h x‖
         ∂graphSurfaceMeasure h := by
-    rw [← integral_sub hf.integrable_graphSurface_flux
-      hf.integrable_graphSurface_norm_sq_div]
+    rw [← integral_sub hf.toRegularHeightPair.integrable_graphSurface_flux
+      hf.toRegularHeightPair.integrable_graphSurface_norm_sq_div]
     apply integral_congr_ae
     filter_upwards with x
     ring
@@ -721,5 +818,12 @@ theorem twoFaceShortCoefficient_identification :
   field_simp [ne_of_gt Real.pi_pos]
   ring
 
+end AdmissibleIndependentTwoFace
+
+namespace AdmissibleTwoFace
+theorem twoFaceShortCoefficient_identification {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f) :
+    (-3 / (2 * Real.pi)) * twoFaceShortCoefficient h f =
+      twoFaceBoundaryIntegral h f - graphBoundaryIntegral h :=
+  hf.toIndependentTwoFace.twoFaceShortCoefficient_identification
 end AdmissibleTwoFace
 end BoundaryDraft

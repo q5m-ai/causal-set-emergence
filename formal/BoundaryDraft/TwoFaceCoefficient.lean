@@ -1,12 +1,13 @@
-import BoundaryDraft.TwoFaceSurface
+import BoundaryDraft.IndependentFaceSurface
 
 /-!
 # Spatial expression of the independently defined two-face target
 
 The coefficient identification is purely geometric. It neither defines the
 joint area using the action nor assumes a limit for the short contribution.
-All square roots and divisions below use the positive branches already derived
-from the original admissibility conditions.
+All square roots and divisions use the positive branches derived from the
+independent-envelope conditions. Explicit compatibility wrappers preserve the
+original admissible-class theorem signatures.
 -/
 
 open MeasureTheory Set Filter
@@ -14,10 +15,14 @@ open scoped Topology
 noncomputable section
 set_option maxHeartbeats 800000
 namespace BoundaryDraft
-namespace AdmissibleTwoFace
+namespace AdmissibleIndependentTwoFace
 
-variable {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+variable {h f : Spatial → ℝ} (hf : AdmissibleIndependentTwoFace h f)
 include hf
+
+private theorem aemeasurable_coefficientAreaDensity :
+    AEMeasurable (fun x => ENNReal.ofReal (twoFaceAreaDensity h f x)) (graphSurfaceMeasure h) :=
+  hf.integrable_areaDensity.aestronglyMeasurable.aemeasurable.ennreal_ofReal
 
 /-- The angle weight times Lorentzian area density, expressed in the original
 spatial coordinates. This is the geometric identification needed by G3. -/
@@ -33,7 +38,7 @@ theorem weight_mul_areaDensity (x : JointSpace) (hx : x ∈ graphJoint h) :
   let C := twoFaceCosh h f x
   let d := Real.sqrt (1 - ‖p - g‖ ^ 2) * Real.sqrt (1 - ‖p‖ ^ 2)
   let N := 1 - ‖p‖ ^ 2 + inner (𝕜 := ℝ) p g
-  have hk : 0 < k := hf.toAdmissibleGraphCap.graphSlope_pos x hx
+  have hk : 0 < k := hf.toRegularHeight.graphSlope_pos x hx
   have ha : 0 < a := hf.areaDensity_pos x hx
   have hC : 1 < C := hf.cosh_gt_one x hx
   have hp : ‖p‖ < 1 := (hf.face_slopes_lt_one x hx.1).1
@@ -55,7 +60,7 @@ theorem weight_mul_areaDensity (x : JointSpace) (hx : x ∈ graphJoint h) :
   have ht : ‖twoFaceTangentialGradient h f x‖ ^ 2 =
       ‖p‖ ^ 2 - (k⁻¹ * inner (𝕜 := ℝ) p g) ^ 2 := by
     rw [twoFaceTangentialGradient, joint_tangential_norm_sq _ _
-      (hf.toAdmissibleGraphCap.graphInward_norm x hx)]
+      (hf.toRegularHeight.graphInward_norm x hx)]
     simp only [graphInward, inner_smul_right]
     rfl
   have ha_sq : a ^ 2 = 1 - ‖p‖ ^ 2 + (k⁻¹ * inner (𝕜 := ℝ) p g) ^ 2 := by
@@ -92,10 +97,10 @@ theorem integrable_boundaryCoefficient :
         inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x)) /
           ‖graphGradient h x‖) (graphSurfaceMeasure h) := by
   have hi := (integrable_withDensity_iff_integrable_smul₀'
-    hf.aemeasurable_areaDensity
+    hf.aemeasurable_coefficientAreaDensity
     (Eventually.of_forall fun _ => ENNReal.ofReal_lt_top)).mp hf.integrable_weight
   apply hi.congr
-  filter_upwards [ae_graphJoint hf.toAdmissibleGraphCap] with x hx
+  filter_upwards [ae_graphJoint hf.toRegularHeight] with x hx
   rw [ENNReal.toReal_ofReal (twoFaceAreaDensity_nonneg h f x), smul_eq_mul, mul_comm]
   exact hf.weight_mul_areaDensity x hx
 
@@ -107,10 +112,10 @@ theorem boundaryIntegral_eq_spatialCoefficient :
         inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x)) /
           ‖graphGradient h x‖ ∂graphSurfaceMeasure h := by
   unfold twoFaceBoundaryIntegral twoFaceProjectedArea
-  rw [integral_withDensity_eq_integral_toReal_smul₀ hf.aemeasurable_areaDensity
+  rw [integral_withDensity_eq_integral_toReal_smul₀ hf.aemeasurable_coefficientAreaDensity
     (Eventually.of_forall fun _ => ENNReal.ofReal_lt_top)]
   apply integral_congr_ae
-  filter_upwards [ae_graphJoint hf.toAdmissibleGraphCap] with x hx
+  filter_upwards [ae_graphJoint hf.toRegularHeight] with x hx
   rw [ENNReal.toReal_ofReal (twoFaceAreaDensity_nonneg h f x), smul_eq_mul, mul_comm]
   exact hf.weight_mul_areaDensity x hx
 
@@ -121,7 +126,7 @@ theorem boundaryIntegral_sub_planar :
       ∫ x, (inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x) -
         ‖graphGradient f x‖ ^ 2) / ‖graphGradient h x‖ ∂graphSurfaceMeasure h := by
   rw [hf.boundaryIntegral_eq_spatialCoefficient, graphBoundaryIntegral,
-    ← integral_sub hf.integrable_boundaryCoefficient hf.toAdmissibleGraphCap.integrable_reciprocal_slope]
+    ← integral_sub hf.integrable_boundaryCoefficient hf.toRegularHeight.integrable_reciprocal_slope]
   apply integral_congr_ae
   filter_upwards with x
   ring
@@ -131,10 +136,41 @@ theorem integrable_boundaryCorrection :
     Integrable (fun x => (inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x) -
       ‖graphGradient f x‖ ^ 2) / ‖graphGradient h x‖) (graphSurfaceMeasure h) := by
   apply (hf.integrable_boundaryCoefficient.sub
-    hf.toAdmissibleGraphCap.integrable_reciprocal_slope).congr
+    hf.toRegularHeight.integrable_reciprocal_slope).congr
   filter_upwards with x
   dsimp only [Pi.sub_apply]
   ring
 
+end AdmissibleIndependentTwoFace
+
+namespace AdmissibleTwoFace
+variable {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f)
+include hf
+
+theorem weight_mul_areaDensity (x : JointSpace) (hx : x ∈ graphJoint h) :
+    twoFaceWeight h f x * twoFaceAreaDensity h f x =
+      (1 - ‖graphGradient f x‖ ^ 2 + inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x)) /
+        ‖graphGradient h x‖ := hf.toIndependentTwoFace.weight_mul_areaDensity x hx
+
+theorem integrable_boundaryCoefficient :
+    Integrable (fun x => (1 - ‖graphGradient f x‖ ^ 2 +
+      inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x)) / ‖graphGradient h x‖) (graphSurfaceMeasure h) :=
+  hf.toIndependentTwoFace.integrable_boundaryCoefficient
+
+theorem boundaryIntegral_eq_spatialCoefficient :
+    twoFaceBoundaryIntegral h f = ∫ x, (1 - ‖graphGradient f x‖ ^ 2 +
+      inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x)) / ‖graphGradient h x‖ ∂graphSurfaceMeasure h :=
+  hf.toIndependentTwoFace.boundaryIntegral_eq_spatialCoefficient
+
+theorem boundaryIntegral_sub_planar :
+    twoFaceBoundaryIntegral h f - graphBoundaryIntegral h =
+      ∫ x, (inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x) -
+        ‖graphGradient f x‖ ^ 2) / ‖graphGradient h x‖ ∂graphSurfaceMeasure h :=
+  hf.toIndependentTwoFace.boundaryIntegral_sub_planar
+
+theorem integrable_boundaryCorrection :
+    Integrable (fun x => (inner (𝕜 := ℝ) (graphGradient f x) (graphGradient h x) -
+      ‖graphGradient f x‖ ^ 2) / ‖graphGradient h x‖) (graphSurfaceMeasure h) :=
+  hf.toIndependentTwoFace.integrable_boundaryCorrection
 end AdmissibleTwoFace
 end BoundaryDraft

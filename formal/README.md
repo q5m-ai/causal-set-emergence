@@ -85,8 +85,36 @@ existing finite-density Poisson equality. Slope-independent regular-height
 atlases, weighted coarea and spatial divergence serve downstream consumers.
 The steep symmetric capsule is admitted and excluded from the original
 coordinate contracts, with its positive-height critical point retained.
-This completes #106's geometric prerequisites, **not** the enlarged-class
-short/long overlap theorems or deterministic/expected limits in #97.
+This completes #106's geometric prerequisites, **not** by itself the
+enlarged-class overlap theorems or deterministic/expected limits in #97.
+The separate [class-E long proof](INDEPENDENT_LONG_NULL.md) now derives the
+actual long-density right quadratic jet and fully normalized signed long
+cancellation at every fixed positive cutoff. It uses independent endpoint
+margins and the sum-controlled compact perturbation tube, retaining moving
+contacts, coefficient integrability and positive-height critical points.
+Original long theorem contracts are preserved. This completes #108's long
+obligation only; the actual short proof and final assembly are separate
+packages described below.
+
+The separate [actual independent-envelope short proof](INDEPENDENT_SHORT.md)
+now supplies #107: local raw/envelope positive-part agreement, a complete
+absolute C³ overlap two-jet, primitive derivative-controlled measurable
+remainder, the actual four-mode density decomposition, and the unchanged
+intrinsic coefficient. Every sufficiently small fixed positive cutoff has the
+proved short-action limit. The steep capsule, variable-angle symmetric member,
+old planar/unequal-axis cases and positive-height critical points are covered.
+No global class-E limit follows from this short theorem alone.
+
+The subsequent [class-E assembly and acceptance audit](INDEPENDENT_LIMIT.md)
+combines both actual producers at one common fixed positive cutoff, then
+uses the separately proved positive-density Poisson bridge. In
+`IndependentFaceLimit.lean`, `AdmissibleIndependentTwoFace.twoFaceLimit` and
+`expectedBDGAction_limit` prove the unconditional deterministic and expected
+limits for exactly E and the unchanged intrinsic target. The standalone
+`IndependentFaceLimitRegression.lean` expands the full action/law/target,
+checks old/new and critical-point instances, and preserves both original
+limit contracts. The linked note maps every #97 acceptance item and records
+the integrated validation scope; human mathematical review remains separate.
 
 The [short-displacement proof note](../notes/curved-face-stability.md) is a
 **conventional analytic argument, not an end-to-end Lean theorem**.
@@ -1466,6 +1494,25 @@ normalizations and geometric interfaces. `GraphCapRegression.lean` retains
 the quartic critical point in its planar short-limit specialization.
 Independent human mathematical review remains outstanding; the full weighted
 estimate in #66 and sample-wise convergence are not promoted by these proofs.
+
+## Direct-origin analytic backend (partial #97)
+
+`ShortCutoffPolynomial`, `ShortRadialAbsolute`, and `AbsoluteShortModel` prove
+fixed-cutoff absolute-overlap basis responses: the volume logarithm cancels the
+point term, the moving-endpoint time-linear term vanishes, and both quadratic
+terms retain their distinct signed responses. A separate conditional theorem
+transfers an exact absolute density decomposition with derivative-controlled
+remainder bounds. `AbsoluteShortRegression.lean` checks these interfaces.
+
+This does **not** encode the independent-envelope class E or derive its actual
+geometric expansion, long-density cancellation, target identification or global
+limit. No original admissibility or action is changed. Issue #97 remains open;
+see the [analytic proof and remaining-work ledger](../notes/direct-origin-short.md).
+The subsequent [#107 geometric producer](INDEPENDENT_SHORT.md) now discharges
+that backend's inputs for the actual class-E short density. The separate
+[#108 long theorem](INDEPENDENT_LONG_NULL.md) and
+[#109 full/expected assembly](INDEPENDENT_LIMIT.md) complete the actual
+class-E limit proof, not an expansion of this backend-only package's scope.
 
 ## Reproduce
 

@@ -114,6 +114,7 @@ import BoundaryDraft.TwoFaceLongGeometry
 import BoundaryDraft.TwoFaceLongDisintegration
 import BoundaryDraft.AveragedQuadraticJet
 import BoundaryDraft.TwoFaceLongNull
+import BoundaryDraft.IndependentFaceLongNull
 import BoundaryDraft.TwoFaceAssembly
 import BoundaryDraft.TwoFaceCoefficient
 import BoundaryDraft.GraphWeightedCoarea
@@ -137,6 +138,11 @@ import BoundaryDraft.TwoFaceShortOverlapJet
 import BoundaryDraft.ShortOverlapTaylor
 import BoundaryDraft.TwoFaceAngularJet
 import BoundaryDraft.ShortOverlapAsymptotics
+import BoundaryDraft.ShortCutoffPolynomial
+import BoundaryDraft.ShortRadialAbsolute
+import BoundaryDraft.AbsoluteShortModel
+import BoundaryDraft.IndependentShortLimit
+import BoundaryDraft.IndependentFaceLimit
 import BoundaryDraft.TwoFaceShortReduction
 import BoundaryDraft.TwoFaceShortLimit
 import BoundaryDraft.TwoFaceLimit

@@ -268,6 +268,54 @@ class IndependentFaceTests(unittest.TestCase):
         new_y = (root-epsilon/root)*omega/2
         self.assertGreaterEqual(2*envelope(new_y, slope), margin*delta/4)
 
+    def test_long_fibre_keeps_moving_contact_coefficient(self):
+        # Actual steep capsule, source -1/3 and null contact v=4/3. Integrate
+        # the original Jacobian and direct interval intersection, not a new
+        # density. This is a finite numerical/symbolic regression, not a limit
+        # proof or uniform fibre little-o assertion.
+        sigma, v = sp.symbols("sigma v", real=True)
+        R = sp.Rational
+        target = -R(1, 3) + (v - sigma/v)/2
+        gap = R(1, 3) + R(3, 8)*(1-target**2) - (v+sigma/v)/2
+        weight = (v-sigma/v)**2/(8*v)
+        root = R(4, 3)
+        self.assertEqual(gap.subs({sigma: 0, v: root}), 0)
+        speed = -sp.diff(gap, v).subs({sigma: 0, v: root})
+        transverse = sp.diff(gap, sigma).subs({sigma: 0, v: root})
+        moving = sp.simplify(weight.subs({sigma: 0, v: root})
+                             * transverse**2 / (2*speed))
+        self.assertEqual(speed, R(5, 8))
+        self.assertEqual(moving, R(27, 2560))
+        product = sp.expand(weight*gap)
+        coefficients = [sp.integrate(product.coeff(sigma, j), (v, 1, root))
+                        for j in range(3)]
+        fixed_quadratic = float(coefficients[2])
+        c0, c1, c2 = map(float, coefficients)
+        c2 += float(moving)
+        gap_value = sp.lambdify((sigma, v), gap, "math")
+        x = np.array([-1/3, 0., 0.])
+
+        def fibre(s):
+            contact = brentq(lambda w: gap_value(s, w), 1., float(root))
+            return quad(lambda w: (w-s/w)**2/(8*w) * vertical_overlap(
+                x, np.array([(w-s/w)/2, 0., 0.]), (w+s/w)/2, 0.75),
+                1., contact, epsabs=1e-13, epsrel=1e-13)[0]
+
+        errors = []
+        for s in [1e-3, 5e-4, 2.5e-4]:
+            value = fibre(s)
+            errors.append(abs(value-c0-c1*s-c2*s*s)/(s*s))
+            omitted = (value-c0-c1*s-fixed_quadratic*s*s)/(s*s)
+            self.assertAlmostEqual(omitted, float(moving), delta=2e-5)
+        self.assertLess(errors[-1], errors[0]/3)
+        # At exact cutoff contact the right fibre is instead identically zero;
+        # the strictly active moving coefficient must not be inserted there.
+        for s in [0., 1e-3, 0.02]:
+            value = quad(lambda w: (w-s/w)**2/(8*w) * vertical_overlap(
+                x, np.array([(w-s/w)/2, 0., 0.]), (w+s/w)/2, 0.75),
+                float(root), 2., epsabs=1e-13)[0]
+            self.assertAlmostEqual(value, 0., delta=1e-14)
+
     def test_null_transversality_and_cutoff_contact_do_not_need_smooth_envelope(self):
         slope, delta = 0.75, 0.4
         source = brentq(lambda x: envelope(np.array([x, 0., 0.]), slope)

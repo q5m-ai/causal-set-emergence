@@ -1,14 +1,17 @@
 import BoundaryDraft.TwoFaceOverlap
 import BoundaryDraft.GraphCoarea
 import BoundaryDraft.MovingCollarIntegral
+import BoundaryDraft.GraphDivergence
 import Mathlib.Topology.MetricSpace.Thickening
 
 /-!
 # The actual short-displacement gap and its moving collar
 
-All geometric hypotheses in this file come from `AdmissibleTwoFace`.
-Displacements use the standard product norm, with a Euclidean spatial factor.
-Only the collar correction is partitioned; no bilocal action is localized.
+The original overlap statements use `AdmissibleTwoFace`. Pure fixed-domain
+smoothness and moving-root helpers require only `RegularHeightPair` and are
+shared with the independent-envelope producer. Displacements use the standard
+product norm with a Euclidean spatial factor. Only the collar correction is
+partitioned; no bilocal action is localized.
 -/
 
 open MeasureTheory Set Filter
@@ -217,12 +220,18 @@ theorem translatedOverlap_sub_planar (z : Displacement) (hz : ‖z.2‖ ≤ z.1)
   rw [he]
   ring
 
-/-- The single-face fixed-domain term is genuinely C³ from the unchanged
-local germs, even when the interior contains positive-height critical points. -/
+end AdmissibleTwoFace
+
+namespace RegularHeightPair
+variable {h f : Spatial → ℝ} (hf : RegularHeightPair h f)
+include hf
+
+/-- The single-face fixed-domain term is genuinely C³ from the raw germs,
+independently of any slope bound or interior critical points. -/
 theorem contDiffAt_shortOverlapBulk : ContDiffAt ℝ 3
     (fun z : Displacement => ∫ x : JointSpace in {x : JointSpace | 0 < h x}, f (x + z.2) - f x) 0 := by
   let μ : Measure JointSpace := volume.restrict {x : JointSpace | 0 < h x}
-  have hs := hf.toGraphCapData.isCompact_closedPositive
+  have hs := hf.toRegularHeight.isCompact_closedPositive
   have he : (fun z : Displacement => ∫ x in graphClosedPositive h,
       f (x + z.2) - f x ∂μ) =
       (fun z : Displacement => ∫ x in {x : JointSpace | 0 < h x}, f (x + z.2) - f x) := by
@@ -242,6 +251,16 @@ theorem contDiffAt_shortOverlapBulk : ContDiffAt ℝ 3
     simpa using hfx
   exact (hfb.comp (0, x) (contDiffAt_snd.add contDiffAt_fst.snd)).sub
     (hfx.comp (0, x) contDiffAt_snd)
+
+end RegularHeightPair
+
+namespace AdmissibleTwoFace
+
+/-- Compatibility with the original admissibility contract. -/
+theorem contDiffAt_shortOverlapBulk {h f : Spatial → ℝ} (hf : AdmissibleTwoFace h f) :
+    ContDiffAt ℝ 3 (fun z : Displacement =>
+      ∫ x : JointSpace in {x : JointSpace | 0 < h x}, f (x + z.2) - f x) 0 :=
+  hf.toRegularHeightPair.contDiffAt_shortOverlapBulk
 
 end AdmissibleTwoFace
 
@@ -289,7 +308,7 @@ def movingGap (f : Spatial → ℝ) (p : (SurfacePlane × Displacement) × ℝ) 
 
 /-- Joint smoothness of the actual chart gap on the zero-displacement
 slice, at every point of the compact planar disk. -/
-theorem contDiffAt_movingGap_zero (hf : AdmissibleTwoFace h f)
+theorem contDiffAt_movingGap_zero (hf : RegularHeightPair h f)
     (y : SurfacePlane) (hy : y ∈ c.closedDisk) :
     ContDiffAt ℝ 3 (c.movingGap f) ((y, 0), 0) := by
   have ht : jointHeightCoordinates.symm (0, y) ∈ c.chart.target :=
@@ -307,10 +326,10 @@ theorem contDiffAt_movingGap_zero (hf : AdmissibleTwoFace h f)
   exact (contDiffAt_fst.snd.fst.sub (hb.comp ((y, 0), 0)
     (hφ.add contDiffAt_fst.snd.snd))).add (hfx.comp ((y, 0), 0) hφ)
 
-/-- The moving root is produced from unchanged two-face admissibility at
-EVERY point of the compact planar disk, not supplied as a geometric premise.
+/-- The moving root is produced from regular height geometry and raw future
+germs at EVERY point of the compact planar disk, not supplied as a premise.
 It is jointly C³ in the planar coordinates and displacement. -/
-theorem exists_contDiff_movingRoot (hf : AdmissibleTwoFace h f)
+theorem exists_contDiff_movingRoot (hf : RegularHeightPair h f)
     (y : SurfacePlane) (hy : y ∈ c.closedDisk) :
     ∃ η : SurfacePlane × Displacement → ℝ,
       η (y, 0) = 0 ∧ ContDiffAt ℝ 3 η (y, 0) ∧
@@ -370,7 +389,7 @@ theorem exists_contDiff_movingRoot (hf : AdmissibleTwoFace h f)
 
 /-- One root function and one pair of positive radii work on the WHOLE
 compact planar disk. These are derived from the actual gap and local IFT. -/
-theorem exists_uniform_movingRoots (hf : AdmissibleTwoFace h f) :
+theorem exists_uniform_movingRoots (hf : RegularHeightPair h f) :
     ∃ ε δ : ℝ, 0 < ε ∧ 0 < δ ∧ ∃ η : SurfacePlane × Displacement → ℝ,
       (∀ y ∈ c.closedDisk, η (y, 0) = 0) ∧
       ∀ y ∈ c.closedDisk, ∀ z ∈ Metric.ball (0 : Displacement) δ,
@@ -398,7 +417,7 @@ def movingFibre (i : Fin A.count) (f : Spatial → ℝ) (y : SurfacePlane)
 /-- An actual C³ fibre extension is constructed, with the original C³ future
 and height germs and the derived C² weighted Jacobian. This statement is
 local in the planar fibre; uniform gluing and planar integration are separate. -/
-theorem exists_contDiff_movingFibre (hf : AdmissibleTwoFace h f) (i : Fin A.count)
+theorem exists_contDiff_movingFibre (hf : RegularHeightPair h f) (i : Fin A.count)
     (y : SurfacePlane) (hy : y ∈ (A.charts i).closedDisk) :
     ∃ η : Displacement → ℝ, η 0 = 0 ∧ ContDiffAt ℝ 3 η 0 ∧
       (∀ᶠ z in 𝓝 (0 : Displacement), η z = (A.charts i).movingGap f ((y, z), η z)) ∧
@@ -441,7 +460,7 @@ theorem exists_actual_collarFibre (hf : AdmissibleTwoFace h f) (i : Fin A.count)
             max 0 ((A.charts i).movingGap f ((y, z), t) - t)) =
           A.movingFibre i f y (fun z => η (y, z)) z := by
   let c := A.charts i
-  obtain ⟨ε, δ₀, hε, hδ₀, η, hη₀, hη⟩ := c.exists_uniform_movingRoots hf
+  obtain ⟨ε, δ₀, hε, hδ₀, η, hη₀, hη⟩ := c.exists_uniform_movingRoots hf.toRegularHeightPair
   let δ := min δ₀ (min ε A.width / 4)
   have hδ : 0 < δ := lt_min hδ₀ (div_pos (lt_min hε A.width_pos) (by norm_num))
   have hzδ (z : Displacement) (hz : z ∈ Metric.ball (0 : Displacement) δ) :
@@ -527,7 +546,7 @@ theorem exists_contDiff_chartCorrection (hf : AdmissibleTwoFace h f) (i : Fin A.
       exact (c.contDiffAt_weightedJacobian ht hw).comp (y, 0)
         (jointHeightCoordinates.symm.contDiff.contDiffAt.comp (y, 0)
           (contDiffAt_snd.prodMk contDiffAt_fst))
-    · exact c.contDiffAt_movingGap_zero hf
+    · exact c.contDiffAt_movingGap_zero hf.toRegularHeightPair
     · exact fun y hy => (hη y hy 0 (Metric.mem_ball_self hδ)).1
     · exact hη₀
     · exact fun y hy z hz => (hη y hy z hz).2

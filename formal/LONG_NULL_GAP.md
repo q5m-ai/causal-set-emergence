@@ -1,5 +1,13 @@
 # Fixed-positive-cutoff geometric long-null cancellation (#61)
 
+**Class-E extension (#108):** the original-class derivation below remains a
+valid specialization. The current shared implementation additionally accepts
+derived independent-envelope data, using the smaller E24 interval rather than
+the original convenient shortcut. All original public signatures are retained
+as wrappers. See [the new contracts and acceptance map](INDEPENDENT_LONG_NULL.md)
+for the actual class-E density and signed cancellation theorems; this note does
+not enlarge the original `AdmissibleTwoFace` contract.
+
 **Checked theorem:** for every unchanged `AdmissibleTwoFace h f` and every
 fixed positive cutoff, the **actual existing** `longOverlapDensity` has a
 right quadratic jet. The original signed-kernel cancellation theorem then
@@ -124,8 +132,11 @@ assumption that this set is null. Transversality here is in the long coordinate
 at the null cone, not spatial transversality or monotonicity at all timelike
 parameters.
 
-WP2 (`TwoFaceLongGeometry.exists_hypotheses`) chooses common constants for
-**all** spatial points and directions. If `Hmax` bounds `H` globally, it uses:
+For the original combined-budget specialization, common constants for
+**all** spatial points and directions can be chosen as follows when `Hmax`
+bounds `H` globally. The current shared implementation uses the smaller E24
+interval described above; these original sufficient constants explain #61's
+geometric argument:
 
 ```math
 c=\frac{1-\eta}{2},\qquad A=\frac{1+\eta}{2\delta},\qquad

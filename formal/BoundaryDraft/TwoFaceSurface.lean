@@ -32,7 +32,7 @@ theorem twoFaceProjectedArea_le (h f : Spatial → ℝ) :
         simpa using ENNReal.ofReal_le_ofReal (twoFaceAreaDensity_le_one h f x))
     _ = _ := by simp
 
-theorem ae_graphJoint {h : Spatial → ℝ} (hh : AdmissibleGraphCap h) :
+theorem ae_graphJoint {h : Spatial → ℝ} (hh : RegularHeight h) :
     ∀ᵐ x ∂graphSurfaceMeasure h, x ∈ graphJoint h := by
   apply Measure.ae_smul_measure
   exact ae_restrict_mem hh.measurableSet_joint

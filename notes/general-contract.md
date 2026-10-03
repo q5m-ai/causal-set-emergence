@@ -383,6 +383,48 @@ This is the obstruction branch of #85, **not
 new global limit coverage**. No original Lean contract or theorem is changed;
 independent human review remains outstanding.
 
+**Partial #97 handoff:** [the direct-origin analytic backend](direct-origin-short.md)
+checks the absolute short basis responses and conditional derivative-controlled
+remainder transfer in Lean. It does not yet connect those inputs to class E,
+port its long density, or establish its global deterministic/expected limit.
+The new consumer adds no global coverage to this matrix; #97 and #86 remain open.
+
+**#107 short handoff:** the subsequent [actual class-E short proof](../formal/INDEPENDENT_SHORT.md)
+now produces raw/envelope agreement, the complete absolute overlap two-jet,
+measurable derivative-controlled remainder, actual four-mode density
+expansion and independent coefficient identification. Its unconditional
+short-action limit holds for every sufficiently small fixed positive cutoff,
+including steep, variable-angle and positive-height-critical-point members.
+This connects the backend to geometry, but it is still **not a global class-E
+limit**: #108 owns long cancellation and #109 owns full/expected assembly.
+The global coverage matrix and outstanding human-review status are unchanged.
+
+### Subsequent #109 / #97 integrated coverage
+
+The [class-E assembly and acceptance audit](../formal/INDEPENDENT_LIMIT.md)
+now combines the actual #107 short producer and #108 long cancellation at one
+common fixed positive cutoff, identifies the intrinsic coefficient using the
+slope-independent divergence theorem, and only then transfers through the
+original positive-density Poisson bridge. The baseline matrix above and the
+historical package-only handoffs are not silently reclassified as broader
+results. The precise addition to the checked coverage is:
+
+| Axis | Compatible added class-E coverage | Still not covered |
+| --- | --- | --- |
+| Geometry / presentation | `AdmissibleIndependentTwoFace`: bounded positive region, C³ raw germs near its closure, joint-only regular height, independent global strict causal envelopes; every old member included | General non-two-graph atlases, noncompact tails, extra strata, degenerating margins |
+| Region / target | Actual `twoFaceRegion`, all closed ambient causal intervals, exact two-face/joint strata; normalized Hausdorff measure with intrinsic Lorentzian area and positive-angle weight | Intrinsic/embedded equivalence without interval containment; arbitrary null or mixed joints |
+| Observable / limit | Unchanged flat 4D `continuumMean`; `independentTwoFaceLimitGoal` and `independentTwoFaceExpectedLimitGoal` with no analytic or expectation premise | Curved bulk/joint global limits, other-dimensional global limits, rates, shrinking cutoffs, variance or individual sprinklings |
+| Nonvacuity / verification | Full declarations on the steep critical capsule, concrete variable-angle symmetric member, original planar/unequal-axis cases and all old members; exact contract regressions and actual full-action diagnostics | A numerical convergence proof, a theorem inferred from issue closure, or independent human review |
+
+The linked acceptance table maps **every #97 item** to the integrated
+geometry, actual overlap/density producers, deterministic theorem, expectation
+corollary, regressions and combined validation receipt. Its child PR targets
+`issue-97-direct-origin`; PR #104 remains the designated final integration and
+closure vehicle, with no merge authorization implied here. This restricted
+flat enlargement satisfies neither the unchanged general criterion nor #86's
+human-review gate. #94/#86 and the general gaps above remain separate;
+no unrelated issue state is changed.
+
 ## 6. Selected first flat 4D mixed pilot for #83 / #84
 
 **GO, directly at fixed null geometry.** Put the future tip at zero. Choose a
