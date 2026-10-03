@@ -12,6 +12,13 @@ the dimension-indexed finite-density expectation identity. The geometric argumen
 or independently human-reviewed results**. Python/SymPy checks are regressions,
 not proofs for arbitrary inputs. Existing Lean results are cited explicitly.
 
+**Follow-on port status:** [#115's partial Lean foundation](../formal/PILOT3_GEOMETRY.md)
+now provides the exact smooth 3D contract, region/strata, positive-angle and
+pointwise Gram results, a finite canonical candidate measure and the existing
+Poisson specialization. Intrinsic chart-measure compatibility and controlled
+collar coarea are still outstanding. The historical #92 delivery and written
+all-dimensional statements below are not promoted to new Lean theorems.
+
 Read with [the dimensional kernel contracts](dimension-kernels.md),
 [the checked ambient transport](../formal/DIMENSION_INTERVALS.md), and
 [the original 4D geometry](../formal/JOINT_GEOMETRY.md). No existing Lean
