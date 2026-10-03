@@ -1,9 +1,11 @@
 import BoundaryDraft.Pilot3Surface
 import BoundaryDraft.Pilot3Tubes
+import BoundaryDraft.Pilot3JointAtlas
+import BoundaryDraft.Pilot3Divergence
 
-/-! Standalone #79 contracts. The canonical candidate target and Gram algebra
-are independent of the action. No short producer, coefficient identification,
-Hausdorff chart area formula or coarea theorem is asserted by this regression. -/
+/-! Standalone #79 contracts. The canonical intrinsic target, chart measures,
+finite-atlas gluing, spatial coarea and divergence are independent of the action.
+No short producer, coefficient identification or pilot action limit is asserted. -/
 
 open BoundaryDraft MeasureTheory Set Filter
 open scoped Topology
@@ -109,3 +111,47 @@ example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) : ∃ ε : ℝ, 0 < 
       ∀ x ∈ pilot3TranslationTube h ε,
         ‖iteratedFDeriv ℝ n h x‖ ≤ Bh ∧ ‖iteratedFDeriv ℝ n f x‖ ≤ Bf :=
   hf.exists_translationTube_derivative_bounds
+
+-- This is equality of fixed measures on every Borel chart subset.
+example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) (c : Pilot3SliceChart h)
+    (s : Set ℝ) (hs : MeasurableSet s) (hsD : s ⊆ c.sliceDomain 0) :
+    (pilot3JointArea h f).restrict (c.jointChart f '' s) =
+      Measure.map (c.jointChart f) ((volume.restrict s).withDensity
+        (fun u => ENNReal.ofReal (pilot3GramDensity (deriv (c.jointChart f) u)))) :=
+  c.jointArea_chart hf s hs hsD
+
+-- Positive-measure overlaps agree, without a disjointness premise.
+example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) (c d : Pilot3SliceChart h)
+    (s t : Set ℝ) (hs : MeasurableSet s) (ht : MeasurableSet t)
+    (hsD : s ⊆ c.sliceDomain 0) (htD : t ⊆ d.sliceDomain 0) :
+    (Measure.map (c.jointChart f) ((volume.restrict s).withDensity
+      (fun u => ENNReal.ofReal (c.jointDensity f u)))).restrict (d.jointChart f '' t) =
+    (Measure.map (d.jointChart f) ((volume.restrict t).withDensity
+      (fun u => ENNReal.ofReal (d.jointDensity f u)))).restrict (c.jointChart f '' s) :=
+  c.jointArea_overlap hf d s t hs ht hsD htD
+
+-- Both integrability statements accompany the signed, normalized coarea law.
+example {h : Pilot3Space → ℝ} (hh : Pilot3RegularHeight h) (A : Pilot3CollarAtlas h)
+    (w : Pilot3Space → ℝ) (hw : ContinuousOn w (pilot3ClosedPositive h))
+    (g : ℝ → ℝ) (hg : ContinuousOn g (Icc 0 A.width)) :
+    IntegrableOn (fun x => g (h x) * w x) {x | 0 < h x ∧ h x < A.width} ∧
+    IntervalIntegrable (fun t => g t * pilot3WeightedHeightDensity h w t) volume 0 A.width ∧
+    (∫ x in {x | 0 < h x ∧ h x < A.width}, g (h x) * w x) =
+      ∫ t in (0 : ℝ)..A.width, g t * pilot3WeightedHeightDensity h w t :=
+  ⟨A.integrableOn_openCollar_weighted hh w hw g hg,
+    A.intervalIntegrable_weightedHeightDensity hh w hw g hg, A.integral_openCollar_weighted hh w hw g hg⟩
+
+example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) :
+    IntegrableOn (pilot3Laplacian f) {x | 0 < h x} ∧
+    Integrable (fun x => inner (𝕜 := ℝ) (pilot3Gradient f x) (pilot3Gradient h x) /
+      ‖pilot3Gradient h x‖) (pilot3SurfaceMeasure h) ∧
+    (∫ x in {x | 0 < h x}, pilot3Laplacian f x) =
+      -(∫ x, inner (𝕜 := ℝ) (pilot3Gradient f x) (pilot3Gradient h x) /
+        ‖pilot3Gradient h x‖ ∂pilot3SurfaceMeasure h) :=
+  ⟨hf.integrableOn_laplacian, hf.integrable_surface_flux, hf.spatial_divergence⟩
+
+example {h : Pilot3Space → ℝ} (hh : Pilot3RegularHeight h) (w : Pilot3Space → ℝ)
+    (hw : ContinuousOn w (pilot3ClosedPositive h)) :
+    Tendsto (pilot3WeightedHeightDensity h w) (𝓝[≥] 0)
+      (𝓝 (∫ x, w x / ‖pilot3Gradient h x‖ ∂pilot3SurfaceMeasure h)) :=
+  hh.tendsto_weightedHeightDensity_zero w hw

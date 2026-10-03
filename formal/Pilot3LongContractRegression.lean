@@ -1,5 +1,7 @@
 import BoundaryDraft.Pilot3Tubes
 import BoundaryDraft.Pilot3Components
+import BoundaryDraft.Pilot3JointAtlas
+import BoundaryDraft.Pilot3AtlasRegularity
 
 /-! Standalone #78 consumer contracts: geometry and actual finite-density
 normalization, NOT an assumed overlap density, jet or long cancellation. -/
@@ -94,3 +96,20 @@ example {θ : Pilot3Space} (hθ : ‖θ‖ = 1) {σ v : ℝ} (hv : 0 < v) (hσ :
     (pilot3RayDisplacement θ σ v).1 + ‖(pilot3RayDisplacement θ σ v).2‖ = v ∧
     (pilot3RayDisplacement θ σ v).1 ^ 2 - ‖(pilot3RayDisplacement θ σ v).2‖ ^ 2 = σ :=
   ⟨pilot3RayDisplacement_causal hθ hv hσ, pilot3RayDisplacement_parameters hθ hv hσ⟩
+
+-- The new height geometry does not assume a long overlap density or jet.
+example {h : Pilot3Space → ℝ} (hh : Pilot3RegularHeight h) : Nonempty (Pilot3CollarAtlas h) :=
+  hh.exists_collarAtlas
+
+example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) (A B : Pilot3CollarAtlas h) :
+    (∑ i, A.localJointMeasure f i) = pilot3JointArea h f ∧
+      (∑ i, A.localJointMeasure f i) = ∑ j, B.localJointMeasure f j :=
+  ⟨A.sum_localJointMeasure hf, A.jointAtlas_independent hf B⟩
+
+open scoped ContDiff
+
+-- Each finite derivative order has its own bound on the SAME fixed rectangles.
+example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) (A : Pilot3CollarAtlas h) (n : ℕ) :
+    ∃ B : ℝ, 0 < B ∧ ∀ i, ∀ p ∈ Icc 0 A.width ×ˢ (A.charts i).closedDisk,
+      ‖iteratedFDeriv ℝ n (fun q : ℝ × ℝ => A.weightedLocalTerm f i q.1 q.2) p‖ ≤ B :=
+  A.exists_uniform_weighted_derivative_bound f hf.future_smoothAt n

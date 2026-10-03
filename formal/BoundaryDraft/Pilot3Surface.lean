@@ -4,8 +4,10 @@ import BoundaryDraft.Pilot3Metric
 # Finite canonical candidate area and actual one-dimensional Gram algebra
 
 These results prove finiteness and integrability independently of the action.
-The pointwise chart derivative and reparameterization factors below are not a
-proof of the variable-density Hausdorff area formula or global collar coarea.
+The pointwise chart derivative and reparameterization factors below do not
+alone identify chart measures. `Pilot3JointCharts` and `Pilot3JointAtlas` prove
+the intrinsic area and gluing laws downstream; `Pilot3Coarea` proves spatial
+collar integration without changing this independently fixed measure.
 -/
 
 open MeasureTheory Set Filter
@@ -90,7 +92,7 @@ theorem measurableEmbedding_lift : MeasurableEmbedding (pilot3Lift f) := by
   exact congrArg Prod.snd he
 
 /-- Transport of observables to the ACTUAL spacetime joint. This is the
-pushforward definition, not an assertion of the missing chart area formula. -/
+pushforward definition; the intrinsic chart law is proved in `Pilot3JointCharts`. -/
 theorem integral_jointArea (w : Pilot3Spacetime → ℝ) :
     (∫ p, w p ∂pilot3JointArea h f) = ∫ x, w (pilot3Lift f x) ∂pilot3ProjectedArea h f :=
   hf.measurableEmbedding_lift.integral_map w

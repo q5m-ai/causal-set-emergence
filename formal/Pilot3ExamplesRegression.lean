@@ -1,9 +1,10 @@
 import BoundaryDraft.Pilot3Examples
 import BoundaryDraft.Pilot3Components
+import BoundaryDraft.Pilot3Annulus
 
-/-! Concrete nonvacuity and all-component/exterior controls. The separated
-maximum identities are set identities, not an additive-action assertion or a
-claim that all raw maxima satisfy the smooth pilot. -/
+/-! Concrete nonvacuity and all-component/exterior controls. The disconnected
+and annular examples now have proved admissibility and integration. No bilocal
+action additivity or smoothness of arbitrary raw maxima is asserted. -/
 
 open BoundaryDraft MeasureTheory Set
 noncomputable section
@@ -51,3 +52,38 @@ example : pilot3Region (fun _ => 0) (fun _ => 0) = ∅ ∧
     have hl : 0 < p.1 := by simpa using hp.1
     exact (not_lt_of_ge hl.le) hp.2
   · simp [pilot3SpatialJoint, pilot3ClosedPositive, pilot3SurfaceMeasure, pilot3BoundaryIntegral]
+
+example : SmoothPilot3 pilot3DisconnectedHeight pilot3SineFuture := pilot3DisconnectedSine_admissible
+example : SmoothPilot3 pilot3AnnularHeight pilot3SineFuture := pilot3AnnularSine_admissible
+example : SmoothPilot3 pilot3AnnularHeight (fun _ => 0) := pilot3AnnularPlanar_admissible
+
+example : pilot3SpatialJoint pilot3DisconnectedHeight =
+    Metric.sphere (0 : Pilot3Space) 1 ∪ Metric.sphere pilot3OtherCenter 1 := pilot3Disconnected_joint
+
+example : (0 < pilot3DisconnectedHeight 0 ∧ fderiv ℝ pilot3DisconnectedHeight 0 = 0) ∧
+    (0 < pilot3DisconnectedHeight pilot3OtherCenter ∧ fderiv ℝ pilot3DisconnectedHeight pilot3OtherCenter = 0) :=
+  pilot3Disconnected_both_critical
+
+example : pilot3SpatialJoint pilot3AnnularHeight =
+    Metric.sphere (0 : Pilot3Space) 1 ∪ Metric.sphere (0 : Pilot3Space) 2 := pilot3Annular_joint
+
+example : ∃ x : Pilot3Space, 0 < pilot3AnnularHeight x ∧ fderiv ℝ pilot3AnnularHeight x = 0 :=
+  pilot3Annular_critical_nonempty
+
+example : ∃ δ : ℝ, 0 < δ ∧ ∀ g : ℝ → ℝ, ContinuousOn g (Icc 0 δ) →
+    IntegrableOn (fun x => g (pilot3AnnularHeight x)) (pilot3ClosedCollar pilot3AnnularHeight δ) ∧
+    (∫ x in pilot3ClosedCollar pilot3AnnularHeight δ, g (pilot3AnnularHeight x)) =
+      ∫ t in Icc 0 δ, g t * pilot3HeightDensity pilot3AnnularHeight t := pilot3Annular_collar_coarea
+
+example : ∃ δ : ℝ, 0 < δ ∧ ∀ g : ℝ → ℝ, ContinuousOn g (Icc 0 δ) →
+    IntegrableOn (fun x => g (pilot3DisconnectedHeight x)) (pilot3ClosedCollar pilot3DisconnectedHeight δ) ∧
+    (∫ x in pilot3ClosedCollar pilot3DisconnectedHeight δ, g (pilot3DisconnectedHeight x)) =
+      ∫ t in Icc 0 δ, g t * pilot3HeightDensity pilot3DisconnectedHeight t := pilot3Disconnected_collar_coarea
+
+-- Negative heights vanish; the proved boundary-density limit is right-sided.
+example (t : ℝ) (ht : t < 0) : pilot3HeightDensity pilot3AnnularHeight t = 0 :=
+  pilot3Annular_regular.heightDensity_eq_zero_of_neg t ht
+
+example : (∫ x in {x | 0 < pilot3AnnularHeight x}, pilot3Laplacian pilot3SineFuture x) =
+    -(∫ x, inner (𝕜 := ℝ) (pilot3Gradient pilot3SineFuture x) (pilot3Gradient pilot3AnnularHeight x) /
+      ‖pilot3Gradient pilot3AnnularHeight x‖ ∂pilot3SurfaceMeasure pilot3AnnularHeight) := pilot3Annular_spatial_divergence
