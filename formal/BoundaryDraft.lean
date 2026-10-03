@@ -34,6 +34,8 @@ import BoundaryDraft.DimensionExpectationCompatibility
 import BoundaryDraft.Pilot3Contract
 import BoundaryDraft.Pilot3RegularHeight
 import BoundaryDraft.Pilot3Geometry
+import BoundaryDraft.Pilot3Overlap
+import BoundaryDraft.Pilot3Tubes
 import BoundaryDraft.Pilot3Metric
 import BoundaryDraft.Pilot3Surface
 import BoundaryDraft.Pilot3Examples

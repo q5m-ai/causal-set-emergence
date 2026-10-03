@@ -1,4 +1,5 @@
 import BoundaryDraft.Pilot3Surface
+import BoundaryDraft.Pilot3Tubes
 
 /-! Standalone #79 contracts. The canonical candidate target and Gram algebra
 are independent of the action. No short producer, coefficient identification,
@@ -61,3 +62,50 @@ example : Pilot3ExpectedGoal ↔ Pilot3DeterministicGoal := pilot3ExpectedGoal_i
 example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) (F : Pilot3Spacetime → ℝ)
     (hF : Continuous F) : (∫ p in pilot3Region h f, F p) =
       ∫ x in {x | 0 < h x}, ∫ t in Ioo (f x - h x) (f x), F (t, x) := hf.integral_region F hF
+
+-- T5 is an exact signed spatial decomposition, not the short analytic limit.
+example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) (w : Pilot3Space → ℝ)
+    (hw : ContinuousOn w (pilot3ClosedPositive h)) (τ : ℝ) (b : Pilot3Space) (hc : ‖b‖ ≤ τ) :
+    pilot3WeightedOverlap h f w (τ, b) =
+      (∫ x in {x | 0 < h x}, w x * h x) -
+      (∫ x in {x | 0 < h x}, w x * (τ - f (x + b) + f x)) +
+      ∫ x in {x | 0 < h x}, w x * max 0 (τ - f (x + b) + f x - h x) :=
+  hf.weightedOverlap_eq_bulk_add_correction w hw (τ, b) hc
+
+example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) (w : Pilot3Space → ℝ)
+    (hw : ContinuousOn w (pilot3ClosedPositive h)) (z : Pilot3Spacetime) (hc : ‖z.2‖ ≤ z.1) :
+    pilot3WeightedOverlap h f w z =
+      ∫ x in {x | 0 < h x}, w x * max 0 (h x - (z.1 - f (x + z.2) + f x)) :=
+  hf.weightedOverlap_eq_shortGap w hw z hc
+
+example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) (w₁ w₂ : Pilot3Space → ℝ)
+    (hw₁ : ContinuousOn w₁ (pilot3ClosedPositive h)) (hw₂ : ContinuousOn w₂ (pilot3ClosedPositive h))
+    (z : Pilot3Spacetime) :
+    pilot3WeightedOverlap h f (fun x => w₁ x + w₂ x) z =
+      pilot3WeightedOverlap h f w₁ z + pilot3WeightedOverlap h f w₂ z := hf.weightedOverlap_add w₁ w₂ hw₁ hw₂ z
+
+-- The exact moving-collar set, with no boundary mass at contact.
+example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) (w : Pilot3Space → ℝ)
+    (hw : ContinuousOn w (pilot3ClosedPositive h)) (z : Pilot3Spacetime) (hc : ‖z.2‖ ≤ z.1) :
+    pilot3WeightedOverlap h f w z = pilot3WeightedOverlap h f w 0 -
+      (∫ x in {x | 0 < h x}, w x * (z.1 - f (x + z.2) + f x)) +
+      ∫ x in {x | 0 < h x ∧ h x < z.1 - f (x + z.2) + f x},
+        w x * (z.1 - f (x + z.2) + f x - h x) := hf.weightedOverlap_eq_bulk_add_collar w hw z hc
+
+-- The same short tube contains every component and the entire small segment.
+example {h : Pilot3Space → ℝ} {ε : ℝ} {x b : Pilot3Space}
+    (hx : x ∈ closure {x | 0 < h x}) (hb : ‖b‖ ≤ ε) {t : ℝ} (ht : t ∈ Icc 0 1) :
+    x + t • b ∈ pilot3TranslationTube h ε := pilot3_segment_mem_translationTube hx hb ht
+
+open scoped ContDiff
+
+example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) : ∃ ε : ℝ, ∃ U : Set Pilot3Space,
+    0 < ε ∧ IsOpen U ∧ pilot3TranslationTube h ε ⊆ U ∧
+      ContDiffOn ℝ ∞ h U ∧ ContDiffOn ℝ ∞ f U := hf.exists_smooth_translationTube
+
+example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) : ∃ ε : ℝ, 0 < ε ∧
+    (∀ x ∈ pilot3TranslationTube h ε, ContDiffAt ℝ ∞ h x ∧ ContDiffAt ℝ ∞ f x) ∧
+    ∀ n : ℕ, ∃ Bh Bf : ℝ, 0 ≤ Bh ∧ 0 ≤ Bf ∧
+      ∀ x ∈ pilot3TranslationTube h ε,
+        ‖iteratedFDeriv ℝ n h x‖ ≤ Bh ∧ ‖iteratedFDeriv ℝ n f x‖ ≤ Bf :=
+  hf.exists_translationTube_derivative_bounds

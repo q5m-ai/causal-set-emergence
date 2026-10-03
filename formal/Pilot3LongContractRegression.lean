@@ -1,4 +1,4 @@
-import BoundaryDraft.Pilot3Geometry
+import BoundaryDraft.Pilot3Tubes
 import BoundaryDraft.Pilot3Components
 
 /-! Standalone #78 consumer contracts: geometry and actual finite-density
@@ -49,3 +49,48 @@ example (h₁ h₂ f : Pilot3Space → ℝ) :
 
 example {h k f : Pilot3Space → ℝ} (he : ∀ x, max 0 (h x) = max 0 (k x)) :
     pilot3Region h f = pilot3Region k f := pilot3Region_eq_of_positivePart_eq he
+
+-- Even exact cutoff contact kills the entire right fibre, for every direction.
+example {h f : Pilot3Space → ℝ} {κ η δ v σ : ℝ} (C : Pilot3SlopeControl h f κ η)
+    (hδ : 0 < δ) (hv : δ ≤ v) (hσ : 0 ≤ σ) (x θ : Pilot3Space) (hθ : ‖θ‖ = 1)
+    (hg : pilot3RayGap h f x θ 0 δ = 0) : max 0 (pilot3RayGap h f x θ σ v) = 0 :=
+  max_eq_left (C.rayGap_nonpos_of_cutoff_nonpos hδ hv hσ x θ hθ hg.le)
+
+-- Actual first-endpoint signed overlap, not a supplied density.
+example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) (w : Pilot3Space → ℝ)
+    (hw : ContinuousOn w (closure {x | 0 < h x})) (τ : ℝ) (b : Pilot3Space) (hc : ‖b‖ ≤ τ) :
+    (∫ p in pilot3Region h f, w p.2 *
+      (pilot3Region h f).indicator (fun _ => (1 : ℝ)) (p + (τ, b))) =
+      ∫ x, w x * max 0 (max 0 (h x) + f (x + b) - f x - τ) :=
+  hf.weightedOverlap_eq_gap w hw (τ, b) hc
+
+example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) (w : Pilot3Space → ℝ)
+    (hw : ContinuousOn w (pilot3ClosedPositive h)) (z : Pilot3Spacetime) (hc : ‖z.2‖ ≤ z.1) :
+    Integrable (fun x => w x * max 0 (max 0 (h x) + f (x + z.2) - f x - z.1)) :=
+  hf.integrable_weighted_overlapGap w hw z hc
+
+example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) (δ : ℝ) (hδ : 0 < δ) :
+    ∃ κ η ε : ℝ, Pilot3SlopeControl h f κ η ∧
+      ε = pilot3PerturbationWidth κ (1 - κ - η) δ ∧ 0 < ε ∧ ε < δ ^ 2 ∧
+      ∀ (x θ : Pilot3Space) (v σ : ℝ), ‖θ‖ = 1 → δ ≤ v → σ ∈ Icc 0 ε →
+        0 ≤ max 0 (h x) + f (x + (v / 2) • θ) - f x - v / 2 →
+        x ∈ pilot3HeightTube h ((1 - κ - η) * δ / 2) ∧
+        x + (v / 2) • θ ∈ pilot3HeightTube h ((1 - κ - η) * δ / 2) ∧
+        x + ((v - σ / v) / 2) • θ ∈ pilot3HeightTube h ((1 - κ - η) * δ / 4) := by
+  simpa only [pilot3RayGap, pilot3OverlapGap, pilot3RayDisplacement, zero_div, add_zero, sub_zero]
+    using hf.exists_long_perturbationTube δ hδ
+
+example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) (a : ℝ) (n : ℕ) :
+    IsCompact (pilot3HeightTube h a) ∧
+      ∃ B : ℝ, 0 ≤ B ∧ ∀ x ∈ pilot3HeightTube h a, ‖iteratedFDeriv ℝ n f x‖ ≤ B :=
+  ⟨hf.isCompact_heightTube a, hf.future_derivative_bounds a n⟩
+
+example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) : ∃ V : ℝ, 0 < V ∧
+    ∀ (x θ : Pilot3Space) (v σ : ℝ), ‖θ‖ = 1 → 0 < v → 0 ≤ σ →
+      0 ≤ pilot3RayGap h f x θ σ v → v ≤ V := hf.exists_long_length_bound
+
+example {θ : Pilot3Space} (hθ : ‖θ‖ = 1) {σ v : ℝ} (hv : 0 < v) (hσ : σ ∈ Icc 0 (v ^ 2)) :
+    ‖(pilot3RayDisplacement θ σ v).2‖ ≤ (pilot3RayDisplacement θ σ v).1 ∧
+    (pilot3RayDisplacement θ σ v).1 + ‖(pilot3RayDisplacement θ σ v).2‖ = v ∧
+    (pilot3RayDisplacement θ σ v).1 ^ 2 - ‖(pilot3RayDisplacement θ σ v).2‖ ^ 2 = σ :=
+  ⟨pilot3RayDisplacement_causal hθ hv hσ, pilot3RayDisplacement_parameters hθ hv hσ⟩
