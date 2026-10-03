@@ -9,6 +9,7 @@ from dimension_short import check_short3_identities
 from dimension_long_null import check_long_null_identities
 from curved_bulk_pilot import check_curved_pilot_identities
 from curved_remainders import check_curved_remainder_identities
+from curved_contact_long import check_contact_long_identities
 
 
 def main():
@@ -120,6 +121,7 @@ def main():
     check_conformal_identities()
     check_curved_pilot_identities()
     check_curved_remainder_identities()
+    check_contact_long_identities()
     print("All symbolic checks passed.")
 
 
