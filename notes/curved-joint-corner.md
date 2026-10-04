@@ -262,8 +262,8 @@ a(w,v)&=v^3\Psi(v,w/v^2),\\
  {8(1-\beta d_s)\Phi_R}
  \chi(t,Z(y,s))\phi(t+v(1+R)/2,Z(y,s)+v(1-R)n/2)
  \right|_{R=U},\\
-\Psi(v,\zeta)&=\Psi_0(\zeta)+E(v,\zeta),&
-|\partial_\zeta^j E|&\le L v\quad(j=0,1,2),&|E_v|&\le L.
+\Psi(v,\zeta)&=\Psi_0(\zeta)+E(v,\zeta),\\
+|\partial_\zeta^j E|&\le L v\quad(j=0,1,2),\qquad |E_v|\le L.
 \end{aligned}\tag{J11}
 ```
 
