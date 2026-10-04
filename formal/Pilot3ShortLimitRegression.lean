@@ -30,7 +30,7 @@ example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) :
                 pilot3Overlap h f z)) atTop
         (𝓝 (∫ x, pilot3Weight h f x ∂(pilot3SurfaceMeasure h).withDensity
           (fun x => ENNReal.ofReal (pilot3AreaDensity h f x)))) := by
-  simpa only [pilot3ShortAction, pilot3ShortFuture_eq, pilot3DisplacementKernel,
+  simpa only [pilot3ShortAction, pilot3ShortFuture_eq_norm, pilot3DisplacementKernel,
     pilot3BoundaryIntegral, pilot3ProjectedArea] using hf.exists_shortAction_limit
 
 example {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) (ρ δ : ℝ) :
@@ -44,15 +44,16 @@ example (ω : Pilot3Circle) {δ : ℝ} (hδ : 0 < δ) :
   have hn : ‖(δ / 2) • ω.val‖ = δ / 2 := by
     rw [norm_smul, mem_sphere_zero_iff_norm.mp ω.property, mul_one,
       Real.norm_eq_abs, abs_of_pos (half_pos hδ)]
-  rw [pilot3ShortFuture_eq]
-  simp only [pilot3LongFuture, mem_setOf_eq, hn]
+  rw [pilot3ShortFuture_eq_norm]
+  simp only [pilot3LongFuture, dimensionCausalFuture, mem_setOf_eq, Prod.fst_zero,
+    Prod.snd_zero, sub_zero, hn]
   constructor
   · constructor <;> linarith
   · intro h
     linarith [h.2]
 
 example : pilot3CircleMeasure.real univ = 2 * Real.pi := pilot3Circle_mass
-example (v σ : ℝ) : pilot3NullJacobian v σ = (1 - σ / v ^ 2) / 4 := rfl
+example (v σ : ℝ) : pilot3NullJacobian σ v = (1 - σ / v ^ 2) / 4 := rfl
 
 example : (∫ u : ℝ in Ioi 0,
     u ^ (1 / 2 : ℝ) * dimensionKernel 3 (u ^ (3 / 2 : ℝ))) = -1 / 12 :=

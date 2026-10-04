@@ -32,68 +32,9 @@ theorem pilot3_intervalSq_properTimeDisplacement (ω : Pilot3Circle) (p : Plane)
   field_simp
   ring
 
-/-- Ordinary polar area, with full angular measure and the linear radial weight. -/
-theorem lintegral_pilot3Spatial_polar (F : Pilot3Space → ℝ≥0∞) (hF : Measurable F) :
-    (∫⁻ x, F x) = ∫⁻ ω, (∫⁻ r in Ioi (0 : ℝ),
-      ENNReal.ofReal r * F (r • ω.val)) ∂pilot3CircleMeasure := by
-  have hp := (volume : Measure Pilot3Space).measurePreserving_homeomorphUnitSphereProd
-  calc
-    _ = ∫⁻ x : ({(0 : Pilot3Space)}ᶜ : Set Pilot3Space), F x.val
-        ∂volume.comap Subtype.val := by
-      rw [lintegral_subtype_comap (measurableSet_singleton _).compl, restrict_compl_singleton]
-    _ = ∫⁻ p : Pilot3Circle × Ioi (0 : ℝ), F (p.2.val • p.1.val)
-        ∂pilot3CircleMeasure.prod (Measure.volumeIoiPow 1) := by
-      have ht := hp.symm (homeomorphUnitSphereProd Pilot3Space).toMeasurableEquiv
-      have hh := ht.lintegral_comp (hF.comp measurable_subtype_coe)
-      simpa [pilot3CircleMeasure, homeomorphUnitSphereProd_symm_apply_coe,
-        finrank_euclideanSpace] using hh.symm
-    _ = _ := by
-      rw [lintegral_prod _ (by fun_prop)]
-      apply lintegral_congr
-      intro ω
-      rw [Measure.volumeIoiPow, lintegral_withDensity_eq_lintegral_mul _ (by fun_prop) (by fun_prop)]
-      simp only [pow_one]
-      exact lintegral_subtype_comap (μ := volume) measurableSet_Ioi
-        (fun r : ℝ => ENNReal.ofReal r * F (r • ω.val))
-
-/-- Nonnegative disintegration for arbitrary, not necessarily radial, observables. -/
-theorem lintegral_pilot3Spacetime_polar (F : Pilot3Spacetime → ℝ≥0∞) (hF : Measurable F) :
-    (∫⁻ z, F z) = ∫⁻ ω, (∫⁻ p : Plane,
-      (Ici (0 : ℝ)).indicator (fun r => ENNReal.ofReal r * F (p 0, r • ω.val)) (p 1))
-        ∂pilot3CircleMeasure := by
-  let k := fun (t : ℝ) (ω : Pilot3Circle) (r : ℝ) => ENNReal.ofReal r * F (t, r • ω.val)
-  have hk : Measurable (fun p : (ℝ × Pilot3Circle) × ℝ => k p.1.1 p.1.2 p.2) := by
-    dsimp [k]
-    fun_prop
-  calc
-    _ = ∫⁻ t : ℝ, ∫⁻ x : Pilot3Space, F (t, x) := by
-      rw [Measure.volume_eq_prod ℝ Pilot3Space]
-      exact lintegral_prod _ hF.aemeasurable
-    _ = ∫⁻ t : ℝ, ∫⁻ ω, (∫⁻ r in Ioi (0 : ℝ), k t ω r) ∂pilot3CircleMeasure := by
-      apply lintegral_congr
-      intro t
-      exact lintegral_pilot3Spatial_polar _ (hF.comp (measurable_const.prodMk measurable_id))
-    _ = ∫⁻ ω, (∫⁻ t : ℝ, ∫⁻ r in Ici (0 : ℝ), k t ω r) ∂pilot3CircleMeasure := by
-      rw [lintegral_lintegral_swap hk.lintegral_prod_right.aemeasurable]
-      simp_rw [Measure.restrict_congr_set Ioi_ae_eq_Ici]
-    _ = _ := by
-      apply lintegral_congr
-      intro ω
-      have hm : Measurable (fun p : ℝ × ℝ => (Ici (0 : ℝ)).indicator (k p.1 ω) p.2) := by
-        have hh := hk.comp ((measurable_fst.prodMk (measurable_const (a := ω))).prodMk measurable_snd)
-        simpa only [← indicator_comp_right, Function.comp_def] using
-          hh.indicator (measurableSet_Ici.preimage measurable_snd)
-      have he := (volume_preserving_finTwoArrow ℝ).symm MeasurableEquiv.finTwoArrow
-      rw [← he.lintegral_comp (show Measurable (fun p : Plane =>
-        (Ici (0 : ℝ)).indicator (fun r => ENNReal.ofReal r * F (p 0, r • ω.val)) (p 1)) from
-          hm.comp (volume_preserving_finTwoArrow ℝ).measurable), Measure.volume_eq_prod ℝ ℝ]
-      change _ = ∫⁻ p : ℝ × ℝ, (Ici (0 : ℝ)).indicator (k p.1 ω) p.2 ∂volume.prod volume
-      rw [lintegral_prod _ hm.aemeasurable]
-      simp_rw [lintegral_indicator measurableSet_Ici]
-
 theorem pilot3_polar_mem_shortFuture {δ t r : ℝ} (ω : Pilot3Circle) (hr : 0 ≤ r) :
     (t, r • ω.val) ∈ pilot3ShortFuture δ ↔ r ≤ t ∧ t + r < δ := by
-  simp only [pilot3ShortFuture_eq, mem_setOf_eq, norm_smul, Real.norm_eq_abs,
+  simp only [pilot3ShortFuture_eq_norm, mem_setOf_eq, norm_smul, Real.norm_eq_abs,
     mem_sphere_zero_iff_norm.mp ω.property, mul_one, abs_of_nonneg hr]
 
 /-- Exact nonnegative transport. The single zero of the 3D Jacobian at the
@@ -101,7 +42,7 @@ moving lower endpoint is kept, rather than replaced by the 4D double zero. -/
 theorem lintegral_pilot3ShortFuture_properTime (δ : ℝ)
     (F : Pilot3Spacetime → ℝ≥0∞) (hF : Measurable F) :
     (∫⁻ z in pilot3ShortFuture δ, F z) = ∫⁻ ω, (∫⁻ p in shortProperTimeDomain δ,
-      ENNReal.ofReal (pilot3NullJacobian (p 1) (p 0)) *
+      ENNReal.ofReal (pilot3ShortNullJacobian (p 1) (p 0)) *
         F (pilot3ProperTimeDisplacement ω p)) ∂pilot3CircleMeasure := by
   rw [← lintegral_indicator (measurableSet_pilot3ShortFuture δ),
     lintegral_pilot3Spacetime_polar _ (hF.indicator (measurableSet_pilot3ShortFuture δ))]
@@ -136,7 +77,7 @@ theorem lintegral_pilot3ShortFuture_properTime (δ : ℝ)
     Matrix.cons_val_fin_one, pilot3ProperTimeDisplacement, pilot3NullPoint]
   rw [← mul_assoc, ← ENNReal.ofReal_mul (by positivity : 0 ≤ 1 / (2 * p 1))]
   congr 2
-  rw [pilot3NullJacobian_eq hv.ne']
+  rw [pilot3ShortNullJacobian_eq hv.ne']
   ring
 
 end BoundaryDraft

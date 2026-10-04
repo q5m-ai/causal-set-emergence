@@ -11,6 +11,9 @@ specialization. The [integration completion layer](PILOT3_INTEGRATION.md)
 records exact area/collar/divergence signatures and proof architecture.
 This supplies geometry, **not** the remaining #78/#79 analytic estimates or
 #80's full-action assembly; the pilot's two action-limit goals remain open.
+The subsequent [#125 long analytic port](PILOT3_LONG_NULL.md) now supplies the
+actual density, signed disintegration, averaged jet and fixed-cutoff long
+cancellation separately from this geometry package. #126 owns the short port.
 
 The class is exactly the smooth global two-graph class in
 [the written #92 contract](../notes/dimension-two-face-geometry.md), with the

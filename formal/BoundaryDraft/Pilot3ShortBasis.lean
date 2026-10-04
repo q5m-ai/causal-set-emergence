@@ -71,38 +71,38 @@ def primitiveRR (σ v : ℝ) : ℝ :=
   v ^ 3 / 48 - 3 * σ / 16 * v - 3 * σ ^ 2 / 16 * v⁻¹ + σ ^ 3 / 48 * (v ^ 3)⁻¹
 
 theorem hasDerivAt_primitive0 (σ : ℝ) {v : ℝ} (hv : 0 < v) :
-    HasDerivAt (primitive0 σ) (pilot3NullJacobian v σ) v := by
+    HasDerivAt (primitive0 σ) (pilot3ShortNullJacobian v σ) v := by
   convert ((hasDerivAt_id v).div_const 4).add
     (((hasDerivAt_id v).inv hv.ne').const_mul (σ / 4)) using 1
-  dsimp only [pilot3NullJacobian, id_eq]
+  dsimp only [pilot3ShortNullJacobian, pilot3NullJacobian, id_eq]
   field_simp
   ring
 
 theorem hasDerivAt_primitiveTau (σ : ℝ) {v : ℝ} (hv : 0 < v) :
-    HasDerivAt (primitiveTau σ) (pilot3NullJacobian v σ * ((v + σ / v) / 2)) v := by
+    HasDerivAt (primitiveTau σ) (pilot3ShortNullJacobian v σ * ((v + σ / v) / 2)) v := by
   convert (((hasDerivAt_id v).pow 2).div_const 16).add
     ((((hasDerivAt_id v).pow 2).inv (pow_ne_zero 2 hv.ne')).const_mul (σ ^ 2 / 16)) using 1
-  dsimp only [pilot3NullJacobian, id_eq]
+  dsimp only [pilot3ShortNullJacobian, pilot3NullJacobian, id_eq]
   field_simp
   ring
 
 theorem hasDerivAt_primitiveTT (σ : ℝ) {v : ℝ} (hv : 0 < v) :
-    HasDerivAt (primitiveTT σ) (pilot3NullJacobian v σ * ((v + σ / v) / 2) ^ 2) v := by
+    HasDerivAt (primitiveTT σ) (pilot3ShortNullJacobian v σ * ((v + σ / v) / 2) ^ 2) v := by
   convert (((((hasDerivAt_id v).pow 3).div_const 48).add
     ((hasDerivAt_id v).const_mul (σ / 16))).add
       (((hasDerivAt_id v).inv hv.ne').const_mul (σ ^ 2 / 16))).add
         ((((hasDerivAt_id v).pow 3).inv (pow_ne_zero 3 hv.ne')).const_mul (σ ^ 3 / 48)) using 1
-  dsimp only [pilot3NullJacobian, id_eq]
+  dsimp only [pilot3ShortNullJacobian, pilot3NullJacobian, id_eq]
   field_simp
   ring
 
 theorem hasDerivAt_primitiveRR (σ : ℝ) {v : ℝ} (hv : 0 < v) :
-    HasDerivAt (primitiveRR σ) (pilot3NullJacobian v σ * ((v - σ / v) / 2) ^ 2) v := by
+    HasDerivAt (primitiveRR σ) (pilot3ShortNullJacobian v σ * ((v - σ / v) / 2) ^ 2) v := by
   convert (((((hasDerivAt_id v).pow 3).div_const 48).sub
     ((hasDerivAt_id v).const_mul (3 * σ / 16))).sub
       (((hasDerivAt_id v).inv hv.ne').const_mul (3 * σ ^ 2 / 16))).add
         ((((hasDerivAt_id v).pow 3).inv (pow_ne_zero 3 hv.ne')).const_mul (σ ^ 3 / 48)) using 1
-  dsimp only [pilot3NullJacobian, id_eq]
+  dsimp only [pilot3ShortNullJacobian, pilot3NullJacobian, id_eq]
   field_simp
   ring
 
@@ -156,7 +156,7 @@ private theorem positive_interval {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 < σ)
 
 private theorem continuous_fibre {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 < σ)
     (hs : σ ≤ δ ^ 2) :
-    ContinuousOn (fun v => pilot3NullJacobian v σ) (uIcc (Real.sqrt σ) δ) ∧
+    ContinuousOn (fun v => pilot3ShortNullJacobian v σ) (uIcc (Real.sqrt σ) δ) ∧
     ContinuousOn (fun v => (v + σ / v) / 2) (uIcc (Real.sqrt σ) δ) ∧
     ContinuousOn (fun v => (v - σ / v) / 2) (uIcc (Real.sqrt σ) δ) := by
   have hn (v : ℝ) (hv : v ∈ uIcc (Real.sqrt σ) δ) : v ≠ 0 :=
@@ -169,10 +169,10 @@ private theorem continuous_fibre {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 < σ)
 
 /-- Exact constant fibre, including zero and the cutoff endpoint. -/
 theorem F0_eq_integral {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ) (hs : σ ≤ δ ^ 2) :
-    F0 δ σ = ∫ v in (Real.sqrt σ)..δ, pilot3NullJacobian v σ := by
+    F0 δ σ = ∫ v in (Real.sqrt σ)..δ, pilot3ShortNullJacobian v σ := by
   rcases eq_or_lt_of_le hσ with hσ | hσ
   · subst σ
-    simp [F0, pilot3NullJacobian, sq_nonneg δ, div_eq_mul_inv]
+    simp [F0, pilot3ShortNullJacobian, pilot3NullJacobian, sq_nonneg δ, div_eq_mul_inv]
   · have hc := (continuous_fibre hδ hσ hs).1
     rw [intervalIntegral.integral_eq_sub_of_hasDerivAt
       (fun v hv => hasDerivAt_primitive0 σ (positive_interval hδ hσ hs hv)) hc.intervalIntegrable,
@@ -181,11 +181,11 @@ theorem F0_eq_integral {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ) (hs : σ �
 
 /-- Exact time-linear fibre; its lower-endpoint term is retained. -/
 theorem Ftau_eq_integral {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ) (hs : σ ≤ δ ^ 2) :
-    Ftau δ σ = ∫ v in (Real.sqrt σ)..δ, pilot3NullJacobian v σ * ((v + σ / v) / 2) := by
+    Ftau δ σ = ∫ v in (Real.sqrt σ)..δ, pilot3ShortNullJacobian v σ * ((v + σ / v) / 2) := by
   rcases eq_or_lt_of_le hσ with hσ | hσ
   · subst σ
-    have he (v : ℝ) : pilot3NullJacobian v 0 * ((v + 0 / v) / 2) = v / 8 := by
-      simp [pilot3NullJacobian]
+    have he (v : ℝ) : pilot3ShortNullJacobian v 0 * ((v + 0 / v) / 2) = v / 8 := by
+      simp [pilot3ShortNullJacobian, pilot3NullJacobian]
       ring
     simp_rw [he]
     rw [Real.sqrt_zero, intervalIntegral.integral_div, integral_id]
@@ -200,11 +200,11 @@ theorem Ftau_eq_integral {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ) (hs : σ 
 
 /-- Exact time-square fibre, with its nonzero three-halves lower endpoint. -/
 theorem Ftt_eq_integral {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ) (hs : σ ≤ δ ^ 2) :
-    Ftt δ σ = ∫ v in (Real.sqrt σ)..δ, pilot3NullJacobian v σ * ((v + σ / v) / 2) ^ 2 := by
+    Ftt δ σ = ∫ v in (Real.sqrt σ)..δ, pilot3ShortNullJacobian v σ * ((v + σ / v) / 2) ^ 2 := by
   rcases eq_or_lt_of_le hσ with hσ | hσ
   · subst σ
-    have he (v : ℝ) : pilot3NullJacobian v 0 * ((v + 0 / v) / 2) ^ 2 = v ^ 2 / 16 := by
-      simp [pilot3NullJacobian]
+    have he (v : ℝ) : pilot3ShortNullJacobian v 0 * ((v + 0 / v) / 2) ^ 2 = v ^ 2 / 16 := by
+      simp [pilot3ShortNullJacobian, pilot3NullJacobian]
       ring
     simp_rw [he]
     rw [Real.sqrt_zero, intervalIntegral.integral_div, integral_pow]
@@ -219,11 +219,11 @@ theorem Ftt_eq_integral {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ) (hs : σ �
 
 /-- Exact radius-square fibre, with its nonzero three-halves lower endpoint. -/
 theorem Frr_eq_integral {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 ≤ σ) (hs : σ ≤ δ ^ 2) :
-    Frr δ σ = ∫ v in (Real.sqrt σ)..δ, pilot3NullJacobian v σ * ((v - σ / v) / 2) ^ 2 := by
+    Frr δ σ = ∫ v in (Real.sqrt σ)..δ, pilot3ShortNullJacobian v σ * ((v - σ / v) / 2) ^ 2 := by
   rcases eq_or_lt_of_le hσ with hσ | hσ
   · subst σ
-    have he (v : ℝ) : pilot3NullJacobian v 0 * ((v - 0 / v) / 2) ^ 2 = v ^ 2 / 16 := by
-      simp [pilot3NullJacobian]
+    have he (v : ℝ) : pilot3ShortNullJacobian v 0 * ((v - 0 / v) / 2) ^ 2 = v ^ 2 / 16 := by
+      simp [pilot3ShortNullJacobian, pilot3NullJacobian]
       ring
     simp_rw [he]
     rw [Real.sqrt_zero, intervalIntegral.integral_div, integral_pow]

@@ -22,7 +22,7 @@ namespace BoundaryDraft
 namespace Pilot3ShortRemainder
 
 abbrev point := pilot3NullPoint
-abbrev jacobian := pilot3NullJacobian
+abbrev jacobian := pilot3ShortNullJacobian
 
 def direction (ω : Pilot3Circle) (v : ℝ) : Space :=
   (1 / (2 * v), (-(1 / (2 * v))) • ω.val)
@@ -96,7 +96,7 @@ theorem hasDerivAt_first {R : Space → ℝ} (ω : Pilot3Circle) (v σ : ℝ)
 
 theorem jacobian_bounds {v σ : ℝ} (hv : 0 < v) (hσ : σ ∈ Icc 0 (v ^ 2)) :
     |jacobian v σ| ≤ 1 / 4 ∧ |jacobianFirst v| = 1 / (4 * v ^ 2) := by
-  obtain ⟨hj₀, hj₁⟩ := pilot3NullJacobian_bounds hv hσ
+  obtain ⟨hj₀, hj₁⟩ := pilot3ShortNullJacobian_bounds hv hσ
   refine ⟨by rwa [abs_of_nonneg hj₀], ?_⟩
   rw [jacobianFirst, abs_neg, abs_of_pos (by positivity : 0 < 1 / (4 * v ^ 2))]
 
@@ -252,7 +252,7 @@ def density (R : Space → ℝ) (δ σ : ℝ) : ℝ :=
 theorem measurable_parameterFibre {R : Space → ℝ} (hR : Measurable R) (δ : ℝ) :
     Measurable (fun p : ℝ × Parameter δ => parameterFibre R δ p.2 p.1) := by
   unfold parameterFibre TruncatedAffineJet.truncate fibre along jacobian point
-    pilot3NullJacobian pilot3NullPoint
+    pilot3ShortNullJacobian pilot3NullJacobian pilot3NullPoint
   apply Measurable.ite (measurableSet_le (by fun_prop) (by fun_prop)) <;> fun_prop
 
 theorem measurable_density {R : Space → ℝ} (hR : Measurable R) (δ : ℝ) :
@@ -286,7 +286,7 @@ theorem integrable_parameterFibre (hR : Measurable R) {σ : ℝ} (hσ : 0 ≤ σ
 /-- Absolute integrability is established before this signed Fubini identity. -/
 theorem density_eq_iterated (hR : Measurable R) {σ : ℝ} (hσ : 0 ≤ σ) :
     density R δ σ = ∫ ω, (∫ v in Ioo (0 : ℝ) δ,
-      if σ ≤ v ^ 2 then pilot3NullJacobian v σ * R (pilot3NullPoint ω v σ) else 0)
+      if σ ≤ v ^ 2 then pilot3ShortNullJacobian v σ * R (pilot3NullPoint ω v σ) else 0)
         ∂pilot3CircleMeasure := by
   rw [density, parameterMeasure, integral_prod _ (h.integrable_parameterFibre hR hσ)]
   apply integral_congr_ae

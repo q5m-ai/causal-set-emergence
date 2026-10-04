@@ -35,7 +35,7 @@ The shared finite-density convention is:
 
 ```lean
 def pilot3LongFuture (δ : ℝ) : Set Pilot3Spacetime :=
-  {z | ‖z.2‖ ≤ z.1 ∧ δ ≤ z.1 + ‖z.2‖}
+  {z | z ∈ dimensionCausalFuture 0 ∧ δ ≤ z.1 + ‖z.2‖}
 
 def pilot3ShortFuture (δ : ℝ) : Set Pilot3Spacetime :=
   dimensionCausalFuture 0 \ pilot3LongFuture δ
@@ -64,7 +64,7 @@ and every future partner is retained.
 
 | Obligation | Checked producer |
 | --- | --- |
-| Actual overlap shear, signed integrability and exact action split | `Pilot3ActionSplit` |
+| Actual overlap shear, signed integrability and exact action split | Canonical `Pilot3Displacement`; compatibility in `Pilot3ActionSplit` |
 | Plane polar measure, full-circle mass and sharp proper-time transport | `Pilot3NullCoordinates`, `Pilot3ShortCoordinates`, `Pilot3ShortDensity` |
 | Actual moving contact, finite collar sum and complete absolute origin two-jet | `Pilot3ShortCollar`, `Pilot3ShortJet` |
 | Circle moments and intrinsic normal/Gram coefficient | `Pilot3CircleMoments`, `Pilot3Coefficient`, `Pilot3ShortAngular` |
@@ -92,7 +92,9 @@ short-action theorem or rely on a weighted tangent-wedge replacement.
 ### New three-dimensional responses
 
 The spatial polar Jacobian is `r`, the full-circle mass is `2 * Real.pi`, and
-`pilot3NullJacobian v σ = (1 - σ / v ^ 2) / 4`. The circle covariance is
+`pilot3NullJacobian σ v = (1 - σ / v ^ 2) / 4`.
+The short-order adapter `pilot3ShortNullJacobian v σ` is definitionally the same
+canonical Jacobian, with its arguments reversed. The circle covariance is
 `Real.pi` times the identity in two Euclidean coordinates. These facts are
 proved for the actual polar measure, not imported four-dimensional constants.
 
@@ -168,7 +170,25 @@ transitive axioms, then the aggregate library. Individual module builds,
 incremental checks and GitHub's Python/Markdown CI do not replace it. The PR
 validation receipt records the exact audited code commit and observed checks.
 
-### Local integrated receipt
+### Integration with merged #125
+
+PR #128 landed first. The combined tree retains its `Pilot3Displacement` and
+`Pilot3LongCoordinates` as the single canonical owners of the future domains,
+short action, overlap integration, polar transport and circle measure.
+`Pilot3ActionSplit` now imports those declarations and proves
+`pilot3LongAction_eq_neg_pair`, preserving both public action-split contracts.
+`Pilot3NullCoordinates` imports the canonical circle/Jacobian and supplies only
+the short-order adapter and null-point geometry. No analytic coefficient or
+observable changes under this consolidation.
+
+`Pilot3ProducerIntegrationRegression.lean` imports both producers together,
+checks the exact sign and Jacobian-order bridges, and proves that one fixed
+positive cutoff satisfies both producer contracts, including the whole curved
+annular member. It deliberately does not assemble a global or expected limit.
+The original independent audit below is historical; the combined-tree audit
+receipt is recorded separately on the PR after final validation.
+
+### Original independent local receipt
 
 The full gate passed on code commit
 `509459bea9d2f7122609de1c2220d17d85f6bd11`, after the final Lean changes:

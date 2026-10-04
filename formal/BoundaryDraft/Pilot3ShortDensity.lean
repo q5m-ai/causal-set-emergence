@@ -20,7 +20,7 @@ set_option maxHeartbeats 800000
 def pilot3ShortProperTimeOverlap (h g : Pilot3Space → ℝ) (δ : ℝ) (ω : Pilot3Circle)
     (p : Plane) : ℝ≥0∞ :=
   (shortProperTimeDomain δ).indicator (fun p =>
-    ENNReal.ofReal (pilot3NullJacobian (p 1) (p 0)) *
+    ENNReal.ofReal (pilot3ShortNullJacobian (p 1) (p 0)) *
       ENNReal.ofReal (pilot3Overlap h g (pilot3ProperTimeDisplacement ω p))) p
 
 /-- The extended density, defined before any finiteness conclusion. -/
@@ -34,9 +34,9 @@ def pilot3ShortOverlapDensity (h g : Pilot3Space → ℝ) (δ σ : ℝ) : ℝ :=
 theorem measurable_pilot3ShortProperTimeOverlap {h g : Pilot3Space → ℝ} (H : SmoothPilot3 h g) (δ : ℝ) :
     Measurable (fun p : Pilot3Circle × Plane => pilot3ShortProperTimeOverlap h g δ p.1 p.2) := by
   have hj : Measurable (fun p : Pilot3Circle × Plane =>
-      ENNReal.ofReal (pilot3NullJacobian (p.2 1) (p.2 0)) *
+      ENNReal.ofReal (pilot3ShortNullJacobian (p.2 1) (p.2 0)) *
         ENNReal.ofReal (pilot3Overlap h g (pilot3ProperTimeDisplacement p.1 p.2))) :=
-    Measurable.mul (by unfold pilot3NullJacobian; fun_prop)
+    Measurable.mul (by unfold pilot3ShortNullJacobian pilot3NullJacobian; fun_prop)
       ((H.measurable_overlap).comp measurable_pilot3ProperTimeDisplacement).ennreal_ofReal
   simpa only [pilot3ShortProperTimeOverlap, ← indicator_comp_right, Function.comp_def] using
     hj.indicator ((measurableSet_shortProperTimeDomain δ).preimage measurable_snd)
@@ -82,7 +82,7 @@ theorem lintegral_pilot3ShortOverlap {h g : Pilot3Space → ℝ} (H : SmoothPilo
   rw [lintegral_pilot3ShortFuture_properTime δ _ hF]
   have he (ω : Pilot3Circle) :
       (∫⁻ p in shortProperTimeDomain δ,
-        ENNReal.ofReal (pilot3NullJacobian (p 1) (p 0)) *
+        ENNReal.ofReal (pilot3ShortNullJacobian (p 1) (p 0)) *
           (ENNReal.ofReal (pilot3Overlap h g (pilot3ProperTimeDisplacement ω p)) *
             f (dimensionIntervalSq 0 (pilot3ProperTimeDisplacement ω p)))) =
         ∫⁻ p : Plane, pilot3ShortProperTimeOverlap h g δ ω p * f (p 0) := by
@@ -94,7 +94,7 @@ theorem lintegral_pilot3ShortOverlap {h g : Pilot3Space → ℝ} (H : SmoothPilo
         pilot3_intervalSq_properTimeDisplacement ω p hp.2.2.1.ne', mul_assoc]
     · simp [pilot3ShortProperTimeOverlap, hp]
   change (∫⁻ ω, (∫⁻ p in shortProperTimeDomain δ,
-    ENNReal.ofReal (pilot3NullJacobian (p 1) (p 0)) *
+    ENNReal.ofReal (pilot3ShortNullJacobian (p 1) (p 0)) *
       (ENNReal.ofReal (pilot3Overlap h g (pilot3ProperTimeDisplacement ω p)) *
         f (dimensionIntervalSq 0 (pilot3ProperTimeDisplacement ω p)))) ∂pilot3CircleMeasure) = _
   simp_rw [he]
@@ -129,7 +129,7 @@ theorem pilot3ShortProperTimeOverlap_le {h g : Pilot3Space → ℝ} (H : SmoothP
   by_cases hd : (![σ,v] : Plane) ∈ shortProperTimeDomain δ
   · have hv : v ∈ Ioo 0 δ := hd.2.2
     rw [indicator_of_mem hv, pilot3ShortProperTimeOverlap, indicator_of_mem hd]
-    have hj := (pilot3NullJacobian_bounds hv.1 ⟨hd.1, hd.2.1⟩).2
+    have hj := (pilot3ShortNullJacobian_bounds hv.1 ⟨hd.1, hd.2.1⟩).2
     have he := H.overlap_le_volume (pilot3ProperTimeDisplacement ω ![σ,v])
     calc
       _ ≤ ENNReal.ofReal ((1 / 4 : ℝ)) * ENNReal.ofReal (volume.real (pilot3Region h g)) :=
@@ -206,7 +206,7 @@ sharp upper cutoff is retained, including its omission at equality. -/
 theorem pilot3ShortOverlapDensityENN_eq_average (h g : Pilot3Space → ℝ) (δ : ℝ)
     {σ : ℝ} (hσ : 0 ≤ σ) :
     pilot3ShortOverlapDensityENN h g δ σ = ∫⁻ ω, (∫⁻ v in Ioo 0 δ,
-      if σ ≤ v ^ 2 then ENNReal.ofReal (pilot3NullJacobian v σ) *
+      if σ ≤ v ^ 2 then ENNReal.ofReal (pilot3ShortNullJacobian v σ) *
         ENNReal.ofReal (pilot3Overlap h g (pilot3ProperTimeDisplacement ω ![σ,v])) else 0)
       ∂pilot3CircleMeasure := by
   apply lintegral_congr
@@ -223,7 +223,7 @@ theorem pilot3ShortOverlapDensityENN_eq_average (h g : Pilot3Space → ℝ) (δ 
 /-- The real fibre. Its integration is only over `0 < v < δ`; the proper-time
 condition then controls the apparent `1 / v` singularity. -/
 def pilot3ShortOverlapFibre (h g : Pilot3Space → ℝ) (σ : ℝ) (ω : Pilot3Circle) (v : ℝ) : ℝ :=
-  if σ ≤ v ^ 2 then pilot3NullJacobian v σ *
+  if σ ≤ v ^ 2 then pilot3ShortNullJacobian v σ *
     pilot3Overlap h g (pilot3ProperTimeDisplacement ω ![σ,v]) else 0
 
 theorem measurable_pilot3ShortOverlapFibre {h g : Pilot3Space → ℝ} (H : SmoothPilot3 h g) (σ : ℝ) :
@@ -233,7 +233,7 @@ theorem measurable_pilot3ShortOverlapFibre {h g : Pilot3Space → ℝ} (H : Smoo
       (measurable_pilot3ShortPlanePair.comp (measurable_const.prodMk measurable_snd)))
   exact Measurable.ite
     (isClosed_le continuous_const (continuous_snd.pow 2)).measurableSet
-    ((by unfold pilot3NullJacobian; fun_prop : Measurable (fun p : Pilot3Circle × ℝ => pilot3NullJacobian p.2 σ)).mul
+    ((by unfold pilot3ShortNullJacobian pilot3NullJacobian; fun_prop : Measurable (fun p : Pilot3Circle × ℝ => pilot3ShortNullJacobian p.2 σ)).mul
       ((H.measurable_overlap).comp hp)) measurable_const
 
 /-- Signed integration will use this pointwise real dominator, not a formal
@@ -245,10 +245,10 @@ theorem pilot3ShortOverlapFibre_bounds {h g : Pilot3Space → ℝ} (H : SmoothPi
   have hδ : 0 ≤ (1 / 4 : ℝ) := by linarith [hv.1, hv.2]
   by_cases hs : σ ≤ v ^ 2
   · rw [pilot3ShortOverlapFibre, if_pos hs]
-    have hj := pilot3NullJacobian_bounds hv.1 ⟨hσ, hs⟩
-    exact ⟨mul_nonneg hj.1 (SmoothPilot3.overlap_nonneg h g _),
+    have hj := pilot3ShortNullJacobian_bounds hv.1 ⟨hσ, hs⟩
+    exact ⟨mul_nonneg hj.1 (SmoothPilot3.overlap_nonneg (h := h) (f := g) _),
       mul_le_mul hj.2 (H.overlap_le_volume _)
-        (SmoothPilot3.overlap_nonneg h g _) hδ⟩
+        (SmoothPilot3.overlap_nonneg (h := h) (f := g) _) hδ⟩
   · rw [pilot3ShortOverlapFibre, if_neg hs]
     exact ⟨le_rfl, mul_nonneg hδ ENNReal.toReal_nonneg⟩
 
@@ -288,7 +288,7 @@ theorem integrable_pilot3ShortOverlapFibre {h g : Pilot3Space → ℝ} (H : Smoo
 the ENNReal density and joint absolute integrability of the displayed fibre. -/
 theorem pilot3ShortOverlapDensity_eq_average {h g : Pilot3Space → ℝ} (H : SmoothPilot3 h g) (δ : ℝ) {σ : ℝ} (hσ : 0 ≤ σ) :
     pilot3ShortOverlapDensity h g δ σ = ∫ ω, (∫ v in Ioo 0 δ,
-      if σ ≤ v ^ 2 then pilot3NullJacobian v σ *
+      if σ ≤ v ^ 2 then pilot3ShortNullJacobian v σ *
         pilot3Overlap h g (pilot3ProperTimeDisplacement ω ![σ,v]) else 0) ∂pilot3CircleMeasure := by
   let μ := pilot3CircleMeasure.prod (volume.restrict (Ioo 0 δ))
   have hi := integrable_pilot3ShortOverlapFibre H δ hσ
@@ -308,7 +308,7 @@ theorem pilot3ShortOverlapDensity_eq_average {h g : Pilot3Space → ℝ} (H : Sm
     filter_upwards [ae_restrict_mem measurableSet_Ioo] with v hv
     by_cases hs : σ ≤ v ^ 2
     · simp only [hs, if_true, pilot3ShortOverlapFibre]
-      exact (ENNReal.ofReal_mul (pilot3NullJacobian_bounds hv.1 ⟨hσ, hs⟩).1).symm
+      exact (ENNReal.ofReal_mul (pilot3ShortNullJacobian_bounds hv.1 ⟨hσ, hs⟩).1).symm
     · simp only [hs, if_false, pilot3ShortOverlapFibre, ENNReal.ofReal_zero]
   change (pilot3ShortOverlapDensityENN h g δ σ).toReal = _
   rw [he, ← integral_eq_lintegral_of_nonneg_ae hn
@@ -322,7 +322,7 @@ theorem lintegral_pilot3ShortOverlapDensityENN_lt_top {h g : Pilot3Space → ℝ
   have he := lintegral_pilot3ShortOverlap H δ (fun _ => 1) measurable_const
   simp only [mul_one] at he
   rw [← he, ← ofReal_integral_eq_lintegral_ofReal hi
-    (Filter.Eventually.of_forall (SmoothPilot3.overlap_nonneg h g))]
+    (Filter.Eventually.of_forall (SmoothPilot3.overlap_nonneg (h := h) (f := g)))]
   exact ENNReal.ofReal_lt_top
 
 theorem integrable_pilot3ShortOverlapDensity {h g : Pilot3Space → ℝ} (H : SmoothPilot3 h g) (δ : ℝ) : Integrable (pilot3ShortOverlapDensity h g δ) :=
@@ -358,7 +358,7 @@ theorem integrable_pilot3ShortOverlapDensity_weight {h g : Pilot3Space → ℝ} 
     Filter.Eventually.of_forall fun _ => ENNReal.ofReal_lt_top
   have hi' : Integrable (fun z => f (dimensionIntervalSq 0 z)) (pilot3ShortOverlapMeasure h g δ) := by
     apply (integrable_withDensity_iff (H.measurable_overlap).ennreal_ofReal hfinite).mpr
-    simpa only [ENNReal.toReal_ofReal (SmoothPilot3.overlap_nonneg h g _)] using hi
+    simpa only [ENNReal.toReal_ofReal (SmoothPilot3.overlap_nonneg (h := h) (f := g) _)] using hi
   have hif : Integrable f (Measure.map (dimensionIntervalSq 0) (pilot3ShortOverlapMeasure h g δ)) :=
     (integrable_map_measure hf.measurable.aestronglyMeasurable hq.measurable.aemeasurable).mpr hi'
   rw [map_pilot3ShortOverlapMeasure H δ] at hif
@@ -377,7 +377,7 @@ theorem integral_pilot3ShortOverlap {h g : Pilot3Space → ℝ} (H : SmoothPilot
       integral_withDensity_eq_integral_toReal_smul₀
         (H.measurable_overlap).ennreal_ofReal.aemeasurable
         (Filter.Eventually.of_forall fun _ => ENNReal.ofReal_lt_top)]
-    simp only [ENNReal.toReal_ofReal (SmoothPilot3.overlap_nonneg h g _), smul_eq_mul, mul_comm]
+    simp only [ENNReal.toReal_ofReal (SmoothPilot3.overlap_nonneg (h := h) (f := g) _), smul_eq_mul, mul_comm]
   rw [← he, map_pilot3ShortOverlapMeasure H δ,
     integral_withDensity_eq_integral_toReal_smul₀ (measurable_pilot3ShortOverlapDensityENN H δ).aemeasurable
       (Filter.Eventually.of_forall (pilot3ShortOverlapDensityENN_lt_top H δ))]

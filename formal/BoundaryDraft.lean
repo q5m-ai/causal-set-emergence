@@ -36,6 +36,12 @@ import BoundaryDraft.Pilot3RegularHeight
 import BoundaryDraft.Pilot3Geometry
 import BoundaryDraft.Pilot3Overlap
 import BoundaryDraft.Pilot3Tubes
+import BoundaryDraft.Pilot3Displacement
+import BoundaryDraft.Pilot3LongCoordinates
+import BoundaryDraft.Pilot3LongDensity
+import BoundaryDraft.Pilot3LongGeometry
+import BoundaryDraft.Pilot3LongFibre
+import BoundaryDraft.Pilot3LongNull
 import BoundaryDraft.Pilot3Metric
 import BoundaryDraft.Pilot3Surface
 import BoundaryDraft.Pilot3Curve

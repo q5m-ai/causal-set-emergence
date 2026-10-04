@@ -19,15 +19,15 @@ namespace BoundaryDraft
 
 /-- A sharp fibre of a displacement observable, retaining its moving closure. -/
 def pilot3ShortFibre (F : Pilot3Spacetime → ℝ) (σ : ℝ) (p : Pilot3Circle × ℝ) : ℝ :=
-  if σ ≤ p.2 ^ 2 then pilot3NullJacobian p.2 σ * F (pilot3NullPoint p.1 p.2 σ) else 0
+  if σ ≤ p.2 ^ 2 then pilot3ShortNullJacobian p.2 σ * F (pilot3NullPoint p.1 p.2 σ) else 0
 
 theorem measurable_pilot3ShortFibre {F : Pilot3Spacetime → ℝ} (hF : Measurable F) (σ : ℝ) :
     Measurable (pilot3ShortFibre F σ) := by
   have hp : Measurable (fun p : Pilot3Circle × ℝ => pilot3NullPoint p.1 p.2 σ) := by
     unfold pilot3NullPoint
     fun_prop
-  have hj : Measurable (fun p : Pilot3Circle × ℝ => pilot3NullJacobian p.2 σ) := by
-    unfold pilot3NullJacobian
+  have hj : Measurable (fun p : Pilot3Circle × ℝ => pilot3ShortNullJacobian p.2 σ) := by
+    unfold pilot3ShortNullJacobian pilot3NullJacobian
     fun_prop
   exact Measurable.ite (measurableSet_le measurable_const (measurable_snd.pow_const 2))
     (hj.mul (hF.comp hp)) measurable_const
@@ -101,7 +101,7 @@ theorem shortDensity_eq_model_add_remainder {R : Pilot3Spacetime → ℝ} {δ T 
     by_cases hs : σ ≤ v ^ 2
     · simp only [pilot3ShortFibre, if_pos hs]
       rw [integral_const_mul]
-      change pilot3NullJacobian v σ * (∫ ω : Pilot3Circle,
+      change pilot3ShortNullJacobian v σ * (∫ ω : Pilot3Circle,
         pilot3AbsoluteShortPolynomial h f ((v + σ / v) / 2, ((v - σ / v) / 2) • ω.val)
           ∂pilot3CircleMeasure) = _
       rw [hf.integral_pilot3Circle_absoluteShortPolynomial]

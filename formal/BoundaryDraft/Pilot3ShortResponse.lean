@@ -74,14 +74,14 @@ The large-proper-time case is an empty fibre, and the endpoint replacements
 are Lebesgue-null. Absolute integrability precedes the signed mode sum. -/
 theorem modelDensity_eq_fibre {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 < σ) (V ℓ α β : ℝ) :
     modelDensity δ V ℓ α β σ = ∫ v : ℝ in Ioo 0 δ, if σ ≤ v ^ 2 then
-      pilot3NullJacobian v σ * (2 * Real.pi * V + ℓ * ((v + σ / v) / 2) +
+      pilot3ShortNullJacobian v σ * (2 * Real.pi * V + ℓ * ((v + σ / v) / 2) +
         α * ((v + σ / v) / 2) ^ 2 + β * ((v - σ / v) / 2) ^ 2) else 0 := by
   rw [integral_fibre_eq_Ico δ hσ]
   by_cases hs : σ ≤ δ ^ 2
   · have hrootδ : Real.sqrt σ ≤ δ := Real.sqrt_le_iff.mpr ⟨hδ.le, hs⟩
     have hn (v : ℝ) (hv : v ∈ Icc (Real.sqrt σ) δ) : v ≠ 0 :=
       ((Real.sqrt_pos.mpr hσ).trans_le hv.1).ne'
-    have hJ : ContinuousOn (fun v => pilot3NullJacobian v σ) (Icc (Real.sqrt σ) δ) :=
+    have hJ : ContinuousOn (fun v => pilot3ShortNullJacobian v σ) (Icc (Real.sqrt σ) δ) :=
       (continuousOn_const.sub (continuousOn_const.div (continuousOn_id.pow 2)
         (fun v hv => pow_ne_zero 2 (hn v hv)))).div_const 4
     have hτ : ContinuousOn (fun v => (v + σ / v) / 2) (Icc (Real.sqrt σ) δ) :=
@@ -102,10 +102,10 @@ theorem modelDensity_eq_fibre {δ σ : ℝ} (hδ : 0 < δ) (hσ : 0 < σ) (V ℓ
     symm
     calc
       _ = ∫ v : ℝ in Ioo (Real.sqrt σ) δ,
-          (2 * Real.pi * V) * pilot3NullJacobian v σ +
-          ℓ * (pilot3NullJacobian v σ * ((v + σ / v) / 2)) +
-          α * (pilot3NullJacobian v σ * ((v + σ / v) / 2) ^ 2) +
-          β * (pilot3NullJacobian v σ * ((v - σ / v) / 2) ^ 2) := by
+          (2 * Real.pi * V) * pilot3ShortNullJacobian v σ +
+          ℓ * (pilot3ShortNullJacobian v σ * ((v + σ / v) / 2)) +
+          α * (pilot3ShortNullJacobian v σ * ((v + σ / v) / 2) ^ 2) +
+          β * (pilot3ShortNullJacobian v σ * ((v - σ / v) / 2) ^ 2) := by
         apply setIntegral_congr_fun measurableSet_Ioo
         intro v _
         dsimp only

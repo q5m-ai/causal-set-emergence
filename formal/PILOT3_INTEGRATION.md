@@ -135,9 +135,11 @@ Pilot3CollarAtlas.exists_uniform_weighted_derivative_bound
 
 The same rectangles work for every finite order, with a separate bound for
 each order. This does not assert a uniform bound over all orders or prove an
-overlap Taylor jet. #78's actual long density/signed null-coordinate transport
-and averaged jet, and #79's short response/remainder and coefficient
-identification, remain separate analytic producer work.
+overlap Taylor jet. The analytic producers are separate from this geometry
+layer: [#125's long port](PILOT3_LONG_NULL.md) now derives the actual density,
+signed null-coordinate transport, averaged jet and fixed-cutoff long limit.
+#126 still owns the short response/remainder and coefficient identification;
+#80 owns final deterministic/expected assembly.
 
 ## Subsequent actual short producer for #80
 
@@ -156,8 +158,12 @@ theorem SmoothPilot3.exists_shortAction_limit
 `Pilot3ActionSplit` proves `pilot3Action = pilot3ShortAction - pilot3LongPairAction`
 with the point term once in short and cutoff equality in long. The linked note
 records the full signatures, actual origin/remainder producers and validation
-boundary. This does not supply #125's long result or #80's global/expectation
-assembly, and it does not revise PR #120's historical geometry-only receipt.
+boundary. After integrating merged PR #128, both producers import the same
+canonical `Pilot3Displacement` / `Pilot3LongCoordinates` declarations. The exact
+`pilot3LongAction_eq_neg_pair` bridge preserves the signed-long/add and
+positive-long-pair/subtract conventions. The combined producer regression uses
+one fixed cutoff for both contracts. #80's global/expectation assembly remains
+separate; PR #120's historical geometry-only receipt is unchanged.
 
 ## Concrete controls and dimensional boundaries
 
