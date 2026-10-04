@@ -64,6 +64,7 @@ import BoundaryDraft.Pilot3Examples
 import BoundaryDraft.Pilot3Components
 import BoundaryDraft.Pilot3Disconnected
 import BoundaryDraft.Pilot3Annulus
+import BoundaryDraft.Pilot3ShortLimit
 import BoundaryDraft.DimensionTwoEndpoints
 import BoundaryDraft.DimensionFourGeometry
 import BoundaryDraft.NullTransverseCancellation

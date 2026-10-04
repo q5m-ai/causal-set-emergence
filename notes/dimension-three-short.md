@@ -7,6 +7,11 @@ canonical Lean geometry port belongs to #115 and is still outstanding at this
 delivery. No region, admissibility, target or expectation definition is replaced.
 Independent human mathematical review is outstanding.
 
+Subsequent formalization: [the #126 Lean short producer](../formal/PILOT3_SHORT.md)
+now derives the actual expansion, responses, remainder and fixed-cutoff short
+limit from the canonical #115 geometry. The original delivery statement above
+and the conventional argument below retain their historical scope.
+
 The result below concerns the **actual short observable** at any sufficiently
 small fixed positive coordinate cutoff. It does not prove #78's long estimate,
 #80's global deterministic/expected limit, or the general conjecture under #24.

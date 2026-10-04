@@ -141,6 +141,30 @@ signed null-coordinate transport, averaged jet and fixed-cutoff long limit.
 #126 still owns the short response/remainder and coefficient identification;
 #80 owns final deterministic/expected assembly.
 
+## Subsequent actual short producer for #80
+
+The [#126 short analytic port](PILOT3_SHORT.md) now consumes these canonical
+interfaces without extending `SmoothPilot3` or changing the target. Its exact
+unconditional consumer theorem is:
+
+```lean
+theorem SmoothPilot3.exists_shortAction_limit
+    {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) :
+    ∃ δ₀ : ℝ, 0 < δ₀ ∧ ∀ δ : ℝ, 0 < δ → δ ≤ δ₀ →
+      Tendsto (fun ρ => pilot3ShortAction ρ δ h f) atTop
+        (𝓝 (pilot3BoundaryIntegral h f))
+```
+
+`Pilot3ActionSplit` proves `pilot3Action = pilot3ShortAction - pilot3LongPairAction`
+with the point term once in short and cutoff equality in long. The linked note
+records the full signatures, actual origin/remainder producers and validation
+boundary. After integrating merged PR #128, both producers import the same
+canonical `Pilot3Displacement` / `Pilot3LongCoordinates` declarations. The exact
+`pilot3LongAction_eq_neg_pair` bridge preserves the signed-long/add and
+positive-long-pair/subtract conventions. The combined producer regression uses
+one fixed cutoff for both contracts. #80's global/expectation assembly remains
+separate; PR #120's historical geometry-only receipt is unchanged.
+
 ## Concrete controls and dimensional boundaries
 
 - `Pilot3Disconnected` proves admissibility of two separated unit disks with
