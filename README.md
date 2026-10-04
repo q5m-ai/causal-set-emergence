@@ -157,8 +157,14 @@ The [dimensional long-null analysis](notes/dimension-long-null.md) now derives
 actual signed disintegration and fixed-cutoff long cancellation in writing for
 every `SmoothPilot3`, including translated contacts and exceptional directions.
 Its bounded 5D/6D transfer uses a separately named C⁴ class and a proved regular
-small fixed cutoff. This is not a new Lean specialization or a full pilot
-limit; short analysis, formal integration and independent review remain separate.
+small fixed cutoff. That written delivery is not a Lean specialization or a
+full pilot limit. The subsequent [actual 3D long formalization](formal/PILOT3_LONG_NULL.md)
+constructs the canonical density and full signed disintegration, derives its
+contact-uniform averaged jet, and proves normalized long cancellation for
+every `SmoothPilot3` at every fixed positive cutoff. It keeps exact/approaching
+contacts, completely closing fibres, all components and positive-height critical
+points. The short formal producer (#126), full deterministic/expected assembly
+(#80), and independent human review remain separate.
 
 The **concrete ellipsoid geometric interpretation** is also checked separately:
 its joint is a smooth regular level with nonzero Euclidean gradient, its angle

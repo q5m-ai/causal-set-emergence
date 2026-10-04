@@ -135,9 +135,11 @@ Pilot3CollarAtlas.exists_uniform_weighted_derivative_bound
 
 The same rectangles work for every finite order, with a separate bound for
 each order. This does not assert a uniform bound over all orders or prove an
-overlap Taylor jet. #78's actual long density/signed null-coordinate transport
-and averaged jet, and #79's short response/remainder and coefficient
-identification, remain separate analytic producer work.
+overlap Taylor jet. The analytic producers are separate from this geometry
+layer: [#125's long port](PILOT3_LONG_NULL.md) now derives the actual density,
+signed null-coordinate transport, averaged jet and fixed-cutoff long limit.
+#126 still owns the short response/remainder and coefficient identification;
+#80 owns final deterministic/expected assembly.
 
 ## Concrete controls and dimensional boundaries
 
