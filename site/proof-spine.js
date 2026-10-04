@@ -1,11 +1,13 @@
 import { SAMPLE_COUNT, sampleSlice, markedPair, pairMetrics, precedes, sector, kernel } from "./proof-spine-model.js";
+import { initDisplay } from "./proof-spine-display.js";
 
+initDisplay(document.getElementById("example-lab"));
 const ids = ["faces", "joint", "cones", "interval", "points", "relations", "split"];
 const inputs = Object.fromEntries(ids.map(id => [id, document.getElementById(`show-${id}`)]));
 const cutoff = document.getElementById("spine-cutoff");
 const pairChoice = document.getElementById("pair-choice");
 const guides = {
-  faces: { layers: ["faces", "joint"], pair: "axial", copy: "The two spacelike faces meet along a circle in this slice. The actual 4D joint is a two-sphere, not this circle." },
+  faces: { layers: ["faces", "joint"], pair: "axial", copy: "Two spacelike boundaries enclose a chosen region of flat spacetime. They meet at the gold circle in this slice; the full 4D joint is a two-sphere. Curved boundaries do not mean curved spacetime." },
   interval: { layers: ["faces", "joint", "cones", "interval"], pair: "axial", copy: "A ≺ B. The gold interval is the future of A intersected with the past of B. Its boundary rays are null; its interior contains possible intermediate events." },
   points: { layers: ["faces", "joint", "interval", "points", "relations"], pair: "axial", copy: "Uniform slice locations, conditional on 56 events. Lines show all causal pairs, not just links. Gold points lie strictly between the marked endpoints A and B." },
   split: { layers: ["joint", "interval", "points", "relations", "split"], pair: "null", copy: "A long, nearly-null pair can have small proper time. Blue solid pairs have v < δ; coral dashed pairs have v ≥ δ. Equality is long. The split uses coordinates, not camera distance." }
@@ -14,8 +16,30 @@ let seed = 193, points = sampleSlice(seed), viewer;
 function state() {
   return { layers: Object.fromEntries(ids.map(id => [id, inputs[id].checked])), pair: pairChoice.value, delta: Number(cutoff.value), points };
 }
+function updateKey(layers) {
+  const key = document.getElementById("layer-key");
+  key.replaceChildren();
+  const row = (...segments) => {
+    const line = document.createElement("div");
+    segments.forEach(([text, className = ""], i) => {
+      if (i) line.append(" · ");
+      const span = document.createElement("span"); span.textContent = text; span.className = className; line.append(span);
+    });
+    key.append(line);
+  };
+  if (layers.relations) {
+    if (layers.split) row(["Blue solid: short", "future-key"], ["Coral dashed: long", "long-key"]);
+    else row(["Blue: all causal pairs", "future-key"]);
+  } else if (layers.faces) row([layers.cones ? "Blue: future face / cones" : "Blue: future boundary", "future-key"], ["Green: past boundary", "past-key"]);
+  else if (layers.cones) row(["Blue: light-cone scaffolding", "future-key"]);
+  const gold = [layers.joint && "joint", layers.interval && "interval", (layers.interval || layers.cones || layers.points || layers.split) && "marked A–B"].filter(Boolean);
+  if (gold.length) row([`Gold: ${gold.join(" / ")}`, "joint-key"]);
+  if (layers.points) row(["Slice events: grey; gold between A and B"]);
+  if (!key.childElementCount) row(["Choose a guided view or adjust layers"]);
+}
 function update() {
   const current = state(), [a, b] = markedPair(current.pair), metrics = pairMetrics(a, b);
+  updateKey(current.layers);
   let short = 0, long = 0;
   for (let i = 0; i < points.length; i++) for (let j = 0; j < points.length; j++) {
     if (!precedes(points[i], points[j])) continue;
@@ -93,6 +117,7 @@ svg.append(el("text", { x: 650, y: 225, fill: "currentColor", "text-anchor": "en
 try {
   const { createViewer } = await import("./proof-spine-viewer.js");
   viewer = createViewer(document.getElementById("spineStage"));
+  document.querySelectorAll(".camera-controls button").forEach(button => { button.disabled = false; });
   update();
 } catch (error) {
   document.getElementById("viewer-status").textContent = "3D unavailable: static section retained. Pair/cutoff controls still work.";

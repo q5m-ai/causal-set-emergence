@@ -68,7 +68,7 @@ export function createViewer(stage) {
   const status = document.getElementById("viewer-status"), fallback = stage.querySelector(".scene-fallback");
   renderer.domElement.setAttribute("aria-hidden", "true");
   stage.prepend(renderer.domElement); fallback.hidden = true;
-  const defaultStatus = "3D slice · drag / pinch · labeled view, zoom and reset controls available";
+  const defaultStatus = "Drag to rotate · Pinch / scroll to zoom · No auto-motion";
   status.textContent = defaultStatus;
   let visible = true, pending = false, alive = true;
   function draw() {
@@ -77,55 +77,112 @@ export function createViewer(stage) {
     requestAnimationFrame(() => { pending = false; if (alive && visible) renderer.render(scene, camera); });
   }
   controls.addEventListener("change", draw);
+  // Fit the actual slice and axes, not a sphere or a stretched time coordinate.
+  // Framing adapts to portrait, wide hero, drawer and fullscreen sizes while
+  // keeping the current orientation and relative user zoom on resize.
+  const framingPoints = [new THREE.Vector3(0, 0.74, 0), new THREE.Vector3(0, -0.65, 0)];
+  for (const axis of ["x", "z"]) for (const sign of [-1, 1]) {
+    const p = new THREE.Vector3(); p[axis] = sign * 1.36; framingPoints.push(p);
+  }
+  for (let r = 0; r <= 1; r += 0.125) for (let a = 0; a < Math.PI * 2; a += Math.PI / 32) {
+    const x = r * Math.cos(a), y = r * Math.sin(a);
+    for (const sign of [-1, 1]) framingPoints.push(position({ x, y, t: sign * faceHeight(x, y) }));
+  }
+  function framingDistance() {
+    const right = new THREE.Vector3(1, 0, 0).applyQuaternion(camera.quaternion);
+    const up = new THREE.Vector3(0, 1, 0).applyQuaternion(camera.quaternion);
+    const back = camera.position.clone().normalize();
+    const tangent = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+    let distance = 0;
+    for (const p of framingPoints) distance = Math.max(distance,
+      p.dot(back) + Math.abs(p.dot(right)) / (tangent * camera.aspect),
+      p.dot(back) + Math.abs(p.dot(up)) / tangent);
+    return distance * 1.1;
+  }
+  function fitCamera(zoom = 1) {
+    const distance = framingDistance();
+    controls.minDistance = distance * 0.55; controls.maxDistance = distance * 2.6;
+    camera.position.setLength(distance * Math.max(0.55, Math.min(2.6, zoom)));
+    controls.update(); draw();
+  }
+  let sized = false;
   const resize = new ResizeObserver(() => {
+    if (!stage.clientWidth || !stage.clientHeight) return;
+    const zoom = sized ? camera.position.length() / framingDistance() : 1;
     renderer.setSize(stage.clientWidth, stage.clientHeight, false);
-    camera.aspect = stage.clientWidth / stage.clientHeight; camera.updateProjectionMatrix(); draw();
+    camera.aspect = stage.clientWidth / stage.clientHeight; camera.updateProjectionMatrix();
+    fitCamera(zoom); sized = true;
   }); resize.observe(stage);
   const observer = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; if (visible) draw(); }); observer.observe(stage);
   renderer.domElement.addEventListener("webglcontextlost", e => {
     e.preventDefault(); alive = false; renderer.domElement.hidden = true; fallback.hidden = false;
     status.textContent = "Graphics context lost: static section retained. Pair/cutoff controls still work.";
+    document.querySelectorAll(".camera-controls button").forEach(button => { button.disabled = true; });
     controls.dispose(); resize.disconnect(); observer.disconnect();
   });
+  let previous = {}, relationLines = [], markedLine;
   function update(state) {
     if (!alive) return;
-    for (const id of ["cones", "interval", "points", "relations", "marked"]) clear(groups[id]);
-    Object.entries(state.layers).forEach(([id, show]) => { if (groups[id]) groups[id].visible = show; });
-    const [a, b] = markedPair(state.pair);
-    for (const [p, text] of [[a, "A"], [b, "B"]]) {
-      const dot = new THREE.Mesh(new THREE.SphereGeometry(0.019, 12, 8), new THREE.MeshBasicMaterial({ color: colors.joint }));
-      dot.position.copy(position(p)); groups.marked.add(dot, label(text, position(p).add(new THREE.Vector3(0.065, 0.015, 0)), "#ffd37c"));
-    }
-    groups.marked.visible = state.layers.interval || state.layers.cones || state.layers.points || state.layers.split;
-    groups.marked.add(line([position(a), position(b)], colors.joint, 0.9, sector(a, b, state.delta) === "long" && state.layers.split));
-    // Both sheets of the marked interval are boosted rest-frame null surfaces.
-    for (const sign of [-1, 1]) groups.interval.add(radialSurface((r, angle) => intervalPoint(state.pair, sign * r, angle), colors.joint, 0.10, 20, 48));
-    groups.interval.add(line(Array.from({ length: 65 }, (_, i) => position(intervalPoint(state.pair, 0, i / 64 * 2 * Math.PI))), colors.joint, 0.8));
-    for (const angle of [0, Math.PI / 2, Math.PI, 3 * Math.PI / 2]) {
-      groups.interval.add(line(Array.from({ length: 41 }, (_, i) => position(intervalPoint(state.pair, i / 20 - 1, angle))), colors.joint, 0.6));
-    }
-    // Cone scaffolding extends outside M; the interval inside is separately gold.
-    for (const [p, direction] of [[a, 1], [b, -1]]) {
-      groups.cones.add(radialSurface((r, angle) => ({ t: p.t + direction * r * 0.48, x: p.x + r * 0.48 * Math.cos(angle), y: p.y + r * 0.48 * Math.sin(angle) }), colors.future, 0.045, 8, 40));
-      for (let angle = 0; angle < Math.PI * 2; angle += Math.PI / 4) groups.cones.add(line([position(p), position({ t: p.t + direction * 0.48, x: p.x + 0.48 * Math.cos(angle), y: p.y + 0.48 * Math.sin(angle) })], colors.future, 0.27, true));
-    }
-    state.points.forEach(p => {
-      const inside = precedes(a, p) && precedes(p, b);
-      const dot = new THREE.Mesh(new THREE.SphereGeometry(inside ? 0.014 : 0.010, 8, 6), new THREE.MeshBasicMaterial({ color: inside ? colors.joint : colors.point }));
-      dot.position.copy(position(p)); groups.points.add(dot);
+    const pairChanged = previous.pair !== state.pair, sampleChanged = previous.points !== state.points;
+    let changed = pairChanged || sampleChanged;
+    Object.entries({ ...state.layers, marked: state.layers.interval || state.layers.cones || state.layers.points || state.layers.split }).forEach(([id, show]) => {
+      if (groups[id]) { changed ||= groups[id].visible !== show; groups[id].visible = show; }
     });
-    for (let i = 0; i < state.points.length; i++) for (let j = 0; j < state.points.length; j++) {
-      const first = state.points[i], second = state.points[j];
-      if (!precedes(first, second)) continue;
-      const long = sector(first, second, state.delta) === "long";
-      groups.relations.add(line([position(first), position(second)], state.layers.split && long ? colors.long : colors.short, 0.27, state.layers.split && long));
+    const [a, b] = markedPair(state.pair);
+    if (pairChanged) {
+      for (const id of ["cones", "interval", "marked"]) clear(groups[id]);
+      for (const [p, text] of [[a, "A"], [b, "B"]]) {
+        const dot = new THREE.Mesh(new THREE.SphereGeometry(0.019, 12, 8), new THREE.MeshBasicMaterial({ color: colors.joint }));
+        dot.position.copy(position(p)); groups.marked.add(dot, label(text, position(p).add(new THREE.Vector3(0.065, 0.015, 0)), "#ffd37c"));
+      }
+      markedLine = line([position(a), position(b)], colors.joint, 0.9, true);
+      groups.marked.add(markedLine);
+      // Both sheets are the same boosted rest-frame null surfaces as the model.
+      for (const sign of [-1, 1]) groups.interval.add(radialSurface((r, angle) => intervalPoint(state.pair, sign * r, angle), colors.joint, 0.10, 20, 48));
+      groups.interval.add(line(Array.from({ length: 65 }, (_, i) => position(intervalPoint(state.pair, 0, i / 64 * 2 * Math.PI))), colors.joint, 0.8));
+      for (const angle of [0, Math.PI / 2, Math.PI, 3 * Math.PI / 2]) {
+        groups.interval.add(line(Array.from({ length: 41 }, (_, i) => position(intervalPoint(state.pair, i / 20 - 1, angle))), colors.joint, 0.6));
+      }
+      // Cone scaffolding extends outside M; the interval inside is separately gold.
+      for (const [p, direction] of [[a, 1], [b, -1]]) {
+        groups.cones.add(radialSurface((r, angle) => ({ t: p.t + direction * r * 0.48, x: p.x + r * 0.48 * Math.cos(angle), y: p.y + r * 0.48 * Math.sin(angle) }), colors.future, 0.045, 8, 40));
+        for (let angle = 0; angle < Math.PI * 2; angle += Math.PI / 4) groups.cones.add(line([position(p), position({ t: p.t + direction * 0.48, x: p.x + 0.48 * Math.cos(angle), y: p.y + 0.48 * Math.sin(angle) })], colors.future, 0.27, true));
+      }
     }
-    draw();
+    if (pairChanged || sampleChanged) {
+      clear(groups.points);
+      state.points.forEach(p => {
+        const inside = precedes(a, p) && precedes(p, b);
+        const dot = new THREE.Mesh(new THREE.SphereGeometry(inside ? 0.014 : 0.010, 8, 6), new THREE.MeshBasicMaterial({ color: inside ? colors.joint : colors.point }));
+        dot.position.copy(position(p)); groups.points.add(dot);
+      });
+    }
+    if (sampleChanged) {
+      clear(groups.relations); relationLines = [];
+      for (const first of state.points) for (const second of state.points) {
+        if (!precedes(first, second)) continue;
+        const object = line([position(first), position(second)], colors.short, 0.27, true);
+        groups.relations.add(object); relationLines.push({ first, second, object });
+      }
+    }
+    // Reuse geometry on cutoff changes. A zero dash gap is a solid line;
+    // classification still calls the exact shared strict-short/closed-long rule.
+    if (pairChanged || sampleChanged || previous.split !== state.layers.split || (state.layers.split && previous.delta !== state.delta)) {
+      markedLine.material.gapSize = state.layers.split && sector(a, b, state.delta) === "long" ? 0.012 : 0;
+      for (const { first, second, object } of relationLines) {
+        const long = state.layers.split && sector(first, second, state.delta) === "long";
+        object.material.color.set(long ? colors.long : colors.short);
+        object.material.gapSize = long ? 0.012 : 0;
+      }
+      changed = true;
+    }
+    previous = { pair: state.pair, points: state.points, split: state.layers.split, delta: state.delta };
+    if (changed) draw();
   }
   return {
     update,
-    front() { camera.position.set(0, 0, 3.5); controls.target.set(0, 0, 0); controls.update(); status.textContent = "Front projection along x₂ · joint circle projects to a line"; draw(); },
-    reset() { camera.position.copy(initial); controls.target.set(0, 0, 0); controls.update(); status.textContent = defaultStatus; draw(); },
-    zoom(factor) { camera.position.multiplyScalar(Math.min(7, Math.max(1.8, camera.position.length() * factor)) / camera.position.length()); controls.update(); draw(); }
+    front() { camera.position.set(0, 0, 3.5); controls.target.set(0, 0, 0); controls.update(); fitCamera(); status.textContent = "Front projection along x₂ · joint circle projects to a line"; },
+    reset() { camera.position.copy(initial); controls.target.set(0, 0, 0); controls.update(); fitCamera(); status.textContent = defaultStatus; },
+    zoom(factor) { camera.position.setLength(Math.min(controls.maxDistance, Math.max(controls.minDistance, camera.position.length() * factor))); controls.update(); draw(); }
   };
 }

@@ -26,15 +26,59 @@
     <div class="brand"><a href="index.html">causal-set-emergence<span>.q5m.ai</span></a></div>
     <div class="nav-links"><a href="index.html">Home</a><a href="dimensions.html">Dimensions</a><a href="proof-spine.html" aria-current="page">Proof spine</a></div>
   </div></nav>
-  <header class="wrap spine-head">
-    <span class="wip">Work in progress · not independently human-reviewed</span>
-    <h1>Proof Spine</h1>
+  <header class="spine-head">
+    <div id="example-lab" class="example-lab" tabindex="-1" aria-labelledby="hero-title">
+      <div class="lab-heading">
+        <div><span class="wip">Work in progress · not independently human-reviewed</span><h1 id="hero-title">Proof Spine</h1></div>
+        <button id="fullscreen-view" type="button" aria-expanded="false" aria-controls="example-lab" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 3H3v6m12-6h6v6M3 15v6h6m12-6v6h-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span>Full screen</span></button>
+      </div>
+      <p id="scene-orientation" class="hero-orientation"><strong>A region of spacetime—not the shape of the universe.</strong> The vertical model axis is time, not height. One spatial dimension is hidden.</p>
+      <noscript><p class="small">JavaScript is disabled: the static section and proof guide remain available. Interactive controls require JavaScript.</p></noscript>
+      <div class="scene-layout">
+        <div id="spineStage" class="spine-stage" aria-label="Rotatable slice of the symmetric capsule" aria-describedby="scene-orientation">
+          <img class="scene-fallback" src="proof-spine-slice.svg" alt="Static t–x₁ section of the capsule: two parabolic spacelike faces meet at t=0, x₁=±1; an interior vertical causal interval has lightlike sides.">
+          <div class="scene-key"><span class="slice-label">Slice x₃ = 0 · two space + one time</span><div id="layer-key"><span class="future-key">Blue: future boundary</span> · <span class="past-key">Green: past boundary</span><br><span class="joint-key">Gold: their joint</span> · t: time · x₁, x₂: space</div></div>
+          <div class="camera-controls" role="group" aria-label="Camera controls"><button id="front-view" type="button" disabled>Front projection</button><button id="orbit-view" type="button" disabled>Oblique view</button><button id="zoom-out" type="button" aria-label="Zoom out" title="Zoom out" disabled>−</button><button id="zoom-in" type="button" aria-label="Zoom in" title="Zoom in" disabled>+</button></div>
+          <p id="viewer-status" class="viewer-status">Static section shown. Interactive 3D loads when available.</p>
+        </div>
+        <div id="scene-controls" class="scene-controls" aria-label="Detailed scene controls" hidden>
+          <div class="controls-heading"><strong>Make it your own</strong><button id="close-controls" type="button" aria-label="Close controls">Close</button></div>
+          <fieldset><legend>Show explanatory layers</legend>
+            <label><input id="show-faces" type="checkbox" checked> Boundary faces</label><label><input id="show-joint" type="checkbox" checked> Joint circle</label><label><input id="show-cones" type="checkbox"> Light cones of A and B</label><label><input id="show-interval" type="checkbox"> Interval I(A,B)</label><label><input id="show-points" type="checkbox"> Sprinkled events</label><label><input id="show-relations" type="checkbox"> All causal pairs</label><label><input id="show-split" type="checkbox"> Color pairs by cutoff</label>
+          </fieldset>
+          <label for="pair-choice">Marked endpoint pair</label><select id="pair-choice"><option value="axial">Axial: Δt = 0.56, r = 0</option><option value="short">Small: Δt = 0.11, r = 0.06</option><option value="null">Nearly null: Δt = 0.30, r = 0.295</option></select>
+          <label for="spine-cutoff">Coordinate cutoff δ <output id="cutoff-out">0.400</output></label><input id="spine-cutoff" type="range" min="0.10" max="0.80" step="0.005" value="0.40">
+          <div id="pair-readout" class="pair-readout" aria-live="polite">A and B: v = 0.560, σ = 0.313600. At δ = 0.400 this pair is long.</div>
+          <div class="scene-legend"><span>Short: blue, solid</span><span>Long: coral, dashed</span><span>Marked A–B: gold</span></div>
+          <div class="control-row"><button id="reset-view" type="button">Reset all</button><button id="resprinkle" type="button">New fixed-N sample</button></div>
+          <p class="small">56 illustrative slice events, not a 4D action simulation. Marked endpoints are not sampled events. The cutoff is explanatory, not a certified Taylor radius.</p>
+        </div>
+      </div>
+      <div class="scene-dock">
+        <div class="guide-buttons" role="group" aria-label="Guided views"><button data-guide="faces" aria-pressed="true"><span>01</span> The region</button><button data-guide="interval" aria-pressed="false"><span>02</span> Causal interval</button><button data-guide="points" aria-pressed="false"><span>03</span> Events &amp; order</button><button data-guide="split" aria-pressed="false"><span>04</span> Short / long</button></div>
+        <button id="controls-toggle" type="button" aria-expanded="false" aria-controls="scene-controls" hidden>Adjust layers</button>
+      </div>
+      <p id="guide-copy" class="guide-copy" aria-live="polite">Two spacelike boundaries enclose a chosen region of flat spacetime. They meet at the gold circle in this slice; the full 4D joint is a two-sphere. Curved boundaries do not mean curved spacetime.</p>
+      <div class="scene-footnote"><span>Equal axis units · c = 1 · no time-axis compression</span><span>Illustration · not proof evidence</span></div>
+      <p id="fullscreen-status" class="sr-only" role="status"></p>
+    </div>
+    <div class="hero-notes wrap">
+      <details><summary>Why this saucer? What am I looking at?</summary><div>
+        <p><strong>A finite region, not an object flying through space.</strong> A horizontal cut shows the selected spatial area at one time; the entire shape stacks those moments. The chosen time window is widest at the centre and narrows to zero at the gold rim.</p>
+        <p>The spatial diameter is 2 units; the central duration is 0.75 in units where light travels one spatial unit per time unit. This aspect ratio belongs to the chosen region in these coordinates, not to a compressed time axis or time dilation. The surrounding spacetime is flat.</p>
+        <p><strong>Why use it in the proof?</strong> Two smooth spacelike faces, one clean joint, and no extra side walls isolate the boundary mechanism. The spherical joint and constant relativistic meeting angle give an independently calculable target. The curved, steep faces also exercise the larger checked class E rather than only the older slope-budget class. This is one worked example, not the only admissible shape. <a href="#region">See its exact geometry and target ↓</a></p>
+        <p id="scene-caption" class="small">Drag to rotate; pinch or scroll to zoom. Buttons provide non-drag views. No auto-rotation. The 3D display is the exact <strong>x₃ = 0 slice of a 3+1-dimensional region</strong>, not a picture of all four coordinates. Its joint circle and intervals are slices of the 4D objects; do not use their areas/volumes as 4D measures. The front view projects along x₂ (the joint circle then looks like a line). Blue cone scaffolding may extend outside M; the gold interval stays inside M by causal convexity.</p>
+        <p class="small"><strong>Sampling boundary:</strong> 56 seeded pseudorandom points illustrate uniform locations in this 2+1-dimensional slice, conditional on a fixed count (the conditional Poisson spatial law). They are not a 4D sprinkling or a simulated BDG action. A and B are marked explanatory endpoints, not extra sampled events. Relation lines use the full slice Minkowski inequality; rotating the camera does not change causality. The adjustable cutoff teaches the definition, not a certified local Taylor radius.</p>
+      </div></details>
+      <details><summary>Static fallback and controls without WebGL</summary><div><img class="static-section" src="proof-spine-slice.svg" alt="A t–x₁ section with two parabolic spacelike faces, a zero-time joint, and a vertical causal interval."><p>Blue and green arcs are the future and past faces. Gold endpoints are a section of the joint. Dashed 45° lines bound the causal interval. The pair selector and cutoff readout work without WebGL when JavaScript is available; this section and the narrative remain when JavaScript or the CDN is unavailable.</p></div></details>
+      <a class="proof-cue" href="#main">From this picture to the seven-step proof <span aria-hidden="true">↓</span></a>
+    </div>
+  </header>
+  <main id="main" class="wrap" tabindex="-1">
     <p class="lede">How can a signed count of causal relationships recover a geometric joint? Follow the mechanism, its hypotheses, and the shortcuts that fail.</p>
     <p class="assessment">Source assessment: <time datetime="2026-10-03">3 October 2026</time> · main revision <a href="https://github.com/q5m-ai/causal-set-emergence/tree/8b05befffd4a24fea3724f2d5ed41d33684b9fc5"><code>8b05befffd4a</code></a>. This is a dated guide, not a live status feed.</p>
     <div class="notice"><strong>The destination is a limit of expectations.</strong> The flat 4D results below are Lean-checked under restricted geometric hypotheses. They do not prove the general conjecture or convergence of individual sprinkled causal sets. The research remains unpublished and awaits independent human mathematical/physical review.</div>
-  </header>
-  <main id="main" class="wrap">
-    <nav class="reading-nav" aria-label="Reading path"><a href="#question">The question</a><a href="#region">One region</a><a href="#dependencies">Dependencies</a><a href="#spine">Seven steps</a><a href="#branches">Separate branches</a><a href="#reading">Read further</a></nav>
+    <nav class="reading-nav" aria-label="Reading path"><a href="#example-lab">Explore ↑</a><a href="#question">The question</a><a href="#region">One region</a><a href="#dependencies">Dependencies</a><a href="#spine">Seven steps</a><a href="#branches">Separate branches</a><a href="#reading">Read further</a></nav>
     <section id="question">
       <div class="eyebrow">01 · What is being asked?</div><h2>From order and number to geometry</h2>
       <p>A Poisson sprinkling puts random events into a <em>fixed</em> spacetime region. Retain their causal order and count how many events lie between each related pair. Conjecture 1′ asks whether the <strong>mean unsmeared BDG action</strong>, as the density increases, approaches a local curvature term plus an angle-weighted joint term.</p>
@@ -66,34 +110,7 @@
         \end{aligned}
       \]</div>
       <p>The raw height is \(h=s(1-r^2)\); the future graph is \(f=h/2\). Each face's maximum slope is \(s\lt1\), so both are spacelike. The thickness slope reaches \(2s=3/2\): a planar cap with the <em>same height</em> would not satisfy the old strict cap bound. This is a genuine member of the larger checked class E, not permission to use that invalid comparison.</p>
-      <div id="example-lab" class="example-lab" tabindex="-1">
-        <div class="lab-heading"><div><span class="eyebrow">Illustration · not proof evidence</span><h3>One scene, four guided views</h3></div><span class="slice-label">Slice x₃ = 0 · two space + one time</span></div>
-        <noscript><p class="small">JavaScript is disabled: use the static section below. Interactive controls require JavaScript; the written argument does not.</p></noscript>
-        <div class="guide-buttons" aria-label="Guided views">
-          <button data-guide="faces" aria-pressed="true">1 · Faces &amp; joint</button><button data-guide="interval" aria-pressed="false">2 · Causal interval</button><button data-guide="points" aria-pressed="false">3 · Sprinkled events</button><button data-guide="split" aria-pressed="false">4 · Short / long</button>
-        </div>
-        <div class="scene-layout">
-          <div id="spineStage" class="spine-stage" aria-label="Rotatable slice of the symmetric capsule" aria-describedby="scene-caption">
-            <img class="scene-fallback" src="proof-spine-slice.svg" alt="Static t–x₁ section of the capsule: two parabolic spacelike faces meet at t=0, x₁=±1; an interior vertical causal interval has lightlike sides.">
-            <div class="scene-key">time t ↑ · x₁, x₂ spatial<br><span class="future-key">blue: future face</span> · <span class="past-key">green: past face</span><br><span class="joint-key">gold: joint</span></div>
-            <p id="viewer-status" class="viewer-status">Static section shown. Interactive 3D loads when available.</p>
-          </div>
-          <div class="scene-controls">
-            <p id="guide-copy" aria-live="polite">The two spacelike faces meet along a circle in this slice. The actual 4D joint is a two-sphere, not this circle.</p>
-            <fieldset><legend>Show explanatory layers</legend>
-              <label><input id="show-faces" type="checkbox" checked> Boundary faces</label><label><input id="show-joint" type="checkbox" checked> Joint circle</label><label><input id="show-cones" type="checkbox"> Light cones of A and B</label><label><input id="show-interval" type="checkbox"> Interval I(A,B)</label><label><input id="show-points" type="checkbox"> Sprinkled events</label><label><input id="show-relations" type="checkbox"> All causal pairs</label><label><input id="show-split" type="checkbox"> Color pairs by cutoff</label>
-            </fieldset>
-            <label for="pair-choice">Marked endpoint pair</label><select id="pair-choice"><option value="axial">Axial: Δt = 0.56, r = 0</option><option value="short">Small: Δt = 0.11, r = 0.06</option><option value="null">Nearly null: Δt = 0.30, r = 0.295</option></select>
-            <label for="spine-cutoff">Coordinate cutoff δ <output id="cutoff-out">0.400</output></label><input id="spine-cutoff" type="range" min="0.10" max="0.80" step="0.005" value="0.40">
-            <div class="control-row"><button id="front-view">Front projection</button><button id="orbit-view">Oblique view</button><button id="zoom-in">Zoom in</button><button id="zoom-out">Zoom out</button><button id="reset-view">Reset all</button><button id="resprinkle">New fixed-N sample</button></div>
-            <div id="pair-readout" class="pair-readout" aria-live="polite">A and B: v = 0.560, σ = 0.313600. At δ = 0.400 this pair is long.</div>
-          </div>
-        </div>
-        <div class="scene-legend"><span>Short: blue, solid</span><span>Long: coral, dashed</span><span>Marked A–B: gold</span></div>
-        <p id="scene-caption" class="small">Drag to rotate; pinch or scroll to zoom. Buttons provide non-drag views. No auto-rotation. The 3D display is the exact <strong>x₃ = 0 slice of a 3+1-dimensional region</strong>, not a picture of all four coordinates. Its joint circle and intervals are slices of the 4D objects; do not use their areas/volumes as 4D measures. The front view projects along x₂ (the joint circle then looks like a line). Blue cone scaffolding may extend outside M; the gold interval stays inside M by causal convexity.</p>
-        <p class="small"><strong>Sampling boundary:</strong> 56 seeded pseudorandom points illustrate uniform locations in this 2+1-dimensional slice, conditional on a fixed count (the conditional Poisson spatial law). They are not a 4D sprinkling or a simulated BDG action. A and B are marked explanatory endpoints, not extra sampled events. Relation lines use the full slice Minkowski inequality; rotating the camera does not change causality. The adjustable cutoff teaches the definition, not a certified local Taylor radius.</p>
-        <details><summary>Static fallback and controls without WebGL</summary><div><img class="static-section" src="proof-spine-slice.svg" alt="A t–x₁ section with two parabolic spacelike faces, a zero-time joint, and a vertical causal interval."><p>Blue and green arcs are the future and past faces. Gold endpoints are a section of the joint. Dashed 45° lines bound the causal interval. The pair selector and cutoff readout work without WebGL when JavaScript is available; this section and the narrative remain when JavaScript or the CDN is unavailable.</p></div></details>
-      </div>
+      <p><a href="#example-lab" data-visit="faces">Return to the interactive region ↑</a></p>
       <details><summary>Check the example's geometry and independent target</summary><div>
         <p>At the joint the two opposite face slopes have magnitude \(s\). Their future unit normals give \(\cosh\theta=(1+s^2)/(1-s^2)\), hence \(\theta=2\,\mathrm{artanh}(s)\) and \(\coth\theta=(1+s^2)/(2s)=25/24\). The joint lies at constant time, so its induced area is the ordinary sphere area \(4\pi\). Thus the independently computed target is \(25\pi/6\), approximately 13.08997.</p>
         <p>The clipped envelopes \(\pm(s/2)(1-r^2)_+\) each have global Lipschitz constant \(s\lt1\). They coincide outside the ball; inside they agree with the raw faces. The origin is an allowed positive-height critical point. None of these facts uses an action limit.</p>

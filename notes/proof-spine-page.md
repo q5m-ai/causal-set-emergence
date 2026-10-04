@@ -50,6 +50,22 @@ package installation is needed. CDN failure leaves the narrative and static
 geometry intact. The controller and pure model remain independent of the
 WebGL import, preserving the pair/cutoff readout when only 3D fails.
 
+The visualization now leads the page as a wide, dark hero. The same scene—not a
+second canvas—expands into native fullscreen, or a full-window fallback when the
+API is unavailable or denied. `proof-spine-display.js` handles the display-only
+lifecycle independently of WebGL: Escape/button/browser exit, focus containment,
+background inertness with restoration, and return to the prior scroll position.
+Detailed controls live in a scrollable drawer; guided views and camera buttons
+remain directly accessible. Adaptive camera framing preserves equal coordinate
+scales, orientation, and relative zoom instead of stretching the time axis.
+The scene reuses interval and relation geometry; cutoff changes update line
+styles without rebuilding the scene. There is still no autonomous animation.
+
+The hero's plain-language explanation distinguishes a chosen finite region from
+the shape of the universe, time from spatial height, curved boundaries from
+spacetime curvature, and the chosen aspect ratio from time-axis compression.
+All theorem hypotheses, source pins, assessment dates, and equations are retained.
+
 The actual Erdős 193 reference was located at
 `/home/q5m/code/q5m-ai/erdos-193`, revision
 `e5ceac4bf1be27fff297c18be379ae9da4efff83`.
@@ -85,9 +101,51 @@ is imported.
   zero moments and the asymptotic theorem are attributed to actual proof sources,
   never inferred from the plotted lobes.
 
-## Validation receipt (2026-10-04)
+## Hero and fullscreen follow-up validation (2026-10-04)
 
-After the last implementation change:
+- Full repository Python suite: **241 tests passed**; symbolic checks passed.
+  The website contract now has **6 tests**, including hero-first placement and
+  orientation/controls. The **6 pure-model tests** still pass; the mathematical
+  model itself was not changed.
+- All **121 TeX expressions** are byte-for-byte unchanged, in the same order.
+  Pinned source links, local links/fragments, JavaScript syntax, Markdown lint
+  and its **20 tests**, and `git diff --check` pass.
+- Chromium browser checks cover **1440×1000**, touch-emulated **390×844** and
+  **320×740**, and dark/reduced-motion touch-emulated **360×800**. The scene is
+  visible on the first screen in each. All **121/121** equations render, with
+  no page-wide overflow, canvas aspect distortion, unhandled errors, or failed
+  normal requests. Camera buttons are not clipped at the narrowest width.
+- Native fullscreen is exercised in all four configurations. Tests cover the
+  exit button, browser-initiated exit, repeated entry, retained scene settings,
+  restored focus/scroll, inert background, and forward/reverse keyboard focus
+  containment. The drawer is usable in both page and fullscreen modes.
+- Forced unsupported/denied fullscreen uses the full-window fallback. Escape,
+  live fallback resizing to **844×390**, and native exit/resize/re-entry work.
+  Previously inert background elements remain inert on exit. The native-window
+  resize sequence reflects a Chromium automation limitation, not a claim about
+  physical device rotation.
+- Forced WebGL failure, runtime context loss, blocked CDN, and disabled JavaScript
+  retain the static section. Fullscreen and pair/cutoff controls remain usable
+  without WebGL; unavailable camera controls are disabled. Without JavaScript,
+  fullscreen/drawer buttons stay hidden and the written explanation remains.
+- Desktop drag, touch-emulated guided-view taps, keyboard checkboxes, cutoff
+  equality, resampling/reset, and projection/zoom buttons pass. Stable-frame
+  comparisons confirm no autonomous animation. Twenty cutoff updates averaged
+  approximately **12–30 ms** across the tested views, including visible split
+  styling; this headless software-rendering measurement is not a phone benchmark.
+- Axe WCAG 2 A/AA and 2.1 AA reports **zero violations** on the page and in
+  fullscreen with the drawer open, in all four configurations. This does not
+  replace human screen-reader or real-device review.
+
+Screenshots and receipts are in `/tmp/proof-spine-hero-final/` on the validation
+host. Real phones, Safari, assistive-tech review, and remote LAN-client
+reachability remain unverified. No Lean sources, proof statements, dependencies,
+or release configuration changed in this follow-up; no Lean audit, merge, or
+production deployment was performed. The LAN preview remains running.
+
+## Initial validation receipt (2026-10-04)
+
+At the initial page implementation:
 
 - Pure model: **6 Node tests** covering the capsule, target, seeded rejection
   sampler, causal inequality, exact cutoff equality, boosted intervals, and

@@ -72,6 +72,20 @@ class ProofSpineTests(unittest.TestCase):
         for name in ("index", "dimensions", "proof-spine"):
             self.assertIn('href="proof-spine.html"', (ROOT / f"site/{name}.html").read_text())
 
+    def test_visual_is_the_hero_with_progressive_controls(self):
+        text = (ROOT / "site/proof-spine.html").read_text()
+        self.assertLess(text.index('id="example-lab"'), text.index('<main'))
+        self.assertLess(text.index('id="spineStage"'), text.index('id="question"'))
+        for name in ("fullscreen-view", "fullscreen-status", "controls-toggle", "close-controls", "scene-orientation"):
+            self.assertIn(name, Page(text).ids)
+        self.assertEqual(len(re.findall(r"data-guide=", text)), 4)
+        self.assertIn('aria-controls="scene-controls"', text)
+        self.assertIn('aria-controls="example-lab"', text)
+        for phrase in ("not the shape of the universe", "time, not height", "no time-axis compression", "central duration is 0.75", "not the only admissible shape"):
+            self.assertIn(phrase, text)
+        self.assertIn('src="proof-spine-slice.svg"', text)
+        self.assertIn('<noscript>', text)
+
     def test_math_is_not_parsed_as_html(self):
         text = (ROOT / "site/proof-spine.html").read_text()
         expressions = re.findall(r"\\\((.*?)\\\)|\\\[(.*?)\\\]", text.split("<main")[1], re.S)
