@@ -415,10 +415,20 @@ terms. Combined with the already proved averaged long result, it gives the
 supported half-curvature response with an independently calculated scalar and
 the original normalization. Nonconstant endpoint fields retain their
 wave-operator terms. These are written theorems with separate executable regressions,
-**not new Lean proofs** or independent human review. The exact boundary-collar
-short term remains in the common decomposition: #74 stays open, and #75/#76
-still need its compatible boundary/joint accounting before complete
-deterministic or expected assembly.
+**not new Lean proofs** or independent human review. That interior-only
+package left the actual boundary-collar short term explicit.
+
+The [boundary-collar handoff](notes/curved-boundary-collar.md) now restores the
+whole bulk integral and proves the actual signed single-face estimate, using
+only the original C³ face regularity. Its exact full/face/corner identity
+retains both measures, all partners and the nonzero single-face joint flux;
+no collar is dropped by small volume. It discharges #74's bulk/non-joint
+producer obligations and hands #75 a precisely normalized actual corner
+functional whose weighted tangent comparison and joint limit remain **open**.
+Finite partitions, cutoff compatibility and both spacetime boundary fluxes
+are explicit. #76 still needs that #75 result before complete deterministic
+or expected assembly. These are written results with separate regressions,
+not new Lean proofs or independent human mathematical review.
 
 ## Program 2 — dynamics and automaton-like growth
 
