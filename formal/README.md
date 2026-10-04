@@ -127,14 +127,25 @@ The [integration interface](PILOT3_INTEGRATION.md) records exact signatures.
 Five standalone regressions include #78/#79 contracts, ball/sine, planar, empty,
 admissible disconnected/annular and retained-critical-point controls, regular
 2D endpoint counting, and exact compatibility for every original 4D C³ member.
-This is not an all-dimensional geometry port or a new pilot limit theorem.
-The subsequent [actual smooth 3D long producer](PILOT3_LONG_NULL.md) constructs
+This geometry package alone is not an all-dimensional port or a pilot limit theorem.
+
+The separate [actual smooth 3D short proof](PILOT3_SHORT.md) supplies #126's
+unconditional short-action producer for the unchanged `SmoothPilot3`. It derives
+the absolute origin two-jet, actual sharp fibres, three-dimensional signed
+responses and point cancellation, derivative-controlled nearly-null remainder,
+and intrinsic coefficient identification. Every smaller fixed positive cutoff
+below a proved geometric bound has the actual short limit. Standalone regressions
+cover curved, planar, empty, disconnected, annular and retained-critical-point
+members.
+
+The [actual smooth 3D long producer](PILOT3_LONG_NULL.md) constructs
 its canonical long density and complete signed null-coordinate disintegration,
 derives the contact-uniform averaged linear jet, and proves normalized signed
-long cancellation at every fixed positive cutoff. The unchanged `SmoothPilot3`
-class retains curved futures, all components and positive-height critical
-points. The short producer (#126) and final deterministic/expected assembly
-(#80) remain separate; this is not a full pilot action limit.
+long cancellation at every fixed positive cutoff. Both producers now share
+one canonical displacement/circle interface, with an exact bridge between
+signed-long/add and positive-long-pair/subtract conventions. #80 still owns
+final global and separately bridged expected-action assembly. No shrinking-cutoff
+or sample-wise limit is asserted.
 
 The [short-displacement proof note](../notes/curved-face-stability.md) is a
 **conventional analytic argument, not an end-to-end Lean theorem**.
