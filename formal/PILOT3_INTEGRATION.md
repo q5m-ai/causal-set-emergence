@@ -139,6 +139,26 @@ overlap Taylor jet. #78's actual long density/signed null-coordinate transport
 and averaged jet, and #79's short response/remainder and coefficient
 identification, remain separate analytic producer work.
 
+## Subsequent actual short producer for #80
+
+The [#126 short analytic port](PILOT3_SHORT.md) now consumes these canonical
+interfaces without extending `SmoothPilot3` or changing the target. Its exact
+unconditional consumer theorem is:
+
+```lean
+theorem SmoothPilot3.exists_shortAction_limit
+    {h f : Pilot3Space → ℝ} (hf : SmoothPilot3 h f) :
+    ∃ δ₀ : ℝ, 0 < δ₀ ∧ ∀ δ : ℝ, 0 < δ → δ ≤ δ₀ →
+      Tendsto (fun ρ => pilot3ShortAction ρ δ h f) atTop
+        (𝓝 (pilot3BoundaryIntegral h f))
+```
+
+`Pilot3ActionSplit` proves `pilot3Action = pilot3ShortAction - pilot3LongPairAction`
+with the point term once in short and cutoff equality in long. The linked note
+records the full signatures, actual origin/remainder producers and validation
+boundary. This does not supply #125's long result or #80's global/expectation
+assembly, and it does not revise PR #120's historical geometry-only receipt.
+
 ## Concrete controls and dimensional boundaries
 
 - `Pilot3Disconnected` proves admissibility of two separated unit disks with
