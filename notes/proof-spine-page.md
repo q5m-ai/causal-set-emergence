@@ -5,9 +5,10 @@
 The page at [`site/proof-spine.html`](../site/proof-spine.html) assesses main
 revision [`8b05befffd4a24fea3724f2d5ed41d33684b9fc5`](https://github.com/q5m-ai/causal-set-emergence/tree/8b05befffd4a24fea3724f2d5ed41d33684b9fc5),
 using sources inspected on **2026-10-03**. It is a dated reading guide, not a
-live issue-status feed. Research links are pinned to that revision. No existing
-research claims, Lean sources, checker inputs, dependencies, or build configuration
-are changed. This website pass did **not** rerun the full Lean audit; the
+live issue-status feed. Research links are pinned to that revision. The Python
+CI checkout retains history so the source-link audit can read that exact revision,
+rather than silently substituting current files. No existing research claims,
+Lean sources, checker inputs, dependencies, or image/build configuration are changed. This website pass did **not** rerun the full Lean audit; the
 Lean-checked labels refer to the encoded source declarations and existing
 validation receipts, not a new verification of the whole proof library.
 Independent human mathematical/physical review remains separate and outstanding.
@@ -93,7 +94,7 @@ After the last implementation change:
   signed kernel. These are explanatory-model tests, not research proofs.
 - Website contract: **5 Python tests** covering every local HTML link/fragment,
   duplicate IDs, navigation, status boundaries, all pinned research source
-  paths at the assessed Git revision, all **121** page math expressions, and
+  paths/Markdown anchors at the assessed Git revision, all **121** page math expressions, and
   the Node model suite.
 - Full repository Python suite: **240 tests passed**; symbolic checks passed.
 - All site and new validation JavaScript syntax checks and `git diff --check`
