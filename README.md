@@ -415,9 +415,30 @@ with exactly that polynomial density, including smooth endpoint weights.
 It integrates source time before seeking dominated jet control and retains
 both moving-boundary contributions. This is a conventional written proof with
 independent executable regressions, not a new Lean theorem or independent
-human review. The raw-first-endpoint obstruction remains valid; the actual
-short remainder, supported bulk theorem, curved joint comparison and complete
-deterministic/expected limit remain separate obligations under #74/#75/#76.
+human review. The raw-first-endpoint obstruction remains valid; that long-only
+result does not supply the short or bulk theorem.
+
+The [interior short/bulk proof](notes/curved-interior-short.md) now derives the
+actual signed short remainder uniformly on compact interior source supports,
+retaining the entire second jet, both endpoint measures and all moving-diagonal
+terms. Combined with the already proved averaged long result, it gives the
+supported half-curvature response with an independently calculated scalar and
+the original normalization. Nonconstant endpoint fields retain their
+wave-operator terms. These are written theorems with separate executable regressions,
+**not new Lean proofs** or independent human review. That interior-only
+package left the actual boundary-collar short term explicit.
+
+The [boundary-collar handoff](notes/curved-boundary-collar.md) now restores the
+whole bulk integral and proves the actual signed single-face estimate, using
+only the original C³ face regularity. Its exact full/face/corner identity
+retains both measures, all partners and the nonzero single-face joint flux;
+no collar is dropped by small volume. It discharges #74's bulk/non-joint
+producer obligations and hands #75 a precisely normalized actual corner
+functional whose weighted tangent comparison and joint limit remain **open**.
+Finite partitions, cutoff compatibility and both spacetime boundary fluxes
+are explicit. #76 still needs that #75 result before complete deterministic
+or expected assembly. These are written results with separate regressions,
+not new Lean proofs or independent human mathematical review.
 
 ## Program 2 — dynamics and automaton-like growth
 
