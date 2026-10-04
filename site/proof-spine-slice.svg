@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-labelledby="title desc">
+<title id="title">A static t–x₁ section of the steep capsule</title>
+<desc id="desc">The future and past parabolic spacelike faces meet at t zero and x₁ plus or minus one. A marked vertical timelike pair at times plus or minus 0.28 has an interior causal interval with lightlike 45-degree boundaries. Equal coordinate scales are used.</desc>
+<rect width="600" height="400" fill="#04060d"/>
+<g stroke="#263750" stroke-width="1"><path d="M80 200H520M300 80V325"/><path d="M100 100V300M200 100V300M400 100V300M500 100V300" opacity=".45"/></g>
+<!-- Physical coordinates: X=300+200*x₁, Y=200-200*t. Quadratic Béziers are exact. -->
+<path d="M100 200Q300 50 500 200Q300 350 100 200Z" fill="#0b2532"/>
+<path d="M100 200Q300 50 500 200" fill="none" stroke="#8bd7ff" stroke-width="3"/>
+<path d="M100 200Q300 350 500 200" fill="none" stroke="#77ddb9" stroke-width="3"/>
+<path d="M300 144L356 200L300 256L244 200Z" fill="#c58a16" fill-opacity=".13" stroke="#ffd37c" stroke-dasharray="5 5" stroke-width="2"/>
+<g fill="#ffd37c"><circle cx="100" cy="200" r="6"/><circle cx="500" cy="200" r="6"/><circle cx="300" cy="144" r="5"/><circle cx="300" cy="256" r="5"/></g>
+<g fill="#c3cee0" font-family="system-ui,sans-serif" font-size="13"><text x="25" y="35">STATIC SECTION · x₂ = x₃ = 0 · equal coordinate scales</text><text x="312" y="91">t ↑</text><text x="527" y="205">x₁ →</text><text x="320" y="117" fill="#8bd7ff">future face</text><text x="320" y="293" fill="#77ddb9">past face</text><text x="90" y="225">−1</text><text x="495" y="225">1</text><text x="318" y="150">B</text><text x="318" y="262">A</text><text x="354" y="180">I(A,B)</text><text x="36" y="353" fill="#ffd37c">Joint section: two endpoints at t = 0</text><text x="36" y="378">The 3D view uses x₁, x₂, t; the actual 4D joint is a two-sphere.</text></g>
+</svg>
