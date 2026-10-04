@@ -433,12 +433,24 @@ whole bulk integral and proves the actual signed single-face estimate, using
 only the original C³ face regularity. Its exact full/face/corner identity
 retains both measures, all partners and the nonzero single-face joint flux;
 no collar is dropped by small volume. It discharges #74's bulk/non-joint
-producer obligations and hands #75 a precisely normalized actual corner
-functional whose weighted tangent comparison and joint limit remain **open**.
-Finite partitions, cutoff compatibility and both spacetime boundary fluxes
-are explicit. #76 still needs that #75 result before complete deterministic
-or expected assembly. These are written results with separate regressions,
+producer obligations and handed #75 a precisely normalized actual corner
+functional, leaving its weighted tangent comparison and joint limit open at
+that stage. Finite partitions, cutoff compatibility and both spacetime boundary
+fluxes are explicit. These are written results with separate regressions,
 not new Lean proofs or independent human mathematical review.
+
+The subsequent [curved joint-corner proof](notes/curved-joint-corner.md) supplies
+that weighted comparison for the same fixed polynomial density and original
+C³ two-face class. It retains the actual curved phase, both measures, moving
+corner boundaries and the compensating single-face joint flux. Independent
+normal/Gram geometry identifies the limit with induced curved joint area times
+the positive-angle weight, including unequal-axis nonzero-curvature and
+varying-angle examples. Signed errors are summable at one common fixed cutoff;
+no same-chart partner restriction or shrinking-cutoff argument is used.
+This is a **written theorem**, with separate symbolic/numerical checks, not a
+new Lean result or independent human review. #76 still owns the complete
+assembly and acceptance audit using the separately proved expectation bridge;
+no general curved theorem or individual-sprinkling convergence is asserted.
 
 ## Program 2 — dynamics and automaton-like growth
 
