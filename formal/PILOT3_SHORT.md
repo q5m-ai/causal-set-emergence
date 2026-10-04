@@ -167,3 +167,20 @@ change. It audits every local source and every owned public declaration's
 transitive axioms, then the aggregate library. Individual module builds,
 incremental checks and GitHub's Python/Markdown CI do not replace it. The PR
 validation receipt records the exact audited code commit and observed checks.
+
+### Local integrated receipt
+
+The full gate passed on code commit
+`509459bea9d2f7122609de1c2220d17d85f6bd11`, after the final Lean changes:
+
+- Lean **4.19.0**, mathlib `c44e0c8ee63ca166450922a373c7409c5d26b00b`;
+- all **270** per-source checks, with warnings as errors and transitive-axiom checks;
+- aggregate audit of **2,867** public theorems and all public definitions;
+- only the permitted `propext`, `Classical.choice` and `Quot.sound` axioms;
+- default two workers, elapsed **2:31:48**, exit status **0**.
+
+The incremental check passed against the then-current `origin/main`, resolved
+to `c74801692a65f58be3f8e3caf7e0ccf1824946a1`. Symbolic checks, **262** Python
+unit tests, the **53**-document Markdown scan and **20** Markdown checker tests
+also passed. This receipt is a documentation-only follow-up; it does not change
+any Lean validation input or certify a future combination with #125.
