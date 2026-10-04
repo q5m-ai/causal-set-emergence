@@ -12,6 +12,17 @@ the dimension-indexed finite-density expectation identity. The geometric argumen
 or independently human-reviewed results**. Python/SymPy checks are regressions,
 not proofs for arbitrary inputs. Existing Lean results are cited explicitly.
 
+**Follow-on port status:** [#115's Lean geometry package](../formal/PILOT3_GEOMETRY.md)
+now preserves the exact smooth 3D contract and proves the whole region/strata,
+intrinsic canonical joint area and Borel overlaps, finite-atlas gluing, signed
+collar coarea, right-sided density regularity and spatial divergence, alongside
+actual signed overlap, compact perturbation tubes and the existing Poisson
+specialization. It includes admissible disconnected/annular controls, regular
+2D endpoint counting and exact compatibility for every original 4D C³ member;
+[its integration ledger](../formal/PILOT3_INTEGRATION.md) states the precise
+scope. The historical #92 delivery and written all-dimensional statements
+below are not promoted wholesale to new Lean theorems or pilot action limits.
+
 Read with [the dimensional kernel contracts](dimension-kernels.md),
 [the checked ambient transport](../formal/DIMENSION_INTERVALS.md), and
 [the original 4D geometry](../formal/JOINT_GEOMETRY.md). No existing Lean
@@ -473,7 +484,7 @@ stay open under #24, even though their finite geometry is proved in writing.
 |---|---|---|
 | #78 | `SmoothPilot3`, actual M, product volume and action (G16) | Actual fixed-cutoff overlap disintegration and sufficient averaged jet, or a precise obstruction |
 | #79 | The **same** pilot/action and independent target (G13) | Short-overlap estimates, signed coefficient and target identification; a planar base theorem if that route is used |
-| #77 (completed) | Bounded measurable causally convex M from Theorem G | The separate checked identity is available; the dimension-indexed Lean region constructor remains outstanding |
+| #77 (completed) | Bounded measurable causally convex M from Theorem G | The separate checked identity is available; #115 supplies the smooth 3D and unchanged 4D constructors, not a general-dimensional geometry class |
 | #80 | D(3,infinity), then E(3,infinity) | Assemble compatible complete signed short/long pieces, then transfer via #77 |
 
 In particular the source overlap is always the actual
@@ -624,13 +635,15 @@ individual sprinklings is included in this package.
   all four annular endpoints, disconnected and curved 3D integration, and the wrong Euclidean
   spacetime-area negative control. A finite regression range is not a
   universal geometry proof or an admissibility decision procedure.
-- **Lean:** no new Lean artifacts or formal proofs in this package. Existing
-  #88/#91 and 4D theorems remain checked at their original scope. A
-  dimension-indexed Lean region/atlas/area port, including the written 4D
-  equivalence, is outstanding; downstream code must not cite these written
-  contracts as compiled declarations. Any subsequent Lean changes require
-  the full integrated `formal/check.sh` source/transitive-axiom audit after
-  the last validation-affecting change, not only an incremental check.
+- **Lean:** the historical #92 package introduced no new Lean artifacts or
+  formal proofs. Existing #88/#91 and 4D theorems remain at their original scope.
+  The follow-on [#115 port](../formal/PILOT3_INTEGRATION.md) proves smooth 3D
+  region/atlas/area/integration geometry and explicit old-4D coordinate
+  compatibility. A general-dimensional geometry port remains outstanding;
+  downstream code must cite actual compiled declarations, not treat all the
+  written contracts here as Lean proofs. Subsequent Lean changes require the
+  full integrated `formal/check.sh` source/transitive-axiom audit after the
+  last validation-affecting change, not only an incremental check.
 - **Independent human mathematical review:** outstanding, separately from
   regression tests and the pre-existing formal verification.
 

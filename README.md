@@ -136,6 +136,16 @@ compatibility, finite target, Lorentz/dilation transport, exact 4D identificatio
 and a named smooth 3D pilot for the next analytic tasks. Its independent
 higher-dimensional deterministic/expected goals remain open. This is
 conventional geometry plus regressions, not a new Lean geometry theorem.
+The follow-on [smooth 3D formal geometry](formal/PILOT3_GEOMETRY.md)
+now proves that exact pilot's whole region/strata, intrinsic canonical joint
+area with Borel-overlap compatibility and finite-atlas gluing, signed collar
+coarea, right-sided density regularity and spatial divergence. It retains the
+actual signed causal overlap, compact perturbation tubes and existing Poisson
+specialization, and includes admissible disconnected/annular controls, regular
+2D endpoint counting, and exact compatibility for every original 4D C³ member.
+The [compiled integration interfaces](formal/PILOT3_INTEGRATION.md) do not
+supply the separate long/short analytic estimates or a new pilot action limit.
+
 The [3D direct-origin short package](notes/dimension-three-short.md) derives
 that same pilot's actual fixed-cutoff short limit conventionally, retaining
 the point cancellation, fractional radial responses, future Hessian and
