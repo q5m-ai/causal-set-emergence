@@ -53,6 +53,51 @@ async function checkRestored(page, previousScroll) {
   assert.equal(await page.evaluate(() => document.querySelector("main").inert), false);
   assert.ok(Math.abs(await page.evaluate(() => scrollY) - previousScroll) <= 2);
 }
+async function checkDeepZoom(page, context, config) {
+  // Observe the actual rendered camera without exposing a production debug API.
+  await page.evaluate(async () => {
+    const { Scene } = await import("three"), beforeRender = Scene.prototype.onBeforeRender;
+    Scene.prototype.onBeforeRender = function(renderer, scene, camera, ...rest) {
+      if (renderer.domElement.parentElement?.id === "spineStage") window.spineTestCamera = { distance: camera.position.length(), near: camera.near };
+      return beforeRender.call(this, renderer, scene, camera, ...rest);
+    };
+  });
+  const waitForDistance = distance => page.waitForFunction(expected => Math.abs(window.spineTestCamera.distance / expected - 1) < 1e-6, distance);
+  await page.locator("#orbit-view").click();
+  await page.waitForFunction(() => window.spineTestCamera);
+  const fitted = await page.evaluate(() => spineTestCamera.distance);
+  for (let i = 0; i < 16; i++) await activate(page, "#zoom-in", config.hasTouch);
+  await waitForDistance(fitted * 0.05); // Old 0.55 clamp stopped after three clicks.
+  assert.ok(await page.evaluate(() => spineTestCamera.distance > 2 * spineTestCamera.near));
+  await page.locator("#spineStage").screenshot({ path: path.join(out, `${config.name}-deep-zoom.png`) });
+  await activate(page, "#zoom-out", config.hasTouch);
+  await waitForDistance(fitted * 0.0625);
+  const stage = await page.locator("#spineStage").boundingBox(), x = stage.x + stage.width / 2, y = stage.y + stage.height / 2;
+  if (config.hasTouch) {
+    const session = await context.newCDPSession(page);
+    const touches = radius => [{ x: x - radius, y, id: 1 }, { x: x + radius, y, id: 2 }];
+    await session.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: touches(25) });
+    for (const radius of [35, 45, 55, 65]) await session.send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: touches(radius) });
+    await session.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+    await session.detach();
+  } else {
+    await page.mouse.move(x, y); await page.mouse.wheel(0, -300);
+  }
+  await page.waitForFunction(distance => spineTestCamera.distance < distance, fitted * 0.0625 - 1e-6);
+  // Reach the shared close limit again, then preserve it through every resize.
+  await activate(page, "#zoom-in", config.hasTouch);
+  await waitForDistance(fitted * 0.05);
+  await page.evaluate(() => scrollTo({ top: 0, behavior: "instant" }));
+  await activate(page, "#fullscreen-view", config.hasTouch);
+  await checkExpanded(page, await page.evaluate(() => document.fullscreenEnabled ? "native" : "window"));
+  await controls(page); await controls(page, false);
+  await activate(page, "#fullscreen-view", config.hasTouch);
+  await checkRestored(page, 0);
+  await waitForDistance(fitted * 0.05);
+  await page.locator("#orbit-view").click();
+  await waitForDistance(fitted);
+  return { minimumDistanceRatio: 0.05, gesture: config.hasTouch ? "emulated two-finger pinch" : "mouse wheel", resizeAndReset: true };
+}
 try {
   for (const config of [
     { name: "desktop", viewport: { width: 1440, height: 1000 } },
@@ -167,6 +212,7 @@ try {
     // Canvas pixels retain the stage's aspect ratio, including after fullscreen.
     const distortion = await page.locator("#spineStage canvas").evaluate(c => Math.abs(c.width / c.clientWidth - c.height / c.clientHeight));
     assert.ok(distortion < 0.01, `Canvas aspect distortion: ${distortion}`);
+    const deepZoom = await checkDeepZoom(page, context, config);
     if (config.reducedMotion) assert.equal(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior), "auto");
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
     assert.ok(overflow <= 1, `Page overflow: ${overflow}`);
@@ -178,7 +224,7 @@ try {
     await page.goto(new URL("index.html", base).href);
     await page.getByRole("link", { name: "Proof spine", exact: true }).click();
     assert.ok(page.url().endsWith("proof-spine.html"));
-    results.push({ name: config.name, hero, math, expanded: { mode, ...expanded }, distortion, overflow, interactionMs, splitInteractionMs, pageAccessibility, fullscreenAccessibility, errors, failed });
+    results.push({ name: config.name, hero, math, expanded: { mode, ...expanded }, deepZoom, distortion, overflow, interactionMs, splitInteractionMs, pageAccessibility, fullscreenAccessibility, errors, failed });
     await context.close();
   }
   for (const mode of ["fullscreen-unsupported", "fullscreen-denied", "webgl-failure", "context-loss", "cdn-failure", "no-js"]) {

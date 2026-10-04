@@ -101,6 +101,22 @@ is imported.
   zero moments and the asymptotic theorem are attributed to actual proof sources,
   never inferred from the plotted lobes.
 
+## Deeper zoom follow-up (2026-10-04)
+
+The closest camera distance is now **5%** of the fitted distance, formerly 55%:
+about **11 times closer** than the old limit. This describes camera distance,
+not uniform screen magnification in a perspective view. Default framing and the
+zoom-out limit are unchanged. Shared bounds apply to gestures, buttons, and
+resize, so opening the drawer or fullscreen does not undo a close-up.
+
+The browser harness observes the actual rendered camera and checks the close
+limit, zoom-out recovery, desktop wheel input, emulated two-finger pinch in all
+three mobile sizes, drawer/fullscreen round trips, and reset. The complete
+browser/fallback suite passes again, as do the six website tests (including the
+six pure-model tests), JavaScript syntax, Markdown checks, and diff checks.
+Receipts and close-up screenshots are in `/tmp/proof-spine-deep-zoom/`.
+Real-device pinch behavior remains unverified; the geometry/model is unchanged.
+
 ## Hero and fullscreen follow-up validation (2026-10-04)
 
 - Full repository Python suite: **241 tests passed**; symbolic checks passed.

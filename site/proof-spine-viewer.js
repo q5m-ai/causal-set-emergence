@@ -3,6 +3,9 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { faceHeight, markedPair, intervalPoint, precedes, sector } from "./proof-spine-model.js";
 
 const colors = { future: 0x56b4e9, past: 0x38c99a, joint: 0xffd37c, short: 0x56b4e9, long: 0xed8068, point: 0x93a4bf };
+// Allow close inspection down to 5% of the fitted camera distance. Share the
+// limits across gestures, buttons and resize so fullscreen cannot undo zoom.
+const MIN_DISTANCE_RATIO = 0.05, MAX_DISTANCE_RATIO = 2.6;
 const position = p => new THREE.Vector3(p.x, p.t, p.y);
 function clear(group) {
   for (const child of [...group.children]) {
@@ -48,8 +51,8 @@ export function createViewer(stage) {
   const initial = new THREE.Vector3(2.9, 1.95, 3.15); camera.position.copy(initial);
   const controls = new OrbitControls(camera, renderer.domElement);
   // On-demand rendering and no auto-motion, even before reduced-motion is set.
-  controls.enableDamping = false; controls.minDistance = 1.8; controls.maxDistance = 7;
-  controls.enablePan = false; controls.update();
+  controls.enableDamping = false;
+  controls.enablePan = false; controls.update(); // fitCamera sets the zoom limits.
   const groups = Object.fromEntries(["faces", "joint", "cones", "interval", "points", "relations", "marked"].map(id => [id, new THREE.Group()]));
   Object.values(groups).forEach(g => scene.add(g));
   const axes = new THREE.Group(); scene.add(axes);
@@ -101,8 +104,8 @@ export function createViewer(stage) {
   }
   function fitCamera(zoom = 1) {
     const distance = framingDistance();
-    controls.minDistance = distance * 0.55; controls.maxDistance = distance * 2.6;
-    camera.position.setLength(distance * Math.max(0.55, Math.min(2.6, zoom)));
+    controls.minDistance = distance * MIN_DISTANCE_RATIO; controls.maxDistance = distance * MAX_DISTANCE_RATIO;
+    camera.position.setLength(distance * Math.max(MIN_DISTANCE_RATIO, Math.min(MAX_DISTANCE_RATIO, zoom)));
     controls.update(); draw();
   }
   let sized = false;
