@@ -67,6 +67,8 @@ import BoundaryDraft.Pilot3Annulus
 import BoundaryDraft.Pilot3ShortLimit
 import BoundaryDraft.Pilot3Limit
 import BoundaryDraft.DimensionTwoEndpoints
+import BoundaryDraft.TwoDExamples
+import BoundaryDraft.TwoDOverlap
 import BoundaryDraft.DimensionFourGeometry
 import BoundaryDraft.NullTransverseCancellation
 import BoundaryDraft.KernelEstimates
