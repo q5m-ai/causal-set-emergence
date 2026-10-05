@@ -157,15 +157,20 @@ all-dimensional or class-E enlargement. Independent human review and the wider
 #81/#24 obligations remain open. No shrinking-cutoff uniformity, full-action
 rate or sample-wise limit is asserted.
 
-The [smooth flat 2D integration](TWO_D.md) freezes `SmoothTwoD` and checks
-whole-region closed interval containment, the existing interval/expectation
-specializations, actual future-normal angles, all-endpoint counting targets,
-complete causal time fibres and nonempty curved/critical examples. Its
-[conventional full signed proof](../notes/two-d-limit.md) derives the global
-deterministic limit before expectation transfer. The actual density/jet and
-signed logarithmic assembly ports remain #141/#142: neither 2D limit goal has
-a Lean proof term in this package. No counting identity or conditional bridge
-is presented as the global theorem.
+The [smooth flat 2D integration](TWO_D.md) preserves `SmoothTwoD` and now
+supplies both unconditional proof terms: `twoDDeterministicGoal` and
+`twoDExpectedGoal`. Actual all-partner translation/Fubini, genuine two-atom
+null coordinates, complete endpoint collars, derivative-controlled overlap
+and density jets, independent normal-to-coefficient identification, and signed
+logarithmic cancellation establish the deterministic limit first. Only then
+is the separately proved Poisson bridge applied. One fixed positive cutoff
+retains all contacts and allocates the point term once. Planar, curved, empty
+and disconnected four-endpoint regressions retain interior critical points;
+full action, discrete law and normal/Hausdorff target are expanded explicitly.
+The [conventional proof](../notes/two-d-limit.md) and linked acceptance ledger
+separate implementation, current integrated validation and independent human
+review. No counting identity, assumed jet or conditional equivalence replaces
+the global theorem; no full-action rate or sample-wise convergence is asserted.
 
 The [short-displacement proof note](../notes/curved-face-stability.md) is a
 **conventional analytic argument, not an end-to-end Lean theorem**.

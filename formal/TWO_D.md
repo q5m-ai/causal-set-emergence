@@ -1,29 +1,35 @@
-# Smooth flat 2D integration: exact checked boundary (#131)
+# Smooth flat 2D: unconditional deterministic and expected limits (#131)
 
-**Partial formal delivery, conventional global theorem.**
-[The proof note](../notes/two-d-limit.md) derives the full deterministic limit
-and only then transfers expectation. New Lean modules check finite geometry
-and finite-density inputs, **not** that global limit. Endpoint counting,
-`expectedAction_eq`, and `twoDExpectedGoal_iff` are not substitutes for the
-missing deterministic theorem. Independent human mathematical review remains
-outstanding.
+**Implementation complete; final integrated validation pending.** The unchanged
+`TwoDDeterministicGoal` and `TwoDExpectedGoal` now have compiled proof terms in
+[`TwoDLimit.lean`](BoundaryDraft/TwoDLimit.lean). The deterministic theorem is
+proved first from actual short and long producers; only afterward is the
+separately proved Poisson-expectation bridge used. Counting, finite-density
+expectation, and `twoDExpectedGoal_iff` are not substituted for either limit.
+The [conventional proof](../notes/two-d-limit.md) and the Lean implementation
+are distinct evidence. Independent human mathematical review remains outstanding.
 
-## Integration and ownership
+## Integration and unchanged contracts
 
-- PR base: `issue-81-general-coverage`, deliberately not main.
-- Pinned starting SHA: `d41a062aba04552f1db42e9f3d59cb242ec6ed09`.
-  The remote integration branch existed when rechecked and was preserved.
-- Task branch: `issue-131-smooth-flat-2d`.
-- Early [ownership/API announcement](https://github.com/q5m-ai/causal-set-emergence/issues/131#issuecomment-5995122426).
-  This task owns new `TwoD*` production definitions. No shared definition or
-  old theorem contract was changed; the library root has two additive imports.
-- References only: #131. No merge, deployment, agent launch or issue closure;
-  in particular #81/#24 remain open.
+- PR [#145](https://github.com/q5m-ai/causal-set-emergence/pull/145) targets
+  `issue-81-general-coverage`, deliberately not main.
+- Original pinned ancestor: `d41a062aba04552f1db42e9f3d59cb242ec6ed09`.
+  Integrated general-coverage ancestor: `df7ef277ae8dc695396e359780ffd7be65b43e9a`,
+  merged at `a70a131` with its sibling dimension-five/six, metric-atlas and
+  two-tip-null work preserved.
+- Task branch: `issue-131-smooth-flat-2d`. The
+  [early ownership/API announcement](https://github.com/q5m-ai/causal-set-emergence/issues/131#issuecomment-5995122426)
+  remains applicable: new 2D production names are task-owned; shared 3D/4D
+  definitions and contracts are unchanged. Root imports are additive.
+- `SmoothTwoD`, `twoDRegion`, `twoDAction`, `twoDOverlap` and
+  `twoDBoundaryIntegral` are unchanged. Roots, integrability, density jets,
+  coefficients and remainders are conclusions, not new admissibility fields.
+- References only: #131, with producer work for #141/#142 included in this PR.
+  No merge, deployment, agent launch or issue closure is authorized or performed.
 
-## Consumer signatures and what is actually proved
-
-All declarations are in namespace `BoundaryDraft`. Physical dimension two
-means `DimensionSpacetime 1`; it is not `DimensionSpacetime 2`.
+All declarations below are in namespace `BoundaryDraft`. Physical dimension
+**two** means `DimensionSpacetime 1`, with a genuinely one-dimensional spatial
+measure and exactly two angular atoms of unit mass.
 
 ```lean
 SmoothTwoD (h f : DimensionSpatial 1 → ℝ) : Prop
@@ -34,119 +40,124 @@ twoDOverlap (h f : DimensionSpatial 1 → ℝ) (t : ℝ)
   (r : DimensionSpatial 1) : ℝ
 TwoDDeterministicGoal : Prop
 TwoDExpectedGoal : Prop
+twoDDeterministicGoal : TwoDDeterministicGoal
+twoDExpectedGoal : TwoDExpectedGoal
 ```
 
-The last two are **open propositions**, not theorems. The exact geometry is
-#92's smooth combined-budget candidate, including empty and nonempty members;
-it neither restricts to one connected component nor excludes interior critical
-points. The action is the existing unsmeared dimension-indexed action. Normals
-are actual Riesz gradients with future unit normalization. The target uses
-`dimensionTwoJointMeasure`, defined before any asymptotic coefficient.
+The class is exactly #92's smooth combined-budget candidate, including empty
+members, disconnected positive regions and positive-height critical points.
+The unsmeared action retains every causal partner. The target was independently
+defined from actual future unit normals and `dimensionTwoJointMeasure`, not
+from the asymptotic coefficient subsequently identified with it.
 
-| Module | Checked result | Explicitly not supplied |
-| --- | --- | --- |
-| `TwoDContract.lean` | Independent geometric contract, whole region, normal/angle, unit-counting target, actual action, separate open goals | An asymptotic premise or a proof of either goal |
-| `TwoDGeometry.lean` | Open bounded measurable region; closed ambient interval containment; actual #91 interval rate; all-endpoint finiteness, counting normalization and integral; signed pair integrability; #77 finite-density expectation; conditional transfer | Full face/frontier decomposition, global density transport, an action limit |
-| `TwoDMetric.lean` | Strict face slopes from the combined budget; actual future unit normals and tangent orthogonality; positive angle; target equals the all-endpoint coth sum | Identification with a short-action coefficient |
-| `TwoDExamples.lean` | Nonempty sine-future and planar interval members, curvature, retained positive-height critical point, empty member | Formal disconnected examples or any example action limit |
-| `TwoDOverlap.lean` | Actual whole-region overlap definition, complete causal time-fibre identity and exact dimension-two kernel polynomial | Integrated null-coordinate transport, a supplied jet, or a short/long limit |
-| `TwoDRegression.lean` | Expanded closed interval, counting, law/action normalization and target contracts; planar/curved/empty/critical controls and diagonal fibre | An unconditional deterministic/expected proof term |
+## Actual-density producer map (#141)
 
-Key theorem consumers are:
-
-```lean
-SmoothTwoD.boundedCausalRegion
-SmoothTwoD.restricted_interval
-SmoothTwoD.jointMeasure_eq_count
-SmoothTwoD.boundaryIntegral_eq_coth_sum
-SmoothTwoD.causal_time_fibre
-SmoothTwoD.expectedAction_eq
-twoDExpectedGoal_iff
-```
-
-No original 3D/4D source or hypothesis is changed. Reuse of `JointMetric` is
-only its scalar positive-rapidity algebra; no 4D moment or surface area is
-extrapolated to 2D. `DimensionTwoEndpoints` is reused unchanged.
-
-## Acceptance map and bounded remaining work
-
-| #131 acceptance item | Delivery and remaining condition |
+| Obligation | Produced declarations and source |
 | --- | --- |
-| Freeze nonempty smooth bounded regular class, independent region/action/normal target, closed intervals and canonical counting | Checked new modules above; complete frontier/face description is conventional via #92, not newly checked here |
-| Derive actual 2D short responses and long signed disintegration/cancellation, including constant/log sectors | Conventional proof §§2–5, exact symbolic and actual-overlap diagnostics; the full Lean producers remain #141/#142 |
-| Global deterministic limit before expectation transfer, compatible cutoffs/point allocation | Conventional theorem §§3–6; only finite-density equality and conditional transfer are checked in this PR. Both Lean goals stay open |
-| Nonplanar, planar, disconnected/all endpoints, critical points, unchanged baselines | Curved, planar, empty and retained-critical controls checked as above; all four disconnected endpoints, density jets, signed action and refinement in Python. Formal disconnected/global limit regressions remain prerequisites; old 3D/4D regressions stay in the full source audit |
-| Conventional proof and explicit checked boundary; bounded missing producers; residual coverage | Proof note, this ledger, native children #141/#142; no general atlas/metric/null claims or independent human-review claim |
+| Whole region, all strata and actual interval law | `SmoothTwoD.boundedCausalRegion`, `.restricted_interval` (`TwoDGeometry`); `.frontier_region`, `.past_inter_future` (`TwoDClosure`) |
+| Canonical actual overlap and signed translation/Fubini | `.displacementOverlap_eq_actual` at every displacement; `.overlap_eq_gap` on the entire causal cone (`TwoDCausalOverlap`); `.integral_causalPair_eq_overlap` (`TwoDDisplacement`) |
+| Genuine 2D measure and exact point-once split | `twoDLine`, `twoDDirectionMeasure_eq_dirac`, `twoDNullJacobian`; `.action_eq_short_add_long`, `integral_twoDShortOverlap`, `.integral_longOverlap` (`TwoDLine`, `TwoDCoordinates`, `TwoDShortDensity`, `TwoDLongFibre`) |
+| Complete finite interval and endpoint geometry | `.exists_intervalFamily`, `TwoDIntervalFamily` (`TwoDComponents`); no bilocal additivity follows or is assumed |
+| Actual moving roots and physical endpoint corrections | `.exists_movingEndpoint_twoJet` (`TwoDMovingEndpoint`); `.exists_endpointCollar` (`TwoDEndpointCollar`); `.integral_positiveCollar` for arbitrary observables with unit Jacobian (`TwoDCollarMeasure`) |
+| All collars, bulk and absolute overlap two-jet | `.exists_shortCollar_twoJet`, `.shortBulk_twoJet`, `.exists_absoluteOverlap_twoJet` (`TwoDShortCollar`, `TwoDShortBulk`, `TwoDShortJet`); a compact-complement positive-height margin retains every interior critical point |
+| Uniform derivative-controlled remainder | `.exists_absoluteOverlap_remainder` and `TwoDShortRemainder.CubicBounds` (`TwoDShortExpansion`, `TwoDCubicBounds`): one measurable remainder, one fixed positive radius, cubic value / quadratic first-derivative / linear second-derivative bounds |
+| Independent normal target equals the coefficient | `.weight_eq_scalar`, `.boundaryIntegral_eq_scalar_sum` (`TwoDEndpointCoefficient`); `.integral_futureHessian_eq_endpoints` on all positive intervals (`TwoDDivergence`); `.short_coefficients_eq_boundaryIntegral` (`TwoDDivergence`) and `.integral_directions_absoluteShortPolynomial` (`TwoDShortAngular`) |
+| Contact-uniform fixed-cutoff long jet | `.longDensity_right_quadratic_jet`, `.longDensity_linear_quadratic_bound`, `.longDensity_right_linear_jet` (`TwoDLongJet`), from the actual complete fibres, compact positive endpoint tubes and dominated averaging |
+| Actual positive-sigma fibres and logarithmic short jet | `.shortDensity_eq_interval` (`TwoDShortFibre`); `.shortPolynomialDensity_eq` (`TwoDShortBasis`); `.shortDensity_eq_polynomial_add_remainder`, `.shortDensity_logarithmic_jet` (`TwoDShortDensityJet`) |
+| Closing-fibre remainder density | `TruncatedLinearJet`; `TwoDShortRemainder.CubicBounds.density_right_affine_jet` (`TwoDRemainderDensity`), using the compensated second-derivative domination, not an integrable inverse-square bound by itself |
 
-The native prerequisites are:
+The auxiliary displacement notation is explicitly linked to the canonical
+`twoDOverlap`. Complete causal-ball overlap equalities include null displacements
+and the vertex. Null sets are removed only for integral transport. The original
+short density is initially finite **almost everywhere**, and its fibres are
+then proved absolutely integrable at **every positive** proper-time square.
+There is no claim that the original zero-proper-time fibre is finite. The
+remainder density has its own genuinely finite zero fibre.
 
-1. [#141: actual smooth 2D overlap and fixed-cutoff density expansions](https://github.com/q5m-ai/causal-set-emergence/issues/141).
-   Owns integrated all-partner transport, finite moving endpoints, actual short
-   two-jet/derivative remainder, normal-to-coefficient identity and contact-uniform
-   long first-order regularity. Proposed modules: `TwoDCoordinates.lean`,
-   `TwoDShortJet.lean`, `TwoDDensity.lean`.
-2. [#142: signed logarithmic responses and global assembly](https://github.com/q5m-ai/causal-set-emergence/issues/142),
-   blocked by #141. Owns the actual 2D log moments, fixed-cutoff remainder
-   transfers, unconditional deterministic theorem and subsequent #77 expectation
-   corollary. Proposed modules: `TwoDResponses.lean`, `TwoDLimit.lean`,
-   `TwoDLimitRegression.lean`.
+The exact short primitive retains both logarithmic sectors: volume times
+`-(1 / 2) * log σ`, and the independent endpoint integral times
+`-(1 / 8) * σ * log σ`. Constant, linear and quadratic terms are retained too;
+the apparent square-root sectors cancel in the exact primitive. The actual
+remainder has a derived affine right jet with error `o(σ)`. Both directions,
+all endpoint terms and all cutoff contacts are included.
 
-Both are native children/blockers of #131, not closure claims. #81/#24 still
-own non-global-graph/atlas, general-metric, wider null/mixed and unsupported
-dimension coverage. No rate, shrinking-cutoff uniformity or sample-wise
-convergence is required or inferred.
+## Signed responses and unconditional assembly (#142)
 
-## Validation receipt
+| Obligation | Checked implementation |
+| --- | --- |
+| Ordinary signed cancellation in physical dimension two | `twoD_affine_cancellation`; `TwoDLogMoments.scaled_power_zero` for powers zero and one |
+| Absolute integrability before signed logarithmic integration | `TwoDLogMoments.integrable_log`, `.integral_log_zero`, `.integral_log_one` (`TwoDLogMoments`), with explicit vanishing integration-by-parts endpoint products |
+| Positive scaling of both logarithmic sectors | `.scaled_log_zero = -1 / (2 * k)` and `.scaled_log_one = 1 / (2 * k^2)` (`TwoDLogScaling`); zero ordinary moments remove the logarithm of the scale |
+| Fixed-threshold exponential tails | `TwoDExponentialTail.moment_tail`, `.logarithmic_tail` and their scaled forms, for the original kernel; absolute values bound only the tail, never replace the complete signed response |
+| Short remainder and complete long response vanish | `TwoDShortRemainder.CubicBounds.normalized_density_limit`; `SmoothTwoD.tendsto_longDensity`, `.tendsto_longAction` (`TwoDCancellation`), the latter at every fixed positive cutoff |
+| Sharp model with the unchanged point/pair/interval constants | `TwoDShortResponse.low_action_eq`, `.model_error_bound`, `.tendsto_modelAction`; `TwoDQuadraticResponse.limit_of_bound` controls the fixed-cutoff quadratic error |
+| Model is the original short action, not an assumed density | `SmoothTwoD.exists_shortDensity_model`, `.exists_shortAction_limit` (`TwoDShortAssembly`) |
+| Unconditional deterministic limit | `SmoothTwoD.tendsto_action` and `twoDDeterministicGoal` (`TwoDLimit`) |
+| Subsequent independent expectation transfer | `SmoothTwoD.tendsto_expectedAction` and `twoDExpectedGoal`, through `.expectedAction_eq` and eventual positive density (`TwoDLimit`) |
 
-**Audited Lean-input commit:** `508a48acacb3d5d69af2182e78d1ff45f00d840d`.
-The required **full local audit passed**, from 2026-10-05 13:41:25Z to
-16:18:09Z: all 286 per-source checks plus the aggregate audit of 2,987 public
-theorems and all public definitions. Warnings were errors; only `propext`,
-`Classical.choice` and `Quot.sound` were allowed transitively.
+The final action proof uses one produced fixed positive cutoff for both sides
+of the exact split. The short logarithmic volume response cancels the point
+term exactly; the endpoint response has unit physical normalization. Cutoff
+equality belongs to long. The sharp-model tail can be controlled by a global
+quadratic comparison, so the assembly does not need to assert a full-action
+exponential estimate or a second cutoff limit. The separate exponential-tail
+lemmas concern kernel moments only.
 
-It started at the commit above and finished at documentation/Python head
-`e130c385606c6ef96e60693b94c22ec962019298`. A complete post-audit manifest
-regeneration was **byte-identical** to the pre-audit inventory. No Lean,
-checker, dependency or build input changed, so later receipt/documentation
-commits do not require a duplicate audit. See the [machine-readable receipt](receipts/issue-131-validation.json)
-and [complete compressed audit log](receipts/issue-131-full-audit.log.gz).
+## #131 acceptance and regressions
 
-- Module builds of all new production modules and warnings-as-errors check
-  of `TwoDRegression.lean`: passed.
-- `formal/check.sh --incremental --base d41a062aba04552f1db42e9f3d59cb242ec6ed09`:
-  passed; the pinned base is an ancestor. This changed-source developer check,
-  including the initial local library build, took 14:22.79; it is **not** the
-  full source/aggregate audit.
-- Full gate: `cd formal && LEAN_NUM_THREADS=2 ./check.sh`, default two source
-  workers, exit 0 in **2:36:43**. Peak single-process RSS was 2,976,860 KiB
-  (not total concurrent RSS). Before starting, available memory was 7.4 GiB
-  and unused swap approximately 3.3 GiB. Worker count was not increased.
-  Uncompressed audit-log SHA-256:
-  `79ae1d143171e18d1eb7e5dfd55c357de47b849b19581c9c578479750df94376`.
-- Lean 4.19.0 (`6caaee842e94`), pinned mathlib
-  `c44e0c8ee63ca166450922a373c7409c5d26b00b`; dependency sources are clean.
-- [Complete SHA-256 input inventory](receipts/issue-131-inputs.json.gz):
-  32,449 files, including all 287 local Lean sources, the checker, Lake config,
-  manifest/toolchain selector, every tracked dependency source, consumed
-  dependency/local build products and the entire selected toolchain. This is
-  a conservative superset of consumed inputs. Paths are checkout-relative;
-  each dependency's exact Git revision is also recorded. Compressed SHA-256:
-  `d7b89a20d0d500baac89424583936b753fbc949e945ebff7d747367e6e42afa5`.
-  Uncompressed JSON SHA-256:
-  `4bb93451a9b4573d4d8f60e9357edfc1708c99d4bec8958e1e3c4fa29cba5a82`.
-- Final full Python suite: **289 tests passed**, 580.648 s; all 13 new 2D
-  tests included. Existing symbolic checks passed. Markdown lint: 59 documents,
-  no problems; 20 Markdown tests passed.
-- Live GitHub math preview at `e130c385606c6ef96e60693b94c22ec962019298`:
-  all **19** proof-note equations produced MathML, no rendering errors, no
-  overflow, with visual checks of complete expressions and layout. The local
-  browser needed its missing math fonts supplied through scoped Fontconfig;
-  successful MathML alone was not treated as a successful visual preview.
-- All three applicable CI checks passed at that implementation head;
-  production-only jobs skipped as configured. The final PR body records the
-  subsequent receipt-only head's observed checks and bounded feedback snapshot.
+| #131 acceptance | Evidence |
+| --- | --- |
+| Nonempty smooth bounded class; independent region/action/normal target; complete closed intervals and counting | Unchanged contract, `TwoDGeometry`, `TwoDMetric`, complete frontier/face geometry and `DimensionTwoEndpoints` normalization |
+| Actual 2D short/long analysis, including constant/log sectors | Full producer and signed-response maps above; no higher-dimensional angular or kernel normalization is relabelled |
+| Deterministic theorem before expectation; common cutoff and point allocation | Both unconditional terms in `TwoDLimit`; `TwoDLimitRegression` expands the full causal-pair action, physical discrete layers, independent Poisson law and normal/Hausdorff target |
+| Curved, planar, disconnected/all endpoints, interior critical points and old baselines | `TwoDExamples`, `TwoDDisconnected`, all three standalone 2D regressions; existing 3D/4D source regressions remain in the integrated audit |
+| Conventional proof and exact verification boundary; bounded producer ownership | Proof note and this ledger; #141/#142 implementations included, historical validation kept distinct, independent human review not claimed |
 
-The manifest records content hashes, not timestamps or a claim of human
-mathematical review. Its generated artifacts are diagnostic receipts, not
-new build inputs. GitHub CI does not run or replace the required local Lean
-audit. The final PR receipt must record its exact observed head/check state.
+`TwoDDisconnected.lean` proves admissibility for two separated shifted interval
+heights with the same genuinely curved sine future. Its complete joint is at
+line coordinates **minus one, one, three, five**. The arbitrary-observable
+endpoint integral sums all four points with unit mass; both positive-height
+critical points, at zero and four, remain present. These are actual full-action
+and subsequent expected-action examples, not componentwise sums of actions.
+The Python disconnected quartic fixture is a separate diagnostic example.
+
+`TwoDLimitRegression.lean` also checks planar, curved and empty full limits,
+the supplied density jet, both signed logarithmic moments, fixed-cutoff long
+cancellation, exact compatible action splitting and cutoff equality, null
+partners, probability/integrability and the expanded physical law/target.
+`TwoDRegression.lean` and `TwoDTransportRegression.lean` preserve the finite
+geometry, normalization, transport, jet and coefficient consumers.
+
+## Validation boundary and receipts
+
+**Frozen Lean-input commit:** `8d2fe21b846d01673f2edd0f0c1cff7b62edc226`.
+All new production modules and the library root build; all three 2D standalone
+regressions have passed warnings-as-errors module checks. A fresh ancestor-pinned
+incremental check and the one final integrated `formal/check.sh` are pending.
+The PR stays draft until the final local gate and current-head CI succeed.
+
+The older [foundation receipt](receipts/issue-131-validation.json),
+[input inventory](receipts/issue-131-inputs.json.gz) and
+[audit log](receipts/issue-131-full-audit.log.gz) are retained as **historical**
+evidence only. That audit checked input commit `508a48acacb3d5d69af2182e78d1ff45f00d840d`,
+286 per-source checks and 2,987 public theorems plus all public definitions.
+It did **not** cover the density/response/limit continuation or the subsequently
+integrated sibling work. Its 32,449-file inventory and earlier green CI are
+not current-head completion evidence.
+
+The final receipt must record the exact integrated input commit, all input
+hashes, complete audit log, exit status, current Python/symbolic/Markdown
+checks and current-head CI. Documentation-only follow-ups do not require a
+repeat Lean audit if the validation-input inventory remains byte-identical.
+CI does not replace the local source and transitive-axiom audit.
+
+## Remaining scope
+
+This is a fixed-geometry, smooth combined-budget **flat global-graph 2D**
+theorem. It does not prove a rate for the complete action, shrinking-cutoff
+uniformity, finite-regularity relaxation, degenerating-angle control, variance,
+concentration or convergence of an individual sprinkling. General atlas,
+non-global-graph, metric and wider null/mixed coverage remain under #81/#24;
+neither tracker is closed by this bounded result. Compiler checking, symbolic
+or numerical diagnostics and independent human mathematical review remain
+separate claims.

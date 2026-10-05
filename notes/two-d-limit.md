@@ -1,15 +1,13 @@
 # Smooth flat 2D: full signed deterministic limit, then expectation (#131)
 
-**Status:** conventional proof for exactly `SmoothTwoD` below; not an
-end-to-end Lean limit theorem and not independently human-reviewed.
-The new [checked interface](../formal/TWO_D.md) proves the region/interval,
-normal-angle/counting, complete time-fibre and finite-density expectation
-inputs. The density transport, moving-endpoint jet, signed logarithmic
-asymptotics and unconditional limit assembly below still require Lean
-producers. Neither `TwoDDeterministicGoal` nor `TwoDExpectedGoal` has a
-proof term in this delivery. Bounded prerequisite ownership is recorded in
-that interface. This distinction is part of acceptance, not a missing premise
-inserted into admissibility.
+**Status:** conventional proof for exactly the unchanged `SmoothTwoD` below;
+the corresponding unconditional deterministic and expected Lean proof terms
+are now supplied in `TwoDLimit.lean`. The [acceptance ledger](../formal/TWO_D.md)
+maps the actual transport, moving-endpoint jets, signed responses and assembly,
+and distinguishes module checks from the final integrated audit. No analytic
+producer is inserted into geometric admissibility. Conventional proof, Lean
+verification and independent human mathematical review are separate claims;
+independent human review remains outstanding.
 
 ## 1. Frozen geometry and independent target
 
@@ -46,7 +44,9 @@ decrease to zero. Thus the **whole closed ambient interval** lies in M,
 including null and coincident endpoints. This is checked by
 `SmoothTwoD.causallyConvex_region`. The boundary consists of the two compact
 face graphs over K, meeting exactly over S, by the closure-of-fibres argument
-in #92 Theorem G. No lateral wall or extra exterior zero sheet is included.
+in #92 Theorem G, now also checked in `SmoothTwoD.frontier_region` and
+`SmoothTwoD.past_inter_future`. No lateral wall or extra exterior zero sheet
+is included.
 The whole-region geometry is used below; no bilocal-action additivity is assumed.
 
 The inverse function theorem makes every zero in S isolated; compactness
@@ -84,8 +84,9 @@ give the independent evaluation
 ```
 
 The normal/positive-angle interpretation and all-endpoint coth sum are checked
-in `TwoDMetric.lean`. The last scalar evaluation is proved here and tested
-symbolically; it is not claimed as a new compiled coefficient theorem.
+in `TwoDMetric.lean`. The scalar evaluation is checked in
+`SmoothTwoD.weight_eq_scalar` and `boundaryIntegral_eq_scalar_sum` in
+`TwoDEndpointCoefficient.lean`, independently of the later asymptotic analysis.
 
 ## 2. Actual action and full causal overlap
 
@@ -123,7 +124,9 @@ V(t,r)&=\int_{\mathbb R}[H(x)+f(x+r)-f(x)-t]_+\,dx\\
 ```
 
 The **complete time-fibre identity** is checked in
-`SmoothTwoD.causal_time_fibre`; its volume/Fubini use here is conventional.
+`SmoothTwoD.causal_time_fibre`; `displacementOverlap_eq_actual`,
+`overlap_eq_gap` and `integral_causalPair_eq_overlap` now check its
+volume/Fubini use with the original `twoDOverlap` and whole-region action.
 When the bracket is positive, both source x and partner x+r belong to the
 original positive region. In fact, with g denoting the bracket before clipping,
 
@@ -207,7 +210,10 @@ D_{\mathrm{long}}(\sigma)=b_0+b_1\sigma+o(\sigma).
 This does not postulate a jet in the geometric contract or require
 transversality in x. Arbitrary tangencies in x and interior critical heights
 are harmless to this v argument. The density is bounded, measurable and
-compactly supported. The constant and linear moments in §5 imply
+compactly supported. `TwoDLongJet.lean` derives a stronger uniform quadratic
+closing-fibre bound, averages it with domination, and supplies this actual
+right linear jet without deleting cutoff contacts. The constant and linear
+moments in §5 imply
 
 ```math
 -4\rho^2\int_0^\infty K_2(\rho\sigma/2)
@@ -246,6 +252,9 @@ The derivative bound comes from the smooth extension's vanishing two-jet,
 not from differentiating a value-only big-O estimate. Finite endpoint sums
 and bounded derivatives on one compact parameter neighborhood give uniform C.
 Take delta small enough that the complete short v region lies there.
+`exists_absoluteOverlap_twoJet` and `exists_absoluteOverlap_remainder` check
+this construction on the entire causal ball, including null displacements
+and the vertex. The Lean remainder also has a linear second-derivative bound.
 
 Odd powers of r cancel only after summing both actual spatial directions.
 Writing the even quadratic part as A times t-squared plus B2 times r-squared,
@@ -265,7 +274,9 @@ The third line is the ordinary fundamental theorem of calculus on **all**
 positive intervals: h' is positive at a left endpoint and negative at a right
 endpoint. No exterior or artificial boundary term is discarded. This identifies
 a coefficient with the previously defined normal/counting target; it does
-not define the target by that coefficient.
+not define the target by that coefficient. The complete interval decomposition,
+oriented FTC and target identification are checked in `TwoDComponents.lean`,
+`TwoDDivergence.lean` and `TwoDShortAngular.lean`.
 
 Direct integration of the constant, linear and quadratic modes, including
 the moving lower endpoint v=sqrt(sigma), gives
@@ -306,7 +317,12 @@ D_{\mathrm{short}}(\sigma)&=
 
 This is sufficient even at nearly null displacements. A value-only cubic
 estimate, without the derivative control just used, would not justify the
-right derivative or its cancellation.
+right derivative or its cancellation. `TruncatedLinearJet.lean` and
+`TwoDRemainderDensity.lean` check the closing-fibre argument using compensated
+derivative domination; `shortDensity_logarithmic_jet` supplies the displayed
+expansion for the actual short density. Its original positive-sigma fibres
+are proved absolutely integrable separately. No finite original fibre at
+sigma zero is asserted.
 
 ## 5. Full signed cancellation and deterministic theorem
 
@@ -327,8 +343,10 @@ z-to-the-n times log(z), using n-factorial and n-factorial times
 (H-n minus Euler's constant), for n from zero through three. The Euler
 constants cancel. Absolute integrability of z times the absolute kernel,
 including the logarithms at zero, justifies the substitutions and the
-remainder estimates. `test_two_d.py` independently checks these exact moments;
-these logarithmic integral statements are not yet new Lean theorems.
+remainder estimates. `test_two_d.py` independently checks these exact moments.
+`TwoDLogMoments.lean` now proves absolute logarithmic integrability and both
+signed logarithmic values by integration by parts with vanishing endpoint
+products. `TwoDLogScaling.lean` proves their exact positive-density scaling.
 
 Put lambda=rho/2. With the coefficients in §4, the two nonzero signed sectors
 are exactly
@@ -353,13 +371,20 @@ most epsilon times sigma below a fixed threshold. Rescaling bounds its
 normalized contribution by a fixed multiple of epsilon times the integral of
 z times absolute K2. The part above the threshold is exponentially small.
 This proves the needed little-o transfer; no positivity of K2 is assumed.
+`TwoDExponentialTail.lean` checks polynomial and logarithmic fixed-threshold
+kernel tails. The Lean sharp-model assembly can use the simpler global
+quadratic comparison in `TwoDQuadraticResponse.lean` instead; the produced
+remainder and long affine jets feed `TwoDCancellation.lean`. Neither route
+estimates the full signed action by its absolute kernel.
 
 The first displayed sector cancels **exactly the once-allocated point term**
 in the limit calculation. The second gives the target with its full physical
 normalization. The constant and linear sectors vanish by their signed moments.
 At the same fixed cutoff the long term from §3 vanishes. Consequently:
 
-**Conventional deterministic theorem.** For every fixed `SmoothTwoD h f`,
+**Conventional deterministic theorem**, also formalized as
+`SmoothTwoD.tendsto_action` and `twoDDeterministicGoal`.
+For every fixed `SmoothTwoD h f`,
 
 ```math
 \lim_{\rho\to\infty}\mathcal A_\rho(M(h,f))=\mathcal J(h,f).
@@ -376,10 +401,12 @@ actual restricted-interval volume on every causal pair. Its finite Poisson
 law and discrete action are independent definitions. For every positive rho,
 `SmoothTwoD.expectedAction_eq` proves the exact equality of that expectation
 with `twoDAction`. Positivity is eventual along density tending to infinity.
-The deterministic theorem therefore yields the **conventional expected-action
-corollary** with the same target. It supplies no variance, concentration,
-rate, or convergence of an individual sprinkling. The checked equivalence
-`twoDExpectedGoal_iff` alone proves neither limit.
+The deterministic theorem therefore yields the **expected-action corollary**
+with the same target. `SmoothTwoD.tendsto_expectedAction` and
+`twoDExpectedGoal` check this subsequent transfer in `TwoDLimit.lean`.
+It supplies no variance, concentration, full-action rate, or convergence of an
+individual sprinkling. The equivalence `twoDExpectedGoal_iff` alone would
+prove neither limit.
 
 ## 7. Regressions and boundaries
 
@@ -391,12 +418,20 @@ rate, or convergence of an individual sprinkling. The checked equivalence
   at x=1/2. The endpoint target is 4*(1-cos(1)-squared/64). Nonemptiness,
   smooth admissibility, curvature and critical point are checked in
   `TwoDExamples.lean`; coefficient evaluation and action diagnostics are separate.
-- **Disconnected:** #92's clipped exterior quartic
+- **Disconnected Python fixture:** #92's clipped exterior quartic
   h=(x-squared-1/4)*(1-x-squared)/8 inside absolute x below two, zero outside.
   The full positive set consists of (-1,-1/2) and (1/2,1); all **four**
   endpoints are included. Both critical points at signed sqrt(5/8) are retained.
   The planar target is 32, not the value obtained by choosing only the outer
   endpoints. A small sine future gives a nonplanar disconnected control.
+- **Disconnected Lean fixture:** `TwoDDisconnected.lean` uses two separated
+  shifted interval heights with the same curved sine future. Its complete
+  joint lies at minus one, one, three and five, with unit mass at every point.
+  Both positive-height critical points, at zero and four, remain present.
+  `TwoDLimitRegression.lean` instantiates the full deterministic and subsequent
+  expected limit for this actual admissible member, without action additivity.
+  It also expands the original action, discrete layers, independent Poisson
+  law and normal/Hausdorff target, and checks planar, curved and empty limits.
 - `two_d.py` evaluates the original intersection of both time fibres, actual
   overlap, both null directions, the fixed short/long density split and the
   full signed action. Its numerical action uses only a volume-log subtraction,
@@ -408,7 +443,7 @@ rate, or convergence of an individual sprinkling. The checked equivalence
 
 Reproduce the diagnostics with `.venv/bin/python -m unittest -v test_two_d`.
 See [the exact acceptance and validation ledger](../formal/TWO_D.md) for the
-checked declarations, missing bounded Lean producers and validation receipts.
+producer/response declarations, unconditional contracts and validation receipts.
 No unrestricted atlas/global-region, general-metric, null/mixed-boundary,
 finite-regularity relaxation, degenerating-angle or other-dimensional theorem
 is established; those obligations remain under #81/#24. Human mathematical
