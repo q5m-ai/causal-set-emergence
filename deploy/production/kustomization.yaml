@@ -5,7 +5,7 @@ resources:
 images:
 - name: ghcr.io/q5m-ai/causal-set-emergence
   newName: ghcr.io/q5m-ai/causal-set-emergence
-  digest: sha256:9daa8186b6fca9f8c237282e94e95686845709399f955ce1e2edbd50baeca740
+  digest: sha256:4b69565c21c9d32ddd2b91894240d61b0da3c8f06f8c1114369f823508983579
 patches:
 - target:
     group: apps
@@ -16,4 +16,4 @@ patches:
     - op: add
       path: /spec/template/metadata/annotations
       value:
-        q5m.ai/release: cfe211ecbe107b68505f4e945ab8453f5da546a5
+        q5m.ai/release: d41a062aba04552f1db42e9f3d59cb242ec6ed09
