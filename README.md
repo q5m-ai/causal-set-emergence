@@ -488,6 +488,13 @@ independent human review. The coverage comparison leaves #81/#24/#86 open for
 general metrics, dimensions and strata; no rate, shrinking-cutoff uniformity
 or individual-sprinkling convergence is implied.
 
+The [#133 general-metric/atlas feasibility gate](notes/general-metric-atlas-gate.md)
+compares that completed pilot with explicit nonpolynomial, compact-quotient and
+non-conformally-flat focusing tests. It supplies written bounded interfaces,
+a thin flat-torus slab calculation and a precise focusing-route obstruction,
+with separate regressions and follow-up contracts. It supplies **no new Lean
+verification or general-metric/atlas coverage theorem**; #81/#24 remain open.
+
 ## Program 2 — dynamics and automaton-like growth
 
 The exploratory question is whether causal-set dynamics can be represented as

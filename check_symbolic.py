@@ -14,6 +14,7 @@ from curved_interior_short import check_interior_short_identities
 from curved_boundary_collar import check_boundary_collar_identities
 from curved_joint_corner import check_joint_corner_identities
 from curved_assembly import check_curved_assembly_identities
+from general_metric_gate import check_general_metric_identities
 
 
 def main():
@@ -130,6 +131,7 @@ def main():
     check_boundary_collar_identities()
     check_joint_corner_identities()
     check_curved_assembly_identities()
+    check_general_metric_identities()
     print("All symbolic checks passed.")
 
 
