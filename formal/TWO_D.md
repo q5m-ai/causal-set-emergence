@@ -99,10 +99,17 @@ convergence is required or inferred.
 ## Validation receipt
 
 **Audited Lean-input commit:** `508a48acacb3d5d69af2182e78d1ff45f00d840d`.
-Later documentation/Python/receipt-only commits do not modify those proof
-inputs. The required full local audit has been started at that commit; **its
-result is pending**, and no incremental result below is presented as a full
-audit. This section will be updated with the observed outcome before handoff.
+The required **full local audit passed**, from 2026-10-05 13:41:25Z to
+16:18:09Z: all 286 per-source checks plus the aggregate audit of 2,987 public
+theorems and all public definitions. Warnings were errors; only `propext`,
+`Classical.choice` and `Quot.sound` were allowed transitively.
+
+It started at the commit above and finished at documentation/Python head
+`e130c385606c6ef96e60693b94c22ec962019298`. A complete post-audit manifest
+regeneration was **byte-identical** to the pre-audit inventory. No Lean,
+checker, dependency or build input changed, so later receipt/documentation
+commits do not require a duplicate audit. See the [machine-readable receipt](receipts/issue-131-validation.json)
+and [complete compressed audit log](receipts/issue-131-full-audit.log.gz).
 
 - Module builds of all new production modules and warnings-as-errors check
   of `TwoDRegression.lean`: passed.
@@ -111,8 +118,11 @@ audit. This section will be updated with the observed outcome before handoff.
   including the initial local library build, took 14:22.79; it is **not** the
   full source/aggregate audit.
 - Full gate: `cd formal && LEAN_NUM_THREADS=2 ./check.sh`, default two source
-  workers. Before starting, available memory was 7.4 GiB and unused swap
-  approximately 3.3 GiB. Worker count was not increased.
+  workers, exit 0 in **2:36:43**. Peak single-process RSS was 2,976,860 KiB
+  (not total concurrent RSS). Before starting, available memory was 7.4 GiB
+  and unused swap approximately 3.3 GiB. Worker count was not increased.
+  Uncompressed audit-log SHA-256:
+  `79ae1d143171e18d1eb7e5dfd55c357de47b849b19581c9c578479750df94376`.
 - Lean 4.19.0 (`6caaee842e94`), pinned mathlib
   `c44e0c8ee63ca166450922a373c7409c5d26b00b`; dependency sources are clean.
 - [Complete SHA-256 input inventory](receipts/issue-131-inputs.json.gz):
@@ -124,8 +134,17 @@ audit. This section will be updated with the observed outcome before handoff.
   `d7b89a20d0d500baac89424583936b753fbc949e945ebff7d747367e6e42afa5`.
   Uncompressed JSON SHA-256:
   `4bb93451a9b4573d4d8f60e9357edfc1708c99d4bec8958e1e3c4fa29cba5a82`.
-- Post-audit input comparison, full Python/symbolic/Markdown checks and live
-  GitHub math-rendering preview: pending.
+- Final full Python suite: **289 tests passed**, 580.648 s; all 13 new 2D
+  tests included. Existing symbolic checks passed. Markdown lint: 59 documents,
+  no problems; 20 Markdown tests passed.
+- Live GitHub math preview at `e130c385606c6ef96e60693b94c22ec962019298`:
+  all **19** proof-note equations produced MathML, no rendering errors, no
+  overflow, with visual checks of complete expressions and layout. The local
+  browser needed its missing math fonts supplied through scoped Fontconfig;
+  successful MathML alone was not treated as a successful visual preview.
+- All three applicable CI checks passed at that implementation head;
+  production-only jobs skipped as configured. The final PR body records the
+  subsequent receipt-only head's observed checks and bounded feedback snapshot.
 
 The manifest records content hashes, not timestamps or a claim of human
 mathematical review. Its generated artifacts are diagnostic receipts, not
