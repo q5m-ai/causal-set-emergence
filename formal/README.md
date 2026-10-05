@@ -157,6 +157,16 @@ all-dimensional or class-E enlargement. Independent human review and the wider
 #81/#24 obligations remain open. No shrinking-cutoff uniformity, full-action
 rate or sample-wise limit is asserted.
 
+The [smooth flat 2D integration](TWO_D.md) freezes `SmoothTwoD` and checks
+whole-region closed interval containment, the existing interval/expectation
+specializations, actual future-normal angles, all-endpoint counting targets,
+complete causal time fibres and nonempty curved/critical examples. Its
+[conventional full signed proof](../notes/two-d-limit.md) derives the global
+deterministic limit before expectation transfer. The actual density/jet and
+signed logarithmic assembly ports remain #141/#142: neither 2D limit goal has
+a Lean proof term in this package. No counting identity or conditional bridge
+is presented as the global theorem.
+
 The [short-displacement proof note](../notes/curved-face-stability.md) is a
 **conventional analytic argument, not an end-to-end Lean theorem**.
 `ShortDisplacement.lean` proves only the exact disjoint short/long partition,
