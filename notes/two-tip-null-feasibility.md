@@ -194,8 +194,8 @@ Set $`\sigma(p,q)=(q_t-p_t)^2-|q_x-p_x|^2`$ and
 
 ```math
 \begin{aligned}
-c&=\pi/24,& C_4&=4/\sqrt6,&
-K(z)&=(1-9z+8z^2-4z^3/3)e^{-z},\\
+c&=\pi/24,\qquad C_4=4/\sqrt6,\qquad
+K(z)=(1-9z+8z^2-4z^3/3)e^{-z},\\
 A^{\mathrm{disc}}_\rho(C)
  &=\frac{C_4}{\sqrt\rho}(N-L_0+9L_1-16L_2+8L_3),\\
 \mathcal A_\rho(V)[\phi]
@@ -310,10 +310,10 @@ $`p=(-u,z,R,0)`$ and $`q=(-v,\zeta,r\cos\theta,r\sin\theta)`$. Then
 
 ```math
 \begin{aligned}
-a&\lt u\lt1+b,& |z|&\lt u-a,&
-0&\lt R\lt\sqrt{u^2-(|z|+a)^2},&u&\lt H(z),\\
-a&\lt v\lt u,& |\zeta|&\lt v-a,&
-0&\lt r\lt\sqrt{v^2-(|\zeta|+a)^2},&0&\le\theta\lt2\pi,\\
+a&\lt u\lt1+b,\quad |z|\lt u-a,\quad
+0\lt R\lt\sqrt{u^2-(|z|+a)^2},\quad u\lt H(z),\\
+a&\lt v\lt u,\quad |\zeta|\lt v-a,\quad
+0\lt r\lt\sqrt{v^2-(|\zeta|+a)^2},\quad0\le\theta\lt2\pi,\\
 \Delta&=(u-v)^2-(\zeta-z)^2-R^2-r^2+2Rr\cos\theta,\\
 Q_\rho(p)&=\rho\int_a^u\int_{-(v-a)}^{v-a}
  \int_0^{\sqrt{v^2-(|\zeta|+a)^2}}\int_0^{2\pi}
