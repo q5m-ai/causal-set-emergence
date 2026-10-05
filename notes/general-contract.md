@@ -492,6 +492,13 @@ transfer without dropping any partners or cutoff complements. These are written
 proofs with executable regressions, not new Lean-checked mixed-region results;
 independent human review and the broader branches in the matrix remain open.
 
+**Next selection (#134):** [the two-tip feasibility package](two-tip-null-feasibility.md)
+freezes a nonplanar-floor two-cone union and reduces its actual full-partner
+action to the two known caps minus a specific intersection lens. It inventories
+the same-side null crease, triple corner and two tips, with bounded analytic
+and expected-assembly follow-up contracts. The lens/global limits remain open;
+this reconnaissance does not complete a further branch of the matrix.
+
 ## 7. Obstruction register and falsifiable tests
 
 The tests in `test_general_contract.py` check algebra and explicit examples;

@@ -6,6 +6,7 @@ from conformal_geometry import check_conformal_identities
 from dimension_kernels import check_dimension_identities
 from dimension_joint_geometry import check_joint_identities
 from dimension_short import check_short3_identities
+from dimension_short_56 import check_short56_identities
 from dimension_long_null import check_long_null_identities
 from curved_bulk_pilot import check_curved_pilot_identities
 from curved_remainders import check_curved_remainder_identities
@@ -14,6 +15,7 @@ from curved_interior_short import check_interior_short_identities
 from curved_boundary_collar import check_boundary_collar_identities
 from curved_joint_corner import check_joint_corner_identities
 from curved_assembly import check_curved_assembly_identities
+from general_metric_gate import check_general_metric_identities
 
 
 def main():
@@ -121,6 +123,7 @@ def main():
     check_dimension_identities()
     check_joint_identities()
     check_short3_identities()
+    check_short56_identities()
     check_long_null_identities()
     check_conformal_identities()
     check_curved_pilot_identities()
@@ -130,6 +133,7 @@ def main():
     check_boundary_collar_identities()
     check_joint_corner_identities()
     check_curved_assembly_identities()
+    check_general_metric_identities()
     print("All symbolic checks passed.")
 
 

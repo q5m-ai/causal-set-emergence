@@ -169,6 +169,14 @@ points. The [actual 3D short formalization](formal/PILOT3_SHORT.md) separately
 proves the direct-origin short response, derivative-controlled remainder and
 intrinsic coefficient, at every sufficiently small fixed positive cutoff.
 
+The [5D/6D short-response decision](notes/dimension-five-six-short.md) derives
+actual dimension-specific bases, signed fractional/logarithmic responses,
+moving-endpoint remainder bounds and the independent intrinsic coefficient
+in writing. Its named C⁴ classes match the small-fixed-cutoff C4LongPilot56
+long result. It freezes bounded deterministic/expected assembly contracts
+and formal prerequisites, with **no new Lean theorem or general 5D/6D coverage**.
+The old C³ and broader #81/#24 obligations remain open.
+
 The subsequent [smooth 3D assembly and coverage audit](formal/PILOT3_LIMIT.md)
 combines both actual producers at one common fixed positive cutoff, then uses
 the separately proved finite-density expectation identity. `Pilot3Limit.lean`
@@ -487,6 +495,13 @@ with separate executable regressions, not a new Lean asymptotic theorem or
 independent human review. The coverage comparison leaves #81/#24/#86 open for
 general metrics, dimensions and strata; no rate, shrinking-cutoff uniformity
 or individual-sprinkling convergence is implied.
+
+The [#133 general-metric/atlas feasibility gate](notes/general-metric-atlas-gate.md)
+compares that completed pilot with explicit nonpolynomial, compact-quotient and
+non-conformally-flat focusing tests. It supplies written bounded interfaces,
+a thin flat-torus slab calculation and a precise focusing-route obstruction,
+with separate regressions and follow-up contracts. It supplies **no new Lean
+verification or general-metric/atlas coverage theorem**; #81/#24 remain open.
 
 ## Program 2 — dynamics and automaton-like growth
 
