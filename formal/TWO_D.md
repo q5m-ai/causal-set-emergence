@@ -75,7 +75,7 @@ extrapolated to 2D. `DimensionTwoEndpoints` is reused unchanged.
 | Freeze nonempty smooth bounded regular class, independent region/action/normal target, closed intervals and canonical counting | Checked new modules above; complete frontier/face description is conventional via #92, not newly checked here |
 | Derive actual 2D short responses and long signed disintegration/cancellation, including constant/log sectors | Conventional proof §§2–5, exact symbolic and actual-overlap diagnostics; the full Lean producers remain #141/#142 |
 | Global deterministic limit before expectation transfer, compatible cutoffs/point allocation | Conventional theorem §§3–6; only finite-density equality and conditional transfer are checked in this PR. Both Lean goals stay open |
-| Nonplanar, planar, disconnected/all endpoints, critical points, unchanged baselines | First three checked-module controls as above; all four disconnected endpoints, density jets, signed action and refinement in Python. Formal disconnected/global limit regressions remain prerequisites; old 3D/4D regressions stay in the full source audit |
+| Nonplanar, planar, disconnected/all endpoints, critical points, unchanged baselines | Curved, planar, empty and retained-critical controls checked as above; all four disconnected endpoints, density jets, signed action and refinement in Python. Formal disconnected/global limit regressions remain prerequisites; old 3D/4D regressions stay in the full source audit |
 | Conventional proof and explicit checked boundary; bounded missing producers; residual coverage | Proof note, this ledger, native children #141/#142; no general atlas/metric/null claims or independent human-review claim |
 
 The native prerequisites are:
