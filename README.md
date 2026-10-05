@@ -128,14 +128,16 @@ now constructs the genuine finite-order action and proves its exact expectation
 using actual restricted interval volume, then specializes to that flat action
 under ambient causal convexity. It calibrates the dimensionless 2D action and
 transports the unchanged 4D action and probability law through the proved
-coordinate map. No global higher-dimensional two-face limit or sample-wise
-convergence follows; independent human mathematical review remains outstanding.
+coordinate map. No global two-face limit or sample-wise convergence follows
+from that finite-density bridge alone; independent human mathematical review
+remains outstanding.
 The [dimension-indexed two-face geometry package](notes/dimension-two-face-geometry.md)
 now supplies a written region/stratum and intrinsic-area proof, with chart
 compatibility, finite target, Lorentz/dilation transport, exact 4D identification,
-and a named smooth 3D pilot for the next analytic tasks. Its independent
-higher-dimensional deterministic/expected goals remain open. This is
-conventional geometry plus regressions, not a new Lean geometry theorem.
+and the named smooth 3D pilot. That delivery is conventional geometry plus
+regressions, not a new Lean geometry theorem. The later formal packages below
+now prove the pilot's deterministic/expected goals; broader dimensional goals
+remain open.
 The follow-on [smooth 3D formal geometry](formal/PILOT3_GEOMETRY.md)
 now proves that exact pilot's whole region/strata, intrinsic canonical joint
 area with Borel-overlap compatibility and finite-atlas gluing, signed collar
@@ -163,8 +165,20 @@ constructs the canonical density and full signed disintegration, derives its
 contact-uniform averaged jet, and proves normalized long cancellation for
 every `SmoothPilot3` at every fixed positive cutoff. It keeps exact/approaching
 contacts, completely closing fibres, all components and positive-height critical
-points. The short formal producer (#126), full deterministic/expected assembly
-(#80), and independent human review remain separate.
+points. The [actual 3D short formalization](formal/PILOT3_SHORT.md) separately
+proves the direct-origin short response, derivative-controlled remainder and
+intrinsic coefficient, at every sufficiently small fixed positive cutoff.
+
+The subsequent [smooth 3D assembly and coverage audit](formal/PILOT3_LIMIT.md)
+combines both actual producers at one common fixed positive cutoff, then uses
+the separately proved finite-density expectation identity. `Pilot3Limit.lean`
+proves the unchanged `Pilot3DeterministicGoal` and `Pilot3ExpectedGoal` for
+exactly `SmoothPilot3`. Standalone regressions retain genuinely curved future
+faces, interior critical points, whole disconnected/annular regions and the
+unchanged 4D calibration. This is a smooth combined-budget **flat 3D** result,
+not the all-dimensional C³ candidate, an independent-envelope dimensional
+extension, or a curved/null/mixed theorem. #81/#24 coverage and independent
+human review remain open; no rate or sample-wise convergence is implied.
 
 The **concrete ellipsoid geometric interpretation** is also checked separately:
 its joint is a smooth regular level with nonzero Euclidean gradient, its angle

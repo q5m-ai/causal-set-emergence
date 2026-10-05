@@ -512,7 +512,9 @@ Nor does the special 4D identity
 $`\rho\int_{I(x,q)}K_4=1-e^{-\rho c_4T^4}`$ survive unchanged in other
 dimensions: even its series coefficients differ in 2D.
 
-## 6. Non-vacuous global contracts, explicitly still open
+<a id="6-non-vacuous-global-contracts-explicitly-still-open"></a>
+
+## 6. Non-vacuous global contracts and bounded proved coverage
 
 **Geometry-interface update (#92):** the
 [dimension-indexed two-face package](dimension-two-face-geometry.md) supplies
@@ -520,8 +522,11 @@ written region/stratum, intrinsic metric/area, chart compatibility, finiteness,
 and transport proofs, with exact unchanged 4D identification. It freezes the
 stronger smooth `SmoothPilot3` as the first new global pilot and retains this
 all-dimension C³ candidate separately. Its geometric proofs are conventional,
-not new Lean declarations; the global goals below and actual overlap jets
-remain open outside the already checked 4D case.
+not new Lean declarations. The later [#80 formal assembly](../formal/PILOT3_LIMIT.md)
+now proves both global goals on exactly `SmoothPilot3`, using the #115 geometry
+and #125/#126 actual producers. This does not prove the all-dimension C³
+candidate below; outside the smooth 3D pilot and existing checked 4D classes,
+global coverage remains open.
 
 For each fixed dimension, use spatial Euclidean space $`\mathbb R^{d-1}`$.
 A candidate class has bounded $`\Omega=\{h>0\}`$, a globally strictly
@@ -586,7 +591,7 @@ ledger below records what the kernel package itself established.
 | Slice tails, mass-one plane kernel, local wedge | actual moments, parity tails, unit mass and full-partner regulated weighted action checked | `KernelHalfLine`, `TangentWedge` | general induced-area transport and complementary-region control |
 | Fixed-cutoff long-null cancellation | analytic contract K checked in every dimension, conditional on its stated jet | merged #61 / PR #68 | actual higher jets; odd-dimensional fractional remainder and tangency estimates |
 | Curved-versus-wedge short error | not supplied here | #66 / PR #70: conventional proof plus checked exact partitions | rederive all powers, signed/log cancellations and partition-derivative terms |
-| Global deterministic/expected limits | higher-dimensional goals D/E remain open | #67 completed in merged PR #89 for the original 4D class | port the checked proof decomposition, geometry and dimension-specific estimates, then apply F |
+| Global deterministic/expected limits | smooth 3D pilot D/E now proved in `Pilot3Limit`; arbitrary-dimensional coverage remains open | #67 completed in merged PR #89 for the original 4D class | actual compatible producers and independent targets in remaining dimensions, then assembly and F; see #80's coverage ledger |
 | Conventional expert review | outstanding for this note | machine checking is not peer review | independent mathematical and physical scrutiny |
 
 **Actual dependency snapshot:** this branch starts at `faee2e3` on `main`, after

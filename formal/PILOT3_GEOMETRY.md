@@ -9,8 +9,9 @@ finite-atlas gluing, signed collar coarea and spatial divergence, actual causal
 overlap and compact perturbation tubes, and #77's unchanged expectation
 specialization. The [integration completion layer](PILOT3_INTEGRATION.md)
 records exact area/collar/divergence signatures and proof architecture.
-This supplies geometry, **not** the remaining #78/#79 analytic estimates or
-#80's full-action assembly; the pilot's two action-limit goals remain open.
+This supplies geometry, **not** the #78/#79 analytic estimates or full-action
+assembly by itself. The later #125/#126 formal producers and
+[#80 assembly](PILOT3_LIMIT.md) now prove both unchanged pilot action-limit goals.
 The subsequent [#125 long analytic port](PILOT3_LONG_NULL.md) now supplies the
 actual density, signed disintegration, averaged jet and fixed-cutoff long
 cancellation separately from this geometry package. #126 owns the short port.
@@ -37,7 +38,7 @@ the producer modules rather than relying on the library root.
 
 | Module | Responsibility |
 | --- | --- |
-| `Pilot3Contract` | `Pilot3Space`, `Pilot3Spacetime`, slope-independent `Pilot3RegularHeight`, exact `SmoothPilot3`, actual region/strata, independent candidate area/angle/target, two open goal propositions |
+| `Pilot3Contract` | `Pilot3Space`, `Pilot3Spacetime`, slope-independent `Pilot3RegularHeight`, exact `SmoothPilot3`, actual region/strata, independent candidate area/angle/target, two independently stated goal propositions |
 | `Pilot3RegularHeight` | Open positive set, compact closed positive set and joint, noncritical band, smooth regular neighborhoods, constructed local height charts, finite one-dimensional Hausdorff measure |
 | `Pilot3Geometry` | Whole region, closed ambient interval containment, full compact strata, vertical Fubini/volume, #77 constructor and exact expectation specialization |
 | `Pilot3Overlap` | Independently defined signed first-endpoint covariogram, absolute integrability, causal vertical intersection and positive-part identity, raw short gap, exact bulk/moving-collar split and source-weight linearity |
@@ -89,8 +90,9 @@ one. `dimensionExpectedAction` still integrates `discreteDimensionAction`
 against `FinitePoisson.law` of restricted volume times positive density.
 `expectedAction_eq` is **derived** by `DimensionBoundedCausalRegion.expectedAction_eq`,
 not encoded in admissibility or the definition of expectation.
-`pilot3ExpectedGoal_iff` transfers the two **open propositions** by that
-positive-density identity; it proves neither limit.
+`pilot3ExpectedGoal_iff` transfers the two goal propositions by that
+positive-density identity; the equivalence alone proves neither limit.
+Their unconditional proofs are now in [the separate assembly](PILOT3_LIMIT.md).
 
 `Pilot3LongContractRegression.lean` independently expands the actual action,
 probability law, causal domain, physical powers, region, closure and band for
@@ -104,7 +106,7 @@ additivity of a bilocal action.
 `Pilot3ShortContractRegression.lean` independently expands the target from
 one-dimensional Hausdorff measure and actual gradients, checks positivity,
 finiteness, integrability, spacetime pushforward, planar recovery and the
-actual tangent Gram factor for #79. It checks the open goals and conditional
+actual tangent Gram factor for #79. It checks the goal contracts and conditional
 expectation transfer, and now the exact raw overlap/moving-collar identities
 and smooth compact translation-tube interface. It also checks intrinsic
 Borel chart measures/overlaps, signed spatial coarea with both integrability
@@ -296,7 +298,7 @@ with an arbitrary supplied measure nor redefine it from an action coefficient.
 
 | #115 item | Delivered here | Verification boundary |
 | --- | --- | --- |
-| Exact 3D class, region, independent target and goals | Original definitions preserved; no analytic admissibility fields; intrinsic target now identified by chart measures | The two pilot action-limit propositions remain open |
+| Exact 3D class, region, independent target and goals | Original definitions preserved; no analytic admissibility fields; intrinsic target now identified by chart measures | The two pilot action-limit propositions are proved separately in `Pilot3Limit` |
 | Region and all strata | Open/measurable/bounded, finite volume, complete closed ambient interval containment, closure/frontier, compact faces/joint and exact intersection | No extra bundled manifold-with-boundary object is claimed or required by the supplied direct-origin interfaces |
 | Normals, angle, Gram density and canonical measure | Strict future unit normals/angle, positive induced metric, line normalization one, finite area/integrable weight; variable-density Hausdorff area, every Borel chart overlap, finite gluing and atlas independence | The measure remains fixed independently of the action |
 | #77 constructor | Existing action/law and derived finite-density expectation identity | Not a definition of expectation or a sample-wise result |
