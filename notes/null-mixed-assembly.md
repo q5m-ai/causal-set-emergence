@@ -480,6 +480,12 @@ python3 -m unittest -v test_check_markdown
 | General atlases, noncompact regions and degenerating slopes/angles | Not covered: global partners, tails and uniformity need bounded tasks under #24/#81/#86 |
 | Variance, rates, individual sprinklings, geometry-dependent density limits | No result asserted |
 
+**Next-branch reconnaissance (#134):** the [two-tip feasibility package](two-tip-null-feasibility.md)
+selects a fixed nonplanar-floor union of two cones, outside (MA6). It derives
+an exact full-partner cap-minus-lens interface and a normalized tip estimate;
+the lens's complete signed limit and crease/triple-corner response remain
+unproved. This is not a new global mixed theorem or Lean instance.
+
 No new catch-all issue is needed: #24's coverage matrix and #86's integrated
 review retain these branches. A further proof issue must specify its geometry,
 actual interval law and missing signed estimate, rather than treat the present
