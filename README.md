@@ -408,7 +408,7 @@ still a restricted flat 4D global two-graph theorem, not a general curved,
 null/mixed, other-dimensional or sample-wise result; independent human review
 remains outstanding under #94/#86. PR #104 owns final integration to `main`.
 
-### Curved-spacetime feasibility boundary
+### Controlled curved proofs and their verification boundary
 
 The [fixed-geometry conformal pilot](notes/curved-bulk-pilot.md) derives an
 exact curved interval-volume formula and the candidate bulk response of a
@@ -468,9 +468,25 @@ the positive-angle weight, including unequal-axis nonzero-curvature and
 varying-angle examples. Signed errors are summable at one common fixed cutoff;
 no same-chart partner restriction or shrinking-cutoff argument is used.
 This is a **written theorem**, with separate symbolic/numerical checks, not a
-new Lean result or independent human review. #76 still owns the complete
-assembly and acceptance audit using the separately proved expectation bridge;
-no general curved theorem or individual-sprinkling convergence is asserted.
+new Lean result or independent human review. That producer leaves the complete
+assembly and expectation transfer to the following package, rather than
+asserting them as part of its joint-only theorem.
+
+The [controlled curved assembly](notes/curved-assembly.md) now combines these
+actual bulk/collar, joint and contact-averaged long producers at one common
+fixed cutoff. It proves in writing that the complete canonical action tends
+to the whole half-curvature integral plus the variable-angle induced joint
+integral, for exactly the original C³ two-face class and `Omega(t)^4=1+t^2`.
+It then discharges that fourth-root factor's geometric hypotheses and applies
+#93's **curved** positive-density expectation identity; the flat bridge is not
+reused as a curved theorem. An unequal-axis member has nonconstant positive
+scalar curvature, strictly positive bulk and angle weights 2 and 6 on one
+joint. All cross-chart partners, single-face fluxes and the collar complement
+are retained. This is a **conventional written deterministic/expected theorem**
+with separate executable regressions, not a new Lean asymptotic theorem or
+independent human review. The coverage comparison leaves #81/#24/#86 open for
+general metrics, dimensions and strata; no rate, shrinking-cutoff uniformity
+or individual-sprinkling convergence is implied.
 
 ## Program 2 — dynamics and automaton-like growth
 
@@ -557,6 +573,9 @@ physics.
   tip/complement accounting and nonplanar diagnostics for the selected mixed class.
 - `notes/null-mixed-assembly.md`, `mixed_poisson.py` — written global deterministic
   and expected-action proof for that class; independent finite-order/layer checks.
+- `notes/curved-assembly.md`, `curved_assembly.py` — written controlled conformal
+  4D bulk-and-joint deterministic/expected theorem and separate finite
+  certificates; not a new Lean continuum-limit theorem or general curved result.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.
