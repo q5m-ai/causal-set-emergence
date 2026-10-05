@@ -169,6 +169,14 @@ points. The [actual 3D short formalization](formal/PILOT3_SHORT.md) separately
 proves the direct-origin short response, derivative-controlled remainder and
 intrinsic coefficient, at every sufficiently small fixed positive cutoff.
 
+The [5D/6D short-response decision](notes/dimension-five-six-short.md) derives
+actual dimension-specific bases, signed fractional/logarithmic responses,
+moving-endpoint remainder bounds and the independent intrinsic coefficient
+in writing. Its named C⁴ classes match the small-fixed-cutoff C4LongPilot56
+long result. It freezes bounded deterministic/expected assembly contracts
+and formal prerequisites, with **no new Lean theorem or general 5D/6D coverage**.
+The old C³ and broader #81/#24 obligations remain open.
+
 The subsequent [smooth 3D assembly and coverage audit](formal/PILOT3_LIMIT.md)
 combines both actual producers at one common fixed positive cutoff, then uses
 the separately proved finite-density expectation identity. `Pilot3Limit.lean`
