@@ -129,8 +129,10 @@ function theorem give a unique C⁴ root T_i(y,z) of t=q_z(Phi_i(y,t)), staying
 in the smaller collar. The collar contribution equals
 
 ```math
-I_i(z)=\int dy\int_0^{T_i(y,z)}
+\begin{aligned}
+I_i(z)&=\int dy\int_0^{T_i(y,z)}
  W_i(y,t)\,[q_z(\Phi_i(y,t))-t]\,dt.
+\end{aligned}
 \tag{S5}
 ```
 
@@ -280,10 +282,10 @@ are
 \begin{aligned}
 K_5(z)&=(1-215z/16+225z^2/16-125z^3/48)e^{-z},\\
 K_6(z)&=(1-34z+141z^2/2-63z^3/2+27z^4/8)e^{-z},\\
-c_5&=\pi^2/160,&a_5/\beta_5&=8/3,&
-M_5(3/2)&=1/40,&M_5(5/2)&=-\Gamma(7/5)/8,\\
-c_6&=\pi^2/360,&a_6/\beta_6&=5/2,&
-M'_6(2)&=-1/36,&M'_6(3)&=\Gamma(4/3)/12.
+c_5&=\pi^2/160,\qquad a_5/\beta_5=8/3,\\
+M_5(3/2)&=1/40,\qquad M_5(5/2)=-\Gamma(7/5)/8,\\
+c_6&=\pi^2/360,\qquad a_6/\beta_6=5/2,\\
+M'_6(2)&=-1/36,\qquad M'_6(3)=\Gamma(4/3)/12.
 \end{aligned}
 \tag{S12}
 ```
@@ -304,9 +306,10 @@ whose **normalized** response vanishes. Indeed its respective non-polynomial
 coefficients give
 
 ```math
-\frac{s_5}{3c_5}M_5(3/2)=\frac83,
-\qquad
--\frac{3s_6}{32c_6}M'_6(2)=\frac52.
+\begin{aligned}
+\frac{s_5}{3c_5}M_5(3/2)&=\frac83,\\
+-\frac{3s_6}{32c_6}M'_6(2)&=\frac52.
+\end{aligned}
 \tag{S13}
 ```
 
@@ -345,9 +348,11 @@ power minus four, which is at most T_w v to the power minus five since v<=1.
 The exact differentiated Jacobian is
 
 ```math
+\begin{aligned}
 \partial_\sigma^i j_d
- =\frac{(-1)^i(d-2)!}{2^{d-1}(d-2-i)!}
+ &=\frac{(-1)^i(d-2)!}{2^{d-1}(d-2-i)!}
  v^{d-3-2i}(1-\sigma/v^2)^{d-2-i}\quad(0\le i\le d-2).
+\end{aligned}
 \tag{S15}
 ```
 
@@ -374,8 +379,10 @@ positive-v intervals. As a useful check, the boundary contribution at the next
 differentiation, **if its interior derivative exists**, would be
 
 ```math
+\begin{aligned}
 -\frac{\partial_\sigma^{d-2}F(\sqrt\sigma,\sigma)}{2\sqrt\sigma}
- =\frac{(-1)^{d-1}(d-2)!}{2^d}\sigma^{-d/2}R_w(\sqrt\sigma,0).
+ &=\frac{(-1)^{d-1}(d-2)!}{2^d}\sigma^{-d/2}R_w(\sqrt\sigma,0).
+\end{aligned}
 \tag{S17}
 ```
 
@@ -493,10 +500,12 @@ compute the jet, source derivative and normal/Gram target. For the planar unit
 ball the exact overlap is #78 (L19); the independent fixed-time short density is
 
 ```math
-B^\lt_{\delta,d}(\sigma)=\frac{s_d}{2}
+\begin{aligned}
+B^\lt_{\delta,d}(\sigma)&=\frac{s_d}{2}
  \int_{\sqrt\sigma}^{(\delta+\sigma/\delta)/2}
  (t^2-\sigma)^{(d-3)/2}
- \frac{2v_{d-1}}{d+1}a^{-(d-1)/2}(a-t)^{(d+1)/2}\,dt
+ \frac{2v_{d-1}}{d+1}a^{-(d-1)/2}(a-t)^{(d+1)/2}\,dt.
+\end{aligned}
 \tag{S22}
 ```
 
