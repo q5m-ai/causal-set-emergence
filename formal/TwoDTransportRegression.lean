@@ -2,8 +2,9 @@ import BoundaryDraft.TwoDExamples
 import BoundaryDraft.TwoDLine
 import BoundaryDraft.TwoDShortDensity
 import BoundaryDraft.TwoDLongJet
+import BoundaryDraft.TwoDShortAngular
 
-/-! Regression of actual 2D transport and the derived long density jet.
+/-! Regression of actual 2D transport, overlap jets and endpoint coefficients.
 These are not terms of `TwoDDeterministicGoal` or `TwoDExpectedGoal`. -/
 
 open MeasureTheory Set Filter Asymptotics
@@ -78,5 +79,47 @@ example {δ : ℝ} (hδ : 0 < δ) :
 
 example : 0 < twoDIntervalHeight 0 ∧ fderiv ℝ twoDIntervalHeight 0 = 0 :=
   twoDIntervalHeight_critical
+
+/-- Derived complete interval geometry, with no connectedness premise. -/
+example {h f : TwoDSpace → ℝ} (hf : SmoothTwoD h f) : Nonempty (TwoDIntervalFamily h) :=
+  hf.exists_intervalFamily
+
+example {h f : TwoDSpace → ℝ} (hf : SmoothTwoD h f) :
+    twoDShortTimeCoefficient h - twoDShortSpaceCoefficient h f = twoDBoundaryIntegral h f :=
+  hf.short_coefficients_eq_boundaryIntegral
+
+/-- These are actual-overlap expansions, not assumed jets. -/
+example : ∃ δ : ℝ, 0 < δ ∧ ∃ (R : TwoDSpacetime → ℝ) (T : ℝ),
+    Measurable R ∧ TwoDShortRemainder.CubicBounds R δ T ∧
+    ∀ z ∈ Metric.ball (0 : TwoDSpacetime) δ, ‖z.2‖ ≤ z.1 →
+      twoDOverlap twoDIntervalHeight twoDSineFuture z.1 z.2 =
+        twoDAbsoluteShortPolynomial twoDIntervalHeight twoDSineFuture z + R z :=
+  twoDIntervalSine_admissible.exists_absoluteOverlap_remainder
+
+example : ∃ δ : ℝ, 0 < δ ∧ ∃ (R : TwoDSpacetime → ℝ) (T : ℝ),
+    Measurable R ∧ TwoDShortRemainder.CubicBounds R δ T ∧
+    ∀ z ∈ Metric.ball (0 : TwoDSpacetime) δ, ‖z.2‖ ≤ z.1 →
+      twoDOverlap twoDIntervalHeight (fun _ => 0) z.1 z.2 =
+        twoDAbsoluteShortPolynomial twoDIntervalHeight (fun _ => 0) z + R z :=
+  twoDIntervalPlanar_admissible.exists_absoluteOverlap_remainder
+
+/-- The finite-collar construction also works when the whole joint is empty. -/
+example : ∃ δ : ℝ, 0 < δ ∧ ∃ (R : TwoDSpacetime → ℝ) (T : ℝ),
+    Measurable R ∧ TwoDShortRemainder.CubicBounds R δ T ∧
+    ∀ z ∈ Metric.ball (0 : TwoDSpacetime) δ, ‖z.2‖ ≤ z.1 →
+      twoDOverlap (fun _ => 0) (fun _ => 0) z.1 z.2 =
+        twoDAbsoluteShortPolynomial (fun _ => 0) (fun _ => 0) z + R z :=
+  twoDEmpty_admissible.exists_absoluteOverlap_remainder
+
+example {h f : TwoDSpace → ℝ} (hf : SmoothTwoD h f) (A : TwoDIntervalFamily h) (G : TwoDSpace → ℝ) :
+    (∑ x ∈ hf.joint_finite.toFinset, G x) =
+      ∑ p ∈ A.intervals, (G (twoDLine.symm p.1) + G (twoDLine.symm p.2)) :=
+  hf.endpoint_sum_eq_intervals A G
+
+example {h f : TwoDSpace → ℝ} (hf : SmoothTwoD h f) (s r : ℝ) :
+    (∫ ω : TwoDDirection, twoDAbsoluteShortPolynomial h f (s, r • ω.val) ∂twoDDirectionMeasure) =
+      2 * volume.real (twoDRegion h f) - 2 * s * volume.real {x | 0 < h x} +
+        twoDShortTimeCoefficient h * s ^ 2 + twoDShortSpaceCoefficient h f * r ^ 2 :=
+  hf.integral_directions_absoluteShortPolynomial s r
 
 end BoundaryDraft.TwoDTransportRegression

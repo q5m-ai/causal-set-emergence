@@ -72,6 +72,7 @@ import BoundaryDraft.TwoDOverlap
 import BoundaryDraft.TwoDLine
 import BoundaryDraft.TwoDShortDensity
 import BoundaryDraft.TwoDLongJet
+import BoundaryDraft.TwoDShortAngular
 import BoundaryDraft.DimensionFourGeometry
 import BoundaryDraft.NullTransverseCancellation
 import BoundaryDraft.KernelEstimates
