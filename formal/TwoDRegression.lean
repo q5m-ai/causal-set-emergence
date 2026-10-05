@@ -4,7 +4,7 @@ import BoundaryDraft.TwoDOverlap
 /-!
 Independent expansions of the 2D contract. These regressions do NOT assert
 TwoDDeterministicGoal or TwoDExpectedGoal. The signed analytic producers and
-their unconditional assembly remain separate prerequisite obligations.
+their unconditional assembly are checked separately in TwoDLimitRegression.
 -/
 
 open MeasureTheory Set Filter

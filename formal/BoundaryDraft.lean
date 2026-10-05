@@ -75,6 +75,7 @@ import BoundaryDraft.TwoDLongJet
 import BoundaryDraft.TwoDShortAngular
 import BoundaryDraft.TwoDLimit
 import BoundaryDraft.TwoDDisconnected
+import BoundaryDraft.TwoDExponentialTail
 import BoundaryDraft.DimensionFourGeometry
 import BoundaryDraft.NullTransverseCancellation
 import BoundaryDraft.KernelEstimates
