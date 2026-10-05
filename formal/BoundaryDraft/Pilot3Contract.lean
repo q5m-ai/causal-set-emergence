@@ -115,13 +115,14 @@ def pilot3Action (ρ : ℝ) (h f : Pilot3Space → ℝ) : ℝ :=
   dimensionWeightedAction 2 (dimensionPointCoefficient 3) (dimensionPairCoefficient 3)
     (dimensionIntervalCoefficient 3) ρ (pilot3Region h f) (fun _ => 1)
 
-/-- Open deterministic target; declaring this proposition does not prove it. -/
+/-- Independently stated deterministic target, proved separately in `Pilot3Limit`. -/
 def Pilot3DeterministicGoal : Prop :=
   ∀ h f, SmoothPilot3 h f →
     Tendsto (fun ρ => pilot3Action ρ h f) atTop (𝓝 (pilot3BoundaryIntegral h f))
 
-/-- Open expected-action target using the independently constructed Poisson
-law and actual discrete action, not an expectation defined as a continuum action. -/
+/-- Independently stated expected-action target, proved separately in `Pilot3Limit`.
+It uses the constructed Poisson law and actual discrete action, not an
+expectation defined as a continuum action. -/
 def Pilot3ExpectedGoal : Prop :=
   ∀ h f, SmoothPilot3 h f →
     Tendsto (fun ρ => dimensionExpectedAction 2 ρ (pilot3Region h f))

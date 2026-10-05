@@ -12,7 +12,9 @@ limit. The long producer belongs to #125; final global deterministic assembly
 and use of the separately proved expectation bridge belong to #80. This does
 not close either global goal or assert sample-wise convergence. Independent
 human mathematical review remains separate from compilation and numerical
-checks.
+checks. The subsequent [#80 assembly](PILOT3_LIMIT.md) now combines both
+actual producers and proves the unchanged global deterministic and expected
+goals; it does not expand this short package's own scope.
 
 ## Exact consumer contract
 

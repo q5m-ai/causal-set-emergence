@@ -278,8 +278,9 @@ theorem volume_region : (volume (pilot3Region h f)).toReal = ∫ x in {x | 0 < h
 
 end SmoothPilot3
 
-/-- Conditional transfer only: neither of these open limit propositions is
-asserted. The equivalence is derived from the positive-density bridge. -/
+/-- Conditional transfer only: this equivalence does not by itself establish
+either limit. It is derived from the positive-density bridge; the unconditional
+proofs are separate in `Pilot3Limit`. -/
 theorem pilot3ExpectedGoal_iff : Pilot3ExpectedGoal ↔ Pilot3DeterministicGoal := by
   constructor
   · intro hg h f hf

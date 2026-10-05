@@ -143,9 +143,19 @@ its canonical long density and complete signed null-coordinate disintegration,
 derives the contact-uniform averaged linear jet, and proves normalized signed
 long cancellation at every fixed positive cutoff. Both producers now share
 one canonical displacement/circle interface, with an exact bridge between
-signed-long/add and positive-long-pair/subtract conventions. #80 still owns
-final global and separately bridged expected-action assembly. No shrinking-cutoff
-or sample-wise limit is asserted.
+signed-long/add and positive-long-pair/subtract conventions.
+
+The [smooth 3D assembly and coverage audit](PILOT3_LIMIT.md) now completes #80's
+bounded theorem: `SmoothPilot3.action_limit` and `expectedAction_limit` prove
+the unchanged `Pilot3DeterministicGoal` and `Pilot3ExpectedGoal`. One fixed
+positive cutoff combines both actual producers before the separate expectation
+transfer. `Pilot3LimitRegression.lean` expands the full action/law/target,
+exercises curved, planar, empty, disconnected/annular and retained-critical-point
+members, and preserves the original 4D C³ and unequal-axis calibration.
+The new class is exactly the smooth combined-budget flat 3D pilot, not an
+all-dimensional or class-E enlargement. Independent human review and the wider
+#81/#24 obligations remain open. No shrinking-cutoff uniformity, full-action
+rate or sample-wise limit is asserted.
 
 The [short-displacement proof note](../notes/curved-face-stability.md) is a
 **conventional analytic argument, not an end-to-end Lean theorem**.
@@ -319,6 +329,7 @@ factor on that joint. It also exercises the existing curved-sine family.
 | `BoundaryDraft/Pilot3Contract.lean`, `Pilot3RegularHeight.lean`, `Pilot3Geometry.lean`, `Pilot3Metric.lean`, `Pilot3Surface.lean`, `Pilot3Examples.lean`, `Pilot3Components.lean` | Exact smooth 3D pilot; whole finite region/strata and Poisson specialization; positive angle/Gram geometry; independently fixed finite joint measure and integrability; local height charts; curved, planar, empty and component controls | A pilot action limit or sample-wise result |
 | `BoundaryDraft/Pilot3Overlap.lean`, `Pilot3Tubes.lean` | Actual signed causal overlap with absolute integrability and exact moving-collar split; all-direction/contact endpoint margins and finite differences; compact old-active perturbation tubes, finite length support, common raw smooth translation neighborhood and derivative bounds | Long density/signed null-coordinate transport or jet, short analytic remainder, cancellation or action limit |
 | `BoundaryDraft/Pilot3Displacement.lean`, `Pilot3LongCoordinates.lean`, `Pilot3LongDensity.lean`, `Pilot3LongGeometry.lean`, `Pilot3LongFibre.lean`, `Pilot3LongNull.lean` | Exact point-once short/long split; full-circle normalized actual density and signed transport; derived contact-uniform averaged jet and unconditional signed long limit at every fixed positive cutoff | Short analytic limit, final deterministic/expected assembly, shrinking-cutoff uniformity, rates or sample-wise convergence |
+| `BoundaryDraft/Pilot3Limit.lean` | Both unchanged smooth 3D global deterministic/expected goals, intrinsic spacetime-joint formulations and fixed-cutoff independence, using the actual compatible producers and separate Poisson bridge | All-dimensional/C³ enlargement, arbitrary geometry, rates, shrinking-cutoff uniformity or sample-wise convergence |
 | `BoundaryDraft/Pilot3Curve.lean`, `Pilot3CurveArea.lean`, `Pilot3CurveAreaLocal.lean`, `Pilot3Levels.lean`, `Pilot3HeightCharts.lean`, `Pilot3ChartTransport.lean`, `Pilot3SliceCharts.lean`, `Pilot3JointCharts.lean`, `Pilot3JointAtlas.lean` | Variable-speed canonical curve area, actual inverse Jacobians and level transport, Lorentzian joint chart measures on every Borel overlap, finite gluing and atlas independence | Arbitrary supplied target measures, Euclidean spacetime area or an action coefficient |
 | `BoundaryDraft/Pilot3Atlas.lean`, `Pilot3AtlasRepresentation.lean`, `Pilot3AtlasRegularity.lean`, `Pilot3Coarea.lean`, `Pilot3Endpoints.lean`, `Pilot3Ramp.lean`, `Pilot3Divergence.lean` | Constructed finite smooth collar/partition, fixed compact rectangles, signed coarea and integrability, right-sided canonical density limit, finite-order chart bounds and whole-region outward divergence | Two-sided density continuity at zero, overlap jets, action asymptotics or regularity of irrelevant exterior data |
 | `BoundaryDraft/Pilot3Disconnected.lean`, `Pilot3Annulus.lean` | Genuine combined-budget disconnected/annular curved and planar members, all joint circles, retained positive-height critical points and actual coarea/divergence controls | Bilocal-action additivity or arbitrary exterior-max smoothness |
