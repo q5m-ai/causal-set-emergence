@@ -1,7 +1,7 @@
 # Smooth flat 2D: unconditional deterministic and expected limits (#131)
 
-**Implementation complete; final integrated validation pending.** The unchanged
-`TwoDDeterministicGoal` and `TwoDExpectedGoal` now have compiled proof terms in
+**Unconditional Lean limits; integrated audit passed.** The unchanged
+`TwoDDeterministicGoal` and `TwoDExpectedGoal` now have audited proof terms in
 [`TwoDLimit.lean`](BoundaryDraft/TwoDLimit.lean). The deterministic theorem is
 proved first from actual short and long producers; only afterward is the
 separately proved Poisson-expectation bridge used. Counting, finite-density
@@ -130,11 +130,54 @@ geometry, normalization, transport, jet and coefficient consumers.
 
 ## Validation boundary and receipts
 
-**Frozen Lean-input commit:** `8d2fe21b846d01673f2edd0f0c1cff7b62edc226`.
-All new production modules and the library root build; all three 2D standalone
-regressions have passed warnings-as-errors module checks. A fresh ancestor-pinned
-incremental check and the one final integrated `formal/check.sh` are pending.
-The PR stays draft until the final local gate and current-head CI succeed.
+**Audited Lean-input commit:** `8d2fe21b846d01673f2edd0f0c1cff7b62edc226`.
+The **one final integrated local audit passed**, from 2026-10-05 19:48:18Z to
+22:44:06Z, in **2:55:48**, with the default two source workers. It covered all
+329 local Lean files: **328 per-source checks**, then the aggregate audit of
+**3,320 public theorems and all public definitions**. Warnings were errors;
+only `propext`, `Classical.choice` and `Quot.sound` were permitted transitively.
+Peak single-process RSS was 2,965,580 KiB, not total concurrent memory.
+
+- [Completion receipt](receipts/issue-131-completion-validation.json) and
+  [complete audit log](receipts/issue-131-completion-full-audit.log.gz).
+  Uncompressed log SHA-256:
+  `c62e70cf10d26596d404895042939c6c382b8647e08acd953828a06a973700ec`.
+- [Complete input inventory](receipts/issue-131-completion-inputs.json.gz):
+  **32,771 files**, covering local Lean/checker/configuration inputs, pinned
+  dependency sources and compiled imports, local build products and the entire
+  selected Lean 4.19.0 toolchain. Dependency revisions are recorded and their
+  tracked sources are clean. This conservative inventory regenerated
+  **byte-identically after the audit and after the final documentation edits**.
+  Compressed SHA-256:
+  `5e425e9d78a2e0fa94f92ac115d3496ddf1147b265ed3ff04d092d0583c88376`;
+  uncompressed JSON SHA-256:
+  `22da64b10cb4c6571391d344ed8de09fb2d4a7e6c41846c67067caab99a75ed6`.
+- Production/library builds and all three standalone 2D regressions with
+  warnings as errors: passed. The fresh incremental check against
+  `df7ef277ae8dc695396e359780ffd7be65b43e9a` passed first; its
+  [log](receipts/issue-131-completion-incremental.log.gz) remains explicitly
+  a developer check, not the full audit.
+- [Full Python suite](receipts/issue-131-completion-python.log.gz): **319 tests
+  passed**, including all 13 2D tests, in 661.901 s. The configured virtual
+  environment was used. [Symbolic checks](receipts/issue-131-completion-symbolic.log.gz)
+  passed. Markdown lint checked 62 documents with no problems; 20 Markdown tests
+  passed after the final documentation edits.
+- GitHub browser preview at `0b4a58e653dd8af69650da3a577c4050cb294427`:
+  all **19** unchanged proof-note equations produced MathML, with no errors or
+  overflow. Complete expressions and layout were visually checked by the coding
+  agent, not an independent human reviewer. The
+  [renderer evidence](receipts/issue-131-completion-math.json.gz) and screenshots
+  ([1–5](receipts/issue-131-completion-math-1.png),
+  [6–10](receipts/issue-131-completion-math-2.png),
+  [11–15](receipts/issue-131-completion-math-3.png),
+  [16–19](receipts/issue-131-completion-math-4.png)) are retained.
+
+The audit finished at documentation-only head
+`0b4a58e653dd8af69650da3a577c4050cb294427`. That head's three CI jobs failed to
+acquire GitHub-hosted runners and ran **no steps**; those failures are not
+reported as passing tests. The final receipt push receives fresh current-head
+checks, whose observed result is recorded on PR #145. The PR remains draft
+until those checks pass.
 
 The older [foundation receipt](receipts/issue-131-validation.json),
 [input inventory](receipts/issue-131-inputs.json.gz) and
@@ -145,11 +188,11 @@ It did **not** cover the density/response/limit continuation or the subsequently
 integrated sibling work. Its 32,449-file inventory and earlier green CI are
 not current-head completion evidence.
 
-The final receipt must record the exact integrated input commit, all input
-hashes, complete audit log, exit status, current Python/symbolic/Markdown
-checks and current-head CI. Documentation-only follow-ups do not require a
-repeat Lean audit if the validation-input inventory remains byte-identical.
-CI does not replace the local source and transitive-axiom audit.
+The completion receipt records the exact integrated input commit, input hashes,
+complete audit log, exit status and local diagnostic evidence. Subsequent
+receipt/documentation commits change no validation input, so no duplicate Lean
+audit is required or run. Current-head CI is recorded separately on PR #145;
+it does not replace the local source and transitive-axiom audit.
 
 ## Remaining scope
 
