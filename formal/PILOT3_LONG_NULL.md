@@ -15,7 +15,9 @@ transport and analytic premises are derived, not postulated. This is not the
 short producer (#126), final deterministic/expected assembly (#80), a new
 expectation bridge, shrinking-cutoff uniformity, a full-action rate, an
 all-dimensional extension, or sample-wise convergence. Independent human
-mathematical review remains separate and outstanding.
+mathematical review remains separate and outstanding. The subsequent
+[#80 assembly](PILOT3_LIMIT.md) combines this producer with #126's actual
+short theorem and then transfers the full limit through the separate bridge.
 
 ## Exact shared split and producer signatures
 

@@ -21,7 +21,10 @@ specialization. It includes admissible disconnected/annular controls, regular
 2D endpoint counting and exact compatibility for every original 4D C³ member;
 [its integration ledger](../formal/PILOT3_INTEGRATION.md) states the precise
 scope. The historical #92 delivery and written all-dimensional statements
-below are not promoted wholesale to new Lean theorems or pilot action limits.
+below are not promoted wholesale to new Lean theorems. The later
+[#80 assembly](../formal/PILOT3_LIMIT.md), using #125/#126's actual formal
+producers, now proves the deterministic and expected limits for exactly this
+smooth 3D pilot; it does not generalize the all-dimensional candidate.
 
 Read with [the dimensional kernel contracts](dimension-kernels.md),
 [the checked ambient transport](../formal/DIMENSION_INTERVALS.md), and
@@ -475,7 +478,9 @@ E(d,r):\quad&\forall(h,f)\in\mathrm{CandidateTwoFace}(d,r),\quad
 ```
 
 Neither is a premise of admissibility. The 3D pilot asks for D(3,infinity)
-first, then E(3,infinity) via the separate exact identity. Both are **open**.
+first, then E(3,infinity) via the separate exact identity. Both now have
+[separate unconditional Lean proofs](../formal/PILOT3_LIMIT.md) on the unchanged
+smooth pilot, after the actual #125/#126 producer proofs.
 D(4,3) and E(4,3) have the existing checked proofs under the exact identification
 in §4; no general-dimensional consequence follows. All other global claims
 stay open under #24, even though their finite geometry is proved in writing.
@@ -485,7 +490,7 @@ stay open under #24, even though their finite geometry is proved in writing.
 | #78 | `SmoothPilot3`, actual M, product volume and action (G16) | Actual fixed-cutoff overlap disintegration and sufficient averaged jet, or a precise obstruction |
 | #79 | The **same** pilot/action and independent target (G13) | Short-overlap estimates, signed coefficient and target identification; a planar base theorem if that route is used |
 | #77 (completed) | Bounded measurable causally convex M from Theorem G | The separate checked identity is available; #115 supplies the smooth 3D and unchanged 4D constructors, not a general-dimensional geometry class |
-| #80 | D(3,infinity), then E(3,infinity) | Assemble compatible complete signed short/long pieces, then transfer via #77 |
+| #80 | D(3,infinity), then E(3,infinity) | Completed separately in `Pilot3Limit`: compatible actual signed pieces at one fixed cutoff, then #77 transfer; not all dimensions |
 
 In particular the source overlap is always the actual
 $`V_M(z)=\int 1_M(x)1_M(x+z)\,dx`$, with every endpoint component retained.
