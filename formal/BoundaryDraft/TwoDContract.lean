@@ -7,7 +7,8 @@ Physical dimension two means ONE spatial coordinate. This is #92's smooth
 candidate, not a relabelled three-dimensional theorem. All components and
 positive-height critical points are retained. The target is fixed from the
 actual normals and the existing zero-dimensional Hausdorff measure BEFORE
-any action asymptotics. The two limit propositions below remain open in Lean.
+any action asymptotics. The unchanged limit propositions below are proved
+unconditionally in `TwoDLimit`, with expectation transfer performed afterward.
 -/
 
 open MeasureTheory Set Filter
@@ -73,7 +74,8 @@ def twoDAction (ρ : ℝ) (h f : TwoDSpace → ℝ) : ℝ :=
   dimensionWeightedAction 1 (dimensionPointCoefficient 2) (dimensionPairCoefficient 2)
     (dimensionIntervalCoefficient 2) ρ (twoDRegion h f) (fun _ => 1)
 
-/-- Open formal target, NOT a theorem or an admissibility field. -/
+/-- Deterministic limit contract, NOT an admissibility field. Its proof term
+is `twoDDeterministicGoal` in `TwoDLimit`. -/
 def TwoDDeterministicGoal : Prop :=
   ∀ h f, SmoothTwoD h f →
     Tendsto (fun ρ => twoDAction ρ h f) atTop (𝓝 (twoDBoundaryIntegral h f))

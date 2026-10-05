@@ -179,7 +179,8 @@ theorem expectedAction_eq {ρ : ℝ} (hρ : 0 < ρ) :
 
 end SmoothTwoD
 
-/-- Conditional transfer, not a proof of either open proposition. -/
+/-- Conditional transfer alone is not a proof of either proposition.
+Unconditional deterministic assembly and subsequent transfer live in `TwoDLimit`. -/
 theorem twoDExpectedGoal_iff : TwoDExpectedGoal ↔ TwoDDeterministicGoal := by
   constructor
   · intro hg h f hf
