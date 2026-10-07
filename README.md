@@ -503,6 +503,15 @@ a thin flat-torus slab calculation and a precise focusing-route obstruction,
 with separate regressions and follow-up contracts. It supplies **no new Lean
 verification or general-metric/atlas coverage theorem**; #81/#24 remain open.
 
+The [#139 sphere-circle focusing producer](notes/sphere-circle-focusing.md)
+now derives the actual endpoint-averaged antipodal-neighborhood density in
+writing. An exact circle/time reduction retains transverse separations and
+closing time contacts; a summable primitive jet proves signed cut-neighborhood
+cancellation without a smooth phase inverse through the focusing transition.
+The exact short/off-cut complement remains explicit and requires a matched
+producer. This is not a complete-action limit or counterexample, a new Lean
+result, or independent human review; #81/#24 remain open.
+
 The [#136 nonpolynomial short/assembly proof](notes/nonpolynomial-short-limit.md)
 consumes that gate's actual long estimate for `Omega(t)=1/(1-t)`. It derives
 the signed full/face/corner estimates for smooth original two-face regions
