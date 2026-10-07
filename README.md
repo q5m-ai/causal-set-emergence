@@ -503,6 +503,16 @@ a thin flat-torus slab calculation and a precise focusing-route obstruction,
 with separate regressions and follow-up contracts. It supplies **no new Lean
 verification or general-metric/atlas coverage theorem**; #81/#24 remain open.
 
+The [#136 nonpolynomial short/assembly proof](notes/nonpolynomial-short-limit.md)
+consumes that gate's actual long estimate for `Omega(t)=1/(1-t)`. It derives
+the signed full/face/corner estimates for smooth original two-face regions
+inside `abs(t)<1/2`, retaining both endpoint measures, moving diagonal strips,
+both spacetime-face fluxes and the compensating joint flux. It then proves
+the complete deterministic bulk-plus-joint limit and applies #93's genuine
+expectation equality. This is **written analysis with executable regressions**,
+not a compiled curved limit or independent human review. The general-metric,
+other-dimension/stratum and sample-wise gaps under #81/#24 remain open.
+
 ## Program 2 — dynamics and automaton-like growth
 
 The exploratory question is whether causal-set dynamics can be represented as
