@@ -487,13 +487,13 @@ With R=u/v, D=d/v, z0=Z_i(y,0), t=f(Z_i(y,s))-alpha vD, the ratio phase is
 
 ```math
 \begin{aligned}
-\|D-D_0\|_{C^3_R}+\|t-f(z_0)\|_{C^3_R}
- +\|\Phi-R\sqrt{q(f(z_0))}\|_{C^3_R}&\le Cv,\\
-\|d_s\|_{C^2_R}+\|G_i(y,s)-G_i(y,0)\|_{C^2_R}&\le Cv,\\
+&\|D-D_0\|_{C^3_R}+\|t-f(z_0)\|_{C^3_R}
+ +\|\Phi-R\sqrt{q(f(z_0))}\|_{C^3_R}\le Cv,\\
+&\|d_s\|_{C^2_R}+\|G_i(y,s)-G_i(y,0)\|_{C^2_R}\le Cv,\\
 a^J(w,v)&=v^3\Psi(v,w/v^2),\\
-\Psi&=\left.\frac{(1-\beta)D^2(1-R)^2G_i(y,s)q(t)q(t+v(1+R)/2)}
- {8(1-\beta d_s)\Phi_R}\chi(t,Z_i)\phi(t+v(1+R)/2,Z_i+v(1-R)n/2)
- \right|_{R=U},\\
+W_i&=\chi(t,Z_i)\phi(t+v(1+R)/2,Z_i+v(1-R)n/2),\\
+\Psi&=\left.\frac{(1-\beta)D^2(1-R)^2G_i(y,s)q(t)q(t+v(1+R)/2)W_i}
+ {8(1-\beta d_s)\Phi_R}\right|_{R=U},\\
 \Psi&=\Psi_0+E,\qquad |\partial_\zeta^jE|\le Cv\ (j=0,1,2),
  \quad |E_v|\le C.
 \end{aligned}\tag{N23}
