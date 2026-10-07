@@ -55,6 +55,17 @@ def spatialVolume : Measure (Space L) :=
   (volume : Measure (AddCircle L)).prod
     ((volume : Measure (AddCircle L)).prod (volume : Measure (AddCircle L)))
 
+/-- The declared volume is the pushforward of ordinary product length on a
+fundamental cube. This fixes its geometric normalization independently of BDG. -/
+theorem quotientVolume :
+    MeasurePreserving (fun p : ℝ × ℝ × ℝ =>
+      ((p.1 : AddCircle L), (p.2.1 : AddCircle L), (p.2.2 : AddCircle L)))
+      ((volume.restrict (Ioc 0 L)).prod
+        ((volume.restrict (Ioc 0 L)).prod (volume.restrict (Ioc 0 L)))) (spatialVolume L) := by
+  have h := AddCircle.measurePreserving_mk L 0
+  simp only [zero_add] at h
+  exact h.prod (h.prod h)
+
 instance : IsFiniteMeasure (spatialVolume L) := by unfold spatialVolume; infer_instance
 
 instance circleVolume_noAtoms : NoAtoms (volume : Measure (AddCircle L)) := ⟨fun x => by

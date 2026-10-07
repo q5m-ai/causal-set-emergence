@@ -31,6 +31,9 @@ import BoundaryDraft.DimensionDiscrete
 import BoundaryDraft.DimensionMeasureExpectation
 import BoundaryDraft.DimensionExpectation
 import BoundaryDraft.DimensionExpectationCompatibility
+import BoundaryDraft.MeasuredOrderBDG4Compatibility
+import BoundaryDraft.CompactTorus
+import BoundaryDraft.SphereCircle
 import BoundaryDraft.Pilot3Contract
 import BoundaryDraft.Pilot3RegularHeight
 import BoundaryDraft.Pilot3Geometry
