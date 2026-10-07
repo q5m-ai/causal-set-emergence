@@ -634,6 +634,24 @@ of expectation with a random limit. Empty regions give zero throughout.
 This is a **written application** of the checked finite-density theorem, not
 a newly compiled instance or a compiled curved limit.
 
+```text
+PROVED IN WRITING CShortAndAssembly(h,f,chi,phi):
+  smooth original AdmissibleTwoFace; closure in abs(t)<1/2; fixed C5 fields
+  Omega=(1-t)^(-1) on the controlled slab; actual H from the rest diamond
+  derive full/face/corner signed estimates at one sufficiently small fixed cutoff
+  consume #133's contact-averaged long theorem at that same cutoff
+  actual weighted action -> B_chi,phi + N_chi,phi + I_chi,phi
+  unit fields: actual conformalAction -> 6*mu_g(M) + induced variable-angle joint
+
+PROVED IN WRITING CExpectedLimit(h,f):
+  same geometry and factor, globally measurable extension as specified above
+  discharge ControlledConformalFactor; apply #93's positive-density equality
+  genuine discreteBDGAction expectation -> the same independent bulk + joint
+```
+
+These are written theorem contracts, not compiled declarations or hypotheses
+inserted into admissibility.
+
 ## 8. Nonvacuous examples and verification ledger
 
 For #133's exact unequal-axis member use
