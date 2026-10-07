@@ -201,7 +201,7 @@ independently checks:
 | No target defined from action coefficients | No curvature/joint target is introduced or modified |
 | Incremental development, final integrated local gate | Recorded below and in the validation receipt |
 
-Final Lean-affecting input commit:
+Initial implementation's final Lean-affecting input commit:
 `f0aa46acefe27e753d0839ddaa90853a7e159b4f`.
 The pinned-base incremental gate and the required fresh full local
 `formal/check.sh` **passed** on that input. With the default two workers, the
@@ -225,8 +225,36 @@ tests** passed. New mathematical contracts are Lean code; no rendered equations
 were changed. PR CI is recorded separately on the PR's current head, not treated
 as a substitute for this local proof audit.
 
-No merge, deployment, or closure of #81/#24 is performed. Independent human
-mathematical review remains separate. This bounded finite-density foundation
+### Integrated merge validation
+
+After the user authorized incorporating the latest integration branch and
+merging PR #146, `0bfc8bb3d6dce188c39414fedef5e0a3bd646dd5` was merged
+without conflicts. The resulting Lean-input commit is
+`f8a6e992bda243498a92c201b4e1c36e3c7d37f8`. It includes the newly integrated
+2D Lean package; the compact measured-order source modules are unchanged.
+The inherited Python CI timeout is now thirty minutes.
+
+The [integrated receipt](receipts/pr-146-integrated-validation.json),
+[complete inventory](receipts/pr-146-integrated-inputs.sha256.gz),
+[full audit log](receipts/pr-146-integrated-full-audit.log.gz) and
+[timing record](receipts/pr-146-integrated-full-audit.time.txt) record a fresh
+successful `formal/check.sh` after integration: **336 per-source checks**, then
+**3,410 public theorems and all public definitions**, with the same warning and
+transitive-axiom gates. Default two workers; wall time **3:01:23**; maximum
+single-process RSS 2,930,764 KiB. All **13,630 input hashes** matched before and
+after the audit. Dependency pins and tracked dependency files are unchanged.
+
+The integrated local symbolic checks and all **347 Python tests** passed,
+along with Markdown lint and its **20 tests**. All three applicable CI checks
+passed on the integrated Lean-input head; final documentation-head CI is
+verified separately before merge. The one bounded review snapshot had no
+formal reviews, no inline comments and no actionable findings. Its only bot
+summary covers the earlier head, not the integrated commit. Subsequent
+changes are documentation/receipt-only; no redundant full Lean audit is needed.
+
+Merge into `issue-81-general-coverage` is now user-authorized; this receipt does
+not itself claim a completed merge. No deployment or closure of #81/#24 is
+authorized. Independent human mathematical review remains separate. This bounded finite-density foundation
 does not establish arbitrary Lorentzian manifold coverage, curvature/joint
 identities, the thin-torus action limit, a sphere-cut-neighborhood estimate,
 noncompact extensions, rates, or sample-wise convergence.

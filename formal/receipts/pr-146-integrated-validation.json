@@ -1,0 +1,68 @@
+{
+  "pull_request": 146,
+  "issue": 137,
+  "repository": "q5m-ai/causal-set-emergence",
+  "base_branch": "issue-81-general-coverage",
+  "integrated_base_commit": "0bfc8bb3d6dce188c39414fedef5e0a3bd646dd5",
+  "lean_input_commit": "f8a6e992bda243498a92c201b4e1c36e3c7d37f8",
+  "lean_input_formal_tree": "d19856b6fa0ddb6bb17ef7fed74f488f627a8c40",
+  "base_incorporation": "Non-fast-forward merge; no conflicts; compact measured-order sources unchanged. Includes integrated 2D Lean package and inherited thirty-minute Python CI timeout.",
+  "full_local_audit": {
+    "command": "cd formal && ./check.sh",
+    "workers": 2,
+    "started_at": "2026-10-07T19:00:05Z",
+    "completed_at": "2026-10-07T22:01:29Z",
+    "exit_status": 0,
+    "elapsed": "3:01:23",
+    "maximum_process_rss_kib": 2930764,
+    "local_lean_sources_including_aggregate": 337,
+    "per_source_checks": 336,
+    "aggregate_public_theorems": 3410,
+    "aggregate_public_definitions": "all",
+    "warnings_as_errors": true,
+    "allowed_transitive_axioms": ["propext", "Classical.choice", "Quot.sound"],
+    "log": "pr-146-integrated-full-audit.log.gz",
+    "log_gzip_sha256": "a45928c119f7bc8fbd9d9b8a655ba74e831c4299c87cd97ac73b58c56bea0520",
+    "timing": "pr-146-integrated-full-audit.time.txt"
+  },
+  "input_inventory": {
+    "file": "pr-146-integrated-inputs.sha256.gz",
+    "files": 13630,
+    "uncompressed_sha256": "141de664865d376c268ef852523fbaa4cd7abcc8da0bdc64fc65376c7d759f1b",
+    "gzip_sha256": "c89f24ca56a05c3d7542f21ecea67be76513642aee13d8229c884f7ddf28fd49",
+    "before_after_identical": true,
+    "selection": "All files under formal with suffix .lean, .olean or .so, or basename check.sh, lean-toolchain, lakefile.toml or lake-manifest.json, excluding .git directories; plus the task-local Lean and Lake executables. Paths are relative to formal. Includes local, dependency, and task-local toolchain files.",
+    "ordering": "lexicographic path order; each line is SHA-256, two spaces, relative POSIX path, newline",
+    "documentation_only_followup": true,
+    "dependency_pins_and_tracked_files_unchanged": true
+  },
+  "other_local_validation": {
+    "incremental_command": "cd formal && LEAN_NUM_THREADS=2 ./check.sh --incremental --base origin/issue-81-general-coverage",
+    "incremental_result": "passed",
+    "symbolic_checks": "passed",
+    "python_version": "3.12.3",
+    "python_dependencies": "unchanged requirements.txt",
+    "python_unittest_count": 347,
+    "python_unittest_seconds": 991.260,
+    "python_unittest_result": "passed",
+    "markdown_lint": "passed",
+    "markdown_unittest_count": 20,
+    "markdown_unittest_result": "passed"
+  },
+  "integration_head_ci": {
+    "head": "f8a6e992bda243498a92c201b4e1c36e3c7d37f8",
+    "applicable_checks": "All passed: math-authoring, deterministic-diagnostics, Quality and exact image",
+    "production_jobs": "skipped as configured",
+    "note": "Final documentation-head checks are separately verified on the PR before merge. This receipt is not a deployment or post-merge release receipt."
+  },
+  "bounded_review": {
+    "snapshot_head": "f8a6e992bda243498a92c201b4e1c36e3c7d37f8",
+    "formal_reviews": 0,
+    "inline_comments": 0,
+    "conversation_comments": 1,
+    "disposition": "No actionable findings. Only a bot completion summary for earlier head ed08bea; not claimed current-head review.",
+    "fix_batches": 0,
+    "independent_human_mathematical_review": "not claimed"
+  },
+  "scope": "Finite-density compact measured-order foundation only. No new continuum limit, curvature/joint target, interval-lifting theorem, focusing estimate, rate or sample-wise convergence. Merge into the integration branch is user-authorized; no deployment or closure of issues 81 or 24."
+}
