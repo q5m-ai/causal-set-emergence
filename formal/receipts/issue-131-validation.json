@@ -1,0 +1,83 @@
+{
+  "audited_lean_input_commit": "508a48acacb3d5d69af2182e78d1ff45f00d840d",
+  "command": "cd formal && LEAN_NUM_THREADS=2 ./check.sh",
+  "full_audit": {
+    "aggregate_all_public_definitions": true,
+    "aggregate_public_theorems": 2987,
+    "allowed_transitive_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "compressed_log_sha256": "1b6764007814b667dbfec4fafbff0745e61c211ef72dbf55fdd56409d3df086a",
+    "exit_status": 0,
+    "finished_at": "2026-10-05T16:18:09Z",
+    "local_lean_sources": 287,
+    "log": "issue-131-full-audit.log.gz",
+    "log_sha256": "79ae1d143171e18d1eb7e5dfd55c357de47b849b19581c9c578479750df94376",
+    "maximum_single_process_rss_kib": 2976860,
+    "per_source_checks": 286,
+    "started_at": "2026-10-05T13:41:25Z",
+    "wall_time": "2:36:43",
+    "warnings_as_errors": true
+  },
+  "github_math": {
+    "all_mathml": true,
+    "commit": "e130c385606c6ef96e60693b94c22ec962019298",
+    "display_equations": 19,
+    "evidence_sha256": "3c9bafce4c939b7180544af0e0ec4550a2c9712bfeb225e7b53022b1b17c8527",
+    "local_browser_font_fix": "Scoped Fontconfig with installed-in-temp STIX/math fonts; no source change.",
+    "path": "notes/two-d-limit.md",
+    "rendering_errors": 0,
+    "source_sha256": "90bd91d8e53439a2ab82aa59d3af75535bfb06d073e8813919041034fa6a6828",
+    "visual_content_and_layout_checked": true
+  },
+  "head_at_full_audit_finish": "e130c385606c6ef96e60693b94c22ec962019298",
+  "incremental": {
+    "base": "d41a062aba04552f1db42e9f3d59cb242ec6ed09",
+    "exit_status": 0,
+    "full_audit": false,
+    "log_sha256": "38bb65cdf01af3c53de620ef59b6be20eab491221e9d4c7fd53af8cd92997508",
+    "wall_time": "14:22.79"
+  },
+  "independent_human_mathematical_review": "not supplied",
+  "initial_ci": {
+    "head": "e130c385606c6ef96e60693b94c22ec962019298",
+    "passed": [
+      "Quality and exact image",
+      "deterministic-diagnostics",
+      "math-authoring"
+    ],
+    "production_jobs": "skipped as configured for non-main pull requests"
+  },
+  "inputs": {
+    "compressed_sha256": "d7b89a20d0d500baac89424583936b753fbc949e945ebff7d747367e6e42afa5",
+    "files": 32449,
+    "manifest": "issue-131-inputs.json.gz",
+    "post_audit_regeneration_byte_identical": true,
+    "subsequent_documentation_python_changes_affect_lean_inputs": false,
+    "uncompressed_sha256": "4bb93451a9b4573d4d8f60e9357edfc1708c99d4bec8958e1e3c4fa29cba5a82"
+  },
+  "markdown": {
+    "documents_linted": 59,
+    "exit_status": 0,
+    "tests": 20
+  },
+  "pinned_start": "d41a062aba04552f1db42e9f3d59cb242ec6ed09",
+  "python": {
+    "exit_status": 0,
+    "focused_two_d_tests": 13,
+    "log_sha256": "5a584f3c4a41bb1b292786d6a1dbc0bdd96e23614a9b73d9096416558f11024e",
+    "symbolic_exit_status": 0,
+    "symbolic_log_sha256": "70110e12bbd3da4e7a50c38ff0f1ce8a361867af69ebf17f8eb37e2d098792cf",
+    "tests": 289,
+    "wall_seconds": 580.648
+  },
+  "remaining_lean_producers": [
+    "#141",
+    "#142"
+  ],
+  "schema": 1,
+  "scope": "Finite geometry and finite-density 2D inputs; neither 2D global limit has a Lean proof term.",
+  "source_workers": 2
+}

@@ -1,0 +1,107 @@
+{
+  "audited_lean_input_commit": "8d2fe21b846d01673f2edd0f0c1cff7b62edc226",
+  "canonical_contracts": {
+    "TwoDContract_unchanged_except_docstrings": true,
+    "TwoDOverlap_byte_identical": true,
+    "comparison_commit": "011eafd7b469abbbe5ee8886498e495733f12139"
+  },
+  "command": "cd formal && LEAN_NUM_THREADS=2 ./check.sh",
+  "current_head_ci": "Recorded on PR #145 after the final documentation/receipt push; CI does not replace the local Lean audit.",
+  "feedback": {
+    "earlier_snapshot_consumed": true,
+    "new_snapshot_taken": false
+  },
+  "full_audit": {
+    "aggregate_all_public_definitions": true,
+    "aggregate_public_theorems": 3320,
+    "allowed_transitive_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "compressed_log_sha256": "70cd897b5ff14beb9cc550b2a1fe2c2defcdf01d4678fcce0786b69f605328fc",
+    "exit_status": 0,
+    "finished_at": "2026-10-05T22:44:06Z",
+    "local_lean_sources": 329,
+    "log": "issue-131-completion-full-audit.log.gz",
+    "log_sha256": "c62e70cf10d26596d404895042939c6c382b8647e08acd953828a06a973700ec",
+    "maximum_single_process_rss_kib": 2965580,
+    "per_source_checks": 328,
+    "started_at": "2026-10-05T19:48:18Z",
+    "wall_time": "2:55:48",
+    "warnings_as_errors": true
+  },
+  "github_math": {
+    "all_mathml": true,
+    "commit": "0b4a58e653dd8af69650da3a577c4050cb294427",
+    "display_equations": 19,
+    "evidence": "issue-131-completion-math.json.gz",
+    "evidence_sha256": "2006303feaad2ea1a54cb60d58ae96d7c92983b47388d30488f8b2b43f377985",
+    "font_setup": "Scoped Fontconfig with temporary math fonts; no repository source change.",
+    "independent_human_review": false,
+    "overflow": 0,
+    "path": "notes/two-d-limit.md",
+    "rendering_errors": 0,
+    "screenshots": {
+      "issue-131-completion-math-1.png": "92521dbdb9ae250791a4b00b0cde72ced3967ad3db88fde94bd5fd516a3a3fe1",
+      "issue-131-completion-math-2.png": "4d6d47de7cd9bf9e221f19ec05cabe48ae6c0bc2a87f7f894919135ced42fae7",
+      "issue-131-completion-math-3.png": "969985acf541466795d603b0d2681f7849b87aa0e80c8b4696a1e3fee7b9320b",
+      "issue-131-completion-math-4.png": "459de28120a0eab3b7b5248f4095189aa281b7bcf601424315b64d2125d8f55a"
+    },
+    "source_sha256": "db77350b4483dafabc5026769d37892864ed4d9a90481dc5a00a03f358fa2cd8",
+    "visual_content_and_layout_checked_by_coding_agent": true
+  },
+  "head_at_full_audit_finish": "0b4a58e653dd8af69650da3a577c4050cb294427",
+  "historical_foundation_receipt": "issue-131-validation.json",
+  "incremental": {
+    "base": "df7ef277ae8dc695396e359780ffd7be65b43e9a",
+    "exit_status": 0,
+    "finished_at": "2026-10-05T19:47:56Z",
+    "full_audit": false,
+    "log": "issue-131-completion-incremental.log.gz",
+    "log_sha256": "d61b8a21b9c7896c9e1dc431d11eda12b0eeeeba7ab888aed64f46b705f0ddb2",
+    "started_at": "2026-10-05T19:36:37Z"
+  },
+  "independent_human_mathematical_review": "not supplied",
+  "inputs": {
+    "compressed_sha256": "5e425e9d78a2e0fa94f92ac115d3496ddf1147b265ed3ff04d092d0583c88376",
+    "files": 32771,
+    "manifest": "issue-131-completion-inputs.json.gz",
+    "post_audit_regeneration_byte_identical": true,
+    "post_documentation_regeneration_byte_identical": true,
+    "subsequent_documentation_changes_affect_lean_inputs": false,
+    "uncompressed_sha256": "22da64b10cb4c6571391d344ed8de09fb2d4a7e6c41846c67067caab99a75ed6"
+  },
+  "integrated_ancestor": "df7ef277ae8dc695396e359780ffd7be65b43e9a",
+  "markdown": {
+    "documents_linted": 62,
+    "exit_status": 0,
+    "tests": 20
+  },
+  "merge_deployment_or_issue_closure": "not performed",
+  "pinned_start": "d41a062aba04552f1db42e9f3d59cb242ec6ed09",
+  "python": {
+    "command": ".venv/bin/python -m unittest -v",
+    "exit_status": 0,
+    "focused_two_d_tests": 13,
+    "log": "issue-131-completion-python.log.gz",
+    "log_sha256": "08376c9129b84289b86e00e3a9701d9cb5e7cb9f07c361a6e597bd4d9db09e2f",
+    "symbolic_command": ".venv/bin/python check_symbolic.py",
+    "symbolic_exit_status": 0,
+    "symbolic_log": "issue-131-completion-symbolic.log.gz",
+    "symbolic_log_sha256": "ae13649a28e75b2416c4ef78fe58bc4227b321234894670ce8ea354e889ddcb2",
+    "tests": 319,
+    "wall_seconds": 661.901
+  },
+  "pre_receipt_ci": {
+    "head": "0b4a58e653dd8af69650da3a577c4050cb294427",
+    "checks": ["Quality and exact image", "deterministic-diagnostics", "math-authoring"],
+    "status": "GitHub-hosted runner acquisition failed; no job steps executed",
+    "runs": [37365106368, 37365106439, 37365106559],
+    "production_jobs": "skipped"
+  },
+  "sample_wise_convergence": "not claimed",
+  "schema": 1,
+  "scope": "Unconditional smooth combined-budget flat global-graph 2D deterministic limit, then the independent Poisson-expectation limit; all local integrated sources audited.",
+  "source_workers": 2
+}

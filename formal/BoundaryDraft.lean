@@ -70,6 +70,15 @@ import BoundaryDraft.Pilot3Annulus
 import BoundaryDraft.Pilot3ShortLimit
 import BoundaryDraft.Pilot3Limit
 import BoundaryDraft.DimensionTwoEndpoints
+import BoundaryDraft.TwoDExamples
+import BoundaryDraft.TwoDOverlap
+import BoundaryDraft.TwoDLine
+import BoundaryDraft.TwoDShortDensity
+import BoundaryDraft.TwoDLongJet
+import BoundaryDraft.TwoDShortAngular
+import BoundaryDraft.TwoDLimit
+import BoundaryDraft.TwoDDisconnected
+import BoundaryDraft.TwoDExponentialTail
 import BoundaryDraft.DimensionFourGeometry
 import BoundaryDraft.NullTransverseCancellation
 import BoundaryDraft.KernelEstimates
