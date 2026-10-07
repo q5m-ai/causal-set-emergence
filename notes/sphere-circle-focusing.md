@@ -31,8 +31,9 @@ circle direction. There is **no** analogous unique-geodesic assumption on the
 sphere. Speed control and time Fubini give the actual restricted volume
 
 ```math
-V(\tau;p,q)=\int_X(\tau-d(p,z)-d(z,q))_+\,d\mathrm{vol}_h(z).
-\tag{F1}
+\begin{aligned}
+V(\tau;p,q)&=\int_X(\tau-d(p,z)-d(z,q))_+\,d\mathrm{vol}_h(z).
+\end{aligned}\tag{F1}
 ```
 
 A Lorentz boost in the lifted time/circle plane sends the endpoint difference
@@ -131,9 +132,10 @@ is **not** justified. The inverse needed below exists without doing that.
 Let `D` denote the positive coefficient, not a spatial distance:
 
 ```math
-D=\frac{8\pi}{3}\int_0^\pi\sin r
+\begin{aligned}
+D&=\frac{8\pi}{3}\int_0^\pi\sin r
        \sqrt{\frac{2r(\pi-r)}\pi}\,dr>0.
-\tag{F5}
+\end{aligned}\tag{F5}
 ```
 
 For antipodal endpoints F1 reads
@@ -199,12 +201,13 @@ Euclidean-plane counterpart. Write `sinc(v)=sin(v)/v`, continuously at zero.
 Their area ratio is
 
 ```math
-Q_\theta(r,s)=
+\begin{aligned}
+Q_\theta(r,s)&=
 \frac{\mathrm{sinc}(r)\mathrm{sinc}(s)}
 {\sqrt{
  \mathrm{sinc}((r+s+\theta)/2)\mathrm{sinc}((r+s-\theta)/2)
  \mathrm{sinc}((\theta+r-s)/2)\mathrm{sinc}((\theta-r+s)/2)}}.
-\tag{F8}
+\end{aligned}\tag{F8}
 ```
 
 This follows by factoring the cosine differences in F4; both maps have two
@@ -246,10 +249,11 @@ no zero in the chosen complex e disk, so its positive-at-zero square root
 continues there. The numerator is likewise entire in `r^2,s^2`. Moreover
 
 ```math
-Q_\theta(r(0),s(0))=
+\begin{aligned}
+Q_\theta(r(0),s(0))&=
 \sqrt{\frac{\mathrm{sinc}(\theta\ell)
                   \mathrm{sinc}(\theta(1-\ell))}{\mathrm{sinc}(\theta)}}.
-\tag{F10}
+\end{aligned}\tag{F10}
 ```
 
 Its integral is between positive constants times `a^(-1/2)`: the upper bound
@@ -260,10 +264,10 @@ on `|e|<c*a`. Its value at zero is bounded below. Shrinking a fixed `eta>0`
 once gives, on `0<=e<=eta*a`,
 
 ```math
-0\lt c_0\le h(a,e)\le C_0,
-\qquad |\partial_e^j h(a,e)|\le C_j a^{-j}
-\quad (j=0,1,2,3,4).
-\tag{F11}
+\begin{aligned}
+0&\lt c_0\le h(a,e)\le C_0,\\
+|\partial_e^j h(a,e)|&\le C_j a^{-j}\qquad (j=0,1,2,3,4).
+\end{aligned}\tag{F11}
 ```
 
 This proves the derivative bounds actually used for the inverse Taylor
@@ -271,11 +275,12 @@ expansion. It does not assume them from smoothness of the ambient metric.
 One useful independent check of its leading coefficient is
 
 ```math
-H(a,0)=\pi\theta^2\int_0^1\ell(1-\ell)
+\begin{aligned}
+H(a,0)&=\pi\theta^2\int_0^1\ell(1-\ell)
  \sqrt{\frac{\mathrm{sinc}(\theta\ell)
-                  \mathrm{sinc}(\theta(1-\ell))}{\mathrm{sinc}(\theta)}}\,d\ell,
-\qquad \sqrt a H(a,0)\longrightarrow\frac{3\sqrt2D}{16}.
-\tag{F12}
+                  \mathrm{sinc}(\theta(1-\ell))}{\mathrm{sinc}(\theta)}}\,d\ell,\\
+\sqrt a H(a,0)&\longrightarrow\frac{3\sqrt2D}{16}.
+\end{aligned}\tag{F12}
 ```
 
 The lightfront coordinate ell has normalized density `6*ell*(1-ell)` in D0.
@@ -288,11 +293,12 @@ Together with F5, F11 and monotonicity, this proves, for a common fixed small
 `e0>0`,
 
 ```math
+\begin{aligned}
 c\,\frac{e^2}{\sqrt{a+e}}
- \le W(\pi-a+e,\pi-a)
- \le C\,\frac{e^2}{\sqrt{a+e}},
-\qquad 0\lt a\le a_0,\quad 0\lt e\le e_0.
-\tag{F13}
+ &\le W(\pi-a+e,\pi-a)
+ \le C\,\frac{e^2}{\sqrt{a+e}},\\
+&0\lt a\le a_0,\qquad 0\lt e\le e_0.
+\end{aligned}\tag{F13}
 ```
 
 For `e<=eta*a` use F11. For `eta*a<=e<=4*a` use the value at `eta*a` for the
@@ -335,8 +341,8 @@ the primitive coefficients are explicitly
 
 ```math
 \begin{aligned}
-\alpha_1&=H_0^{-1/2},&
-\alpha_2&=-\frac{H_1}{2H_0^2},&
+\alpha_1&=H_0^{-1/2},\\
+\alpha_2&=-\frac{H_1}{2H_0^2},\\
 \alpha_3&=\frac{5H_1^2}{8H_0^{7/2}}-\frac{H_2}{4H_0^{5/2}},\\
 c_1(a)&=g_0\alpha_1,\\
 c_2(a)&=g_0\alpha_2+\tfrac12g_1\alpha_1^2,\\
@@ -407,8 +413,9 @@ phase. For the primitive remainder integrate by parts and set
 tends to zero. This proves the written cut-neighborhood theorem
 
 ```math
-\rho^{3/2}P_{\mathrm{cut}}(\rho)\longrightarrow0.
-\tag{F18}
+\begin{aligned}
+\rho^{3/2}P_{\mathrm{cut}}(\rho)&\longrightarrow0.
+\end{aligned}\tag{F18}
 ```
 
 This is signed cancellation, not an absolute-kernel estimate; replacing K by
