@@ -323,8 +323,8 @@ Using SC10–SC11, the two logarithmic coefficients in each radial integral are
 
 ```math
 \begin{aligned}
-[v\log v]&=\frac14,\\
-[v^2\log v]&=\frac1{720}
+\bigl[v\log v\bigr]&=\frac14,\\
+\bigl[v^2\log v\bigr]&=\frac1{720}
  +\frac14\left(\frac1{90}+\frac{k}{40}\right)
  +\frac{33k}{960}
  =\frac1{240}+\frac{13k}{320},\\
