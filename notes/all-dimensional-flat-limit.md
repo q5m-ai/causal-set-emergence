@@ -486,7 +486,7 @@ This replaces the global graph-envelope monotonicity used by the bounded
 #78 proof; it does not assume an overlap jet or discard contacts.
 
 **Null-active compact set and endpoint clearance.** Consider limits in
-K_spacetime squared of actual future-causal pairs in M, with v>=delta and
+(closure M) squared of actual future-causal pairs in M, with v>=delta and
 sigma tending to zero. This is a compact set of nonzero future-null pairs.
 The whole straight segment of each approximating pair lies in M by ambient
 interval containment; therefore the limiting segment lies in its closure.

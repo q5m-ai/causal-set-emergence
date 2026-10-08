@@ -84,9 +84,11 @@ point per chart is allowed. Finite volume, bounded weights, bounded interval
 volumes and the polynomial-exponential kernel give absolute integrability at
 each fixed positive density, so these sums and signed Fubini are legitimate.
 
-In the Minkowski producer ell=v. The time-only proposal from #150 and the
-time-plus-spatial-distance proposal from #151 are **not identified**. For any
-two short indicators I and I' the exact conversion is
+In the Minkowski producer ell=v. After coordination, #150 and #151 both
+select the gap of one fixed smooth Cauchy temporal function for their common
+manifold cutoff; this supersedes #151's earlier time-plus-distance proposal.
+That temporal cutoff is **not identified** with the flat radial-null cutoff.
+For any two short indicators I and I' the exact conversion is
 
 ```math
 \begin{aligned}
@@ -100,8 +102,8 @@ S_I-S_{I'}&=E_{I,I'},&L_I-L_{I'}&=-E_{I,I'}.
 There is no claim that E tends to zero. General-metric consumers must select
 one common cutoff or retain this exact signed conversion and prove its
 response. A local interval-containment lemma is required independently of
-small volume. Neither candidate separation is made a shared manifold
-definition by this document.
+small volume. The consumers' temporal-cutoff agreement does not assert a
+vanishing conversion term or create a shared Lean manifold definition.
 
 ## 3. Actual flat densities and analytic acceptance signatures
 
