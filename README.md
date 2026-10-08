@@ -512,6 +512,13 @@ The exact short/off-cut complement remains explicit and requires a matched
 producer. This is not a complete-action limit or counterexample, a new Lean
 result, or independent human review; #81/#24 remain open.
 
+The [partial #151 globalization work](notes/full-partner-globalization.md)
+proves the written manifold measurability/locality and exact full-partner atlas
+identities, plus weighted long cancellation for thin flat-torus slabs in every
+dimension. It retains the accepted focusing estimate and its full complement.
+The **general** cut-locus/critical-order estimate is still unproved: this is
+neither completion of #151 nor a general-action theorem or new Lean result.
+
 The [#136 nonpolynomial short/assembly proof](notes/nonpolynomial-short-limit.md)
 consumes that gate's actual long estimate for `Omega(t)=1/(1-t)`. It derives
 the signed full/face/corner estimates for smooth original two-face regions
