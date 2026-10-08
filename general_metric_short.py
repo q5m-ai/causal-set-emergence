@@ -57,8 +57,9 @@ def joint_geometry(metric, future_slope, height_gradient):
     """Independent normal/Gram geometry at a joint in a temporal graph chart.
 
     Unit spatial reference area; no field factors. Also return the raw tangent
-    *model* coefficient and compensating flux. Their sum is geometry, NOT an
-    actual face/corner limit. The empty Gram determinant implements 2D counting.
+    *model* coefficient and signed compensating flux. The geometric target is
+    raw_model - flux, NOT raw_model + flux or an actual face/corner limit.
+    The empty Gram determinant implements 2D counting.
     """
     g = np.asarray(metric, dtype=float)
     p = np.asarray(future_slope, dtype=float)
