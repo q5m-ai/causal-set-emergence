@@ -31,8 +31,10 @@ Smoothness suffices. More explicitly the following proof works with C-to-the-r
 faces and joint, where
 
 ```math
-r=r(d)=\max\{3,\lceil d/2\rceil+1\},\qquad
-N=\lfloor d/2\rfloor,\quad q=d/2,\quad n=d-1.
+\begin{aligned}
+r=r(d)&=\max\{3,\lceil d/2\rceil+1\},\\
+N&=\lfloor d/2\rfloor,\quad q=d/2,\quad n=d-1.
+\end{aligned}
 \tag{A1}
 ```
 
@@ -43,8 +45,10 @@ restricted to its tangent space; in dimension two its measure counts each
 endpoint once. Both face normals are future unit timelike. Independently set
 
 ```math
-\mathcal J(M)=\int_J\frac{C}{\sqrt{C^2-1}}\,dA_J,
+\begin{aligned}
+\mathcal J(M)&=\int_J\frac{C}{\sqrt{C^2-1}}\,dA_J,
 \qquad C=g(n_-,n_+)>1.
+\end{aligned}
 \tag{A2}
 ```
 
@@ -153,8 +157,10 @@ root T_i(y,z) of a=q_z(Phi_i(y,a)), with uniform collar clearance. The moving
 collar term in (A5) is the sum of
 
 ```math
-I_i(z)=\int dy\int_0^{T_i(y,z)}
+\begin{aligned}
+I_i(z)&=\int dy\int_0^{T_i(y,z)}
  W_i(y,a)[q_z(\Phi_i(y,a))-a]\,da.
+\end{aligned}
 \tag{A6}
 ```
 
@@ -211,8 +217,10 @@ Use sigma=tau squared minus r_0 squared and v=tau+r_0, with exactly the
 Jacobian j_d in the shared interface. The four actual basis densities are
 
 ```math
-F_{d,a}(\sigma)=\int_{\sqrt\sigma}^{\delta}j_d(\sigma,v)a\,dv,
-\quad a\in\{1,\tau,\tau^2,r_0^2\},\quad 0\lt\sigma\lt\delta^2.
+\begin{aligned}
+F_{d,a}(\sigma)&=\int_{\sqrt\sigma}^{\delta}j_d(\sigma,v)a\,dv,\\
+a&\in\{1,\tau,\tau^2,r_0^2\},\quad 0\lt\sigma\lt\delta^2.
+\end{aligned}
 \tag{A9}
 ```
 
@@ -221,11 +229,13 @@ let A_l be the coefficients of (1-X) to power d-2+k-p times (1+X) to power p,
 and put D=d-2+k. Direct integration of the finite Laurent polynomial gives
 
 ```math
-F_{d,a}(\sigma)=\frac1{2^{d-1+k}}\sum_l A_l\sigma^l
+\begin{aligned}
+F_{d,a}(\sigma)&=\frac1{2^{d-1+k}}\sum_l A_l\sigma^l
 \begin{cases}
 \displaystyle\frac{\delta^{D-2l}-\sigma^{(D-2l)/2}}{D-2l},&D\ne2l,\\
 \displaystyle\log\delta-\tfrac12\log\sigma,&D=2l.
 \end{cases}
+\end{aligned}
 \tag{A10}
 ```
 
@@ -331,18 +341,22 @@ derivative has norm at most 1/v. It is affine in sigma. The actual derivative
 bounds (A7), Leibniz and
 
 ```math
-\partial_\sigma^i j_d=
+\begin{aligned}
+\partial_\sigma^i j_d&=
  \frac{(-1)^i(d-2)!}{2^{d-1}(d-2-i)!}
- v^{d-3-2i}(1-\sigma/v^2)^{d-2-i}
- \quad(0\le i\le d-2)
+ v^{d-3-2i}(1-\sigma/v^2)^{d-2-i},\\
+&\hspace{2em}0\le i\le d-2.
+\end{aligned}
 \tag{A15}
 ```
 
 (the derivatives beyond d-2 are zero) prove
 
 ```math
-|\partial_\sigma^jF(v,\sigma)|\le C_{d,w}v^{d-2j}
+\begin{aligned}
+|\partial_\sigma^jF(v,\sigma)|&\le C_{d,w}v^{d-2j}
 \quad(0\le j\le N+1).
+\end{aligned}
 \tag{A16}
 ```
 
@@ -373,11 +387,13 @@ line is bounded by C sigma to power N+1 times the integral of v to power
 d-2N-2 from sqrt(sigma) to delta. Consequently
 
 ```math
-|B_R(\sigma)-P(\sigma)|\le
+\begin{aligned}
+|B_R(\sigma)-P(\sigma)|&\le
 \begin{cases}
 C\sigma^{N+1/2},&d=2N,\\
 C\sigma^{N+1}\left(1+\log\dfrac{\delta}{\sqrt\sigma}\right),&d=2N+1.
 \end{cases}
+\end{aligned}
 \tag{A18}
 ```
 
@@ -457,9 +473,11 @@ Weighted overlaps with bounded smooth weights have the same bounds.
 Nonnegative transport followed by signed Fubini proves exactly
 
 ```math
+\begin{aligned}
 L^\delta_{\chi,\phi}(\rho)
- =-\beta_d\rho^{1+2/d}\int_0^\infty
+ &=-\beta_d\rho^{1+2/d}\int_0^\infty
  B^\ge_{\chi,\phi}(\sigma)K_d(c_d\rho\sigma^{d/2})\,d\sigma.
+\end{aligned}
 \tag{A21}
 ```
 
@@ -537,8 +555,10 @@ finite compact integrals and are finite. Combining bounded support with this
 jet and the signed moment argument following (A18) proves
 
 ```math
-L^\delta_{\chi,\phi}(\rho)\longrightarrow0
+\begin{aligned}
+L^\delta_{\chi,\phi}(\rho)&\longrightarrow0
 \quad\text{for every fixed }0\lt\delta\lt\delta_L.
+\end{aligned}
 \tag{A22}
 ```
 
@@ -589,8 +609,10 @@ coordinate/action/law compatibility, not a redefinition of the observables.
 For every d, let 0<s<1 and take the symmetric capsule
 
 ```math
-l(x)=-\frac s2(1-|x|^2),\qquad
+\begin{aligned}
+l(x)&=-\frac s2(1-|x|^2),\qquad
 f(x)=\frac s2(1-|x|^2),\qquad |x|\lt1.
+\end{aligned}
 \tag{A23}
 ```
 
