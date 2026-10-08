@@ -61,6 +61,13 @@ remain in the order. Smooth volume is atomless. Ambient causal convexity, not
 global hyperbolicity by itself, identifies the restricted and ambient intervals
 for actual endpoints in M. Auxiliary pairs outside M use **ambient** interval
 volume only and cancel exactly in §5. They are not another observable.
+Finite-density Fubini is legitimate here: global hyperbolicity makes the causal
+relation closed, hence the three-variable interval indicator Borel. Integrating
+that indicator over the compact causal hull of §2 makes V measurable and
+bounded. Smooth volume is finite on that hull, the fields are bounded on their
+compact domains, and the polynomial-exponential kernel is bounded. Thus each
+pair integral and every finite signed sum below is absolutely finite. This is
+not a probability construction or an asymptotic estimate.
 
 ## 2. Uniform interval locality: a proved geometric lemma
 
@@ -168,7 +175,7 @@ separation between X and Y in midpoint normal coordinates, to degree four, is
 
 ```math
 \begin{aligned}
-2\sigma(X,Y)&=\eta(Y-X,Y-X)
+s_g(X,Y)&=\eta(Y-X,Y-X)
  +\tfrac13R_{acbd}(Y-X)^aX^c(Y-X)^bX^d+O((|X|+|Y|)^5).
 \end{aligned}\tag{G5}
 ```
@@ -303,7 +310,7 @@ Their omission cannot be justified by (G3)'s bounded-rapidity error.
 ## 5. Actual finite-density full/face/corner restoration on a finite atlas
 
 Here is an exact short identity that does not presuppose either missing task.
-In a temporal-flow joint chart write $`x=(t,z)`$,
+In a temporal-flow joint chart with $`t=\tau`$ write $`x=(t,z)`$,
 $`\ell(z)<t<f(z)`$, $`h(z)=f(z)-\ell(z)>0`$ on the physical spatial side.
 The functions $`t-\ell(z)`$ and $`t-f(z)`$ have future timelike metric-dual
 gradients after shrinking the chart. They strictly increase along future
