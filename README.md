@@ -515,9 +515,13 @@ result, or independent human review; #81/#24 remain open.
 The [partial #151 globalization work](notes/full-partner-globalization.md)
 proves the written manifold measurability/locality and exact full-partner atlas
 identities, plus weighted long cancellation for thin flat-torus slabs in every
-dimension. It retains the accepted focusing estimate and its full complement.
-The **general** cut-locus/critical-order estimate is still unproved: this is
-neither completion of #151 nor a general-action theorem or new Lean result.
+dimension. It retains the accepted 4D focusing estimate and its full complement.
+The [7D continuation](notes/seven-dimensional-focusing-obstruction.md) derives a
+**written complete-action obstruction** to the all-dimensional finite G-SS
+target: a matched caustic term survives actual short point cancellation.
+Its sign has an exact rational certificate. General caustic classification,
+independent human review and corrected umbrella assembly remain outstanding;
+PR #159 stays draft, with no new Lean result or issue closure.
 
 The [#136 nonpolynomial short/assembly proof](notes/nonpolynomial-short-limit.md)
 consumes that gate's actual long estimate for `Omega(t)=1/(1-t)`. It derives

@@ -19,7 +19,7 @@ from sphere_circle_focusing import interval_volume, time_weight
 
 class FullPartnerGlobalizationTests(unittest.TestCase):
     def test_actual_phase_density_matches_original_pairs_across_dimensions(self):
-        for d in (2, 3, 4, 5, 6, 9):
+        for d in (2, 3, 4, 5, 6, 7, 9):
             with self.subTest(d=d):
                 correlation = lambda tau, r: periodic_correlation(
                     d, 1., .4, tau, r, .7, -.4, 1.4, -.8)

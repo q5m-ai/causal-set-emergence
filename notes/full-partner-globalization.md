@@ -1,12 +1,16 @@
-# Full-partner globalization: proved foundations and the open producer (#151)
+# Full-partner globalization: foundations and a focusing obstruction (#151)
 
-**Partial implementation; #151 is NOT completed.** This note proves the
-finite-density manifold/atlas foundation and an actual all-dimensional,
-weighted long producer for **thin flat-torus slabs**. It consumes, without
-strengthening, the accepted sphere–circle cut-neighborhood result. It does
-**not** prove general nearly-null control, a general action limit, or a
-complete-action obstruction. In particular, no desired averaged estimate is
-an input to geometric admissibility. #151/#81/#24 remain open.
+**The universal producer remains unproved; #151 is not administratively
+completed.** This note proves the finite-density manifold/atlas foundation
+and an actual all-dimensional, weighted long producer for **thin flat-torus
+slabs**. It consumes, without strengthening, the accepted 4D sphere–circle
+cut-neighborhood result. The continuation now derives a
+[written 7D complete-action obstruction](seven-dimensional-focusing-obstruction.md)
+to the all-dimensional finite G-SS target, including the matched cut remainder,
+actual short point cancellation and complete complement. It is not a universal
+classification of nearly-null responses, a Lean theorem or independent human
+review. No desired averaged estimate is an admissibility input. #151/#81/#24
+remain open, and PR #159 remains draft for review/contract coordination.
 
 Base: `b86f5dadddaeb6a11299557ff28781e9b33ed743` on
 `origin/issue-81-general-coverage`, including #137 / PR #146 and #139 / PR #147.
@@ -29,17 +33,17 @@ With bounded real endpoint fields chi, phi, set
 
 ```math
 \begin{aligned}
-\ell(x,y)&=t(y)-t(x),\
-V_M(x,y)&=\mu_g\bigl(M\cap(J^+(x)\cap J^-(y)\setminus\{x,y\})\bigr),\
+\ell(x,y)&=t(y)-t(x),\\
+V_M(x,y)&=\mu_g\bigl(M\cap(J^+(x)\cap J^-(y)\setminus\{x,y\})\bigr),\\
 P^{\lt\delta}_{\chi,\phi}(\rho)
  &=\int_{M\times M}\mathbf1_{\{x\preceq y,\ \ell(x,y)\lt\delta\}}
-       \chi(x)\phi(y)K_d(\rho V_M(x,y))\,d\mu_g(x)d\mu_g(y),\
+       \chi(x)\phi(y)K_d(\rho V_M(x,y))\,d\mu_g(x)d\mu_g(y),\\
 P^{\ge\delta}_{\chi,\phi}(\rho)
  &=\int_{M\times M}\mathbf1_{\{x\preceq y,\ \ell(x,y)\ge\delta\}}
-       \chi(x)\phi(y)K_d(\rho V_M(x,y))\,d\mu_g(x)d\mu_g(y),\
+       \chi(x)\phi(y)K_d(\rho V_M(x,y))\,d\mu_g(x)d\mu_g(y),\\
 S^\delta_{\chi,\phi}
  &=a_d\rho^{2/d}\int_M\chi\phi\,d\mu_g
-       -\beta_d\rho^{1+2/d}P^{\lt\delta}_{\chi,\phi},\
+       -\beta_d\rho^{1+2/d}P^{\lt\delta}_{\chi,\phi},\\
 L^\delta_{\chi,\phi}&=-\beta_d\rho^{1+2/d}P^{\ge\delta}_{\chi,\phi},
 \qquad A_{\chi,\phi}=S^\delta_{\chi,\phi}+L^\delta_{\chi,\phi}.
 \end{aligned}\tag{G1}
@@ -71,8 +75,8 @@ conventions, their exact overlap correction is
 \begin{aligned}
 D_{s,s'}(\rho)&=-\beta_d\rho^{1+2/d}
  \int_{M\times M}\mathbf1_{\{x\preceq y\}}(s-s')(x,y)
- \chi(x)\phi(y)K_d(\rho V_M(x,y))\,d\mu_g(x)d\mu_g(y),\
-S_s-S_{s'}&=D_{s,s'},\
+ \chi(x)\phi(y)K_d(\rho V_M(x,y))\,d\mu_g(x)d\mu_g(y),\\
+S_s-S_{s'}&=D_{s,s'},\\
 L_s-L_{s'}&=-D_{s,s'}.
 \end{aligned}\tag{G2}
 ```
@@ -101,9 +105,9 @@ causal curve obeys
 
 ```math
 \begin{aligned}
-\mathrm{length}_h(\gamma)&\le m^{-1}\bigl(t(y)-t(x)\bigr),\
+\mathrm{length}_h(\gamma)&\le m^{-1}\bigl(t(y)-t(x)\bigr),\\
  d_h(x,z)&\le m^{-1}\bigl(t(y)-t(x)\bigr)
- \quad\text{for every }z\in J^+(x)\cap J^-(y),\
+ \quad\text{for every }z\in J^+(x)\cap J^-(y),\\
  &\hspace{35mm}x,y\in K,\quad x\preceq y.
 \end{aligned}\tag{G3}
 ```
@@ -204,10 +208,10 @@ give
 
 ```math
 \begin{aligned}
-\sum_{i,j}\chi_i(x)\phi_j(y)&=1,\
-\sum_{i,j}\int_M\chi_i(x)\phi_j(x)\,d\mu_g(x)&=\mu_g(M),\
+\sum_{i,j}\chi_i(x)\phi_j(y)&=1,\\
+\sum_{i,j}\int_M\chi_i(x)\phi_j(x)\,d\mu_g(x)&=\mu_g(M),\\
 \sum_{i,j}P^{\ge\delta}_{\chi_i,\phi_j}&=P^{\ge\delta}_{1,1},
-\qquad \sum_{i,j}S^\delta_{\chi_i,\phi_j}=S^\delta_{1,1},\
+\qquad \sum_{i,j}S^\delta_{\chi_i,\phi_j}=S^\delta_{1,1},\\
 \sum_{i,j}L^\delta_{\chi_i,\phi_j}&=L^\delta_{1,1}.
 \end{aligned}\tag{G4}
 ```
@@ -249,11 +253,11 @@ assumed density or jet,
 ```math
 \begin{aligned}
 N_{\chi,\phi}^\delta(w)
- &=\int_{M\times M}\mathbf1_{\{x\preceq y,\ \ell\ge\delta,\
+ &=\int_{M\times M}\mathbf1_{\{x\preceq y,\ \ell\ge\delta,
                            V_M\le c_dw^q\}}
-       \chi(x)\phi(y)\,d\mu_g(x)d\mu_g(y),\
+       \chi(x)\phi(y)\,d\mu_g(x)d\mu_g(y),\\
 P^{\ge\delta}_{\chi,\phi}(\rho)
- &=\int_{[0,\infty)}K_d(c_d\rho w^q)\,dN_{\chi,\phi}^\delta(w)\
+ &=\int_{[0,\infty)}K_d(c_d\rho w^q)\,dN_{\chi,\phi}^\delta(w)\\
  &=-c_d\rho q\int_0^\infty N_{\chi,\phi}^\delta(w)
                        w^{q-1}K_d'(c_d\rho w^q)\,dw.
 \end{aligned}\tag{G5}
@@ -271,7 +275,7 @@ moments annihilate its derivative polynomial. Rescaling gives the identity
 
 ```math
 \begin{aligned}
-E(w)&=\frac{N(w)-\sum_{j=1}^{n+1}b_jw^j}{w^{q+1}},\
+E(w)&=\frac{N(w)-\sum_{j=1}^{n+1}b_jw^j}{w^{q+1}},\\
 L^\delta_{\chi,\phi}(\rho)
  &=\beta_dq\,c_d^{-1-1/q}
    \int_0^\infty z^{2q}K_d'(z^q)
@@ -283,9 +287,13 @@ G6 is an identity for the **actual** cumulative measure, not a conditional
 completion theorem. It remains true when E is unbounded or does not tend to
 zero. Finite-density integrability follows from G5 and the subtracted
 polynomial. Choosing coefficients for which E has a useful averaged bound,
-or deriving the nonzero response when it does not, is exactly the missing
-general analytic work. Smoothness of g, compactness, atomlessness, finite
-partitions and G3 do not by themselves establish such a bound.
+or deriving the nonzero response when it does not, is the general analytic
+obligation. The [7D continuation, O9–O16](seven-dimensional-focusing-obstruction.md),
+now derives an actual long primitive mode proportional to `w^(7/2)` that no
+integer polynomial subtraction removes. Its G6 residual has a nonzero `1/w`
+leading term, and its signed response survives in the complete action after
+short point cancellation. Smoothness of g, compactness, atomlessness, finite
+partitions and G3 do not imply a vanishing or bounded critical residual.
 
 For comparison, a primitive mode `N(w)=w^r` near zero contributes, up to
 exponentially small fixed-phase truncation terms,
@@ -293,7 +301,7 @@ exponentially small fixed-phase truncation terms,
 ```math
 \begin{aligned}
 L_r(\rho)&=-\beta_d r\,c_d^{-r/q}
-             \rho^{1+(1-r)/q}M_d(r-1),\
+             \rho^{1+(1-r)/q}M_d(r-1),\\
 M_d(j)&=\frac2d\Gamma\left(\frac{2(j+1)}d\right)
           \prod_{k=1}^{n+1}\left(1-\frac{j+1}{k}\right),
 \qquad r>0.
@@ -337,15 +345,15 @@ If delta is at least T, the long domain is empty. Otherwise fix
 \begin{aligned}
 H_{\chi,\phi}(\tau,r,\omega)
  &=\int_X\int_{-T/2}^{T/2-\tau}
-       \chi(t,p)\phi(t+\tau,p+r\omega)\,dt\,d\mathrm{vol}_X(p),\
+       \chi(t,p)\phi(t+\tau,p+r\omega)\,dt\,d\mathrm{vol}_X(p),\\
 P^{\ge\delta}_{\chi,\phi}(\rho)
  &=\int_\delta^T\int_{S^{d-2}}\int_0^\tau
      r^{d-2}H_{\chi,\phi}(\tau,r,\omega)
-       K_d\bigl(c_d\rho(\tau^2-r^2)^q\bigr)\,dr\,d\omega\,d\tau,\
+       K_d\bigl(c_d\rho(\tau^2-r^2)^q\bigr)\,dr\,d\omega\,d\tau,\\
 B^\delta_{\chi,\phi}(w)
  &=\frac12\int_{\max(\delta,\sqrt w)}^T\int_{S^{d-2}}
        (\tau^2-w)^{(d-3)/2}
-       H_{\chi,\phi}(\tau,\sqrt{\tau^2-w},\omega)\,d\omega\,d\tau,\
+       H_{\chi,\phi}(\tau,\sqrt{\tau^2-w},\omega)\,d\omega\,d\tau,\\
 P^{\ge\delta}_{\chi,\phi}(\rho)
  &=\int_0^{T^2}K_d(c_d\rho w^q)B^\delta_{\chi,\phi}(w)\,dw.
 \end{aligned}\tag{G8}
@@ -377,9 +385,9 @@ produces coefficients and a bound
 ```math
 \begin{aligned}
 B^\delta_{\chi,\phi}(w)
- &=\sum_{j=0}^{n}b_jw^j+R(w),\
+ &=\sum_{j=0}^{n}b_jw^j+R(w),\\
 b_j&=\frac1{j!}\left.\frac{d^j}{dw^j}B^\delta_{\chi,\phi}(w)\right|_{w=0},
-\qquad |R(w)|\le Cw^{n+1},\
+\qquad |R(w)|\le Cw^{n+1},\\
 \frac{R(w)}{w^{d/2}}&\longrightarrow0.
 \end{aligned}\tag{G9}
 ```
@@ -450,23 +458,35 @@ from the cut-neighborhood theorem or this partition identity.
 | Full source/target atlas | Constructed finite smooth weights; G3 short locality; G4 and G2 exact restoration, genuine finite-density domination | General density-uniform remainder summability: **#151**; local remainders: #150 |
 | Order, volume, interval and expectation hypotheses | Derived conventionally in section 2 without replacing containment by GH | Universal manifold formal encoding/audit: #86; #137 supplies only its checked explicit instances |
 | Thin-torus and focusing stress tests | Actual weighted all-dimensional thin-torus long theorem; accepted focusing theorem instantiated after complete partition restoration | Thin-torus formal full limit #138; selected focusing complement #152 and assembly #153; arbitrary caustics still **#151** |
-| General producer or complete-action obstruction | **Neither established** | **#151 remains open**; final assembly #81/#86 cannot consume this as a completed general producer |
+| General producer or complete-action obstruction | **Written 7D complete-action obstruction**, [O3/O9/O15](seven-dimensional-focusing-obstruction.md); no universal producer | **#151** retains general caustic-response classification; #81/#86 own corrected assembly and independent review; issues remain open |
 
-The specific missing mathematical statement is not another admissibility
-field: starting from the actual G5 for every G-SS metric/region, derive enough
-critical-order primitive control (or an alternative signed estimate), with
-all null cut/conjugate neighborhoods and moving boundary contacts retained,
-to evaluate the normalized long term and match #150's actual short output.
-The sphere calculation depends on its explicit two-distance Jacobian and
-uniform regular-side comparison; no counterpart for arbitrary smooth
-Lorentzian cut geometry is proved here. The torus proof depends on a uniquely
-lifted flat interval; it cannot be transplanted to that geometry either.
+The remaining universal statement is not an admissibility field: starting
+from actual G5 for every G-SS metric/region, classify its critical-order signed
+responses with all cut/conjugate neighborhoods and moving contacts retained,
+then match #150's actual short output. A finite bulk-plus-joint target cannot
+be its conclusion unchanged: the continuation's complete 7D action diverges.
+The corrected statement there is its explicit complete-action asymptotic,
+not a no-caustics replacement of G-SS or an assumed universal counterterm.
 
-A failed smooth-inverse argument is not a complete-action counterexample.
-No new catch-all issue or corrected conjecture is justified by this partial
-work. Existing native #151 retains exactly its unsolved universal quantifier;
-#81/#24 remain open. No noncompact extension, shrinking cutoff, degenerating
-angle uniformity, full-action rate or sample-wise convergence is asserted.
+The attempted routes and exact failure are now more specific:
+
+1. G3 and finite-density domination do not bound G6 uniformly in density;
+   atomlessness supplies no normalized cut-neighborhood estimate.
+2. #139's aggregate cubic domination is valid in 4D, not a cellwise jet and
+   not dimension-independent. In 7D the next Taylor endpoint power is
+   `a^(-10/7)`, which is not integrable.
+3. Rather than discard that region, O9–O13 rescale and subtract the three
+   actual integrable primitive terms. The resulting integrable remainder
+   has a positive, rationally certified nonzero coefficient. O14–O16 retain
+   the complement and physical point, turning this into a complete-action
+   obstruction rather than an isolated sector diagnostic.
+
+The smallest decisive next step is independent checking of that matched
+coefficient and full point cancellation, followed by #81/#86's corrected
+coverage statement. Arbitrary Lorentzian caustic classification remains
+native #151 work; general short boundary fluxes remain #150 work. No new
+catch-all issue, silent core restriction, noncompact extension, shrinking
+cutoff, degenerating-angle uniformity or sample-wise claim is introduced.
 
 ## 8. Verification boundary
 
@@ -493,4 +513,6 @@ claimed; the existing integrated audit does not verify these written arguments.
 The PR records observed checks and browser mathematics separately. Independent
 human mathematical review remains under #94/#86. The PR targets the integration
 branch with `Refs #151`, not automatic closure language, and remains draft
-while the general analytic obligation is unproved.
+for review and general-contract coordination. The separate 7D note records its
+new written obstruction, exact sign arithmetic and finite diagnostics; it does
+not change the verification status of these general foundations.
