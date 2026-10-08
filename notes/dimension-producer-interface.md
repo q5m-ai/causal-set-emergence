@@ -167,19 +167,20 @@ Required producer outputs, never admissibility fields:
 
 ## 4. Ownership and coverage boundary
 
-#149 owns dimension-indexed **Minkowski** producers and their flat global
-assembly. Its proof must derive any useful graph coordinates from the G-SS
-geometry, not assume a combined slope budget or global causal envelopes.
+#149's [written all-dimensional Minkowski theorem](all-dimensional-flat-limit.md)
+supplies the actual flat producers and deterministic/expected assembly. It
+derives graph coordinates from G-SS achronality and containment, with no
+combined slope budget or global causal-envelope assumption.
 #150 owns genuine metric short coefficients/remainders; #151 owns the
 manifold nonlocal/atlas producer and compatible cutoff restoration. In
 particular flat quotients with holonomy or multiple null routes are not
 Minkowski regions merely because their curvature tensor vanishes. Their
 complete-action estimates remain with #151/#81 unless separately discharged.
 
-The intended finite-regularity bound for the flat argument is
-`r(d) = max(3, ceil(d/2)+1)`; its sufficiency must be proved by the producer,
-not inferred from smoothness or asserted for the historical C3 class in every
-dimension. The bounded 5D/6D written corollaries already in #132 are
+The written flat proof derives the sufficient finite-regularity bound
+`r(d) = max(3, ceil(d/2)+1)` from its primitive and rectifying-Jacobian
+derivative counts; it is not inferred from smoothness or asserted for the
+historical C3 class in every dimension. The bounded 5D/6D written corollaries already in #132 are
 calibrations, not new assembly progress. No formal port is introduced here;
 new written/compiled gaps and independent human review remain visible to #86.
 
