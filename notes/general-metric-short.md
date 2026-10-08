@@ -1,14 +1,16 @@
-# General-metric short geometry, model responses and remaining producers (#150)
+# General-metric short geometry and producer derivation (#150)
 
-**Partial delivery, not completion of #150.** This note proves uniform geometric
-locality, a bounded-rapidity interval expansion, all-dimensional **model**
-responses, and finite-density restoration identities on the general smooth
-G-SS core. It does **not** prove the general-metric normalized short remainder,
-single-face response or joint tangent comparison. The exact missing estimates
-are in §8 with native ownership. In particular, neither a metric Taylor
-coefficient nor the conditional estimate in §8 is called an actual analytic
-producer. #150/#81/#24 remain open. There is no new conformal pilot, full-action
-counterexample, deterministic limit, or expectation limit here.
+**Written short theorem, not a compiled proof or independent human review.**
+This note derives uniform geometric locality, bounded-rapidity interval
+coefficients, all-dimensional model responses, independent target geometry
+and exact finite-density restoration. Its
+[signed-remainder continuation](general-metric-short-remainders.md) now derives
+GM-S1, GM-S2 and GM-S3 from the actual metric interval, in that order: null-edge
+rescaling and signed remainder, entire single-face response, and actual moving
+corner comparison. The acceptance map is §8. Model coefficients and tests
+remain distinct from those proofs. The general **short** theorem is (S30);
+no general long, full-action or expectation limit is inferred. #81/#24 remain
+open, with nonlocal analysis owned by #151. No new conformal pilot is used.
 
 Base: `0bfc8bb3d6dce188c39414fedef5e0a3bd646dd5` on
 `origin/issue-81-general-coverage`. The accepted written
@@ -26,6 +28,11 @@ was also inspected: its constants, volume phase, signed pieces and exact cutoff
 conversion agree with this note. Its flat radial-null cutoff is not identified
 with the temporal gap. This is interface coordination, not mathematical review.
 Shared coefficients are consumed from [dimension-kernels §§1–4](dimension-kernels.md).
+The continuation also inspected #149's Minkowski producer at `7eb3313` and
+[#151's new written focusing obstruction at `db69142`](https://github.com/q5m-ai/causal-set-emergence/blob/db691421624f0e598fe9e80a660cccaac4db499a/notes/seven-dimensional-focusing-obstruction.md).
+Its seven-dimensional slab is directly covered by the short theorem's (S31);
+no unfinished long or flat-manifold conclusion is assumed, and none of this
+coordination is independent mathematical review.
 
 ## 1. Frozen geometry and observable
 
@@ -250,7 +257,8 @@ $`K''`$ term. In conformal coordinates there **is** such a term; this is a
 coordinate difference, not permission to drop it in #76/#136. The source
 factor $`d\mu_g(x)`$ stays outside (G7) without being frozen. Extending this
 polynomial model over the whole tangent cone is algebraically well defined;
-(G3) does not justify replacing the actual integral by that extension.
+(G3) does not justify replacing the actual integral by that extension. That
+replacement is proved separately in the continuation, (S1)–(S19).
 
 ## 4. All-dimensional signed responses of the model, not an actual bulk limit
 
@@ -302,10 +310,11 @@ tails also vanish after the respective normalizations. Therefore the model
 
 No coefficient was fixed by demanding the final line. This calculation consumes
 the canonical kernel recurrence/normalization in #149's convention and works
-also in 2D. It leaves **two** analytic tasks open: the actual-minus-model signed
-estimate on the full cone including its null edge, and the cutoff-overlap
-term converting the affine calculation to the selected geometric cutoff.
-Their omission cannot be justified by (G3)'s bounded-rapidity error.
+also in 2D. The model calculation alone leaves **two** analytic tasks: the
+actual-minus-model signed estimate on the full cone including its null edge,
+and the cutoff-overlap term converting the affine calculation to the selected
+geometric cutoff. The continuation proves them in (S1)–(S19), including the
+nonzero 2D moving-diagonal contact. Neither follows from (G3)'s error.
 
 ## 5. Actual finite-density full/face/corner restoration on a finite atlas
 
@@ -374,7 +383,8 @@ measures and the scalar ambient interval. Finite linearity therefore proves
 (G11) at each density, including overlaps of positive measure. This is exact
 cancellation/restoration of artificial chart restrictions **before** asymptotic
 expansion, not proof that hypothetical chartwise limiting fluxes cancel.
-That latter step needs the summable estimates in §8. Cross-component pairs are
+That latter step uses the summable estimates mapped in §8 and proved in
+(S10)–(S13), (S22) and (S27) of the continuation. Cross-component pairs are
 always retained if present for the selected order.
 
 ## 6. Independent induced geometry and the compensating-flux ledger
@@ -411,7 +421,8 @@ arbitrary area measure. Put $`b_*=g^{-1}(\alpha_+,dh)`$, so $`c=s_++b_*`$.
 The tangent corner model using the linear future gap
 $`\alpha_+(\Delta)`$ has depth triangle $`\alpha_+(\Delta)^2/2`$.
 Applying (G8) with both constant endpoint measures gives its normalized
-negative-pair response $`w\chi\phi s_+/k`$. This is only the **model** response.
+negative-pair response $`w\chi\phi s_+/k`$. This calculation is the **model**
+response; the actual comparison is the continuation's (S26)–(S29).
 The difference from the independent joint coefficient is exactly the flux
 
 ```math
@@ -429,8 +440,9 @@ at h=0 is $`-dh/k`$. Any artificial edge has compactly supported weight; if
 one uses sharp chart cuts instead, its extra boundary flux must be included
 on both neighboring pieces. No metric or trace derivative in this divergence
 is declared zero. Formula (G13) specifies the compensation a face/corner
-producer must account for; it **does not prove** that the actual face integral
-has this response or exclude additional contributions.
+producer must account for; the identity by itself does not prove that the
+actual face integral has this response or exclude additional contributions.
+The continuation derives its complete signed face response in (S20)–(S25).
 
 Independently, Green's identity on the piecewise smooth region gives **both**
 oriented spacetime-face fluxes:
@@ -481,6 +493,10 @@ a positive lower bound on coordinate displacement is **not** a positive lower
 bound on interval volume. The same formula on auxiliary domains is needed when
 comparing (G10) to tangent models. All such domains, weights and ambient versus
 restricted phases must be specified; their artificial parts cancel by (G10).
+For the sufficiently small local temporal/radial-normal/affine cutoffs used
+in the short proof, the continuation's (S17)–(S18) now proves that the actual
+signed shell response vanishes. The exact opposite long allocation in (G15)
+still applies. This gives no estimate on a macroscopic or focusing overlap.
 
 The consumer payload to #151 is therefore: geometry and selected order;
 actual restricted phase and both measures; tau, delta, finite source/target
@@ -491,36 +507,32 @@ phase smoothness follows from the local lemma. The #133 seam and accepted
 #139 focusing estimates remain required nonlocal regressions. Probability and
 final deterministic/expected assembly stay with #151/#81/#86.
 
-## 8. Exact unresolved analytic estimates and native ownership
+## 8. Producer acceptance map and native residual ownership
 
-The following are **unproved outputs**, not geometric admissibility fields and
-not a conditional theorem advertised as completion. Keep the full G-SS core
-and every dimension in each. The missing all-dimensional flat producer in #149
-is coordinated input, not something a successful 4D calculation discharges.
+The [continuation](general-metric-short-remainders.md) supplies these written
+analytic outputs on the unchanged smooth core for each physical dimension.
+They are derived conclusions, not new geometric admissibility fields.
 
-1. **GM-S1 — null-edge phase and actual full-cone remainder.** Starting from
-   the metric and the intervals localized by §2, derive a genuine pushed phase
-   density, including its null-edge behavior and moving diagonal. If using
-   $`w=(V/c_d)^{2/d}`$, prove the required inverse/derivative bounds rather
-   than assuming $`V=c_d(uv)^{d/2}H`$ with a smooth positive H. Derive a
-   normalized actual-minus-(G7) estimate on the entire compact source collar,
-   with every cutoff-overlap term (G15). Compact-rapidity (G3) is insufficient.
-2. **GM-S2 — entire single-face response.** Starting from the actual F in
-   (G10), derive its geometry-dependent phase transport and all moving-source,
-   density, weight and diagonal-strip terms. Evaluate the complete signed
-   response; retain (G14), antisymmetric field flux and (G13), or identify any
-   additional response without deleting it. Prove summable remainder estimates
-   across the finite atlas, including its non-joint collar. A face Taylor jet
-   is not this estimate.
-3. **GM-S3 — actual joint tangent comparison.** Starting from J in (G10),
-   flatten both true moving boundaries and prove the normalized actual-minus-
-   tangent estimate against the model of §6, retaining every oriented diagonal
-   strip. Restore the derived face flux and compare to the independently
-   induced (G12), for all charts and components including 2D counting. Derive
-   summable remainder bounds, not merely the tangent coefficient.
+1. **GM-S1 — established in (S1)–(S19).** The actual thin interval is contained
+   in a uniformly bounded null-rescaled tube. Gauss's lemma removes the
+   apparent metric singularities; smooth cone-volume dependence and transverse
+   reflection derive the positive smooth ratio phase, including the null edge.
+   The inverse and every mixed derivative needed for the signed comparison
+   follow from this geometry. The k=0 remainder includes the full moving
+   diagonal and the nonzero 2D contact. The actual cutoff shell is also estimated.
+2. **GM-S2 — established in (S20)–(S25).** An implicit source-dependent gap
+   flattens the entire actual face strip. The k=1 signed comparison retains
+   all source/target densities, moving-source and diagonal terms. Its complete
+   jet evaluates to the antisymmetric face flux minus exactly (G13). Both
+   oriented bulk face fluxes (G14) remain. Bounds are uniform also on the
+   non-joint part of the collar, then summable over the finite atlas.
+3. **GM-S3 — established in (S26)–(S29).** A coupled depth/height root flattens
+   both actual moving boundaries. Its Jacobian includes the additional
+   source-time derivative absent in the conformal coordinate pilots. The k=2
+   signed comparison keeps the oriented strip and restores the actual face
+   compensation to the independently induced (G12), including 2D counting.
 
-For clarity, a sufficient signed **density** estimate, when such a density
-representation has actually been proved, is
+The common signed **density** estimate used in all three comparisons is
 
 ```math
 \begin{aligned}
@@ -538,23 +550,26 @@ are required. The existing signed moments then prove the normalized error
 vanishes by rescaling and dominated convergence. If the proof instead produces
 a cumulative primitive, its derivative or integration-by-parts boundary terms
 must be controlled too; a primitive bound must not be substituted for (G16)
-as if it were a density. Deriving these facts is precisely the missing work.
-Odd critical fractional powers and even critical logarithms must be retained;
-they can survive normalization. No universal positive Taylor inverse or C3
-regularity theorem is asserted.
+as if it were a density. The continuation derives the actual densities and
+proves (G16) in (S10)–(S13), with explicit parity-dependent remainders and the
+complete contact ledger (S11). The critical fractional powers/logarithms are
+retained in the model, not hidden in an absolutely bounded Taylor error.
+No universal positive Taylor inverse or C3 regularity theorem is asserted.
 
-Native residual ownership: **#150 retains GM-S1, GM-S2 and GM-S3** as its exact
-unresolved acceptance items; it is already a native #81 child. #149 owns the
-shared arbitrary-dimensional flat analysis, #151 the complementary nonlocal
-and atlas analytic API, #81 the eventual matched theorem, and #86 any justified
-formal ports and independent review. This ledger does not close #150 by
-transferring its requested proofs to a conditional package or new example.
-No redundant child issues are needed merely to rename these three gaps.
+Native residual ownership: #150 supplies the written **short** producers;
+#149 retains its independent dimension-indexed flat analysis and scope;
+#151 retains the general nonlocal long producer, #81 the eventual matched
+full-action/expectation assembly, and #86 justified formal ports and independent
+human review. No unfinished #149/#151 theorem is an input to the short proof.
+No issue is automatically closed by this continuation. There is no claim of
+compiled or independently reviewed GM-S1–GM-S3, and no transfer of an unproved
+short analytic premise to another owner.
 
 ## 9. Regressions and verification boundary
 
-`general_metric_short.py` and `test_general_metric_short.py` test these bounded
-outputs, not general convergence:
+`general_metric_short.py`, `test_general_metric_short.py` and
+`test_general_metric_short_remainders.py` supply finite diagnostics, not a
+numerical proof of general convergence:
 
 - dimension-indexed rest-diamond moments, separate cone/density corrections,
   both endpoint factors, signed model responses and their negative controls;
@@ -566,19 +581,24 @@ outputs, not general convergence:
 - intrinsic Gram/coarea/angle and nonzero compensating flux with non-diagonal
   metric, variable slopes and 2D counting; complete indicator restoration;
 - all ordered partition terms and finite-density cutoff-overlap restoration,
-  including long nearly-null partners whose volume tends to zero.
+  including long nearly-null partners whose volume tends to zero;
+- the exact sphere-circle null-rescaled metric and actual nearly-null interval
+  distance integral, not its curvature polynomial; all three contact formulas,
+  parity remainder bounds in 2D–9D and the indispensable 2D contact;
+- actual moving source roots in a variable-lapse chart and the corner Jacobian
+  including its source-depth derivative; the general metric/field flux algebra.
 
 The written arguments above have no new compiled Lean counterpart. Tests are
 finite symbolic/numerical diagnostics, not estimates or independent human
 mathematical review. No Lean validation input changed, so no new integrated
 Lean audit is claimed. #86 should port these lemmas only when a bounded
-consumer justifies it; the actual analytic producer gaps are mathematical,
-not merely missing formalization. General G-SS limits, rates, shrinking-cutoff
-interchanges, noncompact tails, degenerating angles and sample-wise convergence
-are not supplied.
+consumer justifies it. The continuation is a written general G-SS **short**
+proof, not a general full-action limit. Rates, shrinking-cutoff interchanges,
+noncompact tails, degenerating angles and sample-wise convergence are not
+supplied.
 
 ```sh
-.venv/bin/python -m unittest -v test_general_metric_short
+.venv/bin/python -m unittest -v test_general_metric_short test_general_metric_short_remainders
 .venv/bin/python check_symbolic.py
 .venv/bin/python -m unittest -v
 .venv/bin/python reproduce.py
