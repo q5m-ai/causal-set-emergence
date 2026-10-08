@@ -150,8 +150,12 @@ class SevenDimensionalFocusingTests(unittest.TestCase):
         self.assertEqual(s.simplify(a-beta*point_primitive*moment), 0)
         # Negative controls: omitting the point or half the endpoint measure
         # leaves a leading local term, not the claimed pure focusing coefficient.
-        self.assertEqual(s.simplify(-beta*point_primitive*moment+a), 0)
-        self.assertEqual(s.simplify(a/2-beta*point_primitive*moment/2), 0)
+        omitted_point = s.simplify(-beta*point_primitive*moment)
+        half_pair = s.simplify(a-beta*point_primitive*moment/2)
+        self.assertNotEqual(omitted_point, 0)
+        self.assertNotEqual(half_pair, 0)
+        self.assertEqual(s.simplify(omitted_point/a), -1)
+        self.assertEqual(s.simplify(half_pair/a), s.Rational(1, 2))
         u, tau, delta, T = s.symbols("u tau delta T", positive=True)
         full = s.expand(s.pi**2*u*(T-u)**3*(T+3*u)/6)
         short = s.expand(2*s.pi**2*u*s.integrate((T-tau)*(tau*tau-u*u), (tau, u, delta)))
