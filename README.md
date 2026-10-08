@@ -522,6 +522,15 @@ expectation equality. This is **written analysis with executable regressions**,
 not a compiled curved limit or independent human review. The general-metric,
 other-dimension/stratum and sample-wise gaps under #81/#24 remain open.
 
+The [#150 general-metric short partial results](notes/general-metric-short.md)
+prove uniform interval locality, bounded-rapidity curvature coefficients,
+all-dimensional model responses and exact finite-density face/corner and cutoff
+restoration. Independent induced geometry identifies the compensating joint
+flux. **The actual general-metric signed bulk, face and joint remainders remain
+unproved**, with exact residual ownership under #150 and coordinated interfaces
+with #149/#151. These written results and diagnostics are not another conformal
+pilot, a general short producer, or completion of #150/#81/#24.
+
 ## Program 2 — dynamics and automaton-like growth
 
 The exploratory question is whether causal-set dynamics can be represented as
