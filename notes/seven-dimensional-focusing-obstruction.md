@@ -18,7 +18,40 @@ supplies an integrable cubic remainder there; its transverse powers depend on
 dimension. We derive those powers anew, rather than assume that estimate in
 7D or infer jets for weighted atlas cells.
 
-## 1. Geometry, full observable, and corrected conclusion
+## 1. Source crosswalk, actual geometry, and example-specific conclusion
+
+### Published conjecture versus the repository's reconstructed predicate
+
+The primary-source target is DLL's **Conjecture 1′**, not the name G-SS.
+[DLL v1 §2.5, (11)](https://arxiv.org/html/2501.00139v1#S2.E11)
+inherits the globally hyperbolic setting and retains the dimension-indexed
+Einstein–Hilbert term while modifying the joint integrand. Its
+[v2 §7.4, (68)–(69)](https://arxiv.org/html/2501.00139v2#S7.SS4)
+explicitly addresses “d=3 and higher.” The dimensions of calculated examples
+are not a restriction of this conjecture to 4D. The description of the paper's
+Minkowski examples in §2.4 is likewise not a flatness premise of the general
+curvature-bearing conjecture.
+
+The [2020 predecessor §1](https://arxiv.org/html/2007.13206v2#S1)
+defines an action for each integer dimension greater than one and states the
+conjecture for globally hyperbolic finite-volume Lorentzian spacetimes. Its
+[§3.2 slab](https://arxiv.org/html/2007.13206v2#S3.SS2) explicitly has compact
+spatial circle slices, spacelike past and future boundaries and **“no joint.”**
+Its curvature-order calculation (3.25) is evidence for the bulk-only target,
+not a proved general fixed-curvature theorem. DLL changes the joint integrand,
+not this empty-joint convention: the empty integral is zero, with no evaluation
+of an angle at zero angle. None of these conjecture passages imposes a
+no-caustics, simply-connectedness or small-normal-neighborhood condition.
+
+[G-SS](general-contract.md#3-a-precise-non-vacuous-general-core-candidate)
+is our precise **reconstruction of a smooth two-face subcase**, not a quotation
+of a fully enumerated DLL predicate. The source statement is informal; the
+specific slab below lies in both the published general setting and G-SS.
+Its inclusion is therefore not an artifact of adding a source-excluded case.
+This crosswalk fixes attribution; it changes neither conjecture's scope nor
+any previously established restricted 4D result.
+
+### Actual seven-dimensional instance
 
 Fix `T=4`, `L=20`, and the unit round sphere. Write `VolX` for the actual
 spatial volume and `VolM=T*VolX`. The geometry is
@@ -32,13 +65,46 @@ M&=(-T/2,T/2)\times X,
 \end{aligned}\tag{O1}
 ```
 
-This is a seven-dimensional G-SS region. The ambient product is smooth,
-time-oriented, globally hyperbolic with compact Cauchy slices. The slab is
-precompact, open and ambient causally convex. Its two entire boundary faces
-are compact smooth spacelike slices; the joint is empty. It has no additional
-boundary stratum. The independent scalar curvature, with #90's sign, is two,
-so the proposed bulk-plus-joint target is the finite number VolM. No action
-coefficient is used to define that target.
+This is a seven-dimensional G-SS region. Its entire frontier consists of the
+two closed smooth spacelike slices at times minus two and two. They are
+individually achronal, have empty boundaries and empty intersection. Sphere
+poles and torus fundamental-domain seams are coordinate artifacts, not extra
+boundary strata; focusing is an interior interval phenomenon.
+
+The complete compact Riemannian spatial product makes t a Cauchy time for the
+ultrastatic ambient metric: spatial speed is at most time speed, so a causal
+curve with a finite endpoint time has a spatial limit and can be extended.
+The slab is also globally hyperbolic, with diamonds contained in compact time
+intervals times X. **Separately**, if x and y are slab endpoints and z is in
+any ambient causal interval between them, time monotonicity places t(z)
+between t(x) and t(y), strictly inside the slab. This proves ambient interval
+containment, including null relations, without a unique-geodesic assumption.
+It also identifies intrinsic and restricted ambient orders.
+
+The measures are induced geometric measures, not probability-normalized Haar
+measures. On a sphere polar chart, the following calculation uses exactly
+[#90's Riemann/Ricci sign](general-contract.md#curvature-sign-not-just-metric-signature):
+
+```math
+\begin{aligned}
+g_{ab}&=\mathrm{diag}(1,-1,-\sin^2r,-1,-1,-1,-1),\\
+\det g&=\sin^2r,\qquad
+ d\mu_g=\sqrt{|\det g|}\,dt\,dr\,d\varphi\,d^4b
+       =\sin r\,dt\,dr\,d\varphi\,d^4b,\\
+\Gamma^r_{\varphi\varphi}&=-\sin r\cos r,\qquad
+ \Gamma^\varphi_{r\varphi}=\Gamma^\varphi_{\varphi r}=\cot r,\\
+\mathrm{Ric}_{rr}&=-1,\qquad
+ \mathrm{Ric}_{\varphi\varphi}=-\sin^2r,\qquad R=2,\\
+\frac12\int_M R\,d\mu_g&=\mathrm{VolM}=16\pi\,20^4,
+ \qquad \int_{\varnothing}\coth\theta\,dA_g=0.
+\end{aligned}\tag{O1a}
+```
+
+The remaining connection and Ricci components vanish. The polar expression
+extends as the round sphere area measure; each quotient length measure has
+mass L, so O1 follows by ordinary product integration. In particular, the
+absolute determinant is used even though the seven-dimensional determinant
+is positive. The independent finite target is VolM, not an action coefficient.
 
 Use the existing dimension kernel and constants, with no redefinition of
 order, exclusive intervals, action, or Poisson law:
@@ -56,8 +122,17 @@ c_7&=\frac{\pi^3}{2688},\qquad a_7=8\beta_7,
 ```
 
 These identities follow directly from the existing recurrence in
-[dimension-kernels](dimension-kernels.md). In particular the last nonzero
-moment is **not** one of the annihilated moments.
+[dimension-kernels](dimension-kernels.md), and agree with
+[Glaser (12)–(15)](https://arxiv.org/html/1311.1701v3#S0.E12).
+Glaser's normalized-null-coordinate interval constant in (5) is
+`2^(7/2)*c7`; converting it before using the odd-dimensional formulas gives
+the constants in O2. Its five exclusive-layer weights are
+`(1, -6307/128, 14749/64, -10633/32, 2401/16)`; for exclusive count
+`k=0,...,4`, the polynomial coefficient is Glaser's `C_(k+1)` divided by `k!`. This is the unsmeared minimal-layer action,
+with ordered distinct pairs, not a different observable or an unordered-pair
+normalization. In particular the last nonzero moment in O2 is **not** one of
+the annihilated moments. The source formula, rest-diamond volume and curvature
+calculation have separate exact symbolic regressions.
 
 **Theorem.** The complete deterministic action satisfies
 
@@ -74,15 +149,42 @@ G(u)&=\frac{\pi^2}{6}u(T-u)^3(T+3u),
 
 The constant I is defined and bounded in §§5–6, not fitted to the action.
 Consequently the action diverges to positive infinity, rather than to VolM.
-The separately justified finite-density Poisson expectation equality gives
-the same statement for the expectation. No sample-wise conclusion follows.
 
-The corrected statement is O3 for this actual G-SS member, and **not** a
-universal finite bulk-plus-joint limit on G-SS in all dimensions. A general
-replacement must account for caustic contributions; neither deleting cut sets
-nor adding an unproved cancellation premise repairs the original quantifier.
-We do not claim a universal renormalization or a new no-caustics core. §9 gives
-native residual owners, preserving every original geometry in the record.
+**Expectation specialization, in writing.** The spatial metric distance is
+continuous, and ambient causality is the closed relation
+`t(y)-t(x) >= distance_X(x,y)`. Reflexivity and transitivity follow from the
+metric triangle inequality; causality in both directions forces equal times
+and zero spatial distance, giving antisymmetry. The exclusive interval removes
+only its two endpoints; its joint indicator on endpoint/intermediate triples
+is Borel.
+Integrating over the intermediate point against this finite geometric volume
+makes the restricted interval volume Borel. Smooth volume is atomless. At fixed spatial target,
+a null-related endpoint has one time value; time Fubini gives null pair
+measure without deleting any neighborhood of the cut locus. The containment
+argument above identifies these restricted intervals with the ambient ones.
+
+These facts discharge, conventionally, the finite atomless measured-order
+hypotheses of the existing checked generic theorem
+[`BoundaryDraft.dimensionFiniteMeasureAction_expectation`](../formal/BoundaryDraft/DimensionMeasureExpectation.lean).
+Specialize its dimension to seven and its finite measure to the actual volume
+restricted to M, with intensity `ENNReal.ofReal rho • mu` for positive rho.
+The independently defined Janossy Poisson law then has mean cardinality
+`rho*VolM`. Each exclusive ordered layer count is bounded by squared
+cardinality, whose finite Poisson moment justifies the finite signed sum.
+The theorem identifies its expectation with O2 at every positive density;
+O3 therefore transfers to expectation without interchanging expectation with
+an unproved random limit. **No concrete 7D Lean instance has been compiled.**
+This is a written geometric application of checked generic foundations, not
+a fresh Lean audit, and it implies no sample-wise conclusion.
+
+O3 replaces the finite-limit prediction **for this particular member**; it is
+not #24's required corrected general theorem. The published conjecture and
+the reconstructed G-SS target both predict a finite value here, which O3
+contradicts at the conventional written-proof level. A general replacement
+must account for caustic contributions; neither deleting cut sets nor adding
+an unproved cancellation premise repairs the original quantifier. We claim
+neither a universal renormalization nor a new no-caustics core. §9 retains the
+native owners of that unresolved general work.
 
 ## 2. Exact two-measure reduction, with time contacts and all branches
 
@@ -307,7 +409,7 @@ For a finite upper endpoint m of the rescaled a integral, Tonelli gives
 \begin{aligned}
 \int_0^m t^2\left[1+F^{-1}\left(\frac1{Dt^3}\right)\right]dt
  &=\frac13\int_{-1}^\infty
-             \min\left(m^3,\frac1{DF(S)}\right)dS. 
+             \min\left(m^3,\frac1{DF(S)}\right)dS.
 \end{aligned}\tag{O11}
 ```
 
@@ -381,8 +483,9 @@ The certificate bounds are deliberately much wider than numerical precision.
 ## 7. Complete complement and the physical point cancellation
 
 It remains essential to prove that no other actual pair sector cancels O9.
-Choose a smooth cutoff in u equal to one near zero and supported in a small
-fixed neighborhood of zero. Partition the full O4 domain into this origin
+Choose a smooth cutoff chi(u) between zero and one, equal to one near zero
+and supported below a small fixed u0. Let the origin primitive use this weight in the actual O4
+sublevel measure. Partition the full O4 domain into this origin
 piece, the cut neighborhood of §4, and their exact complement. The positive
 excess part has a positive minimum of W on its compact closure, hence an
 exponentially small normalized response. The regular nearly-null remainder
@@ -390,10 +493,11 @@ is away from both theta=0 and theta=pi. O7 there has a positive fixed
 nonconjugate margin, so the inverse in `(V/c7)^(2/7)` and its weighted primitive
 have uniformly bounded derivatives of every fixed order. Integrating its
 Taylor expansion on the remaining compact theta interval gives a polynomial
-through degree three and `O(w^4)`, where `w=(v/c7)^(2/7)`. The origin cutoff
-vanishes near its lower theta endpoint, so its artificial boundary is retained
-without a singular contact. These remainder bounds are derived from the
-exact Q formula, not from an assumption about smooth metric coefficients.
+through degree three and `O(w^4)`, where `w=(v/c7)^(2/7)`. The **complementary
+weight `1-chi(u)`** vanishes near the origin, hence near the lower theta
+endpoint of this regular small-phase complement. Its artificial boundary is
+retained without a singular contact. These remainder bounds are derived from
+the exact Q formula, not from an assumption about smooth metric coefficients.
 
 Here is the complete origin coefficient. In the small-u range, the same exact
 comparison gives
@@ -409,10 +513,14 @@ Put `X=u^2`, `Y=theta^2`. The analytic inverse of
 `-Y_w(0,0)=1`. The lower u endpoint is
 `u_min(w)=sqrt(w+O(w^2))`. Pushing `sin(theta) dtheta` forward gives the actual
 density factor `A(X,w)=-sinc(sqrt(Y))*Y_w/2`, analytic with `A(0,0)=1/2`.
-The remaining time weight is exactly
+Here `B_origin` denotes the **pushed density**, not the primitive. At small
+positive w its definition and the remaining exact time weight are
 
 ```math
 \begin{aligned}
+B_{\mathrm{origin}}(w)
+ &=\frac{d}{dw}N_{\mathrm{origin}}^V(c_7w^{7/2})
+   =C\int_{u_{\min}(w)}^{u_0}\chi(u)G(u)A(u^2,w)\,du,\\
 G(u)&=g_1u+g_3u^3+g_4u^4+g_5u^5,
 &g_4&=\frac{4\pi^2T}{3},\\
 B_{\mathrm{origin}}(w)&=B_{\mathrm{analytic}}(w)
@@ -497,22 +605,67 @@ The all-dimensional thin-torus producer has no such loss of inverse margin;
 its G9 estimate, including dimension seven, remains an independent regression.
 Neither result substitutes for the complete-action argument above.
 
+### Exact local coefficient regression and the pinned short comparison
+
+The [asymptotics AI report](https://github.com/q5m-ai/causal-set-emergence/pull/159#issuecomment-6059885505)
+also derived the next local coefficients independently of PR #158's general
+short theorem. They are now exact algebraic regressions, not fitted density
+jets. Expanding the actual sinc ratio in O7 gives quadratic term
+`(theta^2-r^2-s^2)/12`. Integration on the unit D7 gives the independently
+integrated normalized moments `E[A0^2]=1/144` and `E[B_i^2]=7/288`. Substitution
+in the same local inverse and pushed density of §7 yields
+
+```math
+\begin{aligned}
+B(X,Y)&=1-\frac7{864}X+\frac{77}{1728}Y
+                  +O((|X|+|Y|)^2),\\
+A(X,w)&=\frac12-\frac{17}{192}X+\frac{83}{864}w
+                  +O((|X|+|w|)^2),\\
+X_{\min}(w)&=w+\frac{w^2}{432}+O(w^3),\\
+B_{\mathrm{origin}}(w)&=B_{\mathrm{analytic}}(w)
+ -\frac{Cg_4}{10}w^{5/2}-\frac{Cg_4}{140}w^{7/2}+O(w^{9/2}),\\
+\int_0^\infty z^{7/2}K_7(z^{7/2})\,dz
+ &=\frac5{64}\Gamma(9/7).
+\end{aligned}\tag{O17}
+```
+
+For the new fractional coefficient, the lower-endpoint shift contributes
+`1/1728`, the X coefficient contributes `-17/1344`, and the w coefficient
+contributes `83/4320`; their sum is `1/140`. With the actual c7 and beta7,
+this term has finite short-action coefficient VolM, while the earlier term
+cancels the point. Both coefficients are unchanged when G is replaced by the
+actual small-temporal-cutoff weight in O16: its even `u^4` coefficient is the
+same and full minus short has only odd powers. These exact local checks do
+not numerically certify the analytic remainder or a general short theorem;
+the main O3 proof still uses only O14–O16's leading-scale cancellation.
+
+The comparison is specifically with
+[PR #158, S30–S31 at `0208f7caa8cafad594842dd7eab551586c598ce5`](https://github.com/q5m-ai/causal-set-emergence/blob/0208f7caa8cafad594842dd7eab551586c598ce5/notes/general-metric-short-remainders.md#8-quantified-short-theorem-partition-cancellation-and-the-151-boundary).
+That pin predicts the finite short value VolM for this instance, consistent
+with the independent coefficient calculation. PR #158 subsequently advanced
+and was integrated; neither this comparison nor the AI report is an audit of
+its later head or of every step of its general short theorem. No result of
+PR #158 is used to prove O3, and no macroscopic cutoff overlap is discarded.
+
 ## 9. Acceptance and verification boundary
 
-- **#151:** O3 is a written complete-action obstruction to the original
-  all-dimensional G-SS conclusion, not a universal long-cancellation producer.
-  G5–G7 still apply to every G-SS member; O9 exhibits an actual surviving
-  residual. A general classification of caustic contributions and their
-  critical-order remainders remains unproved. The smallest next step is
-  independent checking of O9's matched subtraction, O12–O13's sign, and O15's
-  complete point cancellation before changing the umbrella conjecture.
+- **#151:** O3 is a written complete-action obstruction both to the published
+  finite-target conjecture on this instance and to its reconstructed G-SS
+  prediction, not a universal long-cancellation producer. G5–G7 still apply to
+  every G-SS member; O9 exhibits an actual surviving residual. The issue's
+  obstruction delivery alternative is distinct from its positive general
+  producer. General caustic classification and critical-order remainders remain
+  explicitly owned by #151, with the replacement general theorem under
+  #24/#81/#86. The two AI cross-checks support the written argument but do not
+  replace outstanding human expert checking before any umbrella revision.
 - **#81/#86:** own the corrected general coverage/assembly statement and its
   independent mathematical verification. O3 prevents consuming the old
   universal finite-limit target unchanged; it does not authorize silently
   restricting the core. No issue is closed by this note.
-- **#150:** retains the general finite short bulk/face/joint producer. O16
-  coordinates the actual leading short cancellation here; it neither supplies
-  #150's general boundary terms nor presupposes them.
+- **#150 / PR #158:** own the general finite short bulk/face/joint producer.
+  O16 and the exact O17 regressions coordinate this instance's short terms;
+  they neither supply nor audit every general boundary term. The comparison
+  pin and its limitations above remain explicit.
 - **#149:** retains its flat geometric producer and normalization interface.
   **#152/#153:** retain the selected 4D sphere–circle complement/assembly;
   the 7D obstruction does not negate those bounded contracts.
@@ -522,9 +675,37 @@ Neither result substitutes for the complete-action argument above.
 `seven_dimensional_focusing.py` and its tests check the rational sign
 certificate, independent profile integrals, actual antipodal interval and
 regular-side formulas, both transition sides, time-contact restoration,
-normalization and point cancellation. They do not turn finite quadrature
-into proof of an asymptotic theorem. Reproduce together with the unchanged
-accepted regressions:
+normalization and point cancellation. The repair additionally differentiates
+O7 for the actual primitive coefficients, solves actual interval-volume roots,
+and integrates the **subtracted actual cut primitive**, with several fixed
+(a0,e0) neighborhoods. Its rescaled panels cover the full finite interval
+`0<=t<=a0/v^(1/3)`, including the small-t meridian tail, both transition sides
+and the large-t opening/matching wedge. No limiting profile is substituted
+for an uncomputed tail. Panel/refinement comparisons are finite diagnostics,
+not certified quadrature errors, uniform tail bounds or convergence rates.
+Negative controls omit O11's matching term, an actual sphere sheet, opening
+or meridian panels, or the physical point. Exact local O17 coefficients are
+separate symbolic regressions. None of these tests proves an asymptotic theorem.
+
+For reproducibility, the coarse residual diagnostic uses 12 nodes per panel,
+24-point diamond rules and 48-point interval rules. It returns the subtracted
+primitive divided by `C*G(pi)*v`, with `v=lambda^3`. Representative results are:
+
+| Fixed `(a0,e0)` | lambda 0.004 | lambda 0.001 | lambda 0.00025 |
+| --- | ---: | ---: | ---: |
+| `(0.06,0.10)` | 0.0000330300 | 0.0000289268 | 0.0000266567 |
+| `(0.12,0.16)` | 0.0000247940 | 0.0000243800 | 0.0000241538 |
+| `(0.18,0.22)` | 0.0000085392 | 0.0000154022 | 0.0000191461 |
+
+The matched coefficient in these units is approximately 0.0000239021.
+The different finite-phase corrections are retained, not fit away. A refined
+16/32/64 rule is also compared at the middle neighborhood's smallest phase.
+The test integrates every panel to its actual upper endpoint, which reaches
+720 at the smallest phase in the largest neighborhood; dropping either the
+opening or meridian part fails even the deliberately broad finite comparison.
+This table certifies neither tail domination nor a sign or convergence rate.
+
+Reproduce together with the unchanged accepted regressions:
 
 ```sh
 .venv/bin/python -m unittest -v test_seven_dimensional_focusing test_full_partner_globalization test_sphere_circle_focusing
@@ -533,8 +714,54 @@ accepted regressions:
 .venv/bin/python reproduce.py
 python3 check_markdown.py
 python3 -m unittest -v test_check_markdown
+git diff --check origin/issue-81-general-coverage...HEAD
 ```
 
 The PR records actual local, CI and browser-rendering results separately.
 There is no deployment, merge, sample-wise convergence claim, or automatic
 closure of #151/#81/#24.
+
+## 10. One-batch AI-report dispositions
+
+Both the [contract/geometry/normalization report](https://github.com/q5m-ai/causal-set-emergence/pull/159#issuecomment-6059923291)
+and the [complete-action asymptotics report](https://github.com/q5m-ai/causal-set-emergence/pull/159#issuecomment-6059885505)
+reviewed `db691421624f0e598fe9e80a660cccaac4db499a`. The complete reports and
+all five embedded scripts were read; all five were replayed successfully,
+including the independent N=16 and N=40 rational enclosures and the actual
+subtracted-integrand samples. The three published contract-script checksums
+matched. Primary-source passages were also retrieved and read directly.
+These are **AI cross-checks of conventional mathematics**, not human expert
+review, a formal certificate of the asymptotics, or automatic merge approval.
+
+| Finding / report location | Explicit disposition |
+| --- | --- |
+| Contract §1 and required repair 1: source scope and G-SS attribution | **Repaired:** §1 cites DLL (11)/(68), the general-dimensional passages and the predecessor's empty-joint slab; G-SS is expressly a reconstruction, not a quotation. No source or conjecture scope changed. |
+| Contract §2 and required repair 2: actual geometry, containment, induced measures and curvature | **Repaired:** §1 proves containment separately from GH, computes the volume and signed Ricci contraction in O1a, and retains the full frontier. An exact metric regression was added. |
+| Contract §3: action, layer/factorial/interval normalization and Poisson law | **Accepted; retained:** O2 is unchanged; primary Glaser coefficients now have an exact regression. The checked generic expectation theorem is named and its actual 7D hypotheses discharged in writing; no compiled 7D instance is claimed. |
+| Contract §4: full partners, matching, rational sign and physical point cancellation | **Accepted; retained:** no change to the O4–O15 argument. Independent arithmetic was replayed; stronger actual-primitive regressions were added without making them proof premises. |
+| Contract required repair 3; asymptotics correction 2: density notation | **Repaired:** O14 explicitly defines B_origin as the derivative of the volume primitive after phase conversion, with its selected origin cutoff. No coefficient changed. |
+| Contract required repair 4; asymptotics correction 3: whitespace receipt | **Repaired:** O11's trailing space is removed. Validation checks the entire base-to-head PR range, not only a clean working tree. The earlier working-tree-only receipt was insufficient. |
+| Asymptotics §1: lifted whole interval, endpoint measures and sphere branches | **Accepted; retained:** both orientations, the secondary transition, all flat partners and both time contacts remain; sheet-omission controls now fail explicitly. |
+| Asymptotics §§2–3: matched dominator, coefficient limits, O11 boundary term and sign | **Accepted; retained:** no substantive proof step changed. Derivative-derived coefficients and actual roots exercise opening, transition and meridian regimes; the matching-term omission control is retained. |
+| Asymptotics §4 and correction 1: complement cutoff wording | **Repaired:** §7 now refers to the complementary weight `1-chi(u)` vanishing near the origin. The origin weight still equals one there; the intended complement estimate is unchanged. |
+| Asymptotics §4: complete point cancellation and density exponent | **Accepted; retained:** O15 and the exponent in O3 are unchanged. Negative controls omit the physical point or half the endpoint measure. |
+| Asymptotics §5: independently derived local short coefficients and PR #158 comparison | **Added as exact regressions:** O17 follows from the sinc ratio, independently integrated diamond moments and signed kernel moment. The comparison remains pinned to `0208f7caa8cafad594842dd7eab551586c598ce5`, not the later head or an audit of its general theorem. |
+| Asymptotics §6: expectation and verification boundary | **Accepted; clarified:** §1 gives the actual specialization. Generic Lean foundations, written application, numerical diagnostics and human review are separately labeled. |
+| Asymptotics decisive-regression request | **Implemented:** the actual subtracted cut primitive is integrated for three fixed neighborhoods and three phases, with full rescaled panel coverage and rule refinement; missing matching, sphere-sheet, tail and point contributions have negative controls. |
+| Both reports: positive verdict, no substantiated fatal gap, and limitations | **Recorded as AI evidence only:** O3 remains example-specific. No novelty/exhaustive-provenance claim, human approval or general replacement theorem follows. Human review remains #94/#86; general classification remains #151 and corrected umbrella assembly #24/#81/#86. |
+
+**Repair scope:** the O3 asymptotic and its O4–O15 proof chain are preserved.
+The changes clarify attribution, specialize already used geometric hypotheses,
+correct notation and a cutoff sentence, and strengthen diagnostics. O17 is an
+additional local coefficient calculation, not a new premise for O3. There is
+no materially changed leading-divergence step requiring a renewed automatic
+full review. Outstanding human expert review is still required; any later
+material change should request review of that changed step specifically.
+
+**Delivery assessment:** the example-specific obstruction is the alternative
+deliverable in #151, not completion of its positive universal-producer route.
+After final-head validation this repair can be reviewed on that basis without
+pretending the unresolved general classification is discharged. PR readiness
+is distinct from completion or closure of #151/#81/#24. This batch does not
+change the draft flag or conjecture predicate; final receipts and the readiness
+assessment are published on the PR, without another review/repair loop.

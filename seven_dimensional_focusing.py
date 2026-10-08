@@ -7,13 +7,17 @@ regressions; sign_certificate() alone uses exact rational bounds throughout.
 
 from fractions import Fraction as F
 from functools import lru_cache
+from math import factorial
 
 import numpy as np
 from scipy.integrate import quad
+from scipy.optimize import brentq
 from scipy.special import hyp2f1
 
 from general_metric_gate import gauss_rule
-from sphere_circle_focusing import _sphere_rule, area_ratio, circle_section
+from sphere_circle_focusing import (
+    _log_sinc_derivatives, _sphere_rule, area_ratio, circle_section,
+)
 
 DURATION = 4.0
 CIRCUMFERENCE = 20.0
@@ -115,12 +119,11 @@ def polar_volume(u, theta, order=64, flat_order=32):
     return total
 
 
-def regular_phase(theta, e, order=28):
-    """O7's exact W/e^(7/2) on the regular side, never across e=2*a."""
-    if not 0 < theta < np.pi or not 0 <= e < 2*(np.pi-theta):
-        raise ValueError("requires 0 < theta < pi and 0 <= e < 2*(pi-theta)")
+@lru_cache(maxsize=4)
+def _diamond_rule(order):
+    """Fixed O7 quadrature shared by phase values and analytic derivatives."""
     nodes, weights = gauss_rule(order)
-    total = 0.
+    rules = []
     for sign in (-1, 1):
         A = sign*nodes[:, None, None]/2
         radius = .5-np.abs(A)
@@ -129,14 +132,162 @@ def regular_phase(theta, e, order=28):
         eta = np.pi*(nodes[None, None, :]-.5)
         B2 = height*np.sin(eta)
         ell = .5+A+B1
-        phase = 2*theta*e+e*e
-        r = np.sqrt((theta*ell+e*B1)**2+phase*B2*B2)
-        ss = np.sqrt((theta*(1-ell)-e*B1)**2+phase*B2*B2)
         # Integrate B3,...,B6 as the actual four-ball, volume pi^2*R^4/2.
         measure = (np.pi**3/2*radius*height**5*np.cos(eta)**5
                    * weights[:, None, None]*weights[None, :, None]*weights[None, None, :])
+        rules.append((B1, B2, ell, measure))
+    return tuple(rules)
+
+
+def regular_phase(theta, e, order=28):
+    """O7's exact W/e^(7/2) on the regular side, never across e=2*a."""
+    if not 0 < theta < np.pi or not 0 <= e < 2*(np.pi-theta):
+        raise ValueError("requires 0 < theta < pi and 0 <= e < 2*(pi-theta)")
+    total = 0.
+    for B1, B2, ell, measure in _diamond_rule(order):
+        phase = 2*theta*e+e*e
+        r = np.sqrt((theta*ell+e*B1)**2+phase*B2*B2)
+        ss = np.sqrt((theta*(1-ell)-e*B1)**2+phase*B2*B2)
         total += np.sum(measure*area_ratio(theta, r, ss))
     return (2*theta+e)**3.5*total
+
+
+def regular_phase_jet(theta, order=28):
+    """H0, dH0/de, d2H0/de2 at zero by differentiating O7, never fitting W.
+
+    Differentiate the same fixed-diamond quadrature used by regular_phase.
+    Root/jet quadrature errors then do not masquerade as an unsubtracted
+    zeroth-order term in a small residual. Refinement remains a diagnostic.
+    """
+    if not 0 < theta < np.pi:
+        raise ValueError("requires 0 < theta < pi")
+    integrals = np.zeros(3)
+    for B1, B2, ell, measure in _diamond_rule(order):
+        r, ss = theta*ell, theta*(1-ell)
+        rp, sp = B1+B2*B2/ell, -B1+B2*B2/(1-ell)
+        rpp = (B1*B1+B2*B2-rp*rp)/r
+        spp = (B1*B1+B2*B2-sp*sp)/ss
+        lr, lrr = _log_sinc_derivatives(r)
+        ls, lss = _log_sinc_derivatives(ss)
+        first = lr*rp+ls*sp
+        second = lrr*rp*rp+lr*rpp+lss*sp*sp+ls*spp
+        for arg, ap, app in (
+            (theta, (rp+sp)/2, (rpp+spp)/2),
+            (0., (rp+sp)/2, (rpp+spp)/2),
+            (r, (rp-sp)/2, (rpp-spp)/2),
+            (ss, (sp-rp)/2, (spp-rpp)/2),
+        ):
+            l1, l2 = _log_sinc_derivatives(arg)
+            first -= l1*ap/2
+            second -= (l2*ap*ap+l1*app)/2
+        q0 = area_ratio(theta, r, ss)
+        for j, value in enumerate((q0, q0*first, q0*(second+first*first))):
+            integrals[j] += np.sum(measure*value)
+    q, length = 3.5, 2*theta
+    i0, i1, i2 = integrals
+    return np.array([length**q*i0,
+                     q*length**(q-1)*i0+length**q*i1,
+                     q*(q-1)*length**(q-2)*i0+2*q*length**(q-1)*i1+length**q*i2])
+
+
+def time_weight_derivatives(u):
+    """Exact derivatives of the O4 polynomial; its T-tau contacts stay intact."""
+    if not np.isfinite(u) or not 0 <= u <= DURATION:
+        raise ValueError("requires 0 <= u <= 4")
+    coefficients = [0., DURATION**4, 0., -6*DURATION**2, 8*DURATION, -3.]
+    return np.array([np.pi**2/6*sum(
+        coefficients[k]*factorial(k)/factorial(k-j)*u**(k-j)
+        for k in range(j, 6)) for j in range(6)])
+
+
+def primitive_coefficients(a, order=28):
+    """Actual c1,c2,c3 in O10 for zeta=v^(2/7), without the pair factor C."""
+    if not np.isfinite(a) or not 0 < a < np.pi:
+        raise ValueError("requires 0 < a < pi")
+    theta, p = np.pi-a, 2/7
+    h0, h1, h2 = regular_phase_jet(theta, order)
+    alpha1 = h0**(-p)
+    alpha2 = -p*h1*h0**(-2*p-1)
+    alpha3 = p*(3*p+1)/2*h1*h1*h0**(-3*p-2)-p*h2*h0**(-3*p-1)/2
+    g0, g1, g2 = time_weight_derivatives(theta)[:3]
+    return np.array([g0*alpha1,
+                     g0*alpha2+g1*alpha1**2/2,
+                     g0*alpha3+g1*alpha1*alpha2+g2*alpha1**3/6])
+
+
+def inverse_excess(a, v, e0=.2, order=28, volume_order=56):
+    """Actual O9 inverse, capped at the fixed e0; not a profile inverse.
+
+    Near-null roots use the exact regular-side representation. Near antipodal
+    endpoints a polar cubature avoids ill-conditioned two-distance edges;
+    that is the actual O4 integral, not deletion/replacement by the a=0 fibre.
+    """
+    if (not np.isfinite(a) or not 0 <= a < np.pi or not np.isfinite(v) or v < 0
+            or not np.isfinite(e0) or not 0 < e0 < DURATION-np.pi):
+        raise ValueError("requires 0 <= a < pi, v >= 0, 0 < e0 < 4-pi")
+    if v == 0:
+        return 0.
+    theta = np.pi-a
+
+    def volume(e):
+        if e == 0:
+            return 0.
+        if e < a:
+            return e**3.5*regular_phase(theta, e, order)
+        if 0 < a < 1e-6:
+            return polar_volume(theta+e, theta, volume_order, flat_order=28)
+        return interval_volume(theta+e, theta, volume_order, flat_order=28)
+
+    if volume(e0) <= v:
+        return e0
+    return brentq(lambda e: volume(e)/v-1, 0, e0, xtol=2e-15, rtol=4*np.finfo(float).eps)
+
+
+def cut_primitive_diagnostic(v, a0=.12, e0=.2, order=16, diamond_order=28,
+                             volume_order=56):
+    """Actual O9 primitive AND its derivative-subtracted residual.
+
+    All pieces integrate actual roots and c_j, including 0<a<a0. No model
+    replaces a tail. Return N/C, b_j/C, (N-sum b_j*v^(2j/7))/(C*G(pi)*v),
+    plus additive contributions from every rescaled t-panel. The constants
+    a0,e0 are fixed geometric neighborhoods, not density-dependent cutoffs.
+    Floating results and panel refinements are diagnostics, never a dominator
+    or an error certificate. Rounding/cancellation eventually limit small-v
+    probes. v must be small enough that no e0 cap is active.
+    """
+    if (not np.isfinite(v) or v <= 0 or not np.isfinite(a0) or not 0 < a0 < .5
+            or not np.isfinite(e0) or not 0 < e0 < DURATION-np.pi):
+        raise ValueError("requires v > 0, 0 < a0 < 1/2, 0 < e0 < 4-pi")
+    lam, zeta = v**(1/3), v**(2/7)
+    upper = a0/lam
+    contact = (1/(ANTIPODAL_COEFFICIENT*transition_profile(1)))**(1/3)
+    edges = sorted({0., upper, *(x for x in (.02, .1, contact, 1., 4., 16., 64., 256.)
+                               if x < upper)})
+    nodes, weights = gauss_rule(order)
+    primitive, coefficients, panels = 0., np.zeros(3), []
+    powers = zeta**np.arange(1, 4)
+    for lo, hi in zip(edges, edges[1:]):
+        # The t^(-4/7) endpoint power becomes bounded under this substitution.
+        if lo == 0:
+            ts, ws = hi*nodes**(7/3), weights*hi*(7/3)*nodes**(4/3)
+        else:
+            ts, ws = lo+(hi-lo)*nodes, (hi-lo)*weights
+        panel = 0.
+        for t, weight in zip(ts, ws):
+            a = lam*t
+            E = inverse_excess(a, v, e0, diamond_order, volume_order)
+            if E == e0:
+                raise ValueError("phase is too large for the uncapped O9 diagnostic")
+            derivatives = time_weight_derivatives(np.pi-a)
+            f = sum(derivatives[j]*E**(j+1)/factorial(j+1) for j in range(6))
+            c = primitive_coefficients(a, diamond_order)
+            measure = weight*lam*np.sin(a)
+            primitive += measure*f
+            coefficients += measure*c
+            panel += measure*(f-c@powers)/(v*time_weight(np.pi))
+        panels.append((lo, hi, panel))
+    return {"primitive": primitive, "coefficients": coefficients,
+            "scaled_residual": sum(value for _, _, value in panels), "panels": panels}
 
 
 def transition_profile(S):
