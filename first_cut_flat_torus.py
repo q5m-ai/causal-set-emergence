@@ -10,9 +10,13 @@ import math
 
 import numpy as np
 from scipy.integrate import quad
-from scipy.special import gamma
+from scipy.optimize import brentq
+from scipy.special import beta, gamma, roots_jacobi
 
-from dimension_kernels import _dimension, interval_coefficient
+from dimension_kernels import (
+    _dimension, action_constants, interval_coefficient, transverse_moment,
+)
+from full_partner_globalization import _kernel
 
 
 def _positive(value, name):
@@ -188,3 +192,216 @@ def circle_interval_distance(length, tau, displacement):
         for lo, hi in zip(knots[:-1], knots[1:]):
             value += (hi-lo)*(f(lo)+f(hi))/2
     return value
+
+
+def phase_weight(d, length, duration, a):
+    """Actual FC10 transverse and closing-time integral F(A).
+
+    FC11's rationalized integrand retains the closing contact and avoids
+    subtracting nearly equal square roots. In d=2 the transverse space has
+    one point of mass one, rather than a fictitious zero-area sphere.
+    """
+    length, duration = first_cut_geometry(d, length, duration)
+    a = _positive(a, "squared transverse-free time")
+    depth = duration*duration-a
+    if depth <= 0:
+        return 0.
+    if d == 2:
+        root = math.sqrt(a)
+        return depth/(4*length*root*(duration+root))
+    _, vp = _constants(d)
+    p = d-2
+    nodes, weights = _gauss(32)
+    root = np.sqrt(a+depth*nodes*nodes)
+    integrand = nodes**(p-1)*(1-nodes*nodes)/(root*(duration+root))
+    return p*vp*depth**(d/2)/(4*length)*np.dot(weights, integrand)
+
+
+def _phase_a(length, x, y):
+    return length*length/4+(x+y)/2+(y-x)**2/(4*length*length)
+
+
+def _small_phase(d, length, duration, w):
+    length, duration = first_cut_geometry(d, length, duration)
+    w = float(w)
+    if not math.isfinite(w) or not 0 <= w < (duration*duration-length*length/4)/4:
+        raise ValueError("phase must lie in the fixed first-cut small-phase neighbourhood")
+    return length, duration, w
+
+
+@lru_cache(maxsize=16)
+def _quarter_rule(d, order, extra_power=0):
+    _dimension(d)
+    if isinstance(order, bool) or not isinstance(order, int) or order < 4:
+        raise ValueError("quadrature order must be an integer >= 4")
+    exponent = 2/d-1+extra_power
+    nodes, weights = roots_jacobi(order, exponent, exponent)
+    return (nodes+1)/2, weights/2**(2*exponent+1)
+
+
+def reference_primitive(d, length, duration, cutoff, w):
+    """FC9 unfolded lift-counted reference, NOT the thick-torus primitive."""
+    length, duration = first_cut_geometry(d, length, duration)
+    cutoff = _positive(cutoff, "temporal cutoff")
+    w = float(w)
+    if not cutoff < length/2 or not math.isfinite(w) or w < 0:
+        raise ValueError("requires delta < L/2 and nonnegative finite phase")
+    k = d-1
+    area = 2*math.pi**(k/2)/gamma(k/2)
+
+    def shell(tau):
+        difference = tau**k if w >= tau*tau else tau**k*(-math.expm1(k/2*math.log1p(-w/(tau*tau))))
+        return (duration-tau)*difference
+
+    points = [math.sqrt(w)] if cutoff**2 < w < duration**2 else None
+    return length**k*area/k*quad(shell, cutoff, duration, points=points,
+                               epsabs=2e-13, epsrel=2e-12)[0]
+
+
+def strip_primitive(d, length, duration, w):
+    """One of the TWO reference strips removed in FC10, with its true Y(x)."""
+    length, duration, w = _small_phase(d, length, duration, w)
+
+    def inner(x):
+        upper = x-length*length+2*length*math.sqrt(duration*duration-x)
+        return upper*quad(lambda v: phase_weight(
+            d, length, duration, _phase_a(length, x, upper*v)),
+            0, 1, epsabs=2e-13, epsrel=2e-12)[0]
+
+    return w*quad(lambda u: inner(w*u), 0, 1, epsabs=2e-13, epsrel=2e-12)[0]
+
+
+def sum_corner_primitive(d, length, duration, w, order=24):
+    """Actual sum-volume corner C0, before projected-overlap correction."""
+    length, duration, w = _small_phase(d, length, duration, w)
+    if w == 0:
+        return 0.
+    q = d/2
+    ts, tw = _quarter_rule(d, order)
+    rs, rw = _gauss(20)
+    total = 0.
+    for t, weight in zip(ts, tw):
+        a, b = t**(1/q), (1-t)**(1/q)
+        inner = sum(rweight*r*phase_weight(
+            d, length, duration, _phase_a(length, w*r*a, w*r*b))
+            for r, rweight in zip(rs, rw))
+        total += weight*inner
+    return w*w/q*total
+
+
+def overlap_primitive_scaled(d, length, duration, w, order=24, overlap_copies=2):
+    """(C-C0)/w^(q+2) from the ACTUAL finite-phase shell, not its limit.
+
+    Solve the exact union-volume root in scaled excess coordinates so tiny
+    root shifts are not lost to subtraction. overlap_copies=0 or 1 is an
+    explicitly incorrect diagnostic control, never an alternative action.
+    """
+    length, duration, w = _small_phase(d, length, duration, w)
+    if w <= 0:
+        raise ValueError("positive phase required for the scaled shell")
+    if isinstance(overlap_copies, bool) or overlap_copies not in (0, 1, 2):
+        raise ValueError("overlap_copies must be the actual 2 or a named 0/1 control")
+    if overlap_copies == 0:
+        return 0.
+    q = d/2
+    c, _ = _constants(d)
+    wq = w**q
+    ts, tw = _quarter_rule(d, order, extra_power=1)
+    rs, rw = _gauss(10)
+    total = 0.
+    for t, weight in zip(ts, tw):
+        a, b = t**(1/q), (1-t)**(1/q)
+
+        def equation(eta):
+            excess = wq*eta
+            r = w*(1+excess)
+            phase_increment = math.expm1(q*math.log1p(excess))/wq
+            overlap_increment = overlap_copies/c*overlap_volume(
+                d, length, r*a, r*b)/(wq*wq)
+            return phase_increment-overlap_increment
+
+        upper = (1/max(a, b)-1)/wq
+        eta = brentq(equation, 0, upper, xtol=2e-13, rtol=2e-13)
+        inner = sum(rweight*(1+wq*eta*z)*phase_weight(
+            d, length, duration,
+            _phase_a(length, w*(1+wq*eta*z)*a, w*(1+wq*eta*z)*b))
+            for z, rweight in zip(rs, rw))
+        total += weight*eta/(t*(1-t))*inner
+    return total/q
+
+
+def overlap_primitive_coefficient(d, length, duration):
+    """Derived kappa in FC16, excluding source volume and axis count."""
+    length, duration = first_cut_geometry(d, length, duration)
+    c, vp = _constants(d)
+    q = d/2
+    lam = vp/(c*q*q*length**d)
+    return phase_weight(d, length, duration, length*length/4)*lam/(q*q)*beta(1+1/q, 1+1/q)
+
+
+def primitive_components(d, length, duration, cutoff, w, order=24):
+    """Actual near-zero full long primitive, retaining the regular complement."""
+    length, duration, w = _small_phase(d, length, duration, w)
+    ref = reference_primitive(d, length, duration, cutoff, w)
+    strip = strip_primitive(d, length, duration, w)
+    corner = sum_corner_primitive(d, length, duration, w, order)
+    overlap = 0. if w == 0 else w**(d/2+2)*overlap_primitive_scaled(
+        d, length, duration, w, order)
+    multiplier = length**(d-1)*(d-1)
+    return dict(reference=ref, strip=strip, corner=corner, overlap=overlap,
+                axis_source_factor=multiplier,
+                actual=ref+multiplier*(corner-2*strip+overlap))
+
+
+def circle_long_primitive(length, duration, cutoff, w):
+    """Independent 2D actual sublevel integral, not reference subtraction.
+
+    The double-route interval volume is L*(tau-L/2). Integrate its full
+    plateau and the single-route shell, including their exact time contacts.
+    """
+    length, duration = first_cut_geometry(2, length, duration)
+    cutoff = _positive(cutoff, "temporal cutoff")
+    if cutoff >= length/2 or not math.isfinite(w) or w < 0:
+        raise ValueError("requires delta < L/2 and nonnegative finite phase")
+
+    def integrand(tau):
+        upper = min(tau, length-tau, length/2)
+        lower = math.sqrt(max(0., tau*tau-w))
+        single = max(0., upper-lower)
+        double = max(0., tau-length/2) if 2*length*tau-length*length <= w else 0.
+        return (duration-tau)*2*(single+double)
+
+    contacts = sorted({cutoff, duration} | {v for v in (
+        length/2, math.sqrt(w), (length*length+w)/(2*length))
+        if cutoff < v < duration})
+    return length*sum(quad(integrand, lo, hi, epsabs=2e-14, epsrel=2e-12)[0]
+                      for lo, hi in zip(contacts[:-1], contacts[1:]))
+
+
+def circle_full_pair(length, duration, rho):
+    """Actual full 2D pair integral from single-route and plateau domains."""
+    length, duration = first_cut_geometry(2, length, duration)
+    rho = _positive(rho, "density")
+    kernel = _kernel(2)
+
+    def temporal(tau):
+        upper = min(tau, length-tau, length/2)
+        single = quad(lambda a: kernel(rho*(tau*tau-a*a)/2),
+                      0, upper, epsabs=2e-12, epsrel=2e-11)[0]
+        double = max(0., tau-length/2)*kernel(rho*length*(tau-length/2))
+        return 2*(duration-tau)*(single+double)
+
+    return length*sum(quad(temporal, lo, hi, epsabs=2e-12, epsrel=2e-11)[0]
+                      for lo, hi in ((0, length/2), (length/2, duration)))
+
+
+def overlap_signed_coefficient(d, length, duration):
+    """Coefficient of rho^(-2/d) for the overlap SECTOR, not the full action."""
+    import sympy as s
+    length, duration = first_cut_geometry(d, length, duration)
+    c, _ = _constants(d)
+    q = d/2
+    _, pair = action_constants(d)
+    moment = float(transverse_moment(d, s.Rational(d, 2)+1))
+    coefficient = length**(d-1)*(d-1)*overlap_primitive_coefficient(d, length, duration)
+    return -float(pair)*(q+2)*coefficient*c**(-(q+2)/q)*moment
