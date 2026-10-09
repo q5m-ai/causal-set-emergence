@@ -512,6 +512,17 @@ The exact short/off-cut complement remains explicit and requires a matched
 producer. This is not a complete-action limit or counterexample, a new Lean
 result, or independent human review; #81/#24 remain open.
 
+The [#152 sphere-circle complement proof](notes/sphere-circle-complements.md)
+derives the actual 4D short response and signed off-cut long cancellation for
+that same fixed slab. It retains long-circle nearly-null partners, both endpoint
+measures, the moving time contacts and every F20 boundary. An actual analytic
+phase inverse and summable density remainders produce the physical-point
+cancellation and independently normalized curvature coefficient, with one fixed
+compatible cutoff. Together with #139's accepted cut primitive and the excess
+tail, these are written sector outputs for #153's complete assembly and separate
+expectation transfer—not a new Lean theorem, independent human acceptance, or
+general coverage under #81/#24.
+
 The [partial #151 globalization work](notes/full-partner-globalization.md)
 proves the written manifold measurability/locality and exact full-partner atlas
 identities, plus weighted long cancellation for thin flat-torus slabs in every
