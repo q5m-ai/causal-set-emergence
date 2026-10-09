@@ -183,10 +183,21 @@ limits for every integer dimension at least two in the Minkowski-embedded
 smooth G-SS core. Graph coordinates are derived, not assumed; no combined
 slope budget is imposed. Its finite-regularity bound grows with dimension.
 This is a **written theorem, not a new Lean result or independent review**.
-Flat quotients and general-metric nonlocality remain explicit #151/#81 gaps.
+General flat-manifold coverage remains under #149; general-metric nonlocality
+remains under #151/#81.
 The [shared normalization and producer interface](notes/dimension-producer-interface.md)
 records both endpoint partitions, point-once allocation and signed cutoff
 conversion for #150/#151; it is not a general-metric theorem.
+
+The [first-cut cubic-torus continuation](notes/first-cut-flat-torus.md) proves
+in writing the complete deterministic and expected zero limits for every
+dimension at least two in the fixed band `L/2 < T < L/sqrt(2)`. It derives the
+at-most-two lift geometry, both projected overlaps and the complete matched
+long primitive. The actual odd-dimensional fractional overlap term is retained;
+its signed normalized response decays. The proof consumes the existing short
+theorem and separately discharges the generic dimension-indexed expectation
+hypotheses. This is **not arbitrary-flat coverage, a new Lean result or
+independent human review**; #149/#81/#24 remain open.
 
 The subsequent [smooth 3D assembly and coverage audit](formal/PILOT3_LIMIT.md)
 combines both actual producers at one common fixed positive cutoff, then uses
