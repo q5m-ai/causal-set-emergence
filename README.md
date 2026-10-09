@@ -514,6 +514,58 @@ a thin flat-torus slab calculation and a precise focusing-route obstruction,
 with separate regressions and follow-up contracts. It supplies **no new Lean
 verification or general-metric/atlas coverage theorem**; #81/#24 remain open.
 
+The [#139 sphere-circle focusing producer](notes/sphere-circle-focusing.md)
+now derives the actual endpoint-averaged antipodal-neighborhood density in
+writing. An exact circle/time reduction retains transverse separations and
+closing time contacts; a summable primitive jet proves signed cut-neighborhood
+cancellation without a smooth phase inverse through the focusing transition.
+The exact short/off-cut complement remains explicit and requires a matched
+producer. This is not a complete-action limit or counterexample, a new Lean
+result, or independent human review; #81/#24 remain open.
+
+The [#152 sphere-circle complement proof](notes/sphere-circle-complements.md)
+derives the actual 4D short response and signed off-cut long cancellation for
+that same fixed slab. It retains long-circle nearly-null partners, both endpoint
+measures, the moving time contacts and every F20 boundary. An actual analytic
+phase inverse and summable density remainders produce the physical-point
+cancellation and independently normalized curvature coefficient, with one fixed
+compatible cutoff. Together with #139's accepted cut primitive and the excess
+tail, these are written sector outputs for #153's complete assembly and separate
+expectation transfer—not a new Lean theorem, independent human acceptance, or
+general coverage under #81/#24.
+
+The [partial #151 globalization work](notes/full-partner-globalization.md)
+proves the written manifold measurability/locality and exact full-partner atlas
+identities, plus weighted long cancellation for thin flat-torus slabs in every
+dimension. It retains the accepted 4D focusing estimate and its full complement.
+The [7D continuation](notes/seven-dimensional-focusing-obstruction.md) derives a
+**written complete-action obstruction** to the all-dimensional finite G-SS
+target: a matched caustic term survives actual short point cancellation.
+Its sign has an exact rational certificate. General caustic classification,
+independent human review and corrected umbrella assembly remain outstanding;
+PR #159 stays draft, with no new Lean result or issue closure.
+
+The [#136 nonpolynomial short/assembly proof](notes/nonpolynomial-short-limit.md)
+consumes that gate's actual long estimate for `Omega(t)=1/(1-t)`. It derives
+the signed full/face/corner estimates for smooth original two-face regions
+inside `abs(t)<1/2`, retaining both endpoint measures, moving diagonal strips,
+both spacetime-face fluxes and the compensating joint flux. It then proves
+the complete deterministic bulk-plus-joint limit and applies #93's genuine
+expectation equality. This is **written analysis with executable regressions**,
+not a compiled curved limit or independent human review. The general-metric,
+other-dimension/stratum and sample-wise gaps under #81/#24 remain open.
+
+The [#150 general-metric short derivation](notes/general-metric-short.md) and
+[actual signed-remainder proof](notes/general-metric-short-remainders.md) now
+supply the written short producers on the general smooth G-SS core, in every
+physical dimension. Actual null-tube rescaling derives the interval phase and
+full-cone remainder; exact moving-source flattenings prove the entire face and
+joint comparisons, including every diagonal contact, both face fluxes and joint
+compensation. The fixed temporal cutoff and its signed local conversion remain
+compatible with #149/#151. This is **written analysis with regressions**, not a
+compiled proof or independent human review. The general nonlocal long producer
+and full-action/expectation assembly remain with #151/#81; #24 stays open.
+
 ## Program 2 — dynamics and automaton-like growth
 
 The exploratory question is whether causal-set dynamics can be represented as

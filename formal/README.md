@@ -69,6 +69,15 @@ admissible example has independently calculated nonzero scalar curvature
 (written and symbolic verification, not a Lean curvature theorem). No curved
 continuum limit, bulk coefficient or new induced-joint target is asserted.
 
+The [compact-manifold measured-order foundation](COMPACT_MEASURED_ORDER.md)
+specializes the existing generic dimension-indexed Poisson bridge to the
+unchanged four-dimensional observable. It constructs actual cubic-torus and
+round-unit-sphere–circle slab instances, with Euclidean quotient/angular
+product distances, induced geometric volumes, and ambient interval containment.
+Coordinate, conformal and dimensional compatibility is proved without changing
+old APIs. This is finite-density work only; its current local validation status
+is recorded in the linked acceptance note, separately from all limit claims.
+
 The [two-face geometry integration](TWO_FACE_GEOMETRY.md) now proves the
 unchanged `TwoFaceRegionGoal`: open bounded ambient-causally-convex regions,
 compact faces and joint, the complete frontier, and the exact face intersection.
