@@ -533,6 +533,17 @@ expectation equality. This is **written analysis with executable regressions**,
 not a compiled curved limit or independent human review. The general-metric,
 other-dimension/stratum and sample-wise gaps under #81/#24 remain open.
 
+The [#150 general-metric short derivation](notes/general-metric-short.md) and
+[actual signed-remainder proof](notes/general-metric-short-remainders.md) now
+supply the written short producers on the general smooth G-SS core, in every
+physical dimension. Actual null-tube rescaling derives the interval phase and
+full-cone remainder; exact moving-source flattenings prove the entire face and
+joint comparisons, including every diagonal contact, both face fluxes and joint
+compensation. The fixed temporal cutoff and its signed local conversion remain
+compatible with #149/#151. This is **written analysis with regressions**, not a
+compiled proof or independent human review. The general nonlocal long producer
+and full-action/expectation assembly remain with #151/#81; #24 stays open.
+
 ## Program 2 — dynamics and automaton-like growth
 
 The exploratory question is whether causal-set dynamics can be represented as
