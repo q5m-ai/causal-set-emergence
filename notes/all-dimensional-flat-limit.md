@@ -681,10 +681,12 @@ the **actual** volume phase on the selected ambient-order intervals, including
 multiple null routes and cut loci, and combine it with compatible local short
 producers at one fixed geometric cutoff. Compact-Cauchy flat slabs with empty
 joint must be included. #151 is the existing native owner under #81; this is
-not a new pilot task or an asserted obstruction to the complete action. If
-“flat core” in #149 includes those manifolds, #149 remains incomplete there.
-No counterexample, corrected general target, or universal G-SS completion is
-asserted. #81/#24 remain open.
+not a new pilot task or an asserted obstruction to the complete action.
+These flat-manifold cases remain obligations of **#149's unchanged acceptance
+contract**. Finalizing the delivered Minkowski theorem does not exclude them,
+complete #149, settle the corrected general statement, or resume overlapping
+#151 research. No counterexample, corrected general target, or universal G-SS
+completion is asserted by this note. #149/#81/#24 remain open.
 
 No Lean source, checker, dependency or build input is changed. The new
 all-dimension geometric-to-analytic proof is **not** certified by the existing
