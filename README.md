@@ -534,6 +534,16 @@ tail, these are written sector outputs for #153's complete assembly and separate
 expectation transfer—not a new Lean theorem, independent human acceptance, or
 general coverage under #81/#24.
 
+The subsequent [#153 complete sphere-circle assembly](notes/sphere-circle-assembly.md)
+proves the written full deterministic limit for that fixed 4D geometry and
+then transfers it through #137's checked selected-order, original-Poisson-law
+bridge. All four F20 pair sectors, both endpoint measures and every boundary
+are restored, with the physical point exactly once. The result equals the
+independently contracted `320*pi` curvature bulk; the joint is empty. This
+completes this focusing example, not general metric/dimension coverage, a
+compiled asymptotic proof or independent human review. #81/#24/#86/#94 and
+sample-wise convergence remain separate.
+
 The [partial #151 globalization work](notes/full-partner-globalization.md)
 proves the written manifold measurability/locality and exact full-partner atlas
 identities, plus weighted long cancellation for thin flat-torus slabs in every
