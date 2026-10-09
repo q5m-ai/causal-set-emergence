@@ -128,7 +128,9 @@ combined with spatial reflection interchanges these intersections and
 preserves volume. Both must be subtracted:
 
 ```math
-V(x,y)=c_d(x^q+y^q)-2H_d(x,y;L).
+\begin{aligned}
+V(x,y)&=c_d(x^q+y^q)-2H_d(x,y;L).
+\end{aligned}
 \tag{FC4}
 ```
 
@@ -221,9 +223,11 @@ and uses its individual diamond volume. Unfolding the fundamental cube makes
 its primitive exactly
 
 ```math
-N_{\mathrm{ref}}^\delta(w)=\frac{L^ks_d}{k}
+\begin{aligned}
+N_{\mathrm{ref}}^\delta(w)&=\frac{L^ks_d}{k}
  \int_\delta^T(T-\tau)
  \left[\tau^k-(\tau^2-w)_+^{k/2}\right]d\tau.
+\end{aligned}
 \tag{FC9}
 ```
 
@@ -266,9 +270,11 @@ Set D=T squared minus A. Rationalizing T minus the square root and rescaling
 b by sqrt(D) gives, for D>0,
 
 ```math
-F(A)=\frac{D^q}{4L}\int_{|z|\le1}
+\begin{aligned}
+F(A)&=\frac{D^q}{4L}\int_{|z|\le1}
  \frac{1-|z|^2}
  {\sqrt{A+D|z|^2}\,[T+\sqrt{A+D|z|^2}]}\,dz.
+\end{aligned}
 \tag{FC11}
 ```
 
@@ -282,7 +288,9 @@ from zero.
 For x near zero, the positive y support in the strip is exactly
 
 ```math
-Y(x)=x-L^2+2L\sqrt{T^2-x}>0.
+\begin{aligned}
+Y(x)&=x-L^2+2L\sqrt{T^2-x}>0.
+\end{aligned}
 \tag{FC12}
 ```
 
@@ -355,8 +363,10 @@ The actual shell therefore ends at one root r_w(t). The uniform bound just
 given and (FC14), or a two-sided Taylor sandwich, give
 
 ```math
-r_w(t)=w+\frac{\lambda_d}{q}w^{q+1}t(1-t)
+\begin{aligned}
+r_w(t)&=w+\frac{\lambda_d}{q}w^{q+1}t(1-t)
  +O_{d,L}\bigl(w^{q+2}t(1-t)\bigr).
+\end{aligned}
 \tag{FC15}
 ```
 
@@ -395,7 +405,9 @@ for sufficiently small w its actual two-route primitive, before the spatial
 factor L, is
 
 ```math
-C(w)=\frac{T-L/2}{4L^2}w^2-\frac1{12L^3}w^3\qquad(d=2).
+\begin{aligned}
+C(w)&=\frac{T-L/2}{4L^2}w^2-\frac1{12L^3}w^3\qquad(d=2).
+\end{aligned}
 \tag{FC17}
 ```
 
@@ -438,9 +450,11 @@ The retained overlap primitive alone has the following signed asymptotic,
 by G7 and (FC16):
 
 ```math
-L_{\mathrm{overlap}}(\rho)=
+\begin{aligned}
+L_{\mathrm{overlap}}(\rho)&=
  -\beta_d(q+2)D_dc_d^{-(q+2)/q}M_d(q+1)\rho^{-1/q}
  +o(\rho^{-1/q}).
+\end{aligned}
 \tag{FC19}
 ```
 
@@ -459,9 +473,11 @@ not merely a model coefficient. At each density the two pieces partition
 every selected ordered pair, with the point once. Therefore
 
 ```math
-L^\delta_{1,1}(\rho)\longrightarrow0,\qquad
-S^\delta_{1,1}(\rho)\longrightarrow0,\qquad
-\mathcal A_{\rho,d}(M,g)\longrightarrow0.
+\begin{aligned}
+L^\delta_{1,1}(\rho)&\longrightarrow0,\\
+S^\delta_{1,1}(\rho)&\longrightarrow0,\\
+\mathcal A_{\rho,d}(M,g)&\longrightarrow0.
+\end{aligned}
 \tag{FC20}
 ```
 
