@@ -633,14 +633,16 @@ partitions fit the same budget. Thus the proofs use finitely many compact
 C8 bounds. This is a sufficient count for the stated smooth theorems, not
 optimality, an all-dimensional C3 assertion or a new finite-regularity class.
 
-## 8. Higher dimensions: investigated extensions and exact blocker
+## 8. Higher dimensions: investigated estimates and complete obstructions
 
 For d>=5 the object beyond the cubic jet is the actual primitive of the
 finite sum S in (FL5), with its geometric endpoint domains, not the individual
 diamond volumes and not an arbitrary hypothesized density. The
 [continuation](flat-holonomy-obstruction.md) proves that universal long
-vanishing is false in every d>=6. For the still-open general dimension-five
-case, a positive solution would require a critical estimate such as
+vanishing is false in every d>=6. The subsequent
+[Klein-bottle contact](flat-klein-bottle-obstruction.md) reaches the critical
+order in d=5 as well. A universal positive solution would have required a
+critical estimate such as
 
 ```math
 \begin{aligned}
@@ -734,26 +736,26 @@ arrangement must be treated on its actual image, not integrated as four
 independent phase variables. These failures remain even though every pair
 of branch phases has the independence used in (FL9).
 
-**Genuine unresolved mathematical blocker:** derive a contact-uniform
-critical-order signed pushforward estimate for S in general dimension five,
-across the rank-dependent multi-cone arrangement and arbitrary smooth
-simultaneous endpoint-face contacts, restoring every reference strip and
-complement. The finite-lift, overlap, transport and cubic-jet results here
-supply only o(w^3) from three-positive-phase sectors, not the needed
-o(w^(7/2)). Pairwise/triple ranks do not supply a fourth joint coordinate;
-higher transport derivatives encounter intersections whose independence is
-not implied by the null-ray argument. These are precise losses in the
-successful proof, not just a failed generic rank assumption.
+**Loss in the cubic positive proof, now resolved negatively in dimension
+five:** its three-positive-phase sectors supply only o(w^3), not the
+critical o(w^(7/2)). Pairwise/triple ranks do not supply a fourth joint
+coordinate, and higher transport derivatives encounter dependent
+intersections. The [Klein-bottle continuation](flat-klein-bottle-obstruction.md)
+evaluates an actual surviving critical term, with every sign sector,
+reference strip and complement restored. A universal vanishing estimate
+cannot hold: this is a complete-action obstruction, not an inference from
+the failed higher-derivative estimate.
 
 The subsequent [holonomy proof](flat-holonomy-obstruction.md) investigates an
 actual rank-dependent four-route transition instead of assuming away this
 gap. It derives a fully matched quartic logarithm, a nonzero complete-action
 limit in d=6 and positive complete-action divergence in every d>=7. That term
-is above the five-dimensional critical order and does not settle the remaining
-case. A universal high-dimensional nonlocal-response classification or
-replacement target is also unproved. The corrected quantified positive and
-negative ranges, separate expectation transfer and exact residual owners
-are in that continuation; none changes the original G-SS contract.
+is above the five-dimensional critical order. The subsequent Klein-bottle
+fold instead gives a nonzero complete limit in d=5 and positive divergence
+in every d>=6. Together with the general positive theorem in d=2,3,4,
+this exhausts the dimension-level question. A universal classification of
+individual higher-dimensional nonlocal responses or a replacement target
+remains unproved. Neither continuation changes the original G-SS contract.
 
 ## 9. Actual expectation hypotheses and coverage ledger
 
@@ -805,12 +807,13 @@ complete deterministic theorem. It is not extrapolated from the concrete
 | Noncubic quotients, Euclidean/Lorentz holonomy, non-ultrastatic and developing-incomplete flat geometries | The all-dimensional reduction, overlap bound and cubic jet; complete theorem in d=2,3,4 | Full d>=5 signed response and consequent limit/finite-regularity budget |
 | Odd/even critical fractional/log modes | Existing dimensional moments and G7 apply to the actual residual | No universal list of residual modes or cancellation has been derived |
 | Probability law and physical normalization | Actual geometric hypotheses discharged and finite-density identity in every d; continuation transfers its complete obstructions separately | No sample-wise theorem |
-| Negative resolution in d>=6 | [Continuation's complete-action theorem](flat-holonomy-obstruction.md#6-complete-physical-action-and-separate-expectation) | Not an isolated sector; no universal response classification |
-| Original #149/#81/#24 acceptance | Scope and existing results preserved; original all-dimensional assertion disproved by the continuation | #149 remains open; general d=5 and the sharper corrected classification remain unresolved |
+| Negative resolution in every d>=5 | [Klein-bottle complete-action theorem](flat-klein-bottle-obstruction.md#5-complete-deterministic-action-not-a-sector-response), in addition to the quartic-log family | Not an isolated sector; no universal individual-geometry response classification |
+| Original #149/#81/#24 acceptance | Scope and existing results preserved; original all-dimensional assertion disproved; dimension coverage exhaustive | Issues remain open; the sharper individual-geometry classification is unproved |
 
-The remaining mathematical input is the quantified estimate identified in
-section 8 for d=5, not another example band or another expectation API.
-#81 retains that residual under #149; #151's curved classification is not
+The remaining mathematical task is classification of individual
+higher-dimensional responses, not a universal positive theorem in d=5:
+the latter is contradicted by the Klein-bottle example. #81 retains the
+classification residual under #149; #151's curved classification is not
 re-proved here.
 #86 retains independent mathematical review and any justified formalization.
 No Lean/checker/dependency/build input changes, new compiled theorem,

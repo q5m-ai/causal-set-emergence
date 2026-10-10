@@ -216,9 +216,14 @@ six** and diverges positively in **every dimension at least seven**, despite
 an independently zero target. The actual measured-order bridge transfers
 this complete-action obstruction to expectation separately. This is a
 **written negative resolution**, not a new Lean theorem or human-reviewed
-result. General dimension five and a universal high-dimensional response
-classification remain open under #149/#81; no original scope or observable
-is changed.
+result. The subsequent [Klein-bottle contact](notes/flat-klein-bottle-obstruction.md)
+derives a fully matched fractional term at dimension five's critical order:
+a complete nonzero limit in **dimension five** and positive divergence in
+**every dimension at least six**. Thus the written dimension coverage is
+exhaustive: general positive coverage in 2D–4D, and existence of admissible
+counterexamples in every dimension at least five. A universal classification
+of individual higher-dimensional responses remains unproved under #149/#81;
+no original scope or observable is changed, and human review is outstanding.
 
 The subsequent [smooth 3D assembly and coverage audit](formal/PILOT3_LIMIT.md)
 combines both actual producers at one common fixed positive cutoff, then uses

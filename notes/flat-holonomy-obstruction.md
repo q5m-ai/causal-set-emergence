@@ -13,7 +13,9 @@ The independent flat target is zero.
 This is a negative resolution of the proposed **all-dimensional flat G-SS
 limit**, not a change to the action or admissibility. The companion's complete
 positive theorem for arbitrary flat G-SS regions in dimensions 2--4 remains
-valid. General dimension five remains unresolved. #149/#81/#24 remain open;
+valid. This logarithmic mechanism alone leaves dimension five unresolved;
+the subsequent [Klein-bottle contact](flat-klein-bottle-obstruction.md)
+resolves that dimension negatively. #149/#81/#24 remain open;
 the acceptance alternative, coverage and corrected statement are recorded
 in section 7. Neither a failed estimate nor an isolated sector is being called
 a counterexample.
@@ -483,21 +485,22 @@ The following corrected statements are actually proved in writing:
    remain valid under their original hypotheses. This reflection quotient
    is not a counterexample to any of those theorems.
 
-**Genuine remaining mathematical blocker:** the critical-order estimate for
-arbitrary flat G-SS geometry in dimension five. The companion supplies a
-cubic jet, but five dimensions need an o(w^(7/2)) remainder or a complete
-surviving response. The logarithmic mechanism proved here is above that
-critical order and does not obstruct dimension five. Higher transport
-derivatives across general rank-dependent phase intersections are not
-controlled by the presently proved pairwise/triple rank lemmas. No theorem
-for all five-dimensional flat regions, nor a dimension-five counterexample,
-is claimed.
+**Gap left by this logarithmic mechanism:** its term is above the
+five-dimensional critical order. The cubic jet alone likewise does not
+yield the required o(w^(7/2)) remainder. The subsequent
+[Klein-bottle continuation](flat-klein-bottle-obstruction.md) resolves this
+case by evaluating a fully matched inverse-square-root contact density:
+it gives a complete nonzero limit in d=5 and positive divergence in every
+d>=6. Thus general positive coverage in d=2,3,4 and existence of
+counterexamples in every d>=5 are now exhaustive at the dimension level.
+The theorem (H15) and its different family remain unchanged.
 
 There is also no universal high-dimensional classification or general
 replacement geometric formula for every flat region's nonlocal term. The
 present correction is the quantified positive range and the quantified
-negative range above, with the remaining gap explicit—not an admissibility
-condition requiring a desired jet or a claimed universal renormalization.
+negative ranges above and in the Klein-bottle continuation—not an
+admissibility condition requiring a desired jet or a claimed universal
+renormalization.
 These residual obligations remain under #149/#81. #151 retains curved
 focusing and the shared nonlocal API; this does not reassign or close them.
 
@@ -505,7 +508,7 @@ focusing and the shared nonlocal API; this does not reassign or close them.
 | --- | --- | --- |
 | Actual intervals for arbitrary flat geometry | General finite lifts, faithful developed diamonds, full physical union and chart formulas | No global developing-map assumption |
 | Higher multiplicity and self-overlap | Exact accounting and supercritical physical-union comparison in every dimension | Does not linearize the sum-volume kernel |
-| Signed phase/remainder estimates | Cubic jet generally; fully matched quartic log in this holonomy family | General dimension-five critical remainder and high-dimensional classification remain open |
+| Signed phase/remainder estimates | Cubic jet generally; fully matched quartic log here; critical fractional contact in the Klein-bottle continuation | Universal individual-geometry response classification remains unproved |
 | Complete deterministic target | Joint limit for every flat G-SS region in d=2,3,4 | Original all-dimensional assertion disproved, not narrowed |
 | Negative resolution | Complete nonzero limit in d=6; complete positive divergence in every d>=7 | Independent human scrutiny outstanding |
 | Actual law and expectation | Separate finite-density discharge generally and transfer of each proved limit/obstruction | No variance or sample-wise convergence |
