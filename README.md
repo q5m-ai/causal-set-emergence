@@ -199,6 +199,18 @@ theorem and separately discharges the generic dimension-indexed expectation
 hypotheses. This is **not arbitrary-flat coverage, a new Lean result or
 independent human review**; #149/#81/#24 remain open.
 
+The [general finite-lift reduction](notes/finite-lift-flat-reduction.md) derives
+faithful individual developed diamonds and exact physical interval-union/chart
+formulas for every flat G-SS region in every dimension at least two. It does
+not assume a globally injective developing map. Its critical-order comparison
+retains arbitrary multiplicity and self-overlap. It then derives the
+sum-volume primitive through cubic order and proves the complete deterministic
+and separate expected limits for **all flat G-SS geometries in 2D, 3D and 4D**.
+These are written results, not new Lean proofs or independent review. The
+critical signed sum-volume/contact producer in dimensions five and above
+is explicitly unresolved; no general all-dimensional flat
+completion or complete-action obstruction is claimed.
+
 The subsequent [smooth 3D assembly and coverage audit](formal/PILOT3_LIMIT.md)
 combines both actual producers at one common fixed positive cutoff, then uses
 the separately proved finite-density expectation identity. `Pilot3Limit.lean`
