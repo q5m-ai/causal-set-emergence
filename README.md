@@ -206,10 +206,19 @@ not assume a globally injective developing map. Its critical-order comparison
 retains arbitrary multiplicity and self-overlap. It then derives the
 sum-volume primitive through cubic order and proves the complete deterministic
 and separate expected limits for **all flat G-SS geometries in 2D, 3D and 4D**.
-These are written results, not new Lean proofs or independent review. The
-critical signed sum-volume/contact producer in dimensions five and above
-is explicitly unresolved; no general all-dimensional flat
-completion or complete-action obstruction is claimed.
+These are written results, not new Lean proofs or independent review.
+
+The subsequent [flat holonomy continuation](notes/flat-holonomy-obstruction.md)
+derives a fully matched quartic logarithm for an admissible compact flat
+reflection quotient. With the complete physical interval union and short
+point cancellation restored, its action has a nonzero limit in **dimension
+six** and diverges positively in **every dimension at least seven**, despite
+an independently zero target. The actual measured-order bridge transfers
+this complete-action obstruction to expectation separately. This is a
+**written negative resolution**, not a new Lean theorem or human-reviewed
+result. General dimension five and a universal high-dimensional response
+classification remain open under #149/#81; no original scope or observable
+is changed.
 
 The subsequent [smooth 3D assembly and coverage audit](formal/PILOT3_LIMIT.md)
 combines both actual producers at one common fixed positive cutoff, then uses

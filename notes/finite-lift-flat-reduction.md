@@ -9,10 +9,12 @@ between the physical-volume and sum-of-diamond-volume primitives is above
 critical order, including arbitrary multiplicity and self-overlap. Section 7
 then derives the sum-volume primitive through cubic order and proves the full
 deterministic and expected limit for **all flat G-SS regions in dimensions
-two, three and four**, not another example family. The critical producer in
-dimensions five and above remains unresolved; section 8 identifies the
-failed extensions and the exact residual. No general flat limit or
-counterexample is asserted.
+two, three and four**, not another example family. The subsequent
+[flat holonomy continuation](flat-holonomy-obstruction.md) goes beyond this
+cubic estimate and proves complete-action counterexamples in every dimension
+at least six. General dimension five remains unresolved; section 8 identifies
+why this estimate does not settle it. No universal all-dimensional flat limit
+is asserted.
 
 Base: `81d99e4bb247b308b33d1917922f43a6fb69c8c0` on
 `issue-81-general-coverage`, including #157 and #162. Their statements and
@@ -633,11 +635,12 @@ optimality, an all-dimensional C3 assertion or a new finite-regularity class.
 
 ## 8. Higher dimensions: investigated extensions and exact blocker
 
-For d>=5 the remaining object is the actual primitive of the finite sum S
-in (FL5), with its geometric endpoint domains, not the individual diamond
-volumes and not an arbitrary hypothesized density. The cubic jet (FL12)
-is insufficient at those dimensions' critical order. To complete #149 one
-must derive its critical signed response, for example by proving
+For d>=5 the object beyond the cubic jet is the actual primitive of the
+finite sum S in (FL5), with its geometric endpoint domains, not the individual
+diamond volumes and not an arbitrary hypothesized density. The
+[continuation](flat-holonomy-obstruction.md) proves that universal long
+vanishing is false in every d>=6. For the still-open general dimension-five
+case, a positive solution would require a critical estimate such as
 
 ```math
 \begin{aligned}
@@ -732,21 +735,25 @@ independent phase variables. These failures remain even though every pair
 of branch phases has the independence used in (FL9).
 
 **Genuine unresolved mathematical blocker:** derive a contact-uniform
-critical-order signed pushforward estimate for S, in d>=5, across the
-rank-dependent multi-cone arrangement and arbitrary smooth simultaneous
-endpoint-face contacts, restoring every reference strip and complement.
-The finite-lift, overlap, transport and cubic-jet results proved here do not
-provide that estimate. In particular, the dominated-convergence proof for
-three-positive-phase sectors gives only o(w^3), not the needed higher-order
-remainder; pairwise/triple ranks do not supply a fourth joint coordinate.
-Higher transport derivatives encounter intersections whose independence is
+critical-order signed pushforward estimate for S in general dimension five,
+across the rank-dependent multi-cone arrangement and arbitrary smooth
+simultaneous endpoint-face contacts, restoring every reference strip and
+complement. The finite-lift, overlap, transport and cubic-jet results here
+supply only o(w^3) from three-positive-phase sectors, not the needed
+o(w^(7/2)). Pairwise/triple ranks do not supply a fourth joint coordinate;
+higher transport derivatives encounter intersections whose independence is
 not implied by the null-ray argument. These are precise losses in the
-successful proof, not just a failed generic rank assumption. Nor has a
-surviving complete-action term been
-proved. A pure critical fractional mode in odd d or a critical logarithmic
-mode in even d must be tested with G7, not ruled out by smooth geometry or
-called an obstruction in isolation. There is no justified corrected target
-to substitute at this stage.
+successful proof, not just a failed generic rank assumption.
+
+The subsequent [holonomy proof](flat-holonomy-obstruction.md) investigates an
+actual rank-dependent four-route transition instead of assuming away this
+gap. It derives a fully matched quartic logarithm, a nonzero complete-action
+limit in d=6 and positive complete-action divergence in every d>=7. That term
+is above the five-dimensional critical order and does not settle the remaining
+case. A universal high-dimensional nonlocal-response classification or
+replacement target is also unproved. The corrected quantified positive and
+negative ranges, separate expectation transfer and exact residual owners
+are in that continuation; none changes the original G-SS contract.
 
 ## 9. Actual expectation hypotheses and coverage ledger
 
@@ -797,12 +804,14 @@ complete deterministic theorem. It is not extrapolated from the concrete
 | Thin and first-cut cubic slabs in every d>=2 | Reuse the existing thin theorem and #162 unchanged | Those width bands are not generalized by changing their routines |
 | Noncubic quotients, Euclidean/Lorentz holonomy, non-ultrastatic and developing-incomplete flat geometries | The all-dimensional reduction, overlap bound and cubic jet; complete theorem in d=2,3,4 | Full d>=5 signed response and consequent limit/finite-regularity budget |
 | Odd/even critical fractional/log modes | Existing dimensional moments and G7 apply to the actual residual | No universal list of residual modes or cancellation has been derived |
-| Probability law and physical normalization | Actual geometric hypotheses discharged and finite-density identity in every d | Higher-dimensional expectation limits await their deterministic producers |
-| Original #149/#81/#24 acceptance | Scope and existing results preserved | #149 remains open; this is not completed general flat coverage |
+| Probability law and physical normalization | Actual geometric hypotheses discharged and finite-density identity in every d; continuation transfers its complete obstructions separately | No sample-wise theorem |
+| Negative resolution in d>=6 | [Continuation's complete-action theorem](flat-holonomy-obstruction.md#6-complete-physical-action-and-separate-expectation) | Not an isolated sector; no universal response classification |
+| Original #149/#81/#24 acceptance | Scope and existing results preserved; original all-dimensional assertion disproved by the continuation | #149 remains open; general d=5 and the sharper corrected classification remain unresolved |
 
-The next mathematical input is the quantified estimate identified in section
-8, not another example band or another expectation API. #81 retains that
-residual under #149; #151's curved classification is not re-proved here.
+The remaining mathematical input is the quantified estimate identified in
+section 8 for d=5, not another example band or another expectation API.
+#81 retains that residual under #149; #151's curved classification is not
+re-proved here.
 #86 retains independent mathematical review and any justified formalization.
 No Lean/checker/dependency/build input changes, new compiled theorem,
 sample-wise statement, shrinking-cutoff interchange or complete-action rate
