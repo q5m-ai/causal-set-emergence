@@ -28,8 +28,9 @@ g_M&=dt^2-h_{\mathrm{flat}},&1&\lt T\lt\sqrt5/2.
 Every group element has spatial action
 $`(x+m,(-1)^m y+2n,b+10\ell)`$ with integral indices. Its subgroup with even
 $`m`$ is a translation lattice; the full action is free, proper and cocompact.
-A fundamental domain has volume $`2\,10^p`$. The spacetime is globally
-hyperbolic and flat. Its open slab is precompact and ambient-causally-convex;
+A fundamental domain has volume $`2\,10^p`$. The ambient spacetime
+$`\mathbb R\times X_d`$ with the metric in K1 is globally hyperbolic and
+flat. Its open slab is precompact and ambient-causally-convex;
 its two faces are smooth, closed and spacelike, with empty joint. Thus its
 independently computed target is zero. Orientability is not a G-SS hypothesis.
 
