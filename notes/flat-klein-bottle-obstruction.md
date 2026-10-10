@@ -188,9 +188,11 @@ of size $`m`$, integration of the inactive negative coordinates contributes
 the corner antiderivative
 
 ```math
-\frac{(-1)^m\Gamma(1/2)}
+\begin{aligned}
+&\frac{(-1)^m\Gamma(1/2)}
  {\Gamma(m+1/2)\prod_{j\notin I}\lambda_j}
  (-\lambda_I\cdot s_I)_+^{m-1/2}.
+\end{aligned}
 \tag{K6}
 ```
 
@@ -223,8 +225,10 @@ $`qz^{q-1}e^{-z^q}`$ on the positive axis; these are not the physical Poisson
 process. Set $`W=Z_1+Z_2-Z_3-Z_4`$. Then the matched coefficient is
 
 ```math
- C_q=\frac{\mathbb E[(-W)_+^{7/2}]}
+\begin{aligned}
+ C_q&=\frac{\mathbb E[(-W)_+^{7/2}]}
  {P_\alpha\,\Gamma(1+7/(2q))}>0.
+\end{aligned}
 \tag{K7}
 ```
 
@@ -257,7 +261,9 @@ Their inequality is a negative control for omission of the other sectors.
 The complete primitive, including the regular complement, is therefore
 
 ```math
- N_S^\delta(w)=b_1w+b_2w^2+b_3w^3+B_d C_qw^{7/2}+O(w^4).
+\begin{aligned}
+ N_S^\delta(w)&=b_1w+b_2w^2+b_3w^3+B_d C_qw^{7/2}+O(w^4).
+\end{aligned}
 \tag{K8}
 ```
 
