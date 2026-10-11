@@ -310,8 +310,11 @@ replacement in curved 4D:** absence of conjugate points and the faithful
 quadratic-volume representation no longer follow. Even on the universal
 cover a cut/conjugate locus can carry multiple or continuously many null
 geodesics; a uniform phase inverse or finite nondegenerate branch list cannot
-be assumed. The failure is before a Taylor or signed-kernel argument, not
-merely a missing partition-of-unity summation.
+be assumed. The compact-length argument can still bound the number of
+relevant deck classes in a curved ambient. What is missing is a faithful
+quadratic diamond or controlled null-ray system **within each class**, not
+just a list of those classes. The failure is before a Taylor or signed-kernel
+argument, not merely a missing partition-of-unity summation.
 
 Here is a precise sufficient producer and its weaker exact response test,
 using only #151's existing G5–G7 interface. Let N_g(w) be the **physical** long
