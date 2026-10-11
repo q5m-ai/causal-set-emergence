@@ -619,6 +619,14 @@ compatible with #149/#151. This is **written analysis with regressions**, not a
 compiled proof or independent human review. The general nonlocal long producer
 and full-action/expectation assembly remain with #151/#81; #24 stays open.
 
+The [general curved-4D continuation](notes/curved4-physical-response.md) derives
+the actual physical clock pushforward without a geodesic branch list and
+bounds its small-volume long sublevels. It audits consumption of S30 and
+explores signed dilation estimates weaker than a cubic jet. **The critical
+geometric estimate remains blocked**: neither a general complete-action limit
+nor an admissible 4D obstruction is claimed. Its scalar and optical-model
+controls are diagnostics, not geometric counterexamples.
+
 ## Program 2 — dynamics and automaton-like growth
 
 The exploratory question is whether causal-set dynamics can be represented as

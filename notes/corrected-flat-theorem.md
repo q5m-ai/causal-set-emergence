@@ -26,14 +26,17 @@ with multiplicity. In the canonical normalization of
 \begin{aligned}
 V_g(x,y)&=\mu_g\{z\in M:x\preceq z\preceq y,\ z\notin\{x,y\}\},\\
 \mathcal A_{\rho,d}
- &=\alpha_d\rho^{2/d}\mu_g(M)
+ &=a_d\rho^{2/d}\mu_g(M)
  -\beta_d\rho^{1+2/d}\int_{x\prec y}
           K_d(\rho V_g(x,y))\,d\mu_g(x)\,d\mu_g(y),\\
 \mathcal T_d(M,g)&=\int_J\coth\theta\,dA_g.
 \end{aligned}\tag{CFT1}
 ```
 
-The flat bulk curvature term is zero. The target is independently defined
+The point coefficient is the positive `a_d` of the shared interface (minus
+the d'Alembertian coefficient `alpha_d`); an earlier CFT1 printed `alpha_d`
+instead. This notation correction does not change the canonical action used
+in the proofs. The flat bulk curvature term is zero. The target is independently defined
 by induced metric and future normals, including counting measure at **every**
 2D joint endpoint. Both endpoint measures, all causal partners and every
 ordered pair of partition labels are retained. The physical point term occurs
@@ -350,6 +353,12 @@ settle the 4D question either. No universal curved-4D theorem or counterexample
 is supplied here. This is the existing **#151** geometric long-producer task,
 with **#81** owning the complete curved-4D/general coverage decision. No new
 shared definition, duplicate child, or example-specific side task is created.
+
+The [curved-4D continuation](curved4-physical-response.md) derives a branch-free
+physical clock pushforward and a general small-sublevel bound, audits the S30
+hypothesis discharge, and supplies a weaker signed dilation-increment test.
+Its critical geometric estimate is still blocked; it proves neither a general
+curved-4D limit nor a complete-action obstruction.
 
 ## 6. Evidence pins, residual owners and verification boundary
 
