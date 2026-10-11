@@ -221,9 +221,15 @@ derives a fully matched fractional term at dimension five's critical order:
 a complete nonzero limit in **dimension five** and positive divergence in
 **every dimension at least six**. Thus the written dimension coverage is
 exhaustive: general positive coverage in 2D–4D, and existence of admissible
-counterexamples in every dimension at least five. A universal classification
-of individual higher-dimensional responses remains unproved under #149/#81;
-no original scope or observable is changed, and human review is outstanding.
+counterexamples in every dimension at least five. The
+[corrected FLAT theorem and proof audit](notes/corrected-flat-theorem.md)
+state the sharp quantifiers and assess #149's original complete-action
+negative-resolution route. Classifying every individual higher-dimensional
+response is open research, not an additional condition of that route.
+**Flat 4D G-SS coverage is general in writing**; the earliest general curved-4D
+obstacle is the actual long-interval response through cut/conjugate contacts,
+owned by #151/#81. No original scope or observable is changed; independent
+human review and any justified formalization remain outstanding.
 
 The subsequent [smooth 3D assembly and coverage audit](formal/PILOT3_LIMIT.md)
 combines both actual producers at one common fixed positive cutoff, then uses

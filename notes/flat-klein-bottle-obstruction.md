@@ -215,8 +215,24 @@ coarea on the band, and integrate $`O(w)t^{-3/2}`$ outside. For $`m=1`$,
 the square root is one-half Hölder. For $`m\ge2`$, its antiderivative is
 continuously differentiable. Hence these errors contribute $`O(w^4)`$ or
 better. Derivatives of the smooth amplitude leave one extra antiderivative
-power and are higher order. Only finitely many derivatives are required;
-this explicit geometry and K3 are smooth to every needed finite order.
+power and are higher order. To make the remainder bookkeeping explicit,
+use the antiderivative in an inactive coordinate j divided by its nonzero
+$`\partial_jD`$. Its boundary term raises the exponent by one and restricts
+that coordinate to zero. Its remaining integral differentiates only the
+smooth amplitude divided by $`\partial_jD`$, and already has that extra
+antiderivative power. Repeating in the other inactive coordinates gives K6;
+each further integration transfers another derivative off the singular
+factor and raises its exponent again. After finitely many repetitions the
+remaining integral is C3 in the active coordinates, which suffices for the
+integer Taylor terms and an O(w^4) primitive error. Full inactive-corner
+terms with an extra antiderivative have degree at least $`9/2`$; the curved
+leading-corner errors have the bounds just proved. This accounts for every
+term, not just the constant amplitude.
+
+Only finitely many derivatives are required; this explicit geometry and K3
+are smooth to every needed finite order. The derivative ledger in the
+[stabilized FLAT theorem](corrected-flat-theorem.md#3-proof-audit-and-finite-derivative-ledger)
+records a conservative finite budget rather than relying on the word smooth.
 
 It remains to evaluate the sum of all fifteen leading corner coefficients.
 A convenient exact identity avoids a fitted numerical sign. Let
@@ -337,7 +353,10 @@ Minkowski theorem, bounded first-cut torus theorem and quartic-log family
 remain unchanged positive and negative examples in their stated classes.
 
 A universal high-dimensional replacement target or classification of all
-flat contact responses remains unproved. The original all-dimensional
-assertion is refuted, not rescued by an unannounced holonomy, topology or
-regularity exclusion. #149/#81/#24 retain their original scope and open
-status; human mathematical scrutiny remains outstanding.
+flat contact responses remains unproved. It is not needed for #149's original
+negative-resolution route: the [corrected FLAT theorem](corrected-flat-theorem.md)
+proves the sharp universal dimension statement and gives the acceptance
+crosswalk. The original all-dimensional assertion is refuted, not rescued
+by an unannounced holonomy, topology or regularity exclusion. #149/#81/#24
+retain their original scope and open status; human mathematical scrutiny
+remains outstanding.

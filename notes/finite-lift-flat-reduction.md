@@ -12,9 +12,11 @@ deterministic and expected limit for **all flat G-SS regions in dimensions
 two, three and four**, not another example family. The subsequent
 [flat holonomy continuation](flat-holonomy-obstruction.md) goes beyond this
 cubic estimate and proves complete-action counterexamples in every dimension
-at least six. General dimension five remains unresolved; section 8 identifies
-why this estimate does not settle it. No universal all-dimensional flat limit
-is asserted.
+at least six. The subsequent [Klein-bottle fold](flat-klein-bottle-obstruction.md)
+settles dimension five negatively as well. The
+[corrected FLAT theorem](corrected-flat-theorem.md) states the resulting sharp
+universal dimension range and reconciles #149's negative-resolution route.
+No universal all-dimensional flat limit is asserted.
 
 Base: `81d99e4bb247b308b33d1917922f43a6fb69c8c0` on
 `issue-81-general-coverage`, including #157 and #162. Their statements and
@@ -132,6 +134,16 @@ The null value is zero. Compactness of the **actual** lifted diamond is what
 fills the developed diamond; local flatness alone would not suffice. This
 argument covers Lorentz holonomy and developing-incomplete ambients without
 assuming an injective developing map or properness of its holonomy image.
+
+The global-hyperbolicity input here is causal-geodesic existence for every
+causally related pair, including null pairs; it is not a completeness or
+surjectivity assertion about the exponential map. Existence, the affine
+parameter interval [0,1], and the local differential of dev determine one
+initial vector. Ordinary geodesic uniqueness then proves injectivity on the
+causal future. In the open/closed step it is the **actual causal relation**
+that first places a preimage in [a,b]; only then may the developed timelike
+norm prove that its two joining geodesics are timelike. Starting instead
+with an arbitrary developed timelike displacement would be circular.
 
 ## 3. Finite lift lists and finite local cone formulas
 
@@ -427,9 +439,15 @@ its limiting endpoint covectors are (-k,k), whereas d(ell) tends to (-dt,dt).
 Here k is null and dt timelike. With both active faces the endpoints approach
 J; dependence would force the same covector to be proportional to its two
 independent face conormals, then force both coefficients to vanish. Compactness
-gives a uniform small-cutoff bound. With at most one face, the free endpoint
-already proves rank. This is the temporal version of #157's derived cutoff
-argument, not an identification of temporal and radial-null masks.
+gives a uniform small-cutoff bound. More explicitly, a limiting relation
+among the normalized phase, temporal gap and two face covectors says that
+one covector $`Ak+B\,dt`$ equals both $`C\alpha_-`$ and $`D\alpha_+`$.
+Transversality at the joint forces $`C=D=0`$; null/timelike independence
+then forces $`A=B=0`$. If a sequence of smaller cutoffs lost rank, normalize
+its coefficients and pass to this compact limiting system, a contradiction.
+With at most one face, the free endpoint already proves rank. This is the
+temporal version of #157's derived cutoff argument, not an identification
+of temporal and radial-null masks.
 
 Moreover all multiple-route null pairs stay a positive temporal distance
 from the diagonal. Otherwise G3 would place their entire intervals in one
@@ -488,6 +506,17 @@ This proves the lemma and its uniform Lipschitz bound. It does not claim
 ordinary differentiability, a finite contact stratification or a second
 derivative without further information.
 
+Two details are important at arbitrary smooth contacts. The assertion about
+the tangential gradient holds almost everywhere by the Lebesgue density
+theorem applied to the zero set on the boundary; it does not say that the
+zero set is a submanifold or has finite contact order. On its positive-measure
+part, individual regularity makes the coefficient of r in the rescaled
+inequality nonzero. Fubini then removes its single exceptional r value for
+each passive point. This works even for coincident constraints and zero sets
+with no finite stratification. All the rescaled bands have a common compact
+r range and bounded coarea weights, so dominated convergence proves an
+actual one-sided derivative, not just bounded difference quotients.
+
 ### Exact sign sectors and the third-order jet
 
 Decompose the local pair domain by the **whole set A of positive phases**;
@@ -526,6 +555,17 @@ by parts. These give local bounded second weak derivatives for B, justify
 passage to the continuous first-derivative formula, and supply its compact
 bounds. Applying the shape lemma to each term then supplies the stated
 right derivative, not merely a weak derivative at an unspecified point.
+
+Equivalently, obtain B' directly by telescoping the indicators. On the
+u-fibre each double band has measure O(h squared), by the derived pairwise
+ranks on that fibre; dividing by h removes the ambiguity about which of the
+other indicators is evaluated before or after transport. The remaining
+single-band limits are precisely the coarea fluxes. Their continuity follows
+from dominated convergence off their regular zero sets. Rectify the moving
+flux boundary smoothly in u before applying the first-derivative lemma to
+its remaining masks. Pairwise independence of those masks **on the flux
+boundary is not needed**. This supplies the right derivative of B' used in
+(FL11), without assuming fourfold rank or a classical C2 fibre density.
 
 **Two positive phases.** Use u=s_i, v=s_j. Every remaining constraint is
 individually regular on their joint fibre by triple rank. Its actual
@@ -799,22 +839,24 @@ complete deterministic theorem. It is not extrapolated from the concrete
 | Original obligation | Proved coverage | Explicitly unresolved |
 | --- | --- | --- |
 | Every flat ambient topology/holonomy, d>=2 | Finite lift lists; faithful individual developed diamonds; exact physical union/cone chart formulas | No missing global-development assumption is left in the reduction |
-| Wider cuts, arbitrary multiplicity, large-diamond self-overlap | Exact finite-density accounting; actual union correction (FL9); sum-volume cubic jet (FL12) | Critical signed sum-volume/contact producer in d>=5 |
+| Wider cuts, arbitrary multiplicity, large-diamond self-overlap | Exact finite-density accounting; actual union correction (FL9); sum-volume cubic jet (FL12) | Individual higher-dimensional signed responses, not a universal vanishing theorem |
 | Arbitrary admissible faces, components, joints and both endpoint measures | Exact domains; long clearance; transport through simultaneous contacts; S30 short and independent target; complete ordered partition identities | Higher-order simultaneous face/multi-phase response in d>=5 |
 | All flat G-SS in d=2,3,4 | Full deterministic and separate expected limits; all 2D joint endpoints; sufficient finite derivative budget | Independent human review and any justified formal port |
 | Minkowski G-SS in every d>=2 | Reuse #157's complete theorem and finite regularity count unchanged | No new gap imposed on that theorem |
 | Thin and first-cut cubic slabs in every d>=2 | Reuse the existing thin theorem and #162 unchanged | Those width bands are not generalized by changing their routines |
-| Noncubic quotients, Euclidean/Lorentz holonomy, non-ultrastatic and developing-incomplete flat geometries | The all-dimensional reduction, overlap bound and cubic jet; complete theorem in d=2,3,4 | Full d>=5 signed response and consequent limit/finite-regularity budget |
+| Noncubic quotients, Euclidean/Lorentz holonomy, non-ultrastatic and developing-incomplete flat geometries | The all-dimensional reduction, overlap bound and cubic jet; complete theorem in d=2,3,4 | Individual d>=5 response classification and geometry-specific regularity budgets |
 | Odd/even critical fractional/log modes | Existing dimensional moments and G7 apply to the actual residual | No universal list of residual modes or cancellation has been derived |
 | Probability law and physical normalization | Actual geometric hypotheses discharged and finite-density identity in every d; continuation transfers its complete obstructions separately | No sample-wise theorem |
 | Negative resolution in every d>=5 | [Klein-bottle complete-action theorem](flat-klein-bottle-obstruction.md#5-complete-deterministic-action-not-a-sector-response), in addition to the quartic-log family | Not an isolated sector; no universal individual-geometry response classification |
-| Original #149/#81/#24 acceptance | Scope and existing results preserved; original all-dimensional assertion disproved; dimension coverage exhaustive | Issues remain open; the sharper individual-geometry classification is unproved |
+| Original #149 acceptance | Complete-action obstruction and corrected sharp dimension theorem; original scope preserved | Written mathematical delivery, not administrative completion or independent review |
+| Parent #81/#24 acceptance | Flat dimension-level branch resolved in writing | General curved-4D and required non-spacelike branches, independent review and justified verification remain |
 
-The remaining mathematical task is classification of individual
-higher-dimensional responses, not a universal positive theorem in d=5:
-the latter is contradicted by the Klein-bottle example. #81 retains the
-classification residual under #149; #151's curved classification is not
-re-proved here.
+Classification of individual higher-dimensional responses remains open
+research, but is **not an additional prerequisite of #149's original
+negative-resolution acceptance route**. The
+[corrected FLAT theorem and acceptance audit](corrected-flat-theorem.md)
+supply the quantified corrected statement. The general curved-4D long
+producer remains with #151/#81; it is not re-proved here.
 #86 retains independent mathematical review and any justified formalization.
 No Lean/checker/dependency/build input changes, new compiled theorem,
 sample-wise statement, shrinking-cutoff interchange or complete-action rate

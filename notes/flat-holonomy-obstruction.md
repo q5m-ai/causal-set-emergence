@@ -501,8 +501,11 @@ present correction is the quantified positive range and the quantified
 negative ranges above and in the Klein-bottle continuation—not an
 admissibility condition requiring a desired jet or a claimed universal
 renormalization.
-These residual obligations remain under #149/#81. #151 retains curved
-focusing and the shared nonlocal API; this does not reassign or close them.
+The [corrected FLAT theorem](corrected-flat-theorem.md) now states the sharp
+universal dimension range and audits #149's original negative-resolution
+route. Individual higher-dimensional classification is open research, not
+an extra condition of that route. #151/#81 retain general curved-4D focusing
+and the broader nonlocal classification; this does not reassign or close them.
 
 | Original obligation | Current result | Boundary |
 | --- | --- | --- |
@@ -521,9 +524,12 @@ four iterations of (H6) leave an h^8 times logarithmic remainder, whose first
 five h derivatives are controlled; the sector integrations by parts use at
 most six further derivatives of the compact amplitudes. The consumed flat
 short estimate uses the mixed orders through floor(d/2)+4 specified in S10.
-All are bounded on the displayed fixed compact domains. This records the
-finite derivative demand at each dimension; it is not a finite-regularity
-relaxation of G-SS or an all-dimensional C3 assertion.
+All are bounded on the displayed fixed compact domains. The
+[stabilization ledger](corrected-flat-theorem.md#3-proof-audit-and-finite-derivative-ledger)
+combines these operations into the conservative ceiling `floor(d/2)+32`;
+it counts the transverse divided derivatives as well as the later amplitude
+derivatives. This records finite derivative demand at each dimension, not a
+finite-regularity relaxation of G-SS or an all-dimensional C3 assertion.
 
 The tests in `test_flat_holonomy_obstruction.py` independently check the group
 algebra, finite lift enumeration, product-coordinate Jacobian and rank drop,
