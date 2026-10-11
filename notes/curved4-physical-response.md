@@ -17,6 +17,13 @@ Section 7 identifies exactly the remaining geometric calculation. In
 particular, this note does not answer the universal 4D question affirmatively
 or negatively merely because its partial results can be committed.
 
+The [subsequent focal-geometry research](curved4-focal-research.md) now
+constructs the first whole-primitive coefficient from general geometry and
+realizes the quartic contact in an admissible metric. It derives the actual
+interval and full pair weights, and exposes failure of termwise cubic
+absolute domination. Its matched physical signed coefficient and complete
+complement remain unresolved; it does not turn CP11 into a counterexample.
+
 ## 1. Audit of CFT5–CFT6 and actual consumption of S30
 
 Fix a smooth 4D G-SS member, with the selected ambient order restricted to M.
@@ -424,13 +431,19 @@ signed critical response. The missing general geometric statement is either:
   member, retaining the regular complement and cutoff shells, then use CP2
   to prove its complete-action behavior.
 
-Even existence of suitable first two coefficients b1,b2 for the CP8 route
-has not been proved here. Declaring them to exist, differentiating the
-continuous clock inverse, summing finitely many conjectured branches, or
-using CP6 to discard a cut collar would assume the missing producer.
-The scalar controls prove a concrete logical insufficiency of the estimates
-obtained; they do not prove that G-SS admits those scalar primitives.
-The degenerate model likewise lacks geometric realization and full matching.
+This note's first delivery did not construct either subtraction coefficient
+b1,b2. The [continuation, CR3](curved4-focal-research.md), now derives b1
+from almost-everywhere regular null geometry and CP6's actual strip bound;
+b2 and critical signed control remain unproved generally. Declaring those
+remaining estimates, differentiating the continuous inverse through all
+contacts, summing finitely many conjectured branches, or using CP6 to discard
+a cut collar would still assume the missing producer.
+The scalar controls prove logical insufficiency of the estimates in this
+note, not geometric realization of those scalar primitives. CR4–CR14 of the
+continuation do realize a quartic focus and derive its physical interval;
+CR18 identifies a matched **model** coefficient, not the coefficient of the
+complete physical action. Its section 7 supersedes this original stopping
+ledger with the sharper unresolved matching/complement obligations.
 This is a **mathematical blocker**, not a request to narrow the class or to
 obtain interim human review. A conditional CP8 theorem cannot complete #151.
 

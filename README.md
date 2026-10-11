@@ -624,8 +624,14 @@ the actual physical clock pushforward without a geodesic branch list and
 bounds its small-volume long sublevels. It audits consumption of S30 and
 explores signed dilation estimates weaker than a cubic jet. **The critical
 geometric estimate remains blocked**: neither a general complete-action limit
-nor an admissible 4D obstruction is claimed. Its scalar and optical-model
-controls are diagnostics, not geometric counterexamples.
+nor an admissible 4D obstruction is claimed. The
+[focal-geometry follow-up](notes/curved4-focal-research.md) derives the first
+whole-primitive coefficient from general geometry and realizes a quartic
+focus in an explicit curved G-SS metric, with its actual interval and full
+pair weights. The regular cubic inverse coefficients fail absolute endpoint
+domination there. A matched model integral is identified, but its transfer
+and the complete physical complement remain unresolved. Scalar/model
+responses are not promoted to complete-action counterexamples.
 
 ## Program 2 — dynamics and automaton-like growth
 
