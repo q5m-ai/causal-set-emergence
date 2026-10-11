@@ -199,6 +199,38 @@ theorem and separately discharges the generic dimension-indexed expectation
 hypotheses. This is **not arbitrary-flat coverage, a new Lean result or
 independent human review**; #149/#81/#24 remain open.
 
+The [general finite-lift reduction](notes/finite-lift-flat-reduction.md) derives
+faithful individual developed diamonds and exact physical interval-union/chart
+formulas for every flat G-SS region in every dimension at least two. It does
+not assume a globally injective developing map. Its critical-order comparison
+retains arbitrary multiplicity and self-overlap. It then derives the
+sum-volume primitive through cubic order and proves the complete deterministic
+and separate expected limits for **all flat G-SS geometries in 2D, 3D and 4D**.
+These are written results, not new Lean proofs or independent review.
+
+The subsequent [flat holonomy continuation](notes/flat-holonomy-obstruction.md)
+derives a fully matched quartic logarithm for an admissible compact flat
+reflection quotient. With the complete physical interval union and short
+point cancellation restored, its action has a nonzero limit in **dimension
+six** and diverges positively in **every dimension at least seven**, despite
+an independently zero target. The actual measured-order bridge transfers
+this complete-action obstruction to expectation separately. This is a
+**written negative resolution**, not a new Lean theorem or human-reviewed
+result. The subsequent [Klein-bottle contact](notes/flat-klein-bottle-obstruction.md)
+derives a fully matched fractional term at dimension five's critical order:
+a complete nonzero limit in **dimension five** and positive divergence in
+**every dimension at least six**. Thus the written dimension coverage is
+exhaustive: general positive coverage in 2D–4D, and existence of admissible
+counterexamples in every dimension at least five. The
+[corrected FLAT theorem and proof audit](notes/corrected-flat-theorem.md)
+state the sharp quantifiers and assess #149's original complete-action
+negative-resolution route. Classifying every individual higher-dimensional
+response is open research, not an additional condition of that route.
+**Flat 4D G-SS coverage is general in writing**; the earliest general curved-4D
+obstacle is the actual long-interval response through cut/conjugate contacts,
+owned by #151/#81. No original scope or observable is changed; independent
+human review and any justified formalization remain outstanding.
+
 The subsequent [smooth 3D assembly and coverage audit](formal/PILOT3_LIMIT.md)
 combines both actual producers at one common fixed positive cutoff, then uses
 the separately proved finite-density expectation identity. `Pilot3Limit.lean`
