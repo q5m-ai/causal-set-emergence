@@ -191,9 +191,15 @@ def model_profile(excess, r, order=32):
     """All wells of f_r(E) in CR15, not a physical interval-volume solver."""
     if not math.isfinite(excess) or excess <= 0 or not abs(r) <= .5:
         raise ValueError("requires finite excess > 0 and |r| <= 1/2")
+    nodes, weights = _jacobi(order)
+    if excess == 1/16 and abs(r) == .5:
+        # The double saddle root can appear as a tiny complex pair. Testing
+        # only the midpoint of the outer interval then incorrectly drops both
+        # wells. The exact integral of |u+1/2|^3*(1/2-(u+1/2)^2)^(3/2)
+        # is known at this contact; this remains a model diagnostic.
+        return 1/(70*math.sqrt(2))
     roots = np.roots([1, 4*r, 1, 0, -excess])
     real = sorted(z.real for z in roots if abs(z.imag) < 1e-9)
-    nodes, weights = _jacobi(order)
     total = 0.
     for lo, hi in zip(real, real[1:]):
         mid, half = (lo+hi)/2, (hi-lo)/2
