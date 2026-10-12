@@ -1,4 +1,4 @@
-# General curved 4D: physical clock pushforward and the unresolved signed estimate
+# General curved 4D: physical clock pushforward and the signed criterion
 
 **Status: written partial analysis and a precise mathematical blocker, not a
 complete-action theorem or counterexample.** This continues CFT5–CFT6 of the
@@ -21,8 +21,12 @@ The [subsequent focal-geometry research](curved4-focal-research.md) now
 constructs the first whole-primitive coefficient from general geometry and
 realizes the quartic contact in an admissible metric. It derives the actual
 interval and full pair weights, and exposes failure of termwise cubic
-absolute domination. Its matched physical signed coefficient and complete
-complement remain unresolved; it does not turn CP11 into a counterexample.
+absolute domination. The later [certificate](curved4-focal-certificate.md)
+and [complete-action continuation](curved4-complete-action-obstruction.md)
+now give a written negative answer through physical subtracted matching,
+the complete complement and restoration. They do not turn the scalar CP11
+control into a counterexample or obtain an asymptotic from the finite-density
+bridge alone. Independent mathematical acceptance remains with #94/#86.
 
 ## 1. Audit of CFT5–CFT6 and actual consumption of S30
 
@@ -418,11 +422,11 @@ admissible complete-action obstruction, or rejection of the integrated
 sphere-circle result follows from CP11. This route remains unresolved,
 rather than being promoted to a counterexample from its suggestive exponent.
 
-## 7. Precise stopping blocker and separate expectation
+## 7. Original stopping blocker and separate expectation
 
-The unresolved object is now the explicit inverse-strip integral CP5 of
+The original unresolved object was the inverse-strip integral CP5 of
 **CP4's actual physical interval volume**. CP6 controls its mass, not the
-signed critical response. The missing general geometric statement is either:
+signed critical response. The two possible resolutions were:
 
 - derive sufficient dilation-increment control in CP7 (or another direct
   signed estimate) from those actual arrival/departure functions, with all
@@ -442,10 +446,12 @@ The scalar controls prove logical insufficiency of the estimates in this
 note, not geometric realization of those scalar primitives. CR4–CR14 of the
 continuation do realize a quartic focus and derive its physical interval;
 CR18 identifies a matched **model** coefficient, not the coefficient of the
-complete physical action. Its section 7 supersedes this original stopping
-ledger with the sharper unresolved matching/complement obligations.
-This is a **mathematical blocker**, not a request to narrow the class or to
-obtain interim human review. A conditional CP8 theorem cannot complete #151.
+complete physical action. Its original section 7 sharpened the matching and
+complement obligations. The subsequent CO1–CO16 proof now resolves the
+negative route with a complete physical asymptotic, without narrowing the
+class. CP8 remains a sufficient conditional criterion, not an unconditional
+geometric discharge. The corrected general statements and independent-review
+boundary are explicit in that sequel.
 
 For clarity, the expectation bridge itself is not blocked. Its hypotheses
 are separately discharged on the actual geometry:

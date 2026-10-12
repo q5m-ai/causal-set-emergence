@@ -77,15 +77,14 @@ Exact polynomial integration gives
 
 ```math
 \begin{aligned}
-\lVert c_1\rVert_2&\lt41/100,&
-\lVert c_2\rVert_2&\lt6/5,&
-\lVert c_3\rVert_2&\lt31/5,&
-\lVert c_4\rVert_2&\lt43,\\
-C_2&=35/8,& C_3&=231/8,&C_4&=15015/64,& C_5&=138567/64,\\
+\lVert c_1\rVert_2&\lt41/100,\qquad \lVert c_2\rVert_2\lt6/5,\\
+\lVert c_3\rVert_2&\lt31/5,\qquad \lVert c_4\rVert_2\lt43,\\
+C_2&=35/8,\qquad C_3=231/8,\\
+C_4&=15015/64,\qquad C_5=138567/64,\\
 \int F_r(E)^{-p}\,dr
  &=1-\tfrac p6E-\tfrac{249}{784}E^2
-       -\tfrac{64983}{38416}E^3+\mathcal R(E),\qquad
- |\mathcal R(E)|\le110E^4.
+       -\tfrac{64983}{38416}E^3+\mathcal R(E),\\
+ |\mathcal R(E)|&\le110E^4.
 \end{aligned}\tag{CC4}
 ```
 
@@ -145,7 +144,7 @@ power inequalities checked by the implementation.
 There are no other open wells at these energies: the quartic has at most
 two minima. The second one opens precisely at d=E. Reflecting u handles the
 other r endpoint. Put `t=1-d/E`, `a=997/1000`, and
-`h(X,Y)=(X+Y)^(-p)-X^(-p)`, with `F1=F_r(d)(E)` the primary normalized
+`h(X,Y)=(X+Y)^(-p)-X^(-p)`, with `F1=F_{r(d)}(E)` the primary normalized
 volume at the r determined by d. Then h increases with X and decreases with Y.
 Its two first derivatives, CC5–CC6, and
 `integral_0^1 t^2/(1+t^2)^2 dt = pi/8-1/4 < 1/7` imply
@@ -295,7 +294,9 @@ rational inequalities used above. The E-quadrature error is less than
 upper tail gives the deliberately rounded, strictly positive certificate
 
 ```math
-\frac14\lt I\lt\frac32.\tag{CC13}
+\begin{aligned}
+\frac{1}{4}&\lt I\lt\frac{3}{2}.
+\end{aligned}\tag{CC13}
 ```
 
 The broad enclosure is a sign proof, not a numerical estimate of I's central
@@ -322,8 +323,9 @@ input. No new Lean audit or compiled geometric theorem is claimed.
 
 The certificate establishes a property of I only. In particular, its positive
 sign must not be renamed `C_phys`: physical source densities, uniform
-subtracted matching and complete-action restoration still require their own
-proofs. All action constants, the independent target, ambient order, endpoint
-measures and original Poisson law remain unchanged.
+subtracted matching and complete-action restoration require their own proofs.
+Those are supplied separately in the [complete-action continuation](curved4-complete-action-obstruction.md),
+not by this certificate. All action constants, the independent target,
+ambient order, endpoint measures and original Poisson law remain unchanged.
 
 Refs #151, #81, #24, #94, #86.

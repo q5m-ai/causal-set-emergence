@@ -1,7 +1,14 @@
 # Curved 4D continuation: a derived first coefficient and a realized quartic focus
 
-**Written research, not a general limit theorem, a complete-action
-counterexample, a Lean proof or independent human review.** This resumes
+**Original-delivery status: written research, not yet a complete-action
+counterexample, a Lean proof or independent human review.** The subsequent
+[model certificate](curved4-focal-certificate.md),
+[physical classification](curved4-focal-globalization.md), and
+[complete-action proof](curved4-complete-action-obstruction.md) now complete
+the written negative route. The earlier arguments and original stopping
+ledger below are retained; final independent scrutiny remains #94/#86.
+
+This first delivery resumes
 [CP5–CP8](curved4-physical-response.md) at PR #164 head `623a5bc` without
 changing the physical primitive. There are two substantive advances:
 
@@ -642,9 +649,11 @@ a half integer, none contributes a constant at the moving lower endpoint.
 This is a matched **model** coefficient, without an arbitrary continuation
 of a divergent integral.
 
-Finite quadrature gives positive values near 0.6 for I; the implementation
-reports the actual finite truncations and refinements. It is **not a
-certified sign proof**, and no fitted value is substituted into an action.
+The original finite quadrature gives positive values near 0.6 for I; its
+implementation reports actual finite truncations and refinements. That
+quadrature is **not a certified sign proof**, and no fitted value is
+substituted into an action. The separate CC1–CC13 certificate now proves
+`1/4 < I < 3/2`, including both subtractions and the complete opening layer.
 In particular, omitting the equal-minimum correction in a1 leaves a divergent
 matching expression, even though the putative sector power is unchanged.
 
@@ -662,13 +671,22 @@ response would be
 
 The product is positive. This is the actual volume-phase normalization,
 not CP5's c4-scaled phase, and follows by convergent gamma integrals.
-**C-phys has not been established for the complete metric region.** CR19
-therefore remains a response calculation, not a divergence theorem.
+**At this stage of the original delivery, C-phys was not established.**
+CR19 alone remains a response calculation, not a divergence theorem.
+CO14 now derives the actual complete pair-measure Mellin residue, and
+CO16 restores the full canonical action. That argument does not assume an
+unsmoothed primitive expansion merely from the model calculation.
 
-## 7. Complete-action ledger and the materially sharper blocker
+## 7. Original complete-action ledger and its resolution
 
-The competing routes have now been executed far enough to distinguish their
-failures:
+This is the **first-delivery ledger**, not the current stopping status.
+CC1–CC13 discharge item 1 below; CG1–CG9 and CO3–CO14 discharge item 2;
+CO15–CO16 and the same S30/CP2 restoration discharge item 3. The precise
+refuted universal claim, corrected general statements and separate
+expectation conclusion are recorded in CO1 and section 8 of that sequel.
+None is inferred from the model certificate alone.
+
+At the first delivery, the competing routes had distinguished these failures:
 
 | Route | What geometry actually produced | Exact remaining failure |
 | --- | --- | --- |
@@ -676,8 +694,8 @@ failures:
 | Regularity of the inverse-strip primitive | Almost-everywhere regular null tubes and a geometric leading coefficient; actual cusp CR14 defeats termwise cubic absolute domination | Cancellation across the singular endpoint layers is still uncomputed |
 | Realized degenerate geometry | Explicit G-SS metric, physical interval CR7, full pair/clock weights CR8–CR9, actual quartic focus and its unfolding | Matched physical coefficient and remainder, its sign, and the full regular/other-contact complement are not proved |
 
-The next negative-route obligations are now concrete, not “find a possible
-optical model”:
+The original next negative-route obligations were concrete, not “find a
+possible optical model”:
 
 1. Establish a rigorous sign enclosure for the convergent matched integral
    CR18, rather than relying on its quadrature.
@@ -708,7 +726,8 @@ existing generic bridge thus identifies the expectation of the unchanged
 observable with CR8 at each positive density. It supplies neither a limit
 nor divergence until the deterministic calculation above is finished.
 
-**Stopping status:** the general question remains unresolved. The strongest
+**Historical stopping status, superseded by CO1–CO16:** the general question
+remained unresolved at this delivery. The strongest
 new unconditional statements are CR3, the admissibility/physical reductions
 CR4–CR9, and the realized focal behavior CR11–CR14. No corrected general
 curved-4D limit theorem is claimed. #151/#81 retain the signed analysis and
@@ -724,7 +743,8 @@ coefficients, parameter Jacobian, matched-model subtraction and signed
 normalization. Actual-geometry and model-only routines are labeled separately.
 Neither numerical agreement nor a normal-form power count certifies a
 complete-action obstruction. The PR records observed local/CI/browser checks.
-No Lean/checker/dependency/build input is changed and no Lean audit or new
+That first delivery changed no Lean/checker/dependency/build input. The later
+certificate adds a Python dependency, not a Lean input; no new Lean audit or
 compiled geometric theorem is claimed. No agent launch, merge, deployment,
 issue closure or scope change is authorized here.
 

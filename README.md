@@ -622,16 +622,21 @@ and full-action/expectation assembly remain with #151/#81; #24 stays open.
 The [general curved-4D continuation](notes/curved4-physical-response.md) derives
 the actual physical clock pushforward without a geodesic branch list and
 bounds its small-volume long sublevels. It audits consumption of S30 and
-explores signed dilation estimates weaker than a cubic jet. **The critical
-geometric estimate remains blocked**: neither a general complete-action limit
-nor an admissible 4D obstruction is claimed. The
+explores signed dilation estimates weaker than a cubic jet. The
 [focal-geometry follow-up](notes/curved4-focal-research.md) derives the first
 whole-primitive coefficient from general geometry and realizes a quartic
-focus in an explicit curved G-SS metric, with its actual interval and full
-pair weights. The regular cubic inverse coefficients fail absolute endpoint
-domination there. A matched model integral is identified, but its transfer
-and the complete physical complement remain unresolved. Scalar/model
-responses are not promoted to complete-action counterexamples.
+focus in an explicit curved G-SS metric, where absolute cubic domination
+fails. A separately [regenerated certificate](notes/curved4-focal-certificate.md)
+proves the fully matched model coefficient positive. The
+[physical classification](notes/curved4-focal-globalization.md) and
+[complete-action argument](notes/curved4-complete-action-obstruction.md) then
+supply uniform two-subtracted matching, the closing/overlap layers and the
+whole regular complement. The resulting **written curved-4D obstruction**
+has negative rho-to-power-3/14 action growth against the independent zero
+target, with the same cutoff and physical point restored once. Expectation
+is transferred separately; no sample-wise result follows. This is not a
+Lean proof or independent mathematical acceptance, which remains #94/#86.
+The original G-SS scope and broader #151/#81/#24 ownership are unchanged.
 
 ## Program 2 — dynamics and automaton-like growth
 
