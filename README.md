@@ -670,6 +670,23 @@ formal torus task with #138, and final scrutiny/formalization with #94/#86.
 Earlier delivery-time issue-status statements above are historical; #81/#24
 remain open and their stronger completion criteria are unchanged.
 
+The [sphere-dependent extension under #81](notes/sphere-dependent-conformal-limit.md)
+removes #165's angular restriction in writing: every smooth positive factor on
+the same focusing slab has the complete canonical action limit and a separate
+actual-measure Poisson transfer. Its signed sphere-point map retains both
+orientations; the rescaled angular motion yields the integrable critical
+remainder instead of assuming weighted cancellation from causal invariance.
+The [geometric sufficient-condition continuation](notes/geometric-long-cancellation.md)
+derives cancellation from resolved **physical interval point maps**, endpoint
+abundance and moving-contact control. It also proves the faithful conformal-
+diamond-cover case with general spacelike faces, ordered partitions and a
+nonempty variable-angle joint example with independently calculated bulk and
+joint. Neither result is a universal theorem or a new Lean proof. The precise
+remaining tip/contact-resolution blocker and #81 acceptance matrix retain
+arbitrary curved 2D/3D, broader corrected metric/dimension coverage and the
+separately owned #154–#156 null/mixed branch. #164's proof and certificate are
+unchanged; final human scrutiny remains #94/#86, and #81/#24 stay open.
+
 ## Program 2 — dynamics and automaton-like growth
 
 The exploratory question is whether causal-set dynamics can be represented as
