@@ -1,0 +1,107 @@
+{
+  "issue": 138,
+  "pull_request": 166,
+  "repository": "q5m-ai/causal-set-emergence",
+  "base_branch": "issue-81-general-coverage",
+  "integrated_base_commit": "63a2f21ff4e98b83985579fc9e69254c76fb2c94",
+  "lean_input_commit": "a13c696782a8216fc53ecf3b8e2a7146f402c207",
+  "lean_input_formal_tree": "5333f9035ced226008dbc8765d0fc53e0e4dd8ae",
+  "full_local_audit": {
+    "command": "cd formal && ./check.sh",
+    "workers": 2,
+    "completed_at": "2026-10-13T16:07:25.492168+00:00",
+    "exit_status": 0,
+    "elapsed": "2:42:37",
+    "maximum_process_rss_kib": 2938776,
+    "local_lean_sources_including_aggregate": 344,
+    "per_source_checks": 343,
+    "aggregate_public_theorems": 3485,
+    "aggregate_public_definitions": "all",
+    "warnings_as_errors": true,
+    "allowed_transitive_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "log": "issue-138-full-audit.log.gz",
+    "log_gzip_sha256": "48d5f06095d02733539dbf4e352d9ef34eb7540b52e551b487c2668339a3e1bb"
+  },
+  "post_audit_input_inventory": {
+    "file": "issue-138-post-audit-inputs.sha256.gz",
+    "files": 13643,
+    "uncompressed_sha256": "ea15bff22fd1a88164649657b1065dbe4bf77d6d329bd556ed261658c86ec8be",
+    "gzip_sha256": "30f3565d15d1800ff76d3929e9e9faaad83f21c51580c15767b3a539fa3141d2",
+    "selection": "All files under formal with suffix .lean, .olean or .so, or basename check.sh, lean-toolchain, lakefile.toml or lake-manifest.json, excluding .git directories; plus task-local Lean and Lake executables. Relative POSIX paths, lexicographic order.",
+    "timing": "Post-audit fingerprint only. No pre/post compiled-object hash comparison is claimed.",
+    "tracked_lean_inputs_match_audited_commit": true,
+    "documentation_receipt_only_followup": true
+  },
+  "dependency_pins": [
+    {
+      "package": "mathlib",
+      "commit": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+      "tracked_clean": true
+    },
+    {
+      "package": "plausible",
+      "commit": "77e08eddc486491d7b9e470926b3dbe50319451a",
+      "tracked_clean": true
+    },
+    {
+      "package": "LeanSearchClient",
+      "commit": "25078369972d295301f5a1e53c3e5850cf6d9d4c",
+      "tracked_clean": true
+    },
+    {
+      "package": "importGraph",
+      "commit": "e6a9f0f5ee3ccf7443a0070f92b62f8db12ae82b",
+      "tracked_clean": true
+    },
+    {
+      "package": "proofwidgets",
+      "commit": "c4919189477c3221e6a204008998b0d724f49904",
+      "tracked_clean": true
+    },
+    {
+      "package": "aesop",
+      "commit": "5d50b08dedd7d69b3d9b3176e0d58a23af228884",
+      "tracked_clean": true
+    },
+    {
+      "package": "Qq",
+      "commit": "fa4f7f15d97591a9cf3aa7724ba371c7fc6dda02",
+      "tracked_clean": true
+    },
+    {
+      "package": "batteries",
+      "commit": "f5d04a9c4973d401c8c92500711518f7c656f034",
+      "tracked_clean": true
+    },
+    {
+      "package": "Cli",
+      "commit": "02dbd02bc00ec4916e99b04b2245b30200e200d0",
+      "tracked_clean": true
+    }
+  ],
+  "other_local_validation": {
+    "incremental_command": "cd formal && ./check.sh --incremental --base 76a8dd1c2330ea2207169a203fe3b7f5eaa2c36d",
+    "incremental_result": "passed after final Lean change at 4748ec7a2ff535c6d5bfa9d0447b20b142fc96ad",
+    "symbolic_checks": "passed on combined head",
+    "python_version": "3.12.3",
+    "python_dependencies": "requirements.txt",
+    "python_unittest_count": 553,
+    "python_unittest_seconds": 1099.956,
+    "python_unittest_result": "passed",
+    "markdown_lint": "passed",
+    "markdown_unittest_count": 20,
+    "markdown_unittest_result": "passed",
+    "javascript_syntax": "site/home-3d.js and site/order-fraction-worker.js passed"
+  },
+  "audit_head_ci": {
+    "head": "a13c696782a8216fc53ecf3b8e2a7146f402c207",
+    "applicable_checks": "All passed: deterministic-diagnostics, math-authoring, Quality and exact image",
+    "production_jobs": "skipped as configured for non-main",
+    "note": "Final receipt-only head CI and bounded feedback/integration receipts are recorded on PR 166. This is not a merge or deployment receipt."
+  },
+  "scope": "Actual fixed thin cubic quotient torus, canonical unsmeared four-dimensional deterministic action and separate original-FinitePoisson-law expectation zero limits. No thick slabs, curved-atlas/general-topology theorem, shrinking-cutoff uniformity or sample-wise convergence. Independent human mathematical review under issues 94 and 86 is not claimed."
+}

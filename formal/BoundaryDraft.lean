@@ -33,6 +33,12 @@ import BoundaryDraft.DimensionExpectation
 import BoundaryDraft.DimensionExpectationCompatibility
 import BoundaryDraft.MeasuredOrderBDG4Compatibility
 import BoundaryDraft.CompactTorus
+import BoundaryDraft.ThinTorusLifts
+import BoundaryDraft.ThinTorusVolume
+import BoundaryDraft.ThinTorusIntegration
+import BoundaryDraft.ThinTorusGeometry
+import BoundaryDraft.ThinTorusPhase
+import BoundaryDraft.ThinTorusLimit
 import BoundaryDraft.SphereCircle
 import BoundaryDraft.Pilot3Contract
 import BoundaryDraft.Pilot3RegularHeight
