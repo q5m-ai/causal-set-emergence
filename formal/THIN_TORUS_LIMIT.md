@@ -17,9 +17,10 @@ shrinking geometric domain. The actual action is not defined to be zero.
 `ThinTorusRegression.finite_action_pos` proves it is strictly positive at
 period one, height two fifths, and density one.
 
-The source-level proofs and standalone regression currently compile with
-warnings as errors. **Final integrated full-audit acceptance is pending**;
-validation receipts will be recorded below after that gate finishes.
+The source-level proofs and standalone regression compile with warnings as
+errors. The exact combined-tree full-audit, CI, feedback and integration receipts
+are maintained in [PR #166](https://github.com/q5m-ai/causal-set-emergence/pull/166);
+a changed-source check alone is not full-audit acceptance.
 Written analysis, compiled proofs, aggregate validation, and independent human
 mathematical review are distinct. #94/#86 review obligations remain open.
 
@@ -133,10 +134,14 @@ not a substitute for the checked quotient integration theorem.
 - Complete new-source/axiom incremental check against that same pinned ancestor
   passed after the last Lean change; proof checkpoint `4748ec7`.
 - PR #164 integration `a1e1f34b648dac06e8fa94488a50d6d55f20d3e8` is incorporated
-  by merge `8a9e818`; the next integration update (#165) is awaited before the
-  final combined-tree gate. These upstream changes do not alter Lean inputs.
-- Full local audit, final Python/Markdown checks, exact-head CI, and bounded
-  feedback receipt: pending.
+  by merge `8a9e818`. PR #165 integration
+  `63a2f21ff4e98b83985579fc9e69254c76fb2c94` is incorporated by `1b5fc62` before
+  the final combined-tree audit. Neither upstream integration changes Lean inputs.
+- [PR #166](https://github.com/q5m-ai/causal-set-emergence/pull/166) records the
+  full local source/warnings/transitive-axiom and aggregate audit, final
+  Python/Markdown checks, exact-head CI, bounded feedback and merge receipts.
+  Read the reported result and exact commit there, not an upstream run, when
+  assessing integration acceptance.
 
 The final full local `formal/check.sh` must follow the last Lean-affecting
 change on the combined integration tree. Documentation-only receipt updates do
