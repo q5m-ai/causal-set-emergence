@@ -41,9 +41,10 @@ does not use any action coefficient. For example, for `Omega=1+epsilon*p_3`,
 with `abs(epsilon)<1`, sphere integration gives
 
 ```math
-\mathcal T_g=320\pi(1+7\epsilon^2/3),\qquad
-\mu_g(M)=320\pi(1+2\epsilon^2+\epsilon^4/5).
-\tag{SW2}
+\begin{aligned}
+\mathcal T_g&=320\pi(1+7\epsilon^2/3),\\
+\mu_g(M)&=320\pi(1+2\epsilon^2+\epsilon^4/5).
+\end{aligned}\tag{SW2}
 ```
 
 The causal order is still `tau >= sqrt(theta²+b²)`, where theta is round
@@ -129,10 +130,12 @@ functions in SW5. At theta zero the continuous map is the exponential map
 `cos(r)*p+sinc(r)*(x*n+y*k)`. For example the n component can be evaluated as
 
 ```math
-\frac{(x-\theta/2)\mathrm{sinc}((r+v)/2)\mathrm{sinc}((r-v)/2)
+\begin{aligned}
+Y_\theta(x,y)\cdot n
+ &=\frac{(x-\theta/2)\mathrm{sinc}((r+v)/2)\mathrm{sinc}((r-v)/2)
  +(\theta/2)\mathrm{sinc}(\theta/2)^2\cos r}
  {\mathrm{sinc}\theta}.
-\tag{SW6}
+\end{aligned}\tag{SW6}
 ```
 
 This also proves smooth extension at the long circle axis. It is not valid
@@ -160,13 +163,13 @@ variables
 
 ```math
 \begin{aligned}
-B(u)&=\sqrt{16-u^2},&b&=B(u)v,&\tau&=\sqrt{u^2+B(u)^2v^2},\\
-s&=-2+\xi(4-\tau),&
+B(u)&=\sqrt{16-u^2},\qquad b=B(u)v,\\
+\tau&=\sqrt{u^2+B(u)^2v^2},\qquad s=-2+\xi(4-\tau),\\
 4-\tau&=\frac{B(u)^2(1-v^2)}{4+\tau},\\
 j(a,e,\zeta)&=(4-\tau)\frac{uB(u)}\tau
  \omega(s,p,z)\omega(s+\tau,q_\theta,z+b),\\
-d\nu_c&=\sin a\,j(a,e,\zeta)\,da\,de\,d\zeta,&
-\zeta&=(p,n,v,\xi,z).
+d\nu_c&=\sin a\,j(a,e,\zeta)\,da\,de\,d\zeta,
+ \qquad\zeta=(p,n,v,\xi,z).
 \end{aligned}\tag{SW7}
 ```
 
@@ -185,8 +188,7 @@ V_g&=e^2 H_c(a,e,\zeta),\\
 H_c&=(2\theta+e)^2\int_{D_0}
  Q_\theta(r_1(e),r_2(e))
  \omega(t_*(e),Y_\theta(x(e),y(e)),Z_*(e))\,dA\,dB,\\
-\widetilde H&=\sqrt a\,H_c,&
-0\lt c&\le\widetilde H\le C,&
+\widetilde H&=\sqrt a\,H_c,\qquad 0\lt c\le\widetilde H\le C,\\
 |\partial_e^j\widetilde H|&\le C_j a^{-j}\quad(0\le j\le4),
  \qquad 0\le e\le\eta a.
 \end{aligned}\tag{SW8}
@@ -228,9 +230,11 @@ have lost the essential inverse power of a.
 On the whole cut box, including `e=2*a`, SW3 and F13 independently give
 
 ```math
-c\frac{e^2}{\sqrt{a+e}}\le V_g(a,e,\zeta)
- \le C\frac{e^2}{\sqrt{a+e}},\qquad 0\le a\le a_0,\quad0\lt e\le e_0.
-\tag{SW9}
+\begin{aligned}
+c\frac{e^2}{\sqrt{a+e}}&\le V_g(a,e,\zeta)
+ \le C\frac{e^2}{\sqrt{a+e}},\\
+&0\le a\le a_0,\qquad0\lt e\le e_0.
+\end{aligned}\tag{SW9}
 ```
 
 No derivative across the secondary transition is inferred from that inequality.
@@ -331,7 +335,7 @@ target are as checked in CP2; no joint chart is needed for this slab. Thus
 S_g^\delta&=\frac4{\sqrt6}
  [\sqrt\rho\,\mu_g(M)-\rho^{3/2}P_s],&
 S_g^\delta&\longrightarrow\mathcal T_g,\\
-\mathcal A_{\rho,4}&=S_g^\delta-rac4{\sqrt6}\rho^{3/2}(P_o+P_c+P_e)
+\mathcal A_{\rho,4}&=S_g^\delta-\frac{4}{\sqrt6}\rho^{3/2}(P_o+P_c+P_e)
  \longrightarrow\mathcal T_g.
 \end{aligned}\tag{SW13}
 ```

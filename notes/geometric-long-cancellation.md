@@ -60,9 +60,10 @@ reparameterizing an unknown volume function**. On a singular chart require:
    physical volume form
 
    ```math
+   \begin{aligned}
    \Phi_{a,h,\zeta}^*d\mu_g
-    =a^{2\beta-\sigma}h^4 J(a,h,\zeta,\xi)\,d\lambda(\xi).
-   \tag{GC1}
+    &=a^{2\beta-\sigma}h^4 J(a,h,\zeta,\xi)\,d\lambda(\xi).
+   \end{aligned}\tag{GC1}
    ```
 
    In fixed smooth ambient coordinate patches, Phi has uniform h derivative
@@ -86,10 +87,11 @@ reparameterizing an unknown volume function**. On a singular chart require:
    satisfy
 
    ```math
-   0\lt\beta\lt3\lambda,\qquad
-   \lambda=\beta-\sigma/2,\qquad
-   \nu+\beta-3\lambda>-1.
-   \tag{GC2}
+   \begin{aligned}
+   &0\lt\beta\lt3\lambda,\qquad
+   \lambda=\beta-\sigma/2,\\
+   &\nu+\beta-3\lambda>-1.
+   \end{aligned}\tag{GC2}
    ```
 
 For regular charts omit a, use `e=h²`, pullback `e² J d lambda`, and smooth
@@ -219,8 +221,9 @@ is neither necessary nor a classification of all caustics.
 Here is a separate geometric condition whose **regular** RPL clauses can be
 proved, rather than assumed from the words “no caustics.”
 
-**Faithful conformal diamond cover (FCDC).** A compact neighborhood of the
-long-null endpoint relation admits finitely many endpoint neighborhoods such
+**Faithful conformal diamond cover (FCDC).** At each sufficiently small fixed
+positive temporal cutoff, a compact neighborhood of the long-null endpoint
+relation admits finitely many endpoint neighborhoods such
 that each neighborhood's entire ambient intervals lie in an open spacetime
 patch U with a smooth conformal Minkowski chart. The chart maps each whole
 interval bijectively onto the corresponding entire flat diamond, with its
@@ -290,10 +293,11 @@ In null coordinates `(x,r,n)`, at the limiting joint with r=0 the differentials
 of the two face functions and the temporal gap have leading forms
 
 ```math
-\alpha_-\,dx,\qquad
-\alpha_+\,dx+\alpha_+(k)\,dr,\qquad
- dt(k)\,dr,\qquad k=(1,n).
-\tag{GC6}
+\begin{aligned}
+&\alpha_-\,dx,\\
+&\alpha_+\,dx+\alpha_+(k)\,dr,\\
+&dt(k)\,dr,\qquad k=(1,n).
+\end{aligned}\tag{GC6}
 ```
 
 The two joint conormals are linearly independent and `dt(k)>0`; the rank is
