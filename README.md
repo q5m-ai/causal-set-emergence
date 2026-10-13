@@ -638,6 +638,28 @@ is transferred separately; no sample-wise result follows. This is not a
 Lean proof or independent mathematical acceptance, which remains #94/#86.
 The original G-SS scope and broader #151/#81/#24 ownership are unchanged.
 
+The [corrected curved-4D theorem](notes/curved4-corrected-convergence.md)
+proves a **written positive limit for every smooth positive time/circle
+conformal factor on the focusing sphere-circle slab**. It derives the actual
+weighted interval and both-measure pushforward, straightens closing fibres,
+and proves a summable critical remainder before restoring the entire action
+and separately transferring expectation. This is an infinite-dimensional,
+non-conformally-flat class that retains antipodal focusing, not an assumption
+that the long response vanishes. Its geometric summability threshold explains
+why the quartic obstruction escapes. General metrics, other strata/dimensions
+and sample-wise limits remain #151/#81/#24; independent acceptance and formal
+verification remain #94/#86. No predecessor proof or audit receipt is changed.
+
+The [#151 acceptance crosswalk and corrected-coverage ledger](notes/issue-151-resolution.md)
+assesses the original **negative-resolution alternative**, rather than claiming
+that the restricted positive family proves a universal theorem. It links every
+acceptance clause to its actual source, records the #165 proof audit, and keeps
+the unresolved corrected general-curved theorem explicitly with **#81** (not
+only a closed child), required null/mixed work with #154–#156, the selected
+formal torus task with #138, and final scrutiny/formalization with #94/#86.
+Earlier delivery-time issue-status statements above are historical; #81/#24
+remain open and their stronger completion criteria are unchanged.
+
 ## Program 2 — dynamics and automaton-like growth
 
 The exploratory question is whether causal-set dynamics can be represented as
