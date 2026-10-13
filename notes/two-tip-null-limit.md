@@ -10,9 +10,10 @@ independent human mathematical review is claimed. Refs #155, #154, #134, #81.
 
 Integration baseline: `41cf2c35378cf91c1c2d3651f8dd689370662bdf` on
 `issue-81-general-coverage`. This continuation includes the **unmerged** TT-A
-source at `43447dbf1be1de0e46d47147a3e07398ce396fdb` (PR #168), specifically
-[LA1–LA10](two-tip-lens-limit.md). It is an explicit source dependency, not
-independent acceptance of that PR. #83/#84's translated cap theorems and
+source at `43341804417216c7a3e3b558bc8da5f2672c0474` (PR #168), specifically
+[LA1–LA10](two-tip-lens-limit.md). The prerequisite diagnostic floor-guard fix
+was replayed; the three TT-A source files match that pin byte-for-byte.
+It is an explicit source dependency, not independent acceptance of that PR. #83/#84's translated cap theorems and
 [#134 TT1–TT11](two-tip-null-feasibility.md) are already in the integration
 baseline; their actual proofs, rather than issue states, are used.
 
