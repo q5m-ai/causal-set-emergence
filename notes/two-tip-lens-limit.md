@@ -22,9 +22,9 @@ causal order, the isolated restricted intervals, and
 
 ```math
 \begin{aligned}
-a&=1/2,& b&=1/10,& H(z)&=1+b\sin z,& d(z)&=a+|z|,\\
+a&=1/2,\qquad b=1/10,\qquad H(z)=1+b\sin z,\qquad d(z)=a+|z|,\\
 L&=\{(t,z,w):-H(z)\lt t\lt-\sqrt{d(z)^2+|w|^2}\},\\
-c&=\pi/24,& C_4&=4/\sqrt6,&
+c&=\pi/24,\qquad C_4=4/\sqrt6,\\
 K(v)&=(1-9v+8v^2-4v^3/3)e^{-v},\\
 \mathcal A_\rho(L)&=C_4\sqrt\rho\left[|L|-\rho
  \int_L\int_{L\cap J^+(p)}K(c\rho\sigma(p,q)^2)\,dq\,dp\right],\\
