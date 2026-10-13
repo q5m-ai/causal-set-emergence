@@ -152,8 +152,10 @@ segments are integrated. PW4's Jacobian follows by the triangular order
 the disk, whose `integral(1-|z|^2)=pi/2`, gives
 
 ```math
- V_G(p,q)=\pi e^2\int_{u_0}^{u_1}
-       \sqrt{\det G(s)}\sqrt{\det C(s)}\,ds.\tag{PW5}
+\begin{aligned}
+ V_G(p,q)&=\pi e^2\int_{u_0}^{u_1}
+       \sqrt{\det G(s)}\sqrt{\det C(s)}\,ds.
+\end{aligned}\tag{PW5}
 ```
 
 ### Two tips, noncommuting matrices, and the apparently singular direction
