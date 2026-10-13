@@ -163,8 +163,9 @@ class LensOverlap:
         """
         _density(rho)
         a = self.region.a
-        if not all(math.isfinite(x) for x in (depth, axial)) or depth <= a+abs(axial):
-            raise ValueError("source must lie strictly in both past cones")
+        if (not all(math.isfinite(x) for x in (depth, axial))
+                or not a+abs(axial) < depth < float(self.region.height(axial))):
+            raise ValueError("source must lie strictly in the lens, including above its floor")
         nodes, weights = rule(order)
         out = np.zeros(4)
         # Changes of which causal/upper axial endpoint is active.
