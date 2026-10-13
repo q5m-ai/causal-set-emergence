@@ -137,11 +137,24 @@ not a substitute for the checked quotient integration theorem.
   by merge `8a9e818`. PR #165 integration
   `63a2f21ff4e98b83985579fc9e69254c76fb2c94` is incorporated by `1b5fc62` before
   the final combined-tree audit. Neither upstream integration changes Lean inputs.
-- [PR #166](https://github.com/q5m-ai/causal-set-emergence/pull/166) records the
-  full local source/warnings/transitive-axiom and aggregate audit, final
-  Python/Markdown checks, exact-head CI, bounded feedback and merge receipts.
-  Read the reported result and exact commit there, not an upstream run, when
-  assessing integration acceptance.
+- The full local `formal/check.sh` passed on combined head
+  `a13c696782a8216fc53ecf3b8e2a7146f402c207`: **343 per-source checks**, then
+  **3,485 public theorems and all public definitions**, with warnings as errors
+  and only the three permitted transitive axioms. Default two workers;
+  wall time **2:42:37**, maximum single-process RSS **2,938,776 KiB**.
+- The [machine-readable receipt](receipts/issue-138-validation.json),
+  [full audit/timing log](receipts/issue-138-full-audit.log.gz) and
+  [post-audit input fingerprint](receipts/issue-138-post-audit-inputs.sha256.gz)
+  record the result and 13,643 input hashes. This inventory is **post-audit
+  only**, not a claim of pre/post compiled-object hash comparison. All tracked
+  Lean inputs match the audited commit; all nine dependency checkouts match
+  the pinned manifest and have clean tracked files.
+- Combined-head symbolic checks, all **553 Python tests**, Markdown lint and
+  its **20 tests**, and both JavaScript syntax checks passed. Audit-head CI was
+  green; production jobs were correctly skipped for this non-main branch.
+- [PR #166](https://github.com/q5m-ai/causal-set-emergence/pull/166) records final
+  receipt-only-head CI, the bounded feedback pass and exact merge verification.
+  No independent human mathematical review is inferred from these checks.
 
 The final full local `formal/check.sh` must follow the last Lean-affecting
 change on the combined integration tree. Documentation-only receipt updates do
