@@ -15,6 +15,9 @@ proof or receipt is revised. The new estimates below are conventional written
 analysis, not Lean proofs, validated numerical certificates or independent
 mathematical acceptance. The model-only Arb certificate in #164 certifies its
 stated model, not this theorem. Final scrutiny remains with #94/#86.
+The later [#151 acceptance crosswalk](issue-151-resolution.md) records the
+corrected quantified statement, finalization audit and current residual owners;
+delivery-time issue-status statements below remain historical.
 
 ## 1. Checkable geometric hypotheses and the theorem
 
@@ -417,8 +420,8 @@ an assertion that every caustic admits these data. Suppose an actual resolved
 pair chart has measure `a^nu j(a,e,zeta) da de dzeta` with compact zeta,
 and its regular wedge is `0<=e<=eta*a^beta`. Suppose geometry supplies
 
-- `V=e^2*a^(-sigma)*h(a,e/a^beta,zeta)` with h positive and uniformly
-  bounded in C³ in its second variable;
+- `V=e^2*a^(-sigma)*h(a,e/a^beta,zeta)` with h uniformly bounded below
+  by a positive constant and uniformly bounded in C³ in its second variable;
 - bounded C³ density after the same e rescaling;
 - confinement of every actual sublevel to the regular wedge when
   `w<=kappa*a^lambda`, and the bound `e<=C*w^(beta/lambda)` on every
