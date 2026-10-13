@@ -78,6 +78,16 @@ Coordinate, conformal and dimensional compatibility is proved without changing
 old APIs. This is finite-density work only; its current local validation status
 is recorded in the linked acceptance note, separately from all limit claims.
 
+The [full-partner thin-torus consumer](THIN_TORUS_LIMIT.md) now supplies
+unconditional deterministic and separate expected zero-limit proofs for each
+fixed positive slab height below half the cubic period. Actual quotient lifts,
+entire-interval injectivity and volume, both endpoint integrations, the derived
+logarithmic phase and exact point cancellation, and finite-primitive remainder
+control are checked. Seam-crossing and strictly nonzero finite-density
+regressions retain the original action and Poisson law. Its final integrated
+audit status is recorded separately in the linked note; this is not curved
+atlas coverage or sample-wise convergence.
+
 The [two-face geometry integration](TWO_FACE_GEOMETRY.md) now proves the
 unchanged `TwoFaceRegionGoal`: open bounded ambient-causally-convex regions,
 compact faces and joint, the complete frontier, and the exact face intersection.

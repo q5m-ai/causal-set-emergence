@@ -557,6 +557,16 @@ a thin flat-torus slab calculation and a precise focusing-route obstruction,
 with separate regressions and follow-up contracts. It supplies **no new Lean
 verification or general-metric/atlas coverage theorem**; #81/#24 remain open.
 
+The subsequent [#138 thin flat-torus formal port](formal/THIN_TORUS_LIMIT.md)
+proves the actual quotient-slab deterministic zero limit and, separately, its
+original-Poisson-law expected limit for every fixed positive height below half
+the period. Checked interval lifts and geometric volume, full-partner pair
+integration, the derived logarithmic phase and exact point cancellation retain
+seams and both endpoint measures. The acceptance map records the integrated
+validation boundary and strictly nonzero finite-density regressions. This
+bounded flat-quotient result does not extend to curved atlases or sample-wise
+convergence and does not complete #81/#24 or independent human review.
+
 The [#139 sphere-circle focusing producer](notes/sphere-circle-focusing.md)
 now derives the actual endpoint-averaged antipodal-neighborhood density in
 writing. An exact circle/time reduction retains transverse separations and
