@@ -4,7 +4,12 @@
 universal coverage, a necessary condition, or independent acceptance.** The
 [sphere-dependent theorem](sphere-dependent-conformal-limit.md) is one branch.
 The other, below, permits nonempty variable-angle joints and is not restricted
-to a sphere-circle product or to time-dependent conformal factors.
+to a sphere-circle product or to time-dependent conformal factors. The
+[non-conformal continuation PW-4](nonconformal-plane-wave-limit.md) subsequently
+proves the same cancellation conclusion for arbitrary positive transverse-matrix
+plane-wave profiles, by an exact phase construction rather than claiming every
+RPL point-map bound. It includes both tips, the parallel-null collar and
+simultaneous spacelike-face/cutoff contacts.
 
 Source baseline: explicitly fetched `origin/issue-81-general-coverage` at
 `41cf2c35378cf91c1c2d3651f8dd689370662bdf`, containing #164/#165/#166.
@@ -419,12 +424,20 @@ RPL isolates exactly which geometric maps, densities and contained subsets
 would discharge it and explains the strict codimension/scaling margin; it
 does not claim those maps exist for arbitrary G-SS metrics.
 
-This is a sharper blocker, not a new exhaustive-classification gate. Possible
-next bounded work is a complete tip-uniform diamond construction for variable-
-curvature Hadamard optical metrics (with actual face contacts), or a genuinely
-matched weaker signed estimate where RPL's absolute majorant fails. These are
-different analytic routes. Neither is marked proved, and no unrelated new
-pilot issue or unapproved scope decision is created here.
+This is a sharper blocker, not a new exhaustive-classification gate. The
+[subsequent PW-4 construction](nonconformal-plane-wave-limit.md#3-the-whole-physical-interval-and-its-tip-resolution)
+resolves it for genuinely non-conformal matrix-profile plane waves: exact
+quadratic path minimization produces the entire physical lens and a smooth
+phase through both tips and the parallel-null direction. It does not establish
+RPL's uniform point-map clause at that direction; the weaker direct-phase proof
+suffices. No openness under arbitrary ambient metric perturbations is inferred.
+
+The still-unproved broader step is now [whole-interval parabolic containment
+and dominated tip/contact resolution](nonconformal-plane-wave-limit.md#8-further-generalization-attempted-the-precise-remaining-blocker)
+from intrinsic metric data when that exact quadratic path identity is lost.
+Variable-curvature Hadamard optical metrics and matched signed estimates outside
+RPL remain different possible routes, not proved branches. No unrelated pilot
+issue or unapproved scope decision is created here.
 
 ## 5. Assessment against #81's original acceptance matrix
 
@@ -436,19 +449,19 @@ source crosswalk records actual delivery; named ownership is **not discharge**.
 | Flat G-SS 2D–4D | CFT1–CFT4 written universal positive results, preserved; the selected flat 2D/3D/4D and thin-torus compiled results retain their exact scope | No duplicate flat analytic task; intended formalization and scrutiny #86/#94 |
 | Arbitrary curved 2D | No universal full theorem or refutation here; G5–G7 and S30 are inputs, not assembly | Dimension-specific full physical interval/contact response and independent target/expectation: **#81** |
 | Arbitrary curved 3D | Likewise unresolved; neither flat SmoothPilot3 nor cubic 4D cancellation decides it | Separate critical-order geometry and complete assembly: **#81** |
-| General curved 4D | Unconditional claim refuted by unchanged CO1–CO16; SW1–SW14 prove arbitrary sphere-dependent factors; RPL-4 is a sufficient geometric theorem; FCDC-4 adds nonempty-joint/global-partition coverage | Derive the required broader intrinsic metric coverage beyond these verified classes, including simultaneous singular/true-joint contacts not covered by the slab or FCDC: **#81** |
+| General curved 4D | Unconditional claim refuted by unchanged CO1–CO16; SW1–SW14 prove arbitrary sphere-dependent factors; RPL-4 is sufficient; FCDC-4 adds nonempty joints; [PW-4](nonconformal-plane-wave-limit.md) adds genuinely non-conformal matrix-profile stability with both tips, parallel-null collar and spacelike contacts | Derive broader intrinsic metric coverage when exact quadratic path minimization is lost; simultaneous singular/true-joint contacts and arbitrary perturbations remain **#81** |
 | Dimensions at least five | CFT's admitted flat counterexample in each dimension; earlier all-dimensional positive subclasses and the separate 7D obstruction preserved | Corrected required geometric/dimensional theorem, not revival of the false universal assertion or classification of every member: **#81** |
-| All causal partners / interval regime | SW3/SW4/SW7; GC1's actual point multiplicity; faithful whole diamonds in GC5; both endpoint densities, ordered partitions and G2 shell signs | FCDC is a sufficient interval-cover property, not automatic for general atlases; unrestricted resolution remains **#81** |
-| Bulk plus independent joint | SW1/SW2; general S30 consumed at fixed cutoff; FCDC true-contact proof and GC8's variable-angle, nonzero-bulk example | General singular contact/joint combinations beyond the derived rank/resolution cases: **#81** |
-| Null/mixed / creases / tips | Not solved by G-SS arguments; #83/#84's restricted theorem and #134's selected contract unchanged | **#154 → #155 → #156** owns the selected lens, assembly and required wider coverage; no duplication or null singular-limit interchange here |
+| All causal partners / interval regime | SW3/SW4/SW7; GC1's actual point multiplicity; GC5 faithful diamonds; PW2–PW7's actual global path minimum and interval; both endpoint densities, ordered partitions and G2 shell signs | FCDC/Rosen geometry is not automatic for general atlases; unrestricted whole-interval resolution remains **#81** |
+| Bulk plus independent joint | SW1/SW2; S30 at a compatible fixed cutoff; GC8's variable-angle nonzero-bulk example; PW9–PW10's fixed nonempty-joint region under non-conformal changes, independent zero scalar bulk and varying induced angle/area | General singular contact/joint combinations beyond the derived rank/resolution cases: **#81** |
+| Null/mixed / creases / tips | Not solved by G-SS arguments; #83/#84 and #134 preserved; parallel unmerged #168/#170/#171 supply TT-A/TT-B and dimensional cone results with a curved-null blocker, not inputs here | **#154 → #155 → #156**, including #169's curved single-cone task, retains wider required coverage; no duplication or null singular-limit interchange |
 | Mandatory compact nonlocal tests | #166 thin-torus checked result and #139→#152→#153 sphere assembly retained; SW extends the latter with all smooth factors | Neither a successful compact example nor child closure proves general metric/dimension coverage |
 | Verification / human acceptance | New analysis is conventional writing with finite diagnostic checks; generic bridge already checked; #164 proof and model certificate unchanged | New concrete asymptotics/weighted geometric specializations are not Lean proofs. Independent human mathematical/physical scrutiny, source provenance and justified formalization remain **#94/#86** |
 
 The original #81 criteria for full required dimension/metric/null/mixed
 coverage and #24's corrected-general-theorem completion remain **unmet**.
 This work supplies a non-vacuous explanatory sufficient condition and two
-proved geometric applications, rather than the tautology “the long term
-vanishes.” It does not settle the remaining curved 2D/3D rows or claim the
+proved geometric applications, followed by PW-4's direct non-conformal geometric
+producer, rather than the tautology “the long term vanishes.” It does not settle the remaining curved 2D/3D rows or claim the
 verified sufficient classes exhaust the required corrected scope.
 
 Shared-interface coordination was posted to the
@@ -463,8 +476,11 @@ The proof is the written construction and estimates, not the tests.
 `test_sphere_weighted_lenses.py` compares independent physical interval
 representations and tests negative controls. `test_geometric_cancellation.py`
 checks the conformal diamond measure, independent variable-angle target,
-contact ranks, exponent arithmetic and unchanged scaling. These finite checks
-are neither an interval certificate nor a full-action numerical solution.
+contact ranks, exponent arithmetic and unchanged scaling.
+`test_plane_wave_geometry.py` adds whole-clock/point-map comparisons, noncommuting
+profiles, both tips, the parallel-null collar, signed moments and independent
+joint geometry. These finite checks are neither an interval certificate nor a
+full-action numerical solution.
 No #164 file or certificate is edited, no Lean input changes, and no new full
 Lean audit or independent human review is claimed. PR-local validation and
 one bounded stable-head feedback snapshot are recorded on the delivery PR.
