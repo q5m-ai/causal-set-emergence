@@ -161,9 +161,11 @@ coefficient. In #90's curvature convention `R*dmu/2=3*Omega*Omega'' dt dx`;
 the joint area is `4*pi*sqrt(2)`. Direct integration gives
 
 ```math
+\begin{aligned}
 \mathcal T_g
- =\pi\int_0^1\frac{u^3(2-u^2)}{(1+u^2)^{3/2}}\,du+4\pi\sqrt2
- =\pi(53\sqrt2/6-20/3).
+ &=\pi\int_0^1\frac{u^3(2-u^2)}{(1+u^2)^{3/2}}\,du+4\pi\sqrt2\\
+ &=\pi(53\sqrt2/6-20/3).
+\end{aligned}
 \tag{NC3}
 ```
 

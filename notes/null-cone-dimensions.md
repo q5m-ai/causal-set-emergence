@@ -28,7 +28,7 @@ an initial interval, with endpoint R(omega), and
 \begin{aligned}
 M_H&=\{(t,x):-H(x)\lt t\lt-|x|\},\\
 D&=\{r\omega:0\le r\lt R(\omega)\},\qquad
- T/2\le R(\omega)\le B<\infty,\\
+ T/2\le R(\omega)\le B\lt\infty,\\
 J&=\{(-R(\omega),R(\omega)\omega):\omega\in S^{d-2}\},\\
 \mathcal J_H&=\int_{S^{d-2}}R(\omega)^{d-2}\,d\omega.
 \end{aligned}
@@ -97,9 +97,11 @@ c_d, is `Gamma(d)/[(n+1)*(d*n/2+1)_(d-1)]`. Consequently the complete partner
 integral has series
 
 ```math
+\begin{aligned}
 \rho\int_{I(p,0)}K_d
- =\sum_{n=0}^\infty\frac{(-1)^n z^{n+1}}{n!}
+ &=\sum_{n=0}^\infty\frac{(-1)^n z^{n+1}}{n!}
  \frac{\Gamma(d)(qn+1)_m}{m!(n+1)(qn+1)_{d-1}}.
+\end{aligned}
 \tag{ND3}
 ```
 
