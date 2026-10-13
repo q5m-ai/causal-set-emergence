@@ -202,7 +202,8 @@ class LensProducerTests(unittest.TestCase):
         for mu in (-2, 2, math.nan):
             with self.assertRaises(ValueError):
                 self.lens.time_end(mu)
-        for depth, axial in ((0.5, 0), (0.7, 0.3), (math.nan, 0)):
+        for depth, axial in ((0.5, 0), (0.7, 0.3), (math.nan, 0), (1, 0), (2, 0),
+                             (float(self.lens.region.height(0.17)), 0.17)):
             with self.assertRaises(ValueError):
                 self.lens.axial_partners(1, depth, axial)
 
