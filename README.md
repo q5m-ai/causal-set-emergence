@@ -712,9 +712,9 @@ These are written results, not universal coverage, new Lean proofs or
 independent acceptance. The consolidated [scope, proof dependencies and
 adversarial estimate audit](notes/nonconformal-plane-wave-limit.md) separate
 proved results from the remaining intrinsic whole-interval containment and
-simultaneous singular-contact blocker. Arbitrary curved 2D/3D, broader corrected
-metric/dimension coverage and #154–#156's separately owned null/mixed branch
-remain unresolved. #164's proof and certificate are unchanged; final human
+simultaneous singular-contact blocker. Curved 3D, broader corrected
+metric/dimension coverage and the separately owned null/mixed branch
+remain unresolved; the subsequent complete curved 2D result is recorded below. #164's proof and certificate are unchanged; final human
 scrutiny remains #94/#86, and #81/#24 stay open.
 
 The [intrinsic Hadamard optical theorem HO-4](notes/hadamard-optical-limit.md)
@@ -728,9 +728,22 @@ reach the independent curvature-plus-joint target. Genuinely variable-curvature,
 non-conformally-flat members with nonempty variable-angle joints are included.
 The [source-backed WORKS / FAILS / UNKNOWN ledger](notes/intrinsic-coverage-ledger.md)
 preserves all integrated successes and complete counterexamples, and keeps
-broader curved 2D/3D, metric/dimension and null/mixed obligations with #81 and
-#156/#169. This is not a new Lean proof, universal replacement conjecture or
+broader curved 3D, metric/dimension and null/mixed obligations with #81 and
+#156. This is not a new Lean proof, universal replacement conjecture or
 human acceptance; #94/#86 and #81/#24 remain open.
+
+The [complete curved 2D theorem C2](notes/curved-two-d-limit.md), addressing
+#175's original quantifiers, adds written coverage for **every smooth 2D
+G-SS member**. Global null coordinates are derived on the causal cover;
+physical route unions retain both endpoint overlaps, both measures and all
+moving face/cutoff contacts. A geometrically derived quadratic primitive
+remainder gives the genuine 2D signed long response. At one fixed cutoff,
+S30 restores the whole curvature-plus-counting-joint action with the point
+once, then the original-law expectation transfers separately. Compact-Cauchy
+slabs and all joint endpoints are included; no conformal-chart, small-width
+or unique-interval assumption is added. The argument and finite diagnostics
+are not new Lean verification or independent expert acceptance. #175 remains
+open pending separate acceptance; #81/#24 and #94/#86 remain open.
 
 ## Program 2 — dynamics and automaton-like growth
 
