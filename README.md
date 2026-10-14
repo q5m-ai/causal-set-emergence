@@ -430,8 +430,24 @@ then uses an exact positive-density Poisson identity to obtain the expected-acti
 limit. Independent finite-order and positive-layer quadrature regressions
 check the normalization without defining expectation from the reduced action.
 This is a written proof, not a new Lean-checked mixed-region theorem or an
-independently reviewed result. Arbitrary null/mixed boundaries, curved and
-dimensional extensions, and sample-wise convergence remain open.
+independently reviewed result. The later [dimensional cone-ending proof](notes/null-cone-dimensions.md)
+extends its stated flat cone class to every integer dimension at least two;
+it does not prove arbitrary null/mixed geometry.
+
+The [complete conformally curved single-cone theorem](notes/conformal-cone-limit.md)
+now proves the **whole #169 4D class**: every smooth globally strict-Lipschitz
+floor of #84 and every fixed smooth positive spacetime-dependent conformal
+factor on its causal enclosure. An actual future-endpoint cone-ball reduction
+resolves the characteristic contacts without spacelike generator arguments.
+Matched short/null remainders derive the physical point cancellation and the
+independent curvature-plus-induced-SN-area target, with all generator, floor,
+tip, cutoff and ordered-partition terms restored. The original-law expectation
+is transferred separately afterward. This is a **written proof and finite
+diagnostics, not a new Lean theorem or independent human acceptance**.
+[The #156 ledger](notes/null-mixed-required-coverage.md) retains arbitrary null
+fronts, other curved dimensions/metrics, multiple tips/creases, cut/caustic
+regimes and higher intersections; #156/#81/#24 and #94/#86 remain open.
+No sample-wise or spacelike-to-null singular-limit conclusion is implied.
 
 ### Independent-face enlargement
 

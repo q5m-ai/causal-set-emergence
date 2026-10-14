@@ -2,16 +2,22 @@
 
 **PARTIAL theorem delivery; #156 is not complete.** The selected TT-A/TT-B
 chain and the all-dimensional cone-ending theorem below are actual written
-proofs. Required general null-front and curved characteristic-contact
-producers are still missing. Neither this inventory, the new positive class,
-nor an assigned child discharges those quantifiers. #81/#24 stay open with
+proofs. The subsequent [#169 proof CC1–CC14](conformal-cone-limit.md) now supplies
+the **whole 4D conformally curved single-cone SN class**, including arbitrary
+admitted nonplanar floors and smooth positive spacetime-dependent factors.
+Required general null-front and other curved characteristic-contact producers
+are still missing. Neither this inventory, the proved subclasses, nor an
+assigned child discharges those quantifiers. #81/#24 stay open with
 unchanged criteria; #94/#86 retain final human scrutiny and verification.
 
 ## 1. Source receipts and separation from the parallel worker
 
 The controlling sources are the live #24 completion criterion, #81 coverage
 contract, #90 matrix/§4, and the actual #83/#84/#134 outputs, not issue counts.
-Integration base: `41cf2c35378cf91c1c2d3651f8dd689370662bdf`.
+Original #171 integration base: `41cf2c35378cf91c1c2d3651f8dd689370662bdf`.
+The #169 continuation starts from integrated `0358c32f7ca19a4491b7e904ee5eaf44003619d3`,
+which contains #168/#170/#171/#167. The earlier source receipts and §4 attempts
+below retain their historical status; §6 records the subsequent resolution.
 
 | Source | Actual usable output / boundary |
 | --- | --- |
@@ -47,11 +53,11 @@ than defined by a desired action. Fixed positive compatible cutoffs only.
 
 | Required row from #24/#90 | Actual covered part after this delivery | Exact unresolved part / native owner |
 | --- | --- | --- |
-| Regular SN, every d>=2 | [ND1–ND9](null-cone-dimensions.md) proves the complete Minkowski cone-ending class, including every smooth strict-Lipschitz lower floor; 2D counting is separate | General null fronts, topology/atlases and metrics, not necessarily one common tip: **#156**; bounded conformally curved common-tip producer **#169** |
+| Regular SN, every d>=2 | [ND1–ND9](null-cone-dimensions.md) proves the complete Minkowski cone-ending class; 2D counting is separate. [CC1–CC14](conformal-cone-limit.md) adds the whole **4D** conformally curved single-cone class of #169 | General null fronts, topology/atlases, other dimensions/metrics and non-common-tip regions: **#156**; #169's written result does not exhaust this row |
 | Regular past–future NN, every d>=2 | ND includes every flat causal diamond and the specified transverse piecewise lower-null cone-ending class, with independent screen area; old checked plane-cut cap retains its own 4D scope | Arbitrary past–future null sheets and generator endpoint/cut regimes beyond ND: **#156** |
 | Same-side null seams/creases | Actual fixed flat 4D TT1 C with its nonplanar floor, all partners and no extra net coefficient in TT-A/TT-B; ND covers only its explicitly permitted **lower** strata | Other future seams, multiple tips, combinations with past–future joints, other dimensions and metrics: **#156**; TT-B is not a valuation theorem for arbitrary bilocal partitions |
 | Tips and higher intersections of the required causal strata | TT1's two tips and Gamma retained completely; ND inventories one future tip and permitted lower tips/seams and their joint interfaces | General generator focusing/cut contacts, higher intersections and interacting strata remain **#156**; zero codimension-area or spacetime volume is not a normalized bound |
-| Metrics | Flat Minkowski ND and selected TT1; exact positive constant conformal factors follow by canonical scaling with all measures | Nonconstant curved null geometry still needs the complete boundary producer; **#169** covers the first whole conformal common-tip class, **#156** retains other curved null/cut regimes; #81's G-SS metric work remains separate |
+| Metrics | Flat Minkowski ND and selected TT1; **every fixed smooth positive spacetime-dependent conformal factor** on #84's 4D single-cone causal enclosure now has the written CC theorem, not only constant/time-only factors | Other curved-null metrics/fronts/dimensions and cut regimes remain **#156**; #81/#172's intrinsic G-SS work is separate |
 | Dimension / regularity | ND is a proof for every fixed integer d>=2 on its stated class, with a positive mixture in d>=5 and a signed logarithmic response in d=2 | No copied 4D kernel, 2D tip estimate or automatic higher-dimensional multi-front jet; **#156** retains the unresolved dimensional strata/metric rows |
 | Order / interval regime | ND and TT1 prove closed ambient containment, hence isolated=ambient and intrinsic order agreement there; generic finite-density Mecke APIs are reusable with real hypotheses | General atlases must prove their selected containment/physical intervals. Intrinsic-only or non-convex restrictions need their own approved regime, not an inherited flat law: **#156/#81** scope coordination |
 | Verification and provenance | New analytics are written; generic probability foundations and older selected results keep their actual compiled scope; ND supplies an all-integer diamond proof directly | Intended-statement scrutiny, justified formal ports, Chevalier text access and expert novelty/source review remain **#94/#86**; ND does not revise what older literature passages proved |
@@ -89,7 +95,10 @@ This closes the stated **dimensional cone-ending subentry**, not #156. It
 also proves all-integer flat diamond asymptotics directly rather than relying
 on the inspected literature's finite-dimensional attribution.
 
-## 4. Continued curved-null research and the concrete stopping point
+## 4. Prior curved-null research and the #171 stopping point
+
+**Historical blocker, subsequently resolved for exactly #169 by §6.** NC1 and
+NC4 remain valid route obstructions; CC does not reinstate either false step.
 
 Work did not stop after the flat dimensional package became publishable.
 Three attempted extensions were carried through their actual geometric
@@ -243,8 +252,54 @@ provenance and justified verification.
 | Exact required versus deferred inventory | §§1–2, tied to current #24/#90/#81 contracts and actual source outputs |
 | Actual geometry/order/action/law/independent targets | ND1–ND9; TT-A/TT-B unchanged; NC1–NC4 keep the actual curved observable and candidate target |
 | Exact missing producers/consumers, valid API reuse, native ownership | ND is an actual completed producer/assembly; §§4–5 identify the precise curved blocker and native #169; all broader rows remain #156 |
-| Complete normalized deterministic conclusions and separate expectation | **Proved only for ND and selected TT1. NOT discharged for the whole quantified matrix.** NC2's long producer and finite diagnostics do not promote its curved full limit |
+| Complete normalized deterministic conclusions and separate expectation | **Written for ND, selected TT1, and now the whole #169 4D conformal single-cone class CC. NOT discharged for the whole quantified matrix.** NC2 and numerical agreement alone were not its proof |
 | Parent ledger, source receipts, honest stopping rule | This ledger plus the #81 delivery receipt; unmerged proofs remain unmerged, independent acceptance remains outstanding, #156/#81/#24 remain open |
+
+## 6. Subsequent #169 resolution: complete characteristic matching
+
+[CC1–CC14](conformal-cone-limit.md) proves the complete deterministic
+curvature-plus-induced-SN-area target for **every** smooth globally
+strict-Lipschitz floor of #84 and **every** fixed smooth positive
+spacetime-dependent conformal factor on its causal enclosure. A separate
+actual-order/measure/restricted-interval Mecke specialization then transfers
+the original-law expectation. This is written mathematics, not new Lean
+coverage, independent human acceptance, or administrative issue closure.
+
+The decisive replacement for the §4 blocker is an exact future-endpoint
+cone-ball domain: the null face is retained while the floor is resolved in
+its strictly transverse time/radius variable. Its actual weighted whole-diamond
+phase gives long cancellation at one fixed temporal cutoff. The short proof
+matches the diagonal and null edge by two-variable Taylor subtraction and
+Mellin continuation: it derives point cancellation, kills the candidate
+single-face pole, retains the critical double pole and proves a summable
+remainder. That pole's coefficient is independently identified as curvature
+plus a divergence whose actual floor/cone flux is the induced SN area.
+
+Both measures, the physical interval once, every ordered chart pair, the
+future tip and closing fibres, all generator endpoints, moving floor terms,
+artificial-cutoff terms and the physical point once are retained. Weighted
+generator fluxes are explicit in CC12; no isolated sector is called a complete
+action. The false flat Gaussian identity and the null-generator rank failure
+remain as negative controls. The proof uses #167's actual faithful conformal
+point map only, **not** its G-SS contact or S30 assembly conclusion. No #172
+intrinsic metric definition or changing physical order/measure is duplicated.
+
+`conformal_cone.py` / `test_conformal_cone.py` provide two independent complete
+finite-density pair-domain quadratures for nonplanar floors with a genuine
+space/time factor, direct interior-volume checks including anisotropic and
+nonpolynomial densities, symbolic residue/curvature checks, moving-floor
+coefficient diagnostics and full partition/cutoff restoration regressions.
+These tests do not prove asymptotic error bounds; those are the written §4
+argument. No formal validation input changes. Final human scrutiny is #94/#86.
+
+**Exact coverage gain:** the #169 class only. General null fronts, other
+curved-null dimensions/metrics, multiple tips/creases/seams, cut/caustic
+contacts and higher required intersections remain **#156**. #156/#81/#24 stay
+open with their original quantified criteria. The original child ownership
+in §5 is preserved; this source delivery is not permission to close it or its
+parents. No action, target, order, law, cutoff or scope changes.
+
+### Original #171 verification receipt (preserved)
 
 Written proof: ND1–ND9 and the explicitly bounded NC2 long argument. Exact
 identities/route diagnostics: NC1–NC4. Executable evidence: dimensional
