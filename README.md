@@ -444,9 +444,18 @@ independent curvature-plus-induced-SN-area target, with all generator, floor,
 tip, cutoff and ordered-partition terms restored. The original-law expectation
 is transferred separately afterward. This is a **written proof and finite
 diagnostics, not a new Lean theorem or independent human acceptance**.
+The [regular curved two-tip theorem](notes/conformal-two-tip-limit.md) (#178)
+adds the complete union/lens response for its **whole regular 4D conformal
+class**, with arbitrary non-axial floor and spacetime factor. Its floor/phase
+inverse retains translated closing tangencies; the matched short proof derives
+SN flux and retains nonzero weighted crease/generator endpoints. Actual
+weighted interval/pair valuation and CC cap hypotheses give full assembly,
+then separate original-law expectation. This is written, not Lean-checked or
+independently accepted.
 [The #156 ledger](notes/null-mixed-required-coverage.md) retains arbitrary null
-fronts, other curved dimensions/metrics, multiple tips/creases, cut/caustic
-regimes and higher intersections; #156/#81/#24 and #94/#86 remain open.
+fronts, tangential floor/crease contacts, three or more tips, other curved
+dimensions/metrics, cut/caustic regimes and higher intersections;
+#156/#81/#24 and #94/#86 remain open.
 No sample-wise or spacelike-to-null singular-limit conclusion is implied.
 
 ### Independent-face enlargement
