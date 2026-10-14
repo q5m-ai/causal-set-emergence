@@ -717,6 +717,21 @@ metric/dimension coverage and #154–#156's separately owned null/mixed branch
 remain unresolved. #164's proof and certificate are unchanged; final human
 scrutiny remains #94/#86, and #81/#24 stay open.
 
+The [intrinsic Hadamard optical theorem HO-4](notes/hadamard-optical-limit.md)
+adds written 4D coverage for every ambient-contained G-SS region in an
+ultrastatic spacetime whose spatial geometry is complete, simply connected
+and nonpositively curved. Whole-interval comparison and a resolved two-cone
+rescaling control both tips, the near-null regime and moving face/cutoff
+contacts; the critical signed remainder is derived, not assumed from unique
+geodesics. The complete canonical action and separate original-law expectation
+reach the independent curvature-plus-joint target. Genuinely variable-curvature,
+non-conformally-flat members with nonempty variable-angle joints are included.
+The [source-backed WORKS / FAILS / UNKNOWN ledger](notes/intrinsic-coverage-ledger.md)
+preserves all integrated successes and complete counterexamples, and keeps
+broader curved 2D/3D, metric/dimension and null/mixed obligations with #81 and
+#156/#169. This is not a new Lean proof, universal replacement conjecture or
+human acceptance; #94/#86 and #81/#24 remain open.
+
 ## Program 2 — dynamics and automaton-like growth
 
 The exploratory question is whether causal-set dynamics can be represented as
