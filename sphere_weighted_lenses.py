@@ -32,15 +32,39 @@ def sphere_point(theta, x, y, p, n):
 
     One signed Euclidean half-plane maps to ONE spherical orientation. This
     does not sum geodesic tubes. The caller must stay before the upper triangle
-    transition. The factored k coordinate avoids subtracting unit squares.
+    transition. Near the antipode, rationalized excess and half-angle factors
+    avoid dividing cancellation errors by sin(theta); no renormalization is used.
     """
     p, n, k = frame(p, n)
     if not np.isfinite(theta) or not 0 <= theta < np.pi:
         raise ValueError("requires 0<=theta<pi")
     x, y = np.broadcast_arrays(np.asarray(x, float), np.asarray(y, float))
     r, s = np.hypot(x, y), np.hypot(x-theta, y)
-    if (np.any(~np.isfinite(r+s))
-            or np.any(r+s >= 2*np.pi-theta)):
+    if np.any(~np.isfinite(r+s)):
+        raise ValueError("outside the regular spherical triangle range")
+    if theta > np.pi/2:
+        # r+s-theta loses the transverse excess at focusing scales. Retain
+        # r-|x| and s-|theta-x| separately, including the two outside tips.
+        dr = np.divide(y*y, r+np.abs(x), out=np.zeros_like(r), where=r > 0)
+        ds = np.divide(y*y, s+np.abs(theta-x), out=np.zeros_like(s), where=s > 0)
+        excess = dr+ds+2*np.maximum(0, np.maximum(-x, x-theta))
+        sin_theta = np.sin(theta)
+        # atan2 retains the true pi-minus-theta gap of the binary input; using
+        # np.pi-theta here would lose pi's rounding residual near the last ulp.
+        gap = np.arctan2(sin_theta, -np.cos(theta))
+        if np.any(excess >= 2*gap):
+            raise ValueError("outside the regular spherical triangle range")
+        left = np.clip(x, 0, theta)+(dr-ds)/2
+        right = np.clip(theta-x, 0, theta)+(ds-dr)/2
+        sin_left = np.sin(np.where(left > np.pi/2, gap+right, left))
+        sin_right = np.sin(np.where(right > np.pi/2, gap+left, right))
+        small = np.sin(excess/2)/sin_theta
+        closing = np.sin(gap-excess/2)/sin_theta
+        along = np.sin(r)-2*small*sin_right
+        across = np.sign(y)*2*np.sqrt(np.maximum(
+            0, small*closing*sin_left*sin_right))
+        return np.cos(r)[..., None]*p + along[..., None]*n + across[..., None]*k
+    if np.any(r+s >= 2*np.pi-theta):
         raise ValueError("outside the regular spherical triangle range")
     sinc = lambda v: np.sinc(v/np.pi)
     args = ((r+s+theta)/2, (r+s-theta)/2,

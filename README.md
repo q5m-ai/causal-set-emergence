@@ -682,8 +682,9 @@ abundance and moving-contact control. It also proves the faithful conformal-
 diamond-cover case with general spacelike faces, ordered partitions and a
 nonempty variable-angle joint example with independently calculated bulk and
 joint. The [non-conformal stability theorem PW-4](notes/nonconformal-plane-wave-limit.md)
-then derives the complete limit for arbitrary smooth positive transverse-matrix
-plane-wave profiles and G-SS regions. Exact quadratic path minimization supplies
+then derives the complete limit for smooth symmetric positive-definite
+transverse-matrix plane-wave profiles with fixed global positive lower and finite
+upper bounds, and ambient-contained G-SS regions. Exact quadratic path minimization supplies
 the whole physical interval; the divided-volume formula is uniform through
 both tips and the parallel-null collar. Actual spacelike face/cutoff contacts,
 nonempty variable-angle joints, both measures and the separate original-law

@@ -1,6 +1,7 @@
 """Finite geometric checks; not uniform estimates or complete-action numerics."""
 
 import unittest
+import mpmath as mp
 import numpy as np
 
 import sphere_weighted_lenses as sw
@@ -35,6 +36,55 @@ class SphereWeightedLensTests(unittest.TestCase):
             np.testing.assert_allclose(point@P, np.cos(np.hypot(x, y)), atol=3e-14)
             np.testing.assert_allclose(point@target, np.cos(np.hypot(x-theta, y)), atol=3e-14)
             np.testing.assert_array_equal(np.sign(point[:, 1]), np.sign(y))
+
+    def test_antipodal_map_against_high_precision_triangle(self):
+        # Independent cosine-law solve in 90 digits, using the exact binary
+        # inputs. Unit normalization alone would hide a wrong signed point.
+        cases = [(np.pi-1e-14, (np.pi-1e-14)/2, 1e-8)]
+        for theta in (np.pi-1e-8, np.pi-1e-12, np.pi-1e-14,
+                      np.nextafter(np.pi, 0)):
+            gap = np.arctan2(np.sin(theta), -np.cos(theta))
+            cases.extend((theta, fraction*theta, 0.2*np.sqrt(gap))
+                         for fraction in (0.1, 0.5, 0.9))
+            # Both longitudinal tips, including the tiny outside pieces.
+            cases.extend((theta, x, 0.1*gap) for x in
+                         (-gap/4, gap/2, theta-gap/2, theta+gap/4))
+            cases.append((theta, theta/2, 0.9999*np.sqrt(gap*(theta+gap))))
+        with mp.workdps(90):
+            for theta, x, y in cases:
+                for sign in (-1, 1):
+                    with self.subTest(theta=theta, x=x, sign=sign):
+                        t, xx, yy = map(mp.mpf, (theta, x, sign*y))
+                        r, s = mp.sqrt(xx*xx+yy*yy), mp.sqrt((xx-t)**2+yy*yy)
+                        along = (mp.cos(s)-mp.cos(t)*mp.cos(r))/mp.sin(t)
+                        across = mp.sign(yy)*mp.sqrt(1-mp.cos(r)**2-along**2)
+                        expected = np.array([float(along), float(across), float(mp.cos(r))])
+                        actual = sw.sphere_point(theta, x, sign*y, P, N)
+                        np.testing.assert_allclose(actual, expected, atol=2e-13, rtol=2e-13)
+                        self.assertAlmostEqual(actual@actual, 1, delta=3e-14)
+                        self.assertEqual(np.sign(actual[1]), sign)
+
+    def test_antipodal_closing_guard_and_meridian(self):
+        theta = np.nextafter(np.pi, 0)
+        gap = np.arctan2(np.sin(theta), -np.cos(theta))
+        with self.assertRaises(ValueError):
+            sw.sphere_point(theta, theta/2, 1.01*np.sqrt(gap*(theta+gap)), P, N)
+        x = np.array([-gap/4, 0., theta/2, theta, theta+gap/4])
+        point = sw.sphere_point(theta, x, 0., P, N)
+        expected = np.cos(x)[:, None]*P+np.sin(x)[:, None]*N
+        np.testing.assert_allclose(point, expected, atol=2e-15)
+
+    def test_focusing_density_is_evaluated_on_the_sphere(self):
+        def sphere_only(t, point, z):
+            np.testing.assert_allclose(np.sum(point*point, axis=-1), 1,
+                                       atol=3e-14, rtol=0)
+            return density(t, point, z)
+        for gap in (1e-8, 1e-12, 1e-14):
+            theta, e = np.pi-gap, 0.1*gap
+            self.assertGreater(sw.regular_factor(-1.8, 0, theta, 0,
+                               e*(2*theta+e), P, N, sphere_only, 6), 0)
+            self.assertGreater(sw.cut_factor(gap, e, 0.3, 0.5, 0,
+                               P, N, sphere_only, 6), 0)
 
     def test_axis_extension_is_exponential_map(self):
         x, y = np.array([0.1, -0.2, 0]), np.array([0.3, 0.1, 0])
