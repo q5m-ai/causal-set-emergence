@@ -49,14 +49,15 @@ r lifts cannot occur between the same physical endpoints, nor can an interval
 double-project in r. The x circle is **not** unfolded with multiplicity.
 For L>0 let S_L(p,q) be the infimum of
 one-half the integral of (x-prime squared minus H(x)) over **all** circle
-paths from p to q of duration L. Integrating the causal inequality in v,
-then at every intermediate (s,x), gives exactly
+paths from p to q of duration L. Let X,Y denote the spacetime endpoints,
+with circle coordinates x_X=p and x_Y=q. Integrating the causal inequality
+in v, then at every intermediate (s,x), gives exactly
 
 ```math
 \begin{aligned}
-x_{\mathrm{source}}&=p,\quad x_{\mathrm{target}}=q,\quad
+x_X&=p,\quad x_Y=q,\quad
  L=\Delta u,\quad e=\Delta v,\quad \tau=L/2+e,\\
-x_{\mathrm{source}}\preceq x_{\mathrm{target}}
+X\preceq Y
  &\quad\Longleftrightarrow\quad e\ge S_L(p,q),\\
 W_3(L,p,q,e)&=\int_0^L\int_{\mathbb R/\pi\mathbb Z}
         [e-S_s(p,x)-S_{L-s}(x,q)]_+\,dx\,ds,\\
