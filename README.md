@@ -670,6 +670,37 @@ formal torus task with #138, and final scrutiny/formalization with #94/#86.
 Earlier delivery-time issue-status statements above are historical; #81/#24
 remain open and their stronger completion criteria are unchanged.
 
+The [sphere-dependent extension under #81](notes/sphere-dependent-conformal-limit.md)
+removes #165's angular restriction in writing: every smooth positive factor on
+the same focusing slab has the complete canonical action limit and a separate
+actual-measure Poisson transfer. Its signed sphere-point map retains both
+orientations; the rescaled angular motion yields the integrable critical
+remainder instead of assuming weighted cancellation from causal invariance.
+The [geometric sufficient-condition continuation](notes/geometric-long-cancellation.md)
+derives cancellation from resolved **physical interval point maps**, endpoint
+abundance and moving-contact control. It also proves the faithful conformal-
+diamond-cover case with general spacelike faces, ordered partitions and a
+nonempty variable-angle joint example with independently calculated bulk and
+joint. The [non-conformal stability theorem PW-4](notes/nonconformal-plane-wave-limit.md)
+then derives the complete limit for smooth symmetric positive-definite
+transverse-matrix plane-wave profiles with fixed global positive lower and finite
+upper bounds, and ambient-contained G-SS regions. Exact quadratic path minimization supplies
+the whole physical interval; the divided-volume formula is uniform through
+both tips and the parallel-null collar. Actual spacelike face/cutoff contacts,
+nonempty variable-angle joints, both measures and the separate original-law
+expectation are retained. Stability is within that metric class, **not** under
+arbitrary perturbations; it does not claim uniform RPL point-map bounds where
+only the exact phase argument is proved.
+
+These are written results, not universal coverage, new Lean proofs or
+independent acceptance. The consolidated [scope, proof dependencies and
+adversarial estimate audit](notes/nonconformal-plane-wave-limit.md) separate
+proved results from the remaining intrinsic whole-interval containment and
+simultaneous singular-contact blocker. Arbitrary curved 2D/3D, broader corrected
+metric/dimension coverage and #154–#156's separately owned null/mixed branch
+remain unresolved. #164's proof and certificate are unchanged; final human
+scrutiny remains #94/#86, and #81/#24 stay open.
+
 ## Program 2 — dynamics and automaton-like growth
 
 The exploratory question is whether causal-set dynamics can be represented as
