@@ -307,8 +307,10 @@ Here are the remaining pieces, which cannot be left as a remainder assertion:
    t=0,1. Put z0=L*(e-S_L). The same physical integration gives
    W3=z0^(3/2)*B(L,p,q,z0), with smooth positive B and
    B(0,p,p,0)=pi*sqrt(2)/6. In the original target clock the derivative of
-   z0 at the long null arrival is its temporal separation, bounded below by
-   delta. Thus this entire collar has the same uniform inverse expansion.
+   z0 at the long null arrival is tau+O(L), uniformly: differentiating the
+   displayed action gives S_L+L*partial_L(S_L)=O(L). Since tau>=delta,
+   choose the fixed collar small enough that this derivative is at least
+   delta/2. Thus this entire collar has the same uniform inverse expansion.
 5. **Everything outside the null cover.** Continuity, compactness and a
    finite partition give a positive actual volume floor, hence an entire
    Mellin transform on that piece and exponential signed response.
