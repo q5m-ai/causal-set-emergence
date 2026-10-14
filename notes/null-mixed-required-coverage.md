@@ -236,7 +236,8 @@ transfer the original-law expectation. This is a required curved SN class,
 not another selected example. Its native parent is #156, which it blocks;
 actual #84/#90 outputs are its prerequisite edges. Other applicable interior/volume
 APIs may be reused only after checking hypotheses. No new formal stack is
-commissioned.
+commissioned. The subsequent written discharge of this unchanged child contract
+is §6; neither its native ownership nor its administrative state is changed.
 
 **#156 itself retains** arbitrary null fronts and multiple future tips/creases
 beyond TT1, all still-uncovered dimensions/metrics, generator cut/caustic
@@ -250,10 +251,10 @@ provenance and justified verification.
 | #156 acceptance clause | Disposition |
 | --- | --- |
 | Exact required versus deferred inventory | §§1–2, tied to current #24/#90/#81 contracts and actual source outputs |
-| Actual geometry/order/action/law/independent targets | ND1–ND9; TT-A/TT-B unchanged; NC1–NC4 keep the actual curved observable and candidate target |
-| Exact missing producers/consumers, valid API reuse, native ownership | ND is an actual completed producer/assembly; §§4–5 identify the precise curved blocker and native #169; all broader rows remain #156 |
+| Actual geometry/order/action/law/independent targets | ND1–ND9 and TT-A/TT-B unchanged; CC1–CC14 retain the actual curved observable and independently identify curvature and SN area |
+| Exact missing producers/consumers, valid API reuse, native ownership | ND and CC are actual written producer/assemblies; §4 preserves the historical curved blocker, §6 supplies #169's resolution, and all broader rows remain #156 |
 | Complete normalized deterministic conclusions and separate expectation | **Written for ND, selected TT1, and now the whole #169 4D conformal single-cone class CC. NOT discharged for the whole quantified matrix.** NC2 and numerical agreement alone were not its proof |
-| Parent ledger, source receipts, honest stopping rule | This ledger plus the #81 delivery receipt; unmerged proofs remain unmerged, independent acceptance remains outstanding, #156/#81/#24 remain open |
+| Parent ledger, source receipts, honest stopping rule | This ledger and source-linked delivery receipts; original dated statuses are preserved, CC's new delivery is not integration or independent acceptance, and #156/#81/#24 remain open |
 
 ## 6. Subsequent #169 resolution: complete characteristic matching
 
