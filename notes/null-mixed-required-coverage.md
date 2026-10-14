@@ -10,6 +10,17 @@ are still missing. Neither this inventory, the proved subclasses, nor an
 assigned child discharges those quantifiers. #81/#24 stay open with
 unchanged criteria; #94/#86 retain final human scrutiny and verification.
 
+The [combined source-pinned WORKS / FAILS / UNKNOWN matrix](intrinsic-coverage-ledger.md)
+reconciles the unchanged HO-4 proof at `2092d5a2ba8fa5ccc64402faeae54906064c3014`
+and CC proof at `1e7ee02170d8723ed4544edfb9f9074200710095` with the published
+Conjecture 1′ and all required repository rows. HO-4 adds strictly spacelike
+intrinsic 4D geometry, not a null-contact theorem. CC discharges exactly #169's
+written class; it does not turn the broader rows below into WORKS. The chosen
+next research task is the missing complete curved **2D G-SS** producer/assembly
+under #81, not an automatic further extension of CC. #156 retains every
+uncovered null/mixed row. Integration and authorized closure receipts are
+recorded separately; historical lifecycle statements below remain historical.
+
 ## 1. Source receipts and separation from the parallel worker
 
 The controlling sources are the live #24 completion criterion, #81 coverage
