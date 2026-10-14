@@ -110,8 +110,8 @@ P_{\chi,\phi}(\rho)&=\int_{L\times L}\mathbf1_{p\preceq q}
  \chi(p)\phi(q)K(\rho V_g(p,q))\,d\mu_g(p)d\mu_g(q),\\
 B_{\chi,\phi}(\rho)&=C_4\sqrt\rho
  \left[\int_L\chi\phi\,d\mu_g-\rho P_{\chi,\phi}(\rho)\right],\\
-u&=(1,\sqrt{1-\xi}\,n),&p&=q-\ell u,
- &dq\,dp&=\tfrac12\ell^3\sqrt{1-\xi}\,dq\,d\ell\,d\xi\,dn,\\
+u&=(1,\sqrt{1-\xi}\,n),\qquad p=q-\ell u,\\
+dq\,dp&=\tfrac12\ell^3\sqrt{1-\xi}\,dq\,d\ell\,d\xi\,dn,\\
 P_{\chi,\phi}(\rho)&=\frac12\int_{P_L}\int_{S^2}\int_0^\infty\int_0^1
  \ell^3\sqrt{1-\xi}\, A(q)\phi(q) A(p)\chi(p)\mathbf1_{F}(p)
  K(c\rho\ell^4\xi^2 h)\,d\xi\,d\ell\,dn\,dq.
@@ -282,7 +282,7 @@ Multiplying U0(q-ell*u) and h^(-s), then averaging n, gives
 \begin{aligned}
 F_s&=4\pi\sqrt{1-\xi}\left[T_0+\ell T_1+
  \ell^2\{X+(1-\xi)Y/3+\xi Z\}\right]+\ell^3 E_s,\\
-T_0&=\int_{P_L}V_0 A^{-s}U_0,&
+T_0&=\int_{P_L}V_0 A^{-s}U_0,\\
 T_1&=\int_{P_L}V_0 A^{-s}[-\partial_t U_0+sU_0\partial_t A/(2A)],\\
 X-Y&=\int_{P_L}V_0 A^{-s}\left[
  \tfrac12\Box U_0-\frac{s}{2A}\partial U_0\cdot\partial A
@@ -382,9 +382,8 @@ that interval is nonempty. The source-weight formula is
 -\int_{r_C}^{R_i}W_i\chi_i'\,dr
  &=-W_i(R_i)\chi_i(R_i)+W_i(r_C)\chi_i(r_C)
        +\int_{r_C}^{R_i}W_i'\chi_i\,dr,\\
-\Omega_i(r)&=\Omega(-r,c_i+r\omega),&
-\chi_i'(r)&=(-\partial_t+\omega\cdot\nabla_x)\chi(-r,c_i+r\omega),
- &W_i(r)&=r^2\Omega_i(r)^2.
+\Omega_i(r)&=\Omega(-r,c_i+r\omega),\qquad W_i(r)=r^2\Omega_i(r)^2,\\
+\chi_i'(r)&=(-\partial_t+\omega\cdot\nabla_x)\chi(-r,c_i+r\omega).
 \end{aligned}\tag{CT10}
 ```
 
