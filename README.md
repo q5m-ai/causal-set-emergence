@@ -732,6 +732,19 @@ broader curved 2D/3D, metric/dimension and null/mixed obligations with #81 and
 #156/#169. This is not a new Lean proof, universal replacement conjecture or
 human acceptance; #94/#86 and #81/#24 remain open.
 
+The [curved-3D response](notes/curved-three-d-response.md) derives the actual
+physical-union primitive and its first subtraction for the original smooth
+core. Its **restricted** FCDC-3 theorem proves the complete deterministic and
+separate original-law expectation limit under a faithful whole-interval
+conformal-cover condition, with independent curvature and variable-angle curve
+joint. The [focal continuation](notes/curved-three-d-focusing.md) additionally
+proves the complete zero limit for one genuinely curved compact 3D slab with
+quartic conjugacy, two-route cuts and physical endpoint overlaps. It uses the
+3D kernel, not the 4D obstruction's coefficient. The original arbitrary-metric
+3D critical remainder remains **UNKNOWN under #177/#81**. These are written
+arguments and diagnostics, not new Lean proofs or independent acceptance;
+#94/#86 retain scrutiny. The independent #175 curved-2D worker is not a premise.
+
 ## Program 2 — dynamics and automaton-like growth
 
 The exploratory question is whether causal-set dynamics can be represented as

@@ -60,6 +60,27 @@ deterministic conclusion. No row supplies a sample-wise theorem.
 | Every integer d>=2, ND1's Minkowski cone-ending class: globally 1-Lipschitz H, H(0)>0, bounded radial domain, finite piecewise smooth spacelike/null lower strata, radial transversality at regular SN/NN pieces; both 2D joint atoms regular | [ND1–ND9](https://github.com/q5m-ai/causal-set-emergence/blob/0358c32f7ca19a4491b7e904ee5eaf44003619d3/notes/null-cone-dimensions.md): complete induced screen-area/counting limit and separate expectation. Includes smooth strict-Lipschitz floors and all flat diamonds | Written; higher-dimensional beta mixture and 2D logarithmic/counting arguments are distinct. No arbitrary future seam or metric extension; wider rows remain #156 |
 | **Every smooth globally strict-Lipschitz #84 floor H with H(0)>0, and every fixed smooth positive spacetime-dependent conformal factor on its compact causal enclosure, in 4D conformal Minkowski space; one future cone/tip and regular SN joint** | **[CC1–CC14](https://github.com/q5m-ai/causal-set-emergence/blob/1e7ee02170d8723ed4544edfb9f9074200710095/notes/conformal-cone-limit.md): complete deterministic half-curvature plus induced SN-area limit, then separate original-law expectation** | **Written, not compiled or human-accepted.** Actual cone-ball domain, both endpoint measures, matched Mellin remainder and floor/generator/tip fluxes; whole #169 class, not only round/time-only factors. All other null rows remain #156 |
 
+### Curved-3D continuation — restricted written coverage, not #177 completion
+
+At base `d2cbbc12dbfee6376140a2137013f3d409adfdbf`, the following additional
+results use the actual dimension-three kernel and normalization. They do not
+consume the independent unmerged curved-2D #175 result or modify its row.
+
+| Added 3D geometry / exact restriction | Complete conclusion | Verification |
+| --- | --- | --- |
+| G-SS with a faithful whole-interval conformal-diamond cover; arbitrary smooth positive conformal density, including nonempty variable-angle curve joints | [FCDC-3 / C3.5–C3.9](curved-three-d-response.md): complete independent curvature-plus-joint limit, then separate original-law expectation | Written with finite diagnostics; the additional whole-interval property is explicit, not inferred from local conformal flatness |
+| Exactly the duration-7/4 compact r/x-torus slab of F3.1, with r period 20, x period pi and H(x)=sin(2x)²/4; empty joint, quartic conjugate family and both ordinary two-route seams | [F3.1–F3.8](curved-three-d-focusing.md): complete zero deterministic limit, then original-law expectation, against independently zero scalar/joint target | Written, not compiled or independently accepted. Actual 3D physical union, both tips, opening/closing contacts and entire complement are retained; no 4D kernel/coefficient transfer |
+
+The focal continuation resolves a misleading failure of the cubic-jet route:
+its actual third inverse coefficient is not absolutely integrable, but the
+required **3D** critical remainder has a summable margin after matching.
+This is a WORKS example, not a counterexample. No new FAILS row is added.
+The universal curved-3D row remains UNKNOWN and owned by native **#177**,
+which has #90/#150/#77 prerequisites and blocks #81. No finite-type or
+no-caustics condition is added to its original contract. #94/#86 retain
+human scrutiny and justified formalization; green diagnostics/CI are not
+proof certification. All older success/failure sources remain unchanged.
+
 The older checked null cap is also retained exactly: flat 4D diamond from
 (-T,0) to zero cut by t-x1>-a, with 0<a<T. Its complete deterministic and
 separate expected limit is the algebraic target pi*a*(2T-a), by
@@ -88,7 +109,7 @@ HO-4 changes no one of those statements or artifacts and does not reopen #151.
 | Remaining question | Status / precise missing implication | Owner |
 | --- | --- | --- |
 | Every smooth curved 2D G-SS member, arbitrary topology and spacelike face atlas, all counted joint points or empty joint | **UNKNOWN** universal deterministic and expected limits. S30 proves the short target only; CFT proves flat metrics only; HO/CC are 4D. Missing global physical-interval/contact response and complete assembly, not merely a formal port | **#81**, next bounded task below |
-| Every smooth curved 3D G-SS member, arbitrary topology/face atlas and intrinsic curve joint | **UNKNOWN** universal deterministic and expected limits. Checked flat SmoothPilot3 and written flat CFT do not supply the curved long producer; 4D moments cannot be copied | **#81** |
+| Every smooth curved 3D G-SS member, arbitrary topology/face atlas and intrinsic curve joint | **UNKNOWN** universal deterministic and expected limits. [C3.2–C3.4](curved-three-d-response.md) derive the physical union/clock primitive and first subtraction for the original core; the critical second subtraction and 5/2-order remainder through arbitrary smooth degeneracies remain missing. Restricted FCDC-3 and the focal slab below do not exhaust the row | **#177 under #81** |
 | Curved 4D G-SS outside SW/FCDC/PW/HO and the other proved classes, including nonempty joints and global metric/atlas changes | The universal original target claim **FAILS** by CO; outcomes for the remaining geometrically specified classes and a broader corrected theorem are **UNKNOWN**. Missing whole-interval/contact control or a fully matched surviving response, not just a local curvature coefficient | **#81** |
 | G-SS in each d>=5, flat or curved, outside the exact WORKS/FAILS families | Universal positivity already **FAILS** in every such dimension by K; Minkowski/thin/first-cut positive classes and the separate 7D curved failure remain. No general replacement formula or broader corrected geometric theorem is proved. This residual is **not** a new requirement to classify every individual spacetime for closed #149/#151 | **#81** |
 | Simply having unique rays or no cut loci, without the comparison/index/domain proof | **Not a proved sufficient theorem.** The old central-slice absolute logarithm was a route failure; HO3–HO6 now resolve it for the Hadamard milestone only | **#81** |
