@@ -91,7 +91,7 @@ controls the nonlinear near-conjugate layer at each fixed positive quartic
 margin. It does **not** prove the complete arbitrary-metric action.
 
 **Further foundation audit and physical-phase refinement:**
-[CL3.1–CL3.15 at `f0eaae8`](https://github.com/q5m-ai/causal-set-emergence/blob/f0eaae8d6aa327f82e3ddb2ae895d80e25e4912c/notes/curved-three-d-clusters.md)
+[CL3.1–CL3.15 at `4989c94`](https://github.com/q5m-ai/causal-set-emergence/blob/4989c9439aec68fff770b17c688dcec209f979ae/notes/curved-three-d-clusters.md)
 derive the actual-clock rank and
 endpoint measure explicitly, then use the **actual volume** to control
 negative defects at losing stationary states. The phase-bad pair sector has
@@ -107,8 +107,9 @@ union** on the phase-good active Morse clusters: both tips, all action-gap
 openings and overlaps, both measures, simultaneous moving/closing masks and
 both restored subtraction terms. Local Morse control and a semiconvex gap
 envelope do not supply that producer. A fixed smooth accumulating-well germ
-satisfies the minimum-coordinate identities but defeats the shortcut to a
-uniform finite active-well count. It is not an admitted spacetime obstruction.
+satisfies the minimum-coordinate and terminal null-covector identities but
+defeats the shortcut to a uniform finite active-well count. It is not a
+Lorentzian point-source realization or an admitted spacetime obstruction.
 No second pointwise jet or finite-type hypothesis is inserted into G-SS.
 The abstract oscillatory primitive, incompatible quartic panel and polygon
 fan are analytic negative controls, **not admitted spacetime obstructions**.
