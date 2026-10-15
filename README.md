@@ -729,6 +729,11 @@ quartic conjugacy, two-route cuts and physical endpoint overlaps. It uses the
 3D critical remainder remains **UNKNOWN under #177/#81**. These are written
 arguments and diagnostics, not new Lean proofs or independent acceptance;
 #94/#86 retain scrutiny. The independent #175 curved-2D worker is not a premise.
+The [signed-matching continuation](notes/curved-three-d-matching.md) derives a
+weaker averaged criterion and smooth one-screen angular control without a
+finite analytic contact classification. Uniform physical-union matching when
+the quartic coefficient vanishes remains unproved; this adds no complete-class
+coverage or counterexample and retains the original #177/#81 quantifiers.
 
 The [intrinsic Hadamard optical theorem HO-4](notes/hadamard-optical-limit.md)
 adds written 4D coverage for every ambient-contained G-SS region in an

@@ -425,4 +425,14 @@ these new geometric arguments. Written proof, diagnostics, CI and independent
 review are distinct. Attributable human mathematical/physical scrutiny,
 provenance and justified formalization remain #94/#86.
 
+### Subsequent continuation, preserving F3.1–F3.8
+
+[M3.4–M3.5](curved-three-d-matching.md#2-what-actually-repairs-the-quartic-calculation)
+reconstruct this actual matching in the cumulative phase, without integrating
+the divergent cubic coefficient. The subsequent general minimum-coordinate
+estimate captures its angular averaging mechanism without finite analytic
+classification; its uniform extension to small-quartic physical unions remains
+unproved. The complete focal result and the historical stopping receipt above
+are unchanged, and #177 retains the original arbitrary-metric goal.
+
 Refs #177, #81, #24, #150, #94, #86.

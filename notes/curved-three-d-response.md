@@ -372,4 +372,12 @@ certificate, independent AI proof audit or human acceptance is claimed.
 #94/#86 retain final intended-statement, mathematical/physical, provenance
 and justified-formalization scrutiny. The validation receipt belongs to the PR.
 
+### Subsequent continuation, without changing this delivery
+
+[M3.1–M3.10](curved-three-d-matching.md) weaken the sufficient pointwise-jet
+route to an averaged ramp criterion and derive a type-free minimum-coordinate
+angular estimate. The original-core first subtraction and restricted theorem
+above are unchanged. The critical small-quartic physical-union matching
+remains open under #177; no general expected limit follows from the new bounds.
+
 Refs #177, #81, #24, #90, #150, #77, #94, #86.
