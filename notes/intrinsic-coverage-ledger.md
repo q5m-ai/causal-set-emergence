@@ -90,14 +90,25 @@ estimate without counting or analytically classifying contacts. The estimate
 controls the nonlinear near-conjugate layer at each fixed positive quartic
 margin. It does **not** prove the complete arbitrary-metric action.
 
+**Further foundation audit and physical-phase refinement:**
+[CL3.1–CL3.15](curved-three-d-clusters.md) derive the actual-clock rank and
+endpoint measure explicitly, then use the **actual volume** to control
+negative defects at losing stationary states. The phase-bad pair sector has
+a uniform volume exponent 9/5 through vanishing quartic coefficients and flat
+clusters, with arbitrary bounded physical masks. CL3.11 also supplies a joint
+weighted source/target contact bound. These improve the earlier rough 8/5 and
+fixed-quartic-margin estimates, not the complete-class coverage.
+
 The original curved-3D row in the parent table below is still **UNKNOWN**;
 its precise child owner is **#177 under #81**, not a new narrowed class.
-What remains is uniform signed matching of the **physical union** on adaptive
-small-quartic/flat clusters, with all competing states, both measures and
-simultaneous moving/closing masks. The rough general sublevel estimate has
-volume exponent 8/5, short of the action-critical 5/3; the derived weighted
-angular estimate gives 9/5 only at a fixed positive quartic margin. No
-second pointwise jet or finite-type hypothesis is inserted into G-SS.
+What remains is scale-uniform aggregate signed matching of the **physical
+union** on the phase-good active Morse clusters: both tips, all action-gap
+openings and overlaps, both measures, simultaneous moving/closing masks and
+both restored subtraction terms. Local Morse control and a semiconvex gap
+envelope do not supply that producer. A fixed smooth accumulating-well germ
+satisfies the minimum-coordinate identities but defeats the shortcut to a
+uniform finite active-well count. It is not an admitted spacetime obstruction.
+No second pointwise jet or finite-type hypothesis is inserted into G-SS.
 The abstract oscillatory primitive, incompatible quartic panel and polygon
 fan are analytic negative controls, **not admitted spacetime obstructions**.
 There is no additional G-SS FAILS row or complete-class WORKS row. The written

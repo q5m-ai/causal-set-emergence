@@ -18,6 +18,14 @@ quartic coefficient is bounded below. The remaining uniform passage through
 vanishing quartic coefficients and whole clusters of near-minimizers is not
 proved. No additional complete G-SS class or FAILS row is claimed.
 
+**Subsequent foundation audit and refinement:**
+[CL3.1–CL3.15](curved-three-d-clusters.md) supply the proper-piece/actual-clock
+rank details and a uniform physical-phase bad-pair bound, including vanishing
+quartic coefficients and losing near-minimizers. That later bound supersedes
+the fixed-positive-quartic limitation of M3.9's core estimate, not the remaining
+whole-cluster signed-matching obligation. The formulas and historical results
+below are retained; the audit clarifications are identified where used.
+
 The integration base moved to `3895e7919fb25640c00f516d6ec8f17e35eeb7ce`
 while this continuation was being written: #176 was finalized separately.
 Its curved-2D theorem and #179's independent null/mixed work are not premises
@@ -175,9 +183,12 @@ null curve and give chronological push-up; an interior conjugate point would
 likewise contradict minimization beyond it. Equality of tangent gives the
 same geodesic by ODE uniqueness. Thus a middle transverse section and both
 proper endpoint pieces have smooth arrival graphs. Their inverse bounds
-are uniform in smaller neighborhoods of the compact ray set. A finite cover
-of **ray charts** follows; this is not a finite list of minimizing paths or
-singularity types.
+are uniform in smaller neighborhoods of the compact ray set **when the split
+has a fixed interior margin**. CL3.1–CL3.2 give the compact tangent/length,
+proper-piece index and actual-clock Wronskian arguments explicitly. They do
+not bound the full conjugate endpoint inverse or a tip-approaching split.
+A finite cover of **ray charts** follows; this is not a finite list of
+minimizing paths or singularity types.
 
 In one such chart, let a be the screen coordinate of the intersection of
 the source cone with the middle section, and p=(p1,p2) the two labels of the
@@ -227,7 +238,10 @@ For k>0 the actual pair measure in these coordinates has the form
 J(x,a,k,h)*k dx da dk dh, where h is the advance of the target clock from
 first arrival and J is smooth positive bounded above and below. This retains
 the source volume density, target volume density and the determinant in M3.6.
-Face and cutoff masks remain their actual indicators. Almost every arrival
+As made explicit in CL3.3, positivity refers to this geometric density, not
+to its product with signed fields or partitions. Face and cutoff masks remain
+their actual indicators; CL3.4 never differentiates them inside the clipping
+cutoff. Almost every arrival
 label has a unique nonconjugate ray by C3.4; multiply covered tie labels have
 zero label measure. Finite ray-chart weights count that ray once. None of
 these statements removes any neighborhood of a tie or conjugacy.
@@ -323,13 +337,15 @@ routes are still present. No contribution has been deleted as measure zero.
 There is also an unconditional first-order contact bound. For a source x,
 intersect its first-arrival front with a compact smooth spacelike target
 face, or with a sufficiently small timelike-flow translate of that face.
-Each null ray meets that achronal face at most once; the timelike conormal
-pairs uniformly nontrivially with a normalized null tangent. Its hitting time
-and point map are smooth with bounded derivatives on the compact ray set,
-regardless of endpoint conjugacy. The front intersection is contained in the
-image of the compact one-dimensional direction set, so its length is bounded
-by the integral of that map's speed, not by a branch count. Translated local
-face patches use a finite cover and the same bounds.
+The timelike conormal pairs uniformly nontrivially with a normalized null
+tangent. A finite implicit-function cover of the compact ray/hitting set
+therefore gives hitting-time and point maps with bounded derivatives,
+regardless of endpoint conjugacy. Their total image length is bounded by the
+integrals of their speeds over the one-dimensional direction sets. This does
+not assume a translated local patch is globally achronal, or count minimizing
+branches. CL3.11 supplies this audit clarification and a separate genuinely
+joint weighted contact estimate; neither licenses multiplying independent
+abundance estimates.
 
 The arrival graph is Lipschitz. At differentiability points its null conormal
 is uniformly separated from the face's timelike conormal. Coarea and the

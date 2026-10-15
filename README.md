@@ -734,6 +734,12 @@ weaker averaged criterion and smooth one-screen angular control without a
 finite analytic contact classification. Uniform physical-union matching when
 the quartic coefficient vanishes remains unproved; this adds no complete-class
 coverage or counterexample and retains the original #177/#81 quantifiers.
+The subsequent [cluster audit](notes/curved-three-d-clusters.md) establishes a
+uniform 9/5 physical-volume bound for the phase-bad sector, including flat and
+losing near-minimizers, and a joint weighted contact estimate. The remaining
+blocker is aggregate signed matching of the phase-good active Morse clusters,
+with both tips, physical overlaps, all masks and both subtractions restored.
+Its compatible accumulating-well diagnostic is not a spacetime counterexample.
 
 The [intrinsic Hadamard optical theorem HO-4](notes/hadamard-optical-limit.md)
 adds written 4D coverage for every ambient-contained G-SS region in an
