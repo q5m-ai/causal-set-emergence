@@ -12,6 +12,16 @@ receipts separately identify tested heads, integration commits and lifecycle
 states; this ledger does not infer merge, closure or certification from delivery.
 Historical receipts and all predecessor hypotheses remain intact.
 
+**#175 continuation:** [C2.1–C2.18](curved-two-d-limit.md) now supplies a
+written complete deterministic and separate original-law expected theorem
+for **every smooth curved 2D G-SS member**, including arbitrary admitted
+spatial topology, all counted joint endpoints and empty joints. Its global
+null-coordinate/cover construction and physical-union/contact remainder are
+proved there, not inferred from flat CFT or local conformal flatness. The
+predecessor source pins and historical integration receipts above are unchanged.
+This addition is not a compiled manifold theorem or independent human
+acceptance, and does not close #175/#81/#24.
+
 ## What the labels mean
 
 - **WORKS:** a complete deterministic result under the exact stated hypotheses,
@@ -49,6 +59,7 @@ deterministic conclusion. No row supplies a sample-wise theorem.
 
 | Geometry / dimension / strata | Complete source-backed conclusion | Verification and HO-4 applicability |
 | --- | --- | --- |
+| **Every smooth curved 2D G-SS member, all admitted topology and spacelike faces, every counted joint endpoint or empty joint** | **[C2.1–C2.18](curved-two-d-limit.md): actual global null coordinates, physical rectangle unions, derived quadratic long primitive, compatible S30 assembly and separate original-law expectation** | **Written, not compiled or human-accepted.** No extra global-chart, width, unique-route or flatness hypothesis. Both overlap corners and all ordered endpoint/face/cutoff terms retained |
 | Every flat ambient G-SS member in 2D–4D, including quotient topology and physical lift unions | [CFT1–CFT4](https://github.com/q5m-ai/causal-set-emergence/blob/0358c32f7ca19a4491b7e904ee5eaf44003619d3/notes/corrected-flat-theorem.md): independent joint limit, then expectation | Universal theorem written; selected earlier results compiled. HO-4 recovers only its 4D simply connected ultrastatic subcase, not arbitrary quotients |
 | Minkowski G-SS, each integer dimension at least two, smooth or the specified sufficient regularity | [A1–A3](https://github.com/q5m-ai/causal-set-emergence/blob/0358c32f7ca19a4491b7e904ee5eaf44003619d3/notes/all-dimensional-flat-limit.md): complete angle-weighted joint limit and expectation | Written. No all-C3 higher-dimensional promotion; HO-4 is only 4D |
 | Cubic flat-torus slabs, period L and duration T, thin 0<T<L/2 or first cut L/2<T<L/sqrt(2), every d>=2; empty joint | [Thin full-partner theorem](https://github.com/q5m-ai/causal-set-emergence/blob/0358c32f7ca19a4491b7e904ee5eaf44003619d3/notes/full-partner-globalization.md) and [first cut](https://github.com/q5m-ai/causal-set-emergence/blob/0358c32f7ca19a4491b7e904ee5eaf44003619d3/notes/first-cut-flat-torus.md): zero complete/expected limits | Written dimension-indexed results; [thin 4D #166](https://github.com/q5m-ai/causal-set-emergence/blob/0358c32f7ca19a4491b7e904ee5eaf44003619d3/formal/THIN_TORUS_LIMIT.md) compiled. Nontrivial quotient topology prevents direct HO-4 instantiation; that is not failure |
@@ -87,7 +98,6 @@ HO-4 changes no one of those statements or artifacts and does not reopen #151.
 
 | Remaining question | Status / precise missing implication | Owner |
 | --- | --- | --- |
-| Every smooth curved 2D G-SS member, arbitrary topology and spacelike face atlas, all counted joint points or empty joint | **UNKNOWN** universal deterministic and expected limits. S30 proves the short target only; CFT proves flat metrics only; HO/CC are 4D. Missing global physical-interval/contact response and complete assembly, not merely a formal port | **#81**, next bounded task below |
 | Every smooth curved 3D G-SS member, arbitrary topology/face atlas and intrinsic curve joint | **UNKNOWN** universal deterministic and expected limits. Checked flat SmoothPilot3 and written flat CFT do not supply the curved long producer; 4D moments cannot be copied | **#81** |
 | Curved 4D G-SS outside SW/FCDC/PW/HO and the other proved classes, including nonempty joints and global metric/atlas changes | The universal original target claim **FAILS** by CO; outcomes for the remaining geometrically specified classes and a broader corrected theorem are **UNKNOWN**. Missing whole-interval/contact control or a fully matched surviving response, not just a local curvature coefficient | **#81** |
 | G-SS in each d>=5, flat or curved, outside the exact WORKS/FAILS families | Universal positivity already **FAILS** in every such dimension by K; Minkowski/thin/first-cut positive classes and the separate 7D curved failure remain. No general replacement formula or broader corrected geometric theorem is proved. This residual is **not** a new requirement to classify every individual spacetime for closed #149/#151 | **#81** |
@@ -108,9 +118,21 @@ finite-regularity refinements and stochastic strengthening retain their
 previously deferred status; no new exhaustive higher-dimensional classification
 gate is imposed. Timelike Conjecture 2 remains #26 and outside this work.
 
-## One next required task, not another latest-family extension
+## Prior task selection and its #175 delivery
 
-Prioritize the **complete curved 2D G-SS long producer and deterministic/expected
+The selection below is preserved as the pre-#175 research rationale. Its
+missing analytic implication is now supplied by **C2.4–C2.14**, followed by
+complete S30 assembly and C2.18's expectation transfer. The decisive bound
+is an actual linear-plus-quadratic volume primitive with a bounded little-o
+quadratic remainder; both physical overlap corners have a cubic primitive
+correction. C2.10 proves the moving-mask estimate from pairwise face ranks,
+including closing fibres, rather than assuming a desired jet. No further
+curved-2D example extension is selected or required for that quantified
+written theorem. Its justified formalization and expert acceptance remain
+#86/#94; broader curved 3D, corrected metric/dimension and null/mixed rows
+above remain unresolved under their existing owners.
+
+**Historical selection:** prioritize the **complete curved 2D G-SS long producer and deterministic/expected
 assembly**, under #81. It is a whole missing required dimension at the smallest
 critical order, with actual S30 short inputs already available. It takes priority
 here over enlarging HO-4 or CC again. Search of existing issue contracts found
