@@ -5,6 +5,12 @@ chain and the all-dimensional cone-ending theorem below are actual written
 proofs. The subsequent [#169 proof CC1–CC14](conformal-cone-limit.md) now supplies
 the **whole 4D conformally curved single-cone SN class**, including arbitrary
 admitted nonplanar floors and smooth positive spacetime-dependent factors.
+The subsequent [#178 proof CT1–CT12](conformal-two-tip-limit.md) adds the
+**whole regular conformal 4D two-tip union/lens class CT1**: arbitrary fixed
+separation, smooth non-axial strict-Lipschitz floor with central overlap and
+transverse floor/crease contact, and arbitrary smooth positive spacetime factor.
+It derives the complete deterministic target before original-law expectation;
+this is written delivery, not integration or independent acceptance.
 Required general null-front and other curved characteristic-contact producers
 are still missing. Neither this inventory, the proved subclasses, nor an
 assigned child discharges those quantifiers. #81/#24 stay open with
@@ -16,10 +22,13 @@ and CC proof at `1e7ee02170d8723ed4544edfb9f9074200710095` with the published
 Conjecture 1′ and all required repository rows. HO-4 adds strictly spacelike
 intrinsic 4D geometry, not a null-contact theorem. CC discharges exactly #169's
 written class; it does not turn the broader rows below into WORKS. The chosen
-next research task is the missing complete curved **2D G-SS** producer/assembly
-under #81, not an automatic further extension of CC. #156 retains every
-uncovered null/mixed row. Integration and authorized closure receipts are
-recorded separately; historical lifecycle statements below remain historical.
+next spacelike research task at that integration was the missing complete curved
+**2D G-SS** producer/assembly, now #175; the separate live curved **3D G-SS**
+worker is #177. Neither is consumed here. #178 addresses the independently
+selected required regular two-tip/crease subentry, not a new single-cone
+calibration. #156 retains every uncovered null/mixed row. Integration and
+authorized closure receipts are recorded separately; historical lifecycle
+statements below remain historical.
 
 ## 1. Source receipts and separation from the parallel worker
 
@@ -64,13 +73,13 @@ than defined by a desired action. Fixed positive compatible cutoffs only.
 
 | Required row from #24/#90 | Actual covered part after this delivery | Exact unresolved part / native owner |
 | --- | --- | --- |
-| Regular SN, every d>=2 | [ND1–ND9](null-cone-dimensions.md) proves the complete Minkowski cone-ending class; 2D counting is separate. [CC1–CC14](conformal-cone-limit.md) adds the whole **4D** conformally curved single-cone class of #169 | General null fronts, topology/atlases, other dimensions/metrics and non-common-tip regions: **#156**; #169's written result does not exhaust this row |
+| Regular SN, every d>=2 | [ND1–ND9](null-cone-dimensions.md) proves the complete Minkowski cone-ending class; 2D counting is separate. [CC](conformal-cone-limit.md) adds the whole #169 4D conformal single-cone class; [CT1–CT12](conformal-two-tip-limit.md) adds #178's regular two-tip conformal 4D class | General null fronts, topology/atlases, other dimensions/metrics and multi-tip regions beyond CT1: **#156**; neither bounded class exhausts this row |
 | Regular past–future NN, every d>=2 | ND includes every flat causal diamond and the specified transverse piecewise lower-null cone-ending class, with independent screen area; old checked plane-cut cap retains its own 4D scope | Arbitrary past–future null sheets and generator endpoint/cut regimes beyond ND: **#156** |
-| Same-side null seams/creases | Actual fixed flat 4D TT1 C with its nonplanar floor, all partners and no extra net coefficient in TT-A/TT-B; ND covers only its explicitly permitted **lower** strata | Other future seams, multiple tips, combinations with past–future joints, other dimensions and metrics: **#156**; TT-B is not a valuation theorem for arbitrary bilocal partitions |
-| Tips and higher intersections of the required causal strata | TT1's two tips and Gamma retained completely; ND inventories one future tip and permitted lower tips/seams and their joint interfaces | General generator focusing/cut contacts, higher intersections and interacting strata remain **#156**; zero codimension-area or spacetime volume is not a normalized bound |
-| Metrics | Flat Minkowski ND and selected TT1; **every fixed smooth positive spacetime-dependent conformal factor** on #84's 4D single-cone causal enclosure now has the written CC theorem, not only constant/time-only factors | Other curved-null metrics/fronts/dimensions and cut regimes remain **#156**; #81/#172's intrinsic G-SS work is separate |
+| Same-side null seams/creases | Actual fixed flat 4D TT1; now [CT1–CT12](conformal-two-tip-limit.md) proves every regular two-tip conformal 4D union/lens in CT1, with arbitrary non-axial floor and spacetime factor, all crease endpoints and no extra **net** coefficient; ND retains its permitted lower strata | Tangential floor/crease contacts, three or more future tips, arbitrary future fronts, combinations with past–future joints, other dimensions/metrics: **#156**; the proved two-past-set valuation is not general bilocal additivity |
+| Tips and higher intersections of the required causal strata | TT1's strata and CT1's two tips, all components of regular Gamma and full generator endpoints retained; ND inventories one future tip and permitted lower tips/seams and their joint interfaces | General generator focusing/cut contacts, higher intersections and interacting strata remain **#156**; zero codimension-area or spacetime volume is not a normalized bound |
+| Metrics | Flat Minkowski ND and selected TT1; **every fixed smooth positive spacetime-dependent conformal factor** for CC's 4D single cone and CT1's regular two-tip union/lens, not only constant/time-only factors | Other curved-null metrics/fronts/dimensions and cut regimes remain **#156**; #81/#172's intrinsic G-SS work is separate |
 | Dimension / regularity | ND is a proof for every fixed integer d>=2 on its stated class, with a positive mixture in d>=5 and a signed logarithmic response in d=2 | No copied 4D kernel, 2D tip estimate or automatic higher-dimensional multi-front jet; **#156** retains the unresolved dimensional strata/metric rows |
-| Order / interval regime | ND and TT1 prove closed ambient containment, hence isolated=ambient and intrinsic order agreement there; generic finite-density Mecke APIs are reusable with real hypotheses | General atlases must prove their selected containment/physical intervals. Intrinsic-only or non-convex restrictions need their own approved regime, not an inherited flat law: **#156/#81** scope coordination |
+| Order / interval regime | ND, TT1, CC and CT1 prove closed ambient containment, hence isolated=ambient and intrinsic order agreement there, using the actual weighted interval in curved cases; generic finite-density Mecke APIs are reusable with real hypotheses | General atlases must prove their selected containment/physical intervals. Intrinsic-only or non-convex restrictions need their own approved regime, not an inherited flat law: **#156/#81** scope coordination |
 | Verification and provenance | New analytics are written; generic probability foundations and older selected results keep their actual compiled scope; ND supplies an all-integer diamond proof directly | Intended-statement scrutiny, justified formal ports, Chevalier text access and expert novelty/source review remain **#94/#86**; ND does not revise what older literature passages proved |
 
 “Higher intersections” here means the null/spacelike and null/null strata
@@ -262,9 +271,9 @@ provenance and justified verification.
 | #156 acceptance clause | Disposition |
 | --- | --- |
 | Exact required versus deferred inventory | §§1–2, tied to current #24/#90/#81 contracts and actual source outputs |
-| Actual geometry/order/action/law/independent targets | ND1–ND9 and TT-A/TT-B unchanged; CC1–CC14 retain the actual curved observable and independently identify curvature and SN area |
-| Exact missing producers/consumers, valid API reuse, native ownership | ND and CC are actual written producer/assemblies; §4 preserves the historical curved blocker, §6 supplies #169's resolution, and all broader rows remain #156 |
-| Complete normalized deterministic conclusions and separate expectation | **Written for ND, selected TT1, and now the whole #169 4D conformal single-cone class CC. NOT discharged for the whole quantified matrix.** NC2 and numerical agreement alone were not its proof |
+| Actual geometry/order/action/law/independent targets | ND1–ND9 and TT-A/TT-B unchanged; CC1–CC14 and CT1–CT12 retain the actual curved observable and independently identify curvature and SN area |
+| Exact missing producers/consumers, valid API reuse, native ownership | ND, CC and CT are actual written producer/assemblies; §4 preserves the historical curved blocker, §§6–7 supply the bounded #169/#178 resolutions, and all broader rows remain #156 |
+| Complete normalized deterministic conclusions and separate expectation | **Written for ND, selected TT1, CC and now the whole #178 regular two-tip conformal 4D class CT1. NOT discharged for the whole quantified matrix.** Each complete deterministic proof precedes its separate original-law transfer |
 | Parent ledger, source receipts, honest stopping rule | This ledger and source-linked delivery receipts; original dated statuses are preserved, CC's new delivery is not integration or independent acceptance, and #156/#81/#24 remain open |
 
 ## 6. Subsequent #169 resolution: complete characteristic matching
@@ -310,6 +319,47 @@ contacts and higher required intersections remain **#156**. #156/#81/#24 stay
 open with their original quantified criteria. The original child ownership
 in §5 is preserved; this source delivery is not permission to close it or its
 parents. No action, target, order, law, cutoff or scope changes.
+
+## 7. Subsequent #178 regular two-tip delivery and exact residuals
+
+[CT1–CT12](conformal-two-tip-limit.md) proves the complete lens and union
+curvature-plus-exposed-SN-area limits for the entire stated regular two-tip
+conformal 4D class, then separately transfers expectation. The floor may vary
+in every spatial direction; Omega may vary in space and time. CT1's transverse
+Gamma condition is explicit **bounded-child geometry**, not silently imposed
+on #156. All Gamma components, both actual union tips, the tip-free lens,
+both measures and every physical partner/interval are retained.
+
+The new long producer uses the source floor value and physical volume phase
+as simultaneous coordinates, keeping the future endpoint in a **fixed**
+past set. Its determinant stays nonzero at an actual translated floor/crease
+tangency; no spacelike generator rank is invoked. Short uses CT1's actual
+corner ranks to transport the floor while fixing the two null sheets. Rest
+diamond moments and matched Mellin subtraction give the critical coefficient
+and summable remainder. The derived divergence has SN flux; weighted
+crease-endpoint and generator terms are individually nonzero and retained.
+Only the complete expression proves no extra **net** C/Gamma term here.
+
+CT11 re-proves the particular point/pair/layer valuation with the common
+**weighted physical** interval phase and discharges both translated CC cap
+hypotheses. It is not a universal bilocal-additivity rule. All ordered endpoint
+labels and fixed temporal/source complements sum exactly, with point once.
+CT12 uses the actual law only after deterministic restoration.
+
+Native #178 is a child/blocker of #156 with #169/#155/#90 prerequisites.
+The live #175/PR #176 curved-2D and #177 curved-3D workers were coordinated
+with; their unaccepted spacelike claims and shared production definitions are
+untouched. No other child is opened. `conformal_two_tip.py` and its tests are
+finite diagnostics, not certificates of the remainder. No Lean-affecting
+input changes or fresh Lean audit claim.
+
+**Still #156:** arbitrary regular SN/NN fronts outside ND/CC/CT1, tangential
+Gamma, three or more future tips and other crease/higher-intersection
+configurations, other curved dimensions/metrics, and generator cut/caustic
+contacts. No original required row is relabeled deferred. This one completed
+bounded written delivery does not exhaust #156/#81/#24. #94/#86 retain human
+review, provenance and justified formalization. No administrative closure,
+merge, deployment or sample-wise assertion accompanies this source delivery.
 
 ### Original #171 verification receipt (preserved)
 
