@@ -205,7 +205,7 @@ p_a&=M^{-1}\binom{-2k}{-6b},&
 p_k&=M^{-1}\binom{0}{2},&
 \left|\det\frac{\partial p}{\partial(a,k)}\right|
  &=\frac{4k}{|\det M|},\\
-\partial_a b&=4c+	frac16 U_{aaap}M^{-1}\binom{-2k}{-6b}
+\partial_a b&=4c+\frac{1}{6}U_{aaap}M^{-1}\binom{-2k}{-6b}
              =4c+O(k+|b|).
 \end{aligned}\tag{M3.6}
 ```
