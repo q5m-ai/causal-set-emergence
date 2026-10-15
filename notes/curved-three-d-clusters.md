@@ -476,22 +476,29 @@ Consider the **abstract**, fixed smooth generating family
 
 ```math
 \begin{aligned}
-U(u;A,B)&=F(u)+Au^2+Bu,\\
+U(u;X,Y)&=F(u)+X\cos u+Y\sin u,\\
 F(u)&=e^{-1/u^2}\sin^2(\pi/u)\quad(u\ne0),&F(0)&=0,\\
 F''(1/n)&=2\pi^2n^4e^{-n^2}>0,\\
-A(a,k)&=k-F''(a)/2,&B(a,k)&=-F'(a)-2A(a,k)a,\\
-\det M&=-2,&|\det D_{(a,k)}(A,B)|&=2k.
+n(a)&=(\cos a,\sin a),&t(a)&=(-\sin a,\cos a),\\
+p(a,k)&=(F''(a)-2k)n(a)-F'(a)t(a),\\
+\det M&=1,&\det D_{(a,k)}p&=-4k,\\
+b_a&=4c+k/3,&\partial_kD(z,k)&=2(1-\cos z).
 \end{aligned}\tag{CL3.15}
 ```
 
 It is smooth and flat at zero, with accumulating strict wells. It satisfies
-CL3.3's minimum-coordinate and transported-jet identities exactly; unlike the
-old independent-quartic panel, its jet controls are geometrically compatible
-at this algebraic level. No Lorentzian realization is claimed.
+CL3.3's minimum-coordinate and transported-jet identities exactly. In addition,
+its terminal covector (1,-cos(u),-sin(u)) is null for a timelike Minkowski
+clock. An earlier polynomial-control attempt matched the minimum-coordinate
+identities but put the terminal covectors on a parabola; that weaker algebraic
+control did not establish this necessary eikonal compatibility. The circular
+controls repair it. A Lorentzian **point-source** realization and complete
+action are still not supplied. Extend F smoothly and nonnegatively around
+the state circle, strictly positively outside this fixed small angle chart.
 
-Choose a-star=1/n, B=-2A*a-star and excess h=A*(epsilon*a-star)^2 for a fixed
-0<epsilon<1/4. Up to an additive constant the potential is
-F(u)+A*(u-a-star)^2. Its sublevel cannot leave
+Choose a-star=1/n, p=-2A*n(a-star) and excess
+h=2A*(1-cos(epsilon*a-star)) for a fixed 0<epsilon<1/4. Up to an additive
+constant the potential is F(u)+2A*(1-cos(u-a-star)). Its sublevel cannot leave
 abs(u-a-star)<epsilon*a-star. The interval contains a number of strict F
 wells growing linearly with n. For each fixed n, sufficiently small positive
 A preserves these finitely many wells by the implicit function theorem;

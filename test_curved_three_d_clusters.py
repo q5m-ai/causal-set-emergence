@@ -174,6 +174,23 @@ class MatchingBoundaryTests(unittest.TestCase):
         defect = U.subs(u, a+z)-U.subs(u, a)
         self.assertEqual(s.simplify(s.diff(defect, k)), z*z)
 
+    def test_circular_controls_preserve_rank_jets_and_null_covectors(self):
+        a, u, z, k, X, Y = s.symbols('a u z k X Y', real=True)
+        F = s.Function('F')
+        U = F(u)+X*s.cos(u)+Y*s.sin(u)
+        matrix = s.Matrix([[s.diff(U, u, n, p) for p in (X, Y)] for n in (1, 2)])
+        self.assertEqual(s.trigsimp(matrix.det()), 1)
+        self.assertEqual(s.trigsimp(1-s.diff(U, X)**2-s.diff(U, Y)**2), 0)
+        p = s.Matrix([(s.diff(F(a), a, 2)-2*k)*s.cos(a)+s.diff(F(a), a)*s.sin(a),
+                      (s.diff(F(a), a, 2)-2*k)*s.sin(a)-s.diff(F(a), a)*s.cos(a)])
+        self.assertEqual(s.trigsimp(p.jacobian([a, k]).det()), -4*k)
+        at_state = {u: a, X: p[0], Y: p[1]}
+        b = s.diff(U, u, 3).subs(at_state)/6
+        quartic = s.diff(U, u, 4).subs(at_state)/24
+        self.assertEqual(s.trigsimp(s.diff(b, a)-4*quartic), k/3)
+        defect = (U.subs(u, a+z)-U.subs(u, a)).subs({X: p[0], Y: p[1]})
+        self.assertEqual(s.trigsimp(s.diff(defect, k)), 2-2*s.cos(z))
+
     def test_central_transport_is_exact_but_not_uniform_at_tip(self):
         for length in (1., 2.):
             for fraction in (.001, .2, .5):

@@ -1,8 +1,9 @@
 """Finite diagnostics for the audited 3D cluster estimates.
 
-Only the round-sphere formulas used in the tests describe an actual metric.
-Polynomial and accumulating-well panels are generating-family diagnostics,
-not G-SS counterexamples or numerical certificates of a continuum limit.
+Geometric clock/Jacobi checks and generating-family panels are separate.
+Circular controls obey terminal null-covector identities, but no panel is
+asserted to be a Lorentzian point-source realization, G-SS counterexample
+or numerical certificate of a continuum limit.
 """
 
 from functools import lru_cache
@@ -113,8 +114,10 @@ def accumulating_well_diagnostic(n):
         center = mp.mpf(1)/n
         radius = 19*center/100
         A = mp.exp(-4*jmax*jmax)
-        excess = A*radius**2
-        potential = lambda u: accumulating_profile(u)+A*(u-center)**2
+        # Circular controls have terminal covectors null for a timelike
+        # Minkowski clock; use sin² to avoid cancellation in 1-cos.
+        excess = 4*A*mp.sin(radius/2)**2
+        potential = lambda u: accumulating_profile(u)+4*A*mp.sin((u-center)/2)**2
         nodes, weights = np.polynomial.legendre.leggauss(16)
         wells = []
         volume = mp.mpf(0)
@@ -123,9 +126,9 @@ def accumulating_well_diagnostic(n):
             if abs(zero-center) > radius:
                 continue
             curvature = accumulating_zero_curvature(j)
-            derivative = lambda u: mp.diff(accumulating_profile, u)+2*A*(u-center)
+            derivative = lambda u: mp.diff(accumulating_profile, u)+2*A*mp.sin(u-center)
             root = mp.findroot(lambda u: derivative(u)/curvature, zero,
-                               df=lambda u: (mp.diff(accumulating_profile, u, 2)+2*A)/curvature,
+                               df=lambda u: (mp.diff(accumulating_profile, u, 2)+2*A*mp.cos(u-center))/curvature,
                                solver='newton')
             depth = potential(root)
             h = excess-depth
