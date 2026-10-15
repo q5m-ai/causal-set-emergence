@@ -127,6 +127,14 @@ class CurvedTwoDTests(unittest.TestCase):
         self.assertGreater(sum(metric.rectangle(*r) for r in lifts),
                            2*circle_interval_union(metric, *cases[3]))
 
+    def test_circle_slice_oracle_many_periods_retains_all_breakpoints(self):
+        metric = CircleMetric(period=.7, a=.04, b=.23)
+        source, target = (.1, .13), (56.24, .47)
+        sliced = circle_interval_slices(metric, source, target)
+        union = circle_interval_union(metric, source, target)
+        self.assertGreater(len(circle_rectangles(source, target, metric.period)), 150)
+        self.assertAlmostEqual(sliced/union, 1., places=11)
+
     def test_circle_deck_seams_and_no_physical_lift_multiplicity(self):
         metric = CircleMetric()
         source, target = (.1, .94), (.86, .41)

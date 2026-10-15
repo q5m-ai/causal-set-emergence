@@ -180,7 +180,8 @@ def circle_interval_slices(metric, source, target):
     for n in range(-math.ceil((T-t)/L)-2, math.ceil((T-t)/L)+3):
         points += [(t+T+X-x+n*L)/2, (t+T-X+x+n*L)/2]
     points = sorted({p for p in points if t < p < T})
-    return quad(slice_volume, t, T, points=points, epsabs=2e-11, limit=200)[0]
+    return quad(slice_volume, t, T, points=points, epsabs=2e-11,
+                limit=max(200, 2*(len(points)+1)))[0]
 
 
 def circle_interval_below_period(metric, t, x, tau, displacement):
