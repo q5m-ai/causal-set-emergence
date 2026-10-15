@@ -22,6 +22,10 @@ The integration base moved to `3895e7919fb25640c00f516d6ec8f17e35eeb7ce`
 while this continuation was being written: #176 was finalized separately.
 Its curved-2D theorem and #179's independent null/mixed work are not premises
 here. Their files, claims and finalization receipts are not edited.
+Subsequently #179 was integrated separately at
+`9e0068f91c219fe61984d20fdb3f6939eab907c4`. Final continuation validation uses
+that combined base, with both sibling proof/diagnostic sets preserved. This
+branch does not merge either PR or consume their theorems as premises.
 
 ## 1. The observable and an averaging criterion without a second pointwise jet
 
