@@ -740,6 +740,14 @@ losing near-minimizers, and a joint weighted contact estimate. The remaining
 blocker is aggregate signed matching of the phase-good active Morse clusters,
 with both tips, physical overlaps, all masks and both subtractions restored.
 Its compatible accumulating-well diagnostic is not a spacetime counterexample.
+The [whole-union continuation](notes/curved-three-d-union.md) now derives
+count-free tip-overlap control, a resolved physical Morse model and a global
+cut threshold from the actual null Hamiltonian. It produces an aggregate
+opening coefficient and a summable cut-graph budget, but not the critical
+extra half-order with changing competitors and simultaneous moving masks.
+The original complete deterministic/expected conclusion remains **UNKNOWN**;
+coalescing-well and singular-curvature controls diagnose failed inferences,
+not admitted complete-action counterexamples.
 
 The [intrinsic Hadamard optical theorem HO-4](notes/hadamard-optical-limit.md)
 adds written 4D coverage for every ambient-contained G-SS region in an

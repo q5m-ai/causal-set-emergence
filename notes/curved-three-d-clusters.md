@@ -340,8 +340,8 @@ number of active wells.
 
 Let F be a target-face defining function evaluated at y=q(U+h,p(a,k)).
 At a conjugate state and h=0, p-k points in the projected ray direction by
-CL3.2, and y-k is a nonzero multiple of the null tangent. A spacelike conormal
-therefore gives abs(F-k)>=c>0, persisting on smaller charts for small h.
+CL3.2, and y-k is a nonzero multiple of the null tangent. The timelike conormal
+of a spacelike face therefore gives abs(F-k)>=c>0, persisting on smaller charts for small h.
 Moreover y-a=(q-p+T*U-p)*p-a=O(k+abs(b)), so F-a has that bound too.
 
 Rectify lambda=F, solving for k. At fixed lambda the cubic transport still
@@ -562,5 +562,15 @@ authorized bounded feedback pass, preserving prior receipts.
 Research proceeded in saved lemma checkpoints. The stopping point follows
 substantive physical-volume, stiffness-envelope and central-transport attempts,
 not readiness of another example note. The full goal remains **UNKNOWN**.
+
+### Subsequent whole-union continuation
+
+[UP3.1–UP3.17](curved-three-d-union.md) reconstruct the core/contact arguments
+before consumption, derive count-free physical tip packing and a two-tip
+Morse resolution, and use the actual null Hamiltonian to control the global
+competing-state threshold. The aggregate opening head and critical cut-graph
+budget do not yet give the required weighted half-order remainder with all
+moving masks and coefficient restorations. The original conclusion remains
+UNKNOWN; the preceding source and historical stopping receipt are preserved.
 
 Refs #177, #180, #81, #24, #94, #86.
