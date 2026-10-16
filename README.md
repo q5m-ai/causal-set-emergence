@@ -16,9 +16,28 @@ The first layer contains mathematical claims with explicit verification status.
 The second is a research agenda, not an assertion that an automaton model or a
 complete causal-set dynamics has been found.
 
-> **Research status:** private, unpublished, and not peer reviewed. Formal
-> verification checks the encoded statements; it does not establish novelty,
-> physical applicability, or assumptions that have not yet been formalized.
+> **Research status:** the repository is public; independent human mathematical
+> acceptance and manuscript publication are not established by that visibility.
+> Formal verification checks the encoded statements, not novelty or unencoded
+> physical applicability. No new launch or submission is recorded here.
+
+## Human-facing research review package
+
+Start with the [one-page account](research/README.md), then the
+[compact manuscript](research/manuscript.md), [WORKS / FAILS / UNKNOWN matrix](research/coverage.md),
+[expert reading packets](research/review.md), and [reproducible artifact](research/artifact.md).
+The [static review page](site/research.html) works without JavaScript and prints
+as a reading copy. Mathematical sources are pinned to integration commit
+`9e0068f91c219fe61984d20fdb3f6939eab907c4`, not the moving `main` branch.
+
+Priority scrutiny: the **written curved-4D complete-action obstruction** and
+**corrected universal flat dimension theorem**, with the positive curved
+subclasses kept distinct from a universal corrected theorem. The package is
+prepared, not launched or submitted; no independent human acceptance or full
+Lean certification is claimed. Unmerged #180 stays separate. The bounded
+[experimental assessment returns B](research/experiments.md): a model-to-observable
+calculation is missing, not a new publication prerequisite or #24 closure condition.
+Earlier dated source/issue receipts below retain their historical scope.
 
 ## Why “emergence”?
 

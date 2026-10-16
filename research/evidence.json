@@ -1,0 +1,465 @@
+{
+  "schema_version": 1,
+  "mathematics_commit": "9e0068f91c219fe61984d20fdb3f6939eab907c4",
+  "integration_branch": "issue-81-general-coverage",
+  "date": "2026-10-16",
+  "verification_warning": "Hashes identify inspected sources, not mathematical correctness, human acceptance, novelty or empirical support.",
+  "source_files": [
+    {
+      "path": "certificates/curved4-focal-model.json",
+      "git_blob": "6e5d46af63601d3d852b8ba66ea3a0c97f5e9443",
+      "sha256": "62124f7fbb0e08fee43766cc2ddbdc322d4b05b25ee734d650cd3027759b4be8"
+    },
+    {
+      "path": "curved4_focal_certificate.py",
+      "git_blob": "44b20181c0815a36b98ba367ee4132bb9396255a",
+      "sha256": "0ea35739df41db854f5d51ac0de66fa86380f08ceda9b7ad994533273b4ab366"
+    },
+    {
+      "path": "formal/BoundaryDraft/DimensionMeasureExpectation.lean",
+      "git_blob": "06fdf39df2778e49dd6166d9057877c78504d7f5",
+      "sha256": "a83246c6cc2103efa214249e9b912e2951ef9b9de2ff4b8822c0813fe6e6e17c"
+    },
+    {
+      "path": "formal/BoundaryDraft/MeasuredOrderBDG4.lean",
+      "git_blob": "2ac32243902806f10b7ad628fba459d37b96d173",
+      "sha256": "18922dcb81c0745e1e496ef29ea5d2cb49e19711912121a7f896320c15f76210"
+    },
+    {
+      "path": "formal/BoundaryDraft/NullCapLimit.lean",
+      "git_blob": "1f829038288bc7a610fbc3ce5d1f16ead02d2094",
+      "sha256": "1fc7f710bf11250bb2322fffb2d5d5a4d688f869fbf32f36594454e079011e99"
+    },
+    {
+      "path": "formal/DIMENSION_EXPECTATION.md",
+      "git_blob": "41ec20c81c00d9ad42da26e23b698b9a47b7d34d",
+      "sha256": "8c5f3ea7b81593e6903d5a0ba8ee86fc4440d33f6adbb0ddaac294ffcec42a8a"
+    },
+    {
+      "path": "formal/INDEPENDENT_LIMIT.md",
+      "git_blob": "28bf03cbd6877877b83ea2430e5927fc99a694a4",
+      "sha256": "cbbc2a5f966d70fa4808bcb4d86977b1054a29cb78d779b8567ac1d098d7788d"
+    },
+    {
+      "path": "formal/PILOT3_LIMIT.md",
+      "git_blob": "31c36781bcf94cfcbdd5e810685185dd246445dd",
+      "sha256": "d554669827d112649b6be60709d104c0be7ee96a69ac074b711ff9cce0d009bb"
+    },
+    {
+      "path": "formal/README.md",
+      "git_blob": "c98366618248d9187f5add755eeca1f25321a4cb",
+      "sha256": "99008136c8ee6c9b9c1acc3f9d1855ad733698d80e25c5edb10c6bdd720a7ad3"
+    },
+    {
+      "path": "formal/THIN_TORUS_LIMIT.md",
+      "git_blob": "3ca0be37a0e6139af38f8ae09d1a4bfd83226780",
+      "sha256": "932c47d7c74fcd7ce83c86410fce097e0d87c57c3ce3471604ce86616ed8eb49"
+    },
+    {
+      "path": "formal/TWO_D.md",
+      "git_blob": "c50d9fe097e0f8ae63961daee5ca23b99661a206",
+      "sha256": "9f6add963ef0e77e75b89d7f2e9116ace340bf94432bf4cb0e7eefbecc2993a7"
+    },
+    {
+      "path": "formal/check.sh",
+      "git_blob": "a387d0586b92826e3a56af72e0a85e12312febbb",
+      "sha256": "0d0be79d0a51e58bdfed85b2a9ad4e3c98f490547948200b856e65bcefd59fe3"
+    },
+    {
+      "path": "formal/lake-manifest.json",
+      "git_blob": "9309e1b27efe900f4f17f4e7e7f429e754375b20",
+      "sha256": "b01eca632cc025f5fb6e4900b0237099eeba5e46eba078ecd44f2d1744b86759"
+    },
+    {
+      "path": "formal/lean-toolchain",
+      "git_blob": "7aca1d8a939cc24c413eddd793671cdce7070b74",
+      "sha256": "55e97be96000b5e9e290c9e74482e5e317861499a5540353ce845471bded8cea"
+    },
+    {
+      "path": "notes/all-dimensional-flat-limit.md",
+      "git_blob": "f69dbe1a5ea8d966ce77b9615f51bd626f908581",
+      "sha256": "b8e824c2ab0d617630e8f0bc88ed572dbfb4090a33ed66d36c20978497afb96c"
+    },
+    {
+      "path": "notes/conformal-cone-limit.md",
+      "git_blob": "14dd89bd767cedb24f120939e9a6c4fce50da01e",
+      "sha256": "3f55212750f45b1432a61202fb8da745d71c531d6df2128a848d0c78ade940eb"
+    },
+    {
+      "path": "notes/conformal-two-tip-limit.md",
+      "git_blob": "e8d97442a035e29e67b74f19e90f16d189103692",
+      "sha256": "6856c37fe2e26c375e6551cfe7f9b8533729389cc8726d069ad053fa438b3b5f"
+    },
+    {
+      "path": "notes/corrected-flat-theorem.md",
+      "git_blob": "cce17af636c1fe1f06921fc6ebd58c0d14e72150",
+      "sha256": "f12746bbc3b3c4ec3d9dc7a688eb2d5eaa95e91c5771a1870e42c25cf896a1e5"
+    },
+    {
+      "path": "notes/curved-two-d-limit.md",
+      "git_blob": "ede64c6ed0b7f5b614667a0f42cdd41ecac80521",
+      "sha256": "55625b7a393f99b3130bbb7b03e835a584e232974fde9475a6d5b3cda06322f2"
+    },
+    {
+      "path": "notes/curved4-complete-action-obstruction.md",
+      "git_blob": "3f86659e0023d6c3f49068eba205c95b74c8dc1d",
+      "sha256": "9c39e33ed9bb65b944b46fad8df49d5b9bd95e74656fd45cb662334302dc2c19"
+    },
+    {
+      "path": "notes/curved4-corrected-convergence.md",
+      "git_blob": "5ef19424b88d10463a5d6b6cb60c2051e0cfd842",
+      "sha256": "8296b629339516f880f5f8bdeece864086e7e2e241bd5bbd58b04ed4b9518a7a"
+    },
+    {
+      "path": "notes/curved4-focal-certificate.md",
+      "git_blob": "ddf76959929452aa4139b54919b3783ba5126fc8",
+      "sha256": "655428d3212567e57f77dd18cca16cd715a9f01ca4edbc34f890f4cc6a592b24"
+    },
+    {
+      "path": "notes/curved4-focal-globalization.md",
+      "git_blob": "f371729956ff69f565e3eb6dccfbd8704c3aa4b7",
+      "sha256": "a2c964743831307377d59c1eb46382d5027ceebfd7502179e9c20ce55f5734ae"
+    },
+    {
+      "path": "notes/curved4-focal-research.md",
+      "git_blob": "387e26d40fe72f216961d586d1a670a2548a41d6",
+      "sha256": "4f0b03e116f8f24eb0b4fc7aef10e92853c0de4ca424d63b91ee08a86afd29c4"
+    },
+    {
+      "path": "notes/dimension-kernels.md",
+      "git_blob": "11725e211eab57776398ecf9f1fd4ef3f4ce317f",
+      "sha256": "f440babe356879e7120cc6ca751e45145a933785e00900bcb0318cb23a6cfde0"
+    },
+    {
+      "path": "notes/finite-lift-flat-reduction.md",
+      "git_blob": "aed1216e94dfa7193e048a893fa2724fe745890a",
+      "sha256": "08c0d9bddf84b714e77fafa39cac73a0f8caa2b2316e4855ede0a90db3c02ee0"
+    },
+    {
+      "path": "notes/first-cut-flat-torus.md",
+      "git_blob": "c60546549f0b1c9428a3cac96be8f5cde79ad244",
+      "sha256": "66fc07326e8636b5dae76f75b3639ef0a604d5ab1619765dfb3187574ee5ec61"
+    },
+    {
+      "path": "notes/flat-holonomy-obstruction.md",
+      "git_blob": "4d9f8b9b73c73503d7d0a149570d7c2f670436ae",
+      "sha256": "05d333961700bead91ad7ea08749cf42fd1842ae9092e1bafbe2dd50949e01af"
+    },
+    {
+      "path": "notes/flat-klein-bottle-obstruction.md",
+      "git_blob": "d23016d1f0a18b41de9c38154d5fd98dbcb45c42",
+      "sha256": "4c6a95897e06b5fdb5fbdbebcae1b316f4fa602ae28c218e7c402824c62f60ed"
+    },
+    {
+      "path": "notes/full-partner-globalization.md",
+      "git_blob": "3435c907338c89b9b6cf5abe6c5986fa8ff8181e",
+      "sha256": "88310abff9ac26b5e43857b7e7c0618775699f7bcec64173f746626151b900ea"
+    },
+    {
+      "path": "notes/general-contract-literature.md",
+      "git_blob": "ff684d43894a03f59697ed6fba2ae5c898349d0b",
+      "sha256": "3e463f590b3121818c8489fa037c875cd7422e7e79b0316795673cfa5f6c99e9"
+    },
+    {
+      "path": "notes/general-contract.md",
+      "git_blob": "5a7c1cfd30caafae7f210ba402cf1f2a73427c98",
+      "sha256": "bad925fab4c37ceac9b04b77f440bcae12c8cfbf49ec9c1b25a96497882c3654"
+    },
+    {
+      "path": "notes/general-metric-short-remainders.md",
+      "git_blob": "e66cc0db8e22574ad3049eb7f27c65c156333b74",
+      "sha256": "a998f7e053897b493e6ecc990b09c018b928b1a3b69856f20fd49d8b9854afbd"
+    },
+    {
+      "path": "notes/general-metric-short.md",
+      "git_blob": "50c8dc54702ce9fa96d05072ee6e4e589d245f37",
+      "sha256": "a677bcad207086b9015bec8518e8bd0939fe65c7551d16745f203be23ab20112"
+    },
+    {
+      "path": "notes/geometric-long-cancellation.md",
+      "git_blob": "eb00c99ba521fb1a52806bfd3c198ed634de171c",
+      "sha256": "f1344094c0831f32aae302bcdd18c311cffaed99158790d592c4fb9114a0b6d8"
+    },
+    {
+      "path": "notes/hadamard-optical-limit.md",
+      "git_blob": "b348ff35b1ed22c82f42135edca1c191c649dcdb",
+      "sha256": "b249af8fa1063c8fbc3d82bf3f7813f811fe5279cc6fb1842f18897836021e5e"
+    },
+    {
+      "path": "notes/nonconformal-plane-wave-limit.md",
+      "git_blob": "a7a69f0d35583164f6d1e7da5fdd4cda11a6611f",
+      "sha256": "0363f1de5472df60761381b1c4e525ec0448109903a2182bab4e4433e007f0e1"
+    },
+    {
+      "path": "notes/null-cone-dimensions.md",
+      "git_blob": "0be21c4c7cce2f75ce22912789b62e54ddc0e84f",
+      "sha256": "67457f1a95fe5e6ad6ce05482fdd049d5ce1484616ac93c8f4b8d14d22df04e0"
+    },
+    {
+      "path": "notes/seven-dimensional-focusing-obstruction.md",
+      "git_blob": "58e284777d33a3c36e58e137bd9cef6bacab48c5",
+      "sha256": "a0af15b8bda212b786936b8bea18399b92ad5d62725d9526942b4811ee6bff26"
+    },
+    {
+      "path": "notes/sphere-circle-focusing.md",
+      "git_blob": "2b7e4e397005cf41d2de71c7391a2d9dccaf0c2e",
+      "sha256": "ee8d669def9ac9e25d92129bc48406db7cc8831ff296df27cb52a53169d6a017"
+    },
+    {
+      "path": "notes/sphere-dependent-conformal-limit.md",
+      "git_blob": "296af0b1692f71667e271ed77154598081cb8868",
+      "sha256": "061104f008be8897da84133557faf5539a2a8177b46fab1ee0c3e6ffa98ede10"
+    },
+    {
+      "path": "requirements.txt",
+      "git_blob": "4c36759c6cd8720bfaa0fec6486643c624ea887b",
+      "sha256": "1783f6db99b43c08133866aef470e86b49ea6f172d79e312a621af49e6cdc606"
+    }
+  ],
+  "issues": [
+    {
+      "number": 24,
+      "title": "Prove the general boundary and joint asymptotics of Conjecture 1′",
+      "state": "open",
+      "updated_at": "2026-10-14T20:38:14Z",
+      "html_url": "https://github.com/q5m-ai/causal-set-emergence/issues/24",
+      "inspected_body_sha256": "ae7aa826c4ae256c96c2a144100e510c4b43ce5c959e331aaaece15f6561b0f1",
+      "comments_read": 6,
+      "latest_comment_url": "https://github.com/q5m-ai/causal-set-emergence/issues/24#issuecomment-5994436907"
+    },
+    {
+      "number": 81,
+      "title": "Resolve dimension and general-curved coverage after the controlled assemblies",
+      "state": "open",
+      "updated_at": "2026-10-16T13:01:49Z",
+      "html_url": "https://github.com/q5m-ai/causal-set-emergence/issues/81",
+      "inspected_body_sha256": "29aef13ae957f94d49216f55c163419039966ab88d5ff9ea5ad3f52cf5b4e67b",
+      "comments_read": 27,
+      "latest_comment_url": "https://github.com/q5m-ai/causal-set-emergence/issues/81#issuecomment-6216070519"
+    },
+    {
+      "number": 94,
+      "title": "Independently scrutinize the merged restricted limits and dimension prerequisites",
+      "state": "open",
+      "updated_at": "2026-10-14T21:27:07Z",
+      "html_url": "https://github.com/q5m-ai/causal-set-emergence/issues/94",
+      "inspected_body_sha256": "80446cc80132df6b36782829907c716801b6c6dd1d0638e98d70caf9e6749889",
+      "comments_read": 1,
+      "latest_comment_url": "https://github.com/q5m-ai/causal-set-emergence/issues/94#issuecomment-6178876777"
+    },
+    {
+      "number": 86,
+      "title": "Integrate full theorem coverage, independent review and publication for #24",
+      "state": "open",
+      "updated_at": "2026-10-14T21:27:08Z",
+      "html_url": "https://github.com/q5m-ai/causal-set-emergence/issues/86",
+      "inspected_body_sha256": "47465d0a4e3fb39ee367076e766380de872c21d8f78e97af6d52288d015bc921",
+      "comments_read": 9,
+      "latest_comment_url": "https://github.com/q5m-ai/causal-set-emergence/issues/86#issuecomment-6178877228"
+    }
+  ],
+  "excluded_pull_request": {
+    "number": 180,
+    "state": "OPEN",
+    "headRefName": "issue-177-curved-3d-response",
+    "headRefOid": "a8fcb2465430c9d169cca67d942209c663bb7c74",
+    "initial_inspected_head": "47e268c44bb1ba0083b4cf3509bc07c088da3f0a",
+    "updated_at": "2026-10-16T17:50:27Z",
+    "baseRefName": "issue-81-general-coverage",
+    "url": "https://github.com/q5m-ai/causal-set-emergence/pull/180"
+  },
+  "excluded_sources": [
+    {
+      "path": "notes/curved-three-d-critical.md",
+      "commit": "47e268c44bb1ba0083b4cf3509bc07c088da3f0a",
+      "sha256": "04026f0efbc8129496cb2e72585854c62db94bcbd12283408957a60a107949ec"
+    },
+    {
+      "path": "notes/curved-three-d-phase-freeze.md",
+      "commit": "a8fcb2465430c9d169cca67d942209c663bb7c74",
+      "sha256": "221144b173a04ecb00a8ed9d7f107e4aa4e475cf4d277baa7a508b5503b1166a"
+    }
+  ],
+  "external_sources": [
+    {
+      "id": "dll",
+      "url": "https://arxiv.org/html/2501.00139v2",
+      "http_status": 200,
+      "retrieved_at": "2026-10-16T17:33:17.812815+00:00",
+      "bytes": 664476,
+      "sha256": "d9aead23988b46d4ee471885317cac04ed53384e11d2652d37446066da5ed95e",
+      "inspection": "DLL §§2.4–2.7, (11), §7; published conjecture and conventions"
+    },
+    {
+      "id": "light-full",
+      "url": "https://arxiv.org/html/1009.3058v2",
+      "http_status": 200,
+      "retrieved_at": "2026-10-16T17:34:17.307132+00:00",
+      "bytes": 331661,
+      "sha256": "9b3bc90eb76cb2a439b528d2a91e0951c2d05ff7372cf63af000cd4f693c02c8",
+      "inspection": "DHS §§2–4, (16)–(21), (70); scalar source-detector model"
+    },
+    {
+      "id": "diffusion-full",
+      "url": "https://arxiv.org/html/0810.5591v2",
+      "http_status": 200,
+      "retrieved_at": "2026-10-16T17:34:17.355132+00:00",
+      "bytes": 344374,
+      "sha256": "6e2a19373ed4e97f889cb3f5e892160ec490276007c9cd8363409bca6c31e2b9",
+      "inspection": "PDS §§II–VI, (36), (43)–(49); kinetic model and historical bounds"
+    },
+    {
+      "id": "nonlocal-full",
+      "url": "https://arxiv.org/html/1411.6513v2",
+      "http_status": 200,
+      "retrieved_at": "2026-10-16T17:34:17.619134+00:00",
+      "bytes": 470662,
+      "sha256": "305c180492325fcd76cde559b8475993190531719832c2cfee78e22445ffc0b3",
+      "inspection": "Abstract, scalar equations and quantization discussion; screened alternative, not a full proof audit"
+    },
+    {
+      "id": "lisa-full",
+      "url": "https://arxiv.org/html/2505.24620v1",
+      "http_status": 200,
+      "retrieved_at": "2026-10-16T17:35:07.839416+00:00",
+      "bytes": 378363,
+      "sha256": "3814ffdfecac033b42e5a1220138a7cd080b8205bf4c5bbd40cae2e60d33c3b3",
+      "inspection": "§§1, 3–6; conditional forecasts and field-level limitation; v1 confirmed by current abstract version history"
+    },
+    {
+      "id": "propagator-new",
+      "url": "https://arxiv.org/html/2608.18753v1",
+      "http_status": 200,
+      "retrieved_at": "2026-10-16T17:34:17.419132+00:00",
+      "bytes": 407197,
+      "sha256": "6558cce35a2917f69460b20e5e128a1a4ad0915479b702109f0f5fb52c1fac26",
+      "inspection": "§§II–IV and VI; model-specific 1+1D curvature coupling, not independently verified"
+    },
+    {
+      "id": "lens-paper",
+      "url": "https://arxiv.org/html/2002.05736v2",
+      "http_status": 200,
+      "retrieved_at": "2026-10-16T17:35:08.224418+00:00",
+      "bytes": 436679,
+      "sha256": "e5f947c372cac84c81d64f92bea36fb0b1f6fa402ce8ba10edcd30eb97161c99",
+      "inspection": "Abstract, monitoring/precision and microlensing discussion"
+    },
+    {
+      "id": "gw170817",
+      "url": "https://arxiv.org/abs/1710.05834",
+      "http_status": 200,
+      "retrieved_at": "2026-10-16T17:33:17.546814+00:00",
+      "bytes": 46840,
+      "sha256": "a0b75cbe37eec436fdf371c23adc075ada2cd5b11da09d2c8a4fc198cb91747b",
+      "inspection": "Current abstract v2: measured delay and conditional speed bound; not a full likelihood review"
+    },
+    {
+      "id": "fermi",
+      "url": "https://arxiv.org/abs/1305.3463",
+      "http_status": 200,
+      "retrieved_at": "2026-10-16T17:33:17.907816+00:00",
+      "bytes": 46427,
+      "sha256": "553093dee3e9eef1ef5073d6e1f8ca47eb8a4cc1716c867abf57506d092cc1fa",
+      "inspection": "Current abstract v1: LIV constraints and intrinsic-lag qualification"
+    },
+    {
+      "id": "firas-spectrum",
+      "url": "https://lambda.gsfc.nasa.gov/data/cobe/firas/monopole_spec/firas_monopole_spec_v1.txt",
+      "http_status": 200,
+      "retrieved_at": "2026-10-16T17:34:17.687134+00:00",
+      "bytes": 2388,
+      "sha256": "df793c3dca09ebfa7dbc5aa0ec1951daa8884431bc30eff28a710d7516cf50fa",
+      "inspection": "All 43 five-column rows and header; unit/uncertainty check, no fit"
+    },
+    {
+      "id": "firas-info",
+      "url": "https://lambda.gsfc.nasa.gov/product/cobe/firas_monopole_spect.html",
+      "http_status": 200,
+      "retrieved_at": "2026-10-16T17:34:17.727134+00:00",
+      "bytes": 11973,
+      "sha256": "e42bcf7e3e2eccac3ac8c210d4287e2477c394ad03d76ac7f719515d29753f2a",
+      "inspection": "Calibration and table provenance"
+    },
+    {
+      "id": "gw-data",
+      "url": "https://gwosc.org/eventapi/html/GWTC-1-confident/GW170817/v3/",
+      "http_status": 200,
+      "retrieved_at": "2026-10-16T17:33:18.087816+00:00",
+      "bytes": 35350,
+      "sha256": "13fda6a3bbb81ed0ccb54d5e471edee1a0e74bc5a3c6cce4453afceec3bdc631",
+      "inspection": "Public event metadata and strain/parameter links only; no strain download"
+    },
+    {
+      "id": "fermi-data",
+      "url": "https://heasarc.gsfc.nasa.gov/FTP/fermi/data/gbm/bursts/2009/bn090510016/current/",
+      "http_status": 200,
+      "retrieved_at": "2026-10-16T17:33:18.391818+00:00",
+      "bytes": 17605,
+      "sha256": "2b7555d1eefb9a504d226c58b0ae3e4fd7d7c9338934e0ccc8316ea4405d4678",
+      "inspection": "Public listing: TTE and response products; not LAT event data"
+    },
+    {
+      "id": "fermi-lat-data",
+      "url": "https://fermi.gsfc.nasa.gov/ssc/data/access/lat/",
+      "http_status": 200,
+      "retrieved_at": "2026-10-16T17:34:18.243137+00:00",
+      "bytes": 43449,
+      "sha256": "730d72f985825ba18a2e5508541c7e3146d8b0b0570b45e80bd2119ada79e12e",
+      "inspection": "Public photon/spacecraft data query entry point; no query job or event download"
+    },
+    {
+      "id": "lens-data",
+      "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/J/A+A/640/A105",
+      "http_status": 200,
+      "retrieved_at": "2026-10-16T17:35:08.900422+00:00",
+      "bytes": 35715,
+      "sha256": "742ecdb228110b80c9b266673fd9a317d25df5df56f62ab6fee1286eff2cb110",
+      "inspection": "Public catalogue metadata"
+    },
+    {
+      "id": "lens-readme",
+      "url": "https://cdsarc.cds.unistra.fr/ftp/J/A+A/640/A105/ReadMe",
+      "http_status": 200,
+      "retrieved_at": "2026-10-16T17:39:45.989174+00:00",
+      "bytes": 10559,
+      "sha256": "47e659fbd6aeb3d46ae8143811cf9590620abd7b1027b3d91fb412084a0f366d",
+      "inspection": "Full small ReadMe: data inventory and column schemas; no light-curve bulk download"
+    }
+  ],
+  "bounded_searches": [
+    {
+      "service": "INSPIRE",
+      "query": "title \"causal set\" and date > 2024",
+      "total": 12,
+      "returned": 12,
+      "date": "2026-10-16"
+    },
+    {
+      "service": "INSPIRE",
+      "query": "title diffusion and (keyword \"causal set\" or fulltext \"spacetime discreteness\")",
+      "total": 5,
+      "returned": 5,
+      "date": "2026-10-16"
+    },
+    {
+      "service": "INSPIRE",
+      "query": "title \"nonlocal\" and (a Belenchia or a Sorkin)",
+      "total": 6,
+      "returned": 6,
+      "date": "2026-10-16"
+    },
+    {
+      "service": "INSPIRE",
+      "query": "DHS forward citations, record located by arxiv:1009.3058",
+      "total": 16,
+      "returned": 12,
+      "date": "2026-10-16"
+    }
+  ],
+  "access_limits": [
+    "arXiv export search API: HTTP 429; no completeness claim",
+    "Direct cosmograil.org data page: TLS failed; CDS catalogue and ReadMe succeeded",
+    "Initial unquoted INSPIRE query and mistaken citation record rejected as irrelevant; not evidence of absence",
+    "Chevalier primary text not obtained; historical priority unresolved"
+  ]
+}
