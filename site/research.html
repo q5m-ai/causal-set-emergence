@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Research prepared for scrutiny: exact causal-set action claims, a curved-four-dimensional obstruction, proof mechanisms, limitations and reviewer packets. Not independent acceptance or experimental confirmation.">
+  <title>Research for scrutiny — Causal Set Emergence</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="research.css">
+</head>
+<body class="review-page">
+  <a class="skip-link" href="#main">Skip to the research</a>
+  <nav aria-label="Main navigation"><div class="wrap nav-inner">
+    <div class="brand"><a href="index.html">causal-set-emergence<span>.q5m.ai</span></a></div>
+    <div class="nav-links"><a href="index.html">Home</a><a href="dimensions.html">Dimensions</a><a href="proof-spine.html">Proof spine</a><a href="research.html" aria-current="page">Research review</a></div>
+  </div></nav>
+  <main id="main" class="wrap" tabindex="-1">
+    <section id="account" aria-labelledby="title">
+      <header>
+        <p class="eyebrow">Research available for scrutiny · preparation copy</p>
+        <h1 id="title">When does a discrete action recover geometry?</h1>
+        <p class="lede">A one-page account, exact claims and a route into independent review.</p>
+      </header>
+      <p class="review-status"><strong>Prepared, not launched or submitted.</strong> Written claims await independent human scrutiny. Selected formal results do not certify this entire package.</p>
+      <h2>The question</h2>
+      <p>Could spacetime be made of discrete events, ordered by which can influence which? This project tests a narrower consistency question. Start with a <strong>specified smooth spacetime</strong>, scatter events into it randomly, and count pairs according to how many events lie between them. Does the averaged gravitational action approach the expected curvature and boundary expression as the events become denser?</p>
+      <p>That is not deriving spacetime, gravity or matter from a microscopic theory: the background geometry is supplied at the start.</p>
+      <h3>What the research reports</h3>
+      <p>The strongest negative claim is a <strong>complete-action counterexample in four spacetime dimensions</strong>. A fixed smooth curved universe between two spacelike time slices has zero proposed curvature-plus-joint target, but its action tends to negative infinity in the written proof. All pairs and the point term remain; this is not just a divergent estimate at one ray.</p>
+      <p>A corrected <strong>flat-spacetime</strong> theorem covers every member of the stated smooth two-spacelike-face class in dimensions two through four, with counterexamples in each higher dimension. That does not mean every higher-dimensional region fails. Positive curved results include the whole smooth 2D spacelike core and a 4D family retaining focusing. Focusing alone predicts neither success nor failure.</p>
+      <h3>Why it is difficult</h3>
+      <p>Widely separated, nearly lightlike events can enclose tiny spacetime volumes. Their contributions need not disappear at high density. Signed counting weights cancel ordinary terms, but a particular focusing geometry can leave a fractional term. Proving that it survives the <em>whole integral</em>, including opening and closing contacts, is the crucial step.</p>
+      <h3>Limitations</h3>
+      <p>The central general arguments are written proofs, not fully Lean-certified results. An arithmetic certificate establishes one model coefficient’s sign, not its physical transfer. Independent human acceptance and novelty review remain outstanding. General curved 3D, broader corrected curved coverage and general null/mixed boundaries remain open. These are expectations, not convergence of individual samples.</p>
+      <p>The mathematics can be scrutinized without solving every open theorem. It does not establish an observed propagation anomaly or falsify causal-set physics as a whole. The separate experimental assessment returns <strong>B: a missing model-to-observable calculation</strong>. Experiment is not a publication prerequisite or an added condition for closing issue #24.</p>
+      <p><strong>Mathematical source:</strong> <a href="https://github.com/q5m-ai/causal-set-emergence/tree/9e0068f91c219fe61984d20fdb3f6939eab907c4"><code>9e0068f91c219fe61984d20fdb3f6939eab907c4</code></a><br>Integration branch <code>issue-81-general-coverage</code> · inspected 16 October 2026.</p>
+    </section>
+
+    <nav class="reading-path" aria-label="Review reading path">
+      <a href="#claims">Principal claims</a><a href="#mechanism">Proof spine</a><a href="#status">Coverage</a><a href="#review">Reviewer packets</a><a href="#experiment">Experiment</a><a href="#artifact">Reproduce</a>
+    </nav>
+
+    <section id="claims" aria-labelledby="claims-title">
+      <h2 id="claims-title">Exact claims, not a universal resolution</h2>
+      <p>The <a href="https://github.com/q5m-ai/causal-set-emergence/blob/287cf90499bfdc499684af16057db66086b36bbe/research/manuscript.md">compact manuscript</a> gives the complete normalization, hypotheses, proof dependencies and published-conjecture comparison. Here “G-SS” means the fixed smooth, precompact, ambient-causally-convex class with exactly two compact achronal spacelike faces and their transverse common joint; no other boundary strata. Empty joint is allowed. There is no topology, global-graph or no-caustics restriction.</p>
+      <p>The observable is the original <strong>unsmeared minimal-layer BDG action</strong>. Its mean is computed under the finite Poisson law of intensity density times geometric volume. Both endpoint measures, all physical interval unions and every ordered partner are retained. The independent target is half the scalar-curvature integral plus the joint integral of coth(angle), with counting measure in 2D.</p>
+      <div class="result-grid">
+        <article class="result-card">
+          <span class="label">FAILS · written complete-action obstruction</span>
+          <h3>Curved four dimensions: CO</h3>
+          <p>Time slab −7/8&lt;t&lt;7/8; spatial r,z periods 20 and x period π. The metric is</p>
+          <p class="review-equation">g = dt² − dr² − dx² − dz² + ¼ sin²(2x)(dt−dr)².</p>
+          <p>It is smooth, globally hyperbolic and curved, with scalar curvature zero and empty joint. The complete normalized deterministic action satisfies</p>
+          <p class="review-equation">A<sub>ρ,4</sub> = −Dρ<sup>3/14</sup> + O(ρ<sup>1/6</sup>), with D &gt; 0.</p>
+          <p>The same asymptotic holds for the original-law mean. No sample-wise divergence is claimed.</p>
+          <a href="https://github.com/q5m-ai/causal-set-emergence/blob/9e0068f91c219fe61984d20fdb3f6939eab907c4/notes/curved4-complete-action-obstruction.md">CO1–CO16: full proof and coefficient</a>
+        </article>
+        <article class="result-card">
+          <span class="label">WORKS / FAILS · corrected flat theorem</span>
+          <h3>Sharp universal flat dimension range</h3>
+          <p><strong>Every flat G-SS member in 2D–4D</strong> has the complete canonical joint limit, then the same original-law expected limit.</p>
+          <p><strong>Each d≥5 admits a fixed analytic counterexample:</strong> the K1 Klein-bottle quotient times period-10 circles, slab width 21/20. Its zero target differs from a positive limit in 5D and positive growth above.</p>
+          <p class="review-equation">A<sub>ρ,5</sub> → D<sub>5</sub> &gt; 0;<br>ρ<sup>−(1−5/d)</sup>A<sub>ρ,d</sub> → D<sub>d</sub> &gt; 0 for d≥6.</p>
+          <p>This is not failure of every higher-dimensional region, nor a general corrected curved theorem.</p>
+          <a href="https://github.com/q5m-ai/causal-set-emergence/blob/9e0068f91c219fe61984d20fdb3f6939eab907c4/notes/corrected-flat-theorem.md">FLAT: CFT1–CFT4 and exact K1 geometry</a>
+        </article>
+        <article class="result-card">
+          <span class="label">WORKS · written curved positive theorem</span>
+          <h3>Focusing can be compatible with convergence</h3>
+          <p>On (−2,2)×S²₁×(R/20Z), let g=Ω²(dt²−h<sub>S²</sub>−dz²) for <strong>any fixed smooth positive Ω(t,p,z)</strong>. SW gives the complete curvature-target limit and then its expected counterpart. The joint is empty; antipodal focusing remains.</p>
+          <p>No symmetry, smallness or assumed long cancellation is required. Ω=1 gives target 320π. This is a geometrically specified family, not universal curved coverage.</p>
+          <a href="https://github.com/q5m-ai/causal-set-emergence/blob/9e0068f91c219fe61984d20fdb3f6939eab907c4/notes/sphere-dependent-conformal-limit.md">SW1–SW14, including the independent target</a>
+        </article>
+        <article class="result-card">
+          <span class="label">WORKS · written 2D theorem</span>
+          <h3>The smooth curved 2D spacelike core</h3>
+          <p>Every 2D G-SS member has the complete curvature-plus-joint limit and, separately, the original-law expected limit. Each joint endpoint counts once; empty joints and arbitrary admitted topology are included.</p>
+          <p>C2 uses the genuine 2D kernel, physical route unions and both overlap corners. It is not a new compiled curved theorem and does not settle 3D.</p>
+          <a href="https://github.com/q5m-ai/causal-set-emergence/blob/9e0068f91c219fe61984d20fdb3f6939eab907c4/notes/curved-two-d-limit.md">C2.1–C2.18</a>
+        </article>
+      </div>
+      <h3>Which published conjecture?</h3>
+      <p><a href="https://arxiv.org/html/2501.00139v2#S2.E11">Dowker–Liu–Lloyd-Jones, Conjecture 1′, equation (11)</a> proposes the mean bulk-plus-angle-weighted-joint limit. G-SS is our precise spacelike subcase, not a quotation of a fully enumerated published predicate. If its globally hyperbolic formulation includes these compact-Cauchy slabs, CO refutes that universal limit in physical 4D. Independent intended-scope scrutiny is requested. Smearing, timelike Conjecture 2 and arbitrary null/crease strata are different questions. No novelty claim is made.</p>
+    </section>
+
+    <section id="mechanism" aria-labelledby="mechanism-title">
+      <h2 id="mechanism-title">A proof spine readers can challenge</h2>
+      <figure>
+        <svg viewBox="0 0 720 140" role="img" aria-labelledby="flow-title flow-desc">
+          <title id="flow-title">The logical direction of this consistency test</title>
+          <desc id="flow-desc">A supplied smooth geometry gives random event counts, whose mean action is compared to an independently computed geometric target. This does not derive the geometry from dynamics.</desc>
+          <g fill="none" stroke="currentColor"><rect x="4" y="10" width="210" height="100" rx="8"/><rect x="254" y="10" width="210" height="100" rx="8"/><rect x="504" y="10" width="210" height="100" rx="8"/><path d="M220 60h28m-8-7 8 7-8 7M470 60h28m-8-7 8 7-8 7"/></g>
+          <g fill="currentColor" text-anchor="middle" font-size="17"><text x="109" y="48">Supplied geometry</text><text x="109" y="77">and Poisson law</text><text x="359" y="48">Random counts</text><text x="359" y="77">→ mean action</text><text x="609" y="48">Compare with</text><text x="609" y="77">independent target</text></g>
+        </svg>
+        <figcaption><strong>Illustration, not proof.</strong> A logical reading aid, not a simulation, measured effect or derivation of spacetime. The same sequence is described in text below.</figcaption>
+      </figure>
+      <ol>
+        <li><strong>Define independently.</strong> Physical interval volume and Poisson counting give the actual signed kernel. Geometry supplies curvature, area and angle before any limit.</li>
+        <li><strong>Split at one fixed cutoff.</strong> S30 controls the short part, with point once, face compensation and joint. All long nearly-null partners remain.</li>
+        <li><strong>Use signed cancellation.</strong> In 4D, three exact moments vanish. A derived summable cubic primitive is sufficient for zero long response; an absolute bound before subtraction is not.</li>
+        <li><strong>Resolve the geometry.</strong> Flat lift unions and the positive sphere family supply their own critical estimates. CO’s quartic focus instead produces a physical Mellin pole at 9/7 that the kernel does not cancel.</li>
+        <li><strong>Match the whole action.</strong> Both wells, both tips, opening/closing contacts, regular complements and cutoff tails must be restored. Only then does the negative pair factor yield CO’s divergence.</li>
+        <li><strong>Transfer the expectation last.</strong> The finite-density bridge identifies the mean. It does not prove a limit by itself or supply random-sample convergence.</li>
+      </ol>
+      <p class="review-note"><strong>Highest-risk steps:</strong> exhaustive minimizing-path classification; CO5–CO13’s uniform physical transfer and closing-fibre matching; CO14–CO16’s complete Mellin continuation; FLAT’s faithful development and moving masks; SW’s signed sphere map and domination; the shared written S30 theorem. The model-sign certificate alone cannot settle these.</p>
+      <p>The older <a href="proof-spine.html">interactive proof spine</a> teaches a restricted flat example at its own source pin. Its animations are illustrations, not evidence for these broader claims.</p>
+    </section>
+
+    <section id="status" aria-labelledby="status-title">
+      <h2 id="status-title">Coverage and verification are different axes</h2>
+      <div class="review-table-wrap" tabindex="0" role="region" aria-label="Scrollable coverage summary">
+        <table>
+          <caption>Compact status; the linked full matrix preserves exact subclass hypotheses</caption>
+          <thead><tr><th scope="col">Outcome</th><th scope="col">Scope</th><th scope="col">Evidence / human review</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">WORKS</th><td>FLAT 2D–4D; curved C2; SW, FCDC, PW and HO classes; specified ND/CC/CT null classes</td><td>Written general arguments; independent human acceptance outstanding</td></tr>
+            <tr><th scope="row">WORKS</th><td>Encoded flat graph/class-E, thin 4D torus and specified null-cap results</td><td>Existing Lean proofs at their exact scopes, not full manuscript certification; no fresh full audit claimed</td></tr>
+            <tr><th scope="row">FAILS</th><td>CO curved 4D; K flat d≥5; distinct H and O families</td><td>Written complete-action arguments; diagnostics and CO model-sign certificate have narrower scope</td></tr>
+            <tr><th scope="row">UNKNOWN</th><td>Arbitrary curved 3D; broader corrected curved classes; remaining null/mixed fronts and contacts</td><td>Open producers and assembly; no fabricated universal correction</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><a href="https://github.com/q5m-ai/causal-set-emergence/blob/287cf90499bfdc499684af16057db66086b36bbe/research/coverage.md">Full source-pinned WORKS / FAILS / UNKNOWN matrix</a></p>
+      <p><strong>Unmerged #180 is separate:</strong> final inspected head <code>a8fcb2465430c9d169cca67d942209c663bb7c74</code> freezes its curved-3D phase with the complete arbitrary-smooth result UNKNOWN. PF3-L, a full-observable signed increment estimate, remains unproved. Integrable cut budgets and the two final attempts do not close that inference. These unmerged sources are not part of this integrated snapshot.</p>
+      <p>Issues #24, #81, #94 and #86 remain open. Historical receipts are not rewritten. AI review, green CI, a source audit and silence from reviewers are not attributable human acceptance.</p>
+    </section>
+
+    <section id="review" aria-labelledby="review-title">
+      <h2 id="review-title">Small reading packets for independent experts</h2>
+      <p>No reviewer has been commissioned. The <a href="https://github.com/q5m-ai/causal-set-emergence/blob/287cf90499bfdc499684af16057db66086b36bbe/research/review.md">review plan</a> gives exact sections, focused questions and an unfilled report template. Each assignment identifies its imported lemmas; no one is asked to certify the entire repository by reading an issue history.</p>
+      <ul>
+        <li><strong>First:</strong> geometry and asymptotic-analysis review of CO’s complete-action obstruction; a separate validated-numerics review of its model sign.</li>
+        <li><strong>Second:</strong> global-flat review of FLAT/K and curved-analysis review of SW’s genuine geometric hypotheses.</li>
+        <li><strong>Shared:</strong> S30 local estimates, probability/formal encoding, intended published scope and unresolved attribution.</li>
+      </ul>
+      <p>Useful feedback names the exact SHA and equation, checked versus imported dependencies, and a reproducible correction or blocking gap. No automatic closure or endorsement follows.</p>
+    </section>
+
+    <section id="experiment" aria-labelledby="experiment-title">
+      <h2 id="experiment-title">Experiment: a separate assessment, outcome B</h2>
+      <p><strong>The missing calculation is a model-to-detector response.</strong> The action theorem selects neither a matter operator nor an astrophysical background. It supplies no photon speed, graviton damping or diffusion coefficient.</p>
+      <p>The concrete DHS scalar link model preserves ordinary dispersion and estimates a fractional RMS upper scale near <strong>9×10⁻¹³</strong> for its example. PDS energy diffusion offers a better-supported spectral observable with historical CMB bounds near <strong>10⁻⁴⁴–10⁻⁴³ J/s</strong>, but its free parameters are not derived here. A recent LISA result is a conditional forecast, not present observational evidence.</p>
+      <p>Public FIRAS spectra, GWOSC/FERMI entry points and COSMOGRAIL/CDS light-curve schemas were checked without bulk downloads. Source lags, calibration, foregrounds, covariance, lens models and microlensing prevent treating raw precision as a model test. Focusing in CO is not a predicted lensing anomaly.</p>
+      <p><a href="https://github.com/q5m-ai/causal-set-emergence/blob/287cf90499bfdc499684af16057db66086b36bbe/research/experiments.md">Read the primary-source assessment, quantified comparisons, datasets and exact missing calculation</a>. Mathematical counterexample, physical-model falsification and empirical support for causal sets are three different things. No major experiment is proposed.</p>
+    </section>
+
+    <section id="artifact" aria-labelledby="artifact-title">
+      <h2 id="artifact-title">Reproduce and inspect</h2>
+      <p>The <a href="https://github.com/q5m-ai/causal-set-emergence/blob/287cf90499bfdc499684af16057db66086b36bbe/research/artifact.md">artifact guide</a> pins the mathematics, dependencies, diagnostic commands and Lean workflow. It distinguishes certificate replay from full regeneration and finite regressions from proof. The <a href="https://github.com/q5m-ai/causal-set-emergence/blob/287cf90499bfdc499684af16057db66086b36bbe/research/evidence.json">evidence manifest</a> identifies inspected source bytes and external retrievals.</p>
+      <p>This page is static HTML with native text equations. It remains readable without scripts, WebGL, external fonts or a math-rendering service; use your browser’s print command for the review copy. The first printed page is the plain-language account.</p>
+      <p><a href="https://github.com/q5m-ai/causal-set-emergence/blob/287cf90499bfdc499684af16057db66086b36bbe/research/validation.md">Actual validation receipt</a> · <a href="https://github.com/q5m-ai/causal-set-emergence/blob/287cf90499bfdc499684af16057db66086b36bbe/research/launch-draft.md">Launch wording — draft, not sent</a></p>
+    </section>
+  </main>
+  <footer><div class="wrap"><strong>Research available for scrutiny, not a claim that causal sets are proved.</strong><p>No launch, outreach, submission, merge or deployment is performed by this preparation. Independent human review and provenance questions remain visible.</p><a href="#main">Back to the research</a></div></footer>
+</body>
+</html>
