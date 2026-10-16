@@ -748,6 +748,14 @@ extra half-order with changing competitors and simultaneous moving masks.
 The original complete deterministic/expected conclusion remains **UNKNOWN**;
 coalescing-well and singular-curvature controls diagnose failed inferences,
 not admitted complete-action counterexamples.
+The [critical continuation](notes/curved-three-d-critical.md) states the exact
+weighted ramp/signed obligation and both subtraction tails, derives a
+two-sided ordinary-cut budget, and constructs fixed admitted metrics realizing
+the circular arrival envelope and singular cut curvature at a point source.
+Their complete all-source actions are not computed. The remaining gap is a
+uniform weighted aggregate opening/contact numerator estimate, not the
+existence of a cut budget; every original acceptance item remains mapped
+without narrowing #177 or claiming its deterministic/expected conclusion.
 
 The [intrinsic Hadamard optical theorem HO-4](notes/hadamard-optical-limit.md)
 adds written 4D coverage for every ambient-contained G-SS region in an
