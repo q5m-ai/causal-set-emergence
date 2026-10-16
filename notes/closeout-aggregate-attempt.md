@@ -14,6 +14,16 @@ and [CR3](https://github.com/q5m-ai/causal-set-emergence/blob/47e268c44bb1ba0083
 They are research inputs, not integrated or independently accepted premises.
 No source from that PR is copied into the integration branch here.
 
+**Final live-source reconciliation:** #180 advanced during this task to
+`a8fcb2465430c9d169cca67d942209c663bb7c74`. Its new
+[phase freeze / PF3-L](https://github.com/q5m-ai/causal-set-emergence/blob/a8fcb2465430c9d169cca67d942209c663bb7c74/notes/curved-three-d-phase-freeze.md)
+was read in full; the UP3/CR3 inputs above are unchanged. PF3-L isolates a
+weaker complete **unit-weight** signed-increment estimate and leaves it
+unproved. The arbitrary-weight aggregate route attempted here is sufficient,
+not logically necessary. The new freeze's collective allocation attempt also
+stops; no ordinary-pair or vertex budget is mistaken for the full numerator.
+This source reconciliation starts no second research attempt.
+
 ## 1. Target and the single attempted inference
 
 The highest-leverage missing producer is the complete curved-3D physical
@@ -180,13 +190,14 @@ They introduce **no spacetime examples** and cannot certify CA4. CA1--CA3
 have the elementary proof above; CA4's physical geometric premise is missing.
 All are conventional writing/finite diagnostics, not Lean or expert review.
 
-The falsifiable next mathematical milestone would be an actual original-class
-bound on the complete weighted aggregate numerator (CA4 is one candidate
-third-state subestimate), with contacts and coefficient tails retained, or a
-fully assembled admitted obstruction. Another scalar budget, isolated contact,
-or finite optimization is a stop, not success. This session stops now rather
-than opening another chain of examples or claiming the existing critical
-budget has finished the proof.
+The falsifiable next mathematical milestone is the complete unit-observable
+PF3-L estimate or a fully assembled admitted obstruction. An original-class
+bound on the complete weighted aggregate numerator would suffice (CA4 is only
+a candidate third-state subestimate), with contacts and coefficient tails
+retained; it is **not** a mandatory stronger replacement for PF3-L. Another
+scalar budget, isolated contact, or finite optimization is a stop, not success.
+This session stops now rather than opening another chain of examples or
+claiming the existing critical budget has finished the proof.
 
 **User decision:** retain the current #177 obligation and authorize a future
 bounded producer effort only if desired, or authorize a bounded-paper release

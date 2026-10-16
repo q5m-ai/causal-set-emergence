@@ -117,15 +117,20 @@ No extra classification requirement is imposed on completed #149 or #151.
   C2 and complete obstructions. Unmerged #180 provides separately labeled
   physical bad-sector/union/tip reductions and a two-state cut budget, not a
   proved universal long response.
-- **Missing inference:** the complete 3D physical weighted long response at
-  its genuine critical normalization. CR3.2 needs aggregate openings, simultaneous
-  masks, actual good-clock cap, linear next correction and both coefficient
-  tails. Integrability of a budget alone is not domination of its numerator.
-- **Falsifiable first milestone:** derive the full CR3.2 signed vanishing
-  estimate, or its sufficient bounded little-o order-7/2 ramp estimate, from
-  the original geometry. A new local coefficient or scalar budget fails this
-  milestone. The [bounded attempt](closeout-aggregate-attempt.md) makes one
-  aggregate comparison but stops at the unproved geometric integration.
+- **Missing inference:** the complete 3D physical **unit-weight** long response
+  at its genuine critical normalization. The final #180 freeze isolates
+  [PF3-L / PF3.2](https://github.com/q5m-ai/causal-set-emergence/blob/a8fcb2465430c9d169cca67d942209c663bb7c74/notes/curved-three-d-phase-freeze.md):
+  a signed log-scale increment of the actual full ramp must be little-o of
+  square root t. Its identity/conditional consumer is not a proof. A collective
+  route must retain openings, masks, the actual cap, linear next correction
+  and both coefficient tails. Integrability of a budget alone is insufficient.
+- **Falsifiable first milestone:** derive PF3-L from the original geometry.
+  The stronger weighted CR3.2 estimate or bounded little-o order-7/2 ramp
+  estimate would suffice, but **neither is imposed as a necessary gate**;
+  summing the physical partitions before a direct signed proof is allowed.
+  A new local coefficient or scalar budget fails this milestone. The
+  [bounded attempt](closeout-aggregate-attempt.md) makes one aggregate
+  comparison but stops at the unproved geometric integration.
 - **Stop:** if established, consume S30 at the same fixed cutoff, restore
   point once and all ordered labels, then apply the original-law expectation
   bridge. If a complete obstruction is obtained, assemble every complement
@@ -245,10 +250,17 @@ these two original bounded contracts in this inspection. Their possible
 administrative completion is separate from new research and requires explicit
 authorization. Neither completion would resolve #156 or #81.
 
-Latest #180: **open, unmerged, non-draft**, head
-`47e268c44bb1ba0083b4cf3509bc07c088da3f0a`. Its delivery is partial even though
-its PR is ready; CR3.2 remains unproved. Its synthetic test tree is not an
-integration commit. No #180 theorem is silently added to the pinned release.
+Final live check of #180: **open, unmerged, non-draft**, head
+`a8fcb2465430c9d169cca67d942209c663bb7c74`. It advanced during this audit from
+the initially inspected `47e268c44bb1ba0083b4cf3509bc07c088da3f0a`.
+The entire new [phase-freeze note](https://github.com/q5m-ai/causal-set-emergence/blob/a8fcb2465430c9d169cca67d942209c663bb7c74/notes/curved-three-d-phase-freeze.md)
+was read: its exact total-observable PF3-L remains unproved, its two final
+attempts stop, and it recommends pausing autonomous continuation. The prior
+UP3/CR3 sources used by our bounded attempt are unchanged. The PR body still
+cites the older head; the live head and actual source control this assessment.
+No weighted-localization or second-coefficient requirement is newly imposed.
+Its synthetic test tree is not an integration commit, and no #180 theorem
+is silently added to the pinned release.
 
 ## 6. Proposed honest release boundary NOW
 
@@ -299,9 +311,10 @@ turned public, a manuscript submitted, or a site deployed by this proposal.
 
 **Unresolved research / decisions:**
 
-- U_3 / complete CR3.2; the physical integration of CA4, not merely its scalar
-  bound. The complete deterministic conclusion and its expected transfer do
-  not yet follow.
+- U_3 / complete unit-observable PF3-L. Weighted CR3.2 and the physical
+  integration of CA4 are possible stronger routes, not necessary acceptance
+  conditions. The complete deterministic conclusion and its expected transfer
+  do not yet follow.
 - #81's broader corrected endpoint until the FD1 proposal is explicitly
   accepted and proved, or another precise general endpoint is approved/proved.
 - Every uncovered required #156 row; any unenumerated admissibility choice
