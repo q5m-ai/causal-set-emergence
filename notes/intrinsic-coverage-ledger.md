@@ -156,6 +156,19 @@ acceptance item without narrowing it; 17 new scalar diagnostics and written
 arguments are distinct from independent acceptance. The original deterministic
 and separate expected assertions remain **UNKNOWN**, owned by #177 under #81.
 
+**Final research-phase freeze, not issue completion:**
+[PF3-L and the specialist handoff](curved-three-d-phase-freeze.md) isolate one
+exact remaining signed-increment lemma for the complete physical unit-weight
+ramp, with its conditional deterministic-then-expectation consumer. The final
+collective-matching attempt still lacks physical localization/allocation;
+the total-observable signed identity still lacks the needed geometric
+increment estimate. Softer-coordinate algebra, a conditional vertex budget
+and a positive abstract ramp calibration do not prove convergence or an
+action obstruction. Seven new finite checks are diagnostics only. All original
+acceptance items are mapped; the recommendation is to pause autonomous
+continuation for specialist review. #177/#81/#24 remain open and UNKNOWN in
+this row, without a new WORKS/FAILS class or changed action, target or law.
+
 The older checked null cap is also retained exactly: flat 4D diamond from
 (-T,0) to zero cut by t-x1>-a, with 0<a<T. Its complete deterministic and
 separate expected limit is the algebraic target pi*a*(2T-a), by

@@ -756,6 +756,12 @@ Their complete all-source actions are not computed. The remaining gap is a
 uniform weighted aggregate opening/contact numerator estimate, not the
 existence of a cut budget; every original acceptance item remains mapped
 without narrowing #177 or claiming its deterministic/expected conclusion.
+The [final phase freeze and specialist handoff](notes/curved-three-d-phase-freeze.md)
+records two unsuccessful final approaches and one exact unproved lemma for
+signed increments of the complete unit-weight physical ramp. This avoids
+requiring arbitrary-weight expansions or a classical second coefficient;
+it does not prove the missing limit. The research phase is complete, **not
+#177**. Specialist review is recommended before further autonomous work.
 
 The [intrinsic Hadamard optical theorem HO-4](notes/hadamard-optical-limit.md)
 adds written 4D coverage for every ambient-contained G-SS region in an
