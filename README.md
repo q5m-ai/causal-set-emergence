@@ -471,10 +471,20 @@ SN flux and retains nonzero weighted crease/generator endpoints. Actual
 weighted interval/pair valuation and CC cap hypotheses give full assembly,
 then separate original-law expectation. This is written, not Lean-checked or
 independently accepted.
-[The #156 ledger](notes/null-mixed-required-coverage.md) retains arbitrary null
-fronts, tangential floor/crease contacts, three or more tips, other curved
-dimensions/metrics, cut/caustic regimes and higher intersections;
-#156/#81/#24 and #94/#86 remain open.
+The subsequent [general past-front theorem NF-d](notes/regular-null-front-limit.md)
+extends the mechanism to **every dimension at least two**, with a smooth
+strictly spacelike floor and explicit regular null-contact geometry in
+conformally Minkowski spacetime. It includes arbitrary finite tip multiplicity
+and dependent cone intersections, with full pair/layer inclusion–exclusion,
+complete deterministic assembly and separate original-law expectation.
+The [all-null product obstruction NP](notes/null-product-focusing-obstruction.md)
+derives a complete positive divergent action in 7D, including the actual null
+endpoint masks, focal matching, independent short target and point cancellation.
+Both are written research, not new Lean results or independent acceptance.
+[The original #156 crosswalk](notes/null-mixed-required-coverage.md#8-original-contract-reconciliation-after-the-general-front-attempt)
+still blocks closure: [tangential/NN matching and the corrected general
+intrinsic statement](notes/null-mixed-continuation.md) remain missing.
+#156/#81/#24 and #94/#86 remain open; no scope change is enacted.
 No sample-wise or spacelike-to-null singular-limit conclusion is implied.
 
 ### Independent-face enlargement

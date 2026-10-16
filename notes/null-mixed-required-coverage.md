@@ -1,5 +1,41 @@
 # Required null/mixed coverage, actual continuation and blocker (#156)
 
+**Current recommendation: keep #156 open under its ORIGINAL contract.**
+Base verified on 2026-10-16: `3ae22f792325634607be5fd518303ff25a404dda` on
+`origin/issue-81-general-coverage`, explicitly fetched and checked against the
+remote. Live #169/#178 are **CLOSED/completed**, their delivery PRs #174/#179
+are merged and their actual CC/CT sources are preserved. #156/#81/#24/#94/#86
+are **OPEN**. Earlier open/unmerged/next-task prose below is historical.
+
+New written results, not independent acceptance:
+
+- [NF1–NF13](regular-null-front-limit.md): complete deterministic and then
+  original-law expected limits for every dimension d>=2 in the stated
+  conformally Minkowski **regular-contact past-front** class. The upper front
+  is unrestricted away from its spacelike floor contacts. Arbitrary finite
+  tip multiplicity, dependent cone normals and all higher intersections are
+  handled by geometry and full causal-pair/layer inclusion–exclusion, not
+  three/four/five-tip examples. The contact condition is explicit, not a new
+  restriction on #156.
+- [NP1–NP9](null-product-focusing-obstruction.md): admitted connected **all-null
+  7D** product regions with complete positive growth of order rho^(2/7), finite
+  independently computed curvature/NN target, and separate original-law
+  expectation. Both endpoint masks, every physical interval, focal matching,
+  short target, complements and point cancellation are computed. This refutes
+  the universal finite-target null/mixed assertion, not just a proof route.
+- [NT1–NT4 and the specialist handoff](null-mixed-continuation.md): normal-wedge
+  integration and a count-free one-sided tangency remainder improve on the
+  failed transport, but the mixed phase/angular estimate remains missing.
+  General NN characteristic contacts and a corrected general nonconformal
+  statement are not supplied by these results.
+
+[Section 8 is the single current original-item crosswalk](#8-original-contract-reconciliation-after-the-general-front-attempt).
+Naming residual owners is not discharge. No scope decision, issue closure,
+new child/agent, merge or deployment is performed. Written arguments,
+diagnostics, existing Lean foundations and #94/#86 human scrutiny remain distinct.
+
+### Prior bounded deliveries and integration-era stocktake
+
 **PARTIAL theorem delivery; #156 is not complete.** The selected TT-A/TT-B
 chain and the all-dimensional cone-ending theorem below are actual written
 proofs. The subsequent [#169 proof CC1–CC14](conformal-cone-limit.md) now supplies
@@ -73,14 +109,14 @@ than defined by a desired action. Fixed positive compatible cutoffs only.
 
 | Required row from #24/#90 | Actual covered part after this delivery | Exact unresolved part / native owner |
 | --- | --- | --- |
-| Regular SN, every d>=2 | [ND1–ND9](null-cone-dimensions.md) proves the complete Minkowski cone-ending class; 2D counting is separate. [CC](conformal-cone-limit.md) adds the whole #169 4D conformal single-cone class; [CT1–CT12](conformal-two-tip-limit.md) adds #178's regular two-tip conformal 4D class | General null fronts, topology/atlases, other dimensions/metrics and multi-tip regions beyond CT1: **#156**; neither bounded class exhausts this row |
-| Regular past–future NN, every d>=2 | ND includes every flat causal diamond and the specified transverse piecewise lower-null cone-ending class, with independent screen area; old checked plane-cut cap retains its own 4D scope | Arbitrary past–future null sheets and generator endpoint/cut regimes beyond ND: **#156** |
-| Same-side null seams/creases | Actual fixed flat 4D TT1; now [CT1–CT12](conformal-two-tip-limit.md) proves every regular two-tip conformal 4D union/lens in CT1, with arbitrary non-axial floor and spacetime factor, all crease endpoints and no extra **net** coefficient; ND retains its permitted lower strata | Tangential floor/crease contacts, three or more future tips, arbitrary future fronts, combinations with past–future joints, other dimensions/metrics: **#156**; the proved two-past-set valuation is not general bilocal additivity |
-| Tips and higher intersections of the required causal strata | TT1's strata and CT1's two tips, all components of regular Gamma and full generator endpoints retained; ND inventories one future tip and permitted lower tips/seams and their joint interfaces | General generator focusing/cut contacts, higher intersections and interacting strata remain **#156**; zero codimension-area or spacetime volume is not a normalized bound |
-| Metrics | Flat Minkowski ND and selected TT1; **every fixed smooth positive spacetime-dependent conformal factor** for CC's 4D single cone and CT1's regular two-tip union/lens, not only constant/time-only factors | Other curved-null metrics/fronts/dimensions and cut regimes remain **#156**; #81/#172's intrinsic G-SS work is separate |
-| Dimension / regularity | ND is a proof for every fixed integer d>=2 on its stated class, with a positive mixture in d>=5 and a signed logarithmic response in d=2 | No copied 4D kernel, 2D tip estimate or automatic higher-dimensional multi-front jet; **#156** retains the unresolved dimensional strata/metric rows |
-| Order / interval regime | ND, TT1, CC and CT1 prove closed ambient containment, hence isolated=ambient and intrinsic order agreement there, using the actual weighted interval in curved cases; generic finite-density Mecke APIs are reusable with real hypotheses | General atlases must prove their selected containment/physical intervals. Intrinsic-only or non-convex restrictions need their own approved regime, not an inherited flat law: **#156/#81** scope coordination |
-| Verification and provenance | New analytics are written; generic probability foundations and older selected results keep their actual compiled scope; ND supplies an all-integer diamond proof directly | Intended-statement scrutiny, justified formal ports, Chevalier text access and expert novelty/source review remain **#94/#86**; ND does not revise what older literature passages proved |
+| Regular SN, every d>=2 | ND/CC/CT preserved; [NF-d](regular-null-front-limit.md) now gives complete conformally Minkowski regular-contact past-front limits in **every** dimension, not only cones | **BLOCKED:** nonconformal/global-order fronts still need actual interval/contact producers and a corrected general statement; #156 |
+| Regular past–future NN, every d>=2 | ND's whole flat lower-null cone-ending class and all diamonds; old checked 4D plane-cut cap. [NP](null-product-focusing-obstruction.md) gives a complete all-null 7D **failure**, not positive NN coverage | **BLOCKED:** joint characteristic/angular matching NT4 outside these classes; no spacelike-to-null interchange; #156 |
+| Same-side seams/creases | NF-d covers arbitrary finite-tip regular-contact arrangements, dependent normals and broader past fronts; NP computes both same-side seams in its complete obstruction | **BLOCKED:** tangential floor/crease and general NN/metric interactions; exact missing mixed signed estimate NT2–NT4; #156 |
+| Tips and required higher intersections | NF integrates the entire fixed upper past set, including all singularities away from the floor; NF8–NF9 retain arbitrary finite multiplicity and every subset intersection | **BLOCKED:** singular contacts at the floor, lower-null tips/seams outside ND, and intrinsic focal/true-joint combinations outside NP; zero volume is no estimate; #156 |
+| Metrics | NF-d permits every fixed smooth positive spacetime-dependent conformal factor in its class. NP is a genuine nonconformal all-null product obstruction | **BLOCKED:** a corrected general geometric assertion beyond these classes, with complete physical unions and changing causal cones; PW/HO G-SS contact ranks do not supply it; #156/#81 |
+| Dimension / regularity | ND remains genuine all-dimensional flat coverage; NF10–NF13 derive the actual dimensional moments, both parities, complete curvature/screen limit and separate expectation | **BLOCKED:** dimensional versions of the remaining tangential/NN/intrinsic contact estimates. NP refutes universal 7D finite-target validity but classifies no other geometry; #156 |
+| Order / interval regime | ND/CC/CT/NF/NP each prove actual closed containment; NF9 proves full point/pair/layer accounting with one physical interval per pair | **BLOCKED:** geometric interval and containment discharge for unresolved global metric regimes. No new non-convex-order problem is silently added; #156/#81 |
+| Verification and provenance | New analytics and geometric law specializations are written. Existing Lean declarations and O13's model-sign arithmetic keep exactly their prior scope | **BLOCKED:** attributable intended-statement/human scrutiny, source/novelty work and justified verification; #94/#86. Diagnostics and green CI are not acceptance |
 
 “Higher intersections” here means the null/spacelike and null/null strata
 already retained by #90 and the live #156 contract, **not permission to add
@@ -244,7 +280,7 @@ for that class has been obtained here. Neither deleting these contacts nor
 postulating the missing jet is legitimate. The remaining problem is analytic,
 not a missing test run, a Lean port, or unmerged administrative acceptance.
 
-## 5. Native residual ownership and noncompletion crosswalk
+## 5. Historical native residual ownership and #171 noncompletion crosswalk
 
 **Native child [#169](https://github.com/q5m-ai/causal-set-emergence/issues/169)**
 now owns the bounded next producer **and complete consumer**: every smooth
@@ -360,6 +396,46 @@ contacts. No original required row is relabeled deferred. This one completed
 bounded written delivery does not exhaust #156/#81/#24. #94/#86 retain human
 review, provenance and justified formalization. No administrative closure,
 merge, deployment or sample-wise assertion accompanies this source delivery.
+
+## 8. Original-contract reconciliation after the general-front attempt
+
+This is the **current original-item crosswalk**. DISCHARGED means the named
+item itself, not all rows touched by a theorem. Every broad required row in
+§2 retains its exact missing inference. The original #156 acceptance was read
+in full beneath its dated prefixes, together with live #24/#81/#90 and the
+actual CC3–CC14, CT3–CT12 and ND1–ND9 proofs. #175 is now completed and #177
+remains open; neither spacelike result supplies a null producer by issue state.
+
+| Original #156 item | Disposition and exact source / missing statement |
+| --- | --- |
+| 1. Required SN, past–future NN, seams, tips, higher intersections, dimensions/metrics/order; required versus deferred | **DISCHARGED (inventory only):** §2 reconciles every original row, including the existing noncompact/degenerating/finite-regularity deferrals. No no-caustics or genericity condition is imposed on the parent. |
+| 2. Actual admissibility/order/action/law and independent screen/stratum targets, including any extra surviving coefficient | **BLOCKED for full scope:** NF1–NF13 discharge these for its whole geometric class; NP1–NP9 derive the admitted null failure and its actual focal coefficient. General tangential/NN and intrinsic interacting-stratum targets/coefficients still need derivation, not insertion. |
+| 3. Exact reusable producers and complete consumers, valid dimensional/metric APIs and native ownership | **BLOCKED for full scope:** NF supplies the general count-independent producer and consumer, with genuine dimensional continuation. NT1–NT4 isolate the next signed mixed-contact inference; the nonconformal corrected statement remains missing. #156 retains those obligations; assigning them does not discharge them. No new convenience-pilot children are opened. |
+| 4. Complete deterministic conclusions and separate original-law expectation, or complete counterexample plus corrected general statement | **BLOCKED:** NF is complete positive coverage; NP is an admitted complete matched all-null counterexample with an explicit corrected asymptotic on its family. A corrected **general** null/mixed theorem retaining T/N and intrinsic-metric obligations is not proved. NT2's scalar remainder, NT4's failed rank, and CO's spacelike obstruction are not substitutes. |
+| 5. Required ledger, source receipts and stopping rule; child completion is not quantified completion | **DISCHARGED (delivery discipline):** this crosswalk, NF's every-use-of-two audit, NP's complete restoration, and the exact [specialist handoff](null-mixed-continuation.md#4-corrected-statement-gap-and-bounded-specialist-handoff). #156 is explicitly not recommended for original-contract closure. |
+
+**What the parents gain.** #156 no longer needs separate tip-count proofs or
+a missing conformal dimensional normalization: NF-d supplies the complete
+regular-contact mechanism. It now has a real all-null complete-action failure,
+so unconditional universal finite-target closure is untenable. #81/#24 gain
+those positive and negative statements, not a completed corrected general
+theorem. #94/#86 still own human scrutiny, provenance and justified verification.
+
+**Why stop here rather than at a publishable lemma.** Work continued through
+full deterministic assembly, independent geometry and separate expectation,
+then through dimensional extension, normal-wedge/ramp tangency analysis,
+characteristic angular blow-up, and an actual complete nonconformal null
+obstruction. The remaining gap is sharper than the old list: NT2 is a proved
+one-sided scalar producer but lacks joint physical-phase matching; NT4 exposes
+the characteristic variable that strict-floor transport cannot resolve; NP
+forces a corrected general statement. Repeating the failed inverse/third-
+derivative majorants or claiming CO's interior residue would not advance it.
+No exhaustive classification of individual spacetimes is demanded, and no
+smaller closure endpoint is enacted without explicit user approval.
+
+No Lean-affecting input changes accompany this package; no fresh full Lean
+audit or new compiled theorem is claimed. The PR records observed local checks,
+live math rendering, exact-head CI and one bounded feedback pass separately.
 
 ### Original #171 verification receipt (preserved)
 
