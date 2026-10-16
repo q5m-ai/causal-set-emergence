@@ -118,6 +118,25 @@ lemmas, finite diagnostics, checked foundations and independent review are
 separate; the original quantified goal is not completed by this sharper blocker.
 The 2D row and null/mixed finalization remain owned by #176/#179, respectively.
 
+**Subsequent whole-union and opening-head continuation, still partial:**
+[UP3.1–UP3.17 at `d903176`](https://github.com/q5m-ai/causal-set-emergence/blob/d903176357f959310417ca6b518ec1db2f0ac534/notes/curved-three-d-union.md)
+derive natural barriers for all active good wells, count-free physical tip
+packing and a uniform two-tip Morse resolution. The resulting single
+aggregate kernel has a normalized absolute vanishing comparison error.
+The actual null Hamiltonian gives a global competing-state threshold and a
+summable critical cut-graph budget. An exact aggregate inverse then produces
+the opening-only quadratic coefficient and its genuine signed-moment zero.
+This is **not** a full second coefficient or the critical remainder: the
+opening error is only little-o of order two, hence its ramp is only little-o
+of order three. The remaining producer is a weighted half-order improvement
+for changing competitors, cut-curvature concentration and simultaneous moving
+masks, with the actual good-clock cap and **both** coefficient tails restored.
+Coalescing-well and singular-continuous-curvature controls defeat specific
+unweighted/BV shortcuts; neither is an admitted metric/action obstruction.
+These are written arguments and 18 finite diagnostics, not independent
+acceptance. The arbitrary-smooth deterministic and separate expected results
+remain **UNKNOWN under #177/#81**; no parent row, target, cutoff or law changes.
+
 The older checked null cap is also retained exactly: flat 4D diamond from
 (-T,0) to zero cut by t-x1>-a, with 0<a<T. Its complete deterministic and
 separate expected limit is the algebraic target pi*a*(2T-a), by
