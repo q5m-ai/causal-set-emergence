@@ -726,6 +726,52 @@ metric/dimension coverage and the separately owned null/mixed branch
 remain unresolved; the subsequent complete curved 2D result is recorded below. #164's proof and certificate are unchanged; final human
 scrutiny remains #94/#86, and #81/#24 stay open.
 
+The [curved-3D response](notes/curved-three-d-response.md) derives the actual
+physical-union primitive and its first subtraction for the original smooth
+core. Its **restricted** FCDC-3 theorem proves the complete deterministic and
+separate original-law expectation limit under a faithful whole-interval
+conformal-cover condition, with independent curvature and variable-angle curve
+joint. The [focal continuation](notes/curved-three-d-focusing.md) additionally
+proves the complete zero limit for one genuinely curved compact 3D slab with
+quartic conjugacy, two-route cuts and physical endpoint overlaps. It uses the
+3D kernel, not the 4D obstruction's coefficient. The original arbitrary-metric
+3D critical remainder remains **UNKNOWN under #177/#81**. These are written
+arguments and diagnostics, not new Lean proofs or independent acceptance;
+#94/#86 retain scrutiny. The independent #175 curved-2D worker is not a premise.
+The [signed-matching continuation](notes/curved-three-d-matching.md) derives a
+weaker averaged criterion and smooth one-screen angular control without a
+finite analytic contact classification. Uniform physical-union matching when
+the quartic coefficient vanishes remains unproved; this adds no complete-class
+coverage or counterexample and retains the original #177/#81 quantifiers.
+The subsequent [cluster audit](notes/curved-three-d-clusters.md) establishes a
+uniform 9/5 physical-volume bound for the phase-bad sector, including flat and
+losing near-minimizers, and a joint weighted contact estimate. The remaining
+blocker is aggregate signed matching of the phase-good active Morse clusters,
+with both tips, physical overlaps, all masks and both subtractions restored.
+Its compatible accumulating-well diagnostic is not a spacetime counterexample.
+The [whole-union continuation](notes/curved-three-d-union.md) now derives
+count-free tip-overlap control, a resolved physical Morse model and a global
+cut threshold from the actual null Hamiltonian. It produces an aggregate
+opening coefficient and a summable cut-graph budget, but not the critical
+extra half-order with changing competitors and simultaneous moving masks.
+The original complete deterministic/expected conclusion remains **UNKNOWN**;
+coalescing-well and singular-curvature controls diagnose failed inferences,
+not admitted complete-action counterexamples.
+The [critical continuation](notes/curved-three-d-critical.md) states the exact
+weighted ramp/signed obligation and both subtraction tails, derives a
+two-sided ordinary-cut budget, and constructs fixed admitted metrics realizing
+the circular arrival envelope and singular cut curvature at a point source.
+Their complete all-source actions are not computed. The remaining gap is a
+uniform weighted aggregate opening/contact numerator estimate, not the
+existence of a cut budget; every original acceptance item remains mapped
+without narrowing #177 or claiming its deterministic/expected conclusion.
+The [final phase freeze and specialist handoff](notes/curved-three-d-phase-freeze.md)
+records two unsuccessful final approaches and one exact unproved lemma for
+signed increments of the complete unit-weight physical ramp. This avoids
+requiring arbitrary-weight expansions or a classical second coefficient;
+it does not prove the missing limit. The research phase is complete, **not
+#177**. Specialist review is recommended before further autonomous work.
+
 The [intrinsic Hadamard optical theorem HO-4](notes/hadamard-optical-limit.md)
 adds written 4D coverage for every ambient-contained G-SS region in an
 ultrastatic spacetime whose spatial geometry is complete, simply connected

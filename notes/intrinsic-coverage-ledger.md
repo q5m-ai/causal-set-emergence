@@ -71,6 +71,115 @@ deterministic conclusion. No row supplies a sample-wise theorem.
 | Every integer d>=2, ND1's Minkowski cone-ending class: globally 1-Lipschitz H, H(0)>0, bounded radial domain, finite piecewise smooth spacelike/null lower strata, radial transversality at regular SN/NN pieces; both 2D joint atoms regular | [ND1–ND9](https://github.com/q5m-ai/causal-set-emergence/blob/0358c32f7ca19a4491b7e904ee5eaf44003619d3/notes/null-cone-dimensions.md): complete induced screen-area/counting limit and separate expectation. Includes smooth strict-Lipschitz floors and all flat diamonds | Written; higher-dimensional beta mixture and 2D logarithmic/counting arguments are distinct. No arbitrary future seam or metric extension; wider rows remain #156 |
 | **Every smooth globally strict-Lipschitz #84 floor H with H(0)>0, and every fixed smooth positive spacetime-dependent conformal factor on its compact causal enclosure, in 4D conformal Minkowski space; one future cone/tip and regular SN joint** | **[CC1–CC14](https://github.com/q5m-ai/causal-set-emergence/blob/1e7ee02170d8723ed4544edfb9f9074200710095/notes/conformal-cone-limit.md): complete deterministic half-curvature plus induced SN-area limit, then separate original-law expectation** | **Written, not compiled or human-accepted.** Actual cone-ball domain, both endpoint measures, matched Mellin remainder and floor/generator/tip fluxes; whole #169 class, not only round/time-only factors. All other null rows remain #156 |
 
+### Curved-3D continuation — restricted written coverage, not #177 completion
+
+At base `d2cbbc12dbfee6376140a2137013f3d409adfdbf`, the following additional
+results use the actual dimension-three kernel and normalization. They do not
+consume the independent unmerged curved-2D #175 result or modify its row.
+
+| Added 3D geometry / exact restriction | Complete conclusion | Verification |
+| --- | --- | --- |
+| G-SS with a faithful whole-interval conformal-diamond cover; arbitrary smooth positive conformal density, including nonempty variable-angle curve joints | [FCDC-3 / C3.5–C3.9 at `d75feaf`](https://github.com/q5m-ai/causal-set-emergence/blob/d75feafe5c7b1e01d8cf4584c5fedead73f9b0b2/notes/curved-three-d-response.md): complete independent curvature-plus-joint limit, then separate original-law expectation | Written with finite diagnostics; the additional whole-interval property is explicit, not inferred from local conformal flatness |
+| Exactly the duration-7/4 compact r/x-torus slab of F3.1, with r period 20, x period pi and H(x)=sin(2x)²/4; empty joint, quartic conjugate family and both ordinary two-route seams | [F3.1–F3.8 at `d75feaf`](https://github.com/q5m-ai/causal-set-emergence/blob/d75feafe5c7b1e01d8cf4584c5fedead73f9b0b2/notes/curved-three-d-focusing.md): complete zero deterministic limit, then original-law expectation, against independently zero scalar/joint target | Written, not compiled or independently accepted. Actual 3D physical union, both tips, opening/closing contacts and entire complement are retained; no 4D kernel/coefficient transfer |
+
+The focal continuation resolves a misleading failure of the cubic-jet route:
+its actual third inverse coefficient is not absolutely integrable, but the
+required **3D** critical remainder has a summable margin after matching.
+This is a WORKS example, not a counterexample. No new FAILS row is added.
+The universal curved-3D row remains UNKNOWN and owned by native **#177**,
+which has #90/#150/#77 prerequisites and blocks #81. No finite-type or
+no-caustics condition is added to its original contract. #94/#86 retain
+human scrutiny and justified formalization; green diagnostics/CI are not
+proof certification. All older success/failure sources remain unchanged.
+
+**Subsequent #177 continuation, not another complete-class result:**
+[M3.1–M3.10 and the original-acceptance crosswalk at `f1e2ff0`](https://github.com/q5m-ai/causal-set-emergence/blob/f1e2ff08597a695b49c2ac58334d8895e542fba0/notes/curved-three-d-matching.md)
+prove a weaker averaged-primitive criterion which does not require a
+pointwise second coefficient; reconstruct the actual quartic matching; and
+derive a smooth one-screen minimum-coordinate Jacobian and weighted angular
+estimate without counting or analytically classifying contacts. The estimate
+controls the nonlinear near-conjugate layer at each fixed positive quartic
+margin. It does **not** prove the complete arbitrary-metric action.
+
+**Further foundation audit and physical-phase refinement:**
+[CL3.1–CL3.15 at `4989c94`](https://github.com/q5m-ai/causal-set-emergence/blob/4989c9439aec68fff770b17c688dcec209f979ae/notes/curved-three-d-clusters.md)
+derive the actual-clock rank and
+endpoint measure explicitly, then use the **actual volume** to control
+negative defects at losing stationary states. The phase-bad pair sector has
+a uniform volume exponent 9/5 through vanishing quartic coefficients and flat
+clusters, with arbitrary bounded physical masks. CL3.11 also supplies a joint
+weighted source/target contact bound. These improve the earlier rough 8/5 and
+fixed-quartic-margin estimates, not the complete-class coverage.
+
+The original curved-3D row in the parent table below is still **UNKNOWN**;
+its precise child owner is **#177 under #81**, not a new narrowed class.
+What remains is scale-uniform aggregate signed matching of the **physical
+union** on the phase-good active Morse clusters: both tips, all action-gap
+openings and overlaps, both measures, simultaneous moving/closing masks and
+both restored subtraction terms. Local Morse control and a semiconvex gap
+envelope do not supply that producer. A fixed smooth accumulating-well germ
+satisfies the minimum-coordinate and terminal null-covector identities but
+defeats the shortcut to a uniform finite active-well count. It is not a
+Lorentzian point-source realization or an admitted spacetime obstruction.
+No second pointwise jet or finite-type hypothesis is inserted into G-SS.
+The abstract oscillatory primitive, incompatible quartic panel and polygon
+fan are analytic negative controls, **not admitted spacetime obstructions**.
+There is no additional G-SS FAILS row or complete-class WORKS row. The written
+lemmas, finite diagnostics, checked foundations and independent review are
+separate; the original quantified goal is not completed by this sharper blocker.
+The 2D row and null/mixed finalization remain owned by #176/#179, respectively.
+
+**Subsequent whole-union and opening-head continuation, still partial:**
+[UP3.1–UP3.17 at `d903176`](https://github.com/q5m-ai/causal-set-emergence/blob/d903176357f959310417ca6b518ec1db2f0ac534/notes/curved-three-d-union.md)
+derive natural barriers for all active good wells, count-free physical tip
+packing and a uniform two-tip Morse resolution. The resulting single
+aggregate kernel has a normalized absolute vanishing comparison error.
+The actual null Hamiltonian gives a global competing-state threshold and a
+summable critical cut-graph budget. An exact aggregate inverse then produces
+the opening-only quadratic coefficient and its genuine signed-moment zero.
+This is **not** a full second coefficient or the critical remainder: the
+opening error is only little-o of order two, hence its ramp is only little-o
+of order three. The remaining producer is a weighted half-order improvement
+for changing competitors, cut-curvature concentration and simultaneous moving
+masks, with the actual good-clock cap and **both** coefficient tails restored.
+Coalescing-well and singular-continuous-curvature controls defeat specific
+unweighted/BV shortcuts; neither is an admitted metric/action obstruction.
+These are written arguments and 18 finite diagnostics, not independent
+acceptance. The arbitrary-smooth deterministic and separate expected results
+remain **UNKNOWN under #177/#81**; no parent row, target, cutoff or law changes.
+
+**Critical continuation and actual realizability, still incomplete:**
+[CR3.1–CR3.19 at `6bfbbdc`](https://github.com/q5m-ai/causal-set-emergence/blob/6bfbbdc22d86e848b0b1b8083ecbc105c485cd54/notes/curved-three-d-critical.md)
+state the exact whole-domain weighted ramp/direct-signed obligation and both
+subtraction tails, and derive a two-sided ordinary-cut critical budget.
+A smooth polar-cap/convex-disk construction gives fixed admitted G-SS metrics
+whose point-source arrival envelopes realize the circular controls. A second
+construction produces nonzero singular continuous curvature in an actual
+proper-arrival cut-stiffness graph. This is new realizability evidence, not a
+retroactive claim about the old frozen-amplitude panels. The independent slab
+target is calculated, but its complete all-source action is **uncomputed**;
+there is no new FAILS or complete-class WORKS row. The still-missing inference
+is a uniform weighted bound for the aggregate opening/contact **numerator**,
+including third-state entry, singular transport, simultaneous masks, the
+actual good-clock cap and both coefficient restorations. An integrable cut
+budget alone is not that bound. CR3 section 8 maps every original #177
+acceptance item without narrowing it; 17 new scalar diagnostics and written
+arguments are distinct from independent acceptance. The original deterministic
+and separate expected assertions remain **UNKNOWN**, owned by #177 under #81.
+
+**Final research-phase freeze, not issue completion:**
+[PF3-L and the specialist handoff](curved-three-d-phase-freeze.md) isolate one
+exact remaining signed-increment lemma for the complete physical unit-weight
+ramp, with its conditional deterministic-then-expectation consumer. The final
+collective-matching attempt still lacks physical localization/allocation;
+the total-observable signed identity still lacks the needed geometric
+increment estimate. Softer-coordinate algebra, a conditional vertex budget
+and a positive abstract ramp calibration do not prove convergence or an
+action obstruction. Seven new finite checks are diagnostics only. All original
+acceptance items are mapped; the recommendation is to pause autonomous
+continuation for specialist review. #177/#81/#24 remain open and UNKNOWN in
+this row, without a new WORKS/FAILS class or changed action, target or law.
+
 The older checked null cap is also retained exactly: flat 4D diamond from
 (-T,0) to zero cut by t-x1>-a, with 0<a<T. Its complete deterministic and
 separate expected limit is the algebraic target pi*a*(2T-a), by
