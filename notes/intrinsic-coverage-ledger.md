@@ -137,6 +137,25 @@ These are written arguments and 18 finite diagnostics, not independent
 acceptance. The arbitrary-smooth deterministic and separate expected results
 remain **UNKNOWN under #177/#81**; no parent row, target, cutoff or law changes.
 
+**Critical continuation and actual realizability, still incomplete:**
+[CR3.1–CR3.19 at `6bfbbdc`](https://github.com/q5m-ai/causal-set-emergence/blob/6bfbbdc22d86e848b0b1b8083ecbc105c485cd54/notes/curved-three-d-critical.md)
+state the exact whole-domain weighted ramp/direct-signed obligation and both
+subtraction tails, and derive a two-sided ordinary-cut critical budget.
+A smooth polar-cap/convex-disk construction gives fixed admitted G-SS metrics
+whose point-source arrival envelopes realize the circular controls. A second
+construction produces nonzero singular continuous curvature in an actual
+proper-arrival cut-stiffness graph. This is new realizability evidence, not a
+retroactive claim about the old frozen-amplitude panels. The independent slab
+target is calculated, but its complete all-source action is **uncomputed**;
+there is no new FAILS or complete-class WORKS row. The still-missing inference
+is a uniform weighted bound for the aggregate opening/contact **numerator**,
+including third-state entry, singular transport, simultaneous masks, the
+actual good-clock cap and both coefficient restorations. An integrable cut
+budget alone is not that bound. CR3 section 8 maps every original #177
+acceptance item without narrowing it; 17 new scalar diagnostics and written
+arguments are distinct from independent acceptance. The original deterministic
+and separate expected assertions remain **UNKNOWN**, owned by #177 under #81.
+
 The older checked null cap is also retained exactly: flat 4D diamond from
 (-T,0) to zero cut by t-x1>-a, with 0<a<T. Its complete deterministic and
 separate expected limit is the algebraic target pi*a*(2T-a), by
