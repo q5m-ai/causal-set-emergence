@@ -129,6 +129,9 @@ class ReviewPackageTests(unittest.TestCase):
         page = Page()
         page.feed(html)
         self.assertFalse(page.scripts)
+        # Static-site readers must not depend on the review branch surviving.
+        for revision in re.findall(r"causal-set-emergence/blob/([^/]+)/", html):
+            self.assertRegex(revision, r"^[0-9a-f]{40}$")
         self.assertEqual(len(page.ids), len(set(page.ids)))
         for link in page.local_links:
             if link.startswith("#"):
