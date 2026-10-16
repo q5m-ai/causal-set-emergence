@@ -89,7 +89,8 @@ weight derivatives cancel in the finite sum; the two face fluxes and the
 compensating joint term are retained until that sum. The physical point is
 in strict short exactly once. Conditional on PF3-L, this gives the complete
 unit-field deterministic limit to the independently defined half-scalar
-integral plus induced joint length weighted by the positive normal angle.
+integral plus induced joint length weighted by coth of the positive normal
+angle.
 Only then does C3.9's separately justified finite-density identity transfer
 the **original** Poisson expectation. No sample-wise assertion follows.
 
