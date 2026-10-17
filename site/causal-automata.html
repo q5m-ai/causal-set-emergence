@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="An offline interactive laboratory: different cellular automata, identical causal order, different information propagation.">
+<title>Same cones, different worlds · Causal automata lab</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1218;--panel:#121e27;--line:#2b3d49;--text:#e6eeef;--muted:#a3b6c0;--mint:#7ce3be;--blue:#83bdf5;--coral:#ffb08e;--gold:#f3d281}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#1b3339 0,transparent 45%),var(--bg);color:var(--text);font:15px/1.6 system-ui,sans-serif}main{max-width:1400px;margin:auto;padding:32px}h1,h2,h3,p{margin-top:0}h1{font:clamp(36px,5vw,66px)/1.08 Georgia,serif;letter-spacing:-.035em;margin-bottom:18px}h1 em{color:var(--mint);font-weight:normal}h2{font:28px/1.2 Georgia,serif;margin-bottom:12px}h3{font-size:16px;margin-bottom:8px}p{color:var(--muted)}a{color:var(--mint)}.eyebrow{font:11px ui-monospace,monospace;text-transform:uppercase;letter-spacing:.16em;color:var(--mint);margin-bottom:20px}.intro{max-width:790px;font-size:17px}.badge{display:inline-block;border:1px solid var(--line);border-radius:20px;padding:4px 12px;font:11px ui-monospace,monospace;color:var(--muted);margin-bottom:24px}.tour,.controls,.modes,.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.tour{margin:24px 0 14px}.tour button{text-align:left;flex:1;min-width:180px;padding:14px 18px}.tour small{display:block;font-weight:normal;color:var(--muted);margin-top:4px}button,select,input{font:inherit}button,select,input[type=number]{border:1px solid var(--line);border-radius:8px;background:#192832;color:var(--text);padding:9px 12px}button{cursor:pointer;font-size:13px;font-weight:650}button:hover{border-color:var(--mint)}button[aria-pressed=true]{background:#24483f;border-color:var(--mint);color:#beffe8}:focus-visible{outline:3px solid var(--gold);outline-offset:3px}input[type=range]{accent-color:var(--mint);max-width:180px}input[type=number]{width:80px}label{font-size:13px;color:var(--muted)}.controls{padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.controls label{display:flex;align-items:center;gap:8px}.modes{margin:18px 0 10px}.modes span{font-size:12px;color:var(--muted);margin-right:5px}.hint{font-size:13px;margin-bottom:14px;min-height:42px;max-width:1000px}.worlds{display:grid;grid-template-columns:1fr 1fr;gap:16px}.world,.detail,.card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}.world header{padding:14px 18px;display:flex;justify-content:space-between;align-items:center}.world header h2{font:20px Georgia,serif;margin:0}.rule{color:var(--muted);font:12px ui-monospace,monospace}.world canvas{width:100%;display:block;aspect-ratio:81/49;background:#0a1117;cursor:crosshair;touch-action:pan-y}.world footer{padding:12px 18px;color:var(--muted);font-size:12px;min-height:62px}.legend{display:flex;flex-wrap:wrap;gap:18px;font-size:12px;margin:12px 0 22px;color:var(--muted)}.key:before{content:'';display:inline-block;width:9px;height:9px;margin-right:7px;background:var(--color);border-radius:2px}.dashboard{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;margin-bottom:24px}.detail{padding:20px}.detail canvas{display:block;width:100%;height:290px;margin-top:14px;background:#0a1117;border-radius:8px}.detail p{font-size:13px;margin:10px 0 0}.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}.stat{padding:14px;background:#0b161e;border-radius:8px}.stat strong{font:28px ui-monospace,monospace;color:var(--mint);display:block}.stat span{color:var(--muted);font-size:12px}.callout{border-left:3px solid var(--mint);padding:12px 16px;background:#182d30;font-size:14px;margin:15px 0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{padding:22px}.card p,.card li{font-size:14px}.card b{color:var(--text)}.card .n{color:var(--mint);font:12px ui-monospace,monospace;display:block;margin-bottom:18px}.card ul{padding-left:18px;color:var(--muted)}code{font:12px ui-monospace,monospace;color:#d6e8f1}details{border-top:1px solid var(--line);padding-top:16px;margin-top:24px}summary{cursor:pointer;color:var(--mint)}table{border-collapse:collapse;width:100%;font:13px ui-monospace,monospace;margin-top:15px}td,th{text-align:center;border-bottom:1px solid var(--line);padding:7px}th{color:var(--muted)}.bottom{margin-top:28px;color:var(--muted);font-size:12px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}noscript{display:block;padding:20px;background:#54352b}.formula{white-space:nowrap}.status{color:var(--gold)}@media(max-width:780px){main{padding:22px 16px}.worlds,.dashboard,.cards{grid-template-columns:1fr}.world canvas{aspect-ratio:81/49}.controls{gap:14px}.tour button{min-width:100%;flex:auto}.rule{font-size:11px}.hint{min-height:0}.detail{padding:16px}h1{font-size:42px}}
+</style>
+</head>
+<body>
+<main>
+<div class="eyebrow">Causal Set Emergence / an exploratory laboratory</div>
+<h1>Same cones.<br><em>Different worlds.</em></h1>
+<p class="intro">A complicated universe is not necessarily complicated spacetime. Put two simple rules on the <strong>same network of possible causes</strong>—then separate what is allowed to happen from what actually changes.</p>
+<div class="badge">Single file · offline · deterministic · not a model of quantum gravity</div>
+<noscript>This laboratory needs JavaScript. Enable it to generate histories and inspect causal relations.</noscript>
+<section aria-label="Interactive automata laboratory">
+<h2 class="sr">Compare rules and causal structure</h2>
+<div class="tour" aria-label="Guided experiments">
+<button data-tour="patterns">01 / Different patterns<small>Start with one bit. Compare the histories.</small></button>
+<button data-tour="order">02 / Remove the paint<small>Keep every event. Reveal identical order.</small></button>
+<button data-tour="difference">03 / Change one event<small>Same possible future. Different actual effects.</small></button>
+</div>
+<div class="controls">
+<label>Initial row <select id="initial"><option value="single">One bit</option><option value="random">Seeded random</option><option value="periodic">Periodic 0011</option><option value="zero">All zeros</option></select></label>
+<label>Random seed <input id="seed" type="number" min="0" max="999999" value="30"></label>
+<button id="new-seed">Next seed</button>
+<label>Reveal through t = <output id="time-value">48</output><input id="time" aria-label="Reveal history through time" type="range" min="0" max="48" value="48"></label>
+<button id="play" aria-pressed="false">▶ Reveal</button>
+</div>
+<div class="modes" aria-label="Display layer"><span>Look at</span><button data-mode="states" aria-pressed="true">Cell states</button><button data-mode="order" aria-pressed="false">Causal order</button><button data-mode="difference" aria-pressed="false">Perturbation</button></div>
+<p class="hint" id="mode-hint"></p>
+<div class="worlds">
+<article class="world"><header><h2>Rule 30</h2><span class="rule">L XOR (C OR R)</span></header><canvas id="world30" tabindex="0" aria-label="Rule 30 history. Click to choose an event, or use arrow keys to move the shared selection."></canvas><footer id="readout30"></footer></article>
+<article class="world"><header><h2>Rule 150</h2><span class="rule">L XOR C XOR R</span></header><canvas id="world150" tabindex="0" aria-label="Rule 150 history. Click to choose an event, or use arrow keys to move the shared selection."></canvas><footer id="readout150"></footer></article>
+</div>
+<div class="legend" id="legend"></div>
+<div class="dashboard">
+<section class="detail" aria-labelledby="graph-title">
+<div class="eyebrow">Magnifier / shared dependency network</div><h2 id="graph-title">Events, not black pixels.</h2>
+<div class="row"><label for="event-x">Event x</label><input id="event-x" type="number" min="-40" max="40" value="0"><label for="event-t">t</label><input id="event-t" type="number" min="0" max="48" value="8"></div>
+<canvas id="graph" role="img" aria-label="Magnified dependency graph around the selected event: three incoming dependencies per update; its past and future are highlighted."></canvas>
+<p>Time runs <strong>downward</strong>. Lines are one-step dependencies; causal order also includes every relation implied by a path. Zero-valued cells are still events. Positions here are display coordinates, not geometry recovered from the order.</p>
+</section>
+<section class="detail" aria-labelledby="measure-title">
+<div class="eyebrow">What changes / what stays fixed</div><h2 id="measure-title">One order. Two dynamics.</h2>
+<div class="stats"><div class="stat"><strong id="event-count">3,969</strong><span>events in the revealed window</span></div><div class="stat"><strong>Identical</strong><span>dependency orders for both rules</span></div><div class="stat"><strong id="possible-count">—</strong><span>possible descendants shown</span></div><div class="stat"><strong id="effect-count">—</strong><span>changed descendants: Rule 30 / 150</span></div></div>
+<p id="selection" role="status" aria-live="polite"></p>
+<div class="callout" id="takeaway"></div>
+<p>“Changed” means two runs disagree after we force the selected bit to its opposite value, separately in each rule. The unperturbed run is the baseline. Counts exclude the selected event and include only revealed cells in this window.</p>
+</section>
+</div>
+</section>
+<section aria-labelledby="interpret-title">
+<h2 id="interpret-title">Three ideas this toy universe keeps apart</h2>
+<div class="cards">
+<article class="card"><span class="n">01 / STRUCTURE</span><h3>A causal set, with scaffolding</h3><p>Each update is an event. Define <b>A ≺ B</b> when a directed dependency path reaches B from A. On this infinite spatial lattice that is exactly <code>Δt &gt; 0 and |Δx| ≤ Δt</code>.</p><p>This is a locally finite partial order. But the lattice, left/right roles, and synchronized clock are built in. The bare order alone does not supply the input roles needed to evaluate Rule 30.</p><p><b>It is not a Lorentz-invariant sprinkling or emergent gravity.</b> Erasing labels does not erase preferred lattice structure.</p></article>
+<article class="card"><span class="n">02 / INFLUENCE</span><h3>Permission is not propagation</h3><p>The mint cone is the possible future. Orange cells are an actual difference between two histories. Different rules can propagate, mask, or cancel a disturbance inside the same cone.</p><p>Rule 30 always responds to flipping L alone. It responds to flipping C only if R = 0, and R only if C = 0. Rule 150 responds to every single-input flip, but changes arriving on multiple paths can cancel by XOR.</p><p><b>A cone bounds influence; it does not specify a law.</b> The experiment measures a particular intervention, not every possible message or information channel.</p></article>
+<article class="card"><span class="n">03 / PREDICTION</span><h3>Complexity is not randomness</h3><p>Rule 30 plus a one-bit seed is a short description of a complicated picture. Apparent randomness is not proof of algorithmic incompressibility, and universal “no shortcuts” claims for Rule 30 are not established here.</p><p>The reveal slider uncovers a precomputed history; moving it backward <b>does not invert the dynamics</b>. Both all-zero and all-one rows evolve to all zeros under Rule 30, so it is not globally reversible on an infinite or periodic lattice.</p><p>Predictability, reversibility, low-entropy initial conditions, and the orientation of causal order are separate questions.</p></article>
+</div>
+</section>
+<details><summary>Under the hood: truth tables, boundaries, and what this does not prove</summary>
+<p>Each output is computed from the previous row’s left (L), center (C), and right (R) bits. These Boolean rules use all three inputs as potential dependencies.</p>
+<table><caption>All eight input neighborhoods</caption><thead><tr><th scope="col">L C R</th><th scope="col">Rule 30 output</th><th scope="col">Rule 150 output</th></tr></thead><tbody id="truth"></tbody></table>
+<p>The displayed window is x = −40…40 and t = 0…48. Computation includes 48 extra initial cells on <em>each</em> side: enough to calculate every displayed event without artificial wraparound or edge effects. Random initial bits are a reproducible hash of seed and spatial coordinate; this is not physical or cryptographic randomness. Some causal ancestors and descendants lie outside the displayed window.</p>
+<p>The graph shows a small crop of the same dependency lattice in both histories. We do not infer dimension from the images or compute a continuum-limit action. There is no stochastic sprinkling, quantum dynamics, varying causal geometry, or thermodynamic entropy measurement in this laboratory. Comparisons with manifold-like causal sets would require separate diagnostics.</p>
+<p><strong>The next research question:</strong> what changes if a rule creates the events and their order, instead of merely changing states on this fixed order? That is a different experiment, closer to causal growth—and it must confront label independence and manifold-likeness.</p>
+</details>
+<footer class="bottom">Exploratory teaching model · All calculations run locally; no external assets, analytics, or dependencies. Save this HTML file to keep the laboratory.</footer>
+</main>
+<script id="causal-model">
+'use strict';
+const CausalModel = (() => {
+  const HALF = 40, STEPS = 48, PAD = HALF + STEPS, WIDTH = PAD * 2 + 1;
+  function bit(rule, l, c, r) { return (rule >>> ((l << 2) | (c << 1) | r)) & 1; }
+  function initialBit(kind, seed, x) {
+    if (kind === 'single') return +(x === 0);
+    if (kind === 'zero') return 0;
+    if (kind === 'periodic') return ((x % 4 + 4) % 4) >> 1;
+    let h = Math.imul(x ^ seed, 0x45d9f3b); h = Math.imul(h ^ (h >>> 16), 0x45d9f3b);
+    return (h ^ (h >>> 16)) & 1;
+  }
+  function history(rule, kind, seed, intervention = null) {
+    const rows = [];
+    for (let t = 0; t <= STEPS; t++) {
+      const row = new Uint8Array(WIDTH);
+      for (let j = 0; j < WIDTH; j++) row[j] = t === 0 ? initialBit(kind, seed, j - PAD) : bit(rule, rows[t-1][j-1] || 0, rows[t-1][j], rows[t-1][j+1] || 0);
+      if (intervention && t === intervention.t) row[intervention.x + PAD] ^= 1;
+      rows.push(row);
+    }
+    return rows;
+  }
+  const get = (rows, x, t) => rows[t][x + PAD];
+  const precedes = (a, b) => b.t > a.t && Math.abs(b.x - a.x) <= b.t - a.t;
+  function metrics(base, altered, event, time) {
+    let possible = 0, changed = 0;
+    for (let t = 0; t <= time; t++) for (let x = -HALF; x <= HALF; x++) {
+      if (precedes(event, {x,t})) { possible++; changed += +(get(base,x,t) !== get(altered,x,t)); }
+    }
+    return {possible, changed};
+  }
+  return {HALF, STEPS, PAD, WIDTH, bit, initialBit, history, get, precedes, metrics};
+})();
+</script>
+<script>
+'use strict';
+(() => {
+  const M = CausalModel, $ = id => document.getElementById(id);
+  const colors = {mint:'#7ce3be',blue:'#83bdf5',coral:'#ffb08e',gold:'#f3d281',off:'#344650',on:'#b9d4de',muted:'#a3b6c0'};
+  let mode = 'states', event = {x:0,t:8}, time = 48, histories = {}, timer = null;
+  const hints = {
+    states:'Pale cells are 1; dark cells are 0. Both are events. Click either history to select a shared event. Its past and possible future are outlined. Arrow keys move the selection; x and t inputs work too.',
+    order:'The bits have disappeared—not the events. Both panels now show the identical order. Mint dots are possible descendants; blue dots are ancestors; other events are incomparable with the selection.',
+    difference:'We flip the selected event in a second run of each rule. Orange marks disagreements with that rule’s baseline. Mint marks possible descendants with no disagreement. The intervention does not change the dependency order.'
+  };
+  const takeaways = {
+    states:'Different pictures do not imply different spacetime. Here the varying object is the state on a fixed order.',
+    order:'Remove the state values and these two worlds become indistinguishable. Their background causal geometry did not become complicated with the patterns.',
+    difference:'Possible influence is fixed by the order. The actual response depends on the rule, the state, and the intervention. Neither response can escape the shared cone.'
+  };
+  function rebuild() {
+    const seed = Math.max(0, Math.min(999999, Math.trunc(Number($('seed').value) || 0)));
+    $('seed').value = seed;
+    for (const r of [30,150]) histories[r] = {base:M.history(r,$('initial').value,seed), altered:M.history(r,$('initial').value,seed,event)};
+    render();
+  }
+  function setup(canvas) {
+    const rect = canvas.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+    canvas.width = Math.round(rect.width * dpr); canvas.height = Math.round(rect.height * dpr);
+    const ctx = canvas.getContext('2d'); ctx.scale(dpr,dpr);
+    ctx.fillStyle='#0a1117'; ctx.fillRect(0,0,rect.width,rect.height);
+    return {ctx,w:rect.width,h:rect.height};
+  }
+  function relation(x,t) {
+    if (x===event.x && t===event.t) return 'self';
+    if (M.precedes(event,{x,t})) return 'future';
+    if (M.precedes({x,t},event)) return 'past';
+    return 'other';
+  }
+  function cone(ctx, px, py, cellW, cellH, width, height) {
+    ctx.save();ctx.beginPath();ctx.rect(0,0,width,height);ctx.clip();ctx.setLineDash([4,4]);ctx.lineWidth=1;
+    for (const sign of [-1,1]) {
+      ctx.strokeStyle=colors.mint;ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(px+sign*49*cellW,py+49*cellH);ctx.stroke();
+      ctx.strokeStyle=colors.blue;ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(px+sign*49*cellW,py-49*cellH);ctx.stroke();
+    }
+    ctx.restore();
+  }
+  function drawWorld(rule) {
+    const {ctx,w,h} = setup($('world'+rule)), cw=w/81, ch=h/49, {base,altered}=histories[rule];
+    for(let t=0;t<=time;t++) for(let x=-40;x<=40;x++) {
+      const rel=relation(x,t), left=(x+40)*cw, top=t*ch;
+      if(mode==='states') {
+        ctx.fillStyle=M.get(base,x,t)?colors.on:'#17252e';ctx.fillRect(left+.4,top+.4,Math.max(1,cw-.8),Math.max(1,ch-.8));
+      } else {
+        const changed=M.get(base,x,t)!==M.get(altered,x,t);
+        ctx.fillStyle=mode==='difference' && changed?colors.coral:rel==='future'?mode==='difference'?'#254c42':colors.mint:rel==='past'?(mode==='order'?colors.blue:'#243645'):'#40515c';
+        if(mode==='order') {ctx.beginPath();ctx.arc(left+cw/2,top+ch/2,Math.max(.8,cw*.21),0,Math.PI*2);ctx.fill();}
+        else ctx.fillRect(left+.5,top+.5,Math.max(1,cw-1),Math.max(1,ch-1));
+      }
+    }
+    const px=(event.x+40.5)*cw,py=(event.t+.5)*ch;
+    ctx.save();ctx.beginPath();ctx.rect(0,0,w,(time+1)*ch);ctx.clip();
+    cone(ctx,px,py,cw,ch,w,h);
+    if(event.t<=time){ctx.strokeStyle=colors.gold;ctx.lineWidth=2;ctx.strokeRect(px-cw/2-1,py-ch/2-1,cw+2,ch+2);}
+    ctx.restore();
+    if(time<48){ctx.fillStyle=colors.muted;ctx.font='12px system-ui';ctx.fillText('Not yet revealed',12,Math.min(h-10,(time+1)*ch+22));}
+    const a=M.get(base,event.x,event.t), b=M.get(altered,event.x,event.t);
+    const metrics=M.metrics(base,altered,event,time);
+    $('readout'+rule).textContent=`Selected bit: ${a} → ${b} in the intervened run. ${metrics.changed.toLocaleString()} changed descendants / ${metrics.possible.toLocaleString()} possible, in view.`;
+    return metrics;
+  }
+  function drawGraph() {
+    const {ctx,w,h}=setup($('graph')), dx=w/12,dy=34, cx=w/2,cy=105;
+    const position=(x,t)=>[cx+(x-event.x)*dx,cy+(t-event.t)*dy];
+    // Always display the structural graph, including rows hidden by the reveal slider.
+    for(let t=Math.max(0,event.t-3);t<=Math.min(48,event.t+5);t++) for(let x=event.x-6;x<=event.x+6;x++) {
+      const [px,py]=position(x,t);
+      if(t>0) for(let d=-1;d<=1;d++) {
+        const [qx,qy]=position(x+d,t-1);
+        const active=(relation(x,t)==='future'||relation(x,t)==='self')&&(relation(x+d,t-1)==='future'||relation(x+d,t-1)==='self');
+        ctx.strokeStyle=active?'#426f61':'#283c49';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(qx,qy);ctx.lineTo(px,py);ctx.stroke();
+      }
+    }
+    for(let t=Math.max(0,event.t-3);t<=Math.min(48,event.t+5);t++) for(let x=event.x-6;x<=event.x+6;x++) {
+      const [px,py]=position(x,t),rel=relation(x,t);
+      ctx.fillStyle=rel==='self'?colors.gold:rel==='future'?colors.mint:rel==='past'?colors.blue:'#667985';
+      ctx.beginPath();ctx.arc(px,py,rel==='self'?6:3.5,0,Math.PI*2);ctx.fill();
+    }
+    ctx.fillStyle=colors.gold;ctx.font='12px ui-monospace,monospace';ctx.fillText(`A (${event.x}, ${event.t})`,cx+10,cy-10);
+    ctx.fillStyle=colors.muted;ctx.font='11px system-ui';ctx.fillText('t ↓  /  full structural crop, independent of reveal',10,h-12);
+  }
+  function render() {
+    $('mode-hint').textContent=hints[mode];$('takeaway').textContent=takeaways[mode];
+    document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));
+    const keys=mode==='states'?[['1 · pale',colors.on],['0 · dark','#344650']]:mode==='order'?[['Descendant',colors.mint],['Ancestor',colors.blue],['Incomparable','#667985']]:[['Changed bit',colors.coral],['Possible, unchanged','#467e6b']];
+    keys.push(['Selected event',colors.gold],['Future cone',colors.mint],['Past cone',colors.blue]);
+    $('legend').replaceChildren(...keys.map(([text,color])=>{const s=document.createElement('span');s.className='key';s.style.setProperty('--color',color);s.textContent=text;return s;}));
+    const a=drawWorld(30),b=drawWorld(150);drawGraph();
+    $('event-count').textContent=((time+1)*81).toLocaleString();$('possible-count').textContent=a.possible.toLocaleString();$('effect-count').textContent=`${a.changed} / ${b.changed}`;
+    $('selection').textContent=`Selected event A: x = ${event.x}, t = ${event.t}. ${event.t>time?'A is not yet revealed; move the reveal slider forward.':'The same coordinates are selected in both histories.'}`;
+    $('event-x').value=event.x;$('event-t').value=event.t;$('time-value').value=time;
+  }
+  function select(x,t) {event={x:Math.max(-40,Math.min(40,Math.round(x))),t:Math.max(0,Math.min(48,Math.round(t)))};rebuild();}
+  document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;render();}));
+  document.querySelectorAll('[data-tour]').forEach(b=>b.addEventListener('click',()=>{
+    stop();time=48;$('time').value=time;event={x:0,t:8};
+    $('initial').value=b.dataset.tour==='difference'?'random':'single';$('seed').value=30;
+    mode=b.dataset.tour==='patterns'?'states':b.dataset.tour;rebuild();
+  }));
+  for(const id of ['initial','seed']) $(id).addEventListener('change',rebuild);
+  $('new-seed').addEventListener('click',()=>{$('seed').value=(Number($('seed').value)+1)%1000000;$('initial').value='random';rebuild();});
+  $('event-x').addEventListener('change',()=>select(Number($('event-x').value)||0,event.t));
+  $('event-t').addEventListener('change',()=>select(event.x,Number($('event-t').value)||0));
+  for(const rule of [30,150]) {
+    const canvas=$('world'+rule);
+    canvas.addEventListener('click',e=>{const r=canvas.getBoundingClientRect();const x=Math.floor((e.clientX-r.left)/r.width*81)-40,t=Math.floor((e.clientY-r.top)/r.height*49);if(t<=time)select(x,t);});
+    canvas.addEventListener('keydown',e=>{const d={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];if(d){e.preventDefault();select(event.x+d[0],event.t+d[1]);}});
+  }
+  function stop(){clearInterval(timer);timer=null;$('play').textContent='▶ Reveal';$('play').setAttribute('aria-pressed','false');}
+  $('time').addEventListener('input',()=>{stop();time=Number($('time').value);render();});
+  $('play').addEventListener('click',()=>{if(timer){stop();return;}if(time===48)time=0;$('play').textContent='Ⅱ Pause';$('play').setAttribute('aria-pressed','true');$('time').value=time;render();timer=setInterval(()=>{time++;$('time').value=time;render();if(time>=48)stop();},130);});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
+  for(let n=7;n>=0;n--){const tr=document.createElement('tr');for(const value of [n.toString(2).padStart(3,'0').split('').join(' '),M.bit(30,n>>2,(n>>1)&1,n&1),M.bit(150,n>>2,(n>>1)&1,n&1)]){const td=document.createElement('td');td.textContent=value;tr.append(td);}$('truth').append(tr);}
+  new ResizeObserver(()=>render()).observe(document.querySelector('.worlds'));
+  rebuild();
+})();
+</script>
+</body>
+</html>
