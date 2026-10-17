@@ -72,6 +72,18 @@ This reconstructs DL7 without applying a divergent codimension-two estimate.
 Flat DL1–DL6 supply the complete model charges and their incoming partners,
 not a universal zero vertex coefficient.
 
+**NG7's geometric hypotheses.** The finite affine rank-at-least-three
+skeleton has the asserted tube volumes and ball counts. Off that skeleton,
+a Lorentzian two-plane has only two null directions; the future/past Boolean
+quadrant enumeration leaves precisely the regular charts listed in NG7.
+Opposite spacelike quadrants have no causal cross pairs. Finitely many fixed
+angles give uniform rescaled constants. A critical planar pair has coincident
+null planes and a negative-definite transverse gap, hence zero NX response.
+The restored face currents give one mixed incidence, two at a pinch and zero
+at a same-side crease; the higher-skeleton coefficient and action errors are
+separately controlled by NG6. This is actual geometry, not genericity imposed
+on the original contract.
+
 **FL's signed mass.** Closing-first substitution gives
 $`h^{d+1}r^d\,dr`$, not TC's squared-gap measure. Its signed phase bound yields
 FL3 after $`v=\rho^{1/d}hr`$. The height majorant has integrable tails of
@@ -202,9 +214,12 @@ There is a useful larger restricted result. Fix $`d\gt2`$, flat Minkowski
 metric, a point a, and any open past set P containing a such that
 $`M=I^+(a)\cap P`$ is bounded. No transversality, finite sheet representation,
 finite contact order or continuity of the null exit radius is required.
-For every q in M, **all its past partners** form $`I(a,q)`$: a point between
-a and q is in P by the past-set property. This stronger fibre statement,
-not causal convexity alone, licenses the time reversal of ND2–ND6.
+For every q in M, **all its past partners in the volume integral** form
+$`I(a,q)`$ up to its volume-null bounding cones and endpoints: every such
+interior point is in P by the past-set property and in the future of a.
+This is equality of continuum integrals, not a change to the closed discrete
+order or removal of any positive-volume partner neighborhood. This stronger
+fibre fact, not causal convexity alone, licenses the time reversal of ND2–ND6.
 
 Let $`R(\omega)`$ be the first exit radius of the null ray
 $`a+(r,r\omega)`$ from P. Openness and boundedness give fixed positive lower
@@ -303,8 +318,8 @@ The factor follows from the actual quadratic rest-diamond moments. The inner
 integral includes all real partners, even those far from K. A constant-density
 replacement is not close on those whole intervals merely because q is close
 to K. Nor does the flat exponential identity survive. As a finite-density
-negative control, put the terminal point at zero, the past point at time -1,
-and $`A(t)=1+\kappa t^2`$. If J denotes the actual weighted partner integral,
+negative control, put the terminal point at zero, the past point at time -1
+and spatial position zero, and $`A(t)=1+\kappa t^2`$. If J denotes the actual weighted partner integral,
 then direct polynomial/radial integration gives
 
 ```math
@@ -395,7 +410,8 @@ using $`\mathrm B(3/2,4)=32/315`$. Thus the closing order is derived from
 both endpoint masks, not an assumed phase expansion.
 
 At $`T=\pi`$, put $`a=\pi-\theta`$, and let E be O9's actual inverse.
-The physical cap is **not** removed:
+Here v denotes the volume phase, not IF2's integration variable. The physical
+cap is **not** removed:
 
 ```math
 \begin{aligned}
