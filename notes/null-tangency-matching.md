@@ -200,7 +200,9 @@ positive-measure zero level. The w-domain has finite measure. Dominated
 convergence thus proves
 
 ```math
-\rho^{1+2/d} E_\rho\longrightarrow0 .\tag{TC6}
+\begin{aligned}
+\rho^{1+2/d} E_\rho&\longrightarrow0 .
+\end{aligned}\tag{TC6}
 ```
 
 This is the missing **joint physical-phase/angular** estimate for a two-sheet
