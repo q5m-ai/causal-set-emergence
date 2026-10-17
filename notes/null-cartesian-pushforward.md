@@ -66,9 +66,17 @@ volume Jacobian $`1/2`$. Choose the null axis so that the selected sheets are
 actual graphs $`u=f(v,y)`$, $`u=g(v,y)`$, and the displacement
 $`v=q_v-p_v`$ is bounded below on the selected long chart. Finitely many axes
 and smooth pair partitions cover the compact support: the physical gap is
-$`(\Delta u+\Delta v)/2`$, not either null coordinate alone. In dimension
-two a sheet vertical for this choice supplies a base-variable interval mask;
-the other axis covers its active normal direction.
+$`(\Delta u+\Delta v)/2`$, not either null coordinate alone.
+
+In dimension two there need not be one axis making both opposed sheets into
+such graphs. Instead partition the base at the finitely many vertical null
+segments. On each base interval each lower/upper u bound is constant, absent,
+or empty; the vertical conditions are fixed base masks. If a bound is absent,
+invert the physical phase in that unrestricted endpoint u coordinate. No
+endpoint mask then moves with phase, and the ordinary signed moments give a
+vanishing critical complement as in §8. Empty domains contribute nothing.
+The remaining two-bound case is exactly NX1. This handles opposed rays without
+claiming an impossible common graph axis or discarding a physical partner.
 
 For fixed base variables $`b=(p_v,q_v,y_p,y_q)`$, set
 
