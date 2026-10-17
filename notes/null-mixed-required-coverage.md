@@ -461,7 +461,9 @@ strip but not its joint end transition or arbitrary infinitely flat same-ray
 contacts. The intrinsic branch needs an independently derived signed expansion
 of the **actual physical cut/focal/contact union**, both transition sides,
 every surviving density order, complete point restoration and then original-law
-transfer. NP rules out simply assuming a uniformly bounded Cartesian analogue.
+transfer. NG11–NG12 expose the actual focal derivative scaling and the
+secondary-transition fractional power; NP rules out simply assuming a
+uniformly bounded Cartesian analogue.
 
 **What is no longer blocked.** NG completes the finite-null-polyhedron and
 whole round-bicone cases, including variable conformal density, all sectors

@@ -133,8 +133,12 @@ are not uniform at the cone ends or arbitrary higher/infinitely flat contacts.
 The strict-floor estimate cannot be cited when its positive speed vanishes.
 
 For intrinsic metrics, the chain-rule normal identity remains algebraically
-valid where the actual phase is smooth. Its Cartesian Fourier/rank bound
-does not. The missing producer must retain the whole physical cut/focal/
+valid where the actual phase is smooth. NG11–NG12 test it on the **whole**
+spherical interval: its differentiated normal coefficients lose uniformity
+at the antipode, and the actual secondary transition has a seven-halves
+term, not a smooth density. The scaling recovers the possible growing order,
+not the signed coefficient without both matched tails. The missing producer
+must retain the whole physical cut/focal/
 contact union and both transition sides, derive every surviving geometric
 coefficient, prove the critical remainder, restore the complete deterministic
 action and only then transfer its expectation. NP already forbids a universal

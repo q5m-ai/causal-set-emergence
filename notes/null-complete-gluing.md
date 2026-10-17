@@ -516,6 +516,89 @@ local finite-jet coefficients. Its nonlocal focal coefficient cannot be
 replaced by NG8's conformal shared-ray measure: they are different physical
 interval geometries and different density orders.
 
+### Test the identity on the actual spherical physical union
+
+There is a more concrete failure than the absence of a preferred Cartesian
+chart. Use NP's actual whole interval $`W(U,\theta)`$, not its slab weight,
+and the geometric normal form O5–O7. Here
+$`U=\sqrt{\tau^2-z^2-|b|^2}`$ is the Lorentz-invariant separation in the
+lifted time/four-flat block. At zero flat displacement, differentiate in
+$`p_u,q_u`$ with $`u=t+z`$, keeping the other null coordinates fixed. For
+$`\xi=(W/c_7)^{2/7}`$ the exact derivatives are
+
+```math
+\begin{aligned}
+\xi_p&=-\tfrac12\xi_U,&\xi_q&=\tfrac12\xi_U,\\
+\xi_{pq}&=-\tfrac14\xi_{UU}+\frac{\xi_U}{4U},&
+\frac{1}{\xi_p\xi_q}&=-\frac4{\xi_U^2},\\
+\frac{\xi_{pq}}{\xi_p^2\xi_q}
+ &=\frac{2(-\xi_{UU}+\xi_U/U)}{\xi_U^3}.
+\end{aligned}\tag{NG11}
+```
+
+Set $`\theta=\pi-\lambda B`$, $`U=\pi+\lambda S`$ in this same fixed
+geometry, and write
+
+```math
+\begin{aligned}
+\mathcal F(S,B)&=\frac1{2\pi}\int_0^{2\pi}(S+B\cos\varphi)_+^3d\varphi,\\
+\Xi(S,B)&=(D/c_7)^{2/7}\mathcal F(S,B)^{2/7}.
+\end{aligned}\tag{NG11a}
+```
+
+On a compact post-transition sector $`S\gt B\gt0`$, O5 has a fixed x
+integration endpoint. Differentiating its polynomial/rational U integrand
+there proves the differentiated O6 limits through the three derivatives
+needed below. In particular,
+$`\xi_U=\lambda^{-1/7}(\Xi_S+o(1))`$ and
+$`\xi_{UU}=\lambda^{-8/7}(\Xi_{SS}+o(1))`$.
+Choose a small open sector where $`\Xi_{SS}\ne0`$, which exists since the
+positive-side profile is the two-sevenths power of a cubic, not a linear
+function. Then NG11's first coefficient has size $`\lambda^{2/7}`$, but
+its **second** coefficient has size $`\lambda^{-5/7}`$. The differentiated
+coefficients required by NG4 have terms of size $`\lambda^{-12/7}`$.
+Discarding the chain correction because the first coefficient is small
+would miss exactly the dangerous part.
+
+The physical cut measure in NP3 is
+$`\sin\theta\,|d\theta|\,dU\asymp\lambda^3 B\,dB\,dS`$, with the actual
+smooth positive endpoint weight tending to $`G_N(\pi)`$.
+The phase has size $`\lambda^{6/7}`$. Balancing that integration variable
+with $`\epsilon=(c_7\rho)^{-2/7}`$ gives the pair order $`\rho^{-1}`$, hence
+critical action order $`\rho^{2/7}`$, not a bounded analogue of NG5.
+This is a change of variables inside the full fixed-cutoff integral, not a
+shrinking physical cutoff or a density-dependent geometry. It identifies
+why the conformal normal-coefficient estimate fails; it does not compute
+the full signed coefficient from a favorable inner sector. NP7's actual
+subtractions, both tails and the verified model sign remain necessary.
+
+The secondary transition has its own real regularity loss. Let $`F`$ be
+O6's whole angular positive-part profile and put
+$`c_*=32/(35\sqrt2\pi)`$. Reflection of the full angular integral gives
+$`F(S)-F(-S)=S^3+3S/2`$, so
+
+```math
+\begin{aligned}
+F(1-h)&=(1-h)^3+\tfrac32(1-h)
+                 +c_*h^{7/2}(1+O(h)),\\
+\frac{d^4}{dS^4}
+ \left(F(S)-S^3-\tfrac32S\right)\bigg|_{S=1-h}
+ &\sim\frac{3\sqrt2}{\pi}\,h^{-1/2}.
+\end{aligned}\tag{NG12}
+```
+
+This is not only a model artifact. In O5, near
+$`x=2\pi-\theta`$, the actual two-distance Jacobian has its integrable
+inverse-square-root edge. Multiplication by the squared opening factor and
+integration up to $`\min(U,2\pi-\theta)`$ gives a five-halves transition in
+$`W_U`$, hence a seven-halves transition in $`W`$, with nonzero coefficient.
+At fixed non-antipodal distance the transition volume is positive, so taking
+the two-sevenths power preserves this loss of fourth differentiability.
+Thus the smooth ambient-amplitude Fourier estimate is unavailable even
+before making its constants uniform toward the antipode. Splitting the two
+sides and matching them is essential; neither a route-wise sum nor a smooth
+Taylor-density assumption repairs it.
+
 One can always push the complete endpoint measure forward by the true volume
 and rewrite its signed kernel integral. That exact identity is **not** the
 missing corrected general theorem. Requiring that measure to have the desired
