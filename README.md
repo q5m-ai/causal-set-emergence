@@ -481,9 +481,17 @@ The [all-null product obstruction NP](notes/null-product-focusing-obstruction.md
 derives a complete positive divergent action in 7D, including the actual null
 endpoint masks, focal matching, independent short target and point cancellation.
 Both are written research, not new Lean results or independent acceptance.
+The [joint tangency theorem TC-d](notes/null-tangency-matching.md) subsequently
+resolves arbitrary two-sheet floor/crease tangencies by closing-first signed
+phase matching, including infinitely flat gaps and positive-area coincidences.
+It completes deterministic assembly and expectation, deriving a twice-screen
+union-coincidence term rather than assuming all extra strata vanish.
 [The original #156 crosswalk](notes/null-mixed-required-coverage.md#8-original-contract-reconciliation-after-the-general-front-attempt)
-still blocks closure: [tangential/NN matching and the corrected general
-intrinsic statement](notes/null-mixed-continuation.md) remain missing.
+still recommends **STILL BLOCKED**: higher nonregular contacts, general NN
+matching and the corrected intrinsic theorem remain unproved. Read the
+[two-page proof spine](notes/null-proof-spine.md) and
+[NF/NP audit with the continued NN and nonlocal-correction attempts](notes/null-closure-audit.md).
+A proved obstruction to local-finite-jet repairs is not a universal replacement.
 #156/#81/#24 and #94/#86 remain open; no scope change is enacted.
 No sample-wise or spacelike-to-null singular-limit conclusion is implied.
 

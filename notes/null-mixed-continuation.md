@@ -1,5 +1,15 @@
 # Continuation after the general-front theorem: exact blockers (#156)
 
+**Subsequent continuation:** [TC1–TC8](null-tangency-matching.md) now prove the
+joint signed correction and complete deterministic/expected theorem for the
+arbitrary **two-sheet** tangencies below, with a derived extra area at persistent
+union coincidences. [The closure audit, NA1–NA3](null-closure-audit.md) records
+two distinct further NN attempts and NP's stronger local-repair obstruction.
+The earlier attempts and stopping point below are preserved; they no longer
+assert that TC's two-sheet estimate is missing. Higher nonregular contacts,
+general NN and corrected intrinsic coverage remain open. The current short
+reading guide is the [two-page proof spine](null-proof-spine.md).
+
 **Do not close #156.** [NF-d](regular-null-front-limit.md#7-continue-through-the-dimensional-producer-and-complete-assembly)
 is a complete all-dimensional conformally Minkowski regular-SN front theorem,
 including arbitrary finite tip multiplicity with its proved geometric contact

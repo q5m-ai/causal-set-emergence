@@ -8,6 +8,12 @@ Section 7 derives the genuine all-dimensional version, not a copied 4D kernel.
 It is not the whole original #156 contract. [The current crosswalk](null-mixed-required-coverage.md#8-original-contract-reconciliation-after-the-general-front-attempt)
 retains tangencies, NN contacts, other metrics/dimensions and their interactions.
 
+The subsequent [source audit](null-closure-audit.md#2-nf-d-audit-what-is-established-and-where-its-hypothesis-acts)
+checks the geometry, constants, critical remainder and expectation before
+reuse. [TC-d](null-tangency-matching.md) supplies a different closing-first
+proof for arbitrary two-sheet tangencies, including its derived extra union
+coincidence term. NF's own hypotheses and result below are unchanged.
+
 Source/base pin: `3ae22f792325634607be5fd518303ff25a404dda`, fetched explicitly
 into `origin/issue-81-general-coverage` and checked against `ls-remote` on
 2026-10-16. CC and CT are consumed as written arguments, not because #169/#178

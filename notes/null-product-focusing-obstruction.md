@@ -7,6 +7,13 @@ past–future NN joints. It is not an interior residue transplanted from a
 spacelike slab. The new endpoint overlap, complete pair weight, origin/point
 matching, short target and original-law expectation are derived below.
 
+The subsequent [complete-domain/remainder audit](null-closure-audit.md#3-np-audit-complete-failure-not-an-interior-residue)
+checks this argument before reuse. Its [NA3 consequence](null-closure-audit.md#7-intrinsic-correction-np-rules-out-a-universal-local-jet-repair)
+proves that even additive density-dependent local-finite-jet terms cannot
+reproduce this family's leading coefficient. That is a necessary nonlocal
+correction, not a universal replacement theorem; NP's statements below remain
+unchanged.
+
 Use [O5–O13](seven-dimensional-focusing-obstruction.md) only for the actual
 seven-dimensional ambient interval and its matched spherical cut response.
 The slab's endpoint weight, complete action, and G-SS short theorem are **not**
