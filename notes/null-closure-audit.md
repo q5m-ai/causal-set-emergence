@@ -7,9 +7,12 @@ Jacobian, remainder and trace, then supplies an exact four-term normal identity,
 joint point/end gluing, and complete conformal null-polyhedron and round-bicone
 conclusions. [DL](null-two-dimensional-gluing.md) restores logarithmic vertex
 responses; [FL](null-floor-level-matching.md) resolves finite-sheet strict-floor
-contacts without the old contact atlas. General moving-null singular ends and
-intrinsic cut/focal unions remain missing. The NA2 stopping point below is
-historical; required coverage §8 is still the single current crosswalk.
+contacts without the old contact atlas. [SE/IF](null-singular-end-audit.md)
+then reconstructs those estimates, resolves arbitrary flat common-tip exits
+and the all-null product's focal closing threshold, and isolates a concrete
+curved cusp still lacking its full signed tube estimate. General intrinsic
+unions remain missing. The NA2 stopping point below is historical; required
+coverage §8 is still the single current crosswalk.
 
 **Recommendation: STILL BLOCKED.** This is a source-level mathematical audit
 and continuation, not independent human review or a new Lean audit. The

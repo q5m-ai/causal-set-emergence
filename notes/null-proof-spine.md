@@ -122,27 +122,44 @@ supply NP's intrinsic growing coefficient. A corrected general statement
 must derive its nonlocal geometric terms and density orders from the actual
 interval unions, not assume a desired phase expansion in admissibility.
 
-## 6. Smallest remaining inferences and stopping decision
+## 6. Singular ends: reconstruction, two restricted theorems, exact blocker
 
-The old blanket “only a cone collar” blocker is superseded at the completed
-scopes above. What is **still missing** is gluing for general smooth moving-
-null contacts and singular ends without the verified isotropic or resolved
-geometry. NG10 tests a genuinely different boost/parabolic resolution at a
-same-ray null cusp: its interior strip has a summable scale, but the constants
-are not uniform at the cone ends or arbitrary higher/infinitely flat contacts.
-The strict-floor estimate cannot be cited when its positive speed vanishes.
+[SE/IF](null-singular-end-audit.md) reconstructs NG3–NG9, FL3–FL4 and DL7
+before reuse: both normal integrations and their four terms, the point before
+Whitney bounds, the codimension-two metric-comparison sum, doubled union
+incidence, and the complete bicone coefficient. No blocking discrepancy was
+found in those scopes; this author check is not independent acceptance.
 
-For intrinsic metrics, the chain-rule normal identity remains algebraically
-valid where the actual phase is smooth. NG11–NG12 test it on the **whole**
-spherical interval: its differentiated normal coefficients lose uniformity
-at the antipode, and the actual secondary transition has a seven-halves
-term, not a smooth density. The scaling recovers the possible growing order,
-not the signed coefficient without both matched tails. The missing producer
-must retain the whole physical cut/focal/
-contact union and both transition sides, derive every surviving geometric
-coefficient, prove the critical remainder, restore the complete deterministic
-action and only then transfer its expectation. NP already forbids a universal
-bounded version of the conformal estimate.
+SE1 supplies an actual same-ray cusp with an entering cone apex and a closing
+third front. Its joint anisotropic resolution retains both endpoint domains
+and physical time, but SE2 proves the end partner-comparability constant
+blows up. A different route succeeds: integrate **all past partners and the
+point first**. SE3–SE5 give a complete flat common-tip theorem with arbitrary
+opposite-front exits, without a transverse or continuous exit-radius premise.
+It includes both cusp ends and their far partners, followed separately by
+original-law expectation. This is not a new proof of a finite polyhedron.
+
+The same region with density `A(t)=1+t*t` is the smallest explicit remaining
+conformal question. SE6 writes its exact full response. SE7 disproves the
+borrowed flat exponential identity at finite density, not its conjectured
+limit. Its signed critical tube estimate, with any nonzero geometric charge,
+remains missing; neither deleting far partners nor assuming zero charge is
+permitted. General higher/infinitely flat moving-null ends are still retained.
+
+For intrinsic metrics IF1 derives the **actual** secondary-transition
+seven-halves coefficient from the whole spherical interval. IF2–IF5 then
+resolve the all-null product family at its physical focal closing threshold:
+the geometrically derived endpoint weight has order nine-halves and yields
+a critically summable capped inverse remainder. Every fixed width at or below
+the first focal threshold has the complete finite curvature/screen limit;
+above it NP's complete positive growing leading term remains, including both
+matched tails and point cancellation. No width/density interchange or finite
+renormalized remainder above threshold is claimed.
+
+These restricted results do not supply the general intrinsic expansion at
+every surviving density order. Actual physical unions, both transition sides,
+all complements, complete deterministic restoration and only then expectation
+remain required. NP still forbids a universal bounded Cartesian analogue.
 
 **STILL BLOCKED:** the new complete classes and complete counterexamples are
 not the corrected general theorem required by #156/#81/#24. No required item
@@ -150,5 +167,6 @@ is silently deferred or moved to a convenience child. The earlier optional
 scope proposal remains unadopted. #177 is unresolved; #94/#86 retain human
 scrutiny, provenance and justified verification. Priority scrutiny now includes
 NG's ambient-amplitude/point bounds, DL's metric comparison and FL's signed
-height matching, alongside the earlier NF/TC/NP/NX arguments. No agents,
-merge, deployment, issue closure or sample-wise convergence follows.
+height matching, alongside the earlier NF/TC/NP/NX arguments and the new SE/IF
+proofs. #185's claim-to-Lean mapping remains deferred. No agents, merge, deployment, issue
+closure or sample-wise convergence follows.

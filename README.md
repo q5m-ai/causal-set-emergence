@@ -504,11 +504,17 @@ latter has an independently derived nonlocal correction in odd dimensions.
 logarithms, adjoining cross partners and conformal vertex matching.
 [FL](notes/null-floor-level-matching.md) handles all finite smooth-sheet
 strict-floor contacts jointly, deriving their one/two/zero screen traces.
-These complete written results do not supply a universal intrinsic cut-union
-expansion or gluing for every smooth moving-null cusp and singular end.
-Independent scrutiny remains necessary; finite diagnostics do not certify
-the analytic estimates.
-#156/#81/#24, #177 and #94/#86 remain open; no scope change is enacted.
+The [singular-end reconstruction SE/IF](notes/null-singular-end-audit.md)
+author-checks those estimates, resolves arbitrary opposite-front exits in the
+flat common-tip class by complete signed fibre integration, and derives a
+fixed-width intrinsic focal threshold including its physical closing boundary.
+It also computes the actual seven-halves transition coefficient, retaining both
+matched tails above threshold. An explicit smooth conformal cusp still lacks
+its complete signed tube estimate; general intrinsic unions remain unresolved.
+These are restricted written theorems, not a universal replacement or independent
+acceptance. Finite diagnostics do not certify their analytic remainders.
+#156/#81/#24, #177 and #94/#86 remain open; #185 stays deferred. No scope change
+is enacted.
 No sample-wise or spacelike-to-null singular-limit conclusion is implied.
 
 ### Independent-face enlargement
@@ -944,6 +950,9 @@ physics.
 - `notes/null-complete-gluing.md`, `notes/null-two-dimensional-gluing.md`,
   `notes/null-floor-level-matching.md` — complete signed gluing at their stated
   scopes; `null_complete_gluing.py` and its tests are finite diagnostics only.
+- `notes/null-singular-end-audit.md` — author reconstruction, complete flat
+  common-tip singular-end theorem and intrinsic focal closing threshold;
+  `null_singular_ends.py` and its tests are finite diagnostics, not certificates.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.

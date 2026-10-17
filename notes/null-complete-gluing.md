@@ -6,6 +6,13 @@ status record remains [required coverage §8](null-mixed-required-coverage.md#8-
 This note begins with the complete finite-density accounting, rather than
 assuming that a small singular neighborhood has small normalized action.
 
+**Subsequent author reconstruction:** [SE/IF](null-singular-end-audit.md)
+rechecks NG3–NG9, FL3–FL4 and DL7 before extending. It resolves the flat
+common-tip cusp, derives the actual fractional intrinsic coefficient and a
+complete fixed-width focal closing threshold. Its explicit curved cusp and
+general intrinsic unions remain blocked. The route attempts below remain
+historical; the later result does not assume their missing uniformity.
+
 ## 1. Audit before using NX
 
 The starting local, remote and PR #184 head was
