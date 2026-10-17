@@ -471,10 +471,50 @@ SN flux and retains nonzero weighted crease/generator endpoints. Actual
 weighted interval/pair valuation and CC cap hypotheses give full assembly,
 then separate original-law expectation. This is written, not Lean-checked or
 independently accepted.
-[The #156 ledger](notes/null-mixed-required-coverage.md) retains arbitrary null
-fronts, tangential floor/crease contacts, three or more tips, other curved
-dimensions/metrics, cut/caustic regimes and higher intersections;
-#156/#81/#24 and #94/#86 remain open.
+The subsequent [general past-front theorem NF-d](notes/regular-null-front-limit.md)
+extends the mechanism to **every dimension at least two**, with a smooth
+strictly spacelike floor and explicit regular null-contact geometry in
+conformally Minkowski spacetime. It includes arbitrary finite tip multiplicity
+and dependent cone intersections, with full pair/layer inclusion–exclusion,
+complete deterministic assembly and separate original-law expectation.
+The [all-null product obstruction NP](notes/null-product-focusing-obstruction.md)
+derives a complete positive divergent action in 7D, including the actual null
+endpoint masks, focal matching, independent short target and point cancellation.
+Both are written research, not new Lean results or independent acceptance.
+The [joint tangency theorem TC-d](notes/null-tangency-matching.md) subsequently
+resolves arbitrary two-sheet floor/crease tangencies by closing-first signed
+phase matching, including infinitely flat gaps and positive-area coincidences.
+It completes deterministic assembly and expectation, deriving a twice-screen
+union-coincidence term rather than assuming all extra strata vanish.
+[The original #156 crosswalk](notes/null-mixed-required-coverage.md#8-original-contract-reconciliation-after-the-general-front-attempt)
+still recommends **STILL BLOCKED**: general moving-null singular contacts and
+the corrected intrinsic theorem remain unproved. Read the
+[proof spine](notes/null-proof-spine.md) and
+[source audit](notes/null-closure-audit.md).
+A proved obstruction to local-finite-jet repairs is not a universal replacement.
+The [Cartesian continuation NX](notes/null-cartesian-pushforward.md) derives
+the compact smooth-sheet long pushforward, its geometric nonlocal term and
+signed remainder, retaining finite higher-sheet masks. The subsequent
+[complete gluing argument NG](notes/null-complete-gluing.md) audits those inputs
+and writes the full point/pair decomposition before estimating. A two-normal
+signed identity and joint diagonal/end resolution complete finite conformal
+null polyhedra and the **whole** round bicone, not merely NX13's collar; the
+latter has an independently derived nonlocal correction in odd dimensions.
+[DL](notes/null-two-dimensional-gluing.md) computes the real two-dimensional
+logarithms, adjoining cross partners and conformal vertex matching.
+[FL](notes/null-floor-level-matching.md) handles all finite smooth-sheet
+strict-floor contacts jointly, deriving their one/two/zero screen traces.
+The [singular-end reconstruction SE/IF](notes/null-singular-end-audit.md)
+author-checks those estimates, resolves arbitrary opposite-front exits in the
+flat common-tip class by complete signed fibre integration, and derives a
+fixed-width intrinsic focal threshold including its physical closing boundary.
+It also computes the actual seven-halves transition coefficient, retaining both
+matched tails above threshold. An explicit smooth conformal cusp still lacks
+its complete signed tube estimate; general intrinsic unions remain unresolved.
+These are restricted written theorems, not a universal replacement or independent
+acceptance. Finite diagnostics do not certify their analytic remainders.
+#156/#81/#24, #177 and #94/#86 remain open; #185 stays deferred. No scope change
+is enacted.
 No sample-wise or spacelike-to-null singular-limit conclusion is implied.
 
 ### Independent-face enlargement
@@ -907,6 +947,12 @@ physics.
 - `notes/curved-assembly.md`, `curved_assembly.py` — written controlled conformal
   4D bulk-and-joint deterministic/expected theorem and separate finite
   certificates; not a new Lean continuum-limit theorem or general curved result.
+- `notes/null-complete-gluing.md`, `notes/null-two-dimensional-gluing.md`,
+  `notes/null-floor-level-matching.md` — complete signed gluing at their stated
+  scopes; `null_complete_gluing.py` and its tests are finite diagnostics only.
+- `notes/null-singular-end-audit.md` — author reconstruction, complete flat
+  common-tip singular-end theorem and intrinsic focal closing threshold;
+  `null_singular_ends.py` and its tests are finite diagnostics, not certificates.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.
