@@ -492,7 +492,14 @@ matching and the corrected intrinsic theorem remain unproved. Read the
 [two-page proof spine](notes/null-proof-spine.md) and
 [NF/NP audit with the continued NN and nonlocal-correction attempts](notes/null-closure-audit.md).
 A proved obstruction to local-finite-jet repairs is not a universal replacement.
-#156/#81/#24 and #94/#86 remain open; no scope change is enacted.
+The [Cartesian continuation NX](notes/null-cartesian-pushforward.md) now derives
+the actual compact smooth-sheet long pushforward, a geometric nonlocal
+critical-pair term and summable signed remainder. Its Fourier estimate retains
+finite higher-sheet masks without assuming their smoothness. Regular short
+matching and a uniform cone-collar estimate do not yet prove the remaining
+diagonal/singular-end gluing or intrinsic cut-union response; expert scrutiny
+of these new written arguments is recommended before another continuation.
+#156/#81/#24, #177 and #94/#86 remain open; no scope change is enacted.
 No sample-wise or spacelike-to-null singular-limit conclusion is implied.
 
 ### Independent-face enlargement

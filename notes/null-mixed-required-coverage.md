@@ -3,8 +3,10 @@
 **Current recommendation: STILL BLOCKED under the ORIGINAL #156 contract.**
 Read the [two-page proof spine](null-proof-spine.md),
 [NF/NP audit and continued closure argument](null-closure-audit.md), and
-[complete two-sheet tangency theorem TC-d](null-tangency-matching.md).
-PR #184's existing head and unchanged base were reverified on 2026-10-17;
+[complete two-sheet tangency theorem TC-d](null-tangency-matching.md), and
+[the actual Cartesian critical pushforward NX](null-cartesian-pushforward.md).
+This continuation verified starting head `d3d46e74c4fd89010c98178e5df588cc7ceba970`
+on the existing PR branch. PR #184's head and unchanged base were reverified on 2026-10-17;
 no base update was needed. #177 remains open and its unresolved scope is not
 consumed as a null theorem.
 Base verified on 2026-10-17: `3ae22f792325634607be5fd518303ff25a404dda` on
@@ -38,8 +40,16 @@ New written results, not independent acceptance:
 - [NT1–NT4](null-mixed-continuation.md) retain the earlier route attempts.
   [NA1–NA3](null-closure-audit.md) continue through an actual NN closing-phase
   fold, an exact null-Cartesian two-front domain, and a proved obstruction
-  to universal additive local-finite-jet repairs of NP. General NN matching
-  and the corrected intrinsic/nonconformal theorem remain unproved.
+  to universal additive local-finite-jet repairs of NP. Their NA2 stopping
+  point is superseded by the following actual producer, not by a scope change.
+- [NX1–NX13](null-cartesian-pushforward.md) prove the compact smooth-sheet
+  critical long pushforward with a geometrically derived nonlocal coefficient
+  and summable signed remainder, in every conformal dimension. The exact
+  normal triangle, dimensional logarithms and all finite higher-sheet masks
+  are retained. Regular NN short matching and a uniform characteristic
+  cone-collar bound follow; complete diagonal/singular-end and intrinsic
+  assembly remain missing. The next useful input is expert scrutiny, not
+  another inventory or repetition of the old folded inverse.
 
 [Section 8 is the single current original-item crosswalk](#8-original-contract-reconciliation-after-the-general-front-attempt).
 Naming residual owners is not discharge. No scope decision, issue closure,
@@ -122,10 +132,10 @@ than defined by a desired action. Fixed positive compatible cutoffs only.
 | Required row from #24/#90 | Actual covered part after this delivery | Exact unresolved part / native owner |
 | --- | --- | --- |
 | Regular SN, every d>=2 | ND/CC/CT preserved; [NF-d](regular-null-front-limit.md) now gives complete conformally Minkowski regular-contact past-front limits in **every** dimension, not only cones | **BLOCKED:** nonconformal/global-order fronts still need actual interval/contact producers and a corrected general statement; #156 |
-| Regular past–future NN, every d>=2 | ND's whole flat lower-null cone-ending class and all diamonds; old checked 4D plane-cut cap. [NP](null-product-focusing-obstruction.md) gives a complete all-null 7D **failure**, not positive NN coverage | **BLOCKED:** joint characteristic/angular matching NT4 outside these classes; no spacelike-to-null interchange; #156 |
-| Same-side seams/creases | NF-d covers regular-contact arrangements; TC-d completes arbitrary two-sheet floor tangencies and derives the persistent union-coincidence term; NP includes both same-side seams in its complete obstruction | **BLOCKED:** joint matching at higher nonregular floor/front intersections and general NN/metric interactions, not TC's now-proved two-sheet estimate; #156 |
-| Tips and required higher intersections | NF retains the fixed upper past set and every subset intersection; TC additionally handles arbitrary two-sheet floor-contact zero sets, including their positive-area coincidence | **BLOCKED:** three-or-more-sheet nonregular floor contacts, lower-null tips/seams outside ND, and intrinsic focal/true-joint combinations outside NP; zero volume is no estimate; #156 |
-| Metrics | NF/TC permit arbitrary smooth positive spacetime-dependent conformal factors in their classes. NP is a complete nonconformal failure; NA3 proves that no universal additive local-finite-jet formula reproduces its leading coefficient | **BLOCKED:** geometric critical physical-pair response at intrinsic cut/focal/contact intersections, with complete physical unions; a necessary nonlocal correction is not its universal theorem; #156/#81 |
+| Regular past–future NN, every d>=2 | ND and the old checked plane-cut cap remain complete at their scopes. NX proves the actual compact smooth-sheet long critical response and regular distinct-ray short coefficient; NP remains a complete 7D failure | **BLOCKED:** uniform diagonal/singular-end gluing with the physical point, and intrinsic interval/contact matching. NX's long theorem is not a complete-region limit; #156 |
+| Same-side seams/creases | NF/TC remain unchanged, including TC's doubled coincidence measure. NX retains arbitrary finite active-sheet selectors in long by a uniform L² estimate, without independent-normal or interface-smoothness premises | **BLOCKED:** diagonal multi-front matching and singular ends not admitting those smooth sheets, plus intrinsic cut interactions; no zero-volume deletion; #156 |
+| Tips and required higher intersections | NF/TC remain complete at their scopes. NX handles all finite smooth-sheet long selections jointly and proves an actual uniform flat cone-collar bound above 2D | **BLOCKED:** the whole diagonal/tip action including noncharacteristic sectors and point cancellation; NX13 is logarithmically insufficient in 2D. Arbitrary intrinsic focal/true-joint combinations remain; #156 |
+| Metrics | NF/TC and NX's long theorem retain arbitrary smooth positive conformal density. NX9–NX10 derive a nonlocal critical-pair functional independently of the action; NP/NA3 retain their complete intrinsic failure/local-repair obstruction | **BLOCKED:** geometric critical response across intrinsic cut/focal physical unions, and a complete corrected general theorem. NX's Cartesian interval/rank map cannot be transplanted there; #156/#81 |
 | Dimension / regularity | ND remains genuine all-dimensional flat coverage; NF10–NF13 derive the actual dimensional moments, both parities, complete curvature/screen limit and separate expectation | **BLOCKED:** dimensional versions of the remaining tangential/NN/intrinsic contact estimates. NP refutes universal 7D finite-target validity but classifies no other geometry; #156 |
 | Order / interval regime | ND/CC/CT/NF/NP each prove actual closed containment; NF9 proves full point/pair/layer accounting with one physical interval per pair | **BLOCKED:** geometric interval and containment discharge for unresolved global metric regimes. No new non-convex-order problem is silently added; #156/#81 |
 | Verification and provenance | New analytics and geometric law specializations are written. Existing Lean declarations and O13's model-sign arithmetic keep exactly their prior scope | **BLOCKED:** attributable intended-statement/human scrutiny, source/novelty work and justified verification; #94/#86. Diagnostics and green CI are not acceptance |
@@ -412,7 +422,7 @@ merge, deployment or sample-wise assertion accompanies this source delivery.
 ## 8. Original-contract reconciliation after the general-front attempt
 
 This is the **single current original-item closure crosswalk**, updated after
-TC/NA. The original body and all four body-history entries, live #24/#81/#90,
+TC/NA and the substantive NX continuation. The original body and all four body-history entries, live #24/#81/#90,
 the actual NF/NP/NT proofs and their dependencies were inspected. The
 [audit](null-closure-audit.md) distinguishes a source-level proof check from
 independent certification. #175 is completed; **#177 is unresolved and open**.
@@ -430,38 +440,46 @@ is not discharge. All results here remain conventional written mathematics.
 | 1: Dimensional, metric and selected interval regimes; required versus noncompact/degenerating/extra-regularity deferrals | **DISCHARGED as inventory:** §2 retains every original axis and only the original explicit deferrals. No genericity or no-caustics restriction is imposed on #156. |
 | 2: Actual geometric admissibility and ambient restricted intervals | **UNRESOLVED for full scope:** NF2, TC2–TC3 and NP1–NP5 prove their actual domains/containment. Missing inference: physical interval/contact disintegration for the remaining intrinsic regimes, not an assumed optical chart. |
 | 2: Canonical action/law and independent normalization | **DISCHARGED for every claimed result:** #90 definitions are unchanged; NF10–NF13/TC5 use genuine dimensional constants, NP6–NP9 the genuine 7D constants and layers. No new production definition or action-valued geometry field. |
-| 2: Independent screen/stratum targets and derivation of extra coefficients | **UNRESOLVED for full scope:** NF1/NF13 and TC1/TC7–TC8 derive their targets, including twice-screen union coincidences; NP2/NP7–NP9 compute the finite target and surviving nonlocal coefficient. Missing inference: geometric coefficients of the simultaneous NN/intrinsic contact response, NA2/§7 of the audit. |
+| 2: Independent screen/stratum targets and derivation of extra coefficients | **UNRESOLVED for full scope:** NF/TC targets, TC's doubled coincidence measure and NP's finite target/focal coefficient are retained. NX9–NX12 derive the regular-sheet nonlocal functional and regular NN screen coefficient. Missing inference: complete singular-end/diagonal and intrinsic cut-contact coefficients with their remainder. |
 | 2: No spacelike-to-null singular-limit interchange | **DISCHARGED as proof discipline:** all null faces are fixed from the start. TC4–TC6 prove a direct signed estimate; TC's raised-floor comparison is between explicit coefficient integrals, not an interchange of density limits. |
-| 3: Exact analytic producers and complete assembly consumers | **UNRESOLVED for full scope:** NF and TC finish their producers, full deterministic actions and subsequent expectations. Missing inference: the NA2 simultaneous-front critical pushforward. Higher nonregular floor contacts additionally require the corresponding multi-normal signed correction, not repeated two-sheet inclusion–exclusion. |
+| 3: Exact analytic producers and complete assembly consumers | **UNRESOLVED for full scope:** NF/TC complete their consumers; NX supplies the actual regular-sheet critical long producer, including finite higher masks, then regular short matching and a scale-aware cone attempt. Missing inference: uniform diagonal/singular-end gluing of the actual formula with the point; higher short contacts are not independent pairs. |
 | 3: Native ownership/dependencies and justified dimensional/metric API reuse | **UNRESOLVED as complete decomposition:** #156 retains the exact NN/higher-contact and intrinsic producers; #81 retains the corrected general consumer. Actual dimensional identities are reused; G-SS spacelike contact ranks are not. No new convenience-pilot child or artificial dependency is opened. Naming these owners does not prove the producers. |
 | 4: Universal finite bulk-plus-regular-screen assertion for all original null/mixed members | **CONTRADICTED:** NP1–NP9 compute a complete admitted 7D action and original-law expectation with positive growth, against finite independently computed geometry. No isolated sector is called the counterexample. |
-| 4: Required complete positive conclusions where not refuted | **UNRESOLVED:** NF-d and TC-d are complete for their exact classes, not classifications. Missing inference: full signed matching beyond those classes, especially two moving characteristic fronts and intrinsic cut/contact intersections. |
-| 4: Every partner, generator/cut contact, ordered partition and physical point exactly once | **UNRESOLVED for full scope:** NF2–NF9, TC3–TC8 and NP3–NP8 restore all terms in their complete conclusions. Missing inference: the complete complementary critical response in the remaining cut/contact domains; an interior focusing coefficient is insufficient. |
-| 4: Separate original-Poisson-law expectation | **UNRESOLVED as a general limit:** NF7/TC8/NP9 discharge actual finite-law hypotheses and transfer their completed deterministic statements. The missing input is the remaining deterministic geometric conclusion, not a replacement probability law. No sample-wise claim. |
-| 4: Counterexample must identify corrected general statement and remaining theorem owners | **UNRESOLVED:** NP supplies its family's corrected divergent asymptotic; NA3 further rules out universal additive local-finite-jet repairs. Missing inference: a geometrically proved **nonlocal** correction and critical remainder for the original residual class. Necessity of nonlocal data is not that theorem. Owners remain #156/#81; #94/#86 retain scrutiny/provenance. |
+| 4: Required complete positive conclusions where not refuted | **UNRESOLVED:** NF/TC are complete at their exact scopes; NX is a general regular-sheet long theorem, not a complete-region theorem. Missing inference: diagonal/singular-end restoration and intrinsic cut/contact matching; no catalogue of subclasses is substituted. |
+| 4: Every partner, generator/cut contact, ordered partition and physical point exactly once | **UNRESOLVED for full scope:** NF/TC/NP restore their whole actions; NX1–NX9 retain both normals, physical intervals, all selectors, fixed temporal bands and long complements. Missing inference: normalized control of the remaining diagonal/singular pieces with the one short point; exact finite-density restoration alone is insufficient. |
+| 4: Separate original-Poisson-law expectation | **UNRESOLVED as a general limit:** NF7/TC8/NP9 transfer their complete results. NX §10 separately transfers only its proved weighted long component under the original law. The missing input is the complete deterministic conclusion, not another probability law or a sample-wise claim. |
+| 4: Counterexample must identify corrected general statement and remaining theorem owners | **UNRESOLVED:** NP/NA3 retain their exact negative conclusions. NX-long adds a geometric nonlocal correction with remainder on its stated support, independently of the action/residual, but no complete general intrinsic correction. Missing inference: whole-region singular/intrinsic assembly. NX §11 states the strongest supported conclusion and an exact optional scope proposal; neither is enacted as original-contract closure. Owners remain #156/#81; #94/#86 retain scrutiny. |
 | 5: Update required ledger with exact receipts; child completion is not quantified completion | **DISCHARGED as delivery discipline:** this crosswalk, §2, the NF/NP audit, TC proof and two-page spine. The recommendation is STILL BLOCKED; no closure follows from tests or child status. |
 | Integration: actual #134/#155 prerequisites, shared-source coordination, intended branch, written/Lean/review separation | **DISCHARGED as execution discipline:** integrated sources were inspected; the existing #184 branch and unchanged base were verified. Shared production definitions and Lean inputs remain untouched. Validation and the newly authorized bounded feedback pass are separate PR receipts. |
 
-**Smallest exact next theorem.** The simultaneous-front producer in audit §6
-must derive the actual physical-phase pushforward through both endpoint masks,
-including seams/tips and dimensional critical logs, at one fixed positive
-physical cutoff. Its intrinsic counterpart must also retain cut/focal physical
-unions and both transition sides. A complete signed critical remainder and
-geometrically identified coefficients must precede deterministic restoration
-and Mecke. This is a proof output, not a jet or cancellation field in geometry.
-Higher nonregular floor intersections remain explicitly owned; TC does not
-cover them by counting a many-face contact as several two-face ones.
+**Smallest exact next theorem.** Prove a uniform, critically normalized
+**diagonal/singular-end gluing estimate for NX's actual joint-normal formula**,
+including every sector, higher short contact and the physical point. NX now
+supplies the compact smooth-sheet long response, its dimensional logarithms,
+nonlocal coefficient and all finite higher selectors; those are not still
+listed as a missing NA2 identity. NX13 controls a genuine characteristic cone
+collar above 2D, not the complete tip action. The intrinsic branch additionally
+needs a geometric interval/rank substitute retaining physical cut/focal unions
+and both transition sides. No required row is relabeled deferred.
 
-**Why this is not stopping at TC's publishable producer.** The continuation
-finishes TC's short/long, target and expectation consumers, then attempts NN
-closing-first (NA1 exposes an actual two-branch phase fold), changes to an
-exact null-Cartesian full domain (NA2), and proves the stronger intrinsic
-local-repair impossibility (NA3). None proves the remaining simultaneous-front
-or intrinsic critical response. Repeating NT's failed majorants, dropping a
-fold branch, or treating NA3 as a universal corrected formula would be false
-completion. No exhaustive classification requirement or smaller endpoint is
-enacted. Any proposal to transfer these original #156 obligations away merely
-to close it would require separate user approval.
+**Why this attempt stops here.** Joint normal-simplex integration exposed the
+first-power gap and the failure of a classical smooth-density shortcut. Direct
+signed-kernel/Fourier integration proved the new critical long theorem and its
+measurable-selector extension. Work then continued through complements,
+independent regular short geometry, the original-law long consumer, and an
+actual two-scale cone bound. The remaining singular/diagonal and intrinsic
+estimates do not follow from those results. No isolated long coefficient is
+called a complete-action counterexample.
+
+**Next useful human input:** expert scrutiny of NX's physical-phase Jacobian,
+uniform Fourier bound and geometric selector trace, followed by a singular-end
+strategy, is more useful than another autonomous repetition. #94/#86 remain
+unfulfilled; no expert or agent is launched. NX §11 gives an exact optional
+negative-plus-producer endpoint and the minimal original-item/ownership changes
+it would require. It is unadopted, not recommended as mathematical completion,
+and would not satisfy #81/#24. A scope decision cannot supply the missing
+estimate. No exhaustive classification requirement or acceptance change is
+introduced.
 
 No Lean-affecting input changes accompany this continuation; no new compiled
 theorem or fresh full Lean audit is claimed. The PR records actual local

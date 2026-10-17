@@ -1,5 +1,12 @@
 # Original-contract audit and continued closure argument (#156 / #184)
 
+**Subsequent substantive continuation:** [NX1–NX13](null-cartesian-pushforward.md)
+now prove the compact smooth-sheet critical long pushforward, with its derived
+nonlocal coefficient and all finite higher-sheet selectors. They continue to
+regular short matching and a uniform cone-collar bound, but not full singular-
+end/intrinsic assembly. The NA2 stopping point in this preceding audit is
+historical; the single current closure crosswalk is still required coverage §8.
+
 **Recommendation: STILL BLOCKED.** This is a source-level mathematical audit
 and continuation, not independent human review or a new Lean audit. The
 original #156 acceptance, #24 completion criterion, #81 acceptance and #90

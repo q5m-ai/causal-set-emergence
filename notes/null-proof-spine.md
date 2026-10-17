@@ -88,42 +88,51 @@ coefficient is not. Even density-dependent local coefficients cannot fix
 that mismatch. A general correction must carry genuine nonlocal pair geometry.
 This necessity does **not** prove that correction's coefficients or remainder.
 
-### 5. Two different NN attempts, neither promoted to a theorem
+### 5. NX: the actual critical long pushforward, not another identity
 
-Trying TC's closing-first method on a null lower plane creates an exact
-phase fold. Its turning point reaches the null/angular corner, so a uniform
-single inverse loses an entire real branch. This is stronger evidence than
-the previous failed logarithmic majorant, but not action divergence.
+The [new Cartesian proof NX1–NX13](null-cartesian-pushforward.md) starts from
+NA2, never NA1's folded single inverse. Integrating both actual endpoint
+normals leaves a **first-power** closing gap. It is not TC's squared gap;
+a classical smooth density expansion can miss a critical logarithm.
 
-Changing to null-Cartesian displacement coordinates removes that fold and
-gives an exact full pair domain with both moving fronts retained. The physical
-time cutoff is preserved, not replaced by one null coordinate. What remains
-is the critical signed pushforward through simultaneous lower/upper contacts,
-including their seams, tips and closing fibres. Smooth face germs do not
-supply that estimate. No plane approximation or regular NN local coefficient
-is advertised as complete assembly.
+Direct signed integration turns that gap into an exponentially decaying
+primitive with the genuine dimensional moment zeros. A Fourier operator
+estimate then controls its composition with the exact squared boundary
+displacement. Crucially it never differentiates the endpoint selection masks.
+Smooth approximation in the proved norm retains arbitrary finite higher-sheet
+selections, dependent incidences and seams on the compact long support.
 
-### 6. Smallest missing theorem and scrutiny priorities
+Partial quadratic normal coordinates identify the surviving measure on the
+rank-minimal set of shared characteristic null pairs, even with arbitrary
+flat residual zero sets. Its coefficient uses the normal Hessian, both endpoint
+densities and the independently derived whole-ray density mean. Actual null
+germs realize a nonzero even-dimensional logarithmic response. The remainder
+is summable; the regular long conclusion transfers separately under the
+original law. This is a geometric nonlocal correction, not the action's residual.
 
-The next analytic output is the **actual critical physical-pair response
-through simultaneous front contacts**, including its dimensional logarithmic/
-fractional terms and a summable signed remainder, at one fixed physical cutoff.
-It must be geometrically derived and carried through short/long restoration,
-independent screen/extra terms and only then expectation. Intrinsic geometry
-also needs that response across focal/cut-contact intersections with the
-physical interval union retained. Higher nonregular floor/front intersections
-outside TC remain in the same required ledger, not silently excluded.
+### 6. What still prevents complete restoration
 
-The weakest new inference to scrutinize is TC's uniform normal extension
-and phase estimate after closing is resolved, followed by its one-sided
-coefficient trace on positive-measure zero levels. Next are NF's matched
-Mellin remainder and NP's complete weighted focal matching; the latter's
-model-sign certificate does not certify its geometry. Tests check arithmetic
-and finite domains, not these quantified arguments.
+NX also derives the regular distinct-ray NN short coefficient and tests a
+singular cone-end extension. An exact Fourier bound controls the actual
+characteristic cone collar uniformly in both endpoint scales in dimensions
+above two. It does not control every tip sector or its point cancellation;
+in two dimensions that bound is logarithmically nonsummable.
 
-Thus NF and TC are complete results within explicit geometric classes;
-NP is a complete admitted failure; general NN and intrinsic corrected coverage
-are **unresolved**, not contradicted everywhere. #177 remains separate and
-unresolved. #94/#86 retain attributable human mathematical/physical scrutiny,
-provenance and justified verification. No issue closure, scope change, agent
-launch, merge or deployment follows from this delivery.
+The smallest conformal gap is now the **uniform critical diagonal/singular-end
+gluing estimate for the actual normal formula**, including the point and all
+multi-front masks. Finite smooth-sheet long selections are no longer merely
+an unproved NA2 pushforward. Intrinsic cut/focal unions still need their own
+geometric interval/rank substitute; NP is not described by this Cartesian map.
+
+Expert scrutiny is more useful now than another repetition of autonomous
+continuation: check NX's physical-phase Jacobian, uniform Fourier remainder
+and measurable-selector geometric trace first, then the singular-end strategy.
+TC's doubled coincidence measure, NF's Mellin argument and NP's full matching
+remain written claims requiring scrutiny too. Tests certify none of them.
+
+**STILL BLOCKED:** the regular nonlocal producer plus NF/TC/NP is not a corrected
+general complete-action theorem. The precise optional narrower endpoint in
+NX §11 is explicitly unadopted and would require acceptance changes; it would
+not satisfy #81/#24. #177 remains unresolved; #94/#86 retain expert review,
+provenance and justified verification. No closure, scope change, agent launch,
+merge or deployment follows.

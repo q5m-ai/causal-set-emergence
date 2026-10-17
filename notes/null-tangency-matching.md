@@ -241,7 +241,7 @@ interchange of density with a family of geometries.
 
 For an intersection-type crease the raised-floor SN pieces approach only the
 strictly exposed regular SN pieces, and give no area to h=0. To see the side,
-move an SN contact a small distance into the past along its own null generator.
+move an SN contact a small distance into the future along its own null generator.
 The other future null conormal has strictly positive inner product with that
 generator, since the two rays are distinct. This moves the contact outside
 the other sheet's past-side intersection. The normal derivative has a fixed
