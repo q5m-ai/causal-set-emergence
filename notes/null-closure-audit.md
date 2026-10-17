@@ -1,11 +1,15 @@
 # Original-contract audit and continued closure argument (#156 / #184)
 
-**Subsequent substantive continuation:** [NX1–NX13](null-cartesian-pushforward.md)
-now prove the compact smooth-sheet critical long pushforward, with its derived
-nonlocal coefficient and all finite higher-sheet selectors. They continue to
-regular short matching and a uniform cone-collar bound, but not full singular-
-end/intrinsic assembly. The NA2 stopping point in this preceding audit is
-historical; the single current closure crosswalk is still required coverage §8.
+**Subsequent substantive continuations:** [NX1–NX13](null-cartesian-pushforward.md)
+prove the compact smooth-sheet critical long pushforward and its geometric
+nonlocal coefficient. [NG](null-complete-gluing.md) subsequently audits that
+Jacobian, remainder and trace, then supplies an exact four-term normal identity,
+joint point/end gluing, and complete conformal null-polyhedron and round-bicone
+conclusions. [DL](null-two-dimensional-gluing.md) restores logarithmic vertex
+responses; [FL](null-floor-level-matching.md) resolves finite-sheet strict-floor
+contacts without the old contact atlas. General moving-null singular ends and
+intrinsic cut/focal unions remain missing. The NA2 stopping point below is
+historical; required coverage §8 is still the single current crosswalk.
 
 **Recommendation: STILL BLOCKED.** This is a source-level mathematical audit
 and continuation, not independent human review or a new Lean audit. The

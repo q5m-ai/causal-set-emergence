@@ -487,18 +487,27 @@ phase matching, including infinitely flat gaps and positive-area coincidences.
 It completes deterministic assembly and expectation, deriving a twice-screen
 union-coincidence term rather than assuming all extra strata vanish.
 [The original #156 crosswalk](notes/null-mixed-required-coverage.md#8-original-contract-reconciliation-after-the-general-front-attempt)
-still recommends **STILL BLOCKED**: higher nonregular contacts, general NN
-matching and the corrected intrinsic theorem remain unproved. Read the
-[two-page proof spine](notes/null-proof-spine.md) and
-[NF/NP audit with the continued NN and nonlocal-correction attempts](notes/null-closure-audit.md).
+still recommends **STILL BLOCKED**: general moving-null singular contacts and
+the corrected intrinsic theorem remain unproved. Read the
+[proof spine](notes/null-proof-spine.md) and
+[source audit](notes/null-closure-audit.md).
 A proved obstruction to local-finite-jet repairs is not a universal replacement.
-The [Cartesian continuation NX](notes/null-cartesian-pushforward.md) now derives
-the actual compact smooth-sheet long pushforward, a geometric nonlocal
-critical-pair term and summable signed remainder. Its Fourier estimate retains
-finite higher-sheet masks without assuming their smoothness. Regular short
-matching and a uniform cone-collar estimate do not yet prove the remaining
-diagonal/singular-end gluing or intrinsic cut-union response; expert scrutiny
-of these new written arguments is recommended before another continuation.
+The [Cartesian continuation NX](notes/null-cartesian-pushforward.md) derives
+the compact smooth-sheet long pushforward, its geometric nonlocal term and
+signed remainder, retaining finite higher-sheet masks. The subsequent
+[complete gluing argument NG](notes/null-complete-gluing.md) audits those inputs
+and writes the full point/pair decomposition before estimating. A two-normal
+signed identity and joint diagonal/end resolution complete finite conformal
+null polyhedra and the **whole** round bicone, not merely NX13's collar; the
+latter has an independently derived nonlocal correction in odd dimensions.
+[DL](notes/null-two-dimensional-gluing.md) computes the real two-dimensional
+logarithms, adjoining cross partners and conformal vertex matching.
+[FL](notes/null-floor-level-matching.md) handles all finite smooth-sheet
+strict-floor contacts jointly, deriving their one/two/zero screen traces.
+These complete written results do not supply a universal intrinsic cut-union
+expansion or gluing for every smooth moving-null cusp and singular end.
+Independent scrutiny remains necessary; finite diagnostics do not certify
+the analytic estimates.
 #156/#81/#24, #177 and #94/#86 remain open; no scope change is enacted.
 No sample-wise or spacelike-to-null singular-limit conclusion is implied.
 
@@ -932,6 +941,9 @@ physics.
 - `notes/curved-assembly.md`, `curved_assembly.py` — written controlled conformal
   4D bulk-and-joint deterministic/expected theorem and separate finite
   certificates; not a new Lean continuum-limit theorem or general curved result.
+- `notes/null-complete-gluing.md`, `notes/null-two-dimensional-gluing.md`,
+  `notes/null-floor-level-matching.md` — complete signed gluing at their stated
+  scopes; `null_complete_gluing.py` and its tests are finite diagnostics only.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.

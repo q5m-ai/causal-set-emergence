@@ -1,138 +1,150 @@
-# #156 proof spine — two-page reading brief
+# #156 proof spine — compact reading brief
 
-**Recommendation: STILL BLOCKED.** Written arguments, arithmetic diagnostics,
-existing Lean foundations and independent human acceptance are different things.
-This brief is not a new completion contract. The authoritative original-item
-crosswalk is [required coverage §8](null-mixed-required-coverage.md#8-original-contract-reconciliation-after-the-general-front-attempt).
+**Recommendation: STILL BLOCKED under the original contract.** Written
+arguments, finite diagnostics, Lean foundations and independent human acceptance
+are different things. The authoritative original-item crosswalk is
+[required coverage §8](null-mixed-required-coverage.md#8-original-contract-reconciliation-after-the-general-front-attempt).
+This brief is not a replacement completion criterion.
 
-## Page 1 — What the complete arguments actually establish
+## 1. The unchanged problem and complete accounting
 
-### 1. Start with the unchanged observable
+Determine the continuum behavior of the original causal-set action for all
+required null and mixed null/spacelike boundaries. Use the closed ambient
+order, the whole physical interval once, both endpoint measures, genuine
+dimensional kernels and one fixed positive physical temporal cutoff. A
+configuration is drawn from the original finite Poisson law. Its ordered
+pair layers count the other points in that same interval, even when it has
+several geodesic routes.
 
-A configuration is drawn from the original finite Poisson law. Its action
-counts ordered causal pairs by the number of other sampled points in the
-actual closed interval. The deterministic pair integral uses the physical
-interval's **whole volume once**, both endpoint measures, and the genuine
-kernel for the chosen dimension. An interval with several geodesic routes is
-not several intervals. Chart partitions retain every ordered pair of labels.
+[NG1–NG2](null-complete-gluing.md#2-complete-finite-density-decomposition-and-the-estimate-actually-needed)
+write the full finite-density decomposition. A singular-end cutoff produces
+four ordered endpoint terms, not just the two-singular-endpoint term. Short
+and long remain in every term; the point's diagonal weights sum to one,
+including the mixed weights of overlapping fields. All physical partners
+and all artificial transition terms must be restored.
 
-For a conformally Minkowski region that is the intersection of a future set
-and a past set, containment is elementary: the first endpoint puts the entire
-interval in the future set; the second puts it in the past set. This proves
-the actual interval law rather than assuming it from global hyperbolicity.
+The required estimate controls the **integrated signed remainder** after the
+independently derived singular coefficient. Vanishing of each sector, an
+absolute pre-cancellation majorant, or a zero singular coefficient are only
+possible sufficient devices. They are not necessities that may be imposed
+on original admissibility.
 
-### 2. NF: remove tip count from the proof
+## 2. Complete strict-floor results: NF, TC, then FL
 
-[NF1–NF13](regular-null-front-limit.md) keep the future endpoint in one fixed
-past set. With a smooth strictly spacelike floor, the floor value and actual
-interval phase are compatible coordinates for long pairs. The dimensional
-signed moments cancel the resulting smooth phase density; the fixed complement
-is retained. The number of upper tips never enters this calculation.
+[NF](regular-null-front-limit.md) keeps the upper endpoint in one fixed past
+set and resolves a smooth strictly spacelike floor. Its dimensional moments,
+matched phase/displacement remainder and independent curvature/screen
+calculation prove the complete deterministic result at regular contacts,
+then the original-law expectation. Arbitrary finite cone multiplicity uses
+every actual membership intersection, not presumed bilocal additivity.
 
-Near the diagonal, NF's regular-contact geometry supplies a vector field that
-moves the floor while preserving every incident face. Matched displacement/
-phase Taylor subtraction gives the critical remainder, not merely a formal
-curvature coefficient. Dimensional rest-diamond moments and gamma identities
-cancel the physical point once and derive half scalar curvature plus induced
-SN screen area. Arbitrary finite cone arrangements use **all** intersection
-subsets; their pair/layer valuation is proved from causal membership.
+[TC](null-tangency-matching.md) resolves two-sheet tangencies by integrating
+the actual normal simplex and matching closing before estimating. It derives
+**twice** induced screen area on persistent union-type coincidence, zero
+extra trace for intersection type, and the ordinary single-screen trace
+elsewhere. Infinitely flat and positive-measure zero sets are retained.
 
-This establishes a sufficient regular-contact conformal theorem in every
-dimension, not a classification. [The audit](null-closure-audit.md#2-nf-d-audit-what-is-established-and-where-its-hypothesis-acts)
-checks exactly where contact rank, positivity and compactness are used.
+[FL](null-floor-level-matching.md) now handles **all finite smooth-sheet
+strict-floor contacts jointly**, with dependent higher incidences, arbitrary
+ties and round apices at the floor. Integrate the actual q-time interval
+first: every sheet enters through one scalar height, while the remaining
+parameter function is smooth. The signed closing response has an integrable
+height majorant. Coarea and the actual Boolean selection derive the one/two/
+zero screen multiplicity, even when individual selected labels have no trace.
+The smooth term, point, long complement and original law are all restored.
+These are sufficient conformal theorems, not restrictions on the parent.
 
-### 3. TC: solve the two-sheet tangency, including its extra term
+## 3. NX: a nonlocal long coefficient, with its scope audited
 
-At a tangential floor/crease contact, NF's tangential transport can fail. The
-old scalar ramp bound did not control phase/angular derivatives. The new
-[TC1–TC8 proof](null-tangency-matching.md) first integrates the two actual normal
-directions into a simplex. Its height is the actual gap minus the physical
-displacement times a strictly positive speed.
+[NX](null-cartesian-pushforward.md) uses the actual two endpoint normals.
+After phase inversion their Jacobian has one power of the closing gap, not
+TC's square. Signed integration and a Fourier estimate retain arbitrary
+finite smooth-sheet selectors without differentiating their interfaces.
+A real logarithmic response can survive; a fictitious smooth pushed density
+would lose it.
 
-Split that positive-part square into a smooth extension and its exact closing
-correction. Resolve the displacement at closing **before** estimating the
-phase. Genuine signed moments now give an integrable bound in both parities,
-including infinitely flat gaps and positive-measure zero levels. No third
-derivative of the scalar ramp, shrinking cutoff or density/geometry interchange
-is required. The smooth part has NF's matched coefficient; the complete closing
-correction tends to zero after normalization. The long proof remains valid.
+The limit is an independently defined measure on the rank-minimal shared-
+null-ray pair set, using its quadratic Hessian, both endpoint densities and
+the whole-ray density mean. It is not the original action's residual.
+[NG §1](null-complete-gluing.md#1-audit-before-using-nx) checks the Jacobian,
+critical remainder, geometric trace and the meaning of the weighted short
+screen coefficient before reuse. It finds no blocking discrepancy within
+NX's stated compact support, but does not turn fixed-gap constants into
+uniform diagonal constants or supply independent acceptance.
 
-The geometric trace matters. An intersection-type crease has no additional
-zero-level area. At a union-type crease coincident with the floor, two
-single-sheet contacts survive and the intersection contributes zero. The
-result is **twice the induced screen area** on that coincident set, besides
-bulk curvature and regular SN area. Ordinary transverse contacts give it
-zero area; in two dimensions it can be a counting atom. This coefficient is
-derived, not inserted as a desired target. Complete restoration and then
-original-law Mecke finish TC's deterministic and expected conclusions.
+## 4. New complete gluing, not just the characteristic collar
 
-## Page 2 — Why the original closure contract remains unmet
+[NG3–NG6](null-complete-gluing.md#3-a-two-normal-identity-rather-than-a-taylor-expansion-of-shrinking-fields)
+integrate by parts in both actual endpoint normals. The resulting **four**
+face/interior terms contain only first normal derivatives of endpoint fields.
+Ambient Fourier expansion avoids differentiating even the front graphs.
+This gives an off-diagonal bound uniform in endpoint scales and conformal
+density, including all angular/normal sectors and both endpoint orders.
 
-### 4. NP: the intrinsic obstruction concerns the complete action
+Joint Whitney-scale resolution then integrates the point with the near-
+diagonal pairs before bounding them. Its codimension-greater-than-two sum
+is critically summable for the verified geometric charts. In codimension
+two that bound is deliberately not claimed to work.
 
-[NP1–NP9](null-product-focusing-obstruction.md) use a seven-dimensional sphere/
-flat-product spacetime and a bounded region with four null faces. The actual
-source-overlap weight includes both endpoint restrictions, both same-side
-seams and both NN screens. The physical sphere interval includes every route.
+[DL](null-two-dimensional-gluing.md) supplies the different two-dimensional
+argument. The actual physical short density has two logarithms: one cancels
+the point and the other supplies the finite response. The complete internal
+future-tip action and incoming cross partners have opposite finite limits.
+A source-only grouping has a nonzero tip charge instead; these are different
+exact partitions, not a license to drop a sector. Exact flat responses and a
+summable conformal metric comparison restore every finite polygonal vertex.
 
-The fixed short action tends to the independently computed finite bulk/NN
-target. The full matched focal response, its two transition tails, all
-complements and the physical point are computed before concluding positive
-growth of order rho^(2/7). Original-law expectation transfers separately.
-This refutes universal finite-target validity, not just one proof method.
+Consequently [NG7](null-complete-gluing.md#5-complete-conformal-finite-null-polyhedron-theorem)
+proves the complete conformal finite-null-polyhedron result in every dimension,
+including higher dependent contacts and the two incidences at a spacelike
+pinch. [NG8–NG9](null-complete-gluing.md#6-beyond-the-collar-a-complete-conformal-round-bicone-action)
+complete the **whole** round bicone that NX13 had treated only in a collar.
+All its seams, outer screen, genuine apex, physical point and partners remain.
+Its independently derived shared-ray correction is nonlocal and signed. In
+flat 3D its full limit is `(pi+2)*T`, not the local screen target `2*pi*T`.
+In 2D the whole flat response tends to four, including the central pinch's
+two counting incidences. The original law is transferred separately after
+each complete deterministic conclusion.
 
-The new [local-repair no-go argument](null-closure-audit.md#7-intrinsic-correction-np-rules-out-a-universal-local-jet-repair)
-shows more: along this family, any additive local finite-jet bulk/face/stratum
-formula is quadratic in the region's width, whereas the actual leading
-coefficient is not. Even density-dependent local coefficients cannot fix
-that mismatch. A general correction must carry genuine nonlocal pair geometry.
-This necessity does **not** prove that correction's coefficients or remainder.
+## 5. NP/NA3 still constrain the general correction
 
-### 5. NX: the actual critical long pushforward, not another identity
+[NP](null-product-focusing-obstruction.md) proves a complete admitted all-null
+7D action growing positively at order rho^(2/7), against a finite independent
+local target. It includes the true spherical physical union, both endpoint
+masks, both focal transition tails, every complement and the point once,
+then separately transfers expectation.
 
-The [new Cartesian proof NX1–NX13](null-cartesian-pushforward.md) starts from
-NA2, never NA1's folded single inverse. Integrating both actual endpoint
-normals leaves a **first-power** closing gap. It is not TC's squared gap;
-a classical smooth density expansion can miss a critical logarithm.
+[NA3](null-closure-audit.md#7-intrinsic-correction-np-rules-out-a-universal-local-jet-repair)
+rules out additive local finite-jet repair, even with density-dependent local
+coefficients: that geometric class is quadratic in width whereas the actual
+leading coefficient is not. NG's finite nonlocal bicone correction does not
+supply NP's intrinsic growing coefficient. A corrected general statement
+must derive its nonlocal geometric terms and density orders from the actual
+interval unions, not assume a desired phase expansion in admissibility.
 
-Direct signed integration turns that gap into an exponentially decaying
-primitive with the genuine dimensional moment zeros. A Fourier operator
-estimate then controls its composition with the exact squared boundary
-displacement. Crucially it never differentiates the endpoint selection masks.
-Smooth approximation in the proved norm retains arbitrary finite higher-sheet
-selections, dependent incidences and seams on the compact long support.
+## 6. Smallest remaining inferences and stopping decision
 
-Partial quadratic normal coordinates identify the surviving measure on the
-rank-minimal set of shared characteristic null pairs, even with arbitrary
-flat residual zero sets. Its coefficient uses the normal Hessian, both endpoint
-densities and the independently derived whole-ray density mean. Actual null
-germs realize a nonzero even-dimensional logarithmic response. The remainder
-is summable; the regular long conclusion transfers separately under the
-original law. This is a geometric nonlocal correction, not the action's residual.
+The old blanket “only a cone collar” blocker is superseded at the completed
+scopes above. What is **still missing** is gluing for general smooth moving-
+null contacts and singular ends without the verified isotropic or resolved
+geometry. NG10 tests a genuinely different boost/parabolic resolution at a
+same-ray null cusp: its interior strip has a summable scale, but the constants
+are not uniform at the cone ends or arbitrary higher/infinitely flat contacts.
+The strict-floor estimate cannot be cited when its positive speed vanishes.
 
-### 6. What still prevents complete restoration
+For intrinsic metrics, the chain-rule normal identity remains algebraically
+valid where the actual phase is smooth. Its Cartesian Fourier/rank bound
+does not. The missing producer must retain the whole physical cut/focal/
+contact union and both transition sides, derive every surviving geometric
+coefficient, prove the critical remainder, restore the complete deterministic
+action and only then transfer its expectation. NP already forbids a universal
+bounded version of the conformal estimate.
 
-NX also derives the regular distinct-ray NN short coefficient and tests a
-singular cone-end extension. An exact Fourier bound controls the actual
-characteristic cone collar uniformly in both endpoint scales in dimensions
-above two. It does not control every tip sector or its point cancellation;
-in two dimensions that bound is logarithmically nonsummable.
-
-The smallest conformal gap is now the **uniform critical diagonal/singular-end
-gluing estimate for the actual normal formula**, including the point and all
-multi-front masks. Finite smooth-sheet long selections are no longer merely
-an unproved NA2 pushforward. Intrinsic cut/focal unions still need their own
-geometric interval/rank substitute; NP is not described by this Cartesian map.
-
-Expert scrutiny is more useful now than another repetition of autonomous
-continuation: check NX's physical-phase Jacobian, uniform Fourier remainder
-and measurable-selector geometric trace first, then the singular-end strategy.
-TC's doubled coincidence measure, NF's Mellin argument and NP's full matching
-remain written claims requiring scrutiny too. Tests certify none of them.
-
-**STILL BLOCKED:** the regular nonlocal producer plus NF/TC/NP is not a corrected
-general complete-action theorem. The precise optional narrower endpoint in
-NX §11 is explicitly unadopted and would require acceptance changes; it would
-not satisfy #81/#24. #177 remains unresolved; #94/#86 retain expert review,
-provenance and justified verification. No closure, scope change, agent launch,
-merge or deployment follows.
+**STILL BLOCKED:** the new complete classes and complete counterexamples are
+not the corrected general theorem required by #156/#81/#24. No required item
+is silently deferred or moved to a convenience child. The earlier optional
+scope proposal remains unadopted. #177 is unresolved; #94/#86 retain human
+scrutiny, provenance and justified verification. Priority scrutiny now includes
+NG's ambient-amplitude/point bounds, DL's metric comparison and FL's signed
+height matching, alongside the earlier NF/TC/NP/NX arguments. No agents,
+merge, deployment, issue closure or sample-wise convergence follows.

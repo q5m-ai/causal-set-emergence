@@ -8,6 +8,16 @@ on that long support. It does **not** prove the remaining complete action at
 singular tips/diagonal multi-front contacts or in general intrinsic metrics.
 The single original-contract crosswalk remains [required coverage §8](null-mixed-required-coverage.md#8-original-contract-reconciliation-after-the-general-front-attempt).
 
+**Subsequent gluing continuation:** [NG](null-complete-gluing.md) audits NX2,
+its signed remainder and selector trace, then proves a different two-normal
+estimate and complete gluing for finite null polyhedra and the full round
+bicone. [DL](null-two-dimensional-gluing.md) treats the actual two-dimensional
+logarithms; [FL](null-floor-level-matching.md) handles finite-sheet strict-floor
+contacts. NX13 and this note's stopping discussion remain historical steps,
+not the current boundary of those now-completed cases. General moving-null
+singular contacts and intrinsic physical unions still block the original
+contract. The precise current crosswalk remains the one linked above.
+
 ## 1. Inputs audited and exact theorem domain
 
 The starting head was `d3d46e74c4fd89010c98178e5df588cc7ceba970`, verified
