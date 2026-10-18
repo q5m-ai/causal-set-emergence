@@ -16,6 +16,14 @@ that the geometric primitive has a classical expansion. It applies to general
 physical unions, but the required geometric critical trace is still missing.
 Thus the original-contract recommendation remains **STILL BLOCKED**.
 
+**Subsequent trace attempt:** [GT1–GT13](geometric-critical-trace.md) audits
+IU9–IU13, states the exact complete signed obligation and pursues three routes.
+It derives whole-clock coarea/one-sided control and the first coefficient,
+then proves critical-order stability under an interior-density-jet replacement.
+The general geometric trace still does not follow. The historical IU stopping
+argument below is preserved; GT identifies its now narrower missing inference
+without making a classical expansion or separate sector limit mandatory.
+
 ## 1. Audit CS before consumption; no new cusp calculation
 
 The [CS proof](curved-common-tip-response.md) is used only at its actual

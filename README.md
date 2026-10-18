@@ -522,8 +522,15 @@ error. A separate derivative-free logarithmic-ramp identity applies to general
 physical unions without requiring a classical expansion. Its general geometric
 critical trace remains unproved: the exact next specialist question is stated,
 not assumed as parent admissibility. These are restricted written results,
-not a corrected general theorem or independent acceptance. Finite diagnostics
-do not certify their analytic remainders.
+not a corrected general theorem or independent acceptance.
+[The geometric critical-trace attempt GT](notes/geometric-critical-trace.md)
+states the exact normalized full-tail obligation and pursues three distinct
+routes. Count-free clock control gives an actual coarea density and its first
+coefficient; a density-jet replacement is proved negligible at complete critical
+order. The remaining signed scale increment still lacks its geometric trace:
+these gains do not prove the corrected general theorem. Nonlocal-correction
+attempts retain the spherical and CS adversaries without assuming their structure.
+Finite diagnostics do not certify the geometric remainders.
 #156/#81/#24, #177 and #94/#86 remain open; #185 stays deferred. No scope change
 is enacted.
 No sample-wise or spacelike-to-null singular-limit conclusion is implied.
@@ -970,6 +977,9 @@ physics.
 - `notes/intrinsic-union-continuation.md` — two intrinsic-union methods, complete
   spherical growth/finite remainder and the exact general filtered-trace gap;
   `intrinsic_union_response.py` and its tests are finite diagnostics only.
+- `notes/geometric-critical-trace.md` — exact trace obligation, whole-clock coarea,
+  critical density-jet stability and three routes with the general gap retained;
+  `geometric_trace_diagnostics.py` and its tests are finite diagnostics only.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.

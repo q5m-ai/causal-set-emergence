@@ -19,9 +19,15 @@ audits CS and pursues two intrinsic methods: an actual radial resolution gives
 the spherical family's complete growth/finite remainder uniformly through
 closing; an exact derivative-free logarithmic-ramp identity avoids requiring
 a classical expansion for general physical unions. Its general geometric
-critical trace is still missing. The smallest specialist inference and the
-non-common-tip overlap replacement are explicit. The NA2 stopping point below
-is historical; required coverage §8 is still the single current crosswalk.
+critical trace is still missing. [GT1–GT13](geometric-critical-trace.md)
+subsequently audits the filter/point/full-tail identities and states that exact
+trace before three distinct attempts. Count-free optical-clock control yields
+actual coarea through route/closure changes and a first coefficient; an
+interior-density-jet comparison has a vanishing complete critical response.
+The remaining geometric signed scale increment is still uncontrolled at the
+required extra volume order. Neither a singular-contact-only correction nor
+repackaging the whole phase resolves it. The NA2 stopping point below is
+historical; required coverage §8 is still the single current crosswalk.
 
 **Recommendation: STILL BLOCKED.** This is a source-level mathematical audit
 and continuation, not independent human review or a new Lean audit. The

@@ -213,3 +213,37 @@ additional scrutiny points. The general filtered-trace inference above remains
 unproved; an exact identity or a successful family does not discharge it.
 #185's claim-to-Lean mapping remains deferred. No agents, merge, deployment,
 issue closure or sample-wise convergence follows.
+
+## 8. Exact critical trace and three geometric attempts
+
+[GT1–GT13](geometric-critical-trace.md) first fixes the unit-observable trace,
+normalization, full phase domain and integrated signed remainder. The correction
+and finite term must be independently geometric; no separate sector traces or
+classical expansion become acceptance requirements. The IU filter, logarithmic
+modes, point and full tails are audited before reuse.
+
+1. **Whole-union disintegration/coarea:** bounded optical clock ODE variations,
+   before taking any supremum, give one-sided control without counting routes.
+   They yield an actual reciprocal projected-area density through switches and
+   moving closure, and its first coefficient with null-face equality masks
+   handled by source-clock Fubini. The resulting long response is only o(rho).
+2. **Direct signed control:** the critical quantity is the full scale increment
+   of that geometric density divided by the extra volume order. Taylor expansion
+   of the smooth interior density, not of the fronts, gives an auxiliary phase
+   whose complete critical response differs by o(1). The difficult whole widths
+   remain. An abstract increasing concave slow control proves that the derived
+   scalar bounds alone are insufficient; it is not a spacetime counterexample.
+3. **Geometric nonlocal correction:** the singular part of the clock contact
+   measure misses IU's continuous focal transition; retaining the entire measure
+   only reconstructs the unevaluated observable. A general Mellin continuation
+   has not been derived, and is not imposed as admissibility. Both matching sides
+   and fractional/logarithmic modes remain required when actually produced.
+
+The spherical and CS theorems are checks on these reductions, not newly solved
+examples or universal normal forms. GT12 is a genuine complete critical
+stability result, but GT2's geometric trace is still unproved. Its smallest
+missing implication is control of the actual clipped reciprocal-area signed
+scale increment, with geometric surviving terms and full short/point restoration.
+**STILL BLOCKED** under the same original contract and single §8 crosswalk.
+Specialist mathematics is needed; accepting a narrower endpoint would instead
+require an explicit parent scope decision. Neither scope nor ownership changes.
