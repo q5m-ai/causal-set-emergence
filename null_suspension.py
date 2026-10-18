@@ -99,10 +99,24 @@ def circle_interval(u, separation, circumference):
 
     cuts = sorted({0.0, circumference, separation, circumference/2,
                    (separation+circumference/2) % circumference})
+    # Both distances are affine on these panels. Split also at each exact
+    # causal opening, so a narrow nonzero interval cannot be missed by all
+    # initial nodes of adaptive quadrature on a very large circle.
+    def path_length(x):
+        return distance(0, x) + distance(separation, x)
+
+    panels = []
+    for a, b in zip(cuts, cuts[1:]):
+        fa, fb = path_length(a), path_length(b)
+        points = [a, b]
+        if min(fa, fb) < u < max(fa, fb):
+            points.insert(1, a + (b-a)*(u-fa)/(fb-fa))
+        panels.extend((left, right) for left, right in zip(points, points[1:])
+                      if path_length((left+right)/2) < u)
     return sum(quad(lambda x: physical_section(u, distance(0, x),
                                               distance(separation, x)),
                     a, b, epsabs=3e-10, epsrel=2e-9)[0]
-               for a, b in zip(cuts, cuts[1:]))
+               for a, b in panels)
 
 
 def suspended_sphere_weight(u, duration):

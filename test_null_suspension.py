@@ -58,6 +58,15 @@ class NullSuspensionTests(unittest.TestCase):
             flat = math.pi/12 * (u*u-theta*theta)**1.5
             self.assertAlmostEqual(actual, flat, delta=2e-8)
 
+    def test_narrow_causal_support_on_large_circle_is_not_missed(self):
+        for length in (80.0, 8000.0):
+            for u, theta in ((1.0, 0.0), (1.0, .2), (1.1, .7)):
+                expected = math.pi/12 * (u*u-theta*theta)**1.5
+                self.assertAlmostEqual(circle_interval(u, theta, length),
+                                       expected, delta=2e-8)
+            self.assertEqual(circle_interval(.5, .7, length), 0.0)
+            self.assertEqual(circle_interval(.7, .7, length), 0.0)
+
     def test_whole_circle_union_is_not_a_sum_of_route_volumes(self):
         u, theta, length = 3.7, 1.0, 4.0
         actual = circle_interval(u, theta, length)
