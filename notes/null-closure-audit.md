@@ -14,9 +14,14 @@ curved cusp. [CS1–CS12](curved-common-tip-response.md) subsequently resolves
 that cusp's full signed tube estimate: the actual nonexponential profile has
 an integrable tail and a derived conformal-generator mass, with no additional
 end charge. The complete three-dimensional conformal common-tip theorem and
-separate expectation follow. General intrinsic unions remain missing. The
-NA2 stopping point below is historical; required coverage §8 is still the
-single current crosswalk.
+separate expectation follow. [IU1–IU13](intrinsic-union-continuation.md) then
+audits CS and pursues two intrinsic methods: an actual radial resolution gives
+the spherical family's complete growth/finite remainder uniformly through
+closing; an exact derivative-free logarithmic-ramp identity avoids requiring
+a classical expansion for general physical unions. Its general geometric
+critical trace is still missing. The smallest specialist inference and the
+non-common-tip overlap replacement are explicit. The NA2 stopping point below
+is historical; required coverage §8 is still the single current crosswalk.
 
 **Recommendation: STILL BLOCKED.** This is a source-level mathematical audit
 and continuation, not independent human review or a new Lean audit. The

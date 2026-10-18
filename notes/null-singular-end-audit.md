@@ -25,6 +25,14 @@ class. The stopping points below are preserved as the historical SE/IF
 delivery; SE7 remains a valid negative control. General intrinsic coverage
 and original-contract closure remain unresolved.
 
+**Subsequent intrinsic remainder:** [IU3–IU8](intrinsic-union-continuation.md)
+resolves the same actual spherical union radially, retaining IF1's seven-halves
+transition and the physical cap. It strengthens IF5 to growth plus the
+independent finite curvature/screen term with uniform o(1) error through
+closing. This new proof, not the historical IF estimate below, supplies that
+stronger remainder. IU's separate derivative-free method identifies but does
+not discharge the general physical-union critical trace.
+
 ## 1. Reconstruction before extension: NG3–NG9, FL3–FL4 and DL7
 
 The source arguments [NG](null-complete-gluing.md), [FL](null-floor-level-matching.md)

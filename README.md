@@ -515,9 +515,15 @@ partner integration gives curvature plus conformal outer-screen area, with
 no additional shared-generator or end charge. Its nonexponential profile,
 whole matching tail and uniform tube estimate extend to arbitrary smooth
 positive spacetime density in the three-dimensional common-tip class.
-General intrinsic unions remain unresolved. These are restricted written
-theorems, not a universal replacement or independent acceptance. Finite
-diagnostics do not certify their analytic remainders.
+[The intrinsic-union continuation IU](notes/intrinsic-union-continuation.md)
+then resolves the actual spherical interval jointly through focal and closing
+transitions, proving its complete growth plus finite term with uniform o(1)
+error. A separate derivative-free logarithmic-ramp identity applies to general
+physical unions without requiring a classical expansion. Its general geometric
+critical trace remains unproved: the exact next specialist question is stated,
+not assumed as parent admissibility. These are restricted written results,
+not a corrected general theorem or independent acceptance. Finite diagnostics
+do not certify their analytic remainders.
 #156/#81/#24, #177 and #94/#86 remain open; #185 stays deferred. No scope change
 is enacted.
 No sample-wise or spacelike-to-null singular-limit conclusion is implied.
@@ -961,6 +967,9 @@ physics.
 - `notes/curved-common-tip-response.md` — complete SE6 curved cusp and 3D
   conformal common-tip theorem, signed profile mass/tail and critical remainder;
   `curved_cusp_response.py` and its tests are finite diagnostics only.
+- `notes/intrinsic-union-continuation.md` — two intrinsic-union methods, complete
+  spherical growth/finite remainder and the exact general filtered-trace gap;
+  `intrinsic_union_response.py` and its tests are finite diagnostics only.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.

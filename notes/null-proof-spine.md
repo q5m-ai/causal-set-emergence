@@ -166,13 +166,39 @@ the geometrically derived endpoint weight has order nine-halves and yields
 a critically summable capped inverse remainder. Every fixed width at or below
 the first focal threshold has the complete finite curvature/screen limit;
 above it NP's complete positive growing leading term remains, including both
-matched tails and point cancellation. No width/density interchange or finite
-renormalized remainder above threshold is claimed.
+matched tails and point cancellation. IF alone did not claim a finite
+renormalized remainder above threshold.
 
-These restricted results do not supply the general intrinsic expansion at
-every surviving density order. Actual physical unions, both transition sides,
-all complements, complete deterministic restoration and only then expectation
-remain required. NP still forbids a universal bounded Cartesian analogue.
+## 7. Two intrinsic-union methods and the decisive missing trace
+
+[IU1–IU13](intrinsic-union-continuation.md) first reconstructs CS's pole
+cancellations, nonzero signed mass and two-sector remainder, without redoing
+the resolved cusp. A joint radial/angular change of the **actual** spherical
+interval then retains its seven-halves transition and both physical masks.
+Only the opening collar needs four angular derivatives; a radial O(r)
+difference crosses the secondary transition without differentiating it.
+This yields a continued strip beyond critical order, including the fourth
+kernel zero and both matching tails. IU8 strengthens IF5 to complete growth
+plus the independent curvature/screen finite term, with uniform o(1) error
+through the closing threshold, then separately transfers expectation.
+
+That exact spherical resolution is **not** a general focal normal form.
+A second method constructs a bounded logarithmic-ramp filter of the whole
+physical volume primitive. It removes all kernel-null pure powers by ordinary
+averaging and matches the point exactly, retaining even-dimensional logarithms.
+The resulting signed identity needs no classical expansion. Its general
+clock-strip estimate is nevertheless only O(rho), not a critical remainder;
+the actual spherical growing mode survives the filter and forbids assuming
+a universal further cancellation. Intrinsic common tips preserve whole
+fibres, not CS's conformal mass identity. Non-common-tip unions require their
+actual overlap fibres, not summed tip responses.
+
+**Exact next specialist inference:** a geometrically evaluated critical trace
+and integrable remainder of this canonical log-ramp of the clipped physical
+clock union, through route merging and boundary closing. This is weaker than
+demanding classical expansions, not an adopted hypothesis on parent scope.
+No general producer was obtained. An explicit parent scope decision would be
+needed only to accept a narrower endpoint; none is made here.
 
 **STILL BLOCKED:** the new complete classes and complete counterexamples are
 not the corrected general theorem required by #156/#81/#24. No required item
@@ -181,9 +207,9 @@ scope proposal remains unadopted. #177 is unresolved; #94/#86 retain human
 scrutiny, provenance and justified verification. Priority scrutiny now includes
 NG's ambient-amplitude/point bounds, DL's metric comparison and FL's signed
 height matching, alongside the earlier NF/TC/NP/NX/SE/IF arguments and CS's
-uniform continuation and signed profile mass. The precise general-producer
-question is a matched continuation for actual intrinsic unions through
-simultaneous focal and boundary closing transitions, retaining all surviving
-fractional/log poles and proving the integrated critical remainder.
+uniform continuation and signed profile mass. IU's physical radial error,
+uniform closing-cap continuation and derivative-free response identity are
+additional scrutiny points. The general filtered-trace inference above remains
+unproved; an exact identity or a successful family does not discharge it.
 #185's claim-to-Lean mapping remains deferred. No agents, merge, deployment,
 issue closure or sample-wise convergence follows.
