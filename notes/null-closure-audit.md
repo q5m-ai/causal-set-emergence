@@ -52,6 +52,18 @@ spacetime counterexample. Neither route constructs the arbitrary-Y trace.
 The NA2 stopping point below is historical; required coverage §8 is still
 the single current crosswalk.
 
+[The general-theorem attempt GA](null-general-theorem-attempt.md) subsequently
+returns **outcome C**, with no new asymptotic coverage. It records the candidate
+before implementation and audits the exact dependencies consumed. Compact
+broken-geodesic minimization, signed conservation/valuation and a conditional-
+correlation operator organization each fail to supply an independent geometric
+contact extraction with its critical error. Finite-dimensional smooth geometry
+is not finite type; a route current is not a physical union; pointwise kernel
+powers are not operator powers. The dossier identifies those failed inferences
+without claiming that a general theorem or nonclassical response is impossible.
+It neither relabels the unevaluated observable a correction nor adds a sufficient
+criterion to original admissibility. Earlier proof bodies and receipts remain.
+
 **Recommendation: STILL BLOCKED.** This is a source-level mathematical audit
 and continuation, not independent human review or a new Lean audit. The
 original #156 acceptance, #24 completion criterion, #81 acceptance and #90

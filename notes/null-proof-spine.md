@@ -336,3 +336,35 @@ is assumed. Nonproduct/non-common-tip and singular-end interactions remain
 required. The original-item crosswalk remains **STILL BLOCKED**, with #156/#81
 ownership, unresolved #177/#94/#86 and deferred #185 unchanged. An expert
 question is now explicit; no expert, agent or scope change is launched.
+
+## 11. General-theorem attempt: outcome C, not another sufficient criterion
+
+[GA's construction-failure dossier](null-general-theorem-attempt.md) starts
+from the complete observable and records the best candidate before further
+implementation. Its proposed contact response has **not** been independently
+constructed, so the candidate is not a corrected general theorem.
+
+1. **Minimizing-path attempt:** every closed Y has a compact finite-dimensional
+   broken-geodesic energy representation of all minimizers. This does not
+   imply finite type, a finite route count or a critical pushforward theorem.
+   Physical intermediate points must still be counted once. After CT's
+   legitimate Abel simplification, regular tangent profiles do not control
+   the joint exceptional endpoint neighborhoods.
+2. **Conservation/valuation attempt:** CS's signed ray mass uses a genuine
+   common-tip conformal identity. General union fibres do not inherit it;
+   inclusion–exclusion retains non-diamond intersections. An integrated
+   action-defined flux or smooth-test convergence is not the missing result.
+3. **Operator attempt:** ball-operator composition gives the actual interval,
+   but K acts pointwise on its kernel. Higher conditional moments share two
+   endpoints, not cyclic spectral traces. A scalar heat/wave functional
+   calculus does not supply the required correlated asymptotic.
+
+**No decisive new geometric-to-critical inference was proved.** The elementary
+representations require only compact geometry and Fubini; the constraints on
+any correction additionally consume the scoped SM/CT/IU/CS written arguments,
+with their weakest steps audited, not declared independently accepted.
+The missing result is an independent joint contact extraction with a complete
+cap-tested remainder, followed by the nonproduct/non-common-tip and singular-
+end assembly. This dossier proves neither impossibility nor a new spacetime
+obstruction. The sole crosswalk stays **STILL BLOCKED**. Original acceptance,
+all prior scopes/receipts, #177/#94/#86 and deferred #185 are unchanged.

@@ -549,6 +549,13 @@ The arbitrary-Y complementary response and corrected general theorem remain
 unproved. Neither CT's sufficient norm criterion nor GT's scale increment is
 a necessary acceptance condition. Finite diagnostics do not certify these
 geometric remainders or supply independent acceptance.
+[The general-theorem attempt GA](notes/null-general-theorem-attempt.md) returns
+**outcome C**, not another partial asymptotic theorem. It records the candidate
+before testing compact minimizing-path geometry, signed conservation/valuation,
+and a correlation-preserving operator formulation. None constructs the general
+contact response or proves its critical error. The dossier distinguishes that
+failure from a mathematical impossibility result and specifies the exact
+geometric result still needed, including the nonproduct extension.
 #156/#81/#24, #177 and #94/#86 remain open; #185 stays deferred. No scope change
 is enacted.
 No sample-wise or spacelike-to-null singular-limit conclusion is implied.
@@ -1004,6 +1011,8 @@ physics.
 - `notes/null-suspension-matching.md` — arbitrary-Y origin matching, complete
   local-width theorem and a flat 5D nonlocal charge with physical-union assembly;
   `null_suspension_matching.py` and its tests are finite diagnostics only.
+- `notes/null-general-theorem-attempt.md` — outcome-C construction-failure dossier:
+  candidate general statement, three structural attempts and exact missing geometry.
 - `notes/null-complementary-trace.md` — critical conditional-triangle replacement,
   the flat 6D growth/finite remainder and anchored signed transport with its
   still-unproved general estimate; `null_complementary_trace.py` and its tests
