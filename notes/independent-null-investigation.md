@@ -9,6 +9,15 @@ terms. An actual flat diamond shows why solving that equation away from the
 origin cannot recover the action limit. Neither that observation nor the
 failure of an absolute estimate is a new spacetime counterexample.
 
+**Subsequent continuation:** after this investigation was integrated into #184,
+[SM1–SM9](null-suspension-matching.md) proved the missing arbitrary-Y origin
+matching and local reference error, assembled the local-width theorem and
+all-width d=2,3 suspensions, and computed a complete flat 5D suspension
+correction by a different signed integration. Its arbitrary-Y complementary
+response remains unproved. This
+notice does not rewrite the investigation's historical branch, ownership or
+stopping record below; the sole current crosswalk is still required-coverage §8.
+
 ## 1. Pinned problem, sources and ownership
 
 Freshly fetched and API/remote-verified baseline:

@@ -438,10 +438,12 @@ merge, deployment or sample-wise assertion accompanies this source delivery.
 ## 8. Original-contract reconciliation after the general-front attempt
 
 This is the **single current original-item closure crosswalk**, updated after
-the [GT geometric critical-trace attempts](geometric-critical-trace.md), beginning
-at `1e23e79e755d24ac1269e3bb16b617915e810f94`. The original body and all four
-body-history entries, #24/#81/#90, and the actual source proofs and dependencies
-were inspected; the acceptance criteria and stopping clause are unchanged. The
+[SM's suspension matching](null-suspension-matching.md), continuing the integrated
+IN investigation from `8f9268b0af11bfac5adf93da8410cd74743d3c60`. The prior
+original-body/four-entry history reconciliation remains authoritative; this
+continuation reread the original #156 acceptance and current #24/#81/#90
+contract, with the actual local and folded-contact sources before reuse.
+The acceptance criteria and stopping clause are unchanged. The
 [audit](null-closure-audit.md) distinguishes a source-level proof check from
 independent certification. #175 is completed; **#177 is unresolved and open**.
 Neither issue state is used as mathematical input.
@@ -457,19 +459,19 @@ not independently accepted or newly Lean-certified asymptotic theorems.
 | --- | --- |
 | 1: Read #24/#90 and actual #83/#84/#134; enumerate SN, past–future NN, same-side seams, tips and higher intersections | **DISCHARGED as inventory:** §§1–2 and the source audit. The required mathematical rows are not thereby proved. |
 | 1: Dimensional, metric and selected interval regimes; required versus noncompact/degenerating/extra-regularity deferrals | **DISCHARGED as inventory:** §2 retains every original axis and only the original explicit deferrals. No genericity or no-caustics restriction is imposed on #156. |
-| 2: Actual geometric admissibility and ambient restricted intervals | **BLOCKED for full scope:** prior complete domains are unchanged. GT5–GT7 derive count-free clock control and actual coarea of IU2's whole union, including moving closure. They do not replace it by ray inverses or supply its critical trace. |
-| 2: Canonical action/law and independent normalization | **DISCHARGED for every claimed result:** #90 definitions/constants stay unchanged. GT1–GT4 audit IU's filter, logarithmic modes, point subtraction and full-tail identity. No production action, layer, probability API or action-valued target is changed. |
-| 2: Independent targets and extra coefficients | **BLOCKED for full scope:** prior targets including IU8 and CS retain their scopes. GT8–GT9 independently compute only the first long coefficient. GT2 still lacks independently geometric surviving corrections and the finite general target; a repackaged residual is not accepted. |
-| 2: No spacelike-to-null singular-limit interchange | **DISCHARGED as proof discipline:** all null faces and one compatible positive physical cutoff stay fixed. IU6 derives uniform closing control rather than assuming an interchange; projective/volume variables do not replace the temporal cutoff. CS/DL/FL scopes remain intact. |
-| 3: Analytic producers and complete consumers | **BLOCKED for full scope:** GT's three routes derive coarea/first-coefficient control and a complete critical density-jet stability theorem, but not GT2's geometric trace. GT10 identifies the signed scale increment at the extra volume order; GT13 shows the derived scalar bounds are insufficient, not a spacetime counterexample. Non-common-tip ends and general unions remain required. |
-| 3: Native ownership and valid API reuse | **BLOCKED as a complete theorem decomposition:** #156 retains null singular-end/intrinsic producers; #81 retains the corrected general consumer. IU13 identifies the exact overlap-fibre replacement for tip additivity. No convenience child, dependency change or ownership transfer is introduced; #177 is not discharged. |
-| 4: Universal finite bulk-plus-regular-screen assertion | **CONTRADICTED:** NP's complete admitted growing 7D action and NG's complete nonlocal bicone retain their force. IU8 strengthens the former's remainder, not its domain or the original acceptance. Independent targets and separate original-law transfers remain explicit. |
-| 4: Required complete conclusions where not refuted | **BLOCKED for full scope:** all prior complete classes, including CS10/CS12, remain. IU8 supplies the product family's complete correction and finite remainder through closing, but no general intrinsic theorem. Restricted success is not a replacement for original quantifiers. |
-| 4: Every partner, partition and physical point once | **BLOCKED for full scope:** NG1–NG2 and IU10–IU13 remain exact. GT2 is the complete unit-observable trace, not separate-sector acceptance. GT7 retains actual cap/overlap masks; GT12 cancels point and short pieces exactly before estimating its phase difference. The remaining full critical trace is still missing. |
-| 4: Separate original-Poisson-law expectation | **BLOCKED as a general limit:** prior complete transfers including IU8 and CS remain. GT produces no general deterministic limit to transfer; the actual finite-density Mecke identity cannot fill that gap. No new law or sample-wise claim is introduced. |
-| 4: Counterexample must identify corrected general statement and remaining owners | **BLOCKED:** NP/NA3 force nonlocal data. GT's correction attempts do not construct a corrected general theorem: a singular-contact-only term misses IU, while retaining the entire unevaluated phase is circular. The geometric critical trace and full restoration remain #156/#81; refutation and restricted replacement are not closure. |
+| 2: Actual geometric admissibility and ambient restricted intervals | **BLOCKED for full scope:** prior domains and GT's whole-union coarea remain. IN4–IN7 derive arbitrary closed-Y suspension containment and the actual conditional triangle potential; SM6–SM9 verify a new flat quotient suspension, not the earlier spacelike slab. No general singular-end atlas is presumed. |
+| 2: Canonical action/law and independent normalization | **DISCHARGED for every claimed result:** #90 definitions/constants stay unchanged. GT's filter audit remains; SM1–SM5 derive the four signed moments, logarithmic point/bulk/screen data and full-tail matching. No production action, layer or probability API changes. |
+| 2: Independent targets and extra coefficients | **BLOCKED for full scope:** SM2–SM5 independently recover the suspension's local target for every closed smooth Y; SM7–SM9 compute a nonlocal flat-fold coefficient from actual cap geometry and a positive auxiliary integral. The arbitrary-Y surviving response and general target remain unproved; an unevaluated residual is not a correction. |
+| 2: No spacelike-to-null singular-limit interchange | **DISCHARGED as proof discipline:** null faces and physical temporal cutoff remain fixed. SM's proper-separation partition is auxiliary and recombines exactly; the new null cap is derived directly, not obtained as a limit of the slab. No width/density interchange is used. |
+| 3: Analytic producers and complete consumers | **BLOCKED for full scope:** SM4–SM5 resolve arbitrary-Y origin/homogeneous matching with the actual local ratio phase, changed polar dimension, moving diagonal and logarithmic weights. SM9 completes a different signed folded-contact calculation. Neither evaluates the general complementary triangle-potential pairing; nonproduct/non-common-tip ends and general unions remain required. |
+| 3: Native ownership and valid API reuse | **BLOCKED as a complete theorem decomposition:** #156 retains null singular-end/intrinsic producers; #81 retains the corrected general consumer. SM checks S1–S13 and K/FL hypotheses before reuse, deriving its own cap and complete assembly rather than importing G-SS short conclusions. No dependency or ownership transfer; #177 is not discharged. |
+| 4: Universal finite bulk-plus-regular-screen assertion | **CONTRADICTED:** prior NP/IU and NG complete obstructions remain. SM9 adds a complete finite extra charge in a flat all-null 5D suspension without conjugate points, and complete-action growth in higher dimensions. A correction vanishing on all such flat geometries is also false. |
+| 4: Required complete conclusions where not refuted | **BLOCKED for full scope:** prior CS/IU scopes remain; SM5 assembles the local-width suspension theorem and all widths in d=2,3; SM9 gives the full 5D limit with independent nonlocal coefficient and the higher-dimensional leading growth. The latter is not a growth-plus-finite o(1) expansion. No restricted class replaces original quantifiers. |
+| 4: Every partner, partition and physical point once | **BLOCKED for full scope:** IN6 integrates both endpoints and SM1 retains the actual cap, conditional phase and four truncated moments. SM8 matches all fifteen sign sectors; SM9 restores both-tip physical overlaps before adding SM5's complete point/screens. General signed restoration remains unproved, not replaced by separate-sector acceptance. |
+| 4: Separate original-Poisson-law expectation | **BLOCKED as a general limit:** SM verifies the actual Borel order, containment, atomless volume and finite moments before transferring its completed deterministic conclusions under the original law. The missing arbitrary-Y/general deterministic response has no new expectation-limit claim. No sample-wise conclusion. |
+| 4: Counterexample must identify corrected general statement and remaining owners | **BLOCKED:** SM's flat nonlocal charge sharpens the obstruction, not the corrected general theorem. Origin matching no longer supplies arbitrary homogeneous constants, but the remaining conditional triangle-potential response and broader geometry still need independent coefficients and a complete signed remainder. #156/#81 retain them; refutation and restricted replacement are not closure. |
 | 5: Ledger, exact receipts and honest stopping rule | **DISCHARGED as delivery discipline:** this single crosswalk, source-linked proofs and the updated brief. The recommendation remains STILL BLOCKED; validation receipts and child status are not mathematical acceptance. |
-| Integration: actual #134/#155 prerequisites, shared-source coordination, intended branch, written/Lean/review separation | **DISCHARGED as execution discipline:** integrated sources were inspected; the existing #184 branch and unchanged base were verified. Shared production definitions and Lean inputs remain untouched. Validation and the newly authorized bounded feedback pass are separate PR receipts. |
+| Integration: actual #134/#155 prerequisites, shared-source coordination, intended branch, written/Lean/review separation | **DISCHARGED as execution discipline:** integrated sources, existing #184 branch and unchanged integration target were verified; continuation ownership was announced on #184. Production definitions and Lean inputs remain untouched. Validation and the newly authorized bounded feedback pass are separate receipts. |
 
 **The SE6 inference is now proved.** CS2 integrates the physical point and
 all past partners using the actual interval density, not the exponential
@@ -482,40 +484,42 @@ counterexamples. CS10 proves the mechanism for arbitrary smooth positive
 spacetime density and arbitrary past-set exits in three dimensions; the
 common-tip fibre property is a real structural hypothesis.
 
-**Exact remaining general-producer inference.** GT1–GT2 now state the full
-normalization, parameter domain, independent geometric outputs and integrated
-signed remainder of IU11 precisely. GT7 identifies the actual clipped
-reciprocal projected-area density; GT10 exposes its signed scale increment
-at the extra volume order. Geometry must control that increment with every
-surviving term independently evaluated, retaining both matching tails and
-full short/point restoration. Neither its first coefficient, one-sided clock
-variation nor GT12's critical interior-density-jet stability supplies that
-implication. GT13 is only an abstract insufficiency control. No classical
-expansion, finite route count or separate sector trace is imposed. The
-specialist need is that geometric signed increment, not another normalization,
-identity or probability bridge. Higher/infinitely flat non-common-tip ends
-remain required, not relabeled deferred.
+**Exact remaining general-producer inference.** SM5 now resolves the origin
+and homogeneous data of IN6 for every closed smooth Y. What remains on this
+route is the critically normalized complete signed pairing of the actual
+endpoint-conditional metric-triangle Abel potential inside K with the
+complementary cap, including independent surviving terms and both tails.
+It is not legitimate to average the conditional measures before K, declare
+the remaining integral a correction, or force it to vanish: SM9's flat 5D
+charge and IU8's focal growth survive. The broader nonproduct/non-common-tip
+null and singular-end geometry remains required, not deferred. GT2 is an
+exact complete trace formulation once geometric data are independently
+supplied; GT10's scale increment and IN2's cap transport are alternative
+producer routes, not new necessary lemmas. No classical expansion, finite
+route count, separate sector trace or individual-geometry classification is
+imposed by original acceptance.
 
-**What is no longer blocked.** Earlier complete scopes and receipts, including
-CS10/CS12 and IU8's uniform complete spherical remainder, remain intact and
-are used as adversarial checks rather than reproved. GT5–GT9 remove the old
-mere-continuity obstacle to whole-clock coarea and derive its first coefficient
-with null-mask handling. GT11–GT12 prove an auxiliary density-jet phase change
-has vanishing complete critical response. The actual route/closure widths
-remain; none of these general deductions is the missing corrected theorem.
-No sufficient technical device becomes necessary for parent admissibility.
+**What is no longer blocked.** Earlier CS/IU complete scopes, GT's actual
+coarea/first coefficient and critical density-jet stability remain intact.
+SM derives the missing origin moments, including logarithmic partners and
+uniform reference errors, then continues through complete deterministic
+assembly and separate original-law expectation in the local-width theorem,
+all-width d=2,3 suspensions and the new flat suspension family. The arbitrary-Y critical complementary
+response remains; the differentiated width equation cannot recover it or
+replace the now-proved origin matching. No sufficient device becomes a
+necessary condition of parent admissibility.
 
 **Scrutiny and scope.** The author reconstruction is not independent
-acceptance. IU's actual radial error, uniform closing continuation and signed
-filter require scrutiny alongside CS's Mellin-order-two continuation/mass,
-NG3–NG6, FL3–FL4, DL7, SE/IF and earlier proofs. GT adds the fixed-path optical
-clock comparison, coarea/one-sided derivative argument, null equality masks
-and the complete critical phase-stability estimate to that scrutiny. #94/#86 remain unfulfilled,
-#177 unresolved, and #185's claim-to-Lean mapping deferred. No expert or agent
-is launched. Further progress requires the focused specialist inference above;
-a parent scope decision would be needed only to accept a narrower endpoint.
-None is adopted. No exhaustive classification requirement, acceptance change
-or ownership transfer is introduced; the recommendation remains STILL BLOCKED.
+acceptance. SM adds the changed-polar-dimension/logarithmic extension of
+S9–S13, the four moment constants and tails, the actual null-cap folded
+density, all-sector matching and physical-union comparison to scrutiny of
+GT/IU/CS/NG/FL/DL/SE/IF. #94/#86 remain unfulfilled, #177 unresolved, and
+#185's claim-to-Lean mapping deferred. No expert or agent is launched.
+Further progress requires an actual signed geometric theorem, not another
+normalization identity or probability bridge. A parent scope decision would
+be needed only to accept a narrower endpoint; none is adopted. No exhaustive
+classification requirement, acceptance change or ownership transfer is
+introduced; the recommendation remains STILL BLOCKED.
 
 No Lean-affecting input changes accompany this continuation; no new compiled
 theorem or fresh full Lean audit is claimed. The PR records actual local

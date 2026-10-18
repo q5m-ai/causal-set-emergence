@@ -247,3 +247,53 @@ scale increment, with geometric surviving terms and full short/point restoration
 **STILL BLOCKED** under the same original contract and single §8 crosswalk.
 Specialist mathematics is needed; accepting a narrower endpoint would instead
 require an explicit parent scope decision. Neither scope nor ownership changes.
+
+## 9. Complete suspension matching and a flat nonlocal charge
+
+[IN](independent-null-investigation.md) supplies a second whole-observable
+route: the actual endpoint-conditional metric-triangle potential stays inside
+K, while both endpoint integrations produce a known positive cap weight.
+Its external-width equation annihilates the desired bulk and screen, so it
+cannot determine the action without origin data. The lost-data observation
+alone was not a new action counterexample.
+
+[SM1–SM9](null-suspension-matching.md) now resolves that origin problem for
+every closed smooth Y. The four truncated signed moments, weighted by u,
+u log(u), u cubed and u cubed log(u), are evaluated from independently derived
+normal-metric, curvature and endpoint-density jets. The actual ratio-phase
+comparison retains the changed polar dimension, logarithmic weights and all
+moving-diagonal contacts; complete polynomial cancellation precedes bounds.
+Both matching tails, the fixed physical temporal cutoff and auxiliary-scale
+recombination remain. The point cancels once and the independent bulk/screen
+terms are recovered, without choosing constants from the differentiated width
+equation. This yields a complete local-width suspension theorem. A further
+global two-phase calculation at the circle antipode completes all widths in
+d=3; d=2 retains the exact diamond. No higher-dimensional arbitrary-width
+theorem is inferred from local geometry, and #177's general curved G-SS class
+is not covered by these product results.
+
+When general complementary matching remains unavailable, a different direct
+signed integration is carried through on an admitted flat quotient suspension.
+The Klein-bottle lift list is derived for that family; its actual null cap,
+not the spacelike-slab weight, supplies the folded density. Four mixed
+antiderivatives match all fifteen active sectors and yield a positive
+independent coefficient. Both-tip physical overlaps are proved negligible
+before complete assembly. In 5D the full action tends to the two-screen
+area **plus a finite nonlocal charge** despite zero curvature and no conjugate
+points. In higher dimensions its complete action has positive leading growth;
+a growth-plus-finite o(1) expansion is not claimed there. Original-law
+expectation follows separately after geometric hypotheses are checked.
+
+**Remaining inference:** the critically normalized complete signed
+complementary triangle-potential pairing for arbitrary Y, with independently
+derived surviving terms. SM's exact residual identity is not itself a corrected
+theorem. The broader nonproduct/non-common-tip and singular-end requirements
+remain #156/#81. GT10 and IN2 are alternative methods, not mandatory technical
+acceptance conditions. The flat diamond's homogeneous term and IU8's complete
+spherical focal growth remain adversaries, not universal normal forms.
+
+**STILL BLOCKED under the original contract.** A new complete obstruction
+and a successful local matching theorem do not supply the corrected general
+theorem. #177, #94/#86 and deferred #185 are unchanged. The arguments are
+written mathematics; finite checks, CI and a bounded feedback pass are not
+independent acceptance or new Lean certification.

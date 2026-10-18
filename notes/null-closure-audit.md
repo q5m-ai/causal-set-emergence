@@ -26,8 +26,22 @@ actual coarea through route/closure changes and a first coefficient; an
 interior-density-jet comparison has a vanishing complete critical response.
 The remaining geometric signed scale increment is still uncontrolled at the
 required extra volume order. Neither a singular-contact-only correction nor
-repackaging the whole phase resolves it. The NA2 stopping point below is
-historical; required coverage §8 is still the single current crosswalk.
+repackaging the whole phase resolves it. [IN](independent-null-investigation.md)
+then derives complete cap transport and an inverse-free suspension pairing;
+its differentiated width equation loses both local target terms.
+[SM1–SM9](null-suspension-matching.md) subsequently resolves the arbitrary-Y
+origin/homogeneous matching using signed logarithmic moments and an actual
+local-reference estimate. It continues to the complete local-width theorem,
+all widths in d=2,3, and a different all-sector calculation on a flat
+Klein-bottle null suspension: a finite nonlocal charge survives in 5D even without curvature or conjugate
+points, and higher-dimensional complete actions grow. SM derives the null
+cap rather than importing the spacelike slab, and restores the physical union
+before assembly and separate expectation. Its arbitrary-Y complementary
+triangle-potential response is still unproved; GT10 is an alternative route,
+not a necessary closure gate. Scrutiny must include the changed polar measure,
+logarithmic extension of the local comparison, matching tails and new cap
+coefficient. The NA2 stopping point below is historical; required coverage
+§8 is still the single current crosswalk.
 
 **Recommendation: STILL BLOCKED.** This is a source-level mathematical audit
 and continuation, not independent human review or a new Lean audit. The

@@ -530,7 +530,18 @@ coefficient; a density-jet replacement is proved negligible at complete critical
 order. The remaining signed scale increment still lacks its geometric trace:
 these gains do not prove the corrected general theorem. Nonlocal-correction
 attempts retain the spherical and CS adversaries without assuming their structure.
-Finite diagnostics do not certify the geometric remainders.
+[The integrated independent investigation IN](notes/independent-null-investigation.md)
+provides an inverse-free complete pairing for arbitrary closed-Y null suspensions.
+[The matching continuation SM](notes/null-suspension-matching.md) now recovers its
+point, bulk and screen from four signed moments, with a uniform local-reference
+error and exact auxiliary-cutoff recombination. It completes the local-width
+suspension theorem, all widths in d=2,3, and, by a different signed integration,
+derives a finite extra charge in a flat all-null 5D quotient without
+conjugate points; higher
+dimensions have complete-action growth. The arbitrary-Y complementary response
+and the corrected general theorem remain unproved. GT's scale increment is one
+possible route, not a necessary acceptance condition. Finite diagnostics do
+not certify these geometric remainders or supply independent acceptance.
 #156/#81/#24, #177 and #94/#86 remain open; #185 stays deferred. No scope change
 is enacted.
 No sample-wise or spacelike-to-null singular-limit conclusion is implied.
@@ -980,6 +991,12 @@ physics.
 - `notes/geometric-critical-trace.md` — exact trace obligation, whole-clock coarea,
   critical density-jet stability and three routes with the general gap retained;
   `geometric_trace_diagnostics.py` and its tests are finite diagnostics only.
+- `notes/independent-null-investigation.md` — complete cap transport and
+  inverse-free suspension pairing, including the lost homogeneous-data warning;
+  `null_suspension.py` and its tests are finite diagnostics only.
+- `notes/null-suspension-matching.md` — arbitrary-Y origin matching, complete
+  local-width theorem and a flat 5D nonlocal charge with physical-union assembly;
+  `null_suspension_matching.py` and its tests are finite diagnostics only.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.
