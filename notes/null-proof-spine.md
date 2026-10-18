@@ -297,3 +297,42 @@ and a successful local matching theorem do not supply the corrected general
 theorem. #177, #94/#86 and deferred #185 are unchanged. The arguments are
 written mathematics; finite checks, CI and a bounded feedback pass are not
 independent acceptance or new Lean certification.
+
+## 10. Complementary triangle trace versus anchored signed transport
+
+[CT1–CT9](null-complementary-trace.md) states the exact complementary
+normalization after auditing SM's origin and remainder claims. A first route
+keeps the endpoint-conditional distance-triangle measure and both physical
+tips, approximating only an explicit smooth Abel prefactor. Its complete
+normalized error vanishes in every dimension. This does not extract the
+joint cut/focal contribution: keeping the remaining full triangle measure
+inside K is a useful reduction, not a geometric correction.
+
+For the existing flat-fold family the contact data do yield an independently
+evaluated rest-separation trace measure. Integrating the translated fold
+singularity in transverse angular coordinates before estimating it improves
+the 6D primitive error to O(w^(9/2)), with all fifteen sectors and the fourth
+integer kernel zero retained. After physical-union and origin restoration,
+the complete 6D action is its positive geometric growth coefficient times
+rho^(1/6), plus **400**, plus o(1). The original-law expectation is transferred
+separately. SM's 5D finite extra charge remains; d>=7 retains only its proved
+leading growth. This is not a universal cut normal form.
+
+A second, inverse-free route integrates the whole signed source three times
+from a fixed positive anchor. Its four lower moments and SM's local terms
+fix all four width-homogeneous modes. A concrete L1 bound on the anchored
+third-primitive error would control the real cubic closing cap. It is
+sufficient, not necessary; ordinary smooth-test distributional convergence
+can miss a finite cap charge, as an explicitly abstract control shows.
+Neither that control nor failure of the norm estimate is an admitted
+counterexample. The actual flat and spherical obstructions are distinct,
+complete-action constraints on the corrected statement.
+
+**Smallest remaining implication:** extract geometric data from the joint
+conditional thin-triangle measures, then prove the cap-tested signed critical
+remainder; alternatively prove the anchored transport estimate for an
+independently constructed source. No finite route/type or classical expansion
+is assumed. Nonproduct/non-common-tip and singular-end interactions remain
+required. The original-item crosswalk remains **STILL BLOCKED**, with #156/#81
+ownership, unresolved #177/#94/#86 and deferred #185 unchanged. An expert
+question is now explicit; no expert, agent or scope change is launched.

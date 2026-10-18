@@ -438,11 +438,12 @@ merge, deployment or sample-wise assertion accompanies this source delivery.
 ## 8. Original-contract reconciliation after the general-front attempt
 
 This is the **single current original-item closure crosswalk**, updated after
-[SM's suspension matching](null-suspension-matching.md), continuing the integrated
-IN investigation from `8f9268b0af11bfac5adf93da8410cd74743d3c60`. The prior
-original-body/four-entry history reconciliation remains authoritative; this
-continuation reread the original #156 acceptance and current #24/#81/#90
-contract, with the actual local and folded-contact sources before reuse.
+[CT's complementary-response attempts](null-complementary-trace.md), continuing
+SM from `0277a469fc8d544d82c40c9f60a6bb2d50996d58`. The prior original-body/
+four-entry history reconciliation remains authoritative; this continuation
+reread the original #156 acceptance and current #24/#81/#90 contract, then
+audited SM's actual conclusions/remainders and its consumed local/folded
+sources before reuse. Origin matching is an input, not an unresolved task.
 The acceptance criteria and stopping clause are unchanged. The
 [audit](null-closure-audit.md) distinguishes a source-level proof check from
 independent certification. #175 is completed; **#177 is unresolved and open**.
@@ -461,15 +462,15 @@ not independently accepted or newly Lean-certified asymptotic theorems.
 | 1: Dimensional, metric and selected interval regimes; required versus noncompact/degenerating/extra-regularity deferrals | **DISCHARGED as inventory:** §2 retains every original axis and only the original explicit deferrals. No genericity or no-caustics restriction is imposed on #156. |
 | 2: Actual geometric admissibility and ambient restricted intervals | **BLOCKED for full scope:** prior domains and GT's whole-union coarea remain. IN4–IN7 derive arbitrary closed-Y suspension containment and the actual conditional triangle potential; SM6–SM9 verify a new flat quotient suspension, not the earlier spacelike slab. No general singular-end atlas is presumed. |
 | 2: Canonical action/law and independent normalization | **DISCHARGED for every claimed result:** #90 definitions/constants stay unchanged. GT's filter audit remains; SM1–SM5 derive the four signed moments, logarithmic point/bulk/screen data and full-tail matching. No production action, layer or probability API changes. |
-| 2: Independent targets and extra coefficients | **BLOCKED for full scope:** SM2–SM5 independently recover the suspension's local target for every closed smooth Y; SM7–SM9 compute a nonlocal flat-fold coefficient from actual cap geometry and a positive auxiliary integral. The arbitrary-Y surviving response and general target remain unproved; an unevaluated residual is not a correction. |
+| 2: Independent targets and extra coefficients | **BLOCKED for full scope:** SM2–SM5's independent local target and SM7–SM9's flat-fold coefficient remain. CT5 extracts the fold's rest-separation trace measure; CT6 retains the independent 6D finite term 400. CT3's full conditional triangle measure is not relabeled a correction. The arbitrary-Y surviving response and general target remain unproved. |
 | 2: No spacelike-to-null singular-limit interchange | **DISCHARGED as proof discipline:** null faces and physical temporal cutoff remain fixed. SM's proper-separation partition is auxiliary and recombines exactly; the new null cap is derived directly, not obtained as a limit of the slab. No width/density interchange is used. |
-| 3: Analytic producers and complete consumers | **BLOCKED for full scope:** SM4–SM5 resolve arbitrary-Y origin/homogeneous matching with the actual local ratio phase, changed polar dimension, moving diagonal and logarithmic weights. SM9 completes a different signed folded-contact calculation. Neither evaluates the general complementary triangle-potential pairing; nonproduct/non-common-tip ends and general unions remain required. |
+| 3: Analytic producers and complete consumers | **BLOCKED for full scope:** origin matching remains proved. CT4 gives a critical elementary-Abel-factor replacement for every closed smooth Y, keeping the conditional triangle measure and both tips. CT7–CT8 give a separate anchored signed transport criterion, not its general geometric discharge. CT6 sharpens the existing 6D fold; arbitrary-Y and nonproduct/non-common-tip/singular-end responses remain unproved. |
 | 3: Native ownership and valid API reuse | **BLOCKED as a complete theorem decomposition:** #156 retains null singular-end/intrinsic producers; #81 retains the corrected general consumer. SM checks S1–S13 and K/FL hypotheses before reuse, deriving its own cap and complete assembly rather than importing G-SS short conclusions. No dependency or ownership transfer; #177 is not discharged. |
 | 4: Universal finite bulk-plus-regular-screen assertion | **CONTRADICTED:** prior NP/IU and NG complete obstructions remain. SM9 adds a complete finite extra charge in a flat all-null 5D suspension without conjugate points, and complete-action growth in higher dimensions. A correction vanishing on all such flat geometries is also false. |
-| 4: Required complete conclusions where not refuted | **BLOCKED for full scope:** prior CS/IU scopes remain; SM5 assembles the local-width suspension theorem and all widths in d=2,3; SM9 gives the full 5D limit with independent nonlocal coefficient and the higher-dimensional leading growth. The latter is not a growth-plus-finite o(1) expansion. No restricted class replaces original quantifiers. |
+| 4: Required complete conclusions where not refuted | **BLOCKED for full scope:** prior CS/IU and SM local-width/all-width d=2,3 results remain. SM9 gives the full 5D finite charge. CT6 now proves growth plus finite 400 with o(1) error in the same 6D flat suspension; d>=7 retains only SM's leading growth. No restricted class replaces original quantifiers. |
 | 4: Every partner, partition and physical point once | **BLOCKED for full scope:** IN6 integrates both endpoints and SM1 retains the actual cap, conditional phase and four truncated moments. SM8 matches all fifteen sign sectors; SM9 restores both-tip physical overlaps before adding SM5's complete point/screens. General signed restoration remains unproved, not replaced by separate-sector acceptance. |
-| 4: Separate original-Poisson-law expectation | **BLOCKED as a general limit:** SM verifies the actual Borel order, containment, atomless volume and finite moments before transferring its completed deterministic conclusions under the original law. The missing arbitrary-Y/general deterministic response has no new expectation-limit claim. No sample-wise conclusion. |
-| 4: Counterexample must identify corrected general statement and remaining owners | **BLOCKED:** SM's flat nonlocal charge sharpens the obstruction, not the corrected general theorem. Origin matching no longer supplies arbitrary homogeneous constants, but the remaining conditional triangle-potential response and broader geometry still need independent coefficients and a complete signed remainder. #156/#81 retain them; refutation and restricted replacement are not closure. |
+| 4: Separate original-Poisson-law expectation | **BLOCKED as a general limit:** CT verifies the same actual quotient/order/volume/containment and finite Poisson moments before transferring the completed 6D growth-plus-finite result. Prior separate transfers remain. No arbitrary-Y/general expectation limit, random-limit interchange or sample-wise conclusion is added. |
+| 4: Counterexample must identify corrected general statement and remaining owners | **BLOCKED:** CT1–CT2 specify the exact post-origin complementary obligation; CT6 corrects the 6D family, not the general theorem. The false universal finite-local quantifier is identified using admitted complete actions; CT9 is explicitly only an abstract control. Independently geometric joint-contact data and a cap-tested critical remainder remain #156/#81, followed by the broader nonproduct regimes. Refutation and restricted replacement are not closure. |
 | 5: Ledger, exact receipts and honest stopping rule | **DISCHARGED as delivery discipline:** this single crosswalk, source-linked proofs and the updated brief. The recommendation remains STILL BLOCKED; validation receipts and child status are not mathematical acceptance. |
 | Integration: actual #134/#155 prerequisites, shared-source coordination, intended branch, written/Lean/review separation | **DISCHARGED as execution discipline:** integrated sources, existing #184 branch and unchanged integration target were verified; continuation ownership was announced on #184. Production definitions and Lean inputs remain untouched. Validation and the newly authorized bounded feedback pass are separate receipts. |
 
@@ -499,6 +500,18 @@ producer routes, not new necessary lemmas. No classical expansion, finite
 route count, separate sector trace or individual-geometry classification is
 imposed by original acceptance.
 
+**Two further attempts, not a new acceptance gate.** CT4 proves that a finite
+Taylor replacement of only the explicit elementary Abel factor has a
+vanishing critical response, leaving the actual conditional triangle measure
+and longitudinal tip factor intact. Extracting joint cut/focal data from
+that measure still lacks a complete critical remainder. CT7 separately
+anchors the complete signed response and retains all homogeneous modes;
+CT8's third-primitive L1 estimate would control the physical cap but is not
+proved for arbitrary Y. CT9 shows why smooth-test convergence alone is
+insufficient, without claiming a spacetime realization. The focused expert
+question is to construct independent joint-contact source data and prove
+this cap-tested estimate, allowing nonclassical scales. No expert is launched.
+
 **What is no longer blocked.** Earlier CS/IU complete scopes, GT's actual
 coarea/first coefficient and critical density-jet stability remain intact.
 SM derives the missing origin moments, including logarithmic partners and
@@ -506,15 +519,20 @@ uniform reference errors, then continues through complete deterministic
 assembly and separate original-law expectation in the local-width theorem,
 all-width d=2,3 suspensions and the new flat suspension family. The arbitrary-Y critical complementary
 response remains; the differentiated width equation cannot recover it or
-replace the now-proved origin matching. No sufficient device becomes a
-necessary condition of parent admissibility.
+replace the now-proved origin matching. CT6 additionally resolves the finite
+remainder in the existing 6D flat family by a new transverse angular fold
+estimate, all four integer zeros, physical-union comparison and full assembly.
+No higher-dimensional finite remainder is inferred. No sufficient device
+becomes a necessary condition of parent admissibility.
 
 **Scrutiny and scope.** The author reconstruction is not independent
 acceptance. SM adds the changed-polar-dimension/logarithmic extension of
 S9–S13, the four moment constants and tails, the actual null-cap folded
 density, all-sector matching and physical-union comparison to scrutiny of
-GT/IU/CS/NG/FL/DL/SE/IF. #94/#86 remain unfulfilled, #177 unresolved, and
-#185's claim-to-Lean mapping deferred. No expert or agent is launched.
+GT/IU/CS/NG/FL/DL/SE/IF. CT adds its whole conditional-triangle stability,
+face-tangent angular resolution of the fold and actual-cap transport bounds.
+#94/#86 remain unfulfilled, #177 unresolved, and #185's claim-to-Lean mapping
+deferred. No expert or agent is launched.
 Further progress requires an actual signed geometric theorem, not another
 normalization identity or probability bridge. A parent scope decision would
 be needed only to accept a narrower endpoint; none is adopted. No exhaustive

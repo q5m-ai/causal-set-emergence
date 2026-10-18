@@ -40,8 +40,17 @@ before assembly and separate expectation. Its arbitrary-Y complementary
 triangle-potential response is still unproved; GT10 is an alternative route,
 not a necessary closure gate. Scrutiny must include the changed polar measure,
 logarithmic extension of the local comparison, matching tails and new cap
-coefficient. The NA2 stopping point below is historical; required coverage
-§8 is still the single current crosswalk.
+coefficient. [CT1–CT9](null-complementary-trace.md) next audits SM's actual
+remainders, proves critical stability for an explicit conditional-triangle
+Abel approximation, and derives the flat contact's rest-separation trace.
+A stronger integrated fold-translation estimate upgrades the same 6D
+suspension to growth plus finite 400 with o(1) error; higher dimensions are
+not silently upgraded. An anchored third-primitive transport bound retains
+all homogeneous data and tests the actual cubic closing cap. Its general
+geometric bound is not proved; an abstract smooth-test control is not a
+spacetime counterexample. Neither route constructs the arbitrary-Y trace.
+The NA2 stopping point below is historical; required coverage §8 is still
+the single current crosswalk.
 
 **Recommendation: STILL BLOCKED.** This is a source-level mathematical audit
 and continuation, not independent human review or a new Lean audit. The

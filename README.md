@@ -538,10 +538,17 @@ error and exact auxiliary-cutoff recombination. It completes the local-width
 suspension theorem, all widths in d=2,3, and, by a different signed integration,
 derives a finite extra charge in a flat all-null 5D quotient without
 conjugate points; higher
-dimensions have complete-action growth. The arbitrary-Y complementary response
-and the corrected general theorem remain unproved. GT's scale increment is one
-possible route, not a necessary acceptance condition. Finite diagnostics do
-not certify these geometric remainders or supply independent acceptance.
+dimensions have complete-action growth.
+[The complementary-trace continuation CT](notes/null-complementary-trace.md)
+then proves a critical triangle-phase replacement for arbitrary closed Y,
+extracts the flat fold's geometric trace measure, and sharpens the existing
+6D suspension to growth plus its independent finite term with o(1) error.
+A separate anchored signed transport criterion retains all four homogeneous
+modes and the physical closing cap; smooth-test convergence alone is not enough.
+The arbitrary-Y complementary response and corrected general theorem remain
+unproved. Neither CT's sufficient norm criterion nor GT's scale increment is
+a necessary acceptance condition. Finite diagnostics do not certify these
+geometric remainders or supply independent acceptance.
 #156/#81/#24, #177 and #94/#86 remain open; #185 stays deferred. No scope change
 is enacted.
 No sample-wise or spacelike-to-null singular-limit conclusion is implied.
@@ -997,6 +1004,10 @@ physics.
 - `notes/null-suspension-matching.md` — arbitrary-Y origin matching, complete
   local-width theorem and a flat 5D nonlocal charge with physical-union assembly;
   `null_suspension_matching.py` and its tests are finite diagnostics only.
+- `notes/null-complementary-trace.md` — critical conditional-triangle replacement,
+  the flat 6D growth/finite remainder and anchored signed transport with its
+  still-unproved general estimate; `null_complementary_trace.py` and its tests
+  are finite diagnostics only.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.

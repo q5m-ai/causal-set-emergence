@@ -18,6 +18,18 @@ crosswalk remains [§8](null-mixed-required-coverage.md#8-original-contract-reco
 No new acceptance condition, finite-route hypothesis on general Y, ownership
 transfer or exhaustive-classification gate is introduced.
 
+**Subsequent complementary-response continuation:**
+[CT1–CT9](null-complementary-trace.md) audits these conclusions without redoing
+the origin theorem. It proves a critical elementary-Abel-factor replacement
+for arbitrary closed Y and extracts the flat fold's rest-separation trace.
+An additional angular transverse-coordinate argument sharpens the same 6D
+family to growth plus its independent finite 400 with o(1) error; SM8's
+O(w^4) estimate alone did not imply that refinement. The d>=7 claim below
+remains leading growth only. A different anchored signed transport route
+retains the homogeneous modes and exposes a physical-closing test gap.
+The arbitrary-Y trace and original general theorem remain unproved; the
+SM arguments and their stated estimates below are preserved.
+
 ## 1. Complete observable and the four moments
 
 Keep IN4's product metric, closed ambient order, whole contained intervals and
