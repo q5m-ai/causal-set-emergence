@@ -340,8 +340,9 @@ united. Integrating the three compact-flat endpoint displacements in IN6
 produces exactly NP3:
 
 ```math
-G_N(U)=4\pi U\int_U^T G_T(v)\sqrt{v^2-U^2}\,dv.
-\tag{IN10}
+\begin{aligned}
+G_N(U)&=4\pi U\int_U^T G_T(v)\sqrt{v^2-U^2}\,dv.
+\end{aligned}\tag{IN10}
 ```
 
 The volume in IN5 becomes O4 after the same flat boost and physical Fubini.
@@ -422,8 +423,11 @@ and signed singular asymptotics: **what critical signed response theorem is
 valid for these nonlinear Abel potentials of actual conditional triangle
 measures, including the boundary data annihilated by IN8?** It is already
 unresolved with constant interior density and perfectly planar null faces.
-It is materially smaller than “all null singularities,” yet remains a
-necessary subproblem of the original scope, not a new chosen endpoint.
+It is materially smaller than “all null singularities.” Every proposed
+arbitrary-metric theorem must account for these admitted members, but a
+universal response theorem of this particular form is **not** asserted to be
+necessary for every possible corrected-statement package. It is a focused
+research route, not a new closure gate or a requirement to classify each Y.
 The exact reductions are proved here; that geometric response theorem is not.
 Calling IN6 itself a correction would merely rename the action and is rejected.
 
