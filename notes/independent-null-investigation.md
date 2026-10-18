@@ -23,11 +23,16 @@ Freshly fetched and API/remote-verified baseline:
   not an implicit merge to main.
 
 The original #156 body was read in its four-entry edit history, not only its
-latest delivery preamble. The original #81 acceptance and #24 completion
-criterion require the complete quantified theorem, or an admitted complete
-obstruction **and a corrected general theorem**. They do not require GT10,
-a classical expansion, a separate long limit, or an exhaustive classification
-of individual spacetimes. A list of positive classes cannot close them.
+latest delivery preamble. The complete #81/#24 histories (14/10 entries) were
+also checked. #81's oldest provisional gate allowed a dimension-specific
+obstruction and kept null/mixed separate; its later coverage-owner acceptance
+explicitly requires the corrected general theorem. #24's original completion
+criterion already required that theorem. Neither the historical provisional
+gate nor a later progress preamble replaces the user's present #156/#81/#24
+contract: a complete quantified proof, or an admitted complete obstruction
+**and a corrected general theorem**. None requires GT10, a classical expansion,
+a separate long limit, or exhaustive classification of individual spacetimes.
+A list of positive classes cannot close that contract.
 
 The [compact spine](null-proof-spine.md), [single original-item crosswalk
 §8](null-mixed-required-coverage.md#8-original-contract-reconciliation-after-the-general-front-attempt),
