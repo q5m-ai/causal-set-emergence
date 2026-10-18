@@ -16,6 +16,15 @@ and resolves a physical closing boundary at the first focal threshold. Neither
 restricted theorem classifies general null geometry. The explicit curved cusp
 in §5 and general intrinsic unions still prevent original-contract closure.
 
+**Subsequent SE6 resolution:** [CS1–CS12](curved-common-tip-response.md)
+audits SE3–SE7 and proves the complete curved response of this same cusp,
+including its uniform signed tube bound and zero additional end charge.
+Its joint whole-diamond scaling and signed null-profile mass extend to smooth
+spacetime-dependent conformal density in the three-dimensional common-tip
+class. The stopping points below are preserved as the historical SE/IF
+delivery; SE7 remains a valid negative control. General intrinsic coverage
+and original-contract closure remain unresolved.
+
 ## 1. Reconstruction before extension: NG3–NG9, FL3–FL4 and DL7
 
 The source arguments [NG](null-complete-gluing.md), [FL](null-floor-level-matching.md)

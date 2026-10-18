@@ -509,10 +509,15 @@ author-checks those estimates, resolves arbitrary opposite-front exits in the
 flat common-tip class by complete signed fibre integration, and derives a
 fixed-width intrinsic focal threshold including its physical closing boundary.
 It also computes the actual seven-halves transition coefficient, retaining both
-matched tails above threshold. An explicit smooth conformal cusp still lacks
-its complete signed tube estimate; general intrinsic unions remain unresolved.
-These are restricted written theorems, not a universal replacement or independent
-acceptance. Finite diagnostics do not certify their analytic remainders.
+matched tails above threshold. [The curved common-tip response CS](notes/curved-common-tip-response.md)
+now resolves that **same** cusp at density `A(t)=1+t*t`: complete signed
+partner integration gives curvature plus conformal outer-screen area, with
+no additional shared-generator or end charge. Its nonexponential profile,
+whole matching tail and uniform tube estimate extend to arbitrary smooth
+positive spacetime density in the three-dimensional common-tip class.
+General intrinsic unions remain unresolved. These are restricted written
+theorems, not a universal replacement or independent acceptance. Finite
+diagnostics do not certify their analytic remainders.
 #156/#81/#24, #177 and #94/#86 remain open; #185 stays deferred. No scope change
 is enacted.
 No sample-wise or spacelike-to-null singular-limit conclusion is implied.
@@ -953,6 +958,9 @@ physics.
 - `notes/null-singular-end-audit.md` — author reconstruction, complete flat
   common-tip singular-end theorem and intrinsic focal closing threshold;
   `null_singular_ends.py` and its tests are finite diagnostics, not certificates.
+- `notes/curved-common-tip-response.md` — complete SE6 curved cusp and 3D
+  conformal common-tip theorem, signed profile mass/tail and critical remainder;
+  `curved_cusp_response.py` and its tests are finite diagnostics only.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.

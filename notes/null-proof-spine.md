@@ -122,7 +122,7 @@ supply NP's intrinsic growing coefficient. A corrected general statement
 must derive its nonlocal geometric terms and density orders from the actual
 interval unions, not assume a desired phase expansion in admissibility.
 
-## 6. Singular ends: reconstruction, two restricted theorems, exact blocker
+## 6. Singular ends: reconstruction and the complete curved cusp response
 
 [SE/IF](null-singular-end-audit.md) reconstructs NG3–NG9, FL3–FL4 and DL7
 before reuse: both normal integrations and their four terms, the point before
@@ -139,12 +139,25 @@ opposite-front exits, without a transverse or continuous exit-radius premise.
 It includes both cusp ends and their far partners, followed separately by
 original-law expectation. This is not a new proof of a finite polyhedron.
 
-The same region with density `A(t)=1+t*t` is the smallest explicit remaining
-conformal question. SE6 writes its exact full response. SE7 disproves the
-borrowed flat exponential identity at finite density, not its conjectured
-limit. Its signed critical tube estimate, with any nonzero geometric charge,
-remains missing; neither deleting far partners nor assuming zero charge is
-permitted. General higher/infinitely flat moving-null ends are still retained.
+[CS1–CS12](curved-common-tip-response.md) now resolves **that same cusp**
+with density `A(t)=1+t*t`, without copying the exponential refuted by SE7.
+Jointly map the endpoint and its whole past diamond to a fixed domain. The
+combined boost/homothety keeps every macroscopic partner and gives bounded
+reference densities. Signed integration cancels the point and derives
+curvature; a uniform Mellin remainder retains an integrable nonzero tail.
+The actual null-layer profile is nonlocal, but its complete mass is the
+derivative of conformal ray length. It integrates to the independent outer
+screen. The whole tube, including both cusp ends, has a uniform vanishing
+bound: **no extra shared-generator charge survives**. The complete limit is
+half curvature plus conformal outer-screen area, independently about
+`5.150412420352442` for SE6.
+
+This mechanism proves the entire three-dimensional conformal common-tip
+class with arbitrary smooth positive spacetime density and arbitrary past-set
+exits, then transfers original-law expectation separately. Polynomial density,
+finite type and transverse exits are not hypotheses. The common-tip fibre
+property remains essential; more general fronts and intrinsic physical unions
+are not silently included.
 
 For intrinsic metrics IF1 derives the **actual** secondary-transition
 seven-halves coefficient from the whole spherical interval. IF2–IF5 then
@@ -167,6 +180,10 @@ is silently deferred or moved to a convenience child. The earlier optional
 scope proposal remains unadopted. #177 is unresolved; #94/#86 retain human
 scrutiny, provenance and justified verification. Priority scrutiny now includes
 NG's ambient-amplitude/point bounds, DL's metric comparison and FL's signed
-height matching, alongside the earlier NF/TC/NP/NX arguments and the new SE/IF
-proofs. #185's claim-to-Lean mapping remains deferred. No agents, merge, deployment, issue
-closure or sample-wise convergence follows.
+height matching, alongside the earlier NF/TC/NP/NX/SE/IF arguments and CS's
+uniform continuation and signed profile mass. The precise general-producer
+question is a matched continuation for actual intrinsic unions through
+simultaneous focal and boundary closing transitions, retaining all surviving
+fractional/log poles and proving the integrated critical remainder.
+#185's claim-to-Lean mapping remains deferred. No agents, merge, deployment,
+issue closure or sample-wise convergence follows.

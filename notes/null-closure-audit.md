@@ -10,9 +10,13 @@ responses; [FL](null-floor-level-matching.md) resolves finite-sheet strict-floor
 contacts without the old contact atlas. [SE/IF](null-singular-end-audit.md)
 then reconstructs those estimates, resolves arbitrary flat common-tip exits
 and the all-null product's focal closing threshold, and isolates a concrete
-curved cusp still lacking its full signed tube estimate. General intrinsic
-unions remain missing. The NA2 stopping point below is historical; required
-coverage §8 is still the single current crosswalk.
+curved cusp. [CS1–CS12](curved-common-tip-response.md) subsequently resolves
+that cusp's full signed tube estimate: the actual nonexponential profile has
+an integrable tail and a derived conformal-generator mass, with no additional
+end charge. The complete three-dimensional conformal common-tip theorem and
+separate expectation follow. General intrinsic unions remain missing. The
+NA2 stopping point below is historical; required coverage §8 is still the
+single current crosswalk.
 
 **Recommendation: STILL BLOCKED.** This is a source-level mathematical audit
 and continuation, not independent human review or a new Lean audit. The
