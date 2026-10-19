@@ -436,6 +436,14 @@ unrestricted-conjecture result, or sample-wise convergence is claimed.
 
 ### Fixed-null mixed estimates and written expected-action assembly
 
+**Research-package handoff:** [PR #184's integration scope](notes/null-research-handoff.md)
+is to preserve the scoped written results, diagnostics and blocker dossier,
+not to complete #156/#81/#24. This line of investigation has stopped in favor
+of another approach. Preparing the package for review or merge does not change
+the original theorem acceptance, resolve the blocked crosswalk entries, or
+supply independent mathematical review. The detailed results below retain
+their stated scopes and verification status.
+
 The [fixed-null mixed pilot](notes/null-mixed-estimates.md) derives the signed
 unit joint coefficient directly for a smooth spacelike lower face beneath a
 null cone. Its conventional proof gives an explicit weighted near-cone bound,

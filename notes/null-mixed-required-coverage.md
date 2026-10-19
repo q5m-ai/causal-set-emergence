@@ -437,6 +437,13 @@ merge, deployment or sample-wise assertion accompanies this source delivery.
 
 ## 8. Original-contract reconciliation after the general-front attempt
 
+**PR deliverable versus theorem acceptance:** the [research handoff](null-research-handoff.md)
+prepares #184's existing results, diagnostics and unsuccessful approaches for
+integration without claiming this crosswalk is complete. Ending this line of
+investigation and making its artifacts reviewable does not discharge any
+BLOCKED row, narrow #156/#81/#24, or close an issue. The mathematical dispositions
+and ownership below are unchanged.
+
 This is the **single current original-item closure crosswalk**, updated after
 [GA's general-theorem attempt](null-general-theorem-attempt.md), from verified
 head `4da24490dfca7ab80f397563b3ef6dbaa44e902f`. It returns **outcome C**:

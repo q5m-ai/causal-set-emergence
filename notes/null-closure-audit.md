@@ -1,5 +1,14 @@
 # Original-contract audit and continued closure argument (#156 / #184)
 
+**Research-package closeout:** [the handoff](null-research-handoff.md) separates
+PR #184's bounded integration deliverable from the original theorem obligation.
+The investigation has stopped; the written results, diagnostics and failure
+dossier are being preserved for review and another approach. **STILL BLOCKED**
+below is the mathematical disposition of #156/#81/#24, not a requirement to
+keep these research artifacts in a draft PR indefinitely. No proof claim,
+original-item disposition, independent-review status or historical receipt
+is changed by this packaging decision.
+
 **Subsequent substantive continuations:** [NX1–NX13](null-cartesian-pushforward.md)
 prove the compact smooth-sheet critical long pushforward and its geometric
 nonlocal coefficient. [NG](null-complete-gluing.md) subsequently audits that
