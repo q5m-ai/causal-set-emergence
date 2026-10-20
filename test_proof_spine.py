@@ -28,6 +28,23 @@ class Page(HTMLParser):
 
 
 class ProofSpineTests(unittest.TestCase):
+    def test_project_rename_contract(self):
+        for name, suffix in (("index", ""), ("dimensions", "dimensions.html"), ("proof-spine", "proof-spine.html")):
+            text = (ROOT / f"site/{name}.html").read_text()
+            self.assertIn(f'<link rel="canonical" href="https://causal-sets.q5m.ai/{suffix}">', text)
+            self.assertIn("Causal Sets", text)
+            self.assertIn("causal-sets<span>.q5m.ai</span>", text)
+            self.assertNotIn("causal-set-emergence.q5m.ai", text)
+        # Runtime namespace/image identity is intentionally retained; both public
+        # names reach the same Service during the separately gated cutover.
+        ingress = (ROOT / "deploy/base/resources.yaml").read_text()
+        self.assertIn("- host: causal-sets.q5m.ai", ingress)
+        self.assertIn("- host: causal-set-emergence.q5m.ai", ingress)
+        for file in ("q5m/health.sh", ".github/workflows/deploy-k3s.yml"):
+            text = (ROOT / file).read_text()
+            self.assertIn("<title>Causal Sets", text)
+            self.assertNotIn("<title>Causal Set Emergence", text)
+
     def test_local_links_and_unique_ids(self):
         for path in (ROOT / "site").glob("*.html"):
             page = Page(path.read_text())

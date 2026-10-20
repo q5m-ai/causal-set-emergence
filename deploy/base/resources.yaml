@@ -168,6 +168,16 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
+  - host: causal-sets.q5m.ai
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: web
+            port:
+              number: 80
   - host: causal-set-emergence.q5m.ai
     http:
       paths:
