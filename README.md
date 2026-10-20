@@ -1,4 +1,4 @@
-# Causal Set Emergence
+# Causal Sets
 
 Research into how continuum spacetime geometry, gravitational action, and
 possibly dynamical laws can emerge from discrete causal order.
@@ -285,7 +285,7 @@ four-dimensional program, **not** the unrestricted conjecture, a convergence
 rate, variance or concentration bounds, convergence in probability, or
 almost-sure convergence of individual sprinklings. The
 [acceptance and gap-history audit](formal/ACCEPTANCE.md) records the checked
-contracts and scope for [tracker #1](https://github.com/q5m-ai/causal-set-emergence/issues/1).
+contracts and scope for [tracker #1](https://github.com/q5m-ai/causal-sets/issues/1).
 
 ### Strategic direction beyond the checked base cases
 
@@ -306,7 +306,7 @@ proof can be claimed.
 
 See the [general-conjecture roadmap](notes/conjecture-roadmap.md), the
 [general contract and scope gate](notes/general-contract.md), and
-[tracking issue #24](https://github.com/q5m-ai/causal-set-emergence/issues/24).
+[tracking issue #24](https://github.com/q5m-ai/causal-sets/issues/24).
 The scope gate separates the general curved/dimensional target from the proved
 restricted cases, specifies null/mixed and steep-face pilots, and records
 [source-review limitations](notes/general-contract-literature.md). It is a
@@ -381,7 +381,7 @@ causally convex and has the wrong causal overlap formula. This is a rigorous
 obstruction to that comparison route, **not** a counterexample to the full
 conjecture or a new enlarged-class limit. The audit records surviving local
 jets, replacement long-ray margins and the bounded
-[direct-origin proof task #97](https://github.com/q5m-ai/causal-set-emergence/issues/97).
+[direct-origin proof task #97](https://github.com/q5m-ai/causal-sets/issues/97).
 The [partial direct-origin analytic backend](notes/direct-origin-short.md) now
 checks the absolute short basis responses and a conditional remainder transfer
 in Lean. That backend alone is not a geometric limit theorem; #97 stays open.
@@ -516,7 +516,7 @@ fundamental rule. See:
 
 - [Emergence and dynamics: current learnings and roadmap](notes/emergence-roadmap.md)
 - [Viewing notes from the Fay Dowker / Curt Jaimungal conversation](notes/fay-dowker-interview-notes.md)
-- [Discussion #12: order-invariant automata](https://github.com/q5m-ai/causal-set-emergence/discussions/12)
+- [Discussion #12: order-invariant automata](https://github.com/q5m-ai/causal-sets/discussions/12)
 
 ## Interactive explainer
 
