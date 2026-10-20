@@ -36,7 +36,7 @@ for **all Markdown files, issue/PR bodies, comments, and reviews**.
   `\operatorname` and other macros even when a local MathJax preview accepts them.
 - Run `python3 check_markdown.py` and `python3 -m unittest -v test_check_markdown`
   before committing Markdown changes. For a remote audit, run
-  `python3 check_markdown.py --github q5m-ai/causal-set-emergence` (read-only).
+  `python3 check_markdown.py --github q5m-ai/causal-sets` (read-only).
 - Preview changed equations on GitHub. A successful Markdown API response or a
   `math-renderer` element **does not prove** that browser-side math rendering
   succeeded. Check for macro errors, literal TeX, missing equations, and layout.
