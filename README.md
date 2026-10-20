@@ -436,6 +436,14 @@ unrestricted-conjecture result, or sample-wise convergence is claimed.
 
 ### Fixed-null mixed estimates and written expected-action assembly
 
+**Research-package handoff:** [PR #184's integration scope](notes/null-research-handoff.md)
+is to preserve the scoped written results, diagnostics and blocker dossier,
+not to complete #156/#81/#24. This line of investigation has stopped in favor
+of another approach. Preparing the package for review or merge does not change
+the original theorem acceptance, resolve the blocked crosswalk entries, or
+supply independent mathematical review. The detailed results below retain
+their stated scopes and verification status.
+
 The [fixed-null mixed pilot](notes/null-mixed-estimates.md) derives the signed
 unit joint coefficient directly for a smooth spacelike lower face beneath a
 null cone. Its conventional proof gives an explicit weighted near-cone bound,
@@ -471,10 +479,93 @@ SN flux and retains nonzero weighted crease/generator endpoints. Actual
 weighted interval/pair valuation and CC cap hypotheses give full assembly,
 then separate original-law expectation. This is written, not Lean-checked or
 independently accepted.
-[The #156 ledger](notes/null-mixed-required-coverage.md) retains arbitrary null
-fronts, tangential floor/crease contacts, three or more tips, other curved
-dimensions/metrics, cut/caustic regimes and higher intersections;
-#156/#81/#24 and #94/#86 remain open.
+The subsequent [general past-front theorem NF-d](notes/regular-null-front-limit.md)
+extends the mechanism to **every dimension at least two**, with a smooth
+strictly spacelike floor and explicit regular null-contact geometry in
+conformally Minkowski spacetime. It includes arbitrary finite tip multiplicity
+and dependent cone intersections, with full pair/layer inclusion–exclusion,
+complete deterministic assembly and separate original-law expectation.
+The [all-null product obstruction NP](notes/null-product-focusing-obstruction.md)
+derives a complete positive divergent action in 7D, including the actual null
+endpoint masks, focal matching, independent short target and point cancellation.
+Both are written research, not new Lean results or independent acceptance.
+The [joint tangency theorem TC-d](notes/null-tangency-matching.md) subsequently
+resolves arbitrary two-sheet floor/crease tangencies by closing-first signed
+phase matching, including infinitely flat gaps and positive-area coincidences.
+It completes deterministic assembly and expectation, deriving a twice-screen
+union-coincidence term rather than assuming all extra strata vanish.
+[The original #156 crosswalk](notes/null-mixed-required-coverage.md#8-original-contract-reconciliation-after-the-general-front-attempt)
+still recommends **STILL BLOCKED**: general moving-null singular contacts and
+the corrected intrinsic theorem remain unproved. Read the
+[proof spine](notes/null-proof-spine.md) and
+[source audit](notes/null-closure-audit.md).
+A proved obstruction to local-finite-jet repairs is not a universal replacement.
+The [Cartesian continuation NX](notes/null-cartesian-pushforward.md) derives
+the compact smooth-sheet long pushforward, its geometric nonlocal term and
+signed remainder, retaining finite higher-sheet masks. The subsequent
+[complete gluing argument NG](notes/null-complete-gluing.md) audits those inputs
+and writes the full point/pair decomposition before estimating. A two-normal
+signed identity and joint diagonal/end resolution complete finite conformal
+null polyhedra and the **whole** round bicone, not merely NX13's collar; the
+latter has an independently derived nonlocal correction in odd dimensions.
+[DL](notes/null-two-dimensional-gluing.md) computes the real two-dimensional
+logarithms, adjoining cross partners and conformal vertex matching.
+[FL](notes/null-floor-level-matching.md) handles all finite smooth-sheet
+strict-floor contacts jointly, deriving their one/two/zero screen traces.
+The [singular-end reconstruction SE/IF](notes/null-singular-end-audit.md)
+author-checks those estimates, resolves arbitrary opposite-front exits in the
+flat common-tip class by complete signed fibre integration, and derives a
+fixed-width intrinsic focal threshold including its physical closing boundary.
+It also computes the actual seven-halves transition coefficient, retaining both
+matched tails above threshold. [The curved common-tip response CS](notes/curved-common-tip-response.md)
+now resolves that **same** cusp at density `A(t)=1+t*t`: complete signed
+partner integration gives curvature plus conformal outer-screen area, with
+no additional shared-generator or end charge. Its nonexponential profile,
+whole matching tail and uniform tube estimate extend to arbitrary smooth
+positive spacetime density in the three-dimensional common-tip class.
+[The intrinsic-union continuation IU](notes/intrinsic-union-continuation.md)
+then resolves the actual spherical interval jointly through focal and closing
+transitions, proving its complete growth plus finite term with uniform o(1)
+error. A separate derivative-free logarithmic-ramp identity applies to general
+physical unions without requiring a classical expansion. Its general geometric
+critical trace remains unproved: the exact next specialist question is stated,
+not assumed as parent admissibility. These are restricted written results,
+not a corrected general theorem or independent acceptance.
+[The geometric critical-trace attempt GT](notes/geometric-critical-trace.md)
+states the exact normalized full-tail obligation and pursues three distinct
+routes. Count-free clock control gives an actual coarea density and its first
+coefficient; a density-jet replacement is proved negligible at complete critical
+order. The remaining signed scale increment still lacks its geometric trace:
+these gains do not prove the corrected general theorem. Nonlocal-correction
+attempts retain the spherical and CS adversaries without assuming their structure.
+[The integrated independent investigation IN](notes/independent-null-investigation.md)
+provides an inverse-free complete pairing for arbitrary closed-Y null suspensions.
+[The matching continuation SM](notes/null-suspension-matching.md) now recovers its
+point, bulk and screen from four signed moments, with a uniform local-reference
+error and exact auxiliary-cutoff recombination. It completes the local-width
+suspension theorem, all widths in d=2,3, and, by a different signed integration,
+derives a finite extra charge in a flat all-null 5D quotient without
+conjugate points; higher
+dimensions have complete-action growth.
+[The complementary-trace continuation CT](notes/null-complementary-trace.md)
+then proves a critical triangle-phase replacement for arbitrary closed Y,
+extracts the flat fold's geometric trace measure, and sharpens the existing
+6D suspension to growth plus its independent finite term with o(1) error.
+A separate anchored signed transport criterion retains all four homogeneous
+modes and the physical closing cap; smooth-test convergence alone is not enough.
+The arbitrary-Y complementary response and corrected general theorem remain
+unproved. Neither CT's sufficient norm criterion nor GT's scale increment is
+a necessary acceptance condition. Finite diagnostics do not certify these
+geometric remainders or supply independent acceptance.
+[The general-theorem attempt GA](notes/null-general-theorem-attempt.md) returns
+**outcome C**, not another partial asymptotic theorem. It records the candidate
+before testing compact minimizing-path geometry, signed conservation/valuation,
+and a correlation-preserving operator formulation. None constructs the general
+contact response or proves its critical error. The dossier distinguishes that
+failure from a mathematical impossibility result and specifies the exact
+geometric result still needed, including the nonproduct extension.
+#156/#81/#24, #177 and #94/#86 remain open; #185 stays deferred. No scope change
+is enacted.
 No sample-wise or spacelike-to-null singular-limit conclusion is implied.
 
 ### Independent-face enlargement
@@ -907,6 +998,33 @@ physics.
 - `notes/curved-assembly.md`, `curved_assembly.py` — written controlled conformal
   4D bulk-and-joint deterministic/expected theorem and separate finite
   certificates; not a new Lean continuum-limit theorem or general curved result.
+- `notes/null-complete-gluing.md`, `notes/null-two-dimensional-gluing.md`,
+  `notes/null-floor-level-matching.md` — complete signed gluing at their stated
+  scopes; `null_complete_gluing.py` and its tests are finite diagnostics only.
+- `notes/null-singular-end-audit.md` — author reconstruction, complete flat
+  common-tip singular-end theorem and intrinsic focal closing threshold;
+  `null_singular_ends.py` and its tests are finite diagnostics, not certificates.
+- `notes/curved-common-tip-response.md` — complete SE6 curved cusp and 3D
+  conformal common-tip theorem, signed profile mass/tail and critical remainder;
+  `curved_cusp_response.py` and its tests are finite diagnostics only.
+- `notes/intrinsic-union-continuation.md` — two intrinsic-union methods, complete
+  spherical growth/finite remainder and the exact general filtered-trace gap;
+  `intrinsic_union_response.py` and its tests are finite diagnostics only.
+- `notes/geometric-critical-trace.md` — exact trace obligation, whole-clock coarea,
+  critical density-jet stability and three routes with the general gap retained;
+  `geometric_trace_diagnostics.py` and its tests are finite diagnostics only.
+- `notes/independent-null-investigation.md` — complete cap transport and
+  inverse-free suspension pairing, including the lost homogeneous-data warning;
+  `null_suspension.py` and its tests are finite diagnostics only.
+- `notes/null-suspension-matching.md` — arbitrary-Y origin matching, complete
+  local-width theorem and a flat 5D nonlocal charge with physical-union assembly;
+  `null_suspension_matching.py` and its tests are finite diagnostics only.
+- `notes/null-general-theorem-attempt.md` — outcome-C construction-failure dossier:
+  candidate general statement, three structural attempts and exact missing geometry.
+- `notes/null-complementary-trace.md` — critical conditional-triangle replacement,
+  the flat 6D growth/finite remainder and anchored signed transport with its
+  still-unproved general estimate; `null_complementary_trace.py` and its tests
+  are finite diagnostics only.
 - `notes/references.md` — sources, attribution, and novelty boundaries.
 - `notes/emergence-roadmap.md` — synthesis of conceptual learnings and next questions.
 - `notes/fay-dowker-interview-notes.md` — provisional viewing notes and study prompts.
